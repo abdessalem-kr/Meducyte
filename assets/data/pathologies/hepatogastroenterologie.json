@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Hémorragie digestive haute",
+    "description": "Perte de sang dans le tube digestif supérieur",
+    "redFlags": [
+      "Méléna",
+      "Hématemèse",
+      "Instabilité hémodynamique"
+    ],
+    "scores": [
+      {
+        "name": "Score de Rockall",
+        "description": "Évaluation du risque de récidive d'hémorragie digestive haute",
+        "criteria": [
+          "Âge > 60 ans",
+          "Antécédents d'hémorragie digestive",
+          "Insuffisance cardiaque"
+        ],
+        "interpretation": "Score élevé : risque accru de récidive"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal",
+        "steps": [
+          {
+            "action": "Palpation de l'abdomen",
+            "interpretation": "Douleur ou masse abdominale"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réanimation hémodynamique",
+      "Administration de proton pomp inhibitors"
+    ],
+    "differentialDiagnosis": [
+      "Ulcère gastroduodénal",
+      "Varices œsophagiennes"
+    ]
+  },
+  {
+    "name": "Hépatite aiguë",
+    "description": "Inflammation aiguë du foie",
+    "redFlags": [
+      "Ictère",
+      "Asténie",
+      "Nausées et vomissements"
+    ],
+    "scores": [
+      {
+        "name": "Score de MELD",
+        "description": "Évaluation de la gravité de l'insuffisance hépatique",
+        "criteria": [
+          "Bilirubine",
+          "INR",
+          "Créatinine"
+        ],
+        "interpretation": "Score élevé : risque accru de décès"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen du foie",
+        "steps": [
+          {
+            "action": "Palpation du foie",
+            "interpretation": "Hypertrophie ou douleur"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réanimation hémodynamique",
+      "Administration de médicaments antiviraux"
+    ],
+    "differentialDiagnosis": [
+      "Hépatite chronique",
+      "Cirrhose"
+    ]
+  },
+  {
+    "name": "Pancréatite aiguë",
+    "description": "Inflammation aiguë du pancréas",
+    "redFlags": [
+      "Douleur abdominale intense",
+      "Nausées et vomissements",
+      "Féver"
+    ],
+    "scores": [
+      {
+        "name": "Score de BISAP",
+        "description": "Évaluation de la gravité de la pancréatite aiguë",
+        "criteria": [
+          "Âge > 60 ans",
+          "Leucocytes",
+          "Créatinine"
+        ],
+        "interpretation": "Score élevé : risque accru de décès"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal",
+        "steps": [
+          {
+            "action": "Palpation de l'abdomen",
+            "interpretation": "Douleur ou masse abdominale"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réanimation hémodynamique",
+      "Administration de médicaments analgésiques"
+    ],
+    "differentialDiagnosis": [
+      "Pancréatite chronique",
+      "Tumeur du pancréas"
+    ]
+  }
+]

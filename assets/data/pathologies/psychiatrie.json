@@ -1,0 +1,133 @@
+[
+  {
+    "name": "Trouble Dépressif Majeur",
+    "description": "Épisode dépressif caractérisé par une humeur dépressive ou une perte d'intérêt",
+    "redFlags": [
+      "Idées suicidaires",
+      "Comportement auto-agressif",
+      "Perte de poids importante"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de dépression de Hamilton (HAM-D)",
+        "description": "Évalue la sévérité de la dépression",
+        "criteria": [
+          "Humeur dépressive",
+          "Perte d'intérêt",
+          "Troubles du sommeil"
+        ],
+        "interpretation": "Score élevé indique une dépression plus sévère"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen de l'état mental",
+        "steps": [
+          {
+            "action": "Évaluation de l'humeur",
+            "interpretation": "Permet d'évaluer la présence d'une humeur dépressive"
+          },
+          {
+            "action": "Évaluation de la pensée",
+            "interpretation": "Permet d'évaluer la présence de troubles de la pensée"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Évaluation du risque suicidaire",
+      "Prescription d'un traitement antidépresseur"
+    ],
+    "differentialDiagnosis": [
+      "Trouble bipolaire",
+      "Trouble de l'humeur"
+    ]
+  },
+  {
+    "name": "Trouble Anxieux Généralisé",
+    "description": "Anxiété excessive et persistante touchant plusieurs domaines de la vie",
+    "redFlags": [
+      "Anxiété intense",
+      "Comportement d'évitement",
+      "Troubles du sommeil"
+    ],
+    "scores": [
+      {
+        "name": "Échelle d'anxiété de Hamilton (HAM-A)",
+        "description": "Évalue la sévérité de l'anxiété",
+        "criteria": [
+          "Anxiété somatique",
+          "Anxiété psychique",
+          "Comportement d'évitement"
+        ],
+        "interpretation": "Score élevé indique une anxiété plus sévère"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen de l'état mental",
+        "steps": [
+          {
+            "action": "Évaluation de l'anxiété",
+            "interpretation": "Permet d'évaluer la présence d'une anxiété excessive"
+          },
+          {
+            "action": "Évaluation de la tolérance à la frustration",
+            "interpretation": "Permet d'évaluer la capacité à gérer le stress"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescription d'un traitement anxiolytique",
+      "Thérapie cognitivo-comportementale"
+    ],
+    "differentialDiagnosis": [
+      "Trouble panique",
+      "Trouble de stress post-traumatique"
+    ]
+  },
+  {
+    "name": "Schizophrénie",
+    "description": "Trouble psychotique caractérisé par des hallucinations et des délires",
+    "redFlags": [
+      "Hallucinations",
+      "Délires",
+      "Comportement désorganisé"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de symptômes positifs et négatifs de la schizophrénie (PANSS)",
+        "description": "Évalue la sévérité des symptômes de la schizophrénie",
+        "criteria": [
+          "Symptômes positifs (hallucinations, délires)",
+          "Symptômes négatifs (apathie, retrait social)"
+        ],
+        "interpretation": "Score élevé indique une schizophrénie plus sévère"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen de l'état mental",
+        "steps": [
+          {
+            "action": "Évaluation des hallucinations",
+            "interpretation": "Permet d'évaluer la présence d'hallucinations"
+          },
+          {
+            "action": "Évaluation des délires",
+            "interpretation": "Permet d'évaluer la présence de délires"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescription d'un traitement antipsychotique",
+      "Hospitalisation en cas de crise"
+    ],
+    "differentialDiagnosis": [
+      "Trouble bipolaire",
+      "Trouble dépressif majeur"
+    ]
+  }
+]

@@ -1,0 +1,124 @@
+[
+  {
+    "name": "Appendicite aigue",
+    "description": "Inflammation aigue de l'appendice ileocolique",
+    "redFlags": [
+      "Douleur abdominale diffuse",
+      "Fievre",
+      "Nausees et vomissements"
+    ],
+    "scores": [
+      {
+        "name": "Score d'Alvarado",
+        "description": "Evaluation de la probabilite d'appendicite aigue",
+        "criteria": [
+          "Douleur migratoire",
+          "Anorexie",
+          "Nausees et vomissements",
+          "Fievre",
+          "Leucocytose"
+        ],
+        "interpretation": "Score >= 7 : appendicite aigue probable"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Palpation abdominale",
+        "steps": [
+          {
+            "action": "Recherche d'une douleur a la palpation",
+            "interpretation": "Douleur a la palpation dans le quadrant inferieur droit"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hospitalisation",
+      "Antibiotherapie",
+      "Chirurgie d'urgence"
+    ],
+    "differentialDiagnosis": [
+      "Diverticulite",
+      "Colite"
+    ]
+  },
+  {
+    "name": "Hernie inguinale",
+    "description": "Protrusion d'un organe abdominal a travers une faille de la paroi abdominale",
+    "redFlags": [
+      "Douleur inguinale",
+      "Gonflement inguinal"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Gilbert",
+        "description": "Evaluation de la taille de la hernie",
+        "criteria": [
+          "Taille de la hernie",
+          "Reductibilite"
+        ],
+        "interpretation": "Hernie reducible ou irreducible"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen de la paroi abdominale",
+        "steps": [
+          {
+            "action": "Recherche d'une hernie",
+            "interpretation": "Presence d'une hernie inguinale"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Reduction de la hernie",
+      "Chirurgie elective"
+    ],
+    "differentialDiagnosis": [
+      "Lymphadenite",
+      "Orchite"
+    ]
+  },
+  {
+    "name": "Choc hemorragique",
+    "description": "Etat de choc cause par une perte de sang importante",
+    "redFlags": [
+      "Perte de sang importante",
+      "Hypotension",
+      "Tachycardie"
+    ],
+    "scores": [
+      {
+        "name": "Score de classification du choc hemorragique",
+        "description": "Evaluation de la severite du choc",
+        "criteria": [
+          "Pression arterielle",
+          "Frequence cardiaque",
+          "Saturation en oxygene"
+        ],
+        "interpretation": "Choc hemorragique classe I, II, III ou IV"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire",
+        "steps": [
+          {
+            "action": "Evaluation de la pression arterielle",
+            "interpretation": "Hypotension"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Oxygenotherapie",
+      "Fluides intraveineux",
+      "Transfusion sanguine"
+    ],
+    "differentialDiagnosis": [
+      "Choc cardiogenique",
+      "Choc septique"
+    ]
+  }
+]

@@ -1,0 +1,125 @@
+[
+  {
+    "name": "Pneumonie communautaire",
+    "description": "Infection bactérienne des poumons",
+    "redFlags": [
+      "Dyspnée sévère",
+      "Fièvre élevée",
+      "Confusion"
+    ],
+    "scores": [
+      {
+        "name": "Score de CURB-65",
+        "description": "Évaluation de la gravité de la pneumonie",
+        "criteria": [
+          "Confusion",
+          "Uremie",
+          "Rythme respiratoire élevé",
+          "Pression artérielle basse",
+          "Âge supérieur à 65 ans"
+        ],
+        "interpretation": "Score élevé indique une gravité accrue"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Auscultation pulmonaire",
+        "steps": [
+          {
+            "action": "Écouter les bruits respiratoires",
+            "interpretation": "Râles, sibilances ou égophony"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'antibiotiques",
+      "Oxygénothérapie"
+    ],
+    "differentialDiagnosis": [
+      "Pneumonie nosocomiale",
+      "Exacerbation de BPCO"
+    ]
+  },
+  {
+    "name": "Embolie pulmonaire",
+    "description": "Obstruction des artères pulmonaires par un caillot",
+    "redFlags": [
+      "Dyspnée soudaine",
+      "Douleur thoracique",
+      "Syncope"
+    ],
+    "scores": [
+      {
+        "name": "Score de Wells",
+        "description": "Évaluation du risque d'embolie pulmonaire",
+        "criteria": [
+          "Douleur thoracique",
+          "Taux de saturation en oxygène bas",
+          "Fréquence cardiaque élevée",
+          "Immobilisation récente"
+        ],
+        "interpretation": "Score élevé indique un risque accru"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire",
+        "steps": [
+          {
+            "action": "Mesurer la pression artérielle",
+            "interpretation": "Hypertension ou hypotension"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'anticoagulants",
+      "Oxygénothérapie"
+    ],
+    "differentialDiagnosis": [
+      "Infarctus du myocarde",
+      "Pneumonie"
+    ]
+  },
+  {
+    "name": "Asthme",
+    "description": "Inflammation chronique des voies respiratoires",
+    "redFlags": [
+      "Dyspnée sévère",
+      "Wheezing",
+      "Cyanose"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'asthme",
+        "description": "Évaluation de la gravité de l'asthme",
+        "criteria": [
+          "Fréquence des crises",
+          "Niveau de contrôle des symptômes",
+          "Utilisation de médicaments"
+        ],
+        "interpretation": "Score élevé indique une gravité accrue"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Auscultation pulmonaire",
+        "steps": [
+          {
+            "action": "Écouter les bruits respiratoires",
+            "interpretation": "Wheezing, râles ou silence pulmonaire"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de bronchodilatateurs",
+      "Oxygénothérapie"
+    ],
+    "differentialDiagnosis": [
+      "BPCO",
+      "Pneumonie"
+    ]
+  }
+]

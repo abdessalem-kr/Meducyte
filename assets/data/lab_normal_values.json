@@ -1,0 +1,552 @@
+[
+  [
+    "Paramètre",
+    "Unités traditionnelles",
+    "Unités SI"
+  ],
+  [
+    "Acide urique (homme)",
+    "40 à 60 mg/L",
+    "240 à 360 μmol/L"
+  ],
+  [
+    "ACTH (à 8 h du matin)",
+    "< 50 pg/mL",
+    "10 μmol/L"
+  ],
+  [
+    "Albumine",
+    "40 à 50 g/L",
+    "650 à 800 μmol/L"
+  ],
+  [
+    "Ammoniaque (sang artériel)",
+    "< 0,5 mg/L",
+    "< 15 μmol/L"
+  ],
+  [
+    "Amylase",
+    "10 à 45 UI/L",
+    ""
+  ],
+  [
+    "Apolipoprotéine A1",
+    "1,20 à 1,80 g/L",
+    ""
+  ],
+  [
+    "Bicarbonates (adulte)",
+    "22 à 26 mEq",
+    "ou mmol/L"
+  ],
+  [
+    "Bilirubine",
+    "< 12 mg/L",
+    "< 20 μmol/L"
+  ],
+  [
+    "Calcium",
+    "95 à 105 mg/L",
+    "2,2 à 2,6 mmol/L"
+  ],
+  [
+    "Cholestérol (adulte après 50 ans)",
+    "< 2 g/L",
+    "< 5 mmol/L"
+  ],
+  [
+    "Cortisol (le matin)",
+    "50 à 200 ng/mL",
+    "0,15 à 0,7 μmol/L"
+  ],
+  [
+    "Créatinine (homme adulte)",
+    "9 à 15 mg/L",
+    "80 à 120 μmol/L"
+  ],
+  [
+    "Fer (homme adulte)",
+    "65 à 180 μg/dl",
+    "12 à 30 μmol/L"
+  ],
+  [
+    "Fibrinogène",
+    "2 à 4 g/L",
+    ""
+  ],
+  [
+    "FSH (phase folliculaire)",
+    "2 à 10 UI/L",
+    ""
+  ],
+  [
+    "Gamma-GT",
+    "< 35 UI/L",
+    ""
+  ],
+  [
+    "Gaz du sang (1 kPa = 7,5 torrs)",
+    "",
+    ""
+  ],
+  [
+    "• PaO 2",
+    "90 à 100 Torr (mmHg)",
+    "12 à 13,3 kPa"
+  ],
+  [
+    "• SaO 2",
+    "95 à 98 %",
+    ""
+  ],
+  [
+    "• PaCO 2",
+    "35 à 45 Torr (mmHg)",
+    "4,7 à 5,3 kPa"
+  ],
+  [
+    "Glucose",
+    "0,60 à 0,9 g/L",
+    "3,5 à 5 mmol/L"
+  ],
+  [
+    "Haptoglobine",
+    "0,5 à 1,5 g/L",
+    "6 à 18 mmol/L"
+  ],
+  [
+    "Immunoglobuline IgG",
+    "8 à 16 g/L",
+    ""
+  ],
+  [
+    "Immunoglobuline IgM",
+    "0,5 à 2 g/L",
+    ""
+  ],
+  [
+    "Ionogramme",
+    "",
+    ""
+  ],
+  [
+    "1) Anions (155þmEq)",
+    "",
+    ""
+  ],
+  [
+    "• Chlorures",
+    "100 à 110 mEq/L",
+    "(ou mmol/L)"
+  ],
+  [
+    "Paramètre",
+    "Unités traditionnelles",
+    "Unités SI"
+  ],
+  [
+    "• Bicarbonates",
+    "22 à 26 mEq/L",
+    "(ou mmol/L"
+  ],
+  [
+    "• Sulfates et anions organiques",
+    "16 mg/L",
+    "< 7 mEq/L"
+  ],
+  [
+    "• Protéines",
+    "75 mg/L",
+    "6 mEq/L"
+  ],
+  [
+    "2) Cations (155 mEq)",
+    "",
+    ""
+  ],
+  [
+    "• Sodium",
+    "137 à 143 mEq/L",
+    "(ou mmol/L)"
+  ],
+  [
+    "• Potassium",
+    "3,5 à 4,5 mEq/L",
+    "(ou mmol/L)"
+  ],
+  [
+    "• Calcium",
+    "95 à 105 mg/L",
+    "2,2 à 2,6 mmol/L"
+  ],
+  [
+    "LDH (adulte)",
+    "100 à 240 UI/L",
+    "100 à 240 UI/L"
+  ],
+  [
+    "Magnésium (sérum)",
+    "18 à 22 mg/L",
+    "0,75 à 0,9 mmol/L"
+  ],
+  [
+    "pH (sang artériel)",
+    "7,38 à 7,42",
+    ""
+  ],
+  [
+    "Phosphatases alcalines (adultes)",
+    "50 à 130 UI/L",
+    ""
+  ],
+  [
+    "Phosphore (adulte)",
+    "25 à 50 mg/L",
+    "0,8 à 1,6 mmol/L"
+  ],
+  [
+    "Protéines sériques totales",
+    "60 à 80 g/L",
+    ""
+  ],
+  [
+    "Protéines sériques (électrophorèse)",
+    "",
+    ""
+  ],
+  [
+    "• Albumine",
+    "60 % (43 g/L)",
+    ""
+  ],
+  [
+    "• Alpha-1-globulines",
+    "2,5 à 6 % (3 g/L)",
+    ""
+  ],
+  [
+    "• Alpha-2-globulines",
+    "6 à 10 % (6 g/L)",
+    ""
+  ],
+  [
+    "• Bêtaglobulines",
+    "10 à 15 % (9 g/L)",
+    ""
+  ],
+  [
+    "• Gammaglobulines",
+    "14 à 20 % (12 g/L)",
+    ""
+  ],
+  [
+    "Taux de prothrombine",
+    "80 à 100 %",
+    "12 à 15 s"
+  ],
+  [
+    "Transaminases",
+    "",
+    ""
+  ],
+  [
+    "• ASAT (TGO)",
+    "5 à 40 UI/L (à 30 °C)",
+    ""
+  ],
+  [
+    "• ALAT (TGP)",
+    "5 à 35 UI/L (à 30 °C)",
+    ""
+  ],
+  [
+    "Triglycérides (adulte)",
+    "< 1,30 g/L",
+    "<1,6 mmol/L"
+  ],
+  [
+    "VS Après 1 heure",
+    "3 à 8 mm",
+    ""
+  ],
+  [
+    "Paramètre",
+    "Unités traditionnelles",
+    "Unités SI"
+  ],
+  [
+    "Acide urique (adulte)",
+    "0,200 à 0,650 g/L",
+    "1,5 à 4,8 mmol/24 h"
+  ],
+  [
+    "Acide vanyl-mandélique (adulte)",
+    "1 à 6 mg/24 h",
+    "5 à 30 mmol/24 h"
+  ],
+  [
+    "Calcium",
+    "0,100 à 0,250 g/24 h",
+    "2,5 à 6,5 mmol/24 h"
+  ],
+  [
+    "Clairance de la créatinine endogène",
+    "",
+    ""
+  ],
+  [
+    "• Homme",
+    "120 ± 20 mL/min",
+    ""
+  ],
+  [
+    "• Femme",
+    "115 ± 16 mL/min",
+    ""
+  ],
+  [
+    "HLM",
+    "",
+    ""
+  ],
+  [
+    "• Hématies",
+    "< 5 000",
+    ""
+  ],
+  [
+    "• Leucocytes",
+    "< 5 000",
+    ""
+  ],
+  [
+    "pH",
+    "4,6 à 8",
+    ""
+  ],
+  [
+    "Potassium",
+    "40 à 100 mEq/24 h",
+    "40 à 100 mmol/24 h"
+  ],
+  [
+    "Sodium",
+    "100 à 300 mEq/24 h",
+    "100 à 300 mmol/24 h"
+  ],
+  [
+    "Urée",
+    "15 à 30 g/24 h",
+    "250 à 500 mmol/24 h"
+  ],
+  [
+    "Paramètre",
+    "Valeurs normales"
+  ],
+  [
+    "Cytologie",
+    "< 3 à 5 cellules/μL"
+  ],
+  [
+    "Glucose",
+    "La moitié de la glycémie"
+  ],
+  [
+    "Protéines (région lombaire)",
+    "0,30 à 0,50 g/L"
+  ],
+  [
+    "Paramètre",
+    "Valeurs normales"
+  ],
+  [
+    "Hématies",
+    ""
+  ],
+  [
+    "• Homme",
+    "4,5 à 6 T/L"
+  ],
+  [
+    "• Femme",
+    "4 à 5,4 T/L"
+  ],
+  [
+    "• Enfant (>þ1 an)",
+    "3,6 à 5 T/L"
+  ],
+  [
+    "Leucocytes",
+    ""
+  ],
+  [
+    "• Homme",
+    "4 à 10 G/L"
+  ],
+  [
+    "• Femme",
+    "4 à 10 G/L"
+  ],
+  [
+    "• Enfant",
+    "4 à 12 G/L"
+  ],
+  [
+    "Plaquettes",
+    "150 à 500 G/L"
+  ],
+  [
+    "Paramètre",
+    "Homme adulte",
+    "Femme",
+    "Enfant",
+    "Nouveau- né"
+  ],
+  [
+    "Nombre de globules rouges (1012/L)",
+    "4,5 à 6",
+    "4 à 5,4",
+    "3,6 à 5",
+    "5 à 6"
+  ],
+  [
+    "Hémoglobine (g/dL)",
+    "13 à 18",
+    "12 à 16",
+    "12 à 16",
+    "14 à 20"
+  ],
+  [
+    "Hématocrite",
+    "0,40 à 0,54",
+    "0,37 à 0,47",
+    "0,36 à 0,44",
+    "0,44 à 0,60"
+  ],
+  [
+    "VGM (μm3)",
+    "85 à 98",
+    "85 à 98",
+    "70 à 86",
+    "100 à 110"
+  ],
+  [
+    "CCMH (g/dL)",
+    "32 à 36",
+    "32 à 36",
+    "32 à 36",
+    "32 à 36"
+  ],
+  [
+    "TCMH (pg)",
+    "27 à 32",
+    "27 à 32",
+    "25 à 32",
+    "29 à 37"
+  ],
+  [
+    "Nombre de leucocytes (109/L)",
+    "4 à 10",
+    "4 à 10",
+    "4 à 12",
+    "10 à 25"
+  ],
+  [
+    "P. neutrophiles (109/L)",
+    "1,5 à 7",
+    "1,5 à 7",
+    "",
+    ""
+  ],
+  [
+    "P. éosinophiles (109/L)",
+    "< 0,5",
+    "< 0,5",
+    "< 0,5",
+    "< 1"
+  ],
+  [
+    "P. basophiles (109/L)",
+    "< 0,05",
+    "< 0,05",
+    "0",
+    "0"
+  ],
+  [
+    "Lymphocytes (109/L)",
+    "1 à 4",
+    "1 à 4",
+    "4 à 8",
+    "2 à 10"
+  ],
+  [
+    "Monocytes (109/L)",
+    "0,1 à 1",
+    "0,1 à 1",
+    "",
+    ""
+  ],
+  [
+    "Nombre de plaquettes (109/L)",
+    "150 à 500",
+    "150 à 500",
+    "150 à 500",
+    "150 à 500"
+  ],
+  [
+    "Paramètre",
+    "Valeurs normales"
+  ],
+  [
+    "FSH (femme) phase folliculaire",
+    "<10UI/L"
+  ],
+  [
+    "LH (femme) phase folliculaire",
+    "<5UI/L"
+  ],
+  [
+    "FSH LH (homme)",
+    "3 à 7UI/L"
+  ],
+  [
+    "Prolactine",
+    "<20ng/mL"
+  ],
+  [
+    "Estradiol • Phase folliculaire • Phase lutéale • Pic",
+    "50pg/mL 150pg/mL 250pg/mL"
+  ],
+  [
+    "Δ4-androstènedione (femme)",
+    "<3ng/mL"
+  ],
+  [
+    "Testostérone (femme)",
+    "<0,5ng/mL"
+  ],
+  [
+    "Testostérone (homme adulte)",
+    "4 à 8ng/mL"
+  ],
+  [
+    "T4 libre",
+    "8 à 28pg/mL"
+  ],
+  [
+    "TSH",
+    "0,4 à 4mU/L"
+  ],
+  [
+    "Cortisol plasmatique (à 8þheures)",
+    "50 à 200 ng/mL"
+  ],
+  [
+    "FLU",
+    "20 à 50μg/24h"
+  ],
+  [
+    "ACTH (à 8 heures)",
+    "< 50 pg/mL"
+  ]
+]

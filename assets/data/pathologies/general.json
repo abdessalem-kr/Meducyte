@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Sepsis / Choc Septique",
+    "description": "Dysfonction d'organe menaçant le pronostic vital.",
+    "scores": [
+      {
+        "name": "qSOFA",
+        "description": "Dépistage rapide du sepsis.",
+        "criteria": [
+          "FR >= 22",
+          "Glasgow < 15",
+          "PAS <= 100"
+        ],
+        "interpretation": "Score >= 2 : Risque élevé."
+      }
+    ],
+    "redFlags": [
+      "Hypotension persistante",
+      "Lactates > 2",
+      "Purpura extensif"
+    ],
+    "immediateManagement": [
+      "Hémocultures",
+      "Antibiotiques IV",
+      "Remplissage"
+    ]
+  }
+]

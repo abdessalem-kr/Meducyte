@@ -1,0 +1,123 @@
+[
+  {
+    "name": "Insuffisance rénale aiguë",
+    "description": "Altération brutale de la fonction rénale",
+    "redFlags": [
+      "Oligurie",
+      "Anurie",
+      "Hyperkaliémie",
+      "Acidose métabolique"
+    ],
+    "scores": [
+      {
+        "name": "RIFLE",
+        "description": "Classification de l'insuffisance rénale aiguë",
+        "criteria": [
+          "Augmentation de la créatinine",
+          "Diminution du débit de filtration glomérulaire"
+        ],
+        "interpretation": "R : risque, I : lésion, F : échec, L : perte, E : insuffisance rénale terminale"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal",
+        "steps": [
+          {
+            "action": "Palpation de la région lombaire",
+            "interpretation": "Douleur ou sensibilité en cas de pyélonephrite ou de néphrolithiase"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réhydratation",
+      "Correction de l'électrolytémie",
+      "Évaluation de la fonction rénale"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance cardiaque",
+      "Hypovolémie"
+    ]
+  },
+  {
+    "name": "Glomérulonéphrite",
+    "description": "Inflammation des glomérules rénaux",
+    "redFlags": [
+      "Hématurie",
+      "Protéinurie",
+      "Hypertension artérielle"
+    ],
+    "scores": [
+      {
+        "name": "Classification de la société internationale de néphrologie",
+        "description": "Classification des glomérulonéphrites",
+        "criteria": [
+          "Type de lésion glomérulaire",
+          "Présence de dépôts immuns"
+        ],
+        "interpretation": "Aide au diagnostic et au traitement"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen urinaire",
+        "steps": [
+          {
+            "action": "Recherche de sang et de protéines dans les urines",
+            "interpretation": "Hématurie ou protéinurie en cas de glomérulonéphrite"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Traitement de l'hypertension artérielle",
+      "Réduction de la protéinurie",
+      "Évaluation de la fonction rénale"
+    ],
+    "differentialDiagnosis": [
+      "Néphropathie diabétique",
+      "Amylose rénale"
+    ]
+  },
+  {
+    "name": "Néphropathie diabétique",
+    "description": "Lésion rénale secondaire au diabète",
+    "redFlags": [
+      "Protéinurie",
+      "Hématurie",
+      "Insuffisance rénale chronique"
+    ],
+    "scores": [
+      {
+        "name": "Classification de la néphropathie diabétique",
+        "description": "Classification de la néphropathie diabétique",
+        "criteria": [
+          "Stade de la maladie",
+          "Présence de complications"
+        ],
+        "interpretation": "Aide au diagnostic et au traitement"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des pieds",
+        "steps": [
+          {
+            "action": "Recherche de lésions cutanées et de troubles sensitifs",
+            "interpretation": "Signes de neuropathie diabétique"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Contrôle glycémique",
+      "Traitement de l'hypertension artérielle",
+      "Réduction de la protéinurie"
+    ],
+    "differentialDiagnosis": [
+      "Glomérulonéphrite",
+      "Insuffisance rénale chronique"
+    ]
+  }
+]

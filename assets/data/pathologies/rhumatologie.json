@@ -1,0 +1,121 @@
+[
+  {
+    "name": "Rhume déformante",
+    "description": "Maladie chronique inflammatoire",
+    "redFlags": [
+      "Douleur intense",
+      "Déformation des articulations"
+    ],
+    "scores": [
+      {
+        "name": "DAS 28",
+        "description": "Mesure l'activité de la maladie",
+        "criteria": [
+          "Nombre de jointures tendres",
+          "Nombre de jointures gonflées",
+          "TAES",
+          "CRP"
+        ],
+        "interpretation": "Score élevé indique une activité élevée de la maladie"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des jointures",
+        "steps": [
+          {
+            "action": "Palper les jointures",
+            "interpretation": "Douleur ou gonflement indique une inflammation"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescrire des AINS",
+      "Référence à un rhumatologue"
+    ],
+    "differentialDiagnosis": [
+      "Polyarthrite rhumatoïde",
+      "Spondylarthrite ankylosante"
+    ]
+  },
+  {
+    "name": "Goutte",
+    "description": "Maladie métabolique",
+    "redFlags": [
+      "Douleur intense de l'articulation du gros orteil",
+      "Érythème et gonflement de l'articulation"
+    ],
+    "scores": [
+      {
+        "name": "Score de diagnostic de la goutte",
+        "description": "Mesure la probabilité de goutte",
+        "criteria": [
+          "Douleur intense de l'articulation du gros orteil",
+          "Érythème et gonflement de l'articulation",
+          "Présence de tophi"
+        ],
+        "interpretation": "Score élevé indique une forte probabilité de goutte"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen de l'articulation du gros orteil",
+        "steps": [
+          {
+            "action": "Palper l'articulation",
+            "interpretation": "Douleur ou gonflement indique une inflammation"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescrire des AINS",
+      "Prescrire des colchicine"
+    ],
+    "differentialDiagnosis": [
+      "Pseudogoutte",
+      "Septicité"
+    ]
+  },
+  {
+    "name": "Spondylarthrite ankylosante",
+    "description": "Maladie chronique inflammatoire",
+    "redFlags": [
+      "Douleur lombaire",
+      "Raideur matinale"
+    ],
+    "scores": [
+      {
+        "name": "Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)",
+        "description": "Mesure l'activité de la maladie",
+        "criteria": [
+          "Douleur lombaire",
+          "Raideur matinale",
+          "Fatigue",
+          "Douleur thoracique"
+        ],
+        "interpretation": "Score élevé indique une activité élevée de la maladie"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen de la colonne vertébrale",
+        "steps": [
+          {
+            "action": "Évaluer la flexibilité de la colonne vertébrale",
+            "interpretation": "Raideur indique une inflammation"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescrire des AINS",
+      "Référence à un rhumatologue"
+    ],
+    "differentialDiagnosis": [
+      "Spondylarthropathie",
+      "Maladie de Scheuermann"
+    ]
+  }
+]

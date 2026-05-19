@@ -1,0 +1,137 @@
+[
+  {
+    "name": "Insuffisance cardiaque",
+    "description": "Etat pathologique caracterise par l'incapacite du coeur a assurer un debit sanguin adequat",
+    "redFlags": [
+      "Dyspnee au repos",
+      "Orthopnee",
+      "Paroxysmes nocturnes de dyspnee"
+    ],
+    "scores": [
+      {
+        "name": "NYHA",
+        "description": "Classification de l'insuffisance cardiaque",
+        "criteria": [
+          "Absence de symptomes",
+          "Symptomes legers",
+          "Symptomes moderes",
+          "Symptomes graves"
+        ],
+        "interpretation": "Classe I : absence de limitation, Classe II : limitation legere, Classe III : limitation moderee, Classe IV : limitation grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Auscultation",
+        "steps": [
+          {
+            "action": "Ecouter les bruits de souffle",
+            "interpretation": "Signe de regurgitation mitrale ou tricuspide"
+          },
+          {
+            "action": "Ecouter les rales",
+            "interpretation": "Signe de congestion pulmonaire"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'oxygene",
+      "Position semi-assise"
+    ],
+    "differentialDiagnosis": [
+      "Pneumonie",
+      "Embolie pulmonaire"
+    ]
+  },
+  {
+    "name": "Infarctus du myocarde",
+    "description": "Necrose du myocarde due a une obstruction de l'artere coronaire",
+    "redFlags": [
+      "Douleur thoracique typique",
+      "Elevation du segment ST",
+      "Augmentation de la troponine"
+    ],
+    "scores": [
+      {
+        "name": "TIMI",
+        "description": "Evaluation du risque de mortalite",
+        "criteria": [
+          "Age > 75 ans",
+          "Antecedents d'infarctus du myocarde",
+          "Diabete"
+        ],
+        "interpretation": "Score eleve : risque de mortalite eleve"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire",
+        "steps": [
+          {
+            "action": "Palper les pouls",
+            "interpretation": "Signe de cardiogenese"
+          },
+          {
+            "action": "Ecouter les bruits de souffle",
+            "interpretation": "Signe de regurgitation mitrale"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de thrombolytiques",
+      "Anticoagulation"
+    ],
+    "differentialDiagnosis": [
+      "Angine de poitrine",
+      "Pneumonie"
+    ]
+  },
+  {
+    "name": "Fibrillation auriculaire",
+    "description": "Rhythme cardiaque caracterise par des contractions auriculaires rapides et irregulieres",
+    "redFlags": [
+      "Palpitations",
+      "Dyspnee",
+      "Syncope"
+    ],
+    "scores": [
+      {
+        "name": "CHADS2",
+        "description": "Evaluation du risque d'embolie systemique",
+        "criteria": [
+          "Insuffisance cardiaque",
+          "Hypertension",
+          "Age > 75 ans",
+          "Diabete",
+          "Insuffisance renale"
+        ],
+        "interpretation": "Score eleve : risque d'embolie systemique eleve"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire",
+        "steps": [
+          {
+            "action": "Palper les pouls",
+            "interpretation": "Signe de fibrillation auriculaire"
+          },
+          {
+            "action": "Ecouter les bruits de souffle",
+            "interpretation": "Signe de regurgitation mitrale"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Controle de la frequence cardiaque",
+      "Anticoagulation"
+    ],
+    "differentialDiagnosis": [
+      "Tachycardie supraventriculaire",
+      "Tachycardie ventriculaire"
+    ]
+  }
+]

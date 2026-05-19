@@ -1,0 +1,160 @@
+[
+  {
+    "name": "Anémie",
+    "description": "Diminution du nombre de globules rouges ou de l'hémoglobine",
+    "redFlags": [
+      "Pâleur",
+      "Essoufflement",
+      "Fatigue"
+    ],
+    "scores": [
+      {
+        "name": "Score de classification de l'anémie",
+        "description": "Évalue la gravité de l'anémie",
+        "criteria": [
+          "Hémoglobine",
+          "Volume globulaire moyen"
+        ],
+        "interpretation": "Permet de déterminer le degré d'anémie"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen physique",
+        "steps": [
+          {
+            "action": "Palper le pouls",
+            "interpretation": "Permet d'évaluer la fréquence cardiaque"
+          },
+          {
+            "action": "Ausculter les poumons",
+            "interpretation": "Permet de détecter les signes de défaillance cardiaque"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescrire un examen de sang",
+      "Administrer du fer si nécessaire"
+    ],
+    "differentialDiagnosis": [
+      "Anémie ferriprive",
+      "Anémie mégaloblastique"
+    ]
+  },
+  {
+    "name": "Leucémie aiguë",
+    "description": "Cancer des cellules sanguines",
+    "redFlags": [
+      "Fièvre",
+      "Fatigue",
+      "Pertes de poids"
+    ],
+    "scores": [
+      {
+        "name": "Score de risque de leucémie aiguë",
+        "description": "Évalue le risque de mortalité",
+        "criteria": [
+          "Âge",
+          "Type de leucémie"
+        ],
+        "interpretation": "Permet de déterminer le traitement"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des ganglions lymphatiques",
+        "steps": [
+          {
+            "action": "Palper les ganglions lymphatiques",
+            "interpretation": "Permet de détecter les signes de cancer"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescrire un examen de sang",
+      "Administrer de la chimiothérapie si nécessaire"
+    ],
+    "differentialDiagnosis": [
+      "Leucémie lymphoblastique",
+      "Leucémie myéloïde"
+    ]
+  },
+  {
+    "name": "Thrombocytopénie",
+    "description": "Diminution du nombre de plaquettes sanguines",
+    "redFlags": [
+      "Hémorragie",
+      "Ecchymoses"
+    ],
+    "scores": [
+      {
+        "name": "Score de risque de thrombocytopénie",
+        "description": "Évalue le risque de saignement",
+        "criteria": [
+          "Nombre de plaquettes",
+          "Présence de saignement"
+        ],
+        "interpretation": "Permet de déterminer le traitement"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des ecchymoses",
+        "steps": [
+          {
+            "action": "Observer les ecchymoses",
+            "interpretation": "Permet de détecter les signes de thrombocytopénie"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescrire un examen de sang",
+      "Administrer des plaquettes si nécessaire"
+    ],
+    "differentialDiagnosis": [
+      "Thrombocytopénie immune",
+      "Thrombocytopénie médicamenteuse"
+    ]
+  },
+  {
+    "name": "Purpura thrombotique thrombocytopénique",
+    "description": "Maladie rare caractérisée par une thrombocytopénie et des lésions cutanées",
+    "redFlags": [
+      "Purpura",
+      "Thrombocytopénie"
+    ],
+    "scores": [
+      {
+        "name": "Score de risque de purpura thrombotique thrombocytopénique",
+        "description": "Évalue le risque de mortalité",
+        "criteria": [
+          "Âge",
+          "Présence de thrombocytopénie"
+        ],
+        "interpretation": "Permet de déterminer le traitement"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des lésions cutanées",
+        "steps": [
+          {
+            "action": "Observer les lésions cutanées",
+            "interpretation": "Permet de détecter les signes de purpura thrombotique thrombocytopénique"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescrire un examen de sang",
+      "Administrer de la plasmaférese si nécessaire"
+    ],
+    "differentialDiagnosis": [
+      "Purpura thrombotique thrombocytopénique",
+      "Syndrome hémolytique et urémique"
+    ]
+  }
+]

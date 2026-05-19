@@ -1,0 +1,118 @@
+[
+  {
+    "name": "Psoriasis",
+    "description": "Affection chronique de la peau caractérisée par des lésions érythémato-squameuses",
+    "redFlags": [
+      "Douleur intense",
+      "Fièvre",
+      "Adénopathie"
+    ],
+    "scores": [
+      {
+        "name": "PASI",
+        "description": "Évaluation de la sévérité de la psoriasis",
+        "criteria": [
+          "Érythème",
+          "Induration",
+          "Desquamation"
+        ],
+        "interpretation": "Score élevé indique une sévérité accrue"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cutané",
+        "steps": [
+          {
+            "action": "Inspection des lésions",
+            "interpretation": "Présence de plaques érythémato-squameuses"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Traitement topique",
+      "Photothérapie"
+    ],
+    "differentialDiagnosis": [
+      "Dermatite atopique",
+      "Ichtyose"
+    ]
+  },
+  {
+    "name": "Urticaire",
+    "description": "Affection caractérisée par des lésions cutanées prurigineuses et éphémères",
+    "redFlags": [
+      "Difficulté respiratoire",
+      "Anaphylaxie"
+    ],
+    "scores": [
+      {
+        "name": "Score d'urticaire",
+        "description": "Évaluation de la sévérité de l'urticaire",
+        "criteria": [
+          "Nombre de lésions",
+          "Taille des lésions"
+        ],
+        "interpretation": "Score élevé indique une sévérité accrue"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cutané",
+        "steps": [
+          {
+            "action": "Inspection des lésions",
+            "interpretation": "Présence de plaques érythémateuses"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antihistaminiques",
+      "Corticostéroïdes"
+    ],
+    "differentialDiagnosis": [
+      "Dermatite de contact",
+      "Pemphigus"
+    ]
+  },
+  {
+    "name": "Syphilis",
+    "description": "Maladie infectieuse sexuellement transmissible",
+    "redFlags": [
+      "Ulceration génitale",
+      "Adénopathie"
+    ],
+    "scores": [
+      {
+        "name": "Score de syphilis",
+        "description": "Évaluation de la sévérité de la syphilis",
+        "criteria": [
+          "Présence de symptômes",
+          "Résultats des tests de laboratoire"
+        ],
+        "interpretation": "Score élevé indique une sévérité accrue"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen génital",
+        "steps": [
+          {
+            "action": "Inspection des organes génitaux",
+            "interpretation": "Présence d'ulcérations"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie",
+      "Conseil en matière de santé sexuelle"
+    ],
+    "differentialDiagnosis": [
+      "Herpès génital",
+      "Chlamydia"
+    ]
+  }
+]

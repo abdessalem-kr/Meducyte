@@ -1,0 +1,217 @@
+[
+  {
+    "name": "Accident Vasculaire Cérébral (AVC)",
+    "description": "Lésion cérébrale due à une interruption de l'apport sanguin",
+    "redFlags": [
+      "douleur intense, déficit neurologique brut et évolutif"
+    ],
+    "scores": [
+      {
+        "name": "NIHSS",
+        "description": "Évaluation de la gravité de l'AVC",
+        "criteria": [
+          "Niveau de conscience",
+          "Déficits moteurs",
+          "Déficits sensoriels"
+        ],
+        "interpretation": "Score élevé indique une lésion plus grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen Neurologique",
+        "steps": [
+          {
+            "action": "Évaluation de la force musculaire",
+            "interpretation": "Déficit de force musculaire indique une lésion neurologique"
+          },
+          {
+            "action": "Évaluation de la sensibilité",
+            "interpretation": "Perte de sensibilité indique une lésion neurologique"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Appel d'urgence pour un scanner cérébral d'urgence",
+      "Administration de thrombolytiques si indiqué"
+    ],
+    "differentialDiagnosis": [
+      "Hémorragie cérébrale",
+      "Tumeur cérébrale"
+    ]
+  },
+  {
+    "name": "Épilepsie",
+    "description": "Trouble neurologique caractérisé par des crises convulsives répétées",
+    "redFlags": [
+      "crises convulsives répétées",
+      "perte de conscience"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de Glasgow",
+        "description": "Évaluation du niveau de conscience",
+        "criteria": [
+          "Ouverture des yeux",
+          "Réponse verbale",
+          "Réponse motrice"
+        ],
+        "interpretation": "Score bas indique un niveau de conscience altéré"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen Neurologique",
+        "steps": [
+          {
+            "action": "Évaluation de la fonction cognitive",
+            "interpretation": "Déficit de la fonction cognitive indique une lésion neurologique"
+          },
+          {
+            "action": "Évaluation de la coordination motrice",
+            "interpretation": "Déficit de la coordination motrice indique une lésion neurologique"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'un traitement anti-épileptique",
+      "Surveillance en unité de soins intensifs"
+    ],
+    "differentialDiagnosis": [
+      "Trouble psychiatrique",
+      "Intoxication"
+    ]
+  },
+  {
+    "name": "Sclérose En Plaques (SEP)",
+    "description": "Maladie auto-immune affectant le système nerveux central",
+    "redFlags": [
+      "douleur intense",
+      "faiblesse musculaire",
+      "troubles de la vision"
+    ],
+    "scores": [
+      {
+        "name": "Échelle d'Évaluation de la Sclérose En Plaques (EDSS)",
+        "description": "Évaluation de la gravité de la SEP",
+        "criteria": [
+          "Déficits neurologiques",
+          "Capacité fonctionnelle"
+        ],
+        "interpretation": "Score élevé indique une maladie plus grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen Neurologique",
+        "steps": [
+          {
+            "action": "Évaluation de la fonction cognitive",
+            "interpretation": "Déficit de la fonction cognitive indique une lésion neurologique"
+          },
+          {
+            "action": "Évaluation de la coordination motrice",
+            "interpretation": "Déficit de la coordination motrice indique une lésion neurologique"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de corticostéroïdes",
+      "Référence à un spécialiste en neurologie"
+    ],
+    "differentialDiagnosis": [
+      "Maladie de Lyme",
+      "Système nerveux central infectieux"
+    ]
+  },
+  {
+    "name": "Maladie D'Alzheimer",
+    "description": "Trouble neurodégénératif caractérisé par une perte de mémoire progressive",
+    "redFlags": [
+      "perte de mémoire",
+      "troubles de la parole",
+      "troubles de la personnalité"
+    ],
+    "scores": [
+      {
+        "name": "Mini-Mental State Examination (MMSE)",
+        "description": "Évaluation de la fonction cognitive",
+        "criteria": [
+          "Mémoire",
+          "Attention",
+          "Langage"
+        ],
+        "interpretation": "Score bas indique une altération de la fonction cognitive"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen Neurologique",
+        "steps": [
+          {
+            "action": "Évaluation de la fonction cognitive",
+            "interpretation": "Déficit de la fonction cognitive indique une lésion neurologique"
+          },
+          {
+            "action": "Évaluation de la coordination motrice",
+            "interpretation": "Déficit de la coordination motrice indique une lésion neurologique"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de médicaments pour la maladie d'Alzheimer",
+      "Référence à un spécialiste en neurologie"
+    ],
+    "differentialDiagnosis": [
+      "Trouble dépressif",
+      "Démence vasculaire"
+    ]
+  },
+  {
+    "name": "Migraine",
+    "description": "Céphalée récurrente et intense",
+    "redFlags": [
+      "céphalée intense",
+      "nausées",
+      "vomissements"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de Douleur de la Migraine",
+        "description": "Évaluation de la gravité de la migraine",
+        "criteria": [
+          "Intensité de la douleur",
+          "Fréquence des crises"
+        ],
+        "interpretation": "Score élevé indique une migraine plus grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen Neurologique",
+        "steps": [
+          {
+            "action": "Évaluation de la fonction cognitive",
+            "interpretation": "Déficit de la fonction cognitive indique une lésion neurologique"
+          },
+          {
+            "action": "Évaluation de la coordination motrice",
+            "interpretation": "Déficit de la coordination motrice indique une lésion neurologique"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de médicaments anti-migraineux",
+      "Référence à un spécialiste en neurologie"
+    ],
+    "differentialDiagnosis": [
+      "Céphalée de tension",
+      "Céphalée cluster"
+    ]
+  }
+]

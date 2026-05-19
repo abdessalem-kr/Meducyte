@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Otite moyenne aiguë",
+    "description": "Infection bactérienne de l'oreille moyenne",
+    "redFlags": [
+      "Douleur otique intense",
+      "Février",
+      "Perte auditive"
+    ],
+    "scores": [
+      {
+        "name": "Score de severité de l'otite",
+        "description": "Évalue la gravité de l'otite",
+        "criteria": [
+          "Douleur",
+          "Février",
+          "Perte auditive"
+        ],
+        "interpretation": "Plus de 5 points : otite sévère"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Otoscopie",
+        "steps": [
+          {
+            "action": "Inspection du tympan",
+            "interpretation": "Rougeur, gonflement, perforation"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie",
+      "Antalgique"
+    ],
+    "differentialDiagnosis": [
+      "Otite externe",
+      "Méningite"
+    ]
+  },
+  {
+    "name": "Sinusite aiguë",
+    "description": "Infection des sinus paranasaux",
+    "redFlags": [
+      "Douleur faciale",
+      "Février",
+      "Écoulement nasal purulent"
+    ],
+    "scores": [
+      {
+        "name": "Score de sinusite de l'adulte",
+        "description": "Évalue la gravité de la sinusite",
+        "criteria": [
+          "Douleur faciale",
+          "Février",
+          "Écoulement nasal purulent"
+        ],
+        "interpretation": "Plus de 6 points : sinusite sévère"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des sinus",
+        "steps": [
+          {
+            "action": "Palpation des sinus",
+            "interpretation": "Douleur à la palpation"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie",
+      "Décongestionnant"
+    ],
+    "differentialDiagnosis": [
+      "Rhinite",
+      "Migraine"
+    ]
+  },
+  {
+    "name": "Laryngite aiguë",
+    "description": "Inflammation aiguë du larynx",
+    "redFlags": [
+      "Dysphonie",
+      "Dyspnée",
+      "Stridor"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de la laryngite",
+        "description": "Évalue la gravité de la laryngite",
+        "criteria": [
+          "Dysphonie",
+          "Dyspnée",
+          "Stridor"
+        ],
+        "interpretation": "Plus de 4 points : laryngite sévère"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen du larynx",
+        "steps": [
+          {
+            "action": "Inspection du larynx",
+            "interpretation": "Rougeur, gonflement"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Corticothérapie",
+      "Antibiothérapie"
+    ],
+    "differentialDiagnosis": [
+      "Pharyngite",
+      "Trachéite"
+    ]
+  }
+]

@@ -1,0 +1,119 @@
+[
+  {
+    "name": "Détachement de la rétine",
+    "description": "Séparation de la rétine de la chorioïde",
+    "redFlags": [
+      "Perte de vision",
+      "Flashes lumineux",
+      "Scotome"
+    ],
+    "scores": [
+      {
+        "name": "Score de la rétine",
+        "description": "Évaluation de la gravité du détachement",
+        "criteria": [
+          "Taille du détachement",
+          "Localisation du détachement"
+        ],
+        "interpretation": "Plus le score est élevé, plus la gravité est importante"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen du fond d'œil",
+        "steps": [
+          {
+            "action": "Utiliser un ophthalmoscope pour examiner la rétine",
+            "interpretation": "Recherche de décollement, de trous ou de déchirures"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Référence à un ophtalmologue",
+      "Traitement médical pour réduire l'œdème"
+    ],
+    "differentialDiagnosis": [
+      "Dégénérescence maculaire",
+      "Rétinopathie diabétique"
+    ]
+  },
+  {
+    "name": "Glaucome aigu",
+    "description": "Augmentation brutale de la pression intraoculaire",
+    "redFlags": [
+      "Douleur oculaire",
+      "Vision floue",
+      "Nausée et vomissement"
+    ],
+    "scores": [
+      {
+        "name": "Score de la pression intraoculaire",
+        "description": "Évaluation de la pression intraoculaire",
+        "criteria": [
+          "Niveau de pression",
+          "Symptômes associés"
+        ],
+        "interpretation": "Plus le score est élevé, plus la gravité est importante"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen de la pression intraoculaire",
+        "steps": [
+          {
+            "action": "Utiliser un tonomètre pour mesurer la pression intraoculaire",
+            "interpretation": "Recherche d'une pression élevée"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de médicaments pour réduire la pression intraoculaire",
+      "Référence à un ophtalmologue"
+    ],
+    "differentialDiagnosis": [
+      "Glaucome chronique",
+      "Uvéite"
+    ]
+  },
+  {
+    "name": "Uvéite",
+    "description": "Inflammation de l'uvéa",
+    "redFlags": [
+      "Douleur oculaire",
+      "Vision floue",
+      "Sensibilité à la lumière"
+    ],
+    "scores": [
+      {
+        "name": "Score de l'inflammation",
+        "description": "Évaluation de la gravité de l'inflammation",
+        "criteria": [
+          "Niveau d'inflammation",
+          "Symptômes associés"
+        ],
+        "interpretation": "Plus le score est élevé, plus la gravité est importante"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen du fond d'œil",
+        "steps": [
+          {
+            "action": "Utiliser un ophthalmoscope pour examiner la rétine",
+            "interpretation": "Recherche de signes d'inflammation"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de médicaments anti-inflammatoires",
+      "Référence à un ophtalmologue"
+    ],
+    "differentialDiagnosis": [
+      "Glaucome",
+      "Dégénérescence maculaire"
+    ]
+  }
+]

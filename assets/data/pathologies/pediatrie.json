@@ -1,0 +1,117 @@
+[
+  {
+    "name": "Dysplasie bronchopulmonaire",
+    "description": "Maladie pulmonaire chronique des nourrissons prématurés",
+    "redFlags": [
+      "Détresse respiratoire",
+      "Apnée",
+      "Cyanose"
+    ],
+    "scores": [
+      {
+        "name": "Score de Silverman",
+        "description": "Évaluation de la gravité de la maladie",
+        "criteria": [
+          "Fréquence respiratoire",
+          "Taux de saturation en oxygène",
+          "Présence d'apnée"
+        ],
+        "interpretation": "Score élevé indique une maladie plus grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Auscultation pulmonaire",
+        "steps": [
+          {
+            "action": "Écouter les bruits respiratoires",
+            "interpretation": "Râles, sifflements ou diminution des bruits respiratoires"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'oxygène",
+      "Intubation et ventilation mécanique si nécessaire"
+    ],
+    "differentialDiagnosis": [
+      "Pneumonie",
+      "Syndrome de détresse respiratoire aiguë"
+    ]
+  },
+  {
+    "name": "Meningite bactérienne",
+    "description": "Infection bactérienne du système nerveux central",
+    "redFlags": [
+      "Février, convulsions, raideur de nuque"
+    ],
+    "scores": [
+      {
+        "name": "Score de Glasgow",
+        "description": "Évaluation de la conscience",
+        "criteria": [
+          "Ouverture des yeux",
+          "Réponse verbale",
+          "Réponse motrice"
+        ],
+        "interpretation": "Score bas indique une altération de la conscience"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique",
+        "steps": [
+          {
+            "action": "Vérifier la raideur de nuque",
+            "interpretation": "Signe de méningite"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'antibiotiques",
+      "Réhydratation"
+    ],
+    "differentialDiagnosis": [
+      "Meningite virale",
+      "Encéphalite"
+    ]
+  },
+  {
+    "name": "Diabète sucré de type 1",
+    "description": "Maladie auto-immune entraînant une carence en insuline",
+    "redFlags": [
+      "Polyurie, polydipsie, perte de poids"
+    ],
+    "scores": [
+      {
+        "name": "Score de Clarke",
+        "description": "Évaluation de la gravité de l'hyperglycémie",
+        "criteria": [
+          "Glycémie",
+          "Présence de corps cétoniques"
+        ],
+        "interpretation": "Score élevé indique une hyperglycémie plus grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique",
+        "steps": [
+          {
+            "action": "Vérifier la présence de signes de déshydratation",
+            "interpretation": "Signe de diabète sucré non contrôlé"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'insuline",
+      "Réhydratation"
+    ],
+    "differentialDiagnosis": [
+      "Diabète sucré de type 2",
+      "Prédiabète"
+    ]
+  }
+]

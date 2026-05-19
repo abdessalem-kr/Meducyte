@@ -1,0 +1,178 @@
+# lib/graphql/learn.graphql
+# Final, perfect schema – interactive paragraphs + notes + image comments
+
+scalar DateTime
+scalar JSON
+
+# ──────────────────────────────
+# CORE TYPES
+# ──────────────────────────────
+type Module {
+  id: ID!
+  name: String!
+  description: String
+  year: Int!
+  lessons: [Lesson!]! @hasMany
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Lesson {
+  id: ID!
+  moduleId: ID!
+  title: String!
+  order: Int!
+  paragraphs: [LessonParagraph!]! @hasMany
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type LessonParagraph {
+  id: ID!
+  lessonId: ID!
+  content: String!
+  order: Int!
+  
+  # Questions linked directly to this paragraph
+  questions: [Question!]! @hasMany
+  
+  # Interactive features
+  has_quiz: Boolean! @field(resolver: "App\\GraphQL\\Queries\\Learn\\ParagraphResolver@hasQuiz")
+  my_note: ParagraphNote @field(resolver: "App\\GraphQL\\Queries\\Learn\\ParagraphResolver@myNote")
+  
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Question {
+  id: ID!
+  paragraphId: ID
+  lessonId: ID!
+  text: String!
+  sourceExam: String
+  tags: [String!]
+  estimatedTime: Int
+  approved: Boolean!
+  
+  paragraph: LessonParagraph @belongsTo
+  propositions: [Proposition!]! @hasMany
+  image_comments: [QuestionImageComment!]! @hasMany
+  saved_by_user: Boolean! @field(resolver: "App\\GraphQL\\Mutations\\Learn\\SavedQuestionResolver@isSaved")
+  clinicalCase: ClinicalCase @belongsTo(relation: "clinical_case")
+  
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Proposition {
+  id: ID!
+  questionId: ID!
+  label: String!
+  text: String!
+  isCorrect: Boolean
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type ClinicalCase {
+  id: ID!
+  lessonId: ID @rename(attribute: "lesson_id")
+  text: String!
+  title: String
+  lesson: Lesson @belongsTo
+  questions: [Question!]! @hasMany
+  my_highlights: JSON @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@myClinicalCaseHighlights")
+  my_note: ParagraphNote @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ClinicalCaseNoteResolver@myNote")
+}
+
+# ──────────────────────────────
+# NOTES & COMMENTS
+# ──────────────────────────────
+type ParagraphNote {
+  id: ID!
+  text: String
+  google_drive_file_id: String
+  google_drive_web_view_link: String
+  thumbnail_url: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type QuestionImageComment {
+  id: ID!
+  user: User!
+  google_drive_file_id: String!
+  google_drive_web_view_link: String!
+  thumbnail_url: String
+  caption: String
+  created_at: DateTime!
+}
+
+# ──────────────────────────────
+# QUERIES
+# ──────────────────────────────
+type Query {
+  modules: [Module!]! @all
+  module(id: ID!): Module @find
+  lesson(id: ID!): Lesson @find
+  paragraph(id: ID!): LessonParagraph @find
+  lessons(moduleId: ID @eq(column: "module_id")): [Lesson!]! @all(model: "App\\Models\\Learn\\Lesson")
+}
+
+# ──────────────────────────────
+# MUTATIONS – FINAL & CORRECT
+# ──────────────────────────────
+type Mutation {
+  addParagraphNote(
+    paragraph_id: ID!
+    text: String
+    google_drive_file_id: String
+    google_drive_web_view_link: String
+    thumbnail_url: String
+  ): ParagraphNote!
+    @guard
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ParagraphNoteResolver@add")
+
+  deleteParagraphNote(id: ID!): Boolean!
+    @guard
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ParagraphNoteResolver@delete")
+
+  addQuestionImageComment(
+    question_id: ID!
+    google_drive_file_id: String!
+    google_drive_web_view_link: String!
+    thumbnail_url: String
+    caption: String
+  ): QuestionImageComment!
+    @guard
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuestionImageCommentResolver@add")
+
+  deleteQuestionImageComment(id: ID!): Boolean!
+    @guard
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuestionImageCommentResolver@delete")
+
+  toggleSaveQuestion(questionId: ID!): Boolean!
+
+  # Clinical Case Interactions
+  syncClinicalCaseHighlights(clinical_case_id: ID!, highlights: JSON!): Boolean!
+    @guard
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@syncClinicalCaseHighlights")
+
+  addClinicalCaseNote(
+    clinical_case_id: ID!
+    text: String
+    thumbnail_url: String
+  ): ParagraphNote!
+    @guard
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ClinicalCaseNoteResolver@add")
+
+  deleteClinicalCaseNote(id: ID!): Boolean!
+    @guard
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ClinicalCaseNoteResolver@delete")
+}

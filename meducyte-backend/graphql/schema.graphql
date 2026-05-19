@@ -1,0 +1,661 @@
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+scalar JSON @scalar(class: "App\\GraphQL\\Scalars\\JSON")
+
+# ──────────────────────────────
+# CORE TYPES
+# ──────────────────────────────
+type Module @model(class: "App\\Models\\Learn\\Module") {
+  id: ID!
+  name: String!
+  description: String
+  year: Int!
+  lessons: [Lesson!]! @hasMany
+  parent: Module @belongsTo
+  children: [Module!]! @hasMany
+  created_at: DateTime!
+  updated_at: DateTime!
+  can_access: Boolean! @field(resolver: "App\\GraphQL\\Queries\\Learn\\ModuleResolver@canAccess")
+}
+
+type Lesson @model(class: "App\\Models\\Learn\\Lesson") {
+  id: ID!
+  moduleId: ID! @rename(attribute: "module_id")
+  title: String!
+  order: Int!
+  paragraphs: [LessonParagraph!]! @hasMany
+  clinicalCases: [ClinicalCase!]! @hasMany
+  module: Module! @belongsTo
+  is_studied: Boolean! @field(resolver: "App\\GraphQL\\Queries\\Learn\\LessonResolver@isStudied")
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type LessonParagraph @model(class: "App\\Models\\Learn\\LessonParagraph") {
+  id: ID!
+  title: String
+  content: String!
+  order: Int!
+  lesson_id: ID @rename(attribute: "lesson_id")
+  lessonId: ID @rename(attribute: "lesson_id")
+  questions: [Question!]! @hasMany
+  has_quiz: Boolean! @field(resolver: "App\\GraphQL\\Queries\\Learn\\ParagraphResolver@hasQuiz")
+  my_note: ParagraphNote @field(resolver: "App\\GraphQL\\Queries\\Learn\\ParagraphResolver@myNote")
+  my_highlights: JSON @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@myParagraphHighlights")
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Question @model(class: "App\\Models\\Learn\\Question") {
+  id: ID!
+  paragraph_id: ID @rename(attribute: "paragraph_id")
+  paragraphId: ID @rename(attribute: "paragraph_id")
+  lesson_id: ID @rename(attribute: "lesson_id")
+  lessonId: ID @rename(attribute: "lesson_id")
+  clinical_case_id: ID @rename(attribute: "clinical_case_id")
+  clinicalCaseId: ID @rename(attribute: "clinical_case_id")
+  text: String!
+  source_exam: String
+  tags: [String!]
+  estimated_time: Int
+  approved: Boolean!
+  paragraph: LessonParagraph @belongsTo
+  lesson: Lesson @belongsTo
+  clinicalCase: ClinicalCase @belongsTo(relation: "clinical_case")
+  propositions: [Proposition!]! @hasMany
+  image_comments: [QuestionImageComment!]! @hasMany
+  comments: [QuestionComment!]! @hasMany
+  my_highlights: JSON @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@myHighlights")
+  saved_by_user: Boolean! @field(resolver: "App\\GraphQL\\Mutations\\Learn\\SavedQuestionResolver@isSaved")
+  review: QuestionReview @field(resolver: "App\\GraphQL\\Queries\\Learn\\QuestionResolver@review")
+  created_at: DateTime!
+  updated_at: DateTime!
+
+  # Metadata for info screen
+  lessonTitle: String @method(name: "getLessonTitleAttribute")
+  moduleName: String @method(name: "getModuleNameAttribute")
+  year: Int @method(name: "getYearAttribute")
+}
+
+type Proposition @model(class: "App\\Models\\Learn\\Proposition") {
+  id: ID!
+  question_id: ID @rename(attribute: "question_id")
+  questionId: ID @rename(attribute: "question_id")
+  label: String!
+  text: String!
+  is_correct: Boolean @rename(attribute: "is_correct")
+  isCorrect: Boolean @rename(attribute: "is_correct")
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type User @model(class: "App\\Models\\User") {
+  id: ID!
+  name: String!
+  email: String!
+  role: String
+  year: Int
+  mobile: String
+  interests: JSON
+  learning_goal: String @rename(attribute: "learning_goal")
+  activeSubscription: Subscription @hasOne(relation: "activeSubscription")
+  created_at: DateTime!
+  updated_at: DateTime!
+  has_ai_access: Boolean! @method(name: "hasAiAccess")
+}
+
+type SubscriptionPlan @model(class: "App\\Models\\SubscriptionPlan") {
+  id: ID!
+  name: String!
+  sku: String!
+  price: Float!
+  description: String
+  duration_months: Int!
+  has_ai_access: Boolean!
+  access_level: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Offer @model(class: "App\\Models\\Offer") {
+  id: ID!
+  code: String!
+  discount_percent: Int!
+  valid_until: DateTime
+  type: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Subscription @model(class: "App\\Models\\Subscription") {
+  id: ID!
+  user: User! @belongsTo
+  plan: SubscriptionPlan! @belongsTo
+  starts_at: DateTime!
+  expires_at: DateTime!
+  status: String!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type QuestionReview @model(class: "App\\Models\\Learn\\QuestionReview") {
+  id: ID!
+  user_id: ID
+  question_id: ID
+  interval: Int!
+  ease_factor: Float! @rename(attribute: "ease_factor")
+  repetition_count: Int! @rename(attribute: "repetition_count")
+  next_review: DateTime! @rename(attribute: "next_review")
+  last_review: DateTime @rename(attribute: "last_review")
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+# ──────────────────────────────
+# STUDY GROUPS
+# ──────────────────────────────
+
+type StudyGroup @model(class: "App\\Models\\StudyGroup\\StudyGroup") {
+    id: ID!
+    title: String!
+    description: String
+    color: String!
+    type: String!
+    active_quiz_session_id: ID @rename(attribute: "active_quiz_session_id")
+    is_admin: Boolean! @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@isAdmin")
+    members: [User!]! @belongsToMany
+    messages: [StudyGroupMessage!]! @hasMany
+    activeSession: StudyGroupQuizSession @belongsTo(relation: "activeSession")
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type StudyGroupMessage @model(class: "App\\Models\\StudyGroup\\StudyGroupMessage") {
+    id: ID!
+    study_group_id: ID! @rename(attribute: "study_group_id")
+    user: User! @belongsTo
+    text: String!
+    type: String!
+    is_edited: Boolean! @rename(attribute: "is_edited")
+    is_mine: Boolean! @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@isMessageMine")
+    created_at: DateTime!
+}
+
+type StudyGroupQuizSession @model(class: "App\\Models\\StudyGroup\\StudyGroupQuizSession") {
+    id: ID!
+    study_group_id: ID! @rename(attribute: "study_group_id")
+    quiz_id: ID! @rename(attribute: "quiz_id")
+    title: String
+    questions: JSON
+    scores: JSON
+    status: String!
+    seconds_per_question: Int @rename(attribute: "seconds_per_question")
+    created_at: DateTime!
+}
+
+type ClinicalCase @model(class: "App\\Models\\Learn\\ClinicalCase") {
+  id: ID!
+  lessonId: ID @rename(attribute: "lesson_id")
+  text: String!
+  title: String
+  lesson: Lesson @belongsTo
+  questions: [Question!]! @hasMany
+  my_highlights: JSON @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@myClinicalCaseHighlights")
+  my_note: ParagraphNote @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ClinicalCaseNoteResolver@myNote")
+}
+
+type ParagraphNote @model(class: "App\\Models\\Learn\\ParagraphNote") {
+  id: ID!
+  text: String
+  google_drive_file_id: String
+  google_drive_web_view_link: String
+  thumbnail_url: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type QuestionImageComment @model(class: "App\\Models\\Learn\\QuestionImageComment") {
+  id: ID!
+  user: User! @belongsTo
+  google_drive_file_id: String!
+  google_drive_web_view_link: String!
+  thumbnail_url: String
+  caption: String
+  created_at: DateTime!
+}
+
+type QuestionReport @model(class: "App\\Models\\Learn\\QuestionReport") {
+  id: ID!
+  user_id: ID!
+  question_id: ID!
+  reason: String!
+  description: String
+  user: User! @belongsTo
+  question: Question! @belongsTo
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type CommentReport @model(class: "App\\Models\\Learn\\CommentReport") {
+  id: ID!
+  user_id: ID!
+  comment_id: ID!
+  reason: String!
+  status: String
+  user: User! @belongsTo
+  comment: QuestionComment! @belongsTo(relation: "comment")
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+# ──────────────────────────────
+# QUERIES – FIXED ID FILTERING
+# ──────────────────────────────
+type Query {
+  me: User @guard(with: ["sanctum"]) @auth
+  debugSavedQuestions: String! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\SavedQuestionResolver@debug")
+  modules: [Module!]! @all(model: "App\\Models\\Learn\\Module")
+  module(id: ID! @eq): Module @find(model: "App\\Models\\Learn\\Module")
+  lesson(id: ID! @eq): Lesson @find(model: "App\\Models\\Learn\\Lesson")
+  paragraph(id: ID! @eq): LessonParagraph @find(model: "App\\Models\\Learn\\LessonParagraph")
+  
+  # NEW: Global question filtering
+  questions(
+    moduleIds: [ID]
+    lessonIds: [ID]
+    years: [Int]
+    sources: [String]
+    hasClinicalCase: Boolean
+    tags: [String!] @where(operator: "json_contains", column: "tags")
+    limit: Int
+    offset: Int
+  ): [Question!]! @field(resolver: "App\\GraphQL\\Queries\\Learn\\QuestionResolver@filter")
+
+  questionsByIds(ids: [ID!]): [Question!]! @field(resolver: "App\\GraphQL\\Queries\\Learn\\QuestionResolver@filter")
+
+  lessons(moduleId: ID @eq(column: "module_id")): [Lesson!]! @all(model: "App\\Models\\Learn\\Lesson")
+  years: [Int!]! @field(resolver: "App\\GraphQL\\Queries\\Learn\\ModuleResolver@years")
+  sources: [String!]! @field(resolver: "App\\GraphQL\\Queries\\Learn\\QuestionResolver@sources")
+
+  myReviews: [QuestionReview!]! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Queries\\Learn\\QuestionResolver@myReviews")
+  myQuestionFolders: [QuestionFolder!]! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuestionFolderResolver@myFolders")
+  mySavedQuestions: [SavedQuestion!]! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\SavedQuestionResolver@mySavedQuestions")
+  myNotifications: [Notification!]! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Queries\\NotificationResolver@myNotifications")
+  
+  # Admin: List all users
+  users: [User!]! @all(model: "App\\Models\\User")
+
+  # Admin: Dashboard Statistics
+  adminDashboardStats: AdminDashboardStats! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Queries\\Admin\\DashboardResolver@getStats")
+
+  # Admin: Server Status
+  serverStatus: ServerStatus! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Queries\\Admin\\DashboardResolver@getServerStatus")
+
+  # Admin: System Activities
+  systemActivities: [SystemActivity!]! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Queries\\Admin\\DashboardResolver@getActivities")
+
+  # Admin: Reports
+  questionReports: [QuestionReport!]! @guard(with: ["sanctum"]) @all(model: "App\\Models\\Learn\\QuestionReport")
+  commentReports: [CommentReport!]! @guard(with: ["sanctum"]) @all(model: "App\\Models\\Learn\\CommentReport")
+
+  # NEW: User Search
+  searchUsers(query: String!): [User!]! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Queries\\UserResolver@search")
+
+  # Admin: Clinical Cases
+  clinicalCases: [ClinicalCase!]! @guard(with: ["sanctum"]) @all(model: "App\\Models\\Learn\\ClinicalCase")
+
+  # Subscription Queries
+  subscriptionPlans: [SubscriptionPlan!]! @all(model: "App\\Models\\SubscriptionPlan")
+
+  # Study Group Queries
+  studyGroups: [StudyGroup!]! @all(model: "App\\Models\\StudyGroup\\StudyGroup") @guard(with: ["sanctum"])
+  studyGroup(id: ID! @eq): StudyGroup @find(model: "App\\Models\\StudyGroup\\StudyGroup") @guard(with: ["sanctum"])
+  studyGroupMessages(groupId: ID!): [StudyGroupMessage!]! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@messages")
+  activeStudyGroupQuiz(groupId: ID!): StudyGroupQuizSession @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@activeQuiz")
+  activeQuizSessions: [StudyGroupQuizSession!]! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@allActiveQuizzes")
+}
+
+type SystemActivity {
+  id: ID!
+  type: String!
+  title: String!
+  subtitle: String!
+  time: String!
+  priority: String!
+}
+
+type ServerStatus {
+  status: String!
+  dbConnection: String!
+  memoryUsage: String!
+  diskUsage: Float!
+  phpVersion: String!
+  laravelVersion: String!
+  environment: String!
+  uptime: String!
+}
+
+type AdminDashboardStats {
+  totalUsers: Int!
+  activeNow: Int!
+  totalAdmins: Int!
+  totalLessons: Int!
+  totalQuestions: Int!
+  activeReports: Int!
+  userGrowth: String!
+  lessonGrowth: String!
+  questionAccuracy: String!
+}
+
+# ──────────────────────────────
+# MUTATIONS
+# ──────────────────────────────
+type Mutation {
+  addParagraphNote(
+    paragraph_id: ID!
+    text: String
+    google_drive_file_id: String
+    google_drive_web_view_link: String
+    thumbnail_url: String
+  ): ParagraphNote!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ParagraphNoteResolver@add")
+
+  deleteParagraphNote(id: ID!): Boolean!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ParagraphNoteResolver@delete")
+
+  addQuestionImageComment(
+    question_id: ID!
+    google_drive_file_id: String!
+    google_drive_web_view_link: String!
+    thumbnail_url: String
+    caption: String
+  ): QuestionImageComment!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuestionImageCommentResolver@add")
+
+  deleteQuestionImageComment(id: ID!): Boolean!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuestionImageCommentResolver@delete")
+
+  markNotificationAsRead(id: ID!): Notification
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\NotificationResolver@markAsRead")
+
+  deleteNotification(id: ID!): Boolean!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\NotificationResolver@delete")
+
+  toggleSaveQuestion(questionId: ID!, folderId: ID): Boolean!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\SavedQuestionResolver@toggle")
+
+  createQuestionFolder(name: String!, color: String): QuestionFolder!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuestionFolderResolver@create")
+
+  deleteQuestionFolder(id: ID!): Boolean!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuestionFolderResolver@delete")
+
+  renameQuestionFolder(id: ID!, name: String!, color: String): QuestionFolder!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuestionFolderResolver@rename")
+
+  # NEW: Quiz answer submission
+  submitAnswer(
+    questionId: ID!
+    propositionId: ID!
+  ): AnswerResult! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuizResolver@submit")
+
+  # NEW: Quiz session batch synchronization
+  syncQuizSession(
+    sessionId: String!
+    results: JSON!
+  ): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuizResolver@sync")
+
+  syncReview(
+    question_id: ID!
+    interval: Int!
+    ease_factor: Float!
+    repetition_count: Int!
+    next_review: DateTime!
+    last_review: DateTime
+  ): QuestionReview! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\QuizResolver@syncReview")
+
+  # NEW: Interaction Mutations
+  addQuestionComment(question_id: ID!, text: String!, parent_id: ID): QuestionComment! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@addComment")
+  editQuestionComment(id: ID!, text: String!): QuestionComment! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@editComment")
+  deleteQuestionComment(id: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@deleteComment")
+  voteComment(comment_id: ID!, vote: Int!): QuestionComment! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@voteComment")
+  reportQuestion(question_id: ID!, reason: String!, description: String): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@report")
+  reportComment(comment_id: ID!, reason: String!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@reportComment")
+  syncQuestionHighlights(question_id: ID!, highlights: JSON!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@syncHighlights")
+  syncParagraphHighlights(paragraph_id: ID!, highlights: JSON!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@syncParagraphHighlights")
+
+  # Clinical Case Interactions
+  syncClinicalCaseHighlights(clinical_case_id: ID!, highlights: JSON!): Boolean!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@syncClinicalCaseHighlights")
+
+  addClinicalCaseNote(
+    clinical_case_id: ID!
+    text: String
+    thumbnail_url: String
+  ): ParagraphNote!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ClinicalCaseNoteResolver@add")
+
+  deleteClinicalCaseNote(id: ID!): Boolean!
+    @guard(with: ["sanctum"])
+    @field(resolver: "App\\GraphQL\\Mutations\\Learn\\ClinicalCaseNoteResolver@delete")
+
+  # Administrative Content Management
+  createModule(name: String!, year: Int!, description: String): Module! @create(model: "App\\Models\\Learn\\Module")
+  updateModule(id: ID!, name: String, year: Int, description: String): Module! @update(model: "App\\Models\\Learn\\Module")
+  deleteModule(id: ID! @eq): Module @delete(model: "App\\Models\\Learn\\Module")
+  createLesson(module_id: ID!, title: String!, order: Int!): Lesson! @create(model: "App\\Models\\Learn\\Lesson")
+  updateLesson(id: ID!, title: String, order: Int): Lesson! @update(model: "App\\Models\\Learn\\Lesson")
+  deleteLesson(id: ID! @eq): Lesson @delete(model: "App\\Models\\Learn\\Lesson")
+
+  # Administrative Content Management: Paragraphs
+  createParagraph(lesson_id: ID!, title: String, content: String!, order: Int!): LessonParagraph! @create(model: "App\\Models\\Learn\\LessonParagraph")
+  updateParagraph(id: ID!, title: String, content: String, order: Int): LessonParagraph! @update(model: "App\\Models\\Learn\\LessonParagraph")
+  deleteParagraph(id: ID! @eq): LessonParagraph @delete(model: "App\\Models\\Learn\\LessonParagraph")
+
+  # Administrative Content Management: Questions
+  createQuestion(paragraph_id: ID!, lesson_id: ID, clinical_case_id: ID, text: String!, source_exam: String, tags: [String!], estimated_time: Int, approved: Boolean): Question! @create(model: "App\\Models\\Learn\\Question")
+  updateQuestion(id: ID!, text: String, source_exam: String, tags: [String!], estimated_time: Int, approved: Boolean): Question! @update(model: "App\\Models\\Learn\\Question")
+  deleteQuestion(id: ID! @eq): Question @delete(model: "App\\Models\\Learn\\Question")
+
+  # Administrative Content Management: Propositions
+  createProposition(question_id: ID!, label: String!, text: String!, is_correct: Boolean): Proposition! @create(model: "App\\Models\\Learn\\Proposition")
+  updateProposition(id: ID!, label: String, text: String, is_correct: Boolean): Proposition! @update(model: "App\\Models\\Learn\\Proposition")
+  deleteProposition(id: ID! @eq): Proposition @delete(model: "App\\Models\\Learn\\Proposition")
+
+  # Administrative User Management
+  createUser(name: String!, email: String!, year: Int): User! @create(model: "App\\Models\\User")
+  updateUser(id: ID!, name: String, email: String, year: Int): User! @update(model: "App\\Models\\User")
+  deleteUser(id: ID! @eq): User @delete(model: "App\\Models\\User")
+
+  # Administrative Content Management: Clinical Cases
+  createClinicalCase(lesson_id: ID!, text: String!, title: String): ClinicalCase! @guard(with: ["sanctum"]) @create(model: "App\\Models\\Learn\\ClinicalCase")
+  updateClinicalCase(id: ID!, text: String, title: String): ClinicalCase! @guard(with: ["sanctum"]) @update(model: "App\\Models\\Learn\\ClinicalCase")
+  deleteClinicalCase(id: ID! @eq): ClinicalCase @guard(with: ["sanctum"]) @delete(model: "App\\Models\\Learn\\ClinicalCase")
+  deleteQuestionReport(id: ID! @eq): QuestionReport @guard(with: ["sanctum"]) @delete(model: "App\\Models\\Learn\\QuestionReport")
+  deleteCommentReport(id: ID! @eq): CommentReport @guard(with: ["sanctum"]) @delete(model: "App\\Models\\Learn\\CommentReport")
+
+  # Subscription Mutations
+  subscribe(planId: ID!, offerCode: String): Subscription! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\SubscriptionResolver@subscribe")
+  applyOffer(code: String!): Offer @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\SubscriptionResolver@applyOffer")
+
+  # Study Group Mutations
+  createStudyGroup(title: String!, description: String, color: String!, type: String): StudyGroup! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@create")
+  updateStudyGroup(groupId: ID!, title: String, description: String, color: String!, type: String): StudyGroup! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@update")
+  deleteStudyGroup(groupId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@delete")
+  leaveStudyGroup(groupId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@leave")
+  inviteToStudyGroup(groupId: ID!, friendId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@invite")
+  joinStudyGroup(groupId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@join")
+  sendMessage(groupId: ID!, text: String!): StudyGroupMessage! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@sendMessage")
+  editStudyGroupMessage(messageId: ID!, text: String!): StudyGroupMessage! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@editMessage")
+  deleteStudyGroupMessage(messageId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@deleteMessage")
+  reportStudyGroupMessage(messageId: ID!, reason: String!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@reportMessage")
+  startStudyGroupQuiz(groupId: ID!, quizId: ID!, isClinicalQuiz: Boolean, secondsPerQuestion: Int, title: String, lessonIds: [ID!], limit: Int): StudyGroupQuizSession! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@startQuiz")
+  updateStudyGroupQuizSession(sessionId: ID!, isClinicalQuiz: Boolean, secondsPerQuestion: Int, title: String, limit: Int): StudyGroupQuizSession! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@updateQuizSession")
+  submitStudyGroupScore(sessionId: ID!, score: Int!): StudyGroupQuizSession! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@submitScore")
+
+  # Lesson Completion
+  toggleLessonStudied(lesson_id: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Mutations\\Learn\\LessonResolver@toggleStudied")
+}
+
+type QuestionComment {
+  id: ID!
+  user: User!
+  question_id: ID!
+  parent_id: ID
+  text: String!
+  is_edited: Boolean!
+  upvotes: Int!
+  downvotes: Int!
+  my_vote: Int @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@myVote")
+  is_mine: Boolean! @field(resolver: "App\\GraphQL\\Mutations\\Learn\\InteractionResolver@isMine")
+  replies: [QuestionComment!]! @hasMany
+  created_at: DateTime!
+}
+
+type AnswerResult {
+  isCorrect: Boolean!
+  correctPropositionId: ID
+  explanation: String
+}
+
+type QuestionFolder @model(class: "App\\Models\\Learn\\QuestionFolder") {
+  id: ID!
+  user_id: ID!
+  name: String!
+  color: String
+  user: User! @belongsTo
+  savedQuestions: [SavedQuestion!]! @hasMany
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type SavedQuestion @model(class: "App\\Models\\Learn\\SavedQuestion") {
+  id: ID!
+  user_id: ID!
+  userId: ID @rename(attribute: "user_id")
+  question_id: ID!
+  questionId: ID @rename(attribute: "question_id")
+  folder_id: ID
+  folderId: ID @rename(attribute: "folder_id")
+  user: User! @belongsTo
+  question: Question! @belongsTo
+  folder: QuestionFolder @belongsTo
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+type Notification {
+  id: ID!
+  title: String!
+  body: String!
+  type: String!
+  data: JSON
+  isRead: Boolean!
+  createdAt: DateTime!
+}
+
+type SubTask @model(class: "App\\Models\\SubTask") {
+    id: ID!
+    todo_item_id: ID! @rename(attribute: "todo_item_id")
+    title: String!
+    is_completed: Boolean!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type TodoItem @model(class: "App\\Models\\TodoItem") {
+    id: ID!
+    user: User! @belongsTo
+    title: String!
+    priority: String!
+    deadline: DateTime
+    is_completed: Boolean!
+    module_id: String
+    estimated_pomodoros: Int!
+    completed_pomodoros: Int!
+    subtasks: [SubTask!]! @hasMany
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type ExamEvent @model(class: "App\\Models\\ExamEvent") {
+    id: ID!
+    user: User! @belongsTo
+    title: String!
+    date: DateTime!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+type PomodoroSession @model(class: "App\\Models\\PomodoroSession") {
+    id: ID!
+    user: User! @belongsTo
+    type: String!
+    duration_minutes: Int!
+    started_at: DateTime!
+    completed_at: DateTime
+    status: String!
+    todo_item: TodoItem @belongsTo
+}
+
+type ProductiveBayStats {
+    focus_hours_today: Float!
+    focus_hours_week: Float!
+    completed_tasks_today: Int!
+    current_streak: Int!
+    pomodoros_completed_today: Int!
+}
+
+type UserSetting {
+    id: ID!
+    pomodoro_work_duration: Int!
+    pomodoro_short_break: Int!
+    pomodoro_long_break: Int!
+    pomodoro_sessions_until_long_break: Int!
+}
+
+type PomodoroHistory {
+    id: ID!
+    type: String!
+    duration_minutes: Int!
+    started_at: DateTime!
+    completed_at: DateTime
+    status: String!
+    todo_item: TodoItem
+}
+
+input SubTaskInput {
+    id: ID
+    title: String!
+    is_completed: Boolean
+}
+
+extend type Query {
+    todoItems: [TodoItem!]! @guard @all
+    examEvents: [ExamEvent!]! @guard @all
+    productiveBayStats: ProductiveBayStats! @guard @field(resolver: "App\\GraphQL\\Resolvers\\ProductiveBayResolver@stats")
+    userSettings: UserSetting! @guard @field(resolver: "App\\GraphQL\\Resolvers\\UserSettingsResolver@getSettings")
+    pomodoroHistory(limit: Int = 10): [PomodoroHistory!]! @guard @field(resolver: "App\\GraphQL\\Resolvers\\ProductiveBayResolver@history")
+}
+
+extend type Mutation {
+    createTodo(title: String!, priority: String, deadline: DateTime, module_id: String, estimated_pomodoros: Int, subtasks: [SubTaskInput]): TodoItem! @guard @field(resolver: "App\\GraphQL\\Resolvers\\ProductiveBayResolver@createTodo")
+    updateTodo(id: ID!, title: String, priority: String, deadline: DateTime, is_completed: Boolean, completed_pomodoros: Int, estimated_pomodoros: Int, subtasks: [SubTaskInput]): TodoItem! @guard @field(resolver: "App\\GraphQL\\Resolvers\\ProductiveBayResolver@updateTodo")
+    deleteTodo(id: ID! @eq): TodoItem @guard @delete(model: "App\\Models\\TodoItem")
+    createExam(title: String!, date: DateTime!): ExamEvent! @guard @field(resolver: "App\\GraphQL\\Resolvers\\ProductiveBayResolver@createExam")
+    updateExam(id: ID!, title: String, date: DateTime): ExamEvent! @guard @field(resolver: "App\\GraphQL\\Resolvers\\ProductiveBayResolver@updateExam")
+    deleteExam(id: ID!): ExamEvent @guard @delete
+    logPomodoroSession(type: String!, duration_minutes: Int!, started_at: DateTime!, status: String, todo_item_id: ID): PomodoroSession! @guard @field(resolver: "App\\GraphQL\\Resolvers\\ProductiveBayResolver@logPomodoro")
+    updatePomodoroSettings(work_duration: Int, short_break: Int, long_break: Int, sessions_until_long: Int): UserSetting! @guard @field(resolver: "App\\GraphQL\\Resolvers\\UserSettingsResolver@updateSettings")
+}

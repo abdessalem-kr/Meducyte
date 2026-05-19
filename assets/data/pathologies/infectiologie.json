@@ -1,0 +1,184 @@
+[
+  {
+    "name": "Sépsis",
+    "description": "Syndrome inflammatoire généralisé à l'occasion d'une infection",
+    "redFlags": [
+      "Fièvre élevée",
+      "Hypotension",
+      "Dyspnée",
+      "Confusion"
+    ],
+    "scores": [
+      {
+        "name": "qSOFA",
+        "description": "Score de gravité de la sépsis",
+        "criteria": [
+          "Respiratory rate ≥ 22/min",
+          "Altered mentation",
+          "Systolic blood pressure ≤ 65 mmHg"
+        ],
+        "interpretation": "2 points ou plus : sépsis grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen général",
+        "steps": [
+          {
+            "action": "Recherche de signes de focalisation",
+            "interpretation": "Localisation de l'infection"
+          },
+          {
+            "action": "Évaluation de l'état général",
+            "interpretation": "Évaluation de la gravité"
+          }
+        ]
+      },
+      {
+        "title": "Auscultation cardiaque et pulmonaire",
+        "steps": [
+          {
+            "action": "Auscultation des poumons",
+            "interpretation": "Recherche de râles ou de sibilances"
+          },
+          {
+            "action": "Auscultation du cœur",
+            "interpretation": "Recherche de souffles ou de bruits anormaux"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de fluides",
+      "Antibiothérapie empirique",
+      "Oxygénothérapie"
+    ],
+    "differentialDiagnosis": [
+      "Choc cardiogénique",
+      "Choc hypovolémique",
+      "Insuffisance respiratoire aiguë"
+    ]
+  },
+  {
+    "name": "Méningite",
+    "description": "Infection de la méninge",
+    "redFlags": [
+      "Céphalée intense",
+      "Fièvre élevée",
+      "Raideur de nuque",
+      "Conscience altérée"
+    ],
+    "scores": [
+      {
+        "name": "Score de Glasgow",
+        "description": "Évaluation de la conscience",
+        "criteria": [
+          "Ouverture des yeux",
+          "Réponse verbale",
+          "Réponse motrice"
+        ],
+        "interpretation": "Score inférieur à 8 : coma"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique",
+        "steps": [
+          {
+            "action": "Évaluation de la conscience",
+            "interpretation": "Évaluation de la gravité"
+          },
+          {
+            "action": "Recherche de signes de focalisation",
+            "interpretation": "Localisation de l'infection"
+          }
+        ]
+      },
+      {
+        "title": "Examen des signes de Kernig et de Brudzinski",
+        "steps": [
+          {
+            "action": "Examen de la raideur de nuque",
+            "interpretation": "Recherche de signes de méningite"
+          },
+          {
+            "action": "Examen des réflexes",
+            "interpretation": "Recherche de signes de neuropathie"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de corticostéroïdes",
+      "Antibiothérapie ciblée",
+      "Réanimation"
+    ],
+    "differentialDiagnosis": [
+      "Encéphalite",
+      "Méningite virale",
+      "Tumeur cérébrale"
+    ]
+  },
+  {
+    "name": "Pneumonie",
+    "description": "Infection des poumons",
+    "redFlags": [
+      "Toux productive",
+      "Fièvre élevée",
+      "Dyspnée",
+      "Cyanose"
+    ],
+    "scores": [
+      {
+        "name": "Score de CURB-65",
+        "description": "Évaluation de la gravité de la pneumonie",
+        "criteria": [
+          "Confusion",
+          "Uremie",
+          "Respiratory rate ≥ 30/min",
+          "Systolic blood pressure < 90 mmHg",
+          "Âge ≥ 65 ans"
+        ],
+        "interpretation": "2 points ou plus : pneumonie grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen thoracique",
+        "steps": [
+          {
+            "action": "Auscultation des poumons",
+            "interpretation": "Recherche de râles ou de sibilances"
+          },
+          {
+            "action": "Examen de la percussion",
+            "interpretation": "Recherche de signes de consolidation"
+          }
+        ]
+      },
+      {
+        "title": "Examen des signes de détresse respiratoire",
+        "steps": [
+          {
+            "action": "Évaluation de la fréquence respiratoire",
+            "interpretation": "Recherche de signes de détresse"
+          },
+          {
+            "action": "Examen de la saturation en oxygène",
+            "interpretation": "Recherche de signes d'hypoxémie"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'antibiotiques",
+      "Oxygénothérapie",
+      "Réanimation"
+    ],
+    "differentialDiagnosis": [
+      "Bronchite aiguë",
+      "Insuffisance cardiaque congestive",
+      "Embolie pulmonaire"
+    ]
+  }
+]

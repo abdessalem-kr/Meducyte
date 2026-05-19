@@ -1,0 +1,131 @@
+[
+  {
+    "name": "Diabète de type 1",
+    "description": "Diabète auto-immun",
+    "redFlags": [
+      "Hyperglycémie",
+      "Cétose",
+      "Déséquilibre hydrique"
+    ],
+    "scores": [
+      {
+        "name": "Score de cétose",
+        "description": "Évaluation de la gravité de la cétose",
+        "criteria": [
+          "Niveau de corps cétoniques",
+          "pH sanguin"
+        ],
+        "interpretation": "Score élevé : cétose grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique",
+        "steps": [
+          {
+            "action": "Évaluation de la conscience",
+            "interpretation": "Altération de la conscience : urgence vitale"
+          },
+          {
+            "action": "Recherche de signes de déshydratation",
+            "interpretation": "Déséquilibre hydrique : nécessité de réhydratation"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réhydratation",
+      "Insulinothérapie"
+    ],
+    "differentialDiagnosis": [
+      "Diabète de type 2",
+      "Diabète gestationnel"
+    ]
+  },
+  {
+    "name": "Hyperparathyroïdie primitive",
+    "description": "Trouble du métabolisme du calcium",
+    "redFlags": [
+      "Hypercalcémie",
+      "Néphrolithiase",
+      "Insuffisance rénale"
+    ],
+    "scores": [
+      {
+        "name": "Score de Karolyi",
+        "description": "Évaluation de la gravité de l'hyperparathyroïdie",
+        "criteria": [
+          "Niveau de calcium",
+          "Niveau de phosphore"
+        ],
+        "interpretation": "Score élevé : hyperparathyroïdie grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique",
+        "steps": [
+          {
+            "action": "Recherche de signes de lithiase rénale",
+            "interpretation": "Néphrolithiase : nécessité de prise en charge"
+          },
+          {
+            "action": "Évaluation de la fonction rénale",
+            "interpretation": "Insuffisance rénale : nécessité de prise en charge"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réhydratation",
+      "Traitement de l'hypercalcémie"
+    ],
+    "differentialDiagnosis": [
+      "Hyperparathyroïdie secondaire",
+      "Pseudo-hyperparathyroïdie"
+    ]
+  },
+  {
+    "name": "Syndrome de Cushing",
+    "description": "Trouble de l'axe hypothalamo-hypophyso-surrénalien",
+    "redFlags": [
+      "Hypertension artérielle",
+      "Diabète",
+      "Obésité"
+    ],
+    "scores": [
+      {
+        "name": "Score de Cushing",
+        "description": "Évaluation de la gravité du syndrome de Cushing",
+        "criteria": [
+          "Niveau de cortisol",
+          "Niveau de corticotropine"
+        ],
+        "interpretation": "Score élevé : syndrome de Cushing grave"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique",
+        "steps": [
+          {
+            "action": "Recherche de signes de syndrome de Cushing",
+            "interpretation": "Syndrome de Cushing : nécessité de prise en charge"
+          },
+          {
+            "action": "Évaluation de la fonction cardiaque",
+            "interpretation": "Insuffisance cardiaque : nécessité de prise en charge"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Traitement de l'hypertension artérielle",
+      "Traitement du diabète"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome de Cushing iatrogène",
+      "Pseudo-syndrome de Cushing"
+    ]
+  }
+]
