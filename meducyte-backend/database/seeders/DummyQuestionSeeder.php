@@ -13,7 +13,7 @@ class DummyQuestionSeeder extends Seeder
     {
         $this->command->info('Starting 40,000 realistic dummy questions seeding...');
 
-        // 1. Ensure modules exist
+        // 1. Check if modules exist
         if (Module::count() === 0) {
             $this->command->info('No modules found in the database. Running ModuleSeeder first...');
             $this->call(ModuleSeeder::class);
@@ -22,38 +22,46 @@ class DummyQuestionSeeder extends Seeder
         $modules = Module::all();
         $this->command->info('Found ' . $modules->count() . ' modules in the database.');
 
-        // 2. Ensure each module has at least 5 lessons
-        $this->command->info('Ensuring modules have lessons...');
-        $lessonsList = [];
+        // 2. Generate 25 to 40 dummy lessons for each module in bulk
+        $this->command->info('Generating 25 to 40 dummy lessons for each module...');
         
-        // Disable foreign key checks for fast lesson creation if needed
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
+        
+        $now = now();
+        $lessonsToInsert = [];
+        
         foreach ($modules as $module) {
-            $existingLessons = Lesson::where('module_id', $module->id)->get();
-            
-            if ($existingLessons->isEmpty()) {
-                // Create 5 dummy chapters/lessons for this module
-                for ($l = 1; $l <= 5; $l++) {
-                    $lessonsList[] = Lesson::create([
-                        'module_id' => $module->id,
-                        'title' => "{$module->name} - Chapitre {$l}",
-                        'order' => $l,
-                    ]);
-                }
-            } else {
-                foreach ($existingLessons as $les) {
-                    $lessonsList[] = $les;
-                }
+            $lessonCount = rand(25, 40);
+            for ($l = 1; $l <= $lessonCount; $l++) {
+                $lessonsToInsert[] = [
+                    'module_id' => $module->id,
+                    'title' => "{$module->name} - Leçon {$l}",
+                    'order' => $l,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ];
             }
+            
+            // Insert lessons in batches of 1,000 to keep execution fast and low-memory
+            if (count($lessonsToInsert) >= 1000) {
+                DB::table('lessons')->insert($lessonsToInsert);
+                $lessonsToInsert = [];
+            }
+        }
+
+        // Insert remaining lessons
+        if (count($lessonsToInsert) > 0) {
+            DB::table('lessons')->insert($lessonsToInsert);
         }
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        
-        $lessonsCount = count($lessonsList);
-        $this->command->info("Total lessons available for seeding: {$lessonsCount}");
 
-        // 3. Define variation pools for realistic filters
+        // 3. Eager load all lessons with their parent modules for ultra-fast reference
+        $lessonsList = Lesson::with('module')->get();
+        $lessonsCount = $lessonsList->count();
+        $this->command->info("Total lessons in database (ready to host questions): {$lessonsCount}");
+
+        // 4. Define variation pools for realistic filters
         $sources = [
             'ECN 2020',
             'ECN 2021',
@@ -89,14 +97,14 @@ class DummyQuestionSeeder extends Seeder
 
         $startTime = microtime(true);
 
-        // 4. Perform transaction for high speed
+        // 5. Perform transaction for high speed
         DB::transaction(function () use ($lessonsList, $lessonsCount, $sources, $medicalTags, $questionTemplates) {
             $totalQuestions = 40000;
             $propositionsData = [];
             $now = now();
 
             for ($i = 1; $i <= $totalQuestions; $i++) {
-                // Distribute question to a lesson sequentially
+                // Distribute question sequentially across lessons
                 $lesson = $lessonsList[$i % $lessonsCount];
                 $module = $lesson->module;
                 
@@ -113,23 +121,21 @@ class DummyQuestionSeeder extends Seeder
                 $moduleName = $module->name;
                 foreach ($medicalTags as $key => $tagPool) {
                     if (str_contains(strtolower($moduleName), strtolower($key))) {
-                        // Pick 2 random tags from pool
                         shuffle($tagPool);
                         $tags = array_merge($tags, array_slice($tagPool, 0, 2));
                         break;
                     }
                 }
-                // Add a generic module-derived tag
                 $tags[] = strtolower(str_replace([' ', '-', '\''], '', $moduleName));
 
-                // Insert question and get ID
+                // Insert question and get ID (100% database-agnostic and robust)
                 $questionId = DB::table('questions')->insertGetId([
                     'lesson_id' => $lesson->id,
                     'text' => $questionText,
                     'source_exam' => $sources[$i % count($sources)],
                     'tags' => json_encode(array_values(array_unique($tags))),
                     'estimated_time' => [30, 45, 60, 90, 120][$i % 5],
-                    'approved' => ($i % 25 !== 0), // 96% approved, 4% pending approval
+                    'approved' => ($i % 25 !== 0), // 96% approved, 4% pending
                     'created_at' => $now,
                     'updated_at' => $now,
                 ]);
