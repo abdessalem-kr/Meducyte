@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Learn\Module;
 use App\Models\Learn\Lesson;
 
@@ -12,6 +13,26 @@ class DummyQuestionSeeder extends Seeder
     public function run(): void
     {
         $this->command->info('Starting 40,000 realistic dummy questions seeding...');
+
+        // 0. Seed 100 pre-verified test users for concurrent k6 load testing
+        $this->command->info('Seeding 100 pre-verified test users for concurrent load testing...');
+        $now = now();
+        $usersToInsert = [];
+        $passwordHash = Hash::make('password');
+        for ($u = 1; $u <= 100; $u++) {
+            $usersToInsert[] = [
+                'name' => "Test Doctor {$u}",
+                'email' => "test{$u}@meducyte.com",
+                'password' => $passwordHash,
+                'year' => rand(1, 6),
+                'avatar_key' => "avatar_" . rand(1, 8),
+                'email_verified_at' => $now,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ];
+        }
+        DB::table('users')->insertOrIgnore($usersToInsert);
+        $this->command->info('Successfully seeded/verified 100 test users (test1@meducyte.com to test100@meducyte.com).');
 
         // 1. Check if modules exist
         if (Module::count() === 0) {

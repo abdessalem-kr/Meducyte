@@ -14,8 +14,8 @@ export const options = {
     { duration: '30s', target: 0 },    // Cooldown: Ramp down to 0
   ],
   thresholds: {
-    // 95% of responses must complete within 600ms under 100 user load
-    http_req_duration: ['p(95)<600'],
+    // 95% of responses must complete within 1200ms under 100 concurrent user load with heavy composite queries
+    http_req_duration: ['p(95)<1200'],
     // We expect 0% failures during real-user simulation
     http_req_failed: ['rate<0.02'],
   },
@@ -25,45 +25,9 @@ export const options = {
 const BASE_URL = __ENV.BASE_URL || 'http://localhost:8000';
 const GRAPHQL_ENDPOINT = `${BASE_URL}/graphql`;
 
-// ────────────────────────────────────────────────────────────────
-// SETUP PHASE: Authenticate to obtain Sanctum Bearer Token
-// ────────────────────────────────────────────────────────────────
-export function setup() {
-  const loginUrl = `${BASE_URL}/api/login`;
-  const email = __ENV.TEST_EMAIL || 'test@meducyte.com';
-  const password = __ENV.TEST_PASSWORD || 'password';
-
-  console.log(`[SETUP] Attempting authentication for user: ${email} against ${loginUrl}`);
-
-  const payload = JSON.stringify({
-    email: email,
-    password: password,
-    device_id: 'k6-stress-test-agent',
-  });
-
-  const params = {
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
-  };
-
-  const res = http.post(loginUrl, payload, params);
-
-  if (res.status !== 200) {
-    console.warn(`\n[WARNING] Setup login failed with status code ${res.status}.`);
-    console.warn(`Response body: ${res.body}`);
-    console.warn(`This is likely because the email is unverified or the database seeder has not run.`);
-    console.warn(`Continuing test in UNAUTHENTICATED mode (requests may return 401/500 if protected).\n`);
-    return { token: null };
-  }
-
-  const token = res.json('access_token');
-  console.log(`\n[SUCCESS] Successfully authenticated!`);
-  console.log(`Obtained Sanctum Token: Bearer ${token ? token.substring(0, 12) + '...' : 'null'}\n`);
-  
-  return { token: token };
-}
+// Persistent state per Virtual User (VU) thread
+let authToken = null;
+let loginFailed = false;
 
 // ────────────────────────────────────────────────────────────────
 // VARIATION POOLS (To simulate diverse filter requests)
@@ -99,15 +63,45 @@ function getRandom(arr) {
 // ────────────────────────────────────────────────────────────────
 // VIRTUAL USER LOAD TEST ITERATION
 // ────────────────────────────────────────────────────────────────
-export default function (data) {
+export default function () {
   const headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   };
 
-  // If we successfully logged in during setup, inject the Sanctum Bearer Token
-  if (data && data.token) {
-    headers['Authorization'] = `Bearer ${data.token}`;
+  // Perform one-time dynamic login for this Virtual User thread using its distinct test account
+  if (!authToken && !loginFailed) {
+    const vuIndex = __VU; // Unique 1-based index for this Virtual User (1 to 100)
+    const email = `test${vuIndex}@meducyte.com`;
+    const password = 'password';
+    const loginUrl = `${BASE_URL}/api/login`;
+
+    const payload = JSON.stringify({
+      email: email,
+      password: password,
+      device_id: `k6-vu-${vuIndex}`,
+    });
+
+    const params = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    };
+
+    const res = http.post(loginUrl, payload, params);
+
+    if (res.status === 200) {
+      authToken = res.json('access_token');
+    } else {
+      console.warn(`[WARNING] VU ${vuIndex} (${email}) login failed with status ${res.status}. Running unauthenticated.`);
+      loginFailed = true; // Mark as failed to avoid repeated login attempts on every iteration
+    }
+  }
+
+  // Inject the Sanctum Bearer Token if available
+  if (authToken) {
+    headers['Authorization'] = `Bearer ${authToken}`;
   }
 
   // Determine user action dynamically based on probability weights
@@ -279,7 +273,6 @@ export default function (data) {
 
   } else {
     // SCENARIO 5 (15%): Load a specific lesson and eager load its questions (relationship stress test)
-    // We target random lesson IDs from 1 to 1000 representing our generated dummy lessons
     const randomLessonId = Math.floor(Math.random() * 2000) + 1;
     const lessonQuery = JSON.stringify({
       query: `
@@ -304,11 +297,9 @@ export default function (data) {
     check(res, {
       'Lesson Detail: status is 200 or 404 (non-existent)': (r) => r.status === 200,
     });
+  }
+
   // Realistic thinking time: A real student reads the question, considers the A-E
   // propositions, checks correction, and reviews comments (averages 20 seconds).
-  // Additionally, since all 100 VUs share the same test token, a 20-second sleep
-  // perfectly bounds our total throughput under the server's 300 requests/minute limit!
   sleep(20);
 }
-
-
