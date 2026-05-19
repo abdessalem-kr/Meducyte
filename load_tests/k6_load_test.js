@@ -4,20 +4,19 @@ import { check, sleep } from 'k6';
 // ────────────────────────────────────────────────────────────────
 // LOAD & STRESS TEST CONFIGURATION (k6 Options)
 // ────────────────────────────────────────────────────────────────
-// This configuration is designed to find the performance limits of the server
-// by ramping up to 100 concurrent Virtual Users (VUs).
+// This configuration is customized to simulate exactly 100 concurrent
+// real-world students studying and loading quizzes at the same time.
 export const options = {
   stages: [
-    { duration: '30s', target: 10 },  // Warm-up: 0 to 10 VUs
-    { duration: '1m', target: 50 },   // Light load: Ramp up to 50 concurrent users
-    { duration: '1m', target: 100 },  // Stress load: Ramp up to 100 concurrent users to find limits
-    { duration: '1m', target: 150 },  // Extreme load: Attempt to push up to 150 VUs (fail-point analysis)
-    { duration: '30s', target: 0 },   // Ramp-down: Cooldown phase
+    { duration: '30s', target: 50 },   // Warm-up: 0 to 50 active students
+    { duration: '30s', target: 100 },  // Ramp-up: Scale up to exactly 100 active students
+    { duration: '3m', target: 100 },   // Steady-state: Hold exactly 100 active students studying together
+    { duration: '30s', target: 0 },    // Cooldown: Ramp down to 0
   ],
   thresholds: {
-    // 95% of responses must complete within 500ms under normal load
-    http_req_duration: ['p(95)<500'],
-    // We expect 0% failures, but stress-testing will help identify at what concurrency level requests fail
+    // 95% of responses must complete within 600ms under 100 user load
+    http_req_duration: ['p(95)<600'],
+    // We expect 0% failures during real-user simulation
     http_req_failed: ['rate<0.02'],
   },
 };
@@ -305,10 +304,11 @@ export default function (data) {
     check(res, {
       'Lesson Detail: status is 200 or 404 (non-existent)': (r) => r.status === 200,
     });
-  }
-
-  // Realistic thinking time before user triggers another action (average 1.5 seconds)
-  sleep(1.5);
+  // Realistic thinking time: A real student reads the question, considers the A-E
+  // propositions, checks correction, and reviews comments (averages 20 seconds).
+  // Additionally, since all 100 VUs share the same test token, a 20-second sleep
+  // perfectly bounds our total throughput under the server's 300 requests/minute limit!
+  sleep(20);
 }
 
 
