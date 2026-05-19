@@ -140,9 +140,9 @@ class DummyQuestionSeeder extends Seeder
                     'updated_at' => $now,
                 ]);
 
-                // Generate 4 propositions (A, B, C, D)
-                $correctIndex = rand(0, 3);
-                $labels = ['A', 'B', 'C', 'D'];
+                // Generate 5 propositions (A, B, C, D, E)
+                $correctIndex = rand(0, 4);
+                $labels = ['A', 'B', 'C', 'D', 'E'];
 
                 foreach ($labels as $index => $label) {
                     $propositionsData[] = [
@@ -175,6 +175,6 @@ class DummyQuestionSeeder extends Seeder
         });
 
         $duration = round(microtime(true) - $startTime, 2);
-        $this->command->info("Seeded 40,000 realistic medical questions and 160,000 propositions successfully across {$lessonsCount} lessons in {$duration} seconds!");
+        $this->command->info("Seeded 40,000 realistic medical questions and 200,000 propositions successfully across {$lessonsCount} lessons in {$duration} seconds!");
     }
 }
