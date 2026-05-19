@@ -2,26 +2,69 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 // ────────────────────────────────────────────────────────────────
-// LOAD TEST CONFIGURATION (k6 Options)
+// LOAD & STRESS TEST CONFIGURATION (k6 Options)
 // ────────────────────────────────────────────────────────────────
+// This configuration is designed to find the performance limits of the server
+// by ramping up to 100 concurrent Virtual Users (VUs).
 export const options = {
   stages: [
-    { duration: '30s', target: 10 },  // Ramp-up: 0 to 10 virtual users (VUs)
-    { duration: '1m', target: 30 },   // Stress: Load up to 30 VUs to test concurrent indexing
-    { duration: '1m', target: 30 },   // Plateau: Stay at 30 VUs to evaluate database thermal throttling
-    { duration: '15s', target: 0 },   // Ramp-down: Smoothly scale down VUs
+    { duration: '30s', target: 10 },  // Warm-up: 0 to 10 VUs
+    { duration: '1m', target: 50 },   // Light load: Ramp up to 50 concurrent users
+    { duration: '1m', target: 100 },  // Stress load: Ramp up to 100 concurrent users to find limits
+    { duration: '1m', target: 150 },  // Extreme load: Attempt to push up to 150 VUs (fail-point analysis)
+    { duration: '30s', target: 0 },   // Ramp-down: Cooldown phase
   ],
   thresholds: {
-    // 95% of responses must complete within 400ms (database indexes must be efficient!)
-    http_req_duration: ['p(95)<400'],
-    // Request failure rate must be under 1%
-    http_req_failed: ['rate<0.01'],
+    // 95% of responses must complete within 500ms under normal load
+    http_req_duration: ['p(95)<500'],
+    // We expect 0% failures, but stress-testing will help identify at what concurrency level requests fail
+    http_req_failed: ['rate<0.02'],
   },
 };
 
 // Target base URL. Customize via environment variable: k6 run -e BASE_URL=https://your-api.com k6_load_test.js
 const BASE_URL = __ENV.BASE_URL || 'http://localhost:8000';
 const GRAPHQL_ENDPOINT = `${BASE_URL}/graphql`;
+
+// ────────────────────────────────────────────────────────────────
+// SETUP PHASE: Authenticate to obtain Sanctum Bearer Token
+// ────────────────────────────────────────────────────────────────
+export function setup() {
+  const loginUrl = `${BASE_URL}/api/login`;
+  const email = __ENV.TEST_EMAIL || 'test@meducyte.com';
+  const password = __ENV.TEST_PASSWORD || 'password';
+
+  console.log(`[SETUP] Attempting authentication for user: ${email} against ${loginUrl}`);
+
+  const payload = JSON.stringify({
+    email: email,
+    password: password,
+    device_id: 'k6-stress-test-agent',
+  });
+
+  const params = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  };
+
+  const res = http.post(loginUrl, payload, params);
+
+  if (res.status !== 200) {
+    console.warn(`\n[WARNING] Setup login failed with status code ${res.status}.`);
+    console.warn(`Response body: ${res.body}`);
+    console.warn(`This is likely because the email is unverified or the database seeder has not run.`);
+    console.warn(`Continuing test in UNAUTHENTICATED mode (requests may return 401/500 if protected).\n`);
+    return { token: null };
+  }
+
+  const token = res.json('access_token');
+  console.log(`\n[SUCCESS] Successfully authenticated!`);
+  console.log(`Obtained Sanctum Token: Bearer ${token ? token.substring(0, 12) + '...' : 'null'}\n`);
+  
+  return { token: token };
+}
 
 // ────────────────────────────────────────────────────────────────
 // VARIATION POOLS (To simulate diverse filter requests)
@@ -50,7 +93,6 @@ const TAGS_POOL = [
   'physiologie',
 ];
 
-// Helper to get random item from array
 function getRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -58,11 +100,16 @@ function getRandom(arr) {
 // ────────────────────────────────────────────────────────────────
 // VIRTUAL USER LOAD TEST ITERATION
 // ────────────────────────────────────────────────────────────────
-export default function () {
+export default function (data) {
   const headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   };
+
+  // If we successfully logged in during setup, inject the Sanctum Bearer Token
+  if (data && data.token) {
+    headers['Authorization'] = `Bearer ${data.token}`;
+  }
 
   // Determine user action dynamically based on probability weights
   const randVal = Math.random();
@@ -206,3 +253,4 @@ export default function () {
   // Realistic thinking time before user triggers another action (average 1.5 seconds)
   sleep(1.5);
 }
+
