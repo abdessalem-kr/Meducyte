@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
             SubscriptionPlanSeeder::class,
             SimulationCaseSeeder::class,
             StudyGroupSeeder::class,
+            // To seed 40,000 dummy load-testing questions, uncomment the line below:
+            // DummyQuestionSeeder::class,
         ]);
     }
 }
