@@ -152,7 +152,7 @@ export default function (data) {
     });
 
   } else if (randVal < 0.65) {
-    // SCENARIO 3 (25%): Filter questions by random tag (Heavy JSON Contains test)
+    // SCENARIO 3 (25%): Real-world heavy chunked Quiz Query by Tag (GetQuestions with nested models)
     const randomTag = getRandom(TAGS_POOL);
     const tagQuery = JSON.stringify({
       query: `
@@ -163,30 +163,60 @@ export default function (data) {
             source_exam
             tags
             estimated_time
-            approved
+            lesson {
+              title
+              module {
+                name
+                year
+              }
+            }
             propositions {
               id
+              questionId
               label
               text
               isCorrect
+            }
+            comments {
+              id
+              parent_id
+              text
+              is_edited
+              upvotes
+              downvotes
+              my_vote
+              is_mine
+              created_at
+              user {
+                name
+              }
+            }
+            clinicalCase {
+              id
+              text
+              title
             }
           }
         }
       `,
       variables: {
         tags: [randomTag],
-        limit: 15,
+        limit: 50, // Real-world chunks are large (e.g. 50-100 questions)
       }
     });
 
     const res = http.post(GRAPHQL_ENDPOINT, tagQuery, { headers });
     check(res, {
-      'Tag Filter: status is 200': (r) => r.status === 200,
-      'Tag Filter: returned correct data': (r) => Array.isArray(r.json('data.questions')),
+      'Chunk Tag Filter: status is 200': (r) => r.status === 200,
+      'Chunk Tag Filter: returned correct data': (r) => Array.isArray(r.json('data.questions')),
+      'Chunk Tag Filter: returned questions in chunk': (r) => {
+        const q = r.json('data.questions');
+        return q && q.length > 0;
+      }
     });
 
   } else if (randVal < 0.85) {
-    // SCENARIO 4 (20%): Filter questions by year and source exam (Indexes composite testing)
+    // SCENARIO 4 (20%): Real-world heavy chunked Composite Filter (Years, Sources, and heavy nested models)
     const randomYear = Math.floor(Math.random() * 6) + 1; // 1 to 6
     const randomSource = getRandom(SOURCES_POOL);
     
@@ -199,11 +229,38 @@ export default function (data) {
             source_exam
             tags
             estimated_time
+            lesson {
+              title
+              module {
+                name
+                year
+              }
+            }
             propositions {
               id
+              questionId
               label
               text
               isCorrect
+            }
+            comments {
+              id
+              parent_id
+              text
+              is_edited
+              upvotes
+              downvotes
+              my_vote
+              is_mine
+              created_at
+              user {
+                name
+              }
+            }
+            clinicalCase {
+              id
+              text
+              title
             }
           }
         }
@@ -211,14 +268,14 @@ export default function (data) {
       variables: {
         years: [randomYear],
         sources: [randomSource],
-        limit: 10,
+        limit: 50, // Simulated chunk of 50 questions
       }
     });
 
     const res = http.post(GRAPHQL_ENDPOINT, compositeQuery, { headers });
     check(res, {
-      'Composite Filter: status is 200': (r) => r.status === 200,
-      'Composite Filter: returned correct data': (r) => Array.isArray(r.json('data.questions')),
+      'Chunk Composite Filter: status is 200': (r) => r.status === 200,
+      'Chunk Composite Filter: returned correct data': (r) => Array.isArray(r.json('data.questions')),
     });
 
   } else {
@@ -253,4 +310,5 @@ export default function (data) {
   // Realistic thinking time before user triggers another action (average 1.5 seconds)
   sleep(1.5);
 }
+
 
