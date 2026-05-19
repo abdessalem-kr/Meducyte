@@ -25,6 +25,10 @@ export const options = {
 const BASE_URL = __ENV.BASE_URL || 'http://localhost:8000';
 const GRAPHQL_ENDPOINT = `${BASE_URL}/graphql`;
 
+// Load pre-generated Sanctum tokens for the 100 test VUs.
+// If tokens.json is empty or not yet filled, the VUs will automatically fallback to dynamic login.
+const tokensList = JSON.parse(open('./tokens.json'));
+
 // Persistent state per Virtual User (VU) thread
 let authToken = null;
 let loginFailed = false;
@@ -69,33 +73,40 @@ export default function () {
     'Accept': 'application/json',
   };
 
-  // Perform one-time dynamic login for this Virtual User thread using its distinct test account
+  // Resolve Sanctum Token for this Virtual User thread
   if (!authToken && !loginFailed) {
     const vuIndex = __VU; // Unique 1-based index for this Virtual User (1 to 100)
-    const email = `test${vuIndex}@meducyte.com`;
-    const password = 'password';
-    const loginUrl = `${BASE_URL}/api/login`;
-
-    const payload = JSON.stringify({
-      email: email,
-      password: password,
-      device_id: `k6-vu-${vuIndex}`,
-    });
-
-    const params = {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-    };
-
-    const res = http.post(loginUrl, payload, params);
-
-    if (res.status === 200) {
-      authToken = res.json('access_token');
+    
+    if (Array.isArray(tokensList) && tokensList.length >= vuIndex) {
+      // Direct token injection: Bypasses the 429 throttle completely!
+      authToken = tokensList[vuIndex - 1];
     } else {
-      console.warn(`[WARNING] VU ${vuIndex} (${email}) login failed with status ${res.status}. Running unauthenticated.`);
-      loginFailed = true; // Mark as failed to avoid repeated login attempts on every iteration
+      // Fallback: Attempt dynamic login
+      const email = `test${vuIndex}@meducyte.com`;
+      const password = 'password';
+      const loginUrl = `${BASE_URL}/api/login`;
+
+      const payload = JSON.stringify({
+        email: email,
+        password: password,
+        device_id: `k6-vu-${vuIndex}`,
+      });
+
+      const params = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      };
+
+      const res = http.post(loginUrl, payload, params);
+
+      if (res.status === 200) {
+        authToken = res.json('access_token');
+      } else {
+        console.warn(`[WARNING] VU ${vuIndex} (${email}) login failed with status ${res.status}. Running unauthenticated.`);
+        loginFailed = true; // Mark as failed to avoid repeated login attempts on every iteration
+      }
     }
   }
 
