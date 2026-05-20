@@ -14,12 +14,12 @@ class DummyQuestionSeeder extends Seeder
     {
         $this->command->info('Starting 40,000 realistic dummy questions seeding...');
 
-        // 0. Seed 100 pre-verified test users for concurrent k6 load testing
-        $this->command->info('Seeding 100 pre-verified test users for concurrent load testing...');
+        // 0. Seed 500 pre-verified test users for concurrent k6 load testing
+        $this->command->info('Seeding 500 pre-verified test users for concurrent load testing...');
         $now = now();
         $usersToInsert = [];
         $passwordHash = Hash::make('password');
-        for ($u = 1; $u <= 100; $u++) {
+        for ($u = 1; $u <= 500; $u++) {
             $usersToInsert[] = [
                 'name' => "Test Doctor {$u}",
                 'email' => "test{$u}@meducyte.com",
@@ -32,7 +32,7 @@ class DummyQuestionSeeder extends Seeder
             ];
         }
         DB::table('users')->insertOrIgnore($usersToInsert);
-        $this->command->info('Successfully seeded/verified 100 test users (test1@meducyte.com to test100@meducyte.com).');
+        $this->command->info('Successfully seeded/verified 500 test users (test1@meducyte.com to test500@meducyte.com).');
 
         // 1. Check if modules exist
         if (Module::count() === 0) {

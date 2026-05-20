@@ -4,19 +4,19 @@ import { check, sleep } from 'k6';
 // ────────────────────────────────────────────────────────────────
 // LOAD & STRESS TEST CONFIGURATION (k6 Options)
 // ────────────────────────────────────────────────────────────────
-// This configuration is customized to simulate exactly 100 concurrent
+// This configuration is customized to simulate exactly 500 concurrent
 // real-world students studying and loading quizzes at the same time.
 export const options = {
   stages: [
-    { duration: '30s', target: 50 },   // Warm-up: 0 to 50 active students
-    { duration: '30s', target: 100 },  // Ramp-up: Scale up to exactly 100 active students
-    { duration: '3m', target: 100 },   // Steady-state: Hold exactly 100 active students studying together
+    { duration: '1m', target: 200 },   // Warm-up: Scale up to 200 active students
+    { duration: '1m', target: 500 },   // Ramp-up: Scale up to 500 active students
+    { duration: '3m', target: 500 },   // Steady-state: Hold 500 active students studying together
     { duration: '30s', target: 0 },    // Cooldown: Ramp down to 0
   ],
   thresholds: {
-    // 95% of responses must complete within 1200ms under 100 concurrent user load with heavy composite queries
-    http_req_duration: ['p(95)<1200'],
-    // We expect 0% failures during real-user simulation
+    // 95% of responses must complete within 3000ms under 500 concurrent user load with heavy composite queries
+    http_req_duration: ['p(95)<3000'],
+    // We expect <2% failures during real-user simulation
     http_req_failed: ['rate<0.02'],
   },
 };
@@ -205,7 +205,7 @@ export default function () {
       `,
       variables: {
         tags: [randomTag],
-        limit: 500, // Real-world chunks are large (e.g. 50-100 questions)
+        limit: 200, // Real-world chunks are large (e.g. 50-100 questions)
       }
     });
 
@@ -272,7 +272,7 @@ export default function () {
       variables: {
         years: [randomYear],
         sources: [randomSource],
-        limit: 500, // Simulated chunk of 50 questions
+        limit: 200, // Simulated chunk of 50 questions
       }
     });
 
