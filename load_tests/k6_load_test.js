@@ -64,6 +64,28 @@ function getRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+// Realistic randomized questions limit distribution mimicking actual usage:
+// - 40% of requests ask for small chunks (e.g. 5, 10, or 20 questions)
+// - 40% of requests ask for standard chunks (e.g. 40, 50, or 60 questions)
+// - 15% of requests ask for large chunks (e.g. 100 or 150 questions)
+// - 5% of requests ask for extreme chunks (e.g. 200 or 500 questions)
+function getRealisticLimit() {
+  const rand = Math.random();
+  if (rand < 0.40) {
+    const smallPool = [5, 10, 20];
+    return smallPool[Math.floor(Math.random() * smallPool.length)];
+  } else if (rand < 0.80) {
+    const standardPool = [40, 50, 60];
+    return standardPool[Math.floor(Math.random() * standardPool.length)];
+  } else if (rand < 0.95) {
+    const largePool = [100, 150];
+    return largePool[Math.floor(Math.random() * largePool.length)];
+  } else {
+    const extremePool = [200, 500];
+    return extremePool[Math.floor(Math.random() * extremePool.length)];
+  }
+}
+
 // ────────────────────────────────────────────────────────────────
 // VIRTUAL USER LOAD TEST ITERATION
 // ────────────────────────────────────────────────────────────────
@@ -205,7 +227,7 @@ export default function () {
       `,
       variables: {
         tags: [randomTag],
-        limit: 200, // Real-world chunks are large (e.g. 50-100 questions)
+        limit: getRealisticLimit(), // Simulates a realistic real-world mix (10, 50, 100, or 500 questions)
       }
     });
 
@@ -272,7 +294,7 @@ export default function () {
       variables: {
         years: [randomYear],
         sources: [randomSource],
-        limit: 200, // Simulated chunk of 50 questions
+        limit: getRealisticLimit(), // Simulates a realistic real-world mix (10, 50, 100, or 500 questions)
       }
     });
 
