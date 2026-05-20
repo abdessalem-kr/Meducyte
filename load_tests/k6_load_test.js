@@ -137,6 +137,9 @@ export default function () {
     headers['Authorization'] = `Bearer ${authToken}`;
   }
 
+  // Default thinking time/browsing speed
+  let thinkTime = 20;
+
   // Determine user action dynamically based on probability weights
   const randVal = Math.random();
 
@@ -161,6 +164,8 @@ export default function () {
       'Modules: data exists': (r) => r.json('data.modules') !== undefined,
     });
 
+    thinkTime = Math.random() * 8 + 3; // 3 to 11 seconds (browsing homepage dashboard)
+
   } else if (randVal < 0.40) {
     // SCENARIO 2 (20%): Fetch all distinct sources (filter populating)
     const sourcesQuery = JSON.stringify({
@@ -177,9 +182,12 @@ export default function () {
       'Sources: data exists': (r) => Array.isArray(r.json('data.sources')),
     });
 
+    thinkTime = Math.random() * 8 + 3; // 3 to 11 seconds (browsing filter dropdowns)
+
   } else if (randVal < 0.65) {
     // SCENARIO 3 (25%): Real-world heavy chunked Quiz Query by Tag (GetQuestions with nested models)
     const randomTag = getRandom(TAGS_POOL);
+    const limitVal = getRealisticLimit();
     const tagQuery = JSON.stringify({
       query: `
         query GetQuestionsByTag($tags: [String!], $limit: Int) {
@@ -227,7 +235,7 @@ export default function () {
       `,
       variables: {
         tags: [randomTag],
-        limit: getRealisticLimit(), // Simulates a realistic real-world mix (10, 50, 100, or 500 questions)
+        limit: limitVal, // Simulates a realistic real-world mix (10, 50, 100, or 500 questions)
       }
     });
 
@@ -241,10 +249,14 @@ export default function () {
       }
     });
 
+    // Realistic pacing: 6 to 15 seconds of thinking/answering per question loaded, capped at 2 minutes of think time
+    thinkTime = Math.min(limitVal * (Math.random() * 9 + 6), 120);
+
   } else if (randVal < 0.85) {
     // SCENARIO 4 (20%): Real-world heavy chunked Composite Filter (Years, Sources, and heavy nested models)
     const randomYear = Math.floor(Math.random() * 6) + 1; // 1 to 6
     const randomSource = getRandom(SOURCES_POOL);
+    const limitVal = getRealisticLimit();
 
     const compositeQuery = JSON.stringify({
       query: `
@@ -294,7 +306,7 @@ export default function () {
       variables: {
         years: [randomYear],
         sources: [randomSource],
-        limit: getRealisticLimit(), // Simulates a realistic real-world mix (10, 50, 100, or 500 questions)
+        limit: limitVal, // Simulates a realistic real-world mix (10, 50, 100, or 500 questions)
       }
     });
 
@@ -303,6 +315,9 @@ export default function () {
       'Chunk Composite Filter: status is 200': (r) => r.status === 200,
       'Chunk Composite Filter: returned correct data': (r) => Array.isArray(r.json('data.questions')),
     });
+
+    // Realistic pacing: 6 to 15 seconds of thinking/answering per question loaded, capped at 2 minutes of think time
+    thinkTime = Math.min(limitVal * (Math.random() * 9 + 6), 120);
 
   } else {
     // SCENARIO 5 (15%): Load a specific lesson and eager load its questions (relationship stress test)
@@ -330,9 +345,11 @@ export default function () {
     check(res, {
       'Lesson Detail: status is 200 or 404 (non-existent)': (r) => r.status === 200,
     });
+
+    thinkTime = Math.random() * 15 + 5; // 5 to 20 seconds (reading lesson detail)
   }
 
   // Realistic thinking time: A real student reads the question, considers the A-E
-  // propositions, checks correction, and reviews comments (averages 20 seconds).
-  sleep(20);
+  // propositions, checks correction, and reviews comments (dynamically calculated per action).
+  sleep(thinkTime);
 }
