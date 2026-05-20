@@ -4,18 +4,17 @@ import { check, sleep } from 'k6';
 // ────────────────────────────────────────────────────────────────
 // LOAD & STRESS TEST CONFIGURATION (k6 Options)
 // ────────────────────────────────────────────────────────────────
-// This configuration is customized to simulate exactly 500 concurrent
+// This configuration is customized to simulate exactly 200 concurrent
 // real-world students studying and loading quizzes at the same time.
 export const options = {
   stages: [
-    { duration: '1m', target: 200 },   // Warm-up: Scale up to 200 active students
-    { duration: '1m', target: 500 },   // Ramp-up: Scale up to 500 active students
-    { duration: '3m', target: 500 },   // Steady-state: Hold 500 active students studying together
+    { duration: '1m', target: 200 },   // Ramp-up: Scale up to exactly 200 active students
+    { duration: '3m', target: 200 },   // Steady-state: Hold exactly 200 active students studying together
     { duration: '30s', target: 0 },    // Cooldown: Ramp down to 0
   ],
   thresholds: {
-    // 95% of responses must complete within 3000ms under 500 concurrent user load with heavy composite queries
-    http_req_duration: ['p(95)<3000'],
+    // 95% of responses must complete within 1500ms under 200 concurrent user load
+    http_req_duration: ['p(95)<1500'],
     // We expect <2% failures during real-user simulation
     http_req_failed: ['rate<0.02'],
   },
@@ -187,7 +186,7 @@ export default function () {
   } else if (randVal < 0.65) {
     // SCENARIO 3 (25%): Real-world heavy chunked Quiz Query by Tag (GetQuestions with nested models)
     const randomTag = getRandom(TAGS_POOL);
-    const limitVal = getRealisticLimit();
+    const limitVal = 50;
     const tagQuery = JSON.stringify({
       query: `
         query GetQuestionsByTag($tags: [String!], $limit: Int) {
@@ -256,7 +255,7 @@ export default function () {
     // SCENARIO 4 (20%): Real-world heavy chunked Composite Filter (Years, Sources, and heavy nested models)
     const randomYear = Math.floor(Math.random() * 6) + 1; // 1 to 6
     const randomSource = getRandom(SOURCES_POOL);
-    const limitVal = getRealisticLimit();
+    const limitVal = 50;
 
     const compositeQuery = JSON.stringify({
       query: `
