@@ -205,7 +205,7 @@ export default function () {
       `,
       variables: {
         tags: [randomTag],
-        limit: 50, // Real-world chunks are large (e.g. 50-100 questions)
+        limit: 500, // Real-world chunks are large (e.g. 50-100 questions)
       }
     });
 
@@ -272,7 +272,7 @@ export default function () {
       variables: {
         years: [randomYear],
         sources: [randomSource],
-        limit: 50, // Simulated chunk of 50 questions
+        limit: 500, // Simulated chunk of 50 questions
       }
     });
 
