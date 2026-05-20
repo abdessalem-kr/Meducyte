@@ -76,7 +76,7 @@ export default function () {
   // Resolve Sanctum Token for this Virtual User thread
   if (!authToken && !loginFailed) {
     const vuIndex = __VU; // Unique 1-based index for this Virtual User (1 to 100)
-    
+
     if (Array.isArray(tokensList) && tokensList.length >= vuIndex) {
       // Direct token injection: Bypasses the 429 throttle completely!
       authToken = tokensList[vuIndex - 1];
@@ -223,7 +223,7 @@ export default function () {
     // SCENARIO 4 (20%): Real-world heavy chunked Composite Filter (Years, Sources, and heavy nested models)
     const randomYear = Math.floor(Math.random() * 6) + 1; // 1 to 6
     const randomSource = getRandom(SOURCES_POOL);
-    
+
     const compositeQuery = JSON.stringify({
       query: `
         query GetQuestionsComposite($years: [Int], $sources: [String], $limit: Int) {
