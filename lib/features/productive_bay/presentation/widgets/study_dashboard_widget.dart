@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class StudyDashboardWidget extends ConsumerWidget {
   const StudyDashboardWidget({super.key});
@@ -74,7 +75,61 @@ class StudyDashboardWidget extends ConsumerWidget {
           ],
         ),
       ),
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => Skeletonizer(
+        enabled: true,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(24),
+          decoration: BoxDecoration(
+            color: isDark ? AppColors.surfaceDark : Colors.white,
+            borderRadius: BorderRadius.circular(28),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildStatItem(
+                    context,
+                    "5 J",
+                    context.l10n.studyStreak,
+                    Iconsax.flash,
+                    Colors.orange,
+                  ),
+                  Container(width: 1, height: 40, color: theme.dividerColor),
+                  _buildStatItem(
+                    context,
+                    "4/8",
+                    context.l10n.pomodoroToday,
+                    Iconsax.timer_1,
+                    theme.primaryColor,
+                  ),
+                  Container(width: 1, height: 40, color: theme.dividerColor),
+                  _buildStatItem(
+                    context,
+                    "12h",
+                    context.l10n.totalHours,
+                    Iconsax.clock,
+                    Colors.blue,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              Text(
+                context.l10n.moduleEfficiency,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: isDark ? Colors.white54 : Colors.black54,
+                ),
+              ),
+              const SizedBox(height: 16),
+              _buildModuleScore(context, "Module d'anatomie de test", 0.75),
+            ],
+          ),
+        ),
+      ),
       error: (err, stack) =>
           Center(child: Text('${context.l10n.errorLabel}: $err')),
     );
@@ -122,7 +177,14 @@ class StudyDashboardWidget extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(module, style: const TextStyle(fontWeight: FontWeight.w500)),
+              Expanded(
+                child: Text(
+                  module,
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const SizedBox(width: 8),
               Text(
                 "${(score * 100).toInt()}%",
                 style: TextStyle(

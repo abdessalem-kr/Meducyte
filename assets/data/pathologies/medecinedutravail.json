@@ -1,0 +1,332 @@
+[
+  {
+    "name": "Myopathie liée à l'exposition chronique aux solvants organiques",
+    "description": "Cette pathologie résulte d'une exposition prolongée à des solvants organiques (toluène, xylène, styrène) dans des environnements industriels. La physiopathologie implique une toxicité directe des myocytes via des mécanismes mitochondriaux et une perturbation du métabolisme énergétique. La présentation clinique typique inclut une faiblesse musculaire progressive, des myalgies diffuses, des crampes musculaires nocturnes, et une atrophie musculaire distale. Les signes neurologiques associés peuvent inclure une paresthésie, une dysesthésie, et une réduction de la sensibilité vibratoire.",
+    "redFlags": [
+      "Faiblesse musculaire asymétrique associée à une exposition professionnelle à des solvants > 5 ans",
+      "Crampes musculaires nocturnes réfractaires aux traitements classiques",
+      "Atrophie musculaire distale des membres inférieurs avec perte de la force isométrique",
+      "Réflexes tendineux anormalement diminués ou absents au niveau des genoux et des chevilles",
+      "Présence de myoglobinurie sur urines en cas de crise aiguë de surcharge musculaire"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité de la myopathie solvants (IGMS)",
+        "description": "Score évaluant la sévérité fonctionnelle et la progression de la myopathie liée aux solvants",
+        "criteria": [
+          "Classe I: Faiblesse musculaire < 4/5 avec conservation de l'autonomie (0 point)",
+          "Classe II: Faiblesse musculaire 3/5 avec assistance technique nécessaire (1 point)",
+          "Classe III: Faiblesse musculaire < 2/5 avec dépendance totale (2 points)",
+          "Classe IV: Atrophie musculaire associée à une insuffisance respiratoire (3 points)"
+        ],
+        "interpretation": "Score total ≥ 2 points indique une myopathie sévère nécessitant une réévaluation professionnelle et une surveillance neurologique intensive"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et musculaire ciblé",
+        "steps": [
+          {
+            "action": "Évaluation de la force musculaire selon la classification de Medical Research Council (MRC) sur les groupes musculaires distaux",
+            "interpretation": "Une diminution asymétrique de la force > 2/5 dans les muscles tibial antérieur et long biceps féminin évoque une atteinte myopathique distale"
+          },
+          {
+            "action": "Palpation des muscles pour identifier des crampes spontanées ou des points déclencheurs",
+            "interpretation": "Présence de crampes spontanées associées à une douleur à la palpation suggère une hyperexcitabilité musculaire liée à la toxicité solvants"
+          },
+          {
+            "action": "Test de la marche sur la pointe des pieds et sur les talons",
+            "interpretation": "Incapacité de réaliser ces tests indique une atteinte du muscle gastrocnémien et du long biceps, typique de la myopathie distale"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension immédiate de l'exposition au solvant incriminé avec relocalisation professionnelle",
+      "Administration de vitamine B-complexe à dose thérapeutique (100 mg/jour) pour soutenir le métabolisme énergétique mitochondrial",
+      "Kinésithérapie ciblée avec exercices isométriques pour prévenir l'atrophie musculaire",
+      "Surveillance biologique hebdomadaire de la créatine kinase (CK) et de la lactate déshydrogénase (LDH)",
+      "Éducation du patient sur les signes d'alerte (faiblesse soudaine, myoglobinurie) nécessitant une consultation urgence"
+    ],
+    "differentialDiagnosis": [
+      "Myopathie de Duchenne (absence de lien professionnel, début avant 5 ans)",
+      "Myopathie de type mitochondrial (réponse positive au test de la résine fuchsin)",
+      "Myopathie associée à l'amylose (présence de protéinurie et d'insuffisance rénale)"
+    ]
+  },
+  {
+    "name": "Syndrome de surcharge musculaire aiguë chez les travailleurs de la manutention lourde",
+    "description": "Pathologie liée à une surcharge musculaire excessive lors de levées de charges non ergonomiques. La physiopathologie implique une microtraumatisation des fibres musculaires avec libération de myoglobine et d'enzymes intracellulaires (CK, LDH). La présentation clinique typique comprend une douleur musculaire aiguë, une rigidité, une perte de la force, et une coloration marron-rouge des urines. Les muscles du tronc et des membres inférieurs sont le plus souvent touchés.",
+    "redFlags": [
+      "Douleur musculaire aiguë post-effort associée à une impossibilité de lever le genou",
+      "Urine foncée (marron-rouge) survenant dans les 24 heures suivant l'effort",
+      "Tension artérielle basse associée à une oligurie",
+      "Crampes musculaires généralisées avec réflexes tendineux abolis",
+      "Signe de Trendelenburg positif (faiblesse du muscle fessier majeur)"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de la rhabdomyolyse (SGR)",
+        "description": "Évaluation de la gravité de la rhabdomyolyse basée sur les paramètres biologiques et cliniques",
+        "criteria": [
+          "Classe I: CK < 10 000 UI/L et créatinine < 1,5 mg/dL (0 point)",
+          "Classe II: CK 10 000-50 000 UI/L et créatinine 1,5-3 mg/dL (1 point)",
+          "Classe III: CK > 50 000 UI/L et créatinine > 3 mg/dL (2 points)",
+          "Classe IV: Présence d'insuffisance rénale aiguë nécessitant une dialyse (3 points)"
+        ],
+        "interpretation": "Score ≥ 2 points indique une rhabdomyolyse sévère nécessitant une hospitalisation immédiate"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique et biologique ciblé",
+        "steps": [
+          {
+            "action": "Palpation des muscles du tronc et des membres inférieurs pour identifier des zones de douleur à la pression",
+            "interpretation": "Douleur à la palpation associée à une rigidité musculaire évoque une microtraumatisation musculaire"
+          },
+          {
+            "action": "Évaluation de la force musculaire des membres inférieurs selon la classification MRC",
+            "interpretation": "Faiblesse musculaire < 3/5 dans les muscles quadriceps et fessiers indique une atteinte musculaire sévère"
+          },
+          {
+            "action": "Examen des urines pour la présence de myoglobine (test de la bandelette urinaire)",
+            "interpretation": "Coloration marron-rouge des urines associée à un test positif pour la myoglobine confirme la libération musculaire"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hydratation intraveineuse avec perfusion de solution saline (1-2 L/h) pour prévenir l'insuffisance rénale",
+      "Administration de bicarbonate de sodium (1-2 mEq/kg) pour alcaliniser les urines",
+      "Suspension immédiate de l'activité physique et repos strict pendant 48-72 heures",
+      "Surveillance étroite des paramètres rénaux (créatinine, urée, électrolytes)",
+      "Administration de furosémide à dose fractionnée pour prévenir l'œdème aigu du poumon"
+    ],
+    "differentialDiagnosis": [
+      "Myosite infectieuse (présence de fièvre et de leucocytose)",
+      "Myopathie de type statine (historique de traitement anticholestérol)",
+      "Myopathie associée à l'effort (absence de lien professionnel)"
+    ]
+  },
+  {
+    "name": "Tendinopathie du coude chronique chez les travailleurs de l'assemblage mécanique",
+    "description": "Cette pathologie résulte de microtraumatismes répétés liés à des mouvements répétitifs d'extension/flexion du coude et de rotation du poignet, typiques des postes d'assemblage mécanique. Elle se manifeste par une douleur localisée sur le bord latéral ou médial du coude, irradiant vers le poignet, associée à une perte de force fonctionnelle et une limitation des amplitudes articulaires. L'atteinte tendineuse du m. extenseur court (épicondylite) ou du m. fléchisseur radial du carpe (cubitalgie) est fréquente.",
+    "redFlags": [
+      "Douleur à l'extension du poignet contre résistance (test de Cozen positif) associée à une atrophie du m. extenseur court",
+      "Douleur radiant vers le poignet lors de la flexion du coude à 90° avec rotation pronatrice (test de Mills positif)",
+      "Crépitations articulaires lors de la flexion/extension du coude",
+      "Perte de la force de préhension latérale > 30% par rapport au membre controlatéral",
+      "Épaississement du tendon palpable sur le bord latéral du coude avec chaleur locale"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de VAS (Visual Analog Scale) pour la douleur fonctionnelle",
+        "description": "Évaluation de l'intensité de la douleur sur une échelle de 0 à 10, associée à la perte de fonction",
+        "criteria": [
+          "0-2: Douleur légère, fonctionnalité préservée",
+          "3-5: Douleur modérée, perte de 20-40% de la force",
+          "6-8: Douleur sévère, incapacité de maintenir une charge > 5 kg",
+          "9-10: Douleur invalidante, impossibilité de réaliser les tâches professionnelles"
+        ],
+        "interpretation": "Permet de quantifier l'impact clinique et de guider la décision de repos ou de rééducation."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique du coude et du poignet",
+        "steps": [
+          {
+            "action": "Palpation des zones d'insertion tendineuse sur l'épicondyle latéral et médial",
+            "interpretation": "Un point de douleur localisé sur l'épicondyle latéral évoque une épicondylite radiculaire, tandis qu'une douleur sur l'épicondyle médial suggère une cubitalgie."
+          },
+          {
+            "action": "Test de Cozen (extension du poignet contre résistance)",
+            "interpretation": "Douleur reproduite à l'extension du poignet avec résistance confirme une atteinte du m. extenseur court."
+          },
+          {
+            "action": "Test de Mills (flexion du coude à 90° avec pronation du poignet)",
+            "interpretation": "Douleur irradiant vers le poignet évoque une atteinte du m. fléchisseur radial du carpe."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Arrêt de l'activité à risque avec immobilisation en coude fléchi à 90° pendant 48 heures",
+      "Application de glace locale (15 minutes toutes les 2 heures) pour réduire l'inflammation",
+      "Anti-inflammatoires non stéroïdiens (AINS) à dose anti-inflammatoire (ex: ibuprofène 800 mg TID)",
+      "Évaluation ergonomique du poste de travail pour réduire les mouvements répétitifs",
+      "Rééducation progressive sous supervision kinésithérapique dès l'atténuation de la douleur"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome du tunnel carpien (douleur irradiant vers la main avec paresthésies, test de Phalen positif)",
+      "Névralgie du nerf ulnaire (douleur irradiant vers le 4e et 5e doigt, test de Tinel positif)",
+      "Arthrose du coude (douleur mécanique avec limitation des amplitudes)"
+    ]
+  },
+  {
+    "name": "Syndrome de compression du nerf sciatique lombaire chez les conducteurs professionnels",
+    "description": "Cette pathologie est liée à une compression chronique du nerf sciatique due à l'ischémie secondaire à une posture prolongée assise sur un siège rigide, associée à des mouvements répétitifs de flexion-extension lombaire. Elle se manifeste par une douleur irradiant du lombaire vers le fessier, le mollet et le pied, associée à une paresthésie, une faiblesse des muscles ischio-jambiers et une altération des réflexes rotuliens et achiliens.",
+    "redFlags": [
+      "Douleur irradiant vers le pied avec paresthésies en ceinture de cheval (douleur radiculaire L5/S1)",
+      "Faiblesse de la flexion plantaire et de l'extension du pied > 30%",
+      "Réflexe rotulien diminué ou absent",
+      "Signe de Lasègue positif (douleur à la flexion du genou allongé > 60°)",
+      "Perte de la sensibilité sur la face antérieure du mollet et la plante du pied"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de Numeric Pain Rating Scale (NPRS)",
+        "description": "Évaluation de l'intensité de la douleur radiculaire sur une échelle de 0 à 10",
+        "criteria": [
+          "0-3: Douleur supportable, fonctionnalité préservée",
+          "4-6: Douleur interrompant l'activité professionnelle",
+          "7-9: Douleur invalidante, nécessitant une IRM lombaire",
+          "10: Douleur extrême avec perte de conscience sensorielle"
+        ],
+        "interpretation": "Guide la décision thérapeutique entre repos, infiltration ou chirurgie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique lombosacré et des membres inférieurs",
+        "steps": [
+          {
+            "action": "Test de Lasègue (extension passive du genou allongé)",
+            "interpretation": "Douleur irradiant vers le mollet ou le pied évoque une compression radiculaire lombaire."
+          },
+          {
+            "action": "Évaluation de la force des muscles ischio-jambiers et quadriceps",
+            "interpretation": "Faiblesse ischio-jambière > 3/5 évoque une atteinte radiculaire L5/S1."
+          },
+          {
+            "action": "Test de Slump (flexion de la nuque et extension du genou)",
+            "interpretation": "Douleur radiculaire reproduite confirme une atteinte du nerf sciatique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension temporaire des activités nécessitant une posture assise prolongée",
+      "Évaluation ergonomique du siège de conduite (ajout de coussin ergonomique et repose-pieds)",
+      "AINS à dose anti-inflammatoire (ex: naproxène 500 mg BID) pendant 7 jours",
+      "Physiothérapie ciblée avec étirements ischio-jambiers et renforcement lombaire",
+      "Infiltration épidurale sous contrôle fluoroscopique en cas de persistance des symptômes"
+    ],
+    "differentialDiagnosis": [
+      "Hernie discale lombaire (douleur radiculaire avec signe de Lhermitte)",
+      "Syndrome du piriformis (douleur irradiant vers le fessier avec reproduction par la contraction du muscle)",
+      "Névralgie pudendale (douleur perineale avec paresthésies génitales)"
+    ]
+  },
+  {
+    "name": "Dermatite de contact occupationale chronique liée aux produits de nettoyage",
+    "description": "Inflammation cutanée répétée ou persistante survenant chez les travailleurs exposés à des agents irritants ou allergènes (détartrants, désinfectants, solvants) dans les secteurs de l'hôtellerie, de la santé ou de l'industrie. La physiopathologie combine une barrière cutanée altérée par l'humidité chronique et des réactions immunitaires à des composés chimiques. Présentation clinique : érythème squameux, fissurations, vésiculation aiguë ou lésions de type eczéma chronique avec lichenification.",
+    "redFlags": [
+      "Éruption vésiculaire aiguë survenant < 24h après exposition à un nouveau produit de nettoyage",
+      "Involuvement des plis interdigitaux ou des paumes avec exsudation purulente",
+      "Présence de lésions linéaires ou géographiques typiques d'irritation mécanique associée",
+      "Réaction allergique systémique (urticaire, angioedème) après exposition cutanée",
+      "Résistance aux traitements topiques habituels malgré l'élimination de l'agent irritant"
+    ],
+    "scores": [
+      {
+        "name": "Index de sévérité SCORAD (Scoring Atopic Dermatitis)",
+        "description": "Échelle composite évaluant l'étendue, l'intensité des lésions et le prurit pour quantifier la gravité des dermatites chroniques",
+        "criteria": [
+          "Surface corporelle touchée (0-100%)",
+          "Intensité des lésions (0-30 points) : érythème, épaississement, exsudation",
+          "Prurit (0-10 points) évalué par l'échelle visuelle analogique"
+        ],
+        "interpretation": "Score total < 25 : forme bénigne; 25-50 : modérée; >50 : sévère nécessitant hospitalisation ou thérapie biologique"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen dermatologique et anamnèse professionnelle",
+        "steps": [
+          {
+            "action": "Inspection des zones exposées (mains, avant-bras, visage) pour identifier des lésions linéaires, annulaires ou géographiques",
+            "interpretation": "Lésions linéaires suggèrent une exposition directe à un agent irritant; lésions annulaires évoquent une allergie à un composé chimique"
+          },
+          {
+            "action": "Palpation des zones érythémateuses pour rechercher des nodules indurés ou des vésicules tendres",
+            "interpretation": "Vésicules tendres indiquent une phase aiguë d'irritation; nodules indurés suggèrent une fibrose cutanée chronique"
+          },
+          {
+            "action": "Recherche de fissurations interdigitales ou de lésions de type « gants de caoutchouc »",
+            "interpretation": "Fissurations interdigitales typiques des dermatites irritantes; lésions de type gants évoquent une exposition prolongée à l'eau"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension immédiate de l'agent irritant et remplacement par des produits hypoallergéniques",
+      "Application de crèmes hydratantes à base de cérétamine 2-3 fois/jour",
+      "Corticoïdes topiques de faible puissance (hydrocortisone 1%) sur les zones érythémateuses",
+      "Protection cutanée avec des gants en nitrile non latex pour les tâches répétitives",
+      "Éducation sur l'hydratation cutanée et l'utilisation de savons sans parfum"
+    ],
+    "differentialDiagnosis": [
+      "Eczéma atopique (absence de relation temporelle avec l'exposition professionnelle)",
+      "Psoriasis (lésions argentées sur plaques érythémateuses sans relation avec l'exposition)",
+      "Dermatite seborrhoïque (localisation préférentielle des zones riches en sébace)"
+    ]
+  },
+  {
+    "name": "Syndrome de surcharge cervicale chronique chez les travailleurs de l'informatique",
+    "description": "Douleur musculaire chronique et raideur cervicale secondaires à l'ergonomie inadaptée des postes de travail informatiques. Physiopathologie liée à l'hypertonie chronique des muscles trapèze, sternocléidomastoïdien et sous-occipitaux associée à une posture antérieure de la tête. Présentation clinique : céphalées tensionnelles, douleur irradiant vers les épaules, limitation de la mobilité cervicale et présence de points déclencheurs myofasciaux.",
+    "redFlags": [
+      "Douleur irradiant vers l'avant-bras avec paresthésies digitales (souvent 4e et 5e doigts)",
+      "Atrophie musculaire des membres supérieurs ou faiblesse segmentaire",
+      "Perte de la sensibilité vibratoire ou de l'acuité vibratoire",
+      "Douleur exacerbée par la flexion ou l'extension cervicale",
+      "Histoire de traumatisme cervical antérieur"
+    ],
+    "scores": [
+      {
+        "name": "Index de Handicap au Cou (NDI - Neck Disability Index)",
+        "description": "Échelle validée évaluant l'impact fonctionnel de la douleur cervicale sur 10 domaines",
+        "criteria": [
+          "Douleur (0-5 points) : fréquence et intensité perçue",
+          "Activités quotidiennes (0-5 points) : difficulté à effectuer des tâches ménagères",
+          "Lecture (0-5 points) : incapacité à lire sans douleur",
+          "Sommeil (0-5 points) : perturbation du sommeil",
+          "Démarche (0-5 points) : instabilité ou douleur lors de la marche"
+        ],
+        "interpretation": "Score < 10 : fonctionnement normal; 10-25 : douleur modérée; 26-50 : incapacité significative; >50 : invalidité sévère"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et orthopédique ciblé",
+        "steps": [
+          {
+            "action": "Palpation des muscles cervicaux pour identifier des points déclencheurs myofasciaux",
+            "interpretation": "Points déclencheurs sensibles à la palpation qui reproduisent la douleur irradiante caractéristique"
+          },
+          {
+            "action": "Test de l'extension cervicale active (demande au patient de regarder vers le haut)",
+            "interpretation": "Douleur exacerbée suggère une hypertrophie du sternocléidomastoïdien; limitation de mouvement évoque une fibrose myofasciale"
+          },
+          {
+            "action": "Évaluation de la mobilité passive de la colonne cervicale",
+            "interpretation": "Raideur segmentaire ou résistance anormale lors de la rotation ou de la flexion"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Rééducation posturale globale avec correction de l'alignement de la tête",
+      "Étirements doux des muscles trapèze et sternocléidomastoïdien 3x/jour",
+      "Thérapie manuelle pour désensibiliser les points déclencheurs",
+      "Ajustement du poste de travail (écran à hauteur des yeux, clavier à 90°)",
+      "Analgesiques paracétamol 1g toutes les 8h ou AINS (ibuprofène 400mg 3x/jour)"
+    ],
+    "differentialDiagnosis": [
+      "Radiculopathie cervicale (présence de déficit neurologique segmentaire)",
+      "Fibromyalgie (douleur diffusée sans relation posturale spécifique)",
+      "Cervicalgie mécanique (douleur liée à l'effort ou à la position)"
+    ]
+  }
+]

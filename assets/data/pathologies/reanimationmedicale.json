@@ -1,0 +1,232 @@
+[
+  {
+    "name": "Hémorragie intracrânienne aiguë",
+    "description": "L'hémorragie intracrânienne aiguë est une pathologie neurologique urgente caractérisée par une rupture vasculaire conduisant à une hémorragie dans les tissus cérébraux ou les espaces cérébrospinaux. La physiopathologie repose sur une augmentation brutale de la pression intracrânienne (PIC) due à l'accumulation de sang, entraînant une ischémie cérébrale secondaire par compression des vaisseaux et des structures. La présentation clinique typique inclut une céphalée soudaine et intense, des signes neurologiques focaux (parese, aphasie), une altération de l'état de conscience, et parfois des signes de bascule (nystagmus, mydriase) en cas de compression du tronc cérébral.",
+    "redFlags": [
+      "Céphalée soudaine et intense de type 'coup de marteau' survenant sans antécédent traumatique",
+      "Altération brutale de l'état de conscience avec ou sans convulsions",
+      "Signes neurologiques focaux évocateurs d'une localisation cérébrale (parese faciale, aphasie, ataxie)",
+      "Hypertension artérielle persistante (>180/110 mmHg) avec tachycardie ou bradycardie paradoxale",
+      "Signes de bascule (mydriase asymétrique, réflexes pupillaires abolis, nystagmus)"
+    ],
+    "scores": [
+      {
+        "name": "Score ICH (Intracerebral Hemorrhage Score)",
+        "description": "Score pronostique évaluant le risque de mortalité et de complications neurologiques graves dans les 72 heures suivant l'hémorragie.",
+        "criteria": [
+          "Age ≥ 80 ans (+2 points)",
+          "Score de Glasgow < 13 (+1 point)",
+          "Volume hémorragique ≥ 30 mL (+1 point)",
+          "Hémorragie intraventriculaire (+1 point)",
+          "Localisation infratentorielle (+1 point)"
+        ],
+        "interpretation": "Score total ≥ 4 points: risque de mortalité > 50% ; 2-3 points: risque modéré (20-30%) ; <2 points: pronostic favorable (<10%)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique complet et évaluation de la pression intracrânienne",
+        "steps": [
+          {
+            "action": "Évaluation du niveau de conscience via l'échelle de Glasgow (GCS) et recherche de mydriase asymétrique",
+            "interpretation": "Un GCS < 8 ou une mydriase asymétrique évoquent une compression du tronc cérébral ou une herniation cérébrale."
+          },
+          {
+            "action": "Palpation des sinus temporaux et du crâne pour rechercher des signes de fracture ou de hémorragie sous-périostée",
+            "interpretation": "Une douleur à la palpation ou une déformation osseuse orientent vers une hémorragie secondaire à traumatisme."
+          },
+          {
+            "action": "Auscultation des bruits de souffle cérébraux (souffle de Babinski) et recherche de bruits vasculaires anormaux",
+            "interpretation": "Un souffle cérébral suggère une anévrisme ou une malformation vasculaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation de l'airway, du breathing et du circulation (ABC) avec intubation précoce si GCS < 8 ou risque de herniation",
+      "Contrôle de la pression artérielle (maintenir MAP entre 110-140 mmHg) avec labétalol ou nicardipine",
+      "Administration d'anticoagulants en urgence si l'hémorragie est liée à un traitement anticoagulant (ex: vitamine K, FFP)",
+      "Imagerie cérébrale d'urgence (scanner CT sans contraste) pour confirmer le diagnostic et évaluer le volume hémorragique",
+      "Préparation chirurgicale pour hémostase ou décompression si indication (ex: craniotomie, drainage de l'hématome)"
+    ],
+    "differentialDiagnosis": [
+      "Accident ischémique cérébral aigu (absence de céphalée soudaine, absence de mydriase)",
+      "Rupture d'anévrisme de l'artère cérébrale antérieure (souffle de Babinski, céphalée soudaine)",
+      "Hémorragie sous-arachnoidienne (projection de sang dans les ventricules, céphalée explosive)"
+    ]
+  },
+  {
+    "name": "Toxicité aiguë par les antidépresseurs tricycliques",
+    "description": "La toxicité aiguë par les antidépresseurs tricycliques (ATC) est une urgence médicale liée à une surdose ou à une exposition accidentelle. La physiopathologie repose sur une inhibition des canaux sodium myocardiques, entraînant une dépression myocardique, une arythmie (notamment tachycardie sinusale, bloc AV, torsades de pointes) et une anticholinergie centrale (délire, mydriase). Les signes cliniques typiques incluent une tachycardie, une confusion, une hypotension ou hypertension paradoxale, une mydriase, et des convulsions.",
+    "redFlags": [
+      "Tachycardie sinusale > 120 bpm avec QRS allongé sur l'ECG (>0,12 s)",
+      "Mydriase bilatérale fixe avec absence de réaction à la lumière",
+      "Délire anticholinergique avec hallucinations et agitation",
+      "Hypotension ou hypertension extrême (>180/110 mmHg) avec tachycardie",
+      "Convulsions généralisées ou arythmie ventriculaire (torsades de pointes)"
+    ],
+    "scores": [
+      {
+        "name": "Score de QRS sur l'ECG",
+        "description": "Critère électrocardiographique évaluant le risque de complications cardiaques graves.",
+        "criteria": [
+          "QRS < 0,10 s: risque faible",
+          "QRS 0,10-0,12 s: surveillance étroite",
+          "QRS > 0,12 s: risque élevé de torsades de pointes",
+          "QRS > 0,16 s: indication de bicarbonate de sodium"
+        ],
+        "interpretation": "Un QRS allongé (>0,12 s) est un signe de gravité et nécessite une correction immédiate avec du bicarbonate de sodium."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et neurologique ciblé",
+        "steps": [
+          {
+            "action": "Évaluation de l'ECG pour rechercher un allongement du QRS, une tachycardie sinusale ou des arythmies ventriculaires",
+            "interpretation": "Un QRS allongé (>0,12 s) ou une torsade de pointes orientent vers une intoxication tricyclique."
+          },
+          {
+            "action": "Palpation des pupilles et recherche de mydriase bilatérale fixe",
+            "interpretation": "La mydriase est un signe anticholinergique majeur, associé à une confusion et une sécheresse muqueuse."
+          },
+          {
+            "action": "Évaluation de la température corporelle et recherche de myoclonies",
+            "interpretation": "Une hyperthermie maligne ou des myoclonies évoquent une dépression du SNC."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'activated charcoal (charbon activé) dans les 1-2 heures post-ingestion pour limiter l'absorption",
+      "Correction du QRS allongé avec du bicarbonate de sodium (1-2 mEq/kg IV) pour stabiliser la membrane myocardique",
+      "Sédation avec benzodiazépines (diazépam) en cas de convulsions ou d'agitation",
+      "Surveillance continue de l'ECG et de la pression artérielle avec correction des déséquilibres électrolytiques",
+      "Préparation pour dialyse en cas de surdose massive (>10 fois la dose thérapeutique) ou d'échec des mesures initiales"
+    ],
+    "differentialDiagnosis": [
+      "Intoxication par les antipsychotiques (absence de QRS allongé, présence de syndrome anticholinergique)",
+      "Intoxication par les antidépresseurs SSRI (absence de QRS allongé, présence de tremblements et de convulsions)",
+      "Intoxication par les antihistaminiques (présence de mydriase et de tachycardie, mais QRS normale)"
+    ]
+  },
+  {
+    "name": "Syndrome de détresse respiratoire aiguë (SDRA)",
+    "description": "Le SDRA est une pathologie pulmonaire aiguë caractérisée par une insuffisance respiratoire hypoxémique secondaire à une lésion alvéolo-capillaire diffuse. Il survient dans le contexte d'une inflammation pulmonaire aiguë, souvent liée à une infection, une septicémie, une embolie pulmonaire massive ou une nécrose pancréatique. La physiopathologie implique une augmentation de la perméabilité capillaire, un édème interstitiel et alvéolaire, et une atélectasie, conduisant à une hypoxémie résistante à l'oxygénation.",
+    "redFlags": [
+      "Dyspnée aiguë sévère avec tachypnée > 30/min et hypoxémie (PaO2/FiO2 < 300 mmHg) malgré l'oxygénation",
+      "Crachats purulents ou sanglants associés à une radiographie thoracique montrant des infiltrats bilatéraux non cardiogéniques",
+      "Signes de surcharge circulatoire (turgescence jugulaire, édèmes) absents malgré l'hypoxémie",
+      "Fièvre aiguë avec leucocytose ou leucopénie suggérant une infection",
+      "Hypotension persistante avec oligurie ou confusion mentale indiquant une hypoperfusion tissulaire"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Berlin pour le SDRA",
+        "description": "Classification basée sur la gravité de l'hypoxémie, l'absence de cause cardiogénique et la survenue dans les 7 jours d'une lésion pulmonaire",
+        "criteria": [
+          "Critère 1: PaO2/FiO2 < 300 mmHg avec absence de cause cardiogénique (ex: absence de signes d'insuffisance cardiaque) (+1 point)",
+          "Critère 2: PaO2/FiO2 < 200 mmHg (+1 point)",
+          "Critère 3: PaO2/FiO2 < 100 mmHg (+1 point)",
+          "Critère 4: Imagerie thoracique montrant des infiltrats bilatéraux non cardiogéniques (+1 point)"
+        ],
+        "interpretation": "Score total ≥ 3 points confirme le diagnostic de SDRA. Score < 3 points évoque une insuffisance respiratoire aiguë non classifiable comme SDRA."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et cardiovasculaire ciblé",
+        "steps": [
+          {
+            "action": "Palpation du thorax pour rechercher une douleur à la palpation ou une asymétrie de la mobilité thoracique",
+            "interpretation": "Douleur thoracique localisée suggérant une cause traumatique ou infectieuse. Asymétrie de la mobilité évoque une atélectasie ou un pneumothorax."
+          },
+          {
+            "action": "Auscultation pulmonaire bilatérale avec recherche de crépitements, râles ou souffles anormaux",
+            "interpretation": "Crépitements basaux bilatéraux associés à une diminution du souffle respiratoire évoquent un édème pulmonaire non cardiogénique."
+          },
+          {
+            "action": "Mesure de la saturation en oxygène (SpO2) et du PaO2/FiO2 ratio",
+            "interpretation": "PaO2/FiO2 < 300 mmHg malgré l'oxygénation confirme l'hypoxémie sévère typique du SDRA."
+          },
+          {
+            "action": "Examen des extrémités pour rechercher des signes de cyanose, des édèmes ou une perfusion tissulaire altérée",
+            "interpretation": "Cyanose centrale ou périphérique indique une hypoxémie sévère. Édèmes associés à une hypotension suggèrent une insuffisance circulatoire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Positionnement en décubitus dorsal avec surélévation des membres inférieurs pour améliorer la perfusion pulmonaire",
+      "Administration d'oxygène par masque à haute concentration (FiO2 100%) avec surveillance continue de la saturation",
+      "Installation sur réanimation avec ventilation mécanique en mode pression contrôlée (PEEP optimisé) pour combattre l'atélectasie",
+      "Initiation d'une perfusion de corticostéroïdes (ex: dexaméthasone 6 mg/jour) en cas de suspicion d'origine septique",
+      "Prise en charge de la perfusion circulatoire avec des vasoconstricteurs (ex: noradrénaline) en cas d'hypotension persistante"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance cardiaque aiguë (distinction par l'absence de signes de surcharge circulatoire et l'absence de crépitements basaux)",
+      "Pneumonie lobar (distinction par la présence de signes locaux et une réponse à l'antibiothérapie)",
+      "Embolie pulmonaire massive (distinction par l'absence d'infiltrats pulmonaires et la présence de signes thromboemboliques)"
+    ]
+  },
+  {
+    "name": "Choc cardiogénique",
+    "description": "Le choc cardiogénique est une insuffisance cardiaque aiguë associée à une hypoperfusion tissulaire sévère, secondaire à une diminution brutale de la fonction ventriculaire gauche. Il survient fréquemment après un infarctus du myocarde étendu, une défaillance valvulaire aiguë (ex: rupture de cordelette), ou une myocardiopathie aiguë. La physiopathologie repose sur une diminution du débit cardiaque, une élévation de la pression de remplissage ventriculaire gauche, et une hypoperfusion des organes vitaux.",
+    "redFlags": [
+      "Dyspnée aiguë avec orthopnée, galop B3 et râles crépitants bilatéraux",
+      "Hypotension persistante (PA < 90 mmHg) malgré une perfusion adéquate",
+      "Signes de surcharge circulatoire (turgescence jugulaire, édèmes) associés à une confusion mentale",
+      "Tachycardie compensatrice > 120 bpm avec oligurie < 0,5 mL/kg/h",
+      "Crachats rosâtres mousseux ou sanglants évoquant une œdème pulmonaire aigu"
+    ],
+    "scores": [
+      {
+        "name": "Score de CardShock",
+        "description": "Score prédictif de mortalité dans le choc cardiogénique basé sur des paramètres cliniques et biologiques",
+        "criteria": [
+          "Critère 1: PA < 70 mmHg (+2 points)",
+          "Critère 2: Lactates plasmatiques > 4 mmol/L (+1 point)",
+          "Critère 3: Fréquence cardiaque > 140 bpm (+1 point)",
+          "Critère 4: Créatinine > 2 mg/dL (+1 point)",
+          "Critère 5: Présence de signes de surcharge circulatoire (galop B3, râles) (+1 point)"
+        ],
+        "interpretation": "Score ≥ 5 points indique un risque de mortalité > 70%. Score < 3 points suggère une évolution plus favorable."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et neurologique ciblé",
+        "steps": [
+          {
+            "action": "Palpation des pouls périphériques (radial, fémoral, carotidien) pour évaluer la perfusion",
+            "interpretation": "Pouls faibles ou absents indiquent une hypoperfusion sévère. Asymétrie des pouls évoque une embolie artérielle."
+          },
+          {
+            "action": "Auscultation cardiaque avec recherche de souffles anormaux ou de galop B3",
+            "interpretation": "Galop B3 associé à une tachycardie évoque une insuffisance ventriculaire gauche aiguë."
+          },
+          {
+            "action": "Examen neurologique pour rechercher des signes de confusion mentale ou de somnolence",
+            "interpretation": "Confusion mentale associée à une hypoperfusion cérébrale indique une gravité sévère."
+          },
+          {
+            "action": "Mesure de la pression artérielle centrale (CVP) et du débit cardiaque (via cathéter Swan-Ganz)",
+            "interpretation": "CVP > 15 mmHg et débit cardiaque < 2,2 L/min/m² confirment le diagnostic de choc cardiogénique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Positionnement en décubitus dorsal avec surélévation des membres inférieurs pour améliorer le retour veineux",
+      "Administration d'oxygène par masque à haute concentration (FiO2 100%) avec surveillance continue de la saturation",
+      "Installation d'une perfusion de noradrénaline pour maintenir une PA > 90 mmHg et une perfusion tissulaire",
+      "Initiation d'une perfusion de dobutamine pour améliorer la contractilité myocardique",
+      "Prise en charge de l'œdème pulmonaire aigu avec diurétiques (ex: furosémide 40 mg IV) et PEEP optimisé"
+    ],
+    "differentialDiagnosis": [
+      "Choc septique (distinction par l'absence de signes d'insuffisance cardiaque et la présence de fièvre ou de leucocytose)",
+      "Choc hypovolémique (distinction par l'absence de signes de surcharge circulatoire et une réponse positive à la réanimation volémique)",
+      "Choc anaphylactique (distinction par l'absence de signes cardiaques et la présence d'urticaire ou d'angioedème)"
+    ]
+  }
+]

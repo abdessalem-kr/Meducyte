@@ -1860,7 +1860,7 @@ class _RadDrawingDialogState extends State<_RadDrawingDialog> {
         ElevatedButton(
           onPressed: () async {
             final bytes = await _captureDrawing();
-            if (mounted) Navigator.pop(context, bytes);
+            if (context.mounted) Navigator.pop(context, bytes);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: primaryColor,

@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:meducyte_app/core/themes/quiz_theme_extension.dart';
 
 class QuizHubSection extends ConsumerWidget {
@@ -299,7 +300,28 @@ class QuizHubSection extends ConsumerWidget {
           ),
         ],
       ),
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => Skeletonizer(
+        enabled: true,
+        child: Row(
+          children: [
+            _buildStatItem(
+              l10n.accuracyLabel,
+              "85%",
+              quizTheme.correctTextColor,
+              quizTheme,
+              isDark,
+            ),
+            const SizedBox(width: 16),
+            _buildStatItem(
+              l10n.streakLabel,
+              l10n.daysLabel(3),
+              AppColors.primary,
+              quizTheme,
+              isDark,
+            ),
+          ],
+        ),
+      ),
       error: (e, __) => Row(
         children: [
           _buildStatItem(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:meducyte_app/core/themes/app_colors.dart';
 import 'package:meducyte_app/l10n/arb/app_localizations.dart';
 import 'package:meducyte_app/features/drugs/data/providers/drug_providers.dart';
@@ -218,7 +219,94 @@ class DrugDetailsScreen extends ConsumerWidget {
             ),
           );
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => Skeletonizer(
+          enabled: true,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //Header Card Mockup
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryDark,
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Nom du médicament factice",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Nom générique du médicament",
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.8),
+                          fontSize: 14,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: const Text(
+                          "Catégorie du médicament",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                //Administrative Info Section Mockup
+                _DetailSection(
+                  title: "Informations Administratives",
+                  icon: Iconsax.document_text,
+                  initiallyExpanded: true,
+                  contentWidget: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      _MetaDataItem(
+                        label: "Classe thérapeutique",
+                        value: "Classe thérapeutique factice de chargement",
+                      ),
+                      _MetaDataItem(
+                        label: "Laboratoire et Forme",
+                        value: "Laboratoire factice et forme",
+                      ),
+                    ],
+                  ),
+                ),
+                _DetailSection(
+                  title: "Indications Thérapeutiques",
+                  icon: Iconsax.tick_circle,
+                  content: "Indication factice de chargement 1\nIndication factice de chargement 2",
+                  isList: true,
+                  initiallyExpanded: true,
+                ),
+              ],
+            ),
+          ),
+        ),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),
     );

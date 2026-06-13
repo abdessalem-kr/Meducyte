@@ -10,7 +10,7 @@ class SpecialtyCoursesScreen extends ConsumerWidget {
     //Legacy screen-UI is now unified in the new Learn hub
     return Scaffold(
       appBar: AppBar(title: Text(specialtyName)),
-      body: const Center(child: Text('Coming Soon in the new Learn Hub')),
+      body: Center(child: Text(AppLocalizations.of(context)!.comingSoon)),
     );
   }
 }

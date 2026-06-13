@@ -19,8 +19,6 @@ class PatientInfo {
   }
 }
 
-final patientInfoProvider = StateProvider<PatientInfo>((ref) => PatientInfo());
-
 // ---Introduction State---
 class IntroductionData {
   final String origin;
@@ -54,16 +52,6 @@ class IntroductionData {
   }
 }
 
-final introductionDataProvider = StateProvider<IntroductionData>(
-  (ref) => IntroductionData(),
-);
-
-// ---Motif d'hospitalisation State---
-final motifHospitalisationProvider = StateProvider<String>((ref) => '');
-
-// ---Histoire de la maladie State---
-final histoireMaladieProvider = StateProvider<String>((ref) => '');
-
 // ---Antécédents State---
 class Antecedents {
   final String medicaux;
@@ -96,8 +84,6 @@ class Antecedents {
     );
   }
 }
-
-final antecedentsProvider = StateProvider<Antecedents>((ref) => Antecedents());
 
 // ---Vitals State---
 class Vitals {
@@ -136,23 +122,7 @@ class Vitals {
   }
 }
 
-final vitalsProvider = StateProvider<Vitals>((ref) => Vitals());
-
-// ---Symptoms State---
-final selectedSymptomsProvider = StateProvider<Set<String>>((ref) => {});
-
-// ---Physical Examination State---
-final physicalExamProvider = StateProvider<Map<String, String>>((ref) => {});
-
-//User-defined physical exam sections
-final customPhysicalExamFieldsProvider = StateProvider<List<ExamFieldConfig>>(
-  (ref) => [],
-);
-
-// ---Assessment&Plan State---
-final assessmentAndPlanProvider = StateProvider<String>((ref) => '');
-
-// ---Examens Complémentaires(Paraclinique)State---
+// ---Examens Complémentaires (Paraclinique) State---
 class ExamParameter {
   final String key;
   final String name;
@@ -183,34 +153,227 @@ class ParaclinicalExam {
   }
 }
 
-final paracliniqueExamsProvider = StateProvider<List<ParaclinicalExam>>(
-  (ref) => [],
+// ---Unified Observation Report State---
+class ObservationReportState {
+  final PatientInfo patientInfo;
+  final IntroductionData introductionData;
+  final String motifHospitalisation;
+  final String histoireMaladie;
+  final Antecedents antecedents;
+  final Vitals vitals;
+  final Set<String> selectedSymptoms;
+  final Map<String, String> physicalExam;
+  final List<ExamFieldConfig> customPhysicalExamFields;
+  final String assessmentAndPlan;
+  final List<ParaclinicalExam> paracliniqueExams;
+  final String resumeTotal;
+  final int? activeObservationId;
+  final Map<String, String> examChecklist;
+
+  ObservationReportState({
+    required this.patientInfo,
+    required this.introductionData,
+    required this.motifHospitalisation,
+    required this.histoireMaladie,
+    required this.antecedents,
+    required this.vitals,
+    required this.selectedSymptoms,
+    required this.physicalExam,
+    required this.customPhysicalExamFields,
+    required this.assessmentAndPlan,
+    required this.paracliniqueExams,
+    required this.resumeTotal,
+    this.activeObservationId,
+    required this.examChecklist,
+  });
+
+  factory ObservationReportState.initial() => ObservationReportState(
+        patientInfo: PatientInfo(),
+        introductionData: IntroductionData(),
+        motifHospitalisation: '',
+        histoireMaladie: '',
+        antecedents: Antecedents(),
+        vitals: Vitals(),
+        selectedSymptoms: {},
+        physicalExam: {},
+        customPhysicalExamFields: [],
+        assessmentAndPlan: '',
+        paracliniqueExams: [],
+        resumeTotal: '',
+        activeObservationId: null,
+        examChecklist: {},
+      );
+
+  ObservationReportState copyWith({
+    PatientInfo? patientInfo,
+    IntroductionData? introductionData,
+    String? motifHospitalisation,
+    String? histoireMaladie,
+    Antecedents? antecedents,
+    Vitals? vitals,
+    Set<String>? selectedSymptoms,
+    Map<String, String>? physicalExam,
+    List<ExamFieldConfig>? customPhysicalExamFields,
+    String? assessmentAndPlan,
+    List<ParaclinicalExam>? paracliniqueExams,
+    String? resumeTotal,
+    int? activeObservationId,
+    Map<String, String>? examChecklist,
+  }) {
+    return ObservationReportState(
+      patientInfo: patientInfo ?? this.patientInfo,
+      introductionData: introductionData ?? this.introductionData,
+      motifHospitalisation: motifHospitalisation ?? this.motifHospitalisation,
+      histoireMaladie: histoireMaladie ?? this.histoireMaladie,
+      antecedents: antecedents ?? this.antecedents,
+      vitals: vitals ?? this.vitals,
+      selectedSymptoms: selectedSymptoms ?? this.selectedSymptoms,
+      physicalExam: physicalExam ?? this.physicalExam,
+      customPhysicalExamFields: customPhysicalExamFields ?? this.customPhysicalExamFields,
+      assessmentAndPlan: assessmentAndPlan ?? this.assessmentAndPlan,
+      paracliniqueExams: paracliniqueExams ?? this.paracliniqueExams,
+      resumeTotal: resumeTotal ?? this.resumeTotal,
+      activeObservationId: activeObservationId ?? this.activeObservationId,
+      examChecklist: examChecklist ?? this.examChecklist,
+    );
+  }
+}
+
+class ObservationReportNotifier extends Notifier<ObservationReportState> {
+  @override
+  ObservationReportState build() {
+    return ObservationReportState.initial();
+  }
+
+  void updatePatientInfo(PatientInfo patientInfo) {
+    state = state.copyWith(patientInfo: patientInfo);
+  }
+
+  void updateIntroductionData(IntroductionData introductionData) {
+    state = state.copyWith(introductionData: introductionData);
+  }
+
+  void updateMotifHospitalisation(String val) {
+    state = state.copyWith(motifHospitalisation: val);
+  }
+
+  void updateHistoireMaladie(String val) {
+    state = state.copyWith(histoireMaladie: val);
+  }
+
+  void updateAntecedents(Antecedents antecedents) {
+    state = state.copyWith(antecedents: antecedents);
+  }
+
+  void updateVitals(Vitals vitals) {
+    state = state.copyWith(vitals: vitals);
+  }
+
+  void updateSelectedSymptoms(Set<String> selectedSymptoms) {
+    state = state.copyWith(selectedSymptoms: selectedSymptoms);
+  }
+
+  void updatePhysicalExam(Map<String, String> physicalExam) {
+    state = state.copyWith(physicalExam: physicalExam);
+  }
+
+  void updateCustomPhysicalExamFields(List<ExamFieldConfig> customPhysicalExamFields) {
+    state = state.copyWith(customPhysicalExamFields: customPhysicalExamFields);
+  }
+
+  void updateAssessmentAndPlan(String val) {
+    state = state.copyWith(assessmentAndPlan: val);
+  }
+
+  void updateParacliniqueExams(List<ParaclinicalExam> paracliniqueExams) {
+    state = state.copyWith(paracliniqueExams: paracliniqueExams);
+  }
+
+  void updateResumeTotal(String val) {
+    state = state.copyWith(resumeTotal: val);
+  }
+
+  void updateActiveObservationId(int? id) {
+    state = state.copyWith(activeObservationId: id);
+  }
+
+  void updateExamChecklist(Map<String, String> checklist) {
+    state = state.copyWith(examChecklist: checklist);
+  }
+
+  void reset() {
+    state = ObservationReportState.initial();
+    ref.read(activeQuillControllerProvider.notifier).state = null;
+    ref.read(focusRequestProvider.notifier).state = null;
+  }
+}
+
+final observationReportProvider = NotifierProvider<ObservationReportNotifier, ObservationReportState>(
+  () => ObservationReportNotifier(),
 );
 
-// ---RésuméSyndromique/Au Total State---
-final resumeTotalProvider = StateProvider<String>((ref) => '');
+// ---Selector Providers for Reading (Backward Compatibility)---
+final patientInfoProvider = Provider<PatientInfo>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.patientInfo));
+});
+
+final introductionDataProvider = Provider<IntroductionData>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.introductionData));
+});
+
+final motifHospitalisationProvider = Provider<String>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.motifHospitalisation));
+});
+
+final histoireMaladieProvider = Provider<String>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.histoireMaladie));
+});
+
+final antecedentsProvider = Provider<Antecedents>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.antecedents));
+});
+
+final vitalsProvider = Provider<Vitals>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.vitals));
+});
+
+final selectedSymptomsProvider = Provider<Set<String>>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.selectedSymptoms));
+});
+
+final physicalExamProvider = Provider<Map<String, String>>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.physicalExam));
+});
+
+final customPhysicalExamFieldsProvider = Provider<List<ExamFieldConfig>>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.customPhysicalExamFields));
+});
+
+final assessmentAndPlanProvider = Provider<String>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.assessmentAndPlan));
+});
+
+final paracliniqueExamsProvider = Provider<List<ParaclinicalExam>>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.paracliniqueExams));
+});
+
+final resumeTotalProvider = Provider<String>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.resumeTotal));
+});
+
+final activeObservationIdProvider = Provider<int?>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.activeObservationId));
+});
+
+final examChecklistProvider = Provider<Map<String, String>>((ref) {
+  return ref.watch(observationReportProvider.select((s) => s.examChecklist));
+});
 
 // ---Form Reset Action---
 void resetObservationReport(dynamic ref) {
-  ref.read(patientInfoProvider.notifier).state = PatientInfo();
-  ref.read(introductionDataProvider.notifier).state = IntroductionData();
-  ref.read(motifHospitalisationProvider.notifier).state = '';
-  ref.read(histoireMaladieProvider.notifier).state = '';
-  ref.read(antecedentsProvider.notifier).state = Antecedents();
-  ref.read(vitalsProvider.notifier).state = Vitals();
-  ref.read(selectedSymptomsProvider.notifier).state = {};
-  ref.read(physicalExamProvider.notifier).state = {};
-  ref.read(customPhysicalExamFieldsProvider.notifier).state = [];
-  ref.read(paracliniqueExamsProvider.notifier).state = [];
-  ref.read(resumeTotalProvider.notifier).state = '';
-  ref.read(assessmentAndPlanProvider.notifier).state = '';
-  ref.read(activeQuillControllerProvider.notifier).state = null;
-  ref.read(activeObservationIdProvider.notifier).state = null;
+  ref.read(observationReportProvider.notifier).reset();
 }
 
-final activeObservationIdProvider = StateProvider<int?>((ref) => null);
-
-// ---Active Quill Controller for Shared Toolbar---
-final activeQuillControllerProvider = StateProvider<QuillController?>(
-  (ref) => null,
-);
+// ---Transient/UI States remain as StateProviders---
+final activeQuillControllerProvider = StateProvider<QuillController?>((ref) => null);
+final focusRequestProvider = StateProvider<String?>((ref) => null);

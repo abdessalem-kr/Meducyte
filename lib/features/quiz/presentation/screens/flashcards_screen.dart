@@ -232,7 +232,6 @@ class FlashcardsScreen extends ConsumerWidget {
       }
     }
   }
-
   Future<void> _startStudyFromSrs(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context)!;
 
@@ -245,6 +244,8 @@ class FlashcardsScreen extends ConsumerWidget {
     try {
       final srsRepo = ref.read(srsRepositoryProvider);
       final quizRepo = ref.read(quizRepositoryProvider);
+      final user = ref.read(authControllerProvider).value;
+      final is1to6YearUser = user != null && user.year >= 1 && user.year <= 6;
 
       final dueReviews = await srsRepo.getDueReviews();
       final ids = dueReviews.map((r) => r.questionId).toSet().toList();
@@ -257,13 +258,21 @@ class FlashcardsScreen extends ConsumerWidget {
       }
 
       final questions = await quizRepo.getQuestionsByIds(ids);
+      final filteredQuestions = is1to6YearUser
+          ? questions.where((q) => q.year == user.year).toList()
+          : questions;
 
       if (!context.mounted) return;
       context.pop();
 
+      if (filteredQuestions.isEmpty) {
+        AppSnackBars.success(context, l10n.allCaughtUp);
+        return;
+      }
+
       context.push(
         AppRoutes.flashcardStudy,
-        extra: {'questions': questions, 'title': l10n.spacedRepetition},
+        extra: {'questions': filteredQuestions, 'title': l10n.spacedRepetition},
       );
     } catch (e) {
       if (context.mounted) {

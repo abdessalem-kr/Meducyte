@@ -1,0 +1,361 @@
+[
+  {
+    "name": "Hyperthermie maligne",
+    "description": "La hyperthermie maligne est une urgence médicale génétique déclenchée par l'exposition à des anesthésiques volatils (halothane, sévoflurane) ou à la succinylcholine. Elle se manifeste par une hypermétabolisme musculaire avec acidose métabolique, hyperthermie, tachycardie, rigideur musculaire et insuffisance rénale aiguë. La physiopathologie repose sur une mutation du récepteur du ryanodine (RYR1) ou du gène CACNA1S, entraînant une libération intracellulaire de calcium et une contraction musculaire incontrolable.",
+    "redFlags": [
+      "Rigidité musculaire généralisée (notamment du masseter, du tronc et des membres) survenant pendant ou après l'anesthésie",
+      "Hyperthermie aiguë (> 39°C) associée à une tachycardie (> 140 bpm) et une acidose métabolique (pH < 7,2)",
+      "Crampes musculaires spontanées ou réaction à la palpation musculaire",
+      "Insuffisance rénale aiguë avec natriurèse et oligurie",
+      "Augmentation anormale de la consommation d'oxygène et de la production de CO2 en circuit anesthésique"
+    ],
+    "scores": [
+      {
+        "name": "Score de risque de l'Association européenne pour la hyperthermie maligne (EMHS)",
+        "description": "Évalue le risque individuel de survenue de crise post-exposition à des agents déclencheurs",
+        "criteria": [
+          "Antécédent familial de crise de hyperthermie maligne (+3 points)",
+          "Antécédent personnel de crise de hyperthermie maligne (+4 points)",
+          "Mutation confirmée du gène RYR1 ou CACNA1S (+3 points)",
+          "Réaction anormale à la test de contracture à la caféine (+2 points)",
+          "Exposition à un agent déclencheur sans crise clinique (+1 point)"
+        ],
+        "interpretation": "Score ≥ 5 points : risque élevé de crise ; 3-4 points : risque modéré ; <3 points : risque faible"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé de l'urgence hyperthermique",
+        "steps": [
+          {
+            "action": "Palpation des muscles masseter, tronc et membres pour identifier une rigidité anormale",
+            "interpretation": "Rigidité musculaire spontanée ou à la palpation évoque une hyperthermie maligne en cours"
+          },
+          {
+            "action": "Mesure de la température corporelle (rectale ou tympanique) et surveillance continue",
+            "interpretation": "Hyperthermie aiguë > 39°C associée à une tachycardie est un signe majeur"
+          },
+          {
+            "action": "Analyse des gaz du sang artériel et veineux périphériques",
+            "interpretation": "Acidose métabolique (pH < 7,2), hypercapnie, hypoxémie et élévation des lactates"
+          },
+          {
+            "action": "Évaluation de la diurèse et des paramètres rénaux (créatinine, natrium urinaire)",
+            "interpretation": "Oligurie et natriurèse suggèrent une insuffisance rénale aiguë liée à l'ischémie tubulaire"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Arrêt immédiat des anesthésiques volatils et de la succinylcholine",
+      "Administration de dantrolène 2,5 mg/kg IV en bolus, puis 1 mg/kg/h en perfusion",
+      "Refroidissement actif avec lavage péritonéal, perfusion de liquides froids et ventilation à température contrôlée",
+      "Correction de l'acidose métabolique par perfusion de bicarbonate de sodium (1-2 mEq/kg) et ventilation mécanique",
+      "Hémodialyse précoce en cas d'insuffisance rénale aiguë"
+    ],
+    "differentialDiagnosis": [
+      "Choc septique avec hyperthermie : absence de rigidité musculaire et présence de signes infectieux",
+      "Crise thyrotoxique : hyperthermie associée à tremblements, exophtalmie et tachycardie",
+      "Hémorragie intracrânienne : hyperthermie sans rigidité musculaire et signes neurologiques focaux"
+    ]
+  },
+  {
+    "name": "Choc neurogénique",
+    "description": "Le choc neurogénique est une hypotension aiguë secondaire à une lésion médullaire ou cérébrale, entraînant une perte de tonus vasomoteur. Il se caractérise par une hypotension, une bradycardie, une perte de réflexes autonomes et une vasodilatation périphérique. La physiopathologie repose sur une dérégulation du système nerveux sympathique, souvent liée à une lésion médullaire au niveau de la moelle thoracique ou lombaire.",
+    "redFlags": [
+      "Hypotension aiguë (TA systolique < 90 mmHg) sans signe de perte de volume",
+      "Bradycardie (FC < 60 bpm) associée à une vasodilatation périphérique",
+      "Perte de réflexes autonomes (absence de réponse à la douleur, absence de réflexe de vasoconstriction)",
+      "Lésion médullaire ou traumatisme crânien récent",
+      "Signes de décompensation circulatoire (oligo-anurie, cyanose périphérique)"
+    ],
+    "scores": [
+      {
+        "name": "Index de choc (Shock Index)",
+        "description": "Rapport entre la fréquence cardiaque et la pression artérielle systolique",
+        "criteria": [
+          "SI < 0,7 : perfusion normale",
+          "SI 0,7-1,0 : perfusion marginale",
+          "SI > 1,0 : perfusion inadéquate",
+          "SI > 1,4 : choc sévère"
+        ],
+        "interpretation": "Index supérieur à 1 indique une perfusion tissulaire inadéquate nécessitant une réanimation immédiate"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et hémodynamique ciblé",
+        "steps": [
+          {
+            "action": "Évaluation du niveau de conscience et de l'alerte neurologique",
+            "interpretation": "Coma ou confusion suggère une lésion cérébrale associée"
+          },
+          {
+            "action": "Palpation des réflexes musculaires et évaluation de la motricité",
+            "interpretation": "Areflexie et hypotonie musculaire typiques du choc neurogénique"
+          },
+          {
+            "action": "Mesure de la pression artérielle centrale et périphérique",
+            "interpretation": "Hypotension centrale avec pression artérielle périphérique normale ou élevée"
+          },
+          {
+            "action": "Recherche de signes de lésion médullaire (douleur, paresthésies, paralysie)",
+            "interpretation": "Lésion médullaire au niveau thoracique ou lombaire confirme le mécanisme"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation de la colonne vertébrale (immobilisation rigide avec collier cervicale)",
+      "Réanimation volémique avec cristalloïdes (500-1000 ml de Ringer lactate en bolus)",
+      "Administration de vasoconstricteurs (noradrénaline ou vasopressine) pour maintenir une PA systolique > 90 mmHg",
+      "Correction des déséquilibres électrolytiques (hypokaliémie, acidose métabolique)",
+      "Surveillance continue de la diurèse et des paramètres hémodynamiques"
+    ],
+    "differentialDiagnosis": [
+      "Choc hypovolémique : hypotension associée à une tachycardie et des signes de déshydratation",
+      "Choc septique : hypotension avec tachycardie, fièvre et leucocytose",
+      "Choc cardiogénique : hypotension associée à une insuffisance cardiaque (galop B3, râles pulmonaires)"
+    ]
+  },
+  {
+    "name": "Choc anaphylactique",
+    "description": "Réaction allergique systémique grave déclenchée par une exposition à un allergène, caractérisée par une libération massive de médiateurs inflammatoires (histamine, cytokines) entraînant une vasodilatation, une hypotension, une obstruction bronchique et une œdématisation des voies respiratoires. Présentation clinique typique : urticaire, angioedème, dyspnée, hypotension, tachycardie, nausées, vomissements et signes neurologiques (confusion, perte de connaissance).",
+    "redFlags": [
+      "Dyspnée aiguë associée à une voix rauque et striduleuse avec stridor inspiratoire",
+      "Hypotension artérielle sévère (< 90 mmHg) avec tachycardie réfractaire",
+      "Urticaire généralisée ou angioedème facial/lingual survenant dans les 30 minutes suivant l'exposition à un allergène",
+      "Crises bronchospastiques réfractaires à l'administration de bêta-2-mimétiques",
+      "Signes de choc circulatoire (pâleur, froid, cyanose des extrémités)"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Berlin pour le choc anaphylactique",
+        "description": "Classification basée sur la gravité des signes cliniques et leur localisation (cutané, respiratoire, cardiovasculaire).",
+        "criteria": [
+          "Critère 1: Signes cutanés (urticaire, angioedème) + 2 autres systèmes impliqués (respiratoire, cardiovasculaire, GI) → Score 3",
+          "Critère 2: Signes respiratoires (stridor, râles, hypoxémie) + 1 autre système → Score 2",
+          "Critère 3: Signes cardiovasculaires (hypotension, choc) → Score 1",
+          "Critère 4: Signes GI (vomissements, diarrhée) + 2 autres systèmes → Score 2"
+        ],
+        "interpretation": "Score total ≥ 3: Choc anaphylactique confirmé. Score 1-2: Réaction allergique sévère mais non classifiée comme choc anaphylactique."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des voies respiratoires, de l'airway et de l'oxygénation",
+        "steps": [
+          {
+            "action": "Inspection des voies respiratoires pour détecter angioedème, stridor ou rauquement",
+            "interpretation": "Présence d'angioedème laryngé ou de stridor inspiratoire évoque une obstruction aiguë des voies respiratoires."
+          },
+          {
+            "action": "Palpation de la gorge pour identifier une œdématisation du larynx ou de la trachée",
+            "interpretation": "Douleur à la palpation ou œdème palpable indique une compromission potentielle de l'airway."
+          },
+          {
+            "action": "Auscultation pulmonaire pour rechercher des râles, sibilants ou stridors",
+            "interpretation": "Sibilants diffus associés à une hypoxémie (SpO2 < 90%) suggèrent un bronchospasme sévère."
+          },
+          {
+            "action": "Mesure de la pression artérielle et de la fréquence cardiaque",
+            "interpretation": "Hypotension associée à une tachycardie réactive indique un état de choc circulatoire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'épinéphrine IV (0,1 à 0,5 mg en bolus) ou IM (0,3 à 0,5 mg) selon l'accès veineux disponible",
+      "Oxygénothérapie à haut débit (15 L/min en masque à réservoir) pour corriger l'hypoxémie",
+      "Intubation précoce si stridor ou rauquement progressif malgré l'épinéphrine",
+      "Administration de corticostéroïdes (hydrocortisone 100-200 mg IV) pour prévenir la récidive",
+      "Recherche immédiate de l'allergène et arrêt de toute exposition"
+    ],
+    "differentialDiagnosis": [
+      "Crise d'asthme aiguë (absence d'angioedème ou d'urticaire)",
+      "Choc septique (présence de fièvre et de leucocytose)",
+      "Syncope vasovagale (absence de bronchospasme et de signes allergiques)"
+    ]
+  },
+  {
+    "name": "Syndrome de détresse respiratoire aiguë (SDRA)",
+    "description": "Pathologie caractérisée par une hypoxémie sévère secondaire à une infiltration alvéolaire bilaatérale non cardiogénique, souvent liée à une inflammation pulmonaire aiguë (pneumopathie, sepsis, trauma). Physiopathologie : lésion alvéolaire entraînant un édème interstitiel, une atélectasie et une surfactant pulmonaire altéré. Présentation clinique : dyspnée aiguë, hypoxémie (PaO2/FiO2 < 300 mmHg), râles crépitants bilatéraux et infiltrats pulmonaires bilaatéraux sur radiographie thoracique.",
+    "redFlags": [
+      "PaO2/FiO2 < 200 mmHg malgré une ventilation mécanique optimisée",
+      "Infiltrats pulmonaires bilaatéraux sur radiographie thoracique ou scanner",
+      "Dyspnée aiguë associée à une hypotension artérielle (shock hypovolémique secondaire à une insuffisance respiratoire)",
+      "Signes de surcharge hydroélectrolytique (œdème des extrémités, turgescence jugulaire)",
+      "Fièvre associée à une leucocytose ou leucopénie en contexte d'infection"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Berlin pour le SDRA",
+        "description": "Classification basée sur l'origine (primaire ou secondaire) et la sévérité de l'hypoxémie.",
+        "criteria": [
+          "Critère 1: SDRA liée à un facteur primitif extra-pulmonaire (ex: sepsis) → Score 1",
+          "Critère 2: PaO2/FiO2 < 300 mmHg (SDRA modérée) → Score 2",
+          "Critère 3: PaO2/FiO2 < 200 mmHg (SDRA sévère) → Score 3",
+          "Critère 4: Infiltrats pulmonaires bilaatéraux sur imagerie → Score 1"
+        ],
+        "interpretation": "Score total ≥ 3: SDRA sévère. Score 2-3: SDRA modérée. Score 1-2: SDRA légère."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et cardiovasculaire",
+        "steps": [
+          {
+            "action": "Auscultation pulmonaire pour rechercher des râles crépitants bilatéraux ou des sibilants",
+            "interpretation": "Râles crépitants associés à une hypoxémie évoquent une infiltration alvéolaire."
+          },
+          {
+            "action": "Palpation des extrémités pour détecter une cyanose ou un œdème",
+            "interpretation": "Cyanose des extrémités indique une hypoxémie sévère malgré l'oxygénothérapie."
+          },
+          {
+            "action": "Mesure de la pression artérielle et de la fréquence cardiaque",
+            "interpretation": "Hypotension associée à une tachycardie réactive suggère un état de choc hypovolémique secondaire."
+          },
+          {
+            "action": "Inspection du thorax pour identifier une distension abdominale ou une turgescence jugulaire",
+            "interpretation": "Turgescence jugulaire associée à des râles pulmonaires évoque une insuffisance cardiaque droite."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Initiation d'une ventilation mécanique avec PEEP modérée (5-15 cmH2O) pour améliorer l'oxygénation",
+      "Positionnement en décubitus ventral pour améliorer la ventilation/alvéole",
+      "Administration de corticostéroïdes (dexaméthasone 0,15-0,6 mg/kg/jour) en cas de sepsis ou de trauma",
+      "Réanimation liquidienne ciblée (500-1000 ml de cristalloïdes) pour corriger l'hypovolémie",
+      "Traitement de la cause sous-jacente (antibiothérapie, drainage d'abcès, etc.)"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance cardiaque aiguë (présence d'un galop B3 et d'une turgescence jugulaire)",
+      "Pneumothorax tensionnel (absence de souffle pulmonaire unilatéral)",
+      "Embolie pulmonaire massif (douleur thoracique pleurodique et tachycardie)"
+    ]
+  },
+  {
+    "name": "Insuffisance respiratoire aiguë postopératoire",
+    "description": "L'insuffisance respiratoire aiguë postopératoire est une complication grave survenant après une chirurgie, caractérisée par une altération de l'oxygénation et/ou de la ventilation. Elle résulte souvent d'une combinaison de facteurs tels que l'obésité, l'anesthésie générale, l'immobilisation postopératoire, ou des pathologies préexistantes (BPCO, insuffisance cardiaque). La physiopathologie implique une diminution de la compliance pulmonaire, une atélectasie, une hypoventilation alvéolaire, ou une surcharge de sécrétions. La présentation clinique typique inclut une dyspnée, une cyanose, une confusion, une hypoxémie (SpO2 < 90 %) et une acidose métabolique.",
+    "redFlags": [
+      "Dyspnée soudaine et progressive avec cyanose centrale",
+      "SpO2 < 90 % malgré l'oxygénothérapie",
+      "Auscultation pulmonaire révélant des râles crépitants ou des sibilants",
+      "Signes de surcharge cardiaque (turgescence jugulaire, œdèmes)",
+      "Confusion ou somnolence associée à une acidose (pH < 7,25)"
+    ],
+    "scores": [
+      {
+        "name": "Score de CURB-65",
+        "description": "Score de gravité pour l'insuffisance respiratoire aiguë liée à une infection (pneumopathie).",
+        "criteria": [
+          "Critère 1: Confusion (1 point)",
+          "Critère 2: Urea sanguin > 7 mmol/L (1 point)",
+          "Critère 3: Rythme respiratoire > 30/min (1 point)",
+          "Critère 4: Bâillement (1 point)",
+          "Critère 5: Bâillement (1 point)",
+          "Critère 6: Âge ≥ 65 ans (1 point)"
+        ],
+        "interpretation": "Score ≥ 3 points indique un risque élevé de mortalité et nécessite une hospitalisation en soins intensifs."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et neurologique ciblé",
+        "steps": [
+          {
+            "action": "Mesure de la saturation en oxygène (SpO2) et du pH artériel",
+            "interpretation": "SpO2 < 90 % ou pH < 7,25 indique une hypoxémie ou une acidose sévère nécessitant une ventilation mécanique."
+          },
+          {
+            "action": "Auscultation pulmonaire bilatérale pour rechercher des râles crépitants, des sibilants ou des sons rauques",
+            "interpretation": "Râles crépitants associés à une hypoxémie suggèrent une atélectasie ou une infection. Sibilants évoquent une bronchospasme."
+          },
+          {
+            "action": "Palpation du thorax pour évaluer la symétrie des mouvements respiratoires",
+            "interpretation": "Asymétrie ou mouvement thoracique réduit indique une atélectasie ou une péricardite."
+          },
+          {
+            "action": "Examen neurologique pour rechercher des signes de confusion ou de somnolence",
+            "interpretation": "Confusion associée à une hypoxémie ou à une acidose suggère une insuffisance respiratoire sévère."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Position demi-assise pour améliorer l'oxygénation",
+      "Oxygénothérapie à haut débit (HFNC) ou masque à rétention d'oxygène (MRRO) pour maintenir SpO2 > 92 %",
+      "Ventilation mécanique non invasive (VNI) si SpO2 < 90 % ou pH < 7,30",
+      "Administration de corticostéroïdes (ex: dexaméthasone 8 mg) en cas de suspicion de bronchospasme",
+      "Réanimation intraveineuse (ex: 500 mL de cristalloïde) pour corriger l'hypovolémie associée"
+    ],
+    "differentialDiagnosis": [
+      "Pneumothorax spontané (absence de râles crépitants et déviation du médiastin sur radiographie)",
+      "Insuffisance cardiaque aiguë (œdèmes, turgescence jugulaire, galop B3)",
+      "Pneumonie postopératoire (fièvre, expectoration purulente, infiltrat sur radiographie)"
+    ]
+  },
+  {
+    "name": "Hypotension aiguë réfractaire",
+    "description": "L'hypotension aiguë réfractaire est définie comme une chute persistante de la pression artérielle (systolique < 90 mmHg ou diastolique < 60 mmHg) malgré une réanimation initiale. Elle peut résulter de causes hémodynamiques multiples : hypovolémie, insuffisance cardiaque, shunt intracardiaque, ou obstruction mécanique (ex: tamponnade péricardique). La physiopathologie implique une diminution du débit cardiaque, une vasodilatation périphérique, ou une altération de la perfusion tissulaire. La présentation clinique inclut une pâleur, une oligurie, une confusion, et des signes de perfusion tissulaire inadéquate (capillaires lents, cyanose).",
+    "redFlags": [
+      "Pression artérielle systolique < 90 mmHg malgré 2 L de cristalloïde",
+      "Tachycardie réfractaire (> 120 bpm) avec signes de choc",
+      "Capillaires lents (> 3 secondes) et cyanose des extrémités",
+      "Signes de tamponnade péricardique (galop B3, hypotension, turgescence jugulaire)",
+      "Oligurie persistante (< 0,5 mL/kg/h) malgré la réanimation"
+    ],
+    "scores": [
+      {
+        "name": "Score de SOFA (Sequential Organ Failure Assessment)",
+        "description": "Score évaluant la gravité de la défaillance organique en cas d'hypotension sévère.",
+        "criteria": [
+          "Critère 1: PaO2/FiO2 < 200 (1 point)",
+          "Critère 2: Bilirubine > 3 mg/dL (1 point)",
+          "Critère 3: INR > 1,7 (1 point)",
+          "Critère 4: Creatinine > 3,5 mg/dL (1 point)",
+          "Critère 5: Pression artérielle moyenne < 65 mmHg (1 point)",
+          "Critère 6: Glasgow < 10 (1 point)"
+        ],
+        "interpretation": "Score ≥ 4 points indique une mortalité > 50 % et nécessite une prise en charge en soins intensifs."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et hémodynamique ciblé",
+        "steps": [
+          {
+            "action": "Mesure de la pression artérielle invasive et du débit cardiaque (via cathéter Swan-Ganz si disponible)",
+            "interpretation": "Débit cardiaque < 2,5 L/min ou résistance vasculaire systémique > 1500 dyn·s/cm⁵ indique une insuffisance cardiaque."
+          },
+          {
+            "action": "Palpation des signes de tamponnade péricardique (galop B3, turgescence jugulaire, hypotension)",
+            "interpretation": "Présence de 3 signes évoque une tamponnade péricardique nécessitant une péricardocentèse urgente."
+          },
+          {
+            "action": "Échocardiographie transthoracique pour évaluer la fonction ventriculaire et la présence d'effusion péricardique",
+            "interpretation": "Fonction ventriculaire réduite ou effusion péricardique > 1 cm indiquent une cause cardiaque."
+          },
+          {
+            "action": "Recherche de signes de perfusion tissulaire inadéquate (capillaires lents, cyanose, acrocyanose)",
+            "interpretation": "Perfusion inadéquate associée à une hypotension persistante nécessite une vasopressine ou un noradrénaline."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réanimation intraveineuse rapide (1-2 L de cristalloïde) pour corriger l'hypovolémie",
+      "Administration de noradrénaline à 0,1 µg/kg/min pour maintenir une PA systolique > 90 mmHg",
+      "Insertion d'un cathéter Swan-Ganz pour évaluer le débit cardiaque et la pression de remplissage",
+      "Administration de diurétiques (ex: furosémide 40 mg) en cas de surcharge liquidienne",
+      "Péricardocentèse urgente si effusion péricardique compressive est identifiée"
+    ],
+    "differentialDiagnosis": [
+      "Choc septique (fièvre, leucocytose, source d'infection identifiable)",
+      "Choc cardiogénique (galop B3, râles crépitants, échocardiographie anormale)",
+      "Choc neurogénique (hypotension associée à une perte de réflexes sympathiques)"
+    ]
+  }
+]

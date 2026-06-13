@@ -1,122 +1,440 @@
 [
   {
-    "name": "Hémorragie digestive haute",
-    "description": "Perte de sang dans le tube digestif supérieur",
+    "name": "Pancreatite auto-immune",
+    "description": "La pancréatite auto-immune (PAA) est une inflammation chronique du pancréas d'étiologie auto-immune, caractérisée par une infiltration lymphocytaire et une élévation des IgG4. Elle se présente souvent sous forme de pancréatite récurrente ou d'un kyste pancréatique pseudotumoral. Les symptômes incluent une douleur épigastrique, une insuffisance pancréatique exocrine (diarrhée grasse) et endocrine (diabète). L'association avec d'autres pathologies auto-immunes (ex: sclérose tubéreuse, thyroïdite de Hashimoto) est fréquente.",
     "redFlags": [
-      "Méléna",
-      "Hématemèse",
-      "Instabilité hémodynamique"
+      "Douleur épigastrique persistante associée à une élévation des IgG4 sériques (>1,35 g/L) et une réponse clinique à la corticothérapie",
+      "Imagerie échographique ou TDM montrant une épaississement homogène du pancréas avec réduction du canal principal",
+      "Présence de nodules lymphoïdes péripancréatiques sur IRM",
+      "Biopsie histologique révélant une infiltration lymphocytaire dense et des plasmocytes IgG4+",
+      "Antécédents d'autres pathologies auto-immunes (ex: polyangéite microscopique, lupus érythémateux systémique)"
+    ],
+    "scores": [
+      {
+        "name": "Critères HISORt pour le diagnostic de la PAA",
+        "description": "Score diagnostique basé sur des critères cliniques, biologiques et radiologiques pour différencier la PAA des autres pancréatites.",
+        "criteria": [
+          "H: Histoire clinique de pancréatite récurrente (+1)",
+          "I: Image caractéristique (épaississement homogène du pancréas, réduction du canal principal) (+1)",
+          "S: Stéatose hépatique associée (+1)",
+          "O: Ostéodystrophie (ostéoporose, ostéomalacie) (+1)",
+          "R: Réponse à la corticothérapie (réduction de la taille du pancréas de >50% en 2 mois) (+2)",
+          "t: Tumeur concomitante (ex: cancer du sein, du rein) (+1)"
+        ],
+        "interpretation": "Score ≥4 points : diagnostic probable de PAA. Score <4 : nécessite des investigations complémentaires."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique et paraclinique ciblé de la pancréatite",
+        "steps": [
+          {
+            "action": "Palpation abdominale pour identifier une douleur épigastrique ou une masse pancréatique",
+            "interpretation": "Douleur à la palpation évoque une inflammation active. Une masse palpable suggère une fibrose pancréatique ou une tumeur."
+          },
+          {
+            "action": "Examen des signes de malabsorption (ex: graisse dans les selles, perte de poids non expliquée)",
+            "interpretation": "Steatorrhée (selles grasses) et perte de poids indiquent une insuffisance exocrine pancréatique."
+          },
+          {
+            "action": "Recherche de signes d'insuffisance endocrine (ex: polydipsie, polyurie, amaigrissement)",
+            "interpretation": "Symptômes diabétiques suggèrent une destruction des cellules bêta pancréatiques."
+          },
+          {
+            "action": "Examen des signes d'auto-immunité (ex: lésions cutanées, adénopathies, hépatomégalie)",
+            "interpretation": "Lésions cutanées (ex: érythème polymorphe) ou adénopathies peuvent indiquer une pathologie auto-immune associée."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Corticothérapie à dose modérée (ex: prednisone 0,6 mg/kg/jour) avec surveillance de l'effet secondaire",
+      "Supplémentation en enzymes pancréatiques pour corriger l'insuffisance exocrine",
+      "Insulinothérapie si diabète associé",
+      "Évaluation nutritionnelle et supplémentation en vitamines liposolubles (A, D, E, K)",
+      "Imagerie par IRM ou TDM pour évaluer l'étendue de la lésion et exclure une tumeur"
+    ],
+    "differentialDiagnosis": [
+      "Carcinome pancréatique (imagerie montrant une lésion hétérogène avec dilatation du canal principal)",
+      "Pancréatite chronique alcoolique (antécédents d'alcoolisme, calcifications pancréatiques)",
+      "Pancréatite récidivante idiopathique (absence de critères auto-immuns)"
+    ]
+  },
+  {
+    "name": "Sprue tropical",
+    "description": "Le sprue tropical est une maladie de malabsorption chronique d'origine inconnue, prédominant dans les régions tropicales. Elle se caractérise par une diarrhée chronique, une perte de poids, une insuffisance pondérale et des carences en vitamines (B12, D, acide folique). La pathogénèse implique une altération de la muqueuse intestinale avec atrophie des villosités et infiltration lymphocytaire. Les patients présentent souvent une intolérance au gluten non cœliaque.",
+    "redFlags": [
+      "Diarrhée chronique (>4 semaines) associée à une perte de poids (>10% du poids corporel) dans un contexte géographique à risque",
+      "Stéatorrhée (selles grasses) et flatulences persistantes",
+      "Anémie macrocytaire (VGM >100 fL) avec carence en B12 et acide folique",
+      "Hypocalcémie et hypovitaminose D avec ostéomalacie",
+      "Réponse partielle ou inadéquate à la supplémentation en gluten"
+    ],
+    "scores": [
+      {
+        "name": "Critères de diagnostic du sprue tropical",
+        "description": "Score basé sur des critères cliniques, biologiques et histologiques pour établir le diagnostic.",
+        "criteria": [
+          "Critère 1: Diarrhée chronique (>4 semaines) avec perte de poids (+2)",
+          "Critère 2: Stéatorrhée documentée (ex: test de Sudan III positif) (+2)",
+          "Critère 3: Anémie macrocytaire avec carence en B12 (+1)",
+          "Critère 4: Hypovitaminose D sérique (<20 ng/mL) (+1)",
+          "Critère 5: Biopsie intestinale montrant une atrophie des villosités et infiltration lymphocytaire (+3)"
+        ],
+        "interpretation": "Score ≥6 points : diagnostic probable. Score <6 : nécessite des investigations complémentaires."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique et paraclinique ciblé du sprue tropical",
+        "steps": [
+          {
+            "action": "Examen des signes de malnutrition (ex: amaigrissement, œdèmes, cheveux cassants)",
+            "interpretation": "Perte de poids marquée et œdèmes periphotiques évoquent une carence protéique."
+          },
+          {
+            "action": "Palpation abdominale pour identifier une douleur ou une distension",
+            "interpretation": "Douleur épigastrique ou distension suggère une intolérance au gluten ou une obstruction intestinale."
+          },
+          {
+            "action": "Examen des signes de carence en vitamines (ex: stomatite, glossite, onychodystrophie)",
+            "interpretation": "Stomatite et glossite sont fréquentes en cas de carence en B12 ou acide folique."
+          },
+          {
+            "action": "Recherche de signes d'ostéomalacie (ex: douleurs osseuses, claudication, rachitisme chez l'enfant)",
+            "interpretation": "Douleurs osseuses et claudication évoquent une hypovitaminose D."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Supplémentation en vitamine B12 (injections intramusculaires) et acide folique",
+      "Thérapie par les bactériostatiques (ex: triméthoprime-sulfaméthoxazole) pour 4-6 semaines",
+      "Régime alimentaire hypoglucidique et enrichi en protéines",
+      "Supplémentation en calcium et vitamine D",
+      "Suivi régulier de la réabsorption intestinale par test de D-xylose"
+    ],
+    "differentialDiagnosis": [
+      "Maladie cœliaque (réponse à l'élimination du gluten)",
+      "Infection par le parasite Cryptosporidium (test de coproculture positif)",
+      "Syndrome de Zollinger-Ellison (gastrinémie élevée)"
+    ]
+  },
+  {
+    "name": "Hépatite alcoolique aiguë",
+    "description": "L'hépatite alcoolique aiguë est une inflammation hépatique liée à une consommation chronique excessive d'alcool, associée à une réponse immunitaire et métabolique. Elle se caractérise par une nécrose hépatocellulaire, une stéatose, une infiltration lymphocytaire et des corps de Mallory. Cliniquement, elle se manifeste par une asthénie, une anorexie, une nausée, une fièvre basse, une jaunisse, une douleur épigastrique, et des signes de décompensation hépatique (ascite, encéphalopathie).",
+    "redFlags": [
+      "Jaunisse aiguë associée à une douleur épigastrique intense et à une asthénie majeure",
+      "Ascite récente avec ou sans édèmes des membres inférieurs",
+      "Encéphalopathie hépatique avec confusion ou somnolence",
+      "Hémorragie digestive haute (varices oesophagiennes secondaires à une cirrhose sous-jacente)",
+      "Faites hépatiques avec une palpation douloureuse et une augmentation du volume hépatique"
+    ],
+    "scores": [
+      {
+        "name": "Score de Maddrey (Discriminant Factor)",
+        "description": "Évalue la gravité de l'hépatite alcoolique aiguë en combinant la durée de la jaunisse et le taux de prothrombine.",
+        "criteria": [
+          "Durée de la jaunisse > 2 semaines (+10 points)",
+          "Taux de prothrombine (INR) > 1,4 (+10 points)",
+          "Bilirubine totale > 3 mg/dL (+10 points)",
+          "AST/ALT ratio > 2 (+10 points)"
+        ],
+        "interpretation": "Un score > 32 indique une mortalité élevée (30-40%) et justifie une corticothérapie. Un score < 32 suggère une évolution favorable sans corticoïdes."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal et neurologique ciblé",
+        "steps": [
+          {
+            "action": "Palpation hépatique douce et progressive pour évaluer la taille, la consistance et la douleur",
+            "interpretation": "Un foie douloureux et agrandi évoque une hépatite aiguë. Une consistance ferme ou nodulaire suggère une cirrhose sous-jacente."
+          },
+          {
+            "action": "Recherche d'ascite par ballottement et percussion de la fosse iliaque",
+            "interpretation": "L'ascite est un signe de décompensation hépatique. Sa présence associée à une jaunisse aiguë oriente vers une hépatite alcoolique sévère."
+          },
+          {
+            "action": "Évaluation de l'encéphalopathie par test de coordination (dix doigts-dix doigts) et test de Babinski",
+            "interpretation": "Des signes d'encéphalopathie (confusion, ataxie) indiquent une insuffisance hépatique aiguë."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Arrêt immédiat de la consommation d'alcool et mise en place d'une surveillance stricte",
+      "Supplémentation en vitamine B1 (thiamine) pour prévenir le syndrome de Wernicke-Korsakoff",
+      "Administration de corticostéroïdes (prednisolone 40 mg/jour) si score de Maddrey > 32",
+      "Nutrition parentérale totale si intolérance orale ou dénutrition sévère",
+      "Prévention des complications (hémorragie digestive, infection) par surveillance hématologique et antibiothérapie prophylactique"
+    ],
+    "differentialDiagnosis": [
+      "Hépatite virale aiguë (ex: VHC) : absence de consommation d'alcool et présence d'antigènes viraux",
+      "Hépatite médicamenteuse : antécédents de médicaments hépatotoxiques",
+      "Hépatite auto-immune : positivité des marqueurs auto-immuns (ANA, ASMA)"
+    ]
+  },
+  {
+    "name": "Hémorragie digestive haute",
+    "description": "L'hémorragie digestive haute est une urgence médicale liée à une perte sanguine provenant de la cavité gastrique ou du duodénum. Elle peut résulter d'ulcères peptiques, de varices oesophagiennes, de syndrome de Mallory-Weiss ou de tumeurs. Cliniquement, elle se présente par des vomissements hémorragiques (hémétème), des selles noires (melena), une hypotension, une tachycardie, et des signes d'insuffisance circulatoire.",
+    "redFlags": [
+      "Hémétème massif avec hypotension et tachycardie persistantes",
+      "Melena associé à une pâleur cutanée et des ongles pâles",
+      "Signes de choc hémorragique (pouls filant, oligurie, confusion)",
+      "Antécédents de varices oesophagiennes ou de cirrhose",
+      "Douleur épigastrique brusque suivie de vomissements hémorragiques (syndrome de Mallory-Weiss)"
     ],
     "scores": [
       {
         "name": "Score de Rockall",
-        "description": "Évaluation du risque de récidive d'hémorragie digestive haute",
+        "description": "Évalue le risque de mortalité et de récidive hémorragique en fonction de critères cliniques et endoscopiques.",
         "criteria": [
-          "Âge > 60 ans",
-          "Antécédents d'hémorragie digestive",
-          "Insuffisance cardiaque"
+          "Âge > 60 ans (+1 point)",
+          "Comorbidité (ex: insuffisance cardiaque, diabète) (+1 point)",
+          "Hémorragie majeure (pouls > 100 bpm, Hb < 10 g/dL, choc) (+1 point)",
+          "Source endoscopique majeure (varices, ulcère pédiculé) (+1 point)",
+          "Hémorragie persistante ou récidivante (+1 point)"
         ],
-        "interpretation": "Score élevé : risque accru de récidive"
+        "interpretation": "Score 0-1 : faible risque (mortalité < 1%). Score 2-3 : risque modéré (mortalité 2-5%). Score 4-5 : risque élevé (mortalité > 10%)."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen abdominal",
+        "title": "Examen clinique et hémodynamique immédiat",
         "steps": [
           {
-            "action": "Palpation de l'abdomen",
-            "interpretation": "Douleur ou masse abdominale"
+            "action": "Mesure des signes vitaux (pouls, tension, saturation) et calcul du taux d'hémoglobine",
+            "interpretation": "Une hypotension persistante ou une tachycardie > 120 bpm indiquent une hémorragie majeure nécessitant une réanimation immédiate."
+          },
+          {
+            "action": "Palpation abdominale pour rechercher une douleur localisée ou une distension",
+            "interpretation": "Une douleur épigastrique associée à une distension suggère une source hémorragique gastrique (ulcère, syndrome de Mallory-Weiss)."
+          },
+          {
+            "action": "Examen des ongles et des muqueuses pour évaluer l'anémie",
+            "interpretation": "Des ongles pâles et des muqueuses anémiques confirment une perte sanguine importante."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Réanimation hémodynamique",
-      "Administration de proton pomp inhibitors"
+      "Réanimation hémodynamique par perfusion de cristalloïdes (ex: 20 mL/kg de Ringer lactate) et transfusion de globules rouges si Hb < 7 g/dL",
+      "Administration d'inhibiteurs de la pompe à protons (IPP) en bolus puis en perfusion continue",
+      "Endoscopie digestive haute d'urgence pour localiser et traiter la source hémorragique (coagulation, clips)",
+      "Prévention des complications (shock, insuffisance rénale) par surveillance continue des paramètres hémodynamiques",
+      "Prévention des varices oesophagiennes par administration de propranolol ou de vasoconstricteurs intraveineux"
     ],
     "differentialDiagnosis": [
-      "Ulcère gastroduodénal",
-      "Varices œsophagiennes"
+      "Hémorragie digestive basse (ex: hémorragie rectale) : absence de melena et présence de sang rouge vif",
+      "Hémorragie urinaire : présence de sang dans les urines et absence de signes digestifs",
+      "Hémorragie méningée : signes neurologiques focaux et absence de melena"
     ]
   },
   {
-    "name": "Hépatite aiguë",
-    "description": "Inflammation aiguë du foie",
+    "name": "Maladie de Crohn",
+    "description": "Pathologie inflammatoire chronique du tractus intestinal, touchant principalement le côlon et le grêle, caractérisée par une inflammation transmurale avec des ulcérations en sauterelle. La physiopathologie implique une réponse immunitaire anormale à des facteurs environnementaux chez un hôte génétiquement prédisposé. La présentation clinique typique inclut des douleurs abdominales périanales ou périmésaniques, une diarrhée non grasse, une perte de poids, des fièvres basses, et des manifestations extraintestinales (arthrites, uveites). Les complications graves incluent les fistules, les strictures, et les abcès péritonéaux.",
     "redFlags": [
-      "Ictère",
-      "Asténie",
-      "Nausées et vomissements"
+      "Douleurs abdominales intenses associées à une distension et un tympanisme suggérant une occlusion intestinale",
+      "Perte de poids rapide (>10 % du poids corporel en <3 mois) avec anorexie",
+      "Fièvre persistante (>38,5 °C) associée à une leucocytose >15 000/mm³",
+      "Hémorragie rectale abondante ou signes d'anémie aiguë (pâleur, tachycardie)",
+      "Signes de sepsis (hypotension, confusion, tachycardie) en cas de perforation ou d'abcès"
     ],
     "scores": [
       {
-        "name": "Score de MELD",
-        "description": "Évaluation de la gravité de l'insuffisance hépatique",
+        "name": "Index de Harvey-Bradshaw",
+        "description": "Score évaluant la gravité clinique de la maladie de Crohn basé sur des critères subjectifs et objectifs.",
         "criteria": [
-          "Bilirubine",
-          "INR",
-          "Créatinine"
+          "Douleur abdominale (0-3 points selon intensité)",
+          "Diarrhée (0-3 points selon fréquence)",
+          "Poids corporel (0-3 points selon perte de poids)",
+          "Fièvre (0-2 points selon température)",
+          "Hémoglobine (0-3 points selon taux)"
         ],
-        "interpretation": "Score élevé : risque accru de décès"
+        "interpretation": "Score total <5 : maladie modérée à légère ; 5-10 : maladie modérée ; >10 : maladie grave nécessitant hospitalisation."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen du foie",
+        "title": "Examen abdominal et rectal",
         "steps": [
           {
-            "action": "Palpation du foie",
-            "interpretation": "Hypertrophie ou douleur"
+            "action": "Palpation abdominale pour identifier des masses, des douleurs à la palpation, ou une distension",
+            "interpretation": "Douleur localisée à un quadrant ou une masse palpable évoque une stricte ou une fistule ; distension associée à absence de bruits intestinaux suggère une occlusion."
+          },
+          {
+            "action": "Examen rectal digital pour rechercher des ulcérations, des fistules, ou un hémorragie",
+            "interpretation": "Présence de fistules ou de fissures analges confirme une localisation périanale ; hémorragie rectale abondante oriente vers une maladie colique."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Réanimation hémodynamique",
-      "Administration de médicaments antiviraux"
+      "Hospitalisation pour surveillance et traitement intraveineux (glucocorticoïdes, anti-TNF-alpha)",
+      "Hydratation parentérale en cas de déshydratation ou de diarrhée sévère",
+      "Suspension des anti-inflammatoires non stéroïdiens (AINS) et des opiacés",
+      "Nutrition parentérale totale en cas de malabsorption sévère ou de stricte obstructive",
+      "Préparation chirurgicale en cas de complications (perforation, occlusion)"
     ],
     "differentialDiagnosis": [
-      "Hépatite chronique",
-      "Cirrhose"
+      "Colite ulcéreuse : diarrhée grasse, absence d'ulcérations en sauterelle",
+      "Infection intestinale : fièvre aiguë, leucocytose, absence de manifestations extraintestinales",
+      "Cancer du côlon : perte de poids, hémorragie rectale, absence de fièvre"
     ]
   },
   {
-    "name": "Pancréatite aiguë",
-    "description": "Inflammation aiguë du pancréas",
+    "name": "Syndrome de Budd-Chiari",
+    "description": "Obstruction des veines hépatiques ou de la veine cave inférieure, entraînant une stase veineuse hépatique aiguë ou chronique. La physiopathologie peut être thrombotique (liée à des états prothrombotiques), occlusive (tumeurs), ou mécanique (compression par une veine cave). La présentation clinique inclut une douleur abdominale aiguë, une ascite rapide, une jaunisse, une splénomégalie, et des signes de décompensation hépatique. Les formes aiguës sont des urgences vitales.",
     "redFlags": [
-      "Douleur abdominale intense",
-      "Nausées et vomissements",
-      "Féver"
+      "Douleur abdominale aiguë associée à une ascite rapide et une jaunisse",
+      "Hypertension portale aiguë avec varices oesophagiennes saignantes",
+      "Signes de décompensation hépatique (confusion, hémorragie, encephalopathie)",
+      "Tumeur hépatique palpable associée à une distension abdominale",
+      "Hypotension artérielle persistante en cas de thrombose étendue"
     ],
     "scores": [
       {
-        "name": "Score de BISAP",
-        "description": "Évaluation de la gravité de la pancréatite aiguë",
+        "name": "Classification de Baveno VI",
+        "description": "Critères pour évaluer la gravité des varices oesophagiennes, utiles en cas d'association avec le syndrome de Budd-Chiari.",
         "criteria": [
-          "Âge > 60 ans",
-          "Leucocytes",
-          "Créatinine"
+          "Taille des varices (petites, moyennes, grandes)",
+          "Présence de nodules ou de saignements",
+          "Hypertension portale (mesurée par Doppler ou par portographie)",
+          "Score de Child-Pugh (évaluation de la fonction hépatique)",
+          "Présence d'ascite ou d'encephalopathie"
         ],
-        "interpretation": "Score élevé : risque accru de décès"
+        "interpretation": "Score élevé (>15) indique un risque élevé de saignement variqueux et nécessite une intervention précoce."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen abdominal",
+        "title": "Examen hépatique et abdominal",
         "steps": [
           {
-            "action": "Palpation de l'abdomen",
-            "interpretation": "Douleur ou masse abdominale"
+            "action": "Palpation hépatique pour évaluer la taille, la consistance, et la douleur",
+            "interpretation": "Hépatomégalie douloureuse ou indolore associée à une surface irrégulière suggère une stase veineuse ou une cirrhose secondaire."
+          },
+          {
+            "action": "Recherche d'ascite par ballottement et par signe de la coulée",
+            "interpretation": "Ascite rapide ou massive oriente vers une décompensation hépatique aiguë."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Réanimation hémodynamique",
-      "Administration de médicaments analgésiques"
+      "Anticoagulation intraveineuse (héparine non fractionnée) en l'absence de contre-indications",
+      "Réduction de la pression portale par ligation endoscopique des varices oesophagiennes",
+      "Transjugulaire intrahepatic portosystemic shunt (TIPS) en cas de décompensation réfractaire",
+      "Support hépatique (albumine, transfusion en cas d'insuffisance)",
+      "Préparation chirurgicale pour thrombectomie ou shunt portosystémique"
     ],
     "differentialDiagnosis": [
-      "Pancréatite chronique",
-      "Tumeur du pancréas"
+      "Cirrhose alcoolique : ascite chronique, stéatose hépatique, absence de douleur aiguë",
+      "Hépatite aiguë : jaunisse, transaminases élevées, absence de stase veineuse",
+      "Tumeur hépatique : hépatomégalie, douleur, absence d'ascite rapide"
+    ]
+  },
+  {
+    "name": "Cirrhose post-hépatite C",
+    "description": "La cirrhose post-hépatite C est une fibrose hépatique avancée secondaire à une infection chronique par le virus de l'hépatite C (VHC). Elle se caractérise par une architecture nodulaire du foie due à la destruction progressive des acini hépatiques et à la régénération compensatoire. La présentation clinique typique inclut une asthénie, une anorexie, une ictère progressive, des signes de décompensation hépatique (ascite, encéphalopathie, varices œsophagiennes) et des manifestations extra-hépatiques comme les cryoglobulinémies mixtes.",
+    "redFlags": [
+      "Ascite réfractaire à la diurèse avec albuminémie < 30 g/L et protéinémie totale < 50 g/L",
+      "Encéphalopathie hépatique stade II ou supérieur avec confusion, troubles du sommeil et myoclonies",
+      "Hémorragie digestives haute secondaires à varices œsophagiennes avec tachycardie > 120 bpm et hypotension",
+      "Jaunisse aiguë associée à une transaminasémie > 5 fois la normale et une INR > 1,5",
+      "Périphéropathie sensorielle-vestibulaire avec cryoglobulinémie mixte confirmée"
+    ],
+    "scores": [
+      {
+        "name": "Score de Child-Pugh",
+        "description": "Évalue la gravité de la cirrhose en intégrant 5 paramètres cliniques et biologiques. Permet de stratifier le risque opératoire et de prédire la mortalité.",
+        "criteria": [
+          "Fonction hépatique (Classe A: Albumine ≥ 35 g/L, Bilirubine < 34 µmol/L, INR ≤ 1,7)",
+          "Ascite (Absente: 0, Présente mais contrôlée: 1, Ascite réfractaire: 2)",
+          "Encephalopathie (Absente: 0, Présente: 1, Stade II-IV: 2)",
+          "Fonction hépatique (Classe B: Albumine 28-34 g/L, Bilirubine 34-51 µmol/L, INR 1,7-2,3)",
+          "Fonction hépatique (Classe C: Albumine < 28 g/L, Bilirubine > 51 µmol/L, INR > 2,3)"
+        ],
+        "interpretation": "Classe A: Score 5-6 (bon pronostic), Classe B: Score 7-9 (risque modéré), Classe C: Score 10-15 (risque élevé de décompensation)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal et cutané ciblé",
+        "steps": [
+          {
+            "action": "Palpation de la rate et du foie avec recherche de splénomégalie et de douleur à la palpation hépatique",
+            "interpretation": "Splénomégalie associée à une hépatomégalie dure et irrégulière évoque une cirrhose. Douleur à la palpation hépatique peut indiquer une hépatite aiguë superposée."
+          },
+          {
+            "action": "Recherche de signes cutanés de cirrhose (angiomatose arachnoïde, télangiectasies, acanthose nigricans)",
+            "interpretation": "Angiomatose arachnoïde à la face ou au cou est un signe pathognomonique de cirrhose. Acanthose nigricans peut suggérer une insuffisance hépatique sévère."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prélèvements biologiques urgents: Bilan hépatique complet, INR, hémogramme, virologie VHC, alpha-fétoprotéine",
+      "Échographie abdominale avec Doppler pour évaluer la fibrose hépatique et rechercher des varices œsophagiennes",
+      "Prise en charge des complications (diurèse, lactulose pour l'encéphalopathie, prophylaxie des varices)",
+      "Hospitalisation en hépatologie pour évaluation de la transplantation hépatique",
+      "Vaccination contre l'hépatite A et B si non protégé"
+    ],
+    "differentialDiagnosis": [
+      "Cirrhose alcoolique (absence de facteur VHC, présence de signes d'alcoolisme)",
+      "Amylose hépatique (biopsie hépatique nécessaire pour confirmation)",
+      "Cirrhose biliaire secondaire (bilirubine conjuguée élevée, cholestase)"
+    ]
+  },
+  {
+    "name": "Cholécystite aiguë calculaire",
+    "description": "Inflammation aiguë de la vésicule biliaire liée à l'obstruction du col vésiculaire par un calcul. Elle se manifeste par une douleur aiguë en quadrant supérieur droit, irradiant vers l'épaule droite, associée à une fièvre, une nausée et une vomisseuse. La physiopathologie repose sur la stase biliaire, l'ischemie vésiculaire et l'infection secondaire par bactéries entérobactéries.",
+    "redFlags": [
+      "Douleur vésiculaire persistante > 24 heures avec fièvre > 38,5°C et leucocytose > 15 000/mm³",
+      "Signe de Murphy positif avec douleur à la palpation et expiration arrêtée",
+      "Hypotension artérielle associée à une tachycardie > 120 bpm (choc septique)",
+      "Nausées associées à une bilirubinémie > 34 µmol/L (cholélithiase associée à colédocholithiase)",
+      "Douleur irradiant vers l'épigastre avec amylasémie élevée (cholécystite pancréatique)"
+    ],
+    "scores": [
+      {
+        "name": "Score de Tokyo 2018",
+        "description": "Classification standardisée pour la cholécystite aiguë basée sur des critères cliniques, biologiques et radiologiques.",
+        "criteria": [
+          "Critères majeurs: Douleur vésiculaire > 6 heures, fièvre ≥ 38°C, leucocytose ≥ 10 000/mm³",
+          "Critères mineurs: Douleur irradiant vers l'épaule, nausées/vomisseuses, bilirubinémie ≥ 1,5 mg/dL",
+          "Critères radiologiques: Épaississement pariétal ≥ 3 mm, écho anéchoïque intra-vésiculaire, absence de contraction vésiculaire"
+        ],
+        "interpretation": "Score ≥ 4 points: Cholécystite aiguë probable. Score ≥ 7 points: Cholécystite aiguë confirmée."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal et cardiovasculaire",
+        "steps": [
+          {
+            "action": "Palpation du quadrant supérieur droit avec recherche de douleur à la palpation et de signe de Murphy",
+            "interpretation": "Douleur à la palpation associée à une expiration arrêtée (signe de Murphy positif) est pathognomonique de la cholécystite aiguë."
+          },
+          {
+            "action": "Recherche de signes de péritonite (défense musculaire, douleur de rebond)",
+            "interpretation": "Défense musculaire associée à une douleur de rebond suggère une péritonite secondaire à rupture vésiculaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie empirique (céftriaxone 2g/j + métronidazole 500mg/8h) en attendant les résultats de la culture biliaire",
+      "Analgesie par morphine ou paracétamol (éviter les opiacés si suspicion de colédocholithiase)",
+      "NPO et perfusion intraveineuse (Ringer lactate) pour prévenir la déshydratation",
+      "Échographie abdominale urgente pour confirmer le diagnostic et rechercher une lithiase du cholédoque",
+      "Préparation chirurgicale pour cholécystectomie programmée dans les 72 heures"
+    ],
+    "differentialDiagnosis": [
+      "Cholélithiase asymptomatique (absence de fièvre et de leucocytose)",
+      "Colédocholithiase (douleur irradiant vers l'épigastre, bilirubinémie élevée)",
+      "Péritonite aiguë secondaire à ulcère perforé (absence de signe de Murphy)"
     ]
   }
 ]

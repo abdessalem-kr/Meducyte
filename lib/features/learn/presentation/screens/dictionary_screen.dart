@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:meducyte_app/core/themes/app_colors.dart';
 import 'package:meducyte_app/features/learn/data/providers/dictionary_providers.dart';
 import 'package:meducyte_app/core/database/app_database.dart';
+import 'package:meducyte_app/shared/providers/database_provider.dart';
 
 class DictionaryScreen extends ConsumerStatefulWidget {
-  const DictionaryScreen({super.key});
+  final int? initialSelectedTermId;
+  const DictionaryScreen({super.key, this.initialSelectedTermId});
 
   @override
   ConsumerState<DictionaryScreen> createState() => _DictionaryScreenState();
@@ -20,6 +23,20 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
+    if (widget.initialSelectedTermId != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showTermDetailsById(widget.initialSelectedTermId!);
+      });
+    }
+  }
+
+  Future<void> _showTermDetailsById(int termId) async {
+    final db = ref.read(appDatabaseProvider);
+    final term = await (db.select(db.medicalTerms)..where((t) => t.id.equals(termId))).getSingleOrNull();
+    if (term != null && mounted) {
+      final extractedSynonyms = extractSynonymsForTerm(term);
+      showMedicalTermDetailsBottomSheet(context, term, extractedSynonyms);
+    }
   }
 
   void _onScroll() {
@@ -219,7 +236,23 @@ class _DictionaryScreenState extends ConsumerState<DictionaryScreen> {
                   },
                 );
               },
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Skeletonizer(
+                    enabled: true,
+                    child: _DictionaryCard(
+                      term: DbMedicalTerm(
+                        id: index,
+                        term: 'Terme médical factice',
+                        defn: 'Définition factice en cours de chargement...',
+                      ),
+                      isTermView: isTermView,
+                    ),
+                  );
+                },
+              ),
               error: (err, stack) {
                 //If it's an asset loading error,show a more friendly message
                 final errorStr = err.toString();
@@ -462,7 +495,23 @@ class _DictionaryFilterSheet extends ConsumerWidget {
                 },
               ),
             ),
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => Skeletonizer(
+              enabled: true,
+              child: SizedBox(
+                height: 200,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  itemBuilder: (context, index) {
+                    return const ListTile(
+                      dense: true,
+                      title: Text('Spécialité médicale factice'),
+                      trailing: Icon(Icons.check),
+                    );
+                  },
+                ),
+              ),
+            ),
             error: (_, __) => const Text('Error loading specialties'),
           ),
           const SizedBox(height: 32),
@@ -496,185 +545,258 @@ class _DictionaryFilterSheet extends ConsumerWidget {
   }
 }
 
+List<String> extractSynonymsForTerm(DbMedicalTerm term) {
+  List<String> extractedSynonyms = [];
+  final patterns = [
+    RegExp(r'^\s*\(?\s*Syn\.?\s*[ :]+(.*?)\)\s*\.?\s*', caseSensitive: false),
+    RegExp(r'^\s*Syn\.?\s*[ :]+(.*?)\.\s+', caseSensitive: false),
+    RegExp(
+      r'^\s*\(?\s*Abr(?:é|e)v\.?\s*[ :]+(.*?)\)\s*\.?\s*',
+      caseSensitive: false,
+    ),
+    RegExp(r'^\s*Abr(?:é|e)v\.?\s*[ :]+(.*?)\.\s+', caseSensitive: false),
+  ];
+
+  if (term.name != null && term.name!.isNotEmpty) {
+    String cleanName = term.name!.trim();
+    for (final pattern in patterns) {
+      final match = pattern.firstMatch(cleanName);
+      if (match != null) {
+        extractedSynonyms.add(match.group(1)!.trim());
+        cleanName = cleanName.replaceFirst(match.group(0)!, '').trim();
+      }
+    }
+  }
+
+  String cleanDefinition = term.defn.trim();
+  for (final pattern in patterns) {
+    final match = pattern.firstMatch(cleanDefinition);
+    if (match != null) {
+      extractedSynonyms.add(match.group(1)!.trim());
+      cleanDefinition = cleanDefinition
+          .replaceFirst(match.group(0)!, '')
+          .trim();
+    }
+  }
+
+  return extractedSynonyms
+      .map(
+        (s) => s.replaceAll(RegExp(r'^\s*[-:.]\s*|\s*[-:.]\s*$'), '').trim(),
+      )
+      .where(
+        (s) => s.isNotEmpty && s.toLowerCase() != term.term.toLowerCase(),
+      )
+      .toSet()
+      .toList();
+}
+
+void showMedicalTermDetailsBottomSheet(
+  BuildContext context,
+  DbMedicalTerm term,
+  List<String> extractedSynonyms,
+) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) {
+      final theme = Theme.of(context);
+
+      String cleanDefinition = term.defn.trim();
+      final patterns = [
+        RegExp(
+          r'^\s*\(?\s*Syn\.?\s*[ :]+(.*?)\)\s*\.?\s*',
+          caseSensitive: false,
+        ),
+        RegExp(r'^\s*Syn\.?\s*[ :]+(.*?)\.\s+', caseSensitive: false),
+        RegExp(
+          r'^\s*\(?\s*Abr(?:é|e)v\.?\s*[ :]+(.*?)\)\s*\.?\s*',
+          caseSensitive: false,
+        ),
+        RegExp(r'^\s*Abr(?:é|e)v\.?\s*[ :]+(.*?)\.\s+', caseSensitive: false),
+      ];
+
+      for (final pattern in patterns) {
+        final match = pattern.firstMatch(cleanDefinition);
+        if (match != null) {
+          cleanDefinition = cleanDefinition
+              .replaceFirst(match.group(0)!, '')
+              .trim();
+        }
+      }
+
+      String? cleanName;
+      if (term.name != null && term.name!.isNotEmpty) {
+        String tempName = term.name!.trim();
+        for (final pattern in patterns) {
+          final match = pattern.firstMatch(tempName);
+          if (match != null) {
+            tempName = tempName.replaceFirst(match.group(0)!, '').trim();
+          }
+        }
+        cleanName = tempName;
+      }
+
+      return ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.65,
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            color: theme.scaffoldBackgroundColor,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.08),
+                blurRadius: 20,
+                offset: const Offset(0, -5),
+              ),
+            ],
+          ),
+          padding: EdgeInsets.only(
+            left: 24,
+            right: 24,
+            top: 12,
+            bottom: MediaQuery.of(context).padding.bottom + 24,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Pill indicator
+              Center(
+                child: Container(
+                  width: 48,
+                  height: 5,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              term.term,
+                              style: theme.textTheme.headlineSmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryDark,
+                              ),
+                            ),
+                          ),
+                          if (term.spec != null && term.spec!.isNotEmpty) ...[
+                            const SizedBox(width: 12),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.amber.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                term.spec!.toUpperCase(),
+                                style: const TextStyle(
+                                  color: Colors.amber,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                      if (extractedSynonyms.isNotEmpty) ...[
+                        Text(
+                          'Abbreviations / Synonyms',
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primary,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          extractedSynonyms.join(', '),
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            fontStyle: FontStyle.italic,
+                            color: theme.hintColor,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        const Divider(),
+                        const SizedBox(height: 12),
+                      ],
+                      Text(
+                        cleanDefinition,
+                        style: theme.textTheme.bodyLarge?.copyWith(
+                          height: 1.5,
+                          color: Colors.grey[800],
+                        ),
+                      ),
+                      if (cleanName != null && cleanName.isNotEmpty) ...[
+                        const SizedBox(height: 16),
+                        Text(
+                          cleanName,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: theme.hintColor,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                  ),
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text(
+                    'Close',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
 class _DictionaryCard extends StatelessWidget {
   final DbMedicalTerm term;
   final bool isTermView;
 
   const _DictionaryCard({required this.term, this.isTermView = true});
 
-  //Helper to extract synonyms natively
-  List<String> _extractSynonyms() {
-    List<String> extractedSynonyms = [];
-    final patterns = [
-      RegExp(r'^\s*\(?\s*Syn\.?\s*[ :]+(.*?)\)\s*\.?\s*', caseSensitive: false),
-      RegExp(r'^\s*Syn\.?\s*[ :]+(.*?)\.\s+', caseSensitive: false),
-      RegExp(
-        r'^\s*\(?\s*Abr(?:é|e)v\.?\s*[ :]+(.*?)\)\s*\.?\s*',
-        caseSensitive: false,
-      ),
-      RegExp(r'^\s*Abr(?:é|e)v\.?\s*[ :]+(.*?)\.\s+', caseSensitive: false),
-    ];
-
-    if (term.name != null && term.name!.isNotEmpty) {
-      String cleanName = term.name!.trim();
-      for (final pattern in patterns) {
-        final match = pattern.firstMatch(cleanName);
-        if (match != null) {
-          extractedSynonyms.add(match.group(1)!.trim());
-          cleanName = cleanName.replaceFirst(match.group(0)!, '').trim();
-        }
-      }
-    }
-
-    String cleanDefinition = term.defn.trim();
-    for (final pattern in patterns) {
-      final match = pattern.firstMatch(cleanDefinition);
-      if (match != null) {
-        extractedSynonyms.add(match.group(1)!.trim());
-        cleanDefinition = cleanDefinition
-            .replaceFirst(match.group(0)!, '')
-            .trim();
-      }
-    }
-
-    return extractedSynonyms
-        .map(
-          (s) => s.replaceAll(RegExp(r'^\s*[-:.]\s*|\s*[-:.]\s*$'), '').trim(),
-        )
-        .where(
-          (s) => s.isNotEmpty && s.toLowerCase() != term.term.toLowerCase(),
-        )
-        .toSet()
-        .toList();
-  }
-
-  void _showDetailsDialog(
-    BuildContext context,
-    List<String> extractedSynonyms,
-  ) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        final theme = Theme.of(context);
-
-        String cleanDefinition = term.defn.trim();
-        final patterns = [
-          RegExp(
-            r'^\s*\(?\s*Syn\.?\s*[ :]+(.*?)\)\s*\.?\s*',
-            caseSensitive: false,
-          ),
-          RegExp(r'^\s*Syn\.?\s*[ :]+(.*?)\.\s+', caseSensitive: false),
-          RegExp(
-            r'^\s*\(?\s*Abr(?:é|e)v\.?\s*[ :]+(.*?)\)\s*\.?\s*',
-            caseSensitive: false,
-          ),
-          RegExp(r'^\s*Abr(?:é|e)v\.?\s*[ :]+(.*?)\.\s+', caseSensitive: false),
-        ];
-
-        for (final pattern in patterns) {
-          final match = pattern.firstMatch(cleanDefinition);
-          if (match != null) {
-            cleanDefinition = cleanDefinition
-                .replaceFirst(match.group(0)!, '')
-                .trim();
-          }
-        }
-
-        String? cleanName;
-        if (term.name != null && term.name!.isNotEmpty) {
-          String tempName = term.name!.trim();
-          for (final pattern in patterns) {
-            final match = pattern.firstMatch(tempName);
-            if (match != null) {
-              tempName = tempName.replaceFirst(match.group(0)!, '').trim();
-            }
-          }
-          cleanName = tempName;
-        }
-
-        return AlertDialog(
-          title: Text(
-            term.term,
-            style: theme.textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryDark,
-            ),
-          ),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (extractedSynonyms.isNotEmpty) ...[
-                  Text(
-                    'Abbreviations/Synonyms',
-                    style: theme.textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primaryDark,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    extractedSynonyms.join(', '),
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      fontStyle: FontStyle.italic,
-                      color: theme.hintColor,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  const Divider(),
-                  const SizedBox(height: 12),
-                ],
-                if (term.spec != null && term.spec!.isNotEmpty) ...[
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.amber.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Text(
-                      term.spec!.toUpperCase(),
-                      style: const TextStyle(
-                        color: Colors.amber,
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                ],
-                Text(cleanDefinition, style: theme.textTheme.bodyLarge),
-                if (cleanName != null && cleanName.isNotEmpty) ...[
-                  const SizedBox(height: 16),
-                  Text(
-                    cleanName,
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.hintColor,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ],
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Close'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final extractedSynonyms = _extractSynonyms();
+    final extractedSynonyms = extractSynonymsForTerm(term);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -686,7 +808,7 @@ class _DictionaryCard extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => _showDetailsDialog(context, extractedSynonyms),
+          onTap: () => showMedicalTermDetailsBottomSheet(context, term, extractedSynonyms),
           borderRadius: BorderRadius.circular(16),
           child: Padding(
             padding: const EdgeInsets.all(16),

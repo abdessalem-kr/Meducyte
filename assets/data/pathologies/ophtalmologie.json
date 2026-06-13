@@ -1,119 +1,326 @@
 [
   {
-    "name": "Détachement de la rétine",
-    "description": "Séparation de la rétine de la chorioïde",
+    "name": "Occlusion de l'artère centrale de la rétine (OACR)",
+    "description": "L'OACR est une urgence oculaire causée par une ischémie aiguë de la rétine due à une occlusion de l'artère centrale, souvent embolique ou thrombotique. Elle se manifeste par une perte soudaine et douloureuse de l'acuité visuelle, avec un aspect typique de tache rouge cerise au niveau de la fovea sur l'examen du fond d'œil.",
     "redFlags": [
-      "Perte de vision",
-      "Flashes lumineux",
-      "Scotome"
+      "Perte visuelle aiguë et sans douleur, souvent unilatérale, survenant en quelques minutes à heures",
+      "Aspect de tache rouge cerise au centre de la macula sur l'examen du fond d'œil",
+      "Réaction pupillaire afferente anormale (RAPA) bilatérale ou unilatérale",
+      "Hypertension artérielle associée ou antécédents de fibrillation auriculaire",
+      "Absence de réponse visuelle à la lumière dans le quadrant affecté"
     ],
     "scores": [
       {
-        "name": "Score de la rétine",
-        "description": "Évaluation de la gravité du détachement",
+        "name": "Classification de la gravité visuelle post-OACR",
+        "description": "Évalue la probabilité de récupération visuelle en fonction de l'acuité visuelle initiale.",
         "criteria": [
-          "Taille du détachement",
-          "Localisation du détachement"
+          "Classe I: Acuité visuelle > 20/200 (+0)",
+          "Classe II: Acuité visuelle entre 20/200 et 20/400 (+1)",
+          "Classe III: Acuité visuelle < 20/400 (+2)",
+          "Classe IV: Aucune perception de lumière (+3)"
         ],
-        "interpretation": "Plus le score est élevé, plus la gravité est importante"
+        "interpretation": "Les classes I et II ont une meilleure probabilité de réponse à la thérapie hyperbare. Les classes III et IV indiquent un pronostic visuel défavorable."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen du fond d'œil",
+        "title": "Examen du fond d'œil et des pupilles",
         "steps": [
           {
-            "action": "Utiliser un ophthalmoscope pour examiner la rétine",
-            "interpretation": "Recherche de décollement, de trous ou de déchirures"
+            "action": "Examen du fond d'œil avec ophthalmo-scopie indirecte pour identifier la tache rouge cerise et l'absence de perfusion rétinienne",
+            "interpretation": "La présence d'une tache rouge cerise au centre de la macula est pathognomonique de l'OACR. L'absence de vaisseaux sanguins rétiniens visibles confirme l'ischémie."
+          },
+          {
+            "action": "Test de la pupille afferente (RAPA) avec lumière blanche",
+            "interpretation": "Une RAPA positive indique une altération de la voie visuelle afferente, typique de l'OACR. Une RAPA négative suggère une cause non ischémique."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Référence à un ophtalmologue",
-      "Traitement médical pour réduire l'œdème"
+      "Réduction de la pression intraoculaire par gouttes mydriatiques (ex: Cyclopentolate 1%) et par aspiration de la chambre antérieure",
+      "Administration d'oxygène hyperbare à 100% pour améliorer la perfusion rétinienne",
+      "Évaluation de l'embolie source (échocardiographie, TDM cérébrale)",
+      "Anticoagulation en cas de fibrillation auriculaire ou de thrombophilie",
+      "Consultation ophtalmologique d'urgence pour discuter de la chirurgie de la valve de la veine centrale"
     ],
     "differentialDiagnosis": [
-      "Dégénérescence maculaire",
-      "Rétinopathie diabétique"
+      "Amaurose fugax (perte visuelle transitoire sans tache rouge cerise)",
+      "Neurite optique (RAPA positive mais absence de tache rouge cerise)",
+      "Détachement de rétine (perte visuelle périphérique et non centrale)"
     ]
   },
   {
-    "name": "Glaucome aigu",
-    "description": "Augmentation brutale de la pression intraoculaire",
+    "name": "Glaucomateux aigu à angle fermé (GAAF)",
+    "description": "Le GAAF est une urgence oculaire caractérisée par une élévation brutale de la pression intraoculaire (PIO) due à l'obstruction mécanique de l'angle irido-cornéen. Il se manifeste par une douleur oculaire intense, une vision trouble, des halos autour des lumières et une mydriase cyclique.",
     "redFlags": [
-      "Douleur oculaire",
-      "Vision floue",
-      "Nausée et vomissement"
+      "Douleur oculaire aiguë associée à une vision trouble et halos lumineux",
+      "Mydriase cyclique avec réaction pupillaire lente",
+      "Épaississement de la cornée et édème corneal",
+      "Chambre antérieure peu profonde bilatérale",
+      "Pression intraoculaire > 40 mmHg sur mesure"
     ],
     "scores": [
       {
-        "name": "Score de la pression intraoculaire",
-        "description": "Évaluation de la pression intraoculaire",
+        "name": "Index de gravité du GAAF",
+        "description": "Évalue la gravité clinique et la réponse à la thérapie initiale.",
         "criteria": [
-          "Niveau de pression",
-          "Symptômes associés"
+          "Critère 1: PIO initiale > 50 mmHg (+2)",
+          "Critère 2: Édème corneal sévère (+1)",
+          "Critère 3: Aucune réponse à la pilocarpine 1% après 1 heure (-1)",
+          "Critère 4: Antécédents de GAAF contralatéral (+1)"
         ],
-        "interpretation": "Plus le score est élevé, plus la gravité est importante"
+        "interpretation": "Un score > 3 indique une urgence chirurgicale immédiate. Un score < 1 permet une gestion médicale initiale."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen de la pression intraoculaire",
+        "title": "Examen tonométrique et biomicroscopique",
         "steps": [
           {
-            "action": "Utiliser un tonomètre pour mesurer la pression intraoculaire",
-            "interpretation": "Recherche d'une pression élevée"
+            "action": "Mesure de la pression intraoculaire avec tonométrie à l'aide d'un tonomètre de Goldmann ou équivalent",
+            "interpretation": "Une PIO > 40 mmHg est pathognomonique du GAAF. Une PIO < 20 mmHg suggère une cause alternative."
+          },
+          {
+            "action": "Examen biomicroscopique de la chambre antérieure pour évaluer la profondeur et la présence d'œdème corneal",
+            "interpretation": "Une chambre antérieure peu profonde avec édème corneal est typique du GAAF. Une chambre antérieure normale évoque une uveite."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration de médicaments pour réduire la pression intraoculaire",
-      "Référence à un ophtalmologue"
+      "Administration de gouttes mydriatiques (ex: Tropicamide 0.5%) pour ouvrir l'angle",
+      "Perfusion intraveineuse de gouttes hypotonisantes (ex: Mannitol 20% à 15 ml/kg) pour réduire la PIO",
+      "Laser iridotomie précoce (dans les 24 heures) pour créer une communication entre les chambres antérieure et postérieure",
+      "Antibiotiques topiques pour prévenir l'infection post-laser",
+      "Hospitalisation pour surveillance et traitement de l'œdème corneal résiduel"
     ],
     "differentialDiagnosis": [
-      "Glaucome chronique",
-      "Uvéite"
+      "Uveite aiguë (douleur oculaire avec réaction pupillaire lente mais sans halos)",
+      "Migraine oculomotrice (douleur orbitaire sans élévation de la PIO)",
+      "Cataracte secondaire à l'œdème corneal"
     ]
   },
   {
-    "name": "Uvéite",
-    "description": "Inflammation de l'uvéa",
+    "name": "Dégénérescence maculaire liée à l'âge (DMLA)",
+    "description": "La DMLA est une pathologie chronique dégénérative de la macula, principale cause de perte de vision centrale chez les personnes âgées. Elle se divise en forme sèche (atrophique) et humide (exsudative). La forme sèche est caractérisée par l'accumulation de drusen et l'atrophie de la rétine pigmentaire, tandis que la forme humide implique une néovascularisation choroidienne anormale entraînant des fuites de liquide et des hémorragies. La présentation clinique typique inclut une altération progressive de la vision centrale, des métamorphopsies, et une difficulté à reconnaître les visages.",
     "redFlags": [
-      "Douleur oculaire",
-      "Vision floue",
-      "Sensibilité à la lumière"
+      "Perte soudaine ou progressive de la vision centrale avec métamorphopsie (distorsion visuelle) sur moins de 24 heures",
+      "Apparition de scotome central (trou dans le champ visuel) associé à une baisse de la lecture",
+      "Présence de drusen volumineux (>125 µm) ou de pigmentations irrégulières en examen biomicroscopique",
+      "Hémorragie rétinienne ou exsudat lipidique visible en fond d'œil",
+      "Altération de l'acuité visuelle > 20/40 sans cause évidente chez un sujet >50 ans"
     ],
     "scores": [
       {
-        "name": "Score de l'inflammation",
-        "description": "Évaluation de la gravité de l'inflammation",
+        "name": "Classification AREDS (Age-Related Eye Disease Study)",
+        "description": "Évalue le risque de progression de la DMLA sèche vers la forme humide en fonction des lésions rétiniennes",
         "criteria": [
-          "Niveau d'inflammation",
-          "Symptômes associés"
+          "Classe 1: Aucun signe pathologique (0 point)",
+          "Classe 2: Drusen <63 µm ou pigmentations minimes (1 point)",
+          "Classe 3: Drusen 63-124 µm ou pigmentations intermédiaires (2 points)",
+          "Classe 4: Drusen >125 µm ou atrophie rétinienne pigmentaire (3 points)"
         ],
-        "interpretation": "Plus le score est élevé, plus la gravité est importante"
+        "interpretation": "Score ≥3 indique un risque élevé de progression nécessitant un suivi trimestriel et une supplémentation en antioxydants (AREDS2)."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen du fond d'œil",
+        "title": "Examen ophtalmologique ciblé avec biomicroscopie et fond d'œil",
         "steps": [
           {
-            "action": "Utiliser un ophthalmoscope pour examiner la rétine",
-            "interpretation": "Recherche de signes d'inflammation"
+            "action": "Examen de la macula avec loupe de 78D après mydriatique",
+            "interpretation": "Recherche de drusen, de pigmentations irrégulières, de zones d'atrophie ou de néovaisseaux choroidiens. La présence de néovaisseaux actifs (fuites fluorescéiniques) oriente vers la DMLA humide."
+          },
+          {
+            "action": "Test de Amsler pour évaluer les métamorphopsies",
+            "interpretation": "Distorsion des lignes droites ou absence de perception de zones centrales évoque une atteinte maculaire active."
+          },
+          {
+            "action": "Mesure de l'acuité visuelle avec charte Snellen ou ETDRS",
+            "interpretation": "Acuité visuelle <20/40 associée à des lésions maculaires confirme le diagnostic."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration de médicaments anti-inflammatoires",
-      "Référence à un ophtalmologue"
+      "Prescription d'anti-VEGF (ranibizumab, aflibercept) en intravitréen pour DMLA humide",
+      "Éducation du patient sur les signes d'aggravation (métamorphopsie soudaine, hémorragie) nécessitant une consultation d'urgence",
+      "Supplémentation en antioxydants (luteine, omega-3) pour DMLA sèche avancée",
+      "Réferral vers un ophtalmologiste spécialisé en rétine dans les 48 heures",
+      "Protection solaire rigoureuse pour ralentir l'évolution de la DMLA"
     ],
     "differentialDiagnosis": [
-      "Glaucome",
-      "Dégénérescence maculaire"
+      "Diabète rétinien (drusen diabétiques vs drusen DMLA)",
+      "Détachement de rétine (scotome périphérique vs central)",
+      "Toxicité médicamenteuse (chloroquine, tamoxifène)"
+    ]
+  },
+  {
+    "name": "Uvéite antérieure aiguë",
+    "description": "Inflammation aiguë de l'uvée antérieure (iris et cils), souvent auto-immune ou idiopathique. Elle se manifeste par une douleur oculaire, une rougeur conjonctivale, une photophobie, et une diminution de l'acuité visuelle. La physiopathologie implique une infiltration de cellules inflammatoires dans la chambre antérieure, avec ou sans flare (éclats de protéines). Les formes récidivantes ou bilatérales évoquent une cause systémique (spondylarthrite ankylosante, siphilis).",
+    "redFlags": [
+      "Douleur oculaire aiguë associée à photophobie et vision trouble sur moins de 24 heures",
+      "Présence de cellules et flare en chambre antérieure à la biomicroscopie",
+      "Iridodénésis (adhésions pupillaires) ou hyphéma (sang dans la chambre antérieure)",
+      "Hypotonie oculaire (<10 mmHg) ou hypertension secondaire à corticostéroïdes",
+      "Signes systémiques associés (arthralgies, uveite bilatérale)"
+    ],
+    "scores": [
+      {
+        "name": "Classification SUN Working Group (Uvéite antérieure)",
+        "description": "Classifie l'uvéite selon l'origine (infectieuse vs non infectieuse) et la gravité",
+        "criteria": [
+          "Classe I: Uvéite non infectieuse sans complication (0 point)",
+          "Classe II: Uvéite non infectieuse avec complications (1 point)",
+          "Classe III: Uvéite infectieuse bénigne (2 points)",
+          "Classe IV: Uvéite infectieuse sévère (3 points)"
+        ],
+        "interpretation": "Classe III-IV nécessitent une recherche d'agents infectieux (toxoplasme, herpès, syphilis) et une antibiothérapie ciblée."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen ophtalmologique complet avec biomicroscopie",
+        "steps": [
+          {
+            "action": "Examen de la chambre antérieure avec loupe de 90D et lumière bleue",
+            "interpretation": "Présence de cellules (0-3+), flare (0-3+), et précipités kératés (KP) en forme de goutte de pluie ou en étoile selon l'origine."
+          },
+          {
+            "action": "Mesure de la pression intraoculaire (tonométrie à l'Applanation de Goldmann)",
+            "interpretation": "Hypotonie évoque une uvéite chronique, hypertension secondaire à corticothérapie."
+          },
+          {
+            "action": "Test de pupille à la lumière (test de consensualité)",
+            "interpretation": "Réaction pupillaire lente ou asymétrique évoque une iridodénésis."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Corticostéroïdes topiques (prednisolone 1% toutes les heures) pour réduire l'inflammation",
+      "Cycloplégiques (atropine 1% 3x/jour) pour prévenir les adhésions pupillaires",
+      "Antibiotiques topiques de couverture (chloramphénicol) si suspicion d'infection",
+      "Hospitalisation pour perfusion intraveineuse de corticoïdes en cas de forme sévère",
+      "Réferral vers un ophtalmologiste pour examen systémique et recherche d'étiologie"
+    ],
+    "differentialDiagnosis": [
+      "Kératite herpétique (ulcère cornéen vs cellules en chambre antérieure)",
+      "Glaucomateux secondaire à uvéite (hypertonie vs hypotonie)",
+      "Iridocyclite toxoplasmique (nodules focaux vs KP)"
+    ]
+  },
+  {
+    "name": "Détachement de rétine",
+    "description": "Le détachement de rétine est une pathologie oculaire urgente caractérisée par la séparation de la couche rétinienne de la couche choroidale sous-jacente. Il survient souvent suite à une déchirure ou un trou rétinien permettant à un liquide vitré de s'accumuler sous la rétine. La présentation clinique typique inclut des éclairs lumineux (photopsies), des flocons flottants (mosaïques), une perte visuelle progressive en volet de rideau, et une diminution de l'acuité visuelle. Les formes exsudatives (sans déchirure) ou tractionnelles (liées à des membranes épi-rétiniennes) peuvent également survenir.",
+    "redFlags": [
+      "Perte visuelle soudaine et progressive en volet de rideau couvrant une partie du champ visuel",
+      "Photopsies intenses associées à des flocons flottants massifs",
+      "Mydriase asymétrique avec absence de réaction pupillaire à la lumière",
+      "Acuité visuelle inférieure à 20/200 sans cause évidente (ex: cataracte)",
+      "Hypotonie oculaire ou hypertension intraoculaire anormale"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité du détachement de rétine",
+        "description": "Évalue le risque de perte visuelle irréversible en fonction de la durée des symptômes, de la présence de déchirures et de l'extension du détachement.",
+        "criteria": [
+          "Durée des symptômes < 24h : +0",
+          "Durée des symptômes 24-72h : +1",
+          "Durée des symptômes > 72h : +2",
+          "Présence de déchirure rétinienne visible : +1",
+          "Détachement total de la rétine : +2"
+        ],
+        "interpretation": "Score total ≥ 3 : urgence chirurgicale immédiate. Score 1-2 : chirurgie programmée dans les 48h. Score 0 : surveillance étroite avec imagerie complémentaire."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen ophtalmologique complet avec biomicroscopie et ophthalmo-scopie",
+        "steps": [
+          {
+            "action": "Palpation du globe oculaire pour évaluer la pression intraoculaire",
+            "interpretation": "Hypotonie oculaire (<10 mmHg) suggère un glaucome secondaire ou une fuite de liquide vitré. Hypertension intraoculaire (>25 mmHg) évoque un glaucome aigu."
+          },
+          {
+            "action": "Examen de la rétine avec ophthalmo-scopie indirecte après mydriatique",
+            "interpretation": "Identification de déchirures, de trous rétiniens, ou de zones de détachement. Présence de « signe de la mer » (rétine pâle et pliée) ou « signe de la montagne » (rétine rougeâtre et arrondie)."
+          },
+          {
+            "action": "Évaluation de l'acuité visuelle avec charte de Snellen et test des couleurs",
+            "interpretation": "Diminution de l'acuité visuelle > 20/40 ou altération des couleurs évoque un détachement maculaire ou ischémique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Position allongée sur le côté opposé au globe affecté pour limiter l'extension du détachement",
+      "Administration de mydriatiques (ex: cyclopentolate 1%) pour faciliter l'examen",
+      "Référer immédiatement à un ophtalmologiste pour chirurgie (cryothérapie, laser ou vitrectomie)",
+      "Éviter les manœuvres de Valsalva et les activités physiques intenses",
+      "Prescrire des collyres antalgiques (ex: tetracaine 0,5%) et anti-inflammatoires"
+    ],
+    "differentialDiagnosis": [
+      "Détachement de vitre sans déchirure (symptômes transitoires sans volet de rideau)",
+      "Neurite optique aiguë (douleur à la mouvement oculaire et perte de vision centrale)",
+      "Hémorragie vitréenne (vision trouble sans photopsies)"
+    ]
+  },
+  {
+    "name": "Neurite optique aiguë",
+    "description": "La neurite optique aiguë est une inflammation du nerf optique, souvent associée à une maladie démyélinisante centrale (ex: sclérose en plaques). Elle se manifeste par une perte visuelle soudaine unilatérale, une douleur orbitaire à la mouvement oculaire, et une altération de la vision des couleurs. La physiopathologie repose sur une démyélinisation auto-immune ou infectieuse du nerf optique.",
+    "redFlags": [
+      "Douleur orbitaire intense à la convergence ou à la mouvement oculaire",
+      "Perte visuelle centrale progressive sur 24-48h",
+      "Acuité visuelle inférieure à 20/200 avec vision des couleurs anormale",
+      "Mydriase relative à la lumière (pupille afferente)",
+      "Signe de RAPD (Réaction à la lumière anormale de pupille) positif"
+    ],
+    "scores": [
+      {
+        "name": "Critères de la NEAT (Neuromyelitis Optica Antibody Testing)",
+        "description": "Évalue le risque de sclérose en plaques ou de neuromyélite optique récurrente.",
+        "criteria": [
+          "Présence d'anti-aquaporine-4 (AQP4) positif : +2",
+          "Présence d'anti-MOG positif : +1",
+          "Absence de rémission complète après traitement : +1",
+          "Âge > 40 ans : +1",
+          "Détachement de la myéline sur IRM du nerf optique : +2"
+        ],
+        "interpretation": "Score ≥ 4 : fortement évoquatif de neuromyélite optique. Score 2-3 : possible sclérose en plaques. Score < 2 : neurite optique isolée."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neuro-ophthalmologique ciblé",
+        "steps": [
+          {
+            "action": "Test de confrontation des champs visuels",
+            "interpretation": "Déficit centro-céphalique ou altération du champ visuel en quadrants suggère une lésion du nerf optique ou du chiasma."
+          },
+          {
+            "action": "Test des couleurs avec cartes de Ishihara",
+            "interpretation": "Altération des couleurs rouges/verts évoque une lésion myélinique. Perte totale des couleurs évoque une ischémie."
+          },
+          {
+            "action": "Examen de la papille avec ophthalmo-scopie",
+            "interpretation": "Papille édémée (neurite optique ischémique) ou normale (démeylinisation)."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Corticostéroïdes à dose pulsée (ex: méthylprednisolone 1g/jour IV pendant 3-5 jours)",
+      "Éviter les anti-inflammatoires non stéroïdiens (AINS) en cas de suspicion de sclérose en plaques",
+      "Prescrire des analgésiques pour la douleur orbitaire (ex: paracétamol ou tramadol)",
+      "Référer pour IRM cérébrale et lombaire pour recherche de lésions démyélinisantes",
+      "Éduquer le patient sur les signes d'alerte (perte visuelle bilatérale, parésie motrice)"
+    ],
+    "differentialDiagnosis": [
+      "Neurite optique ischémique aiguë (douleur absente, âge > 50 ans)",
+      "Tumeur du nerf optique (progressivité lente, mydriase afferente)",
+      "Toxicité médicamenteuse (ex: éthambutol, méthotrexate)"
     ]
   }
 ]

@@ -160,7 +160,7 @@ class _NotificationSettingsScreenState
               onPressed: () =>
                   ref.read(notificationServiceProvider).simulateNotification(),
               icon: const Icon(Iconsax.flash_1, size: 18),
-              label: const Text("Envoyer une notification de test"),
+              label: Text(l10n.sendTestNotification),
               style: TextButton.styleFrom(
                 foregroundColor: theme.hintColor,
                 padding: const EdgeInsets.symmetric(

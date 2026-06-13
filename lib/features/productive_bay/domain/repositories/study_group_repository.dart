@@ -11,6 +11,7 @@ abstract class StudyGroupRepository {
   Future<void> joinGroup(String groupId);
   Future<void> submitScore(String sessionId, String userId, int score);
   Future<void> leaveGroup(String groupId);
+  Future<void> removeMember(String groupId, String userId);
   Future<void> inviteFriend(String groupId, String friendId);
   Future<List<User>> searchUsers(String query);
 

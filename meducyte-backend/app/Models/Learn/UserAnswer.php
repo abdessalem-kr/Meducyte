@@ -15,6 +15,7 @@ class UserAnswer extends Model
         'question_id',
         'proposition_id',
         'is_correct',
+        'quiz_session_id',
     ];
 
     protected $casts = [

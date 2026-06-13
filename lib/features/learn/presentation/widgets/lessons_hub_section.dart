@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class LessonsHubSection extends ConsumerStatefulWidget {
   const LessonsHubSection({super.key});
@@ -87,8 +88,27 @@ class _LessonsHubSectionState extends ConsumerState<LessonsHubSection> {
               ),
             );
           },
-          loading: () => const SliverFillRemaining(
-            child: Center(child: CircularProgressIndicator()),
+          loading: () => SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            sliver: SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return Skeletonizer(
+                  enabled: true,
+                  child: _buildLessonItem(
+                    context,
+                    const LearnLesson(
+                      id: 'dummy',
+                      moduleId: 'dummy',
+                      title: 'Leçon factice en cours de chargement',
+                      order: 1,
+                      isFree: true,
+                    ),
+                    primaryColor,
+                    isDark,
+                  ),
+                );
+              }, childCount: 4),
+            ),
           ),
           error: (err, _) =>
               SliverFillRemaining(child: Center(child: Text('$err'))),

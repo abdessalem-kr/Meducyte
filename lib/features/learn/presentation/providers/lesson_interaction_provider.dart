@@ -277,6 +277,7 @@ class InteractionNotifier extends StateNotifier<InteractionState> {
           paragraphId,
           allHighlights.map((h) => h.toJson()).toList(),
         );
+        await _repository.clearLessonDetailsCache(_id);
         _ref.invalidate(lessonDetailsProvider(_id));
       }
     } catch (e) {
@@ -310,6 +311,7 @@ class InteractionNotifier extends StateNotifier<InteractionState> {
           paragraphId,
           allHighlights.map((h) => h.toJson()).toList(),
         );
+        await _repository.clearLessonDetailsCache(_id);
         _ref.invalidate(lessonDetailsProvider(_id));
       }
     } catch (e) {
@@ -324,6 +326,7 @@ class InteractionNotifier extends StateNotifier<InteractionState> {
           optimisticNotes: {...state.optimisticNotes, paragraphId: note},
         );
         await _repository.addParagraphNote(paragraphId, note);
+        await _repository.clearLessonDetailsCache(_id);
         _ref.invalidate(lessonDetailsProvider(_id));
       }
     } catch (e) {
@@ -331,13 +334,16 @@ class InteractionNotifier extends StateNotifier<InteractionState> {
     }
   }
 
-  Future<void> deleteParagraphNote(String paragraphId) async {
+  Future<void> deleteParagraphNote(String paragraphId, String? noteId) async {
     try {
       if (_type == InteractionType.lesson) {
         state = state.copyWith(
           optimisticNotes: {...state.optimisticNotes, paragraphId: ""},
         );
-        await _repository.addParagraphNote(paragraphId, "");
+        if (noteId != null) {
+          await _repository.deleteParagraphNote(noteId);
+        }
+        await _repository.clearLessonDetailsCache(_id);
         _ref.invalidate(lessonDetailsProvider(_id));
       }
     } catch (e) {
@@ -365,6 +371,7 @@ class InteractionNotifier extends StateNotifier<InteractionState> {
           paragraphId,
           allHighlights.map((h) => h.toJson()).toList(),
         );
+        await _repository.clearLessonDetailsCache(_id);
         _ref.invalidate(lessonDetailsProvider(_id));
       }
     } catch (e) {
@@ -398,6 +405,7 @@ class InteractionNotifier extends StateNotifier<InteractionState> {
           paragraphId,
           allHighlights.map((h) => h.toJson()).toList(),
         );
+        await _repository.clearLessonDetailsCache(_id);
         _ref.invalidate(lessonDetailsProvider(_id));
       }
     } catch (e) {

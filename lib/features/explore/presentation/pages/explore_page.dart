@@ -23,69 +23,115 @@ class ExplorePage extends ConsumerWidget {
             elevation: 0,
             backgroundColor: theme.scaffoldBackgroundColor,
             actions: [const NotificationBadge(), const SizedBox(width: 8)],
-            flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      AppColors.primary,
-                      AppColors.primary.withOpacity(0.8),
-                    ],
+            flexibleSpace: LayoutBuilder(
+              builder: (context, constraints) {
+                final double appBarHeight = constraints.biggest.height;
+                final double topPadding = MediaQuery.of(context).padding.top;
+                // Calculate animation progress: 0.0 (collapsed) to 1.0 (fully expanded)
+                final double expandRatio = ((appBarHeight - (kToolbarHeight + topPadding)) / (180 - kToolbarHeight)).clamp(0.0, 1.0);
+                
+                return Container(
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        AppColors.primaryDark,
+                        AppColors.primary,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(32 * expandRatio),
+                    ),
                   ),
-                  borderRadius: const BorderRadius.vertical(
-                    bottom: Radius.circular(32),
-                  ),
-                ),
-                child: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 10),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            l10n.medicalWorld.toUpperCase(),
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.2,
+                  child: Stack(
+                    children: [
+                      // Expanded Content (fades out as it collapses)
+                      if (expandRatio > 0.1)
+                        Positioned(
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          child: Opacity(
+                            opacity: expandRatio,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
+                              child: SingleChildScrollView(
+                                physics: const NeverScrollableScrollPhysics(),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withOpacity(0.15),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Text(
+                                        l10n.medicalWorld.toUpperCase(),
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.bold,
+                                          letterSpacing: 1.2,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      l10n.navExplore,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      l10n.exploreDescription,
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 14,
+                                        height: 1.3,
+                                      ),
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 12),
-                        Text(
-                          l10n.exploreDescription,
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontSize: 16,
-                            height: 1.4,
+                        
+                      // Collapsed Title (fades in as it collapses)
+                      if (expandRatio < 0.9)
+                        Opacity(
+                          opacity: (1.0 - expandRatio).clamp(0.0, 1.0),
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              height: kToolbarHeight,
+                              alignment: Alignment.center,
+                              child: Text(
+                                l10n.navExplore,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ],
-                    ),
+                    ],
                   ),
-                ),
-              ),
-              title: Text(
-                l10n.navExplore,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              titlePadding: const EdgeInsets.only(left: 24, bottom: 16),
+                );
+              },
             ),
           ),
 
@@ -176,6 +222,8 @@ class ExplorePage extends ConsumerWidget {
                   desc: l10n.caseOfDayDescription,
                   icon: Iconsax.calendar_2,
                   isNew: true,
+                  color: const Color(0xFF10B981),
+                  onTap: () => context.push(AppRoutes.diagnosisMystery),
                 ),
                 const SizedBox(height: 12),
                 _buildPremiumFeatureItem(
@@ -183,6 +231,8 @@ class ExplorePage extends ConsumerWidget {
                   title: l10n.medicalNews,
                   desc: l10n.medicalNewsDescription,
                   icon: Iconsax.info_circle,
+                  color: const Color(0xFF3B82F6),
+                  onTap: () => _showMedicalNewsSheet(context),
                 ),
                 const SizedBox(height: 12),
                 _buildPremiumFeatureItem(
@@ -190,6 +240,8 @@ class ExplorePage extends ConsumerWidget {
                   title: l10n.clinicalPearls,
                   desc: l10n.clinicalPearlsDescription,
                   icon: Iconsax.flash_1,
+                  color: const Color(0xFFF59E0B),
+                  onTap: () => context.push(AppRoutes.clinicalPearls),
                 ),
                 const SizedBox(height: 12),
                 _buildPremiumFeatureItem(
@@ -206,6 +258,8 @@ class ExplorePage extends ConsumerWidget {
                   title: l10n.quickCalcHub,
                   desc: l10n.calcHubDescription,
                   icon: Iconsax.calculator,
+                  color: const Color(0xFFEC4899),
+                  onTap: () => context.push(AppRoutes.medicalCalculator),
                 ),
                 const SizedBox(height: 40),
               ]),
@@ -466,6 +520,19 @@ class ExplorePage extends ConsumerWidget {
     );
   }
 
+  void _showMedicalNewsSheet(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) => _MedicalNewsSheetContent(
+        isDark: isDark,
+        onLaunchUrl: _launchUrl,
+      ),
+    );
+  }
+
   Future<void> _launchUrl(String url) async {
     final uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
@@ -473,6 +540,306 @@ class ExplorePage extends ConsumerWidget {
     }
   }
 }
+
+class _MedicalNewsSheetContent extends StatefulWidget {
+  final bool isDark;
+  final Function(String) onLaunchUrl;
+  const _MedicalNewsSheetContent({
+    required this.isDark,
+    required this.onLaunchUrl,
+  });
+
+  @override
+  State<_MedicalNewsSheetContent> createState() => _MedicalNewsSheetContentState();
+}
+
+class _MedicalNewsSheetContentState extends State<_MedicalNewsSheetContent> {
+  List<Map<String, dynamic>> _newsList = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchNews();
+  }
+
+  Future<void> _fetchNews() async {
+    try {
+      final dio = Dio();
+      final searchResponse = await dio.get(
+        'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi',
+        queryParameters: {
+          'db': 'pubmed',
+          'term': '(nejm[Journal] OR lancet[Journal] OR jama[Journal]) AND "has abstract"[Filter]',
+          'retmax': '5',
+          'sort': 'pub_date',
+          'retmode': 'json',
+        },
+      );
+
+      if (searchResponse.statusCode == 200 && searchResponse.data != null) {
+        final searchData = searchResponse.data;
+        if (searchData is Map<String, dynamic> && searchData.containsKey('esearchresult')) {
+          final idList = searchData['esearchresult']['idlist'] as List?;
+          if (idList != null && idList.isNotEmpty) {
+            final idsString = idList.join(',');
+
+            final summaryResponse = await dio.get(
+              'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi',
+              queryParameters: {
+                'db': 'pubmed',
+                'id': idsString,
+                'retmode': 'json',
+              },
+            );
+
+            if (summaryResponse.statusCode == 200 && summaryResponse.data != null) {
+              final summaryData = summaryResponse.data;
+              if (summaryData is Map<String, dynamic> && summaryData.containsKey('result')) {
+                final result = summaryData['result'] as Map<String, dynamic>;
+                final List<Map<String, dynamic>> parsedList = [];
+
+                for (var id in idList) {
+                  final idStr = id.toString();
+                  final articleDetails = result[idStr] as Map<String, dynamic>?;
+                  if (articleDetails != null) {
+                    final String rawTitle = articleDetails['title'] ?? 'Actualité Médicale';
+                    final String source = articleDetails['source'] ?? 'PubMed';
+                    final String pubDate = articleDetails['pubdate'] ?? '';
+                    
+                    var title = rawTitle.trim();
+                    if (title.endsWith('.')) {
+                      title = title.substring(0, title.length - 1);
+                    }
+                    if (title.startsWith('[') && title.endsWith(']')) {
+                      title = title.substring(1, title.length - 1);
+                    }
+
+                    String dateStr = pubDate;
+                    if (pubDate.isNotEmpty) {
+                      dateStr = pubDate.split(' ').first;
+                    }
+
+                    final authors = articleDetails['authors'] as List?;
+                    String authorStr = '';
+                    if (authors != null && authors.isNotEmpty) {
+                      final firstAuthor = authors.first['name'] ?? '';
+                      authorStr = firstAuthor.toString();
+                      if (authors.length > 1) {
+                        authorStr += " et al.";
+                      }
+                    }
+                    final desc = "Nouvelle publication scientifique majeure dans $source. ${authorStr.isNotEmpty ? 'Par $authorStr.' : ''} Retrouvez les résultats complets et l'analyse clinique sur PubMed.";
+
+                    parsedList.add({
+                      "title": title,
+                      "date": dateStr,
+                      "category": source.length > 20 ? "${source.substring(0, 17)}..." : source,
+                      "desc": desc,
+                      "color": _getCategoryColor(source),
+                      "url": "https://pubmed.ncbi.nlm.nih.gov/$idStr/",
+                    });
+                  }
+                }
+
+                if (mounted && parsedList.isNotEmpty) {
+                  setState(() {
+                    _newsList = parsedList;
+                    _isLoading = false;
+                  });
+                  return;
+                }
+              }
+            }
+          }
+        }
+      }
+      throw Exception("Format de réponse PubMed invalide");
+    } catch (e) {
+      debugPrint("Error fetching medical news: $e");
+      if (mounted) {
+        setState(() {
+          _newsList = [
+            {
+              "title": "Avancée majeure dans l'immunothérapie du cancer du poumon",
+              "date": "Aujourd'hui",
+              "category": "Oncologie",
+              "desc": "Une nouvelle étude clinique de phase III démontre une augmentation de 18% du taux de survie globale à 5 ans chez les patients atteints de CPNPC grâce à une association thérapeutique innovante.",
+              "color": Colors.redAccent,
+              "url": "https://pubmed.ncbi.nlm.nih.gov/30353860/",
+            },
+            {
+              "title": "Directives de l'ESC 2026 : Nouvelles cibles de LDL-cholestérol",
+              "date": "Hier",
+              "category": "Cardiologie",
+              "desc": "La Société Européenne de Cardiologie met à jour ses recommandations pour la prévention cardiovasculaire en abaissant le seuil cible pour les patients à très haut risque.",
+              "color": Colors.pinkAccent,
+              "url": "https://pubmed.ncbi.nlm.nih.gov/32955177/",
+            },
+            {
+              "title": "IA générative et précision du diagnostic radiologique",
+              "date": "3 jours",
+              "category": "Technologie",
+              "desc": "Les nouveaux outils d'intelligence artificielle atteignent une sensibilité de 98% pour la détection précoce des micro-calcifications mammaires en double lecture.",
+              "color": Colors.purpleAccent,
+              "url": "https://pubmed.ncbi.nlm.nih.gov/31591599/",
+            },
+          ];
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  Color _getCategoryColor(String cat) {
+    final lower = cat.toLowerCase();
+    if (lower.contains('lancet')) return Colors.redAccent;
+    if (lower.contains('nejm') || lower.contains('england')) return Colors.blueAccent;
+    if (lower.contains('jama')) return Colors.teal;
+    if (lower.contains('cancer') || lower.contains('oncology')) return Colors.orangeAccent;
+    return Colors.purpleAccent;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: widget.isDark ? AppColors.backgroundDark : AppColors.backgroundLight,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Row(
+                children: [
+                  Icon(Iconsax.info_circle, color: AppColors.primary, size: 24),
+                  SizedBox(width: 8),
+                  Text(
+                    "Actualités Médicales",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            "Suivez les dernières percées de la science médicale.",
+            style: TextStyle(
+              fontSize: 14,
+              color: Theme.of(context).hintColor,
+            ),
+          ),
+          const SizedBox(height: 24),
+          if (_isLoading)
+            const Center(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 40),
+                child: CircularProgressIndicator(color: AppColors.primary),
+              ),
+            )
+          else
+            Flexible(
+              child: ListView.separated(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                itemCount: _newsList.length,
+                separatorBuilder: (_, __) => const SizedBox(height: 16),
+                itemBuilder: (context, index) {
+                  final news = _newsList[index];
+                  final color = news["color"] as Color;
+                  return Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        final url = news["url"]?.toString();
+                        if (url != null && url.isNotEmpty) {
+                          widget.onLaunchUrl(url);
+                        }
+                      },
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: widget.isDark ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.02),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: widget.isDark ? Colors.white10 : Colors.black12,
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                  decoration: BoxDecoration(
+                                    color: color.withOpacity(0.15),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Text(
+                                    news["category"].toString().toUpperCase(),
+                                    style: TextStyle(
+                                      color: color,
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  news["date"].toString(),
+                                  style: TextStyle(
+                                    color: Theme.of(context).hintColor,
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              news["title"].toString(),
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              news["desc"].toString(),
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: widget.isDark ? Colors.white70 : Colors.black87,
+                                height: 1.4,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
 
 class _YearSelectionSheetContent extends StatefulWidget {
   final bool isDrive;

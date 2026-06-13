@@ -25,6 +25,12 @@ class _StudyRecapWidgetState extends ConsumerState<StudyRecapWidget> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    
+    final modulesAsync = ref.watch(learnModulesProvider);
+    final subjects = modulesAsync.value?.map((m) => m.name).toList() ?? _subjects;
+    if (subjects.isNotEmpty && !subjects.contains(_selectedSubject)) {
+      _selectedSubject = subjects.first;
+    }
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -57,6 +63,7 @@ class _StudyRecapWidgetState extends ConsumerState<StudyRecapWidget> {
           const SizedBox(height: 20),
           DropdownButtonFormField<String>(
             value: _selectedSubject,
+            isExpanded: true,
             decoration: InputDecoration(
               labelText: "Sujet d'étude",
               filled: true,
@@ -68,8 +75,11 @@ class _StudyRecapWidgetState extends ConsumerState<StudyRecapWidget> {
                 borderSide: BorderSide.none,
               ),
             ),
-            items: _subjects
-                .map((s) => DropdownMenuItem(value: s, child: Text(s)))
+            items: subjects
+                .map((s) => DropdownMenuItem(
+                      value: s,
+                      child: Text(s, overflow: TextOverflow.ellipsis),
+                    ))
                 .toList(),
             onChanged: (val) => setState(() => _selectedSubject = val!),
           ),

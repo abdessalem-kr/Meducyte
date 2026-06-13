@@ -1,28 +1,721 @@
 [
   {
-    "name": "Sepsis / Choc Septique",
-    "description": "Dysfonction d'organe menaçant le pronostic vital.",
+    "name": "Pneumonie communautaire",
+    "description": "La pneumonie communautaire est une infection des poumons causée par des bactéries, des virus ou des champignons, qui se développe en dehors de l'hôpital. Elle peut être aiguë ou chronique et affecter les personnes de tous âges, mais les personnes âgées et celles ayant des problèmes de santé sous-jacents sont plus à risque. Les symptômes typiques incluent la toux, la fièvre, les frissons, la douleur thoracique et la dyspnée.",
+    "redFlags": [
+      "Fièvre élevée supérieure à 39°C avec des frissons",
+      "Toux productive avec expectoration purulente ou hémoptoïque",
+      "Douleur thoracique aiguë ou pleuritique",
+      "Dyspnée ou tachypnée avec une fréquence respiratoire supérieure à 30/min",
+      "Confusion ou altération de l'état mental, notamment chez les personnes âgées"
+    ],
     "scores": [
       {
-        "name": "qSOFA",
-        "description": "Dépistage rapide du sepsis.",
+        "name": "Score de gravité de la pneumonie (PSI)",
+        "description": "Le score de gravité de la pneumonie (PSI) est utilisé pour évaluer la sévérité de la pneumonie communautaire et déterminer le risque de mortalité. Il prend en compte des facteurs tels que l'âge, le sexe, les comorbidités, la température, la fréquence cardiaque, la pression artérielle, la saturation en oxygène et les résultats des analyses de sang.",
         "criteria": [
-          "FR >= 22",
-          "Glasgow < 15",
-          "PAS <= 100"
+          "Âge supérieur à 50 ans (+1 point)",
+          "Homme (+1 point)",
+          "Comorbidités telles que le diabète, les maladies cardiaques ou respiratoires (+1 point)",
+          "Température supérieure à 40°C ou inférieure à 35°C (+1 point)",
+          "Fréquence cardiaque supérieure à 125/min (+1 point)"
         ],
-        "interpretation": "Score >= 2 : Risque élevé."
+        "interpretation": "Un score élevé indique une pneumonie plus sévère et un risque accru de complications ou de mortalité. Les patients avec un score élevé nécessitent une hospitalisation et un traitement plus agressif."
       }
     ],
-    "redFlags": [
-      "Hypotension persistante",
-      "Lactates > 2",
-      "Purpura extensif"
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et cardiovasculaire",
+        "steps": [
+          {
+            "action": "Auscultation pulmonaire bilatérale comparative pour détecter les râles, les sibilances ou les bruits de crépitement",
+            "interpretation": "La présence de râles crépitants ou de sibilances peut indiquer une infection pulmonaire ou une obstruction des voies aériennes. Les bruits de crépitement peuvent être associés à une surcharge alvéolaire ou à une infection grave."
+          },
+          {
+            "action": "Examen de la pression artérielle et de la fréquence cardiaque pour évaluer la stabilité hémodynamique",
+            "interpretation": "Une pression artérielle basse ou une fréquence cardiaque élevée peut indiquer un choc septique ou une insuffisance cardiaque, nécessitant une intervention urgente."
+          }
+        ]
+      }
     ],
     "immediateManagement": [
-      "Hémocultures",
-      "Antibiotiques IV",
-      "Remplissage"
+      "Administration d'antibiotiques à large spectre pour couvrir les bactéries les plus courantes",
+      "Oxygénothérapie pour maintenir une saturation en oxygène supérieure à 92%",
+      "Réhydratation pour prévenir la déshydratation et améliorer la perfusion tissulaire",
+      "Gestion de la douleur et de la fièvre avec des antipyretiques et des analgésiques",
+      "Surveillance étroite des paramètres vitaux et des signes de complications"
+    ],
+    "differentialDiagnosis": [
+      "Bronchite aiguë, qui se caractérise par une toux productive sans fièvre ni douleur thoracique",
+      "Influenza, qui présente des symptômes similaires à la pneumonie mais avec une prédominance de la fièvre, des frissons et des douleurs musculaires",
+      "Embolie pulmonaire, qui peut se manifester par une douleur thoracique aiguë et une dyspnée sans fièvre ni toux productive"
+    ]
+  },
+  {
+    "name": "Insuffisance cardiaque aiguë",
+    "description": "L'insuffisance cardiaque aiguë est une condition où le cœur est incapable de pomper suffisamment de sang pour répondre aux besoins du corps, entraînant une accumulation de fluide dans les poumons et les tissus. Elle peut survenir soudainement ou être la conséquence d'une maladie cardiaque chronique. Les symptômes incluent la dyspnée, la fatigue, les jambes gonflées et la toux.",
+    "redFlags": [
+      "Dyspnée ou orthopnée sévère nécessitant une position assise pour respirer",
+      "Toux productive avec expectoration rosée ou sanglante",
+      "Douleur thoracique ou palpitations cardiaques",
+      "Fatigue ou faiblesse musculaire extrême",
+      "Confusion ou altération de l'état mental due à l'hypoxie"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Killip",
+        "description": "La classification de Killip est utilisée pour évaluer la sévérité de l'insuffisance cardiaque aiguë et prédire la mortalité. Elle se base sur la présence et la gravité des signes cliniques d'insuffisance cardiaque.",
+        "criteria": [
+          "Classe I : Pas d'insuffisance cardiaque clinique",
+          "Classe II : Râles crépitants aux bases, galop B3",
+          "Classe III : OEdème aigu du poumon clinique",
+          "Classe IV : Choc cardiogénique clinique"
+        ],
+        "interpretation": "Une classe élevée indique une insuffisance cardiaque plus sévère et un risque accru de mortalité. Les patients de classe III et IV nécessitent une prise en charge agressive et une hospitalisation en unité de soins intensifs."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et pulmonaire",
+        "steps": [
+          {
+            "action": "Auscultation cardiaque pour détecter les bruits de galop, les souffles ou les murmures",
+            "interpretation": "La présence d'un galop B3 ou d'un souffle peut indiquer une insuffisance ventriculaire gauche ou une valvulopathie. Les murmures peuvent être associés à des anomalies de la valve cardiaque."
+          },
+          {
+            "action": "Examen des jugulaires pour évaluer la pression veineuse centrale",
+            "interpretation": "Une distension jugulaire peut indiquer une insuffisance ventriculaire droite ou une hypertension pulmonaire. La recherche de signes de congestion périphérique tels que des oedèmes des membres inférieurs est également importante."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'oxygène pour améliorer la saturation en oxygène",
+      "Utilisation de diurétiques pour réduire la charge de fluide et améliorer la fonction cardiaque",
+      "Administration de vasodilatateurs pour réduire la post-charge et améliorer la perfusion tissulaire",
+      "Gestion de la douleur et de l'anxiété avec des analgésiques et des anxiolytiques",
+      "Surveillance étroite des paramètres vitaux et des signes de complications"
+    ],
+    "differentialDiagnosis": [
+      "Pneumonie, qui peut présenter des symptômes similaires mais avec une toux productive et des râles crépitants",
+      "Embolie pulmonaire, qui se caractérise par une douleur thoracique aiguë et une dyspnée sans signes d'insuffisance cardiaque",
+      "Astème, qui présente des sibilances et une dyspnée mais sans signes d'insuffisance cardiaque"
+    ]
+  },
+  {
+    "name": "Crise d'asthme aiguë",
+    "description": "La crise d'asthme aiguë est une exacerbation soudaine et sévère de l'asthme, caractérisée par une obstruction des voies aériennes, une dyspnée, une toux et des sibilances. Elle peut être déclenchée par des allergènes, des irritants, des infections ou des facteurs de stress.",
+    "redFlags": [
+      "Dyspnée ou orthopnée sévère avec une fréquence respiratoire élevée",
+      "Sibilances graves ou une wheezing généralisée",
+      "Cyanose ou une saturation en oxygène basse",
+      "Utilisation des muscles accessoires de respiration",
+      "Confusion ou altération de l'état mental due à l'hypoxie"
+    ],
+    "scores": [
+      {
+        "name": "Score d'asthme de l'American Thoracic Society (ATS)",
+        "description": "Le score d'asthme de l'ATS évalue la sévérité de la crise d'asthme en fonction des symptômes et de la fonction pulmonaire.",
+        "criteria": [
+          "Symptômes jour et nuit, avec une limitation de l'activité",
+          "Utilisation d'un bronchodilatateur plus de deux fois par jour",
+          "FVC ou FEV1 inférieure à 80% de la valeur prédictive",
+          "Réponse au traitement bronchodilatateur"
+        ],
+        "interpretation": "Un score élevé indique une crise d'asthme plus sévère et un risque accru de complications. Les patients nécessitent une prise en charge agressive avec des bronchodilatateurs, des corticostéroïdes et une surveillance étroite."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire",
+        "steps": [
+          {
+            "action": "Auscultation pulmonaire pour détecter les sibilances, les râles ou les bruits de crépitement",
+            "interpretation": "La présence de sibilances graves ou généralisées peut indiquer une obstruction sévère des voies aériennes. Les râles ou les bruits de crépitement peuvent être associés à une surcharge alvéolaire ou à une infection."
+          },
+          {
+            "action": "Examen de la fréquence respiratoire et de la saturation en oxygène",
+            "interpretation": "Une fréquence respiratoire élevée ou une saturation en oxygène basse peut indiquer une hypoxie sévère et nécessiter une oxygénothérapie et une prise en charge urgente."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de bronchodilatateurs pour réduire l'obstruction des voies aériennes",
+      "Utilisation de corticostéroïdes pour réduire l'inflammation",
+      "Oxygénothérapie pour améliorer la saturation en oxygène",
+      "Gestion de la douleur et de l'anxiété avec des analgésiques et des anxiolytiques",
+      "Surveillance étroite des paramètres vitaux et des signes de complications"
+    ],
+    "differentialDiagnosis": [
+      "Pneumonie, qui peut présenter des symptômes similaires mais avec une toux productive et des râles crépitants",
+      "Insuffisance cardiaque, qui se caractérise par une dyspnée, des jambes gonflées et des signes d'insuffisance cardiaque",
+      "Embolie pulmonaire, qui se manifeste par une douleur thoracique aiguë et une dyspnée sans signes d'obstruction des voies aériennes"
+    ]
+  },
+  {
+    "name": "Syndrome de détresse respiratoire aiguë (SDRA)",
+    "description": "Le SDRA est une pathologie caractérisée par une hypoxémie sévère secondaire à une altération de la barrière alvéolo-capillaire, entraînant une infiltration de protéines plasmatiques dans l'alvéole. Il survient dans un contexte de traumatisme, infection sévère (pneumonie, sepsis), ou réanimation post-choc. Cliniquement, il se manifeste par une dyspnée aiguë, une tachypnée, une hypoxémie réfractaire à l'oxygénation, et une radiographie thoracique montrant une opacité bilatérale non cardiogénique.",
+    "redFlags": [
+      "Dyspnée aiguë associée à une hypoxémie (SpO2 < 90% malgré l'oxygénation) survenant dans les 48 heures d'un événement à risque (pneumonie, sepsis)",
+      "Tachypnée > 25/min avec effort respiratoire visible (retractions intercostales, usage des muscles accessoires)",
+      "Radiographie thoracique montrant des infiltrats bilatéraux non cardiogéniques",
+      "PaO2/FiO2 < 300 mmHg (critère principal de diagnostic)",
+      "Détresse respiratoire nécessitant une intubation précoce"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Berlin",
+        "description": "Score de sévérité basé sur le PaO2/FiO2 et la présence de dépendance à la ventilation mécanique.",
+        "criteria": [
+          "Classe I: PaO2/FiO2 < 100 mmHg (SDRA sévère)",
+          "Classe II: PaO2/FiO2 100-200 mmHg (SDRA modéré)",
+          "Classe III: PaO2/FiO2 201-300 mmHg (SDRA léger)",
+          "Critère supplémentaire: Absence de cause cardiogénique d'insuffisance respiratoire"
+        ],
+        "interpretation": "La classe I nécessite une ventilation mécanique précoce et une surveillance intensive. La classe III peut être suivie en soins intermédiaires avec surveillance étroite."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et cardiovasculaire",
+        "steps": [
+          {
+            "action": "Palpation du thorax pour rechercher des signes de décompensation (turgescence jugulaire, pulsations paradoxales)",
+            "interpretation": "La turgescence jugulaire associée à une pulsation paradoxale évoque une insuffisance cardiaque, nécessitant une échocardiographie pour évaluer la cause."
+          },
+          {
+            "action": "Auscultation pulmonaire bilatérale pour identifier des râles crépitants, des sibilants ou des crépitements",
+            "interpretation": "Les râles crépitants basaux associés à une hypoxémie orientent vers une surcharge alvéolaire. Les crépitements localisés suggèrent une pneumonie."
+          },
+          {
+            "action": "Examen neurologique pour évaluer l'état de conscience et la présence de signes de décompensation métabolique (confusion, somnolence)",
+            "interpretation": "Une confusion ou une somnolence profonde peut indiquer une acidose métabolique sévère ou une hypoxie cérébrale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Position semi-assise (30-45°) pour améliorer l'oxygénation et réduire le travail respiratoire",
+      "Oxygénothérapie par masque à haute concentration (FiO2 ajustée pour maintenir SpO2 > 92%)",
+      "Ventilation mécanique non invasive (VNI) ou invasive selon la gravité (PEEP optimisé)",
+      "Hydratation contrôlée avec perfusion de sérum physiologique (500-1000 ml/h) pour maintenir le débit sanguin pulmonaire",
+      "Prise en charge étiologique ciblée (antibiothérapie large pour pneumonie, antibioprophylaxie pour sepsis)"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance cardiaque aiguë (présence de galop B3, œdèmes, turgescence jugulaire)",
+      "Pneumonie lobar (fièvre, expectoration purulente, localisation radiologique unilatérale)",
+      "Embolie pulmonaire (douleur thoracique pleurodique, tachycardie, signes de thrombose veineuse profonde)"
+    ]
+  },
+  {
+    "name": "Hypoglycémie sévère non diabétique",
+    "description": "L'hypoglycémie sévère non diabétique est définie par une glycémie < 0.55 g/L associée à des symptômes neuroglucergiques (confusion, agitation, convulsions) ou neuroglycopeniques (faiblesse, perte de conscience). Elle peut survenir dans les contextes de jeûne prolongé, insuffisance hépatique, ou intoxication médicamenteuse (ex: surdosage en insuline exogène).",
+    "redFlags": [
+      "Perte de conscience soudaine sans antécédent épileptique",
+      "Convulsions non épileptiques associées à une hypoglycémie confirmée",
+      "Réaction à l'administration de glucose (réveil rapide, amélioration des signes neurologiques)",
+      "Glycémie capillaire < 0.5 g/L sur deux mesures successives",
+      "Signes de déshydratation associés à une hypoglycémie (ex: insuffisance rénale aiguë)"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'hypoglycémie (Hypoglycemia Severity Score)",
+        "description": "Évaluation de la gravité clinique basée sur la réponse au glucose et la durée de l'hypoglycémie.",
+        "criteria": [
+          "Classe I: Hypoglycémie avec symptômes neuroglucergiques réversibles en < 10 minutes après glucose IV",
+          "Classe II: Hypoglycémie avec perte de conscience réversible en 10-30 minutes après glucose IV",
+          "Classe III: Hypoglycémie prolongée (>30 minutes) nécessitant une ventilation mécanique",
+          "Classe IV: Hypoglycémie associée à lésions cérébrales persistantes"
+        ],
+        "interpretation": "Les classes III-IV nécessitent une surveillance neurologique prolongée et une évaluation de la cause sous-jacente (ex: tumeur hypophysaire, insuffisance corticosurrénale)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et état de conscience",
+        "steps": [
+          {
+            "action": "Évaluation de l'échelle de Glasgow (GCS) pour quantifier le niveau de conscience",
+            "interpretation": "Un GCS < 8 indique une perte de conscience profonde nécessitant une intubation précoce."
+          },
+          {
+            "action": "Recherche de signes de lésion cérébrale secondaire (myosis, réflexes oculaires anormaux)",
+            "interpretation": "Les myosis bilatéraux peuvent suggérer une hypoglycémie, tandis que les asymétries pupillaires orientent vers une lésion cérébrale ischémique."
+          },
+          {
+            "action": "Palpation des signes de déshydratation (peau pâle, turgescence cutanée, tension artérielle basse)",
+            "interpretation": "La déshydratation associée à l'hypoglycémie évoque une insuffisance rénale aiguë ou une insuffisance corticosurrénale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'une solution de glucose à 30% (1-2 ml/kg) par voie intraveineuse lente",
+      "Surveillance continue de la glycémie toutes les 15 minutes jusqu'à stabilisation > 0.7 g/L",
+      "Correction progressive de l'hypoglycémie (vitesse < 50 mg/dL/h) pour éviter l'œdème cérébral",
+      "Recherche d'une cause sous-jacente (ex: test de cortisol, dosage de l'insuline endogène)",
+      "Prévention des complications (monitoring EEG pour les convulsions, prévention des ulcères gastriques)"
+    ],
+    "differentialDiagnosis": [
+      "Hypoglycémie diabétique (antécédents de diabète, usage d'insuline ou de sulfamides)",
+      "Toxicité médicamenteuse (ex: surdosage en biguanides, inhibiteurs de la pompe à protons)",
+      "Coma éthylique (odeur d'alcool, absence de réponse au glucose)"
+    ]
+  },
+  {
+    "name": "Coma diabétique hyperosmolaire (CDH)",
+    "description": "Le coma diabétique hyperosmolaire est une urgence métabolique grave survenant principalement chez les patients diabétiques de type 2. Il se caractérise par une hyperglycémie extrême (> 33 mmol/L), une osmolarité plasmatique élevée (> 320 mOsm/kg) et une absence de corps cétoniques significatifs. La physiopathologie repose sur une déshydratation sévère due à une polyurie osmotique, associée à une résistance à l'insuline et à une libération de contre-régulateurs. La présentation clinique inclut une confusion progressive, une polydipsie, une asthénie, des signes de déshydratation (peau mous, turgescence cutanée diminuée) et, en phase avancée, un coma.",
+    "redFlags": [
+      "Hyperglycémie > 33 mmol/L avec osmolarité plasmatique > 320 mOsm/kg",
+      "Déshydratation sévère avec turgescence cutanée absente et hypotension orthostatique",
+      "Coma non réactif avec Glasgow < 8",
+      "Polyurie inexpliquée associée à une asthénie marquée",
+      "Absence de corps cétoniques urinaires malgré une hyperglycémie sévère"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité du CDH (HHS Score)",
+        "description": "Évalue le risque de mortalité et guide la gestion initiale en fonction de critères cliniques et biologiques.",
+        "criteria": [
+          "Classe I: Glasgow < 13 (+2)",
+          "Classe II: Osmolarité plasmatique > 350 mOsm/kg (+2)",
+          "Classe III: Débit cardiaque > 150 bpm (+1)",
+          "Classe IV: Fréquence respiratoire > 20/min (+1)",
+          "Classe V: Hypotension artérielle persistante (+2)"
+        ],
+        "interpretation": "Score total ≥ 5: Indique une gravité élevée nécessitant une réanimation intensive avec surveillance étroite. Score < 5: Gestion en milieu hospitalier standard avec surveillance rigoureuse."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et état de déshydratation",
+        "steps": [
+          {
+            "action": "Évaluation du niveau de conscience via l'échelle de Glasgow",
+            "interpretation": "Un score < 13 évoque un coma avancé, associé à un risque accru de complications neurologiques (œdème cérébral, ischémie)."
+          },
+          {
+            "action": "Palpation des tissus mous et turgescence cutanée",
+            "interpretation": "Une turgescence cutanée absente ou diminuée indique une déshydratation extrême (> 10 % de la masse corporelle)."
+          },
+          {
+            "action": "Examen des muqueuses et des yeux",
+            "interpretation": "Muqueuses sèches et enfoncement des globes oculaires suggèrent une déshydratation sévère."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réanimation intraveineuse avec perfusion de solution saline 0,9 % à 500-1000 mL/h pendant les 2 premières heures",
+      "Insuline continue à faible dose (0,1 U/kg/h) après correction initiale de l'hyperglycémie",
+      "Correction progressive de l'hyperglycémie (vitesse < 5 mmol/h) pour éviter l'œdème cérébral",
+      "Supplémentation en potassium (K+ < 5 mmol/L) et surveillance étroite des électrolytes",
+      "Prévention des complications (prophylaxie thromboembolique, surveillance neurologique)"
+    ],
+    "differentialDiagnosis": [
+      "Coma diabétique cétoacide (présence de cétones urinaires)",
+      "Hypoglycémie sévère (glycémie < 1 mmol/L)",
+      "Intoxication médicamenteuse (ex: barbituriques)"
+    ]
+  },
+  {
+    "name": "Syndrome de l'obstruction intestinale aiguë",
+    "description": "L'obstruction intestinale aiguë est une urgence chirurgicale définie par une interruption du transit intestinal, entraînant une distension, une douleur et une altération de la perfusion. La physiopathologie repose sur une occlusion mécanique (adénopathies, tumeurs, volvulus) ou fonctionnelle (paralysie post-opératoire). Les signes cliniques incluent des douleurs coliques, des vomissements bilieux, une absence de gaz ou de selles, et une distension abdominale. Les complications majeures sont l'ischémie intestinale, la péritonite secondaire et le choc hypovolémique.",
+    "redFlags": [
+      "Douleur abdominale perçue comme des crampes associée à des vomissements bilieux",
+      "Absence de passage de gaz ou de selles > 24 heures",
+      "Distension abdominale asymétrique avec bruits intestinaux hyperactifs ou absents",
+      "Signes de péritonite (défense musculaire, douleur à la palpation profonde)",
+      "Hypotension artérielle associée à une tachycardie > 120 bpm"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'obstruction intestinale (WBC-POSSUM)",
+        "description": "Évalue le risque de mortalité en fonction de paramètres biologiques et cliniques.",
+        "criteria": [
+          "Classe I: Leucocytose > 15 000/mm³ (+2)",
+          "Classe II: Hémoglobine < 10 g/dL (+1)",
+          "Classe III: Créatinine > 2 mg/dL (+2)",
+          "Classe IV: Temps de coagulation prolongé (> 1,5 fois la normale) (+1)",
+          "Classe V: Signes de péritonite (+3)"
+        ],
+        "interpretation": "Score total ≥ 8: Indique une gravité critique nécessitant une chirurgie d'urgence. Score < 8: Surveillance étroite avec prise en charge médicale initiale."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal et état hémodynamique",
+        "steps": [
+          {
+            "action": "Palpation abdominale pour identifier des masses ou des points de douleur localisés",
+            "interpretation": "Une douleur à la palpation profonde associée à une distension asymétrique suggère une occlusion partielle ou une ischémie."
+          },
+          {
+            "action": "Auscultation des bruits intestinaux",
+            "interpretation": "Bruits hyperactifs ou absents indiquent respectivement une obstruction initiale ou une paralysie intestinale."
+          },
+          {
+            "action": "Recherche de signes de déshydratation (turgescence cutanée, muqueuses sèches)",
+            "interpretation": "La déshydratation associée à une hypotension orthostatique évoque une perte de liquide intravasculaire importante."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "NPO (interdiction de l'alimentation) et mise en place de sonde nasogastrique pour décompression",
+      "Réanimation intraveineuse avec perfusion de solution cristalloïde (ex: Ringer lactate) à 1-2 L/h",
+      "Antibiothérapie large spectre (ex: Céphalosporine de 3e génération + aminoside) pour prévenir l'infection",
+      "Correction des déséquilibres électrolytiques (K+, Na+, Cl-)",
+      "Préparation chirurgicale immédiate en cas de signes de péritonite ou de volvulus"
+    ],
+    "differentialDiagnosis": [
+      "Crise de colique hépatique (douleur irradiant vers l'épaule droite)",
+      "Perforation gastrique (douleur soudaine et intense avec péritonite aiguë)",
+      "Diverticulite aiguë (douleur localisée au quadrant inférieur gauche)"
+    ]
+  },
+  {
+    "name": "Cholécystite aiguë",
+    "description": "Inflammation aiguë de la vésicule biliaire liée à l'obstruction du calcul biliaire, entraînant une stase biliaire, une ischémie et une infection secondaire. Présentation clinique typique : douleur aiguë en quadrant supérieur droit, irradiant vers l'épaule droite ou le dos, associée à fièvre, nausées, vomissements et signe de Murphy positif. L'atteinte peut évoluer vers une péritonite secondaire ou une lithiase biliaire compliquée.",
+    "redFlags": [
+      "Douleur en quadrant supérieur droit persistante > 4 heures avec irradiation vers l'épaule droite",
+      "Fébricule ou fièvre > 38,3 °C associée à une leucocytose > 15 000/mm³",
+      "Signe de Murphy positif (douleur à la palpation du foie avec inspiration bloquée)",
+      "Douleur à la palpation du quadrant supérieur droit avec répercussion positive",
+      "Signe de Boas (douleur à la palpation du quadrant supérieur droit avec expiration prolongée)"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Tokyo 2018 pour la cholécystite aiguë",
+        "description": "Score de classification basé sur des critères cliniques, biologiques et radiologiques pour évaluer la gravité et guider le traitement.",
+        "criteria": [
+          "Critère I (Clinique) : Douleur en quadrant supérieur droit prolongée > 6 heures (+1)",
+          "Critère II (Clinique) : Fièvre > 37,8 °C ou frissons (+1)",
+          "Critère III (Biologique) : Leucocytose > 15 000/mm³ (+1)",
+          "Critère IV (Imagerie) : Épaississement de la paroi vésiculaire > 3 mm (+2)",
+          "Critère V (Imagerie) : Signe de sonde de T-tube (écho anéchoïque dans la lumière vésiculaire) (+2)"
+        ],
+        "interpretation": "Score total ≥ 4 points : cholécystite aiguë probable. Score ≥ 7 points : cholécystite aiguë confirmée. Score < 4 points : doute diagnostique nécessitant imagerie complémentaire."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal ciblé",
+        "steps": [
+          {
+            "action": "Palpation du quadrant supérieur droit avec recherche du signe de Murphy",
+            "interpretation": "Douleur à la palpation avec blocage de l'inspiration évoque une inflammation vésiculaire aiguë. Absence de signe de Murphy ne permet pas d'exclure le diagnostic."
+          },
+          {
+            "action": "Recherche de douleur à la répercussion du quadrant supérieur droit",
+            "interpretation": "Douleur à la répercussion suggère une péritonite secondaire ou une inflammation étendue. Absence de douleur ne permet pas d'exclure une cholécystite aiguë."
+          },
+          {
+            "action": "Examen des signes de gravité (tachycardie, hypotension, confusion)",
+            "interpretation": "Signes de gravité (tachycardie > 120 bpm, PA < 90/60 mmHg) indiquent une infection sévère ou une péritonite secondaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "NPO (interdiction de l'alimentation par voie orale) pour prévenir les vomissements",
+      "Hydratation intraveineuse avec solution saline isotonique (1-2 L/h) pour maintenir le volume circulant",
+      "Antibiothérapie empirique (ex: Céphalosporine de 3e génération + aminoside) en attente de cultures",
+      "Analgesie par morphine ou paracétamol pour contrôler la douleur",
+      "Préparation chirurgicale (cholécystectomie programmée dans les 72 heures) ou drainage percutané en cas de contre-indication chirurgicale"
+    ],
+    "differentialDiagnosis": [
+      "Colique hépatique (douleur intermittente, absence de fièvre)",
+      "Pancreatite aiguë (douleur épigastrique irradiant vers le dos, amylasémie/ lipasémie élevée)",
+      "Hépatite aiguë (douleur en quadrant supérieur droit avec ictère, transaminases élevées)"
+    ]
+  },
+  {
+    "name": "Thrombose veineuse profonde (TVP) aiguë",
+    "description": "Formation d'un thrombus dans les veines profondes (généralement des membres inférieurs) liée à la triade de Virchow (stase, lésion endothéliale, hypercoagulabilité). Présentation clinique : œdème unilatéral, douleur ou tendresse en face antérieure de la cuisse ou du mollet, signe de Homan positif (douleur à l'extension plantaire). Risque élevé d'embolie pulmonaire (EP) si non traité.",
+    "redFlags": [
+      "Œdème unilatéral soudain du membre inférieur avec douleur en face antérieure",
+      "Douleur à l'extension plantaire (signe de Homan) associée à une tension veineuse palpable",
+      "Témoignage de fièvre > 38 °C ou frissons avec antécédents de stase veineuse",
+      "Antécédents de TVP/embolie pulmonaire ou facteurs de risque (immobilisation, chirurgie, cancer)",
+      "Tension artérielle < 90/60 mmHg ou tachycardie > 120 bpm (signes de gravité)"
+    ],
+    "scores": [
+      {
+        "name": "Score de Wells pour la TVP",
+        "description": "Score prétest pour évaluer la probabilité clinique de TVP avant l'imagerie.",
+        "criteria": [
+          "Critère 1 : Altération de l'état général ou de l'état mental (+3)",
+          "Critère 2 : Altération de la mobilité ou immobilisation > 3 jours (+2)",
+          "Critère 3 : Œdème unilatéral (+2)",
+          "Critère 4 : Histoire de TVP/EP (+1,5)",
+          "Critère 5 : Cancer actif ou traitement anticoagulant (+1)"
+        ],
+        "interpretation": "Score ≥ 2 : probabilité clinique élevée de TVP. Score < 2 : probabilité clinique faible. L'imagerie (échographie Doppler) est recommandée dans tous les cas."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des membres inférieurs",
+        "steps": [
+          {
+            "action": "Comparaison visuelle et palpatoire des volumes des deux jambes",
+            "interpretation": "Œdème unilatéral asymétrique évoque une TVP. Œdème bilatéral suggère une insuffisance cardiaque ou rénale."
+          },
+          {
+            "action": "Palpation de la veine fémorale et poplitée pour rechercher une tension ou une douleur",
+            "interpretation": "Tension veineuse palpable ou douleur à la palpation évoque un thrombus localisé."
+          },
+          {
+            "action": "Test de Homan (extension plantaire active)",
+            "interpretation": "Douleur à l'extension plantaire suggère une TVP. Cependant, ce signe est peu spécifique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Anticoagulation immédiate par héparine non fractionnée (HNF) ou héparine de bas poids moléculaire (HBPM)",
+      "Compression veineuse par chaussettes élastiques de classe II pour prévenir les complications",
+      "Hospitalisation pour surveillance et évaluation de l'embolie pulmonaire (ECG, TEP thoracique si suspicion)",
+      "Éviter l'immobilisation prolongée (marche assistée si possible)",
+      "Préparation pour une thrombolyse ou une filtration de l'oreillette si embolie pulmonaire massive"
+    ],
+    "differentialDiagnosis": [
+      "Lymphœdème chronique (œdème bilatéral, absence de douleur aiguë)",
+      "Cellulite (rougeur, chaleur, douleur diffusée sans œdème asymétrique)",
+      "Cyste de Baker (douleur postérieure de la cuisse avec extension du genou)"
+    ]
+  },
+  {
+    "name": "Dissection aortique aiguë",
+    "description": "La dissection aortique aiguë est une pathologie vasculaire grave caractérisée par une lésion de la couche intime de l'aorte, permettant à la couche médiane de se déchirer et de se remplir de sang sous pression, créant une fausse lumière. Elle se présente souvent par une douleur thoracique soudaine, déchirante, irradiant vers le cou, le dos ou l'abdomen. Les complications incluent l'ischémie viscérale, la perte de connaissance, l'insuffisance aortique aiguë ou la rupture aortique. Les facteurs de risque incluent l'hypertension artérielle, l'anévrisme aortique préexistant et les syndromes de connective.",
+    "redFlags": [
+      "Douleur thoracique déchirante ou perçante soudaine, irradiant vers le cou ou le dos, persistant malgré le repos",
+      "Déficit pulsatile asymétrique entre les membres (ex: pouls radial absent au membre droit)",
+      "Signes neurologiques focaux (ex: hémiparésie, aphasie) évoquant une ischémie cérébrale",
+      "Crises de hypertension artérielle associées à une hypotension paradoxale (en cas de fuite aortique)",
+      "Signes de compression trachéobronchique (stridor, voix rauque) ou de syndrome de Horner (ptose palpebrale, myosis, anhidrose)"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Stanford",
+        "description": "Classe les dissections aortiques selon leur localisation et leur extension, déterminant la stratégie thérapeutique (chirurgicale vs médicale).",
+        "criteria": [
+          "Type A : Dissection impliquant l'arche aortique ou la portion ascendante (nécessite chirurgie d'urgence)",
+          "Type B : Dissection limitée à la portion descendante de l'aorte thoracique (traitement médical initial)",
+          "Critère de Hunt : Extension vers l'abdomen (risque de dissection viscérale)",
+          "Critère de DeBakey : Classification plus détaillée (Type I : dissection ascendante et descendante ; Type II : dissection limitée à l'ascendante ; Type III : dissection descendante)",
+          "Critère de Hunt : Présence de signes d'ischémie viscérale ou membraire (ex: douleur abdominale, perte de pouls)"
+        ],
+        "interpretation": "Le type A nécessite une intervention chirurgicale d'urgence. Le type B est généralement traité médicalement avec contrôle strict de la pression artérielle et de la fréquence cardiaque, avec évaluation chirurgicale en cas de complications."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et neurologique ciblé",
+        "steps": [
+          {
+            "action": "Palpation des pouls périphériques (radial, fémoral, poplité) pour rechercher des asymétries ou des pouls absents",
+            "interpretation": "Une asymétrie pulsatile évoque une dissection impliquant l'arche aortique ou les vaisseaux principaux (ex: artère sous-clavière)."
+          },
+          {
+            "action": "Auscultation cardiaque pour rechercher un souffle d'insuffisance aortique (souffle systolique éjacent au 2e espace intercostal)",
+            "interpretation": "Un souffle d'insuffisance aortique aiguë suggère une dissection impliquant la valve aortique."
+          },
+          {
+            "action": "Examen neurologique complet (force, sensibilité, réflexes, coordination)",
+            "interpretation": "Signes neurologiques focaux (ex: hémiparésie, aphasie) évoquent une ischémie cérébrale secondaire à embolie ou compression."
+          },
+          {
+            "action": "Examen abdominal pour rechercher une douleur, une distension ou des signes de péricardite (ex: douleur irradiant vers l'épaule gauche)",
+            "interpretation": "Douleur abdominale associée à une hypotension suggère une fuite aortique ou une dissection viscérale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Contrôle strict de la pression artérielle (cible < 120 mmHg) avec labétalol ou nicardipine IV",
+      "Réduction de la fréquence cardiaque (cible 60-80 bpm) pour limiter le stress pariétal",
+      "Douleur aiguë : morphine IV (0,1 mg/kg) ou fentanyl (2-4 µg/kg) pour prévenir l'hypertension artérielle réflexe",
+      "Imagerie de référence (échographie cardiaque ou scanner thoracique avec contraste) pour confirmation diagnostique",
+      "Préparation chirurgicale immédiate pour les dissections de type A ou avec complications (ischémie, fuite, insuffisance aortique)"
+    ],
+    "differentialDiagnosis": [
+      "Infarctus du myocarde (douleur constrictive, absence de déficit pulsatile asymétrique)",
+      "Embolie pulmonaire (dyspnée, tachycardie, absence de douleur irradiant vers le dos)",
+      "Syndrome de Tietze (douleur thoracique localisée, absence de signes vasculaires focaux)",
+      "Péricardite aiguë (douleur irradiant vers l'épaule gauche, souffle de galop, absence de déficit pulsatile)"
+    ]
+  },
+  {
+    "name": "Pancréatite aiguë sévère",
+    "description": "La pancréatite aiguë sévère est une inflammation aiguë du pancréas, souvent liée à des calculs biliaires ou à l'alcoolisme. Elle se caractérise par une douleur épigastrique violente irradiant vers le dos, associée à des signes de choc, une insuffisance rénale aiguë ou une insuffisance respiratoire. La physiopathologie repose sur l'activation prématurée des enzymes pancréatiques, entraînant une autodigestion du parenchyme et une réponse inflammatoire systémique.",
+    "redFlags": [
+      "Douleur épigastrique perçante, irradiant vers le dos, persistant malgré les antalgiques",
+      "Signe de Cullen (érythème périnéal) ou de Grey-Turner (érythème flancs) évoquant une hémorragie pancréatique",
+      "Fièvre > 38,5°C associée à une leucocytose > 15 000/mm³",
+      "Hypotension artérielle persistante (systolique < 90 mmHg) ou tachycardie > 120 bpm",
+      "Insuffisance rénale aiguë (créatinine > 1,5 mg/dL) ou insuffisance respiratoire (PaO2 < 60 mmHg)"
+    ],
+    "scores": [
+      {
+        "name": "Score de Ranson",
+        "description": "Score pronostique évaluant la gravité de la pancréatite aiguë sur la base de critères cliniques et biologiques.",
+        "criteria": [
+          "Age > 55 ans (+1)",
+          "Leucocytose > 16 000/mm³ (+1)",
+          "Hypocalcémie < 2 mmol/L (+1)",
+          "Hypotension artérielle systolique < 90 mmHg (+1)",
+          "Insuffisance rénale (créatinine > 1,5 mg/dL) (+1)",
+          "Hypoxémie (PaO2 < 60 mmHg) (+1)",
+          "Acidose métabolique (pH < 7,3) (+1)",
+          "Hypothermie < 36,5°C ou hyperthermie > 38°C (+1)",
+          "Hypoglycémie < 3,3 mmol/L (+1)",
+          "Hypotension artérielle diastolique < 60 mmHg (+1)"
+        ],
+        "interpretation": "Un score ≥ 3 points à 48 heures évoque une pancréatite sévère avec risque élevé de complications. Un score ≥ 8 points est associé à un risque de mortalité > 50%."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal et général ciblé",
+        "steps": [
+          {
+            "action": "Palpation abdominale pour rechercher une douleur à la percussion, une défense musculaire ou un signe de Blumberg",
+            "interpretation": "Douleur à la percussion épigastrique associée à une défense musculaire évoque une pancréatite aiguë avec risque de nécrose ou de pseudokyste."
+          },
+          {
+            "action": "Examen des signes de Cullen et Grey-Turner",
+            "interpretation": "Présence de ces signes évoque une hémorragie pancréatique ou une nécrose étendue."
+          },
+          {
+            "action": "Mesure de la tension artérielle et de la fréquence cardiaque",
+            "interpretation": "Hypotension persistante ou tachycardie > 120 bpm suggère un état de choc hypovolémique ou septique."
+          },
+          {
+            "action": "Examen des urines pour rechercher des calculs biliaires (échographie abdominale si disponible)",
+            "interpretation": "Calculs biliaires sont une cause fréquente de pancréatite aiguë."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "NPO (interdiction de l'alimentation) pour réduire la sécrétion pancréatique",
+      "Réanimation intraveineuse avec perfusion de 250-500 mL/h de solution saline pour prévenir l'hypovolémie",
+      "Antalgiques : morphine IV (0,1 mg/kg) ou fentanyl (2-4 µg/kg) pour contrôler la douleur",
+      "Prévention des complications : prophylaxie anti-thrombo-embolique (héparine de bas poids moléculaire), prévention des ulcères gastriques (PPI)",
+      "Imagerie de référence (échographie abdominale ou scanner avec contraste) pour évaluer la nécrose pancréatique"
+    ],
+    "differentialDiagnosis": [
+      "Ulcère gastrique perforé (douleur localisée, absence de fièvre, présence de signe de Blumberg)",
+      "Cholecystite aiguë (douleur sous-costale droite, fièvre, leucocytose)",
+      "Perforation intestinale (douleur diffusée, absence de fièvre initiale)",
+      "Insuffisance rénale aiguë sans cause évidente (absence de douleur abdominale)"
+    ]
+  },
+  {
+    "name": "Hypertension artérielle aiguë sévère",
+    "description": "L'hypertension artérielle aiguë sévère est définie par une élévation brusque de la pression artérielle systolique (HAS) ou diastolique (HAD) associée à des lésions d'organe cible (LOCT) ou un risque immédiat de complications. La physiopathologie repose sur une vasodilatation perpétuelle des vaisseaux cérébraux, rénaux ou oculaires, entraînant une ischémie tissulaire. La présentation clinique typique inclut une céphalée pulsatile, une confusion, une vision trouble, une dyspnée, une douleur thoracique ou des signes neurologiques focaux.",
+    "redFlags": [
+      "Pression artérielle systolique > 180 mmHg ou diastolique > 120 mmHg avec symptomatologie associée",
+      "Céphalée pulsatile associée à vomissements et/ou troubles visuels",
+      "Signes neurologiques focaux (dysarthrie, perte de connaissance, hémiparésie)",
+      "Dyspnée aiguë avec râles crépitants ou galop B3",
+      "Signes d'ischémie rénale (oligurie, créatininémie élevée)"
+    ],
+    "scores": [
+      {
+        "name": "Score de risque de lésions d'organe cible (HAS)",
+        "description": "Évalue la gravité des lésions d'organe cible et le risque de complications à court terme.",
+        "criteria": [
+          "HAS > 180 mmHg ou HAD > 120 mmHg (+1 point)",
+          "Signes neurologiques focaux (+2 points)",
+          "Dyspnée ou râles crépitants (+1 point)",
+          "Créatininémie > 1,5 × valeur normale (+1 point)",
+          "Protéinurie > 1 g/24h (+1 point)"
+        ],
+        "interpretation": "Score total ≥ 3 points : risque élevé de complications, nécessite une gestion urgente. Score < 3 points : surveillance étroite avec ajustement thérapeutique."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et oculaire ciblé",
+        "steps": [
+          {
+            "action": "Palpation des tempes et inspection des globes oculaires pour des signes de papilledème",
+            "interpretation": "Un papilledème évoque une hypertension intracrânienne secondaire à une crise hypertensive cérébrale."
+          },
+          {
+            "action": "Évaluation de la force musculaire et de la coordination des membres",
+            "interpretation": "Une hémiparésie ou une ataxie suggère une ischémie cérébrale secondaire à l'hypertension."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Initiation d'une perfusion lente de nifédipine ou de labétalol pour réduire la HAS de 25 % en 1 à 2 heures",
+      "Position semi-assise pour réduire la charge prédébitale",
+      "Évaluation de la fonction rénale et de l'électrolytémie avant tout traitement",
+      "Administration d'antihypertenseurs oraux (ex: captopril) en cas de contre-indication à la voie intraveineuse",
+      "Surveillance de la pression artérielle toutes les 15 minutes pendant la phase initiale"
+    ],
+    "differentialDiagnosis": [
+      "Dissection aortique aiguë (absence de lésions d'organe cible, douleur thoracique irradiant vers le dos)",
+      "Crise d'asthme aiguë (dyspnée associée à râles sibilants)",
+      "Hypoglycémie sévère (confusion avec hypoglycémie < 30 mg/dL)"
+    ]
+  },
+  {
+    "name": "Syndrome de Cushing aigu",
+    "description": "Le syndrome de Cushing aigu est une hypercorticisme secondaire à une exposition exogène ou endogène prolongée à des corticostéroïdes, entraînant une décompensation métabolique et une insuffisance corticosurrénale secondaire. La physiopathologie implique une suppression de l'axe hypothalamo-hypophyso-surrénalien (HHS) avec une résistance à l'insuline, une lipolyse accélérée et une protéolyse. La présentation clinique typique inclut une perte de poids, une asthénie, une hypokaliémie, une hypertension artérielle et des signes cutanés (stries, acné).",
+    "redFlags": [
+      "Hypokaliémie sévère (< 2,5 mmol/L) associée à une alcalose métabolique",
+      "Hypertension artérielle résistante au traitement",
+      "Asthénie musculaire proximale avec myopathie",
+      "Signes d'insuffisance corticosurrénale (nausées, hypoglycémie, hypotension orthostatique)",
+      "Perte de poids inexpliquée > 10 % du poids corporel en < 3 mois"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité du syndrome de Cushing",
+        "description": "Évalue la gravité des complications métaboliques et la réponse au traitement.",
+        "criteria": [
+          "Hypokaliémie < 2,5 mmol/L (+2 points)",
+          "Hypertension artérielle > 160/100 mmHg (+1 point)",
+          "Insuffisance rénale (créatininémie > 1,5 × normale) (+1 point)",
+          "Hypoglycémie < 40 mg/dL (+2 points)",
+          "Signes d'insuffisance corticosurrénale (+2 points)"
+        ],
+        "interpretation": "Score total ≥ 5 points : risque élevé de complications, nécessite une hospitalisation. Score < 5 points : surveillance ambulatoire possible."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cutané et musculaire ciblé",
+        "steps": [
+          {
+            "action": "Inspection des stries cutanées et des lésions de la peau (acné, ecchymoses)",
+            "interpretation": "Les stries violacées et les ecchymoses suggèrent une fragilité capillaire liée à l'excès de cortisol."
+          },
+          {
+            "action": "Test de force musculaire proximale (élever les bras et les jambes)",
+            "interpretation": "Une faiblesse musculaire proximale évoque une myopathie cortisonique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Arrêt immédiat des corticostéroïdes exogènes avec substitution par de la cortisone ou de la prednisone",
+      "Correction de l'hypokaliémie par voie intraveineuse (KCl 20-40 mEq/h selon la gravité)",
+      "Initiation d'une thérapie antihypertensive (ex: bêta-bloquants, inhibiteurs de l'enzyme de conversion)",
+      "Surveillance étroite de la glycémie avec correction de l'hypoglycémie si nécessaire",
+      "Évaluation de la fonction corticosurrénale par dosage de la cortisolémie et de l'ACTH"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance rénale aiguë (hypokaliémie sans signes d'excès de cortisol)",
+      "Diabète insipide néphrogénique (polyurie sans hypokaliémie)",
+      "Myopathie dégénérative (faiblesse musculaire sans stries cutanées)"
     ]
   }
 ]

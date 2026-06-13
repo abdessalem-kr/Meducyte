@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:meducyte_app/core/themes/quiz_theme_extension.dart';
 import 'package:collection/collection.dart';
 import 'package:meducyte_app/shared/widgets/subscription_gate.dart';
@@ -29,12 +30,14 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
   QuizCorrectionMode _correctionMode = QuizCorrectionMode.allOrNothing;
   int? _selectedTimeLimit;
   int _selectedQuestionCount = 20;
+  late TextEditingController _customQuestionCountController;
 
   @override
   void initState() {
     super.initState();
     _showClinicalOnly = false; //Default to Theoretical
     _isExplore = widget.isExplore;
+    _customQuestionCountController = TextEditingController(text: "30");
 
     //Initialize year from LearnPage selection
     if (widget.initialYear != null) {
@@ -46,17 +49,38 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
   }
 
   @override
+  void dispose() {
+    _customQuestionCountController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final quizTheme = Theme.of(context).extension<QuizThemeExtension>()!;
     final l10n = AppLocalizations.of(context)!;
     final primaryColor = Theme.of(context).primaryColor;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isSubscriber =
-        ref.watch(authControllerProvider).value?.isSubscriber ?? false;
+    final user = ref.watch(authControllerProvider).value;
+    final isSubscriber = user?.isSubscriber ?? false;
+    final is1to6YearUser = user != null && user.year >= 1 && user.year <= 6;
+
+    if (is1to6YearUser) {
+      if (_selectedYears.isEmpty || _selectedYears.length != 1 || _selectedYears.first != user.year) {
+        _selectedYears = [user.year];
+      }
+    }
 
     final yearsAsync = ref.watch(quizYearsProvider);
     final modulesAsync = ref.watch(quizModulesProvider);
-    final sourcesAsync = ref.watch(quizSourcesProvider);
+    final sourcesAsync = ref.watch(
+      quizSourcesProvider(
+        QuizSourcesParams(
+          years: _selectedYears,
+          moduleIds: _selectedModuleIds,
+          lessonIds: _selectedLessonIds,
+        ),
+      ),
+    );
     final lessonsAsync = _selectedModuleIds.isNotEmpty
         ? ref.watch(modulesLessonsProvider(_selectedModuleIds))
         : const AsyncValue<List<LearnLesson>>.data([]);
@@ -108,7 +132,10 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                       const SizedBox(height: 32),
 
                       //Configuration Dropdowns
-                      yearsAsync.when(
+                      if (is1to6YearUser)
+                        const SizedBox.shrink()
+                      else
+                        yearsAsync.when(
                         data: (years) {
                           final user = ref.watch(authControllerProvider).value;
                           //Support initializing from int
@@ -117,6 +144,11 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                             if (y != null) {
                               _selectedYears = [y];
                             }
+                          }
+
+                          final hasResidencyPremium = user?.hasResidencyPremium ?? false;
+                          if (!hasResidencyPremium && _selectedYears.length > 1) {
+                            _selectedYears = [_selectedYears.first];
                           }
 
                           String formatYear(int y) {
@@ -152,10 +184,21 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                             },
                             quizTheme: quizTheme,
                             l10n: l10n,
+                            isSingleSelect: !hasResidencyPremium,
                           );
                         },
-                        loading: () =>
-                            const Center(child: CircularProgressIndicator()),
+                        loading: () => Skeletonizer(
+                          enabled: true,
+                          child: _buildMultiSelectSection(
+                            label: l10n.studyYear,
+                            icon: Iconsax.calendar,
+                            items: [l10n.firstYearOrdinal, l10n.otherYearOrdinal('2'), l10n.otherYearOrdinal('3')],
+                            selectedItems: const [],
+                            onChanged: (_) {},
+                            quizTheme: quizTheme,
+                            l10n: l10n,
+                          ),
+                        ),
                         error: (err, _) => Text('Error: $err'),
                       ),
 
@@ -169,9 +212,6 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                                   const SizedBox(height: 24),
                                   modulesAsync.when(
                                     data: (modules) {
-                                      //Filter modules:
-                                      //1.For Year 2/3:Show only"child"modules(actual subjects).
-                                      //2.For others:Show top-level modules.
                                       final filteredModules = modules.where((
                                         m,
                                       ) {
@@ -252,10 +292,16 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                                         maxItems: 10,
                                       );
                                     },
-                                    loading: () => const SizedBox(
-                                      height: 56,
-                                      child: Center(
-                                        child: CircularProgressIndicator(),
+                                    loading: () => Skeletonizer(
+                                      enabled: true,
+                                      child: _buildMultiSelectSection(
+                                        label: l10n.module,
+                                        icon: Iconsax.book,
+                                        items: [l10n.loadingModuleA, l10n.loadingModuleB, l10n.loadingModuleC],
+                                        selectedItems: const [],
+                                        onChanged: (_) {},
+                                        quizTheme: quizTheme,
+                                        l10n: l10n,
                                       ),
                                     ),
                                     error: (err, _) => Padding(
@@ -263,7 +309,7 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                                         vertical: 8,
                                       ),
                                       child: Text(
-                                        "Erreur Modules: $err",
+                                        l10n.modulesError(err.toString()),
                                         style: const TextStyle(
                                           color: Colors.red,
                                           fontSize: 12,
@@ -319,10 +365,16 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                                       quizTheme: quizTheme,
                                       l10n: l10n,
                                     ),
-                                    loading: () => const SizedBox(
-                                      height: 56,
-                                      child: Center(
-                                        child: CircularProgressIndicator(),
+                                    loading: () => Skeletonizer(
+                                      enabled: true,
+                                      child: _buildMultiSelectSection(
+                                        label: l10n.lessons,
+                                        icon: Iconsax.document_text,
+                                        items: [l10n.loadingLessonA, l10n.loadingLessonB, l10n.loadingLessonC],
+                                        selectedItems: const [],
+                                        onChanged: (_) {},
+                                        quizTheme: quizTheme,
+                                        l10n: l10n,
                                       ),
                                     ),
                                     error: (err, _) => Padding(
@@ -330,7 +382,7 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                                         vertical: 8,
                                       ),
                                       child: Text(
-                                        "Erreur Cours: $err",
+                                        l10n.lessonsError(err.toString()),
                                         style: const TextStyle(
                                           color: Colors.red,
                                           fontSize: 12,
@@ -364,10 +416,17 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                                       l10n: l10n,
                                       isSingleSelect: !widget.isPractice,
                                     ),
-                                    loading: () => const SizedBox(
-                                      height: 56,
-                                      child: Center(
-                                        child: CircularProgressIndicator(),
+                                    loading: () => Skeletonizer(
+                                      enabled: true,
+                                      child: _buildMultiSelectSection(
+                                        label: l10n.source,
+                                        icon: Iconsax.category,
+                                        items: [l10n.loadingSourceA, l10n.loadingSourceB],
+                                        selectedItems: const [],
+                                        onChanged: (_) {},
+                                        quizTheme: quizTheme,
+                                        l10n: l10n,
+                                        isSingleSelect: !widget.isPractice,
                                       ),
                                     ),
                                     error: (err, _) => const SizedBox(),
@@ -379,8 +438,8 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
 
                       if (widget.isPractice) ...[
                         _buildSwitchSection(
-                          label: "Mode Révision",
-                          subtitle: "Afficher les réponses directement",
+                          label: l10n.revisionMode,
+                          subtitle: l10n.showAnswersDirectly,
                           value: _isExplore,
                           onChanged: (val) {
                             setState(() {
@@ -393,17 +452,17 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                         const SizedBox(height: 24),
                         if (!_isExplore)
                           _buildDropdownSection(
-                            label: "Mode de correction",
+                            label: l10n.correctionMode,
                             icon: Iconsax.edit,
-                            items: ["Toute ou rien", "Points partiels"],
+                            items: [l10n.allOrNothing, l10n.partialPoints],
                             value:
                                 _correctionMode ==
                                     QuizCorrectionMode.allOrNothing
-                                ? "Toute ou rien"
-                                : "Points partiels",
+                                ? l10n.allOrNothing
+                                : l10n.partialPoints,
                             onChanged: (val) {
                               setState(() {
-                                _correctionMode = val == "Toute ou rien"
+                                _correctionMode = val == l10n.allOrNothing
                                     ? QuizCorrectionMode.allOrNothing
                                     : QuizCorrectionMode.partial;
                               });
@@ -413,26 +472,26 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                           ),
                       ] else
                         _buildDropdownSection(
-                          label: "Durée de l'examen",
+                          label: l10n.examDuration,
                           icon: Iconsax.timer_1,
                           items: [
-                            "Aucune",
-                            "30 min",
-                            "60 min",
-                            "90 min",
-                            "120 min",
-                            "180 min",
+                            l10n.durationNone,
+                            l10n.durationMinutes('30'),
+                            l10n.durationMinutes('60'),
+                            l10n.durationMinutes('90'),
+                            l10n.durationMinutes('120'),
+                            l10n.durationMinutes('180'),
                           ],
                           value: _selectedTimeLimit == null
-                              ? "Aucune"
-                              : "$_selectedTimeLimit min",
+                              ? l10n.durationNone
+                              : l10n.durationMinutes(_selectedTimeLimit.toString()),
                           onChanged: (val) {
                             setState(() {
-                              if (val == "Aucune") {
+                              if (val == l10n.durationNone) {
                                 _selectedTimeLimit = null;
                               } else {
-                                _selectedTimeLimit = int.parse(
-                                  val!.replaceAll("min", ""),
+                                _selectedTimeLimit = int.tryParse(
+                                  val!.replaceAll(RegExp(r'[^0-9]'), ''),
                                 );
                               }
                             });
@@ -441,16 +500,25 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                           l10n: l10n,
                         ),
                       _buildDropdownSection(
-                        label: "Nombre de questions",
+                        label: l10n.questionCount,
                         icon: Iconsax.document_text,
-                        items: ["10", "20", "50", "100", "Toutes"],
-                        value: _selectedQuestionCount == -1
-                            ? "Toutes"
-                            : _selectedQuestionCount.toString(),
+                        items: ['10', '20', '50', '100', l10n.questionCountCustom, l10n.questionCountAll],
+                        value: (_selectedQuestionCount != 10 &&
+                                _selectedQuestionCount != 20 &&
+                                _selectedQuestionCount != 50 &&
+                                _selectedQuestionCount != 100 &&
+                                _selectedQuestionCount != -1)
+                            ? l10n.questionCountCustom
+                            : _selectedQuestionCount == -1
+                                ? l10n.questionCountAll
+                                : _selectedQuestionCount.toString(),
                         onChanged: (val) {
                           setState(() {
-                            if (val == "Toutes") {
-                              _selectedQuestionCount = -1; // -1 for"All"
+                            if (val == l10n.questionCountAll) {
+                              _selectedQuestionCount = -1;
+                            } else if (val == l10n.questionCountCustom) {
+                              _selectedQuestionCount = 30;
+                              _customQuestionCountController.text = '30';
                             } else {
                               _selectedQuestionCount = int.parse(val!);
                             }
@@ -459,6 +527,67 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                         quizTheme: quizTheme,
                         l10n: l10n,
                       ),
+                      if (_selectedQuestionCount != 10 &&
+                          _selectedQuestionCount != 20 &&
+                          _selectedQuestionCount != 50 &&
+                          _selectedQuestionCount != 100 &&
+                          _selectedQuestionCount != -1) ...[
+                        const SizedBox(height: 12),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: quizTheme.cardColor,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: quizTheme.secondaryTextColor.withOpacity(0.1),
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Iconsax.edit,
+                                color: quizTheme.primaryTextColor,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 12),
+                              Text(
+                                l10n.preciseNumber,
+                                style: TextStyle(
+                                  color: quizTheme.secondaryTextColor,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: TextField(
+                                  controller: _customQuestionCountController,
+                                  keyboardType: TextInputType.number,
+                                  style: TextStyle(
+                                    color: quizTheme.primaryTextColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: l10n.enterNumber,
+                                    hintStyle: TextStyle(
+                                      color: quizTheme.secondaryTextColor.withOpacity(0.5),
+                                    ),
+                                  ),
+                                  onChanged: (text) {
+                                    final parsed = int.tryParse(text);
+                                    if (parsed != null && parsed > 0) {
+                                      setState(() {
+                                        _selectedQuestionCount = parsed;
+                                      });
+                                    }
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                       const SizedBox(height: 48), //Bottom padding
                     ],
                   ),
@@ -515,7 +644,7 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                                     ? _showClinicalOnly
                                     : null,
                                 limit: _selectedQuestionCount == -1
-                                    ? 100 //Cap"All"at 100 at once as requested
+                                    ? -1
                                     : _selectedQuestionCount,
                               );
 
@@ -553,7 +682,7 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            "Free Trial:10 questions per session",
+                            l10n.freeTrialLimitDesc,
                             style: TextStyle(
                               fontSize: 12,
                               color: quizTheme.secondaryTextColor,
@@ -963,12 +1092,10 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                                 } else {
                                   if (maxItems != null &&
                                       items.length > maxItems) {
-                                    //If too many,maybe just clear or toast.
-                                    //For now,let's just not allow"Select All"if over limit
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          "Maximum$maxItems items allowed",
+                                          l10n.maximumItemsAllowed(maxItems.toString()),
                                         ),
                                         behavior: SnackBarBehavior.floating,
                                       ),
@@ -1022,6 +1149,69 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                       },
                     ),
                   ),
+
+                  if (label == l10n.studyYear && !(ref.read(authControllerProvider).value?.hasResidencyPremium ?? false)) ...[
+                    const SizedBox(height: 12),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SubscriptionScreen(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 24),
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Colors.amber,
+                              Colors.orange,
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.amber.withOpacity(0.3),
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Iconsax.crown,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                l10n.upgradeToResidencyToUnlockYears,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                              size: 12,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+
 
                   //Selected Items Chips
                   if (selectedItems.isNotEmpty)
@@ -1159,6 +1349,7 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
             setModalState,
             onChanged,
             quizTheme,
+            l10n,
             maxItems: maxItems,
           );
         },
@@ -1187,6 +1378,7 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                     setModalState,
                     onChanged,
                     quizTheme,
+                    l10n,
                     maxItems: maxItems,
                   ),
                 )
@@ -1206,7 +1398,7 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
               ),
             ),
             subtitle: Text(
-              "${modules.length}modules",
+              l10n.modulesCount(modules.length.toString()),
               style: TextStyle(
                 color: quizTheme.secondaryTextColor,
                 fontSize: 12,
@@ -1224,6 +1416,7 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
                     setModalState,
                     onChanged,
                     quizTheme,
+                    l10n,
                     maxItems: maxItems,
                   ),
                 )
@@ -1240,7 +1433,8 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
     bool isSingleSelect,
     StateSetter setModalState,
     ValueChanged<List<String>> onChanged,
-    QuizThemeExtension quizTheme, {
+    QuizThemeExtension quizTheme,
+    AppLocalizations l10n, {
     int? maxItems,
   }) {
     final isSelected = selectedItems.contains(item);
@@ -1262,7 +1456,9 @@ class _QuizTrainingScreenState extends ConsumerState<QuizTrainingScreen> {
               if (maxItems != null && selectedItems.length >= maxItems) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text("Maximum$maxItems items allowed"),
+                    content: Text(
+                      l10n.maximumItemsAllowed(maxItems.toString()),
+                    ),
                     behavior: SnackBarBehavior.floating,
                     duration: const Duration(seconds: 1),
                   ),

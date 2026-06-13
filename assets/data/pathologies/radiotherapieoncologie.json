@@ -1,0 +1,229 @@
+[
+  {
+    "name": "Glioblastome multiforme",
+    "description": "Tumeur cérébrale maligne de grade IV, issue d'une transformation anaplasique de gliome de bas grade ou de novo. Caractérisé par une croissance infiltrante, une angiogenèse intense et une nécrose centrale. Présentation clinique typique : céphalées progressives, vomissements, déficits neurologiques focaux (paralysie faciale, ataxie), crises épileptiques, ou troubles de la personnalité. L'IRM cérébrale montre une lésion hypodense avec nécrose centrale et un anneau de rehaussement périphérique après injection de gadolinium.",
+    "redFlags": [
+      "Céphalées matinales associées à des vomissements et une perte de conscience progressive survenant en moins de 2 semaines",
+      "Crises épileptiques généralisées inédites chez un patient sans antécédent épileptique",
+      "Déficit visuel homonyme associé à une ataxie bilatérale",
+      "Perte de mémoire récente avec agressivité soudaine et changements de comportement",
+      "Signes de compression cérébrale (somnolence, perte de la réaction pupillaire)"
+    ],
+    "scores": [
+      {
+        "name": "Classification de la Prognostic Recursive Partitioning Analysis (RPA)",
+        "description": "Classe les patients en groupes de risque pronostique selon l'âge, la localisation tumorale et le statut de résection chirurgicale.",
+        "criteria": [
+          "Classe I: Patients < 50 ans avec tumeur supratentorielle et résection complète (+0)",
+          "Classe II: Patients < 50 ans avec tumeur infratentorielle ou résection incomplète (+1)",
+          "Classe III: Patients 50-69 ans avec tumeur supratentorielle et résection incomplète (+2)",
+          "Classe IV: Patients ≥ 70 ans avec tumeur supratentorielle et résection incomplète (+3)"
+        ],
+        "interpretation": "La classe III et IV indiquent un pronostic plus sombre avec une survie médiane < 12 mois, nécessitant une intensification de la radiothérapie associée à la chimiothérapie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique complet et imagerie cérébrale",
+        "steps": [
+          {
+            "action": "Évaluation du niveau de conscience selon l'échelle de Glasgow",
+            "interpretation": "Une diminution du score (< 13) évoque une hypertension intracrânienne secondaire à l'œdème tumoral ou à l'hydrocéphale obstructif."
+          },
+          {
+            "action": "Examen des fonctions visuelles (acuité, champ visuel, réaction pupillaire)",
+            "interpretation": "Un champ visuel homonyme ou une mydriase asymétrique suggère une compression du chiasma ou du nerf optique."
+          },
+          {
+            "action": "Test de coordination (test de Romberg, déambulation sur la pointe des pieds)",
+            "interpretation": "Des signes d'ataxie bilatérale ou une ataxie cérébelleuse isolée orientent vers une localisation cérébelleuse."
+          },
+          {
+            "action": "Imagerie par résonance magnétique cérébrale avec injection de gadolinium",
+            "interpretation": "Un anneau de rehaussement périphérique avec nécrose centrale est typique du glioblastome multiforme."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Craniotomie exploratrice pour biopsie ou décompression chirurgicale en cas de signes de compression cérébrale",
+      "Radiothérapie externe fractionnée (60-70 Gy en 30 séances) avec concomitance de temozolomide",
+      "Administration d'anti-œdémateux (dexaméthasone 4 mg toutes les 6 heures) pour réduire l'œdème tumoral",
+      "Prise en charge des crises épileptiques avec levetiracétam ou lénétidine",
+      "Surveillance neurologique étroite avec TDM cérébrale en cas de détérioration clinique"
+    ],
+    "differentialDiagnosis": [
+      "Méningiome (lésion extra-axiale avec rehaussement en coquille d'œuf)",
+      "Abscès cérébral (fièvre, leucocytose, et rehaussement en anneau sans nécrose centrale)",
+      "Lymphome cérébral primaire (rehaussement homogène sans nécrose, chez les patients immunodéprimés)"
+    ]
+  },
+  {
+    "name": "Carcinome épidermoïde du rectum localement avancé",
+    "description": "Adénocarcinome du rectum inférieur (< 12 cm du périnée) avec invasion du péritoine réctal ou des vaisseaux mésorectaux. Présentation clinique : saignement rectal, constipation, mélange sang/sel, ou masse palpable au toucher rectal. L'imagerie (IRM pelvienne) montre une tumeur infiltrante avec épaississement pariétal > 10 mm et envahissement des plans profonds.",
+    "redFlags": [
+      "Douleur rectale constante associée à une constipation réfractaire",
+      "Perte de poids non expliquée > 10 % du poids corporel en 6 mois",
+      "Masse palpable fixe au toucher rectal avec envahissement du sphincter anal",
+      "Liquéfaction rectale avec mélange sang/sel persistant",
+      "Signes de métastase hépatique (ictère, ascite, ou douleur épigastrique)"
+    ],
+    "scores": [
+      {
+        "name": "Classification TNM (7e édition)",
+        "description": "Étage la tumeur selon l'envahissement local (T), les ganglions lymphatiques (N) et les métastases (M).",
+        "criteria": [
+          "T3: Invasion du péritoine réctal ou des vaisseaux mésorectaux",
+          "N1: 1 à 3 ganglions lymphatiques métastatiques",
+          "M1: Métastase à distance (foie, poumon, ou os)"
+        ],
+        "interpretation": "Les stades T3-N1-M0 justifient une chimioradiothérapie néoadjuvante (50-50,4 Gy + 5-FU) avant chirurgie totale."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen rectal et imagerie pelvienne",
+        "steps": [
+          {
+            "action": "Toucher rectal digital avec évaluation de la mobilité tumorale",
+            "interpretation": "Une tumeur fixe au toucher évoque une invasion du péritoine ou des structures adjacentes."
+          },
+          {
+            "action": "Cytologie rectale et prélèvement biopsique",
+            "interpretation": "La présence de cellules en anneau de corne confirme le diagnostic de carcinome épidermoïde."
+          },
+          {
+            "action": "IRM pelvienne avec séquences T2 et diffusion",
+            "interpretation": "Un épaississement pariétal > 10 mm avec envahissement des plans profonds est typique d'un stade T3."
+          },
+          {
+            "action": "Échographie endorectale pour évaluer l'envahissement du sphincter anal",
+            "interpretation": "Une perte de la couche musculaire externe indique une invasion du sphincter."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Chimioradiothérapie néoadjuvante (50,4 Gy en 28 séances + 5-FU ou capecitabine) pour réduire la tumeur",
+      "Insertion de sonde urinaire à demeure en cas d'obstruction urinaire secondaire à compression",
+      "Préparation chirurgicale (proctocôlonectomie totale ou ablation sphinctérienne) après réponse tumorale",
+      "Nutrition parentérale totale en cas de sténose rectale sévère",
+      "Surveillance hépatique et thoracique par TDM pour exclure les métastases"
+    ],
+    "differentialDiagnosis": [
+      "Hémorragie rectale secondaire à diverticule (absence de masse palpable et présence de sang frais)",
+      "Rectocolite ulcéro-hémorragique (symptômes chroniques avec mélange sang/sel et absence de tumeur palpable)",
+      "Tumeur mésenchymateuse du rectum (lésion hypodense sur IRM sans invasion pariétale)"
+    ]
+  },
+  {
+    "name": "Lymphome de Hodgkin classique",
+    "description": "Tumeur maligne des ganglions lymphatiques caractérisée par la présence de cellules de Reed-Sternberg, des cellules géantes binucléées ou multinucléées. La physiopathologie repose sur une transformation monoclonale de lymphocytes B, associée à une réponse immunitaire réactive. Présentation clinique typique : adénopathies cervicales ou axillaires indolores, fièvre intermittente, sueurs nocturnes, perte de poids (>10 %) et prurit généralisé. Les formes avancées peuvent être compliquées d'insuffisance rénale secondaire à une amylose ou d'embolies pulmonaires.",
+    "redFlags": [
+      "Adénopathies cervicales dures, non douloureuses, fixées aux plans profonds avec élargissement progressif",
+      "Fièvre de type pelécan (38-39 °C) survenant le soir avec normalisation matinale",
+      "Perte de poids involontaire >10 % du poids corporel en 6 mois",
+      "Prurit généralisé résistant aux antihistaminiques",
+      "Syndrome d'effet de massette (enflure des membres inférieurs avec œdème des jambes) en cas d'obstruction lymphatique"
+    ],
+    "scores": [
+      {
+        "name": "Classification d'Ann Arbor",
+        "description": "Système de stade clinique basé sur l'extension ganglionnaire et les signes systémiques. Prédit la réponse au traitement et la survie globale.",
+        "criteria": [
+          "Stade I : Involvement d'un seul groupe ganglionnaire (+0 point)",
+          "Stade II : Involvement de deux ou plus groupes ganglionnaires sur un côté du diaphragme (+1 point)",
+          "Stade III : Involvement bilatéral des ganglions au-delà du diaphragme (+2 points)",
+          "Stade IV : Involvement extraganglionnaire (spleen, poumon, foie) (+3 points)"
+        ],
+        "interpretation": "Stades I-II : traitement localisé (radiothérapie + chimiothérapie). Stades III-IV : chimiothérapie intensifiée avec radiothérapie consolidatrice. Présence de signes B (fièvre, sueurs, perte de poids) augmente le risque de récidive."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique des adénopathies et signes généraux",
+        "steps": [
+          {
+            "action": "Palpation bilatérale des ganglions cervicaux, sous-maxillaires, sous-mentonniers et axillaires",
+            "interpretation": "Adénopathies dures, non douloureuses, non mobiles, fixées aux plans profonds évoquent un lymphome. Adénopathies multiples et mobiles suggèrent une infection ou un lymphome non Hodgkin."
+          },
+          {
+            "action": "Examen des ganglions inguinaux et fémoraux avec recherche de splénomégalie à la percussion splénique",
+            "interpretation": "Splénomégalie associée à des adénopathies axillaires évoque une infiltration lymphatique systémique. Splénomégalie isolée oriente vers une leucémie."
+          },
+          {
+            "action": "Recherche de signes de compression trachéale (stridor) ou d'obstruction lymphatique (œdème des membres)",
+            "interpretation": "Stridor inspiratoire avec adénopathies cervicales évoque une sténose trachéale. Œdème des membres inférieurs avec adénopathies inguinales suggère une obstruction lymphatique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Biopsie ganglionnaire confirmatoire avec coloration pour les cellules de Reed-Sternberg",
+      "Imagerie par scanner thoraco-abdominopelvien avec injection de produit de contraste pour stade clinique",
+      "Prélèvements sanguins : hémogramme, NFS, CRP, LDH, électrophorèse des protéines",
+      "Radiothérapie externe à haute dose (30-36 Gy) sur les zones ganglionnaires touchées",
+      "Chimiothérapie ABVD (Adriamycine, Bléomycine, Vinblastine, Dacarbazine) pour les formes étendues"
+    ],
+    "differentialDiagnosis": [
+      "Lymphome non Hodgkin (absence de cellules de Reed-Sternberg sur la biopsie)",
+      "Lymphadénite tuberculeuse (adénopathies douloureuses, présence de casques sur scanner)",
+      "Lymphome de Burkitt (présence de tumeurs extraganglionnaires et karyotype spécifique)"
+    ]
+  },
+  {
+    "name": "Carcinome urothélial de la vessie localement avancé",
+    "description": "Tumeur maligne dérivée des cellules urothéliales de la vessie, souvent associée à des facteurs de risque comme le tabagisme, l'exposition à des agents chimiques (aromatic amines) ou l'infection chronique. La physiopathologie implique des mutations génétiques (p53, RB1) et une transformation in situ des cellules urothéliales. Présentation clinique : hématurie macroscopique sans douleur, dysurie, pollakiurie. Les formes avancées peuvent être compliquées d'obstruction urinaire ou de métastases ganglionnaires.",
+    "redFlags": [
+      "Hématurie macroscopique spontanée sans traumatisme",
+      "Dysurie associée à une pollakiurie nocturne",
+      "Douleur suprapubienne irradiant vers l'aine ou le bas du dos",
+      "Lithiase urinaire récidivante avec hématurie",
+      "Syndrome d'obstruction urinaire aigu (rétention aiguë d'urine)"
+    ],
+    "scores": [
+      {
+        "name": "Classification TNM (UICC 8e édition)",
+        "description": "Système de stade basé sur l'invasion tissulaire (T), l'envahissement ganglionnaire (N) et la présence de métastases (M). Prédit la réponse au traitement.",
+        "criteria": [
+          "T1 : Invasion sous-muqueuse (lamina propria) (+0 point)",
+          "T2 : Invasion musculaire (T2a : couche interne, T2b : couche externe) (+1 point)",
+          "T3 : Invasion péritonéale (T3a : limitée, T3b : étendue) (+2 points)",
+          "T4 : Invasion de structures adjacentes (prostate, utérus) (+3 points)"
+        ],
+        "interpretation": "Stades T1-T2 : traitement chirurgical (cystectomie radicale) + radiothérapie adjuvante. Stades T3-T4 : chimiothérapie néoadjuvante + cystectomie. Présence de métastases (M1) oriente vers une chimiothérapie palliative."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen urinaire et rectal",
+        "steps": [
+          {
+            "action": "Cystoscopie urétrale et vésicale avec biopsie des lésions suspectes",
+            "interpretation": "Lésions vésicales exophytiques ou ulcéreuses avec hématurie évoquent un carcinome urothélial. Lésions papillaires multiples suggèrent une tumeur bénigne ou une tumeur in situ."
+          },
+          {
+            "action": "Examen rectal digital pour rechercher une infiltration vésico-prostatique",
+            "interpretation": "Tumeur fixée à la prostate ou au rectum évoque une invasion locale. Prostate dure ou nodulaire oriente vers une coexistence avec un cancer de la prostate."
+          },
+          {
+            "action": "Palpation du bas-ventre pour rechercher une distension vésicale",
+            "interpretation": "Vessie distendue avec absence de miction évoque une obstruction urinaire aiguë. Vessie dure et non distendue suggère une infiltration tumorale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Cystoscopie urétrale et vésicale avec biopsie confirmatoire",
+      "Urodynamique pour évaluer la fonction vésicale",
+      "Radiothérapie externe à haute dose (60-70 Gy) sur la vessie et les ganglions pelviens",
+      "Chimiothérapie néoadjuvante (cisplatine + méthotrexate) pour les formes invasives",
+      "Cystectomie radicale avec urétérostomie si non répondeur à la radiothérapie"
+    ],
+    "differentialDiagnosis": [
+      "Cystite chronique (hématurie sans lésions vésicales sur cystoscopie)",
+      "Calcul vésical (douleur irradiant vers l'aine avec présence de sable urinaire)",
+      "Carcinome à cellules rénales métastasé (lésions vésicales secondaires)"
+    ]
+  }
+]

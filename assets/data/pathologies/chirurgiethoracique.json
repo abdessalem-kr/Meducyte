@@ -1,0 +1,221 @@
+[
+  {
+    "name": "Lésion trachéobronchique iatrogène",
+    "description": "Les lésions trachéobronchiques iatrogènes surviennent principalement après des interventions endoscopiques (bronchoscopy, intubation prolongée) ou chirurgicales (thoracotomie, sternotomie). La physiopathologie repose sur une compression, une traction ou une incision directe des structures trachéales ou bronchiques, entraînant une sténose, une fistule ou une rupture. La présentation clinique typique inclut une dyspnée aiguë, une hémoptysie, une hypoxémie, des râles respiratoires anormaux, et des signes de médiastin soufflé (subcutané, crepitant). Les complications graves comprennent l'insuffisance respiratoire aiguë et l'empyème médiastinique.",
+    "redFlags": [
+      "Dyspnée aiguë post-intervention avec hypoxémie résistante (> PaO2 < 60 mmHg malgré oxygénation)",
+      "Hémoptysie abondante (> 500 mL/24h) associée à une radiographie thoracique montrant une opacité parenchymateuse",
+      "Subcutané médiastinique étendu avec crepitus palpable au niveau du cou et du thorax",
+      "Signes de médiastinite aiguë : fièvre > 38,5°C, tachycardie > 120 bpm, leucocytose > 15 000/mm³",
+      "Désaturation oxygénée spontanée lors de l'auscultation pulmonaire ou de la manœuvre de Valsalva"
+    ],
+    "scores": [
+      {
+        "name": "Classification de la lésion trachéale (AATS)",
+        "description": "Classification basée sur l'extension et la gravité de la lésion pour guider la prise en charge chirurgicale.",
+        "criteria": [
+          "Classe I: Lésion partiellement circulaire (< 180°) sans déhiscence",
+          "Classe II: Lésion circulaire complète (< 5 cm de longueur) avec déhiscence",
+          "Classe III: Lésion circulaire complète (> 5 cm) ou associée à une fistule trachéobronchique",
+          "Classe IV: Rupture complète de la trachée avec décollement des bords"
+        ],
+        "interpretation": "Les classes I et II peuvent être traitées par intubation prolongée ou stent endobronchique. Les classes III et IV nécessitent une chirurgie d'urgence (résection et réanastomose)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et médiastinique ciblé",
+        "steps": [
+          {
+            "action": "Palpation du cou et du thorax pour rechercher du subcutané médiastinique ou des crepitus",
+            "interpretation": "La présence de subcutané médiastinique étendu associé à des crepitus palpables évoque une fuite aérienne parenchymateuse ou une lésion trachéale."
+          },
+          {
+            "action": "Auscultation pulmonaire bilatérale avec recherche de râles crépitants, de souffles rapprochés ou d'absence de souffles",
+            "interpretation": "Des râles crépitants associés à une diminution des souffles respiratoires suggèrent une atélectasie ou une infection secondaire. L'absence de souffles respiratoires dans une zone localisée évoque une obstruction bronchique."
+          },
+          {
+            "action": "Examen du fond de la gorge pour rechercher des signes de fistule trachéo-œsophagienne (expectoration de liquide digestif)",
+            "interpretation": "La présence de liquide digestif dans les expectorations ou l'œsophage lors de la fibroscopie confirme une fistule trachéo-œsophagienne."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Intubation orotrachéale avec tube de diamètre adapté pour stabiliser l'airway et prévenir la déshydratation des muqueuses",
+      "Administration d'antibiotiques à large spectre (ex: piperacilline-tazobactam) pour prévenir l'infection secondaire",
+      "Oxygénation par masque à haute concentration (FiO2 60-80%) pour corriger l'hypoxémie",
+      "Position semi-assise (30-45°) pour réduire la pression médiastinique et faciliter l'expectoration",
+      "Préparation chirurgicale immédiate avec mise en place d'une voie veineuse centrale et d'un cathéter urinaire"
+    ],
+    "differentialDiagnosis": [
+      "Pneumothorax spontané secondaire à maladie pulmonaire obstructive chronique (absence de subcutané médiastinique)",
+      "Hémorragie pulmonaire post-chirurgicale (absence de crepitus médiastinique)",
+      "Péricardite aiguë (douleur thoracique irradiant vers le cou, absence de râles respiratoires)"
+    ]
+  },
+  {
+    "name": "Perforation œsophagienne aiguë post-endoscopique",
+    "description": "La perforation œsophagienne aiguë est une complication rare mais grave des endoscopies œsogastroduodénales (EGD). Elle survient en raison d'une lésion iatrogène de la paroi œsophagienne, entraînant une fuite de contenu digestif dans la cavité médiastinique. La physiopathologie implique une déchirure de la muqueuse, suivie d'une infection secondaire par les bactéries du tractus digestif. La présentation clinique typique inclut une douleur thoracique aiguë irradiant vers le cou, une fièvre, une dysphagie, une voix rauque, et des signes de médiastinite aiguë.",
+    "redFlags": [
+      "Douleur thoracique aiguë post-EGD associée à une fièvre > 38,5°C et une tachycardie > 120 bpm",
+      "Signes de médiastinite : crepitus médiastinique palpable, crepitus sous-cutané au niveau du cou",
+      "Dysphagie aiguë avec régurgitation de liquide digestif ou hémorragie",
+      "Déficit neurologique localisé (ex: parésie récurrente gauche) suggérant une compression médiastinique",
+      "Radiographie thoracique montrant une opacité médiastinique ou une dilatation œsophagienne"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité de la perforation œsophagienne (Mann score)",
+        "description": "Score basé sur la gravité clinique et radiologique pour prédire le pronostic.",
+        "criteria": [
+          "Critère 1: Localisation supérieure de la perforation (+2 points)",
+          "Critère 2: Taille de la perforation > 3 cm (+1 point)",
+          "Critère 3: Présence de fistule œsophagique (+1 point)",
+          "Critère 4: Infection médiastinique avérée (+2 points)"
+        ],
+        "interpretation": "Score total ≥ 5 points : pronostic grave nécessitant une chirurgie d'urgence. Score < 5 : prise en charge non chirurgicale possible."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen médiastinique et digestif ciblé",
+        "steps": [
+          {
+            "action": "Palpation du cou et du médiastin pour rechercher des crepitus sous-cutanés ou une turgescence lymphatique",
+            "interpretation": "Les crepitus médiastiniques associés à une douleur à la palpation du cou évoquent une infection médiastinique secondaire à une perforation œsophagienne."
+          },
+          {
+            "action": "Examen de la voix pour rechercher une rauquescence ou une dysphonie",
+            "interpretation": "Une rauquescence aiguë suggère une irritation récurrente gauche par fuite de contenu digestif."
+          },
+          {
+            "action": "Recherche de signes de déshydratation (ex: tachycardie, hypotension, peau sèche)",
+            "interpretation": "La déshydratation associée à une fièvre élevée indique une infection médiastinique sévère."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "NPO (interdiction de l'ingestion orale) pour prévenir l'aggravation de la fuite",
+      "Administration d'antibiotiques à large spectre (ex: imipénème-cilastatine) pour couvrir les bactéries anaérobies et aérobies",
+      "Drainage médiastinique percutané ou chirurgical pour évacuer les collections purulentes",
+      "Réanimation intraveineuse avec perfusion de cristalloïdes (ex: 1-2 L/h) pour corriger l'hypovolémie",
+      "Préparation chirurgicale immédiate avec mise en place d'une voie veineuse centrale et d'un cathéter urinaire"
+    ],
+    "differentialDiagnosis": [
+      "Médiastinite aiguë non œsophagienne (absence de signes digestifs associés)",
+      "Péricardite aiguë secondaire à infection médiastinique (absence de fièvre et de crepitus)",
+      "Pneumonie post-chirurgicale (absence de médiastin soufflé)"
+    ]
+  },
+  {
+    "name": "Pneumothorax sous tension",
+    "description": "Le pneumothorax sous tension est une urgence thoracique vitale caractérisée par l'accumulation d'air dans le médiastin ou l'espace pleural sous pression positive, entraînant une compression des structures médiastinales, une déviation trachéale et une insuffisance circulatoire. Il survient généralement après une lésion pulmonaire (pneumothorax ouérophérique) associée à une valve unidirectionnelle, permettant l'entrée d'air sans réabsorption. La présentation clinique typique inclut une dyspnée aiguë, une douleur thoracique latérale, une hypotension, une tachycardie, une cyanose et une absence de bruits respiratoires unilatéraux.",
+    "redFlags": [
+      "Douleur thoracique aiguë associée à une déviation trachéale vers le côté opposé",
+      "Absence de bruits respiratoires unilatéraux avec hyperrésonance à la percussion",
+      "Hypotension soudaine (<90 mmHg) associée à une tachycardie (>120 bpm)",
+      "Cyanose centrale avec signes de collapsus circulatoire",
+      "Dilation des veines jugulaires avec reflux hépato-jugulaire positif"
+    ],
+    "scores": [
+      {
+        "name": "Classification de gravité du pneumothorax",
+        "description": "Évalue la gravité clinique basée sur les signes hémodynamiques et respiratoires.",
+        "criteria": [
+          "Classe I: Pneumothorax simple sans instabilité hémodynamique (+0)",
+          "Classe II: Pneumothorax associé à une dyspnée modérée et tachycardie (+1)",
+          "Classe III: Pneumothorax sous tension avec hypotension et collapsus médiastinal (+2)"
+        ],
+        "interpretation": "La classe III nécessite une intervention immédiate (décompression par aiguille) pour prévenir le décès."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen thoracique et cardiovasculaire ciblé",
+        "steps": [
+          {
+            "action": "Palpation de la trachée et du médiastin pour détecter une déviation trachéale",
+            "interpretation": "Une déviation trachéale vers le côté opposé évoque un pneumothorax sous tension avec collapsus pulmonaire."
+          },
+          {
+            "action": "Auscultation pulmonaire bilatérale avec attention aux bruits respiratoires asymétriques",
+            "interpretation": "L'absence de bruits respiratoires unilatéraux associée à une hyperrésonance à la percussion est évocatrice d'un pneumothorax."
+          },
+          {
+            "action": "Palpation des veines jugulaires pour rechercher une distension",
+            "interpretation": "Une distension jugulaire centrale avec reflux hépato-jugulaire positif indique une insuffisance cardiaque secondaire à la compression médiastinale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Décompression par aiguille (14-16G) dans l'espace intercostal supérieur du côté affecté pour relâcher la pression médiastinale",
+      "Insertion d'un drain thoracique à pression négative pour drainage continu",
+      "Oxygénothérapie à haut débit (15 L/min) pour accélérer la réabsorption de l'air",
+      "Surveillance hémodynamique stricte avec mesure de la pression artérielle et de la saturation en oxygène",
+      "Préparation pour une thoracotomie exploratrice en cas de récidive ou de complications"
+    ],
+    "differentialDiagnosis": [
+      "Pneumothorax simple (absence de déviation trachéale et de collapsus hémodynamique)",
+      "Pneumonie lobar (présence de râles crépitants et de fièvre)",
+      "Embolie pulmonaire (douleur thoracique associée à une tachypnée et un syndrome de l'embolie)"
+    ]
+  },
+  {
+    "name": "Empyème purulent",
+    "description": "L'empyème purulent est une infection purulente de l'espace pleural, souvent secondaire à une pneumonie, une perforation digestive ou une chirurgie thoracique. La physiopathologie repose sur l'accumulation de pus dans la plèvre, associée à une exsudation sanguinolente et à une fibrose pleurale. La présentation clinique typique inclut une fièvre, une douleur thoracique latérale, une dyspnée, une tachycardie et une pleurésie. L'empyème peut évoluer vers une fibrose pleurale ou un épanchement loculaire si non traité.",
+    "redFlags": [
+      "Fièvre élevée (>39°C) avec frissons et transpiration nocturne",
+      "Douleur thoracique aiguë associée à une pleurésie (aggravation par la toux ou l'inspiration)",
+      "Épanchement pleural unilatéral avec aspect purulent à l'échographie",
+      "Leucocytose marquée (>15 000/mm³) avec décalage à gauche",
+      "Dyspnée progressive avec hypoxémie (PaO₂ < 60 mmHg)"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'empyème (PSAD)",
+        "description": "Évalue la gravité clinique et la réponse au traitement.",
+        "criteria": [
+          "Critère 1: Température corporelle >38,5°C (+1)",
+          "Critère 2: Leucocytose >15 000/mm³ (+1)",
+          "Critère 3: Échographie montrant un épanchement loculaire (+1)",
+          "Critère 4: Absence de réponse clinique après 48-72 heures de traitement (+1)"
+        ],
+        "interpretation": "Un score ≥3 indique une indication de drainage chirurgical (ex: thoracotomie ou pléurodésis)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen thoracique et systémique ciblé",
+        "steps": [
+          {
+            "action": "Palpation de la paroi thoracique pour détecter une douleur à la palpation ou une défense musculaire",
+            "interpretation": "Une douleur localisée associée à une défense musculaire évoque une pleurésie infectieuse."
+          },
+          {
+            "action": "Auscultation pulmonaire pour rechercher un frottement pleural ou des râles crépitants",
+            "interpretation": "Un frottement pleural est spécifique à l'empyème, tandis que des râles crépitants suggèrent une pneumonie sous-jacente."
+          },
+          {
+            "action": "Échographie thoracique pour visualiser l'épanchement pleural et son échogénicité",
+            "interpretation": "Un épanchement échogène avec écho interne ou échogénicité hétérogène est évocateur d'un empyème."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie de large spectre (ex: pénicilline G + aminoside) adaptée aux cultures de liquide pleural",
+      "Drainage thoracique percutané sous contrôle échographique pour évacuer le pus",
+      "Surveillance de la température corporelle et de la réponse clinique après 48-72 heures",
+      "Pléurodésis chirurgicale (ex: talc) en cas de récidive ou de fibrose pleurale",
+      "Hospitalisation en unité de soins intensifs pour les formes graves avec collapsus respiratoire"
+    ],
+    "differentialDiagnosis": [
+      "Pleurodésie fibreuse (absence de fièvre et de liquide purulent)",
+      "Pneumonie lobar (présence de râles crépitants et de consolidation pulmonaire)",
+      "Péricardite aiguë (douleur thoracique irradiant vers le cou et atténuée par la flexion du tronc)"
+    ]
+  }
+]

@@ -1,123 +1,226 @@
 [
   {
-    "name": "Insuffisance rénale aiguë",
-    "description": "Altération brutale de la fonction rénale",
+    "name": "Syndrome hémolytique-urémique atypique (aHUS)",
+    "description": "Le syndrome hémolytique-urémique atypique est une maladie rare auto-inflammatoire liée à une dysrégulation du système du complément, entraînant une microangiopathie thrombotique (hémolyse microangiomateuse, thrombopénie, insuffisance rénale aiguë). Il se distingue du SHU classique par l'absence de diarrhée associée à une infection par E. coli O157:H7. La physiopathologie implique des mutations ou des auto-anticorps ciblant les régulateurs du complément (comme le facteur H), conduisant à une activation inappropriée du complément et à des lésions endothéliales glomérulaires.",
     "redFlags": [
-      "Oligurie",
-      "Anurie",
-      "Hyperkaliémie",
-      "Acidose métabolique"
+      "Hémolyse microangiomateuse avec anémie hémolytique (plomb de cheval, hémoglobine urinaire) associée à une thrombopénie sévère",
+      "Insuffisance rénale aiguë avec élévation des créatininémies > 1,5 mg/dL et oligurie",
+      "Signes neurologiques focaux ou confusion liés à une ischémie cérébrale secondaire à la microangiopathie",
+      "Hypertension artérielle résistante à la thérapeutique standard",
+      "Échographie rénale montrant une réduction de la taille des reins ou des signes d'ischémie parenchymateuse"
     ],
     "scores": [
       {
-        "name": "RIFLE",
-        "description": "Classification de l'insuffisance rénale aiguë",
+        "name": "Classification de Paris pour le SHU atypique",
+        "description": "Score pronostique basé sur des critères cliniques et biologiques pour évaluer la gravité et le risque de progression",
         "criteria": [
-          "Augmentation de la créatinine",
-          "Diminution du débit de filtration glomérulaire"
+          "Critère 1: Âge < 1 an (+2 points)",
+          "Critère 2: Histoire familiale de SHU atypique (+1 point)",
+          "Critère 3: Insuffisance rénale chronique à l'admission (+1 point)",
+          "Critère 4: Absence de réponse à la thérapie plasmatique dans les 48 heures (+2 points)",
+          "Critère 5: Niveau initial de créatinine > 3 mg/dL (+1 point)"
         ],
-        "interpretation": "R : risque, I : lésion, F : échec, L : perte, E : insuffisance rénale terminale"
+        "interpretation": "Score total ≥ 4 points: Prognostic défavorable avec risque élevé de dialyse dépendance; Score < 4 points: Prognostic modéré à favorable avec réponse probable à l'écumizumab."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen abdominal",
+        "title": "Examen clinique ciblé du système hémato-lymphatique et rénal",
         "steps": [
           {
-            "action": "Palpation de la région lombaire",
-            "interpretation": "Douleur ou sensibilité en cas de pyélonephrite ou de néphrolithiase"
+            "action": "Recherche d'ictère, de pâleur cutanée et de signes d'hémolyse (jaune des yeux, urine foncée)",
+            "interpretation": "L'ictère suggère une hémolyse intravasculaire; la pâleur est liée à l'anémie; l'urine foncée (hémoglobineurie) est un signe évocateur de microangiopathie."
+          },
+          {
+            "action": "Palpation du foie et du rate pour évaluer l'agrandissement hépatosplénique",
+            "interpretation": "L'agrandissement splénique peut être absent dans le SHU atypique, contrairement au SHU classique."
+          },
+          {
+            "action": "Examen des muqueuses et des ongles pour des signes de lésions microvasculaires (lignes de Beau, ulcères buccaux)",
+            "interpretation": "Les lésions microvasculaires cutanées ou muqueuses sont rares mais peuvent être présentes en cas de microangiopathie sévère."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Réhydratation",
-      "Correction de l'électrolytémie",
-      "Évaluation de la fonction rénale"
+      "Initiation d'une thérapie plasmatique (plasma échange ou plasmaférose) dans les 24 heures pour neutraliser les auto-anticorps anti-facteur H",
+      "Administration d'écumizumab (inhibiteur du complément C5) à dose de 600 mg IV, puis 1200 mg à J7, puis 900 mg toutes les 14 jours",
+      "Support rénal substitutif (dialyse) en cas d'insuffisance rénale aiguë sévère ou d'urémie symptomatique",
+      "Contrôle strict de la pression artérielle avec des antihypertenseurs (bêta-bloquants, inhibiteurs de l'enzyme de conversion) pour prévenir l'ischémie rénale",
+      "Prévention des complications thromboemboliques avec heparine non fractionnée à faible dose en l'absence de contre-indications"
     ],
     "differentialDiagnosis": [
-      "Insuffisance cardiaque",
-      "Hypovolémie"
+      "Syndrome hémolytique-urémique classique (lié à E. coli O157:H7) : présence de diarrhée hémorragique",
+      "Purpura thrombopénique thrombotique (PTT) : absence d'insuffisance rénale initiale mais présence de troubles neurologiques focaux",
+      "Néphropathie à dépôts de fibrine (NDP) : absence d'hémolyse microangiomateuse mais présence de dépôts de fibrine sur biopsie"
     ]
   },
   {
-    "name": "Glomérulonéphrite",
-    "description": "Inflammation des glomérules rénaux",
+    "name": "Glomérulosclérose segmentaire et focale (GSF)",
+    "description": "La GSF est une maladie glomérulaire chronique caractérisée par des lésions de scarring segmentaire et focale des glomérules, associées à une protéinurie massive (>3,5 g/j) et une hypoalbuminémie. Elle est une cause majeure de syndrome néphrotique chez l'adulte. La physiopathologie implique une réponse immunitaire anormale avec activation des cellules épithéliales glomérulaires et dépôts de matrice extracellulaire, conduisant à une fibrose glomérulaire progressive.",
     "redFlags": [
-      "Hématurie",
-      "Protéinurie",
-      "Hypertension artérielle"
+      "Protéinurie massive (>3,5 g/j) avec hypoalbuminémie (<30 g/L) et oedèmes pitting",
+      "Hyperlipidémie associée à une augmentation des cholestérols totaux > 6 mmol/L",
+      "Insuffisance rénale chronique progressive avec élévation des créatininémies > 1,5 mg/dL",
+      "Hypertension artérielle résistante à la thérapeutique standard",
+      "Biopsie rénale montrant des lésions de scarring segmentaire et focale avec hyalinose glomérulaire"
     ],
-    "scores": [
-      {
-        "name": "Classification de la société internationale de néphrologie",
-        "description": "Classification des glomérulonéphrites",
-        "criteria": [
-          "Type de lésion glomérulaire",
-          "Présence de dépôts immuns"
-        ],
-        "interpretation": "Aide au diagnostic et au traitement"
-      }
-    ],
+    "scores": [],
     "focusedExam": [
       {
-        "title": "Examen urinaire",
+        "title": "Examen clinique ciblé des oedèmes et de la protéinurie",
         "steps": [
           {
-            "action": "Recherche de sang et de protéines dans les urines",
-            "interpretation": "Hématurie ou protéinurie en cas de glomérulonéphrite"
+            "action": "Palpation des membres inférieurs pour évaluer l'extension et la profondeur des oedèmes",
+            "interpretation": "Les oedèmes pitting étendus aux chevilles et aux fesses sont typiques du syndrome néphrotique; leur absence suggère une cause non néphrotique."
+          },
+          {
+            "action": "Examen urinaire ciblé (dipstick) pour la protéinurie et l'hématurie",
+            "interpretation": "Protéinurie 3+ à 4+ sur dipstick; l'hématurie est absente ou modérée dans la GSF, contrairement à la néphrite interstitielle."
+          },
+          {
+            "action": "Mesure de la tension artérielle et recherche de signes d'hypertension (pulsations carotidiennes, souffles abdominaux)",
+            "interpretation": "L'hypertension artérielle est fréquente en cas de fibrose glomérulaire avancée."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Traitement de l'hypertension artérielle",
-      "Réduction de la protéinurie",
-      "Évaluation de la fonction rénale"
+      "Initiation d'un traitement par un inhibiteur de l'enzyme de conversion (IEC) ou un antagoniste des récepteurs de l'angiotensine II (ARA-II) pour réduire la protéinurie",
+      "Thérapie diurétique (furosémide) pour contrôler les oedèmes et la surcharge hydrique",
+      "Supplémentation en albumine en cas d'hypoalbuminémie sévère (<20 g/L) associée à une hypovolémie",
+      "Prévention de l'ostéodystrophie rénale avec supplémentation en vitamine D et calcium",
+      "Surveillance étroite de la fonction rénale et ajustement des traitements immunosuppresseurs (corticoïdes, mycophénolate mofétil) selon la réponse clinique"
     ],
     "differentialDiagnosis": [
-      "Néphropathie diabétique",
-      "Amylose rénale"
+      "Néphropathie mémbranaire : protéinurie sélective avec dépôts électron-denses sur biopsie",
+      "Néphropathie à cellules minima : absence de lésions glomérulaires sur biopsie mais présence de protéinurie sélective",
+      "Amylose rénale : dépôts d'amyloïde sur biopsie avec protéinurie non sélective"
     ]
   },
   {
-    "name": "Néphropathie diabétique",
-    "description": "Lésion rénale secondaire au diabète",
+    "name": "Syndrome néphrotique secondaire à une amylose",
+    "description": "Le syndrome néphrotique secondaire à l'amylose est une pathologie rare mais grave caractérisée par l'accumulation de protéines amyloïdes dans les glomérules rénaux, entraînant une altération de la barrière glomérulaire. Cette déposition amyloïde, principalement de type AL (immunoglobuline lourde) ou AA (protéine de phase aiguë), provoque une hyperperméabilité glomérulaire avec perte massive de protéines plasmatiques (protéinurie > 3,5 g/jour), une hypoalbuminémie, une hyperlipidémie et un oedème. La physiopathologie repose sur la déposition de fibrilles amyloïdes dans la matrice extracellulaire glomérulaire, associée à une activation du système rénine-angiotensine et à une réponse inflammatoire chronique.",
     "redFlags": [
-      "Protéinurie",
-      "Hématurie",
-      "Insuffisance rénale chronique"
+      "Protéinurie massive (> 3,5 g/jour) avec albuminurie dominante",
+      "Hypoalbuminémie sévère (< 25 g/L) associée à une hyperlipidémie",
+      "Oedème pitting généralisé, notamment aux membres inférieurs et au visage",
+      "Hypertension artérielle modérée à sévère avec risque d'insuffisance rénale aiguë",
+      "Biopsie rénale montrant des dépôts amyloïdes en coloration Congo rouge avec polarisation en étoile"
     ],
     "scores": [
       {
-        "name": "Classification de la néphropathie diabétique",
-        "description": "Classification de la néphropathie diabétique",
+        "name": "Score de stade de l'amylose rénale (AL Amyloidosis Staging Score)",
+        "description": "Évalue la gravité de l'amylose AL en fonction des paramètres rénaux et de la réponse au traitement.",
         "criteria": [
-          "Stade de la maladie",
-          "Présence de complications"
+          "Classe I: Albuminémie ≥ 30 g/L et créatininémie < 1,5 mg/dL (+0)",
+          "Classe II: Albuminémie 20-29 g/L ou créatininémie 1,5-3 mg/dL (+1)",
+          "Classe III: Albuminémie < 20 g/L ou créatininémie > 3 mg/dL (+2)",
+          "Classe IV: Néphrectomie programmée ou dialyse dépendante (+3)"
         ],
-        "interpretation": "Aide au diagnostic et au traitement"
+        "interpretation": "La classe III-IV indique une amylose rénale sévère avec pronostic défavorable. La classe I-II permet une évaluation de la réponse au traitement anti-amylose."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen des pieds",
+        "title": "Examen clinique et biologique ciblé pour le syndrome néphrotique amyloïde",
         "steps": [
           {
-            "action": "Recherche de lésions cutanées et de troubles sensitifs",
-            "interpretation": "Signes de neuropathie diabétique"
+            "action": "Palpation des ganglions lymphatiques et recherche de splénomégalie",
+            "interpretation": "L'amylose AL peut être associée à une maladie lymphoproliférative sous-jacente (ex: myélome multiple). Une splénomégalie ou adénopathies suggèrent une cause plasmocytaire."
+          },
+          {
+            "action": "Examen des muqueuses et peau pour dépister les signes d'amylose extrarénale (ex: uvéite, nodules cutanés)",
+            "interpretation": "Les manifestations extrarénale (œdème des paupières, nodules cutanés) orientent vers une amylose AL. L'uvéite est typique de l'amylose AA."
+          },
+          {
+            "action": "Mesure du rapport protéine C-réactive (CRP) et de la protéine SAA",
+            "interpretation": "Une protéine SAA élevée (> 10 mg/L) suggère une amylose AA liée à une inflammation chronique. La CRP est normale dans l'amylose AL."
+          },
+          {
+            "action": "Electrophorèse des protéines sériques et urine pour rechercher une chaîne lourde monoclonale",
+            "interpretation": "Une protéinurie Bence-Jones ou une protéinurie monoclonale en électrophorèse confirme l'origine plasmocytaire de l'amylose AL."
+          },
+          {
+            "action": "Biopsie rénale avec coloration Congo rouge et polarisation",
+            "interpretation": "La détection de dépôts amyloïdes en coloration Congo rouge avec polarisation en étoile est le critère diagnostique majeur."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Contrôle glycémique",
-      "Traitement de l'hypertension artérielle",
-      "Réduction de la protéinurie"
+      "Initiation d'une thérapie anti-amylose (ex: bortézomib, dexaméthasone) pour cibler la source plasmocytaire",
+      "Gestion des oedèmes par diurétiques thiazidiques ou bouclés en association avec une restriction hydrosodée",
+      "Prévention des complications thromboemboliques par anticoagulation (ex: héparine de bas poids moléculaire)",
+      "Correction de l'hypoalbuminémie par perfusion d'albumine en cas d'œdème périrénal ou d'insuffisance rénale aiguë",
+      "Surveillance stricte des paramètres rénaux et ajustement des doses des médicaments néphrotoxiques"
     ],
     "differentialDiagnosis": [
-      "Glomérulonéphrite",
-      "Insuffisance rénale chronique"
+      "Amylose AA liée à une infection chronique (ex: tuberculose) vs amylose AL liée à une maladie plasmocytaire",
+      "Syndrome néphrotique de type glomérulaire (ex: néphrite membranaire) vs amylose rénale",
+      "Amylose secondaire à une maladie de淀粉样变性 (ex: maladie de Fabry) vs amylose AL"
+    ]
+  },
+  {
+    "name": "Insuffisance rénale aiguë post-rénale secondaire à une obstruction urétérale bilatérale",
+    "description": "L'insuffisance rénale aiguë post-rénale est une urgence médicale causée par une obstruction des voies urinaires distales, le plus souvent bilatérale. Cette obstruction mécanique (ex: calculs urétéraux, tumeurs, strictures) entraîne une augmentation de la pression intraluminale rénale, une diminution du débit glomérulaire et une ischémie tubulaire. La physiopathologie combine une stase urinaire, une altération de la perfusion rénale et une réponse inflammatoire tubulaire. Les signes cliniques incluent une anurie ou oligurie soudaine, une douleur flanquée, une distension vésicale et des signes d'insuffisance rénale aiguë (azotémie, acidosé métabolique).",
+    "redFlags": [
+      "Anurie ou oligurie (< 0,5 mL/kg/jour) survenant brutalement",
+      "Douleur flanquée irradiant vers le bas-ventre ou le périnée",
+      "Distension palpable de la vessie avec absence de miction spontanée",
+      "Signes d'insuffisance rénale aiguë (azotémie, kaliémie > 6 mmol/L)",
+      "Imagerie urinaire montrant une dilatation pyélo-urétérale bilatérale"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'insuffisance rénale aiguë (AKIN)",
+        "description": "Classifie l'insuffisance rénale aiguë selon l'augmentation de la créatininémie et la diminution du débit urinaire.",
+        "criteria": [
+          "Stade 1: Créatininémie ↑1,5-1,9 × valeur de base ou ↓ débit urinaire < 0,5 mL/kg/8h pendant ≥6h",
+          "Stade 2: Créatininémie ↑2-2,9 × valeur de base ou ↓ débit urinaire < 0,5 mL/kg/8h pendant ≥12h",
+          "Stade 3: Créatininémie ↑3 × valeur de base, ↑4 mg/dL, ou dialyse dépendante ou oligurie < 0,3 mL/kg/24h pendant ≥24h"
+        ],
+        "interpretation": "Le stade 3 indique une insuffisance rénale aiguë sévère nécessitant une dialyse. Le stade 1-2 permet une surveillance étroite après détection de l'obstruction."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique et imagerie ciblée pour l'insuffisance rénale aiguë post-rénale",
+        "steps": [
+          {
+            "action": "Palpation des flancs et du bas-ventre pour rechercher une douleur à la percussion",
+            "interpretation": "La douleur à la percussion des flancs suggère une obstruction urétérale. Une douleur bas-ventrale peut indiquer une obstruction vésicale."
+          },
+          {
+            "action": "Examen rectal chez les hommes pour évaluer la prostate",
+            "interpretation": "Une prostate hypertrophiée ou douloureuse oriente vers une obstruction vésicale secondaire à une hyperplasie bénigne de la prostate."
+          },
+          {
+            "action": "Échographie abdominale et pelvienne",
+            "interpretation": "L'échographie permet d'identifier une dilatation pyélo-urétérale, des calculs urétéraux ou une distension vésicale. Elle évalue également la taille des reins."
+          },
+          {
+            "action": "Urodynamique ou cystoscopie en cas de doute diagnostique",
+            "interpretation": "La cystoscopie visualise directement une obstruction vésicale (ex: tumeur, stricte). L'urodynamique évalue la fonction vésicale."
+          },
+          {
+            "action": "Urographie intraveineuse ou scanner non contrasté des voies urinaires",
+            "interpretation": "Le scanner est le gold standard pour localiser une obstruction urétérale (ex: calculs, tumeurs). L'urographie évalue la fonction rénale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Pose d'un cathéter urétral ou d'une sonde vésicale pour décompresser la vessie en cas d'obstruction vésicale",
+      "Débridement chirurgical ou lithotritie urétérale pour éliminer l'obstacle mécanique",
+      "Hydratation intraveineuse avec perfusion de 1-2 L/h pour diluer les calculs urétéraux et favoriser leur passage",
+      "Antalgisme par morphiniques ou antispasmodiques pour atténuer la douleur et le spasmus urétéral",
+      "Préparation chirurgicale d'urgence en cas de tumeur ou de stricte urétérale"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance rénale aiguë prérénale (ex: hypovolémie) vs post-rénale: absence de signes d'obstruction urinaire",
+      "Insuffisance rénale aiguë intrarénale (ex: néphrite interstitielle) vs post-rénale: absence d'anurie et présence de signes d'insuffisance rénale aiguë",
+      "Obstruction urétérale unilatérale vs bilatérale: absence de distension vésicale et de kaliémie sévère"
     ]
   }
 ]

@@ -45,8 +45,10 @@ class _WelcomeScreenState extends ConsumerState<Welcome> {
 
       //Login successful-update auth state and navigate to home
       ref.read(authProvider.notifier).logIn();
+      if (!context.mounted) return;
       context.go(AppRoutes.home);
     } on EmailNotVerifiedException {
+      if (!context.mounted) return;
       //Navigate to OTP verification for email verification
       context.go(
         AppRoutes.otpVerification,
@@ -57,9 +59,10 @@ class _WelcomeScreenState extends ConsumerState<Welcome> {
         },
       );
     } catch (e) {
+      if (!context.mounted) return;
       AppSnackBars.error(context, 'Login failed: ${e.toString()}');
     } finally {
-      setState(() => _isLoading = false);
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 

@@ -1,14 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meducyte_app/export.dart';
 
 ///Extension to handle AsyncValue UI states
 extension AsyncValueUI on AsyncValue {
   ///Show error snackbar if AsyncValue is in error state
   void showSnackbarOnError(BuildContext context) {
     if (!isLoading && hasError) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(error.toString()), backgroundColor: Colors.red),
-      );
+      if (error != null) {
+        AppSnackBars.error(context, error);
+      }
     }
   }
 
@@ -23,9 +22,22 @@ extension AsyncValueUI on AsyncValue {
       loading: () =>
           loading?.call() ?? const Center(child: CircularProgressIndicator()),
       error: (err, stack) =>
-          error?.call(err, stack) ?? Center(child: Text('Error: $err')),
+          error?.call(err, stack) ?? Center(child: Text('Error: ${_getCleanErrorMessage(err)}')),
     );
   }
+}
+
+String _getCleanErrorMessage(Object err) {
+  if (err is DioException) {
+    return ApiException.fromDioError(err).message;
+  } else if (err is ApiException) {
+    return err.message;
+  }
+  final errStr = err.toString();
+  if (errStr.toLowerCase().contains('dio')) {
+    return 'A network error occurred. Please check your internet connection.';
+  }
+  return errStr.replaceAll('Exception: ', '');
 }
 
 ///Helper to build UI based on AsyncValue state
@@ -60,7 +72,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
                   const Icon(Icons.error_outline, size: 48, color: Colors.red),
                   const SizedBox(height: 16),
                   Text(
-                    'Error: ${err.toString()}',
+                    'Error: ${_getCleanErrorMessage(err)}',
                     textAlign: TextAlign.center,
                     style: const TextStyle(color: Colors.red),
                   ),

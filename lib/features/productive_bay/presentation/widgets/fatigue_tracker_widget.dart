@@ -1,16 +1,6 @@
 import 'package:meducyte_app/export.dart';
 import 'package:meducyte_app/features/productive_bay/domain/models/analytics_models.dart';
-
-//Simulated Provider for Fatigue Status
-final fatigueStatusProvider = Provider<FatigueStatus>((ref) {
-  //Logic would normally analyze completed sessions today
-  return const FatigueStatus(
-    level: FatigueLevel.optimal,
-    recommendation: "Concentration optimale",
-    recommendationKey: "optimalConcentrationMsg",
-    cognitiveLoad: 0.42,
-  );
-});
+import 'package:meducyte_app/features/productive_bay/data/providers/fatigue_provider.dart';
 
 class FatigueTrackerWidget extends ConsumerWidget {
   const FatigueTrackerWidget({super.key});
@@ -72,7 +62,7 @@ class FatigueTrackerWidget extends ConsumerWidget {
             ],
           ),
           const SizedBox(height: 20),
-          _buildInsightRow(context, isDark),
+          _buildInsightRow(context, status, isDark),
         ],
       ),
     );
@@ -124,7 +114,17 @@ class FatigueTrackerWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildInsightRow(BuildContext context, bool isDark) {
+  Widget _buildInsightRow(BuildContext context, FatigueStatus status, bool isDark) {
+    final isFr = Localizations.localeOf(context).languageCode == 'fr';
+    String capacityLabel;
+    if (status.capacity > 0.75) {
+      capacityLabel = isFr ? "Risque faible" : "Low Risk";
+    } else if (status.capacity > 0.4) {
+      capacityLabel = isFr ? "Risque modéré" : "Medium Risk";
+    } else {
+      capacityLabel = isFr ? "Risque élevé" : "High Risk";
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
@@ -134,13 +134,21 @@ class FatigueTrackerWidget extends ConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildSmallStat(context.l10n.loadLabel, "42%", Iconsax.speedometer),
+          _buildSmallStat(
+            context.l10n.loadLabel,
+            "${(status.cognitiveLoad * 100).toInt()}%",
+            Iconsax.speedometer,
+          ),
           _buildSmallStat(
             context.l10n.capacityLabel,
-            "Low Risk",
+            capacityLabel,
             Iconsax.shield_tick,
           ),
-          _buildSmallStat(context.l10n.breakDueLabel, "1h 12m", Iconsax.coffee),
+          _buildSmallStat(
+            context.l10n.breakDueLabel,
+            _formatDuration(status.breakDue, isFr),
+            Iconsax.coffee,
+          ),
         ],
       ),
     );
@@ -158,6 +166,22 @@ class FatigueTrackerWidget extends ConsumerWidget {
         Text(label, style: const TextStyle(fontSize: 8, color: Colors.grey)),
       ],
     );
+  }
+
+  String _formatDuration(Duration duration, bool isFr) {
+    if (duration == Duration.zero) {
+      return isFr ? "Maintenant" : "Now";
+    }
+    final mins = duration.inMinutes;
+    if (mins < 60) {
+      return "${mins}m";
+    }
+    final hrs = mins ~/ 60;
+    final remMins = mins % 60;
+    if (remMins == 0) {
+      return "${hrs}h";
+    }
+    return "${hrs}h ${remMins}m";
   }
 
   Color _getLevelColor(FatigueLevel level) {
@@ -200,9 +224,17 @@ class FatigueTrackerWidget extends ConsumerWidget {
   }
 
   String _getLocalizedRecommendation(BuildContext context, String key) {
-    if (key == 'optimalConcentrationMsg') {
-      return context.l10n.optimalConcentrationMsg;
+    switch (key) {
+      case 'peakFocusMsg':
+        return context.l10n.peakFocusMsg;
+      case 'optimalConcentrationMsg':
+        return context.l10n.optimalConcentrationMsg;
+      case 'lightFatigueMsg':
+        return context.l10n.lightFatigueMsg;
+      case 'burnoutRiskMsg':
+        return context.l10n.burnoutRiskMsg;
+      default:
+        return key;
     }
-    return key;
   }
 }

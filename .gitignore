@@ -67,3 +67,18 @@ scripts/extraction_progress.json
 scripts/extraction_log.txt
 
 
+
+# Secrets & local artifacts — never commit
+load_tests/tokens.json
+meducyte-backend.zip
+output.txt
+extracted_pdf_text.txt
+category_mapping_cache.json
+molecule_data_cache.json
+invoice.html
+developer_invoice.html
+env.json
+.claude/
+screenshot.png
+
+

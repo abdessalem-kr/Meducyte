@@ -58,11 +58,14 @@ class QuestionResolver
             $limit = $args['limit'] ?? 100;
             $offset = $args['offset'] ?? 0;
 
-            $results = $query->orderBy('clinical_case_id', 'asc')
-                ->with(['propositions', 'lesson.module'])
-                ->offset($offset)
-                ->limit($limit)
-                ->get();
+            $query->orderBy('clinical_case_id', 'asc')
+                ->with(['propositions', 'lesson.module']);
+
+            if ($limit > 0) {
+                $query->limit($limit)->offset($offset);
+            }
+
+            $results = $query->get();
             file_put_contents($logFile, "[DEBUG] filter found " . $results->count() . " results\n", FILE_APPEND);
             return $results;
         } catch (\Throwable $e) {
@@ -73,9 +76,31 @@ class QuestionResolver
 
     public function sources($root, array $args)
     {
-        return Question::whereNotNull('source_exam')
-            ->distinct()
-            ->pluck('source_exam');
+        $logFile = storage_path('logs/debug.log');
+        try {
+            $query = Question::query()->whereNotNull('source_exam');
+
+            if (isset($args['moduleIds']) && !empty($args['moduleIds'])) {
+                $query->whereHas('lesson', function (Builder $q) use ($args) {
+                    $q->whereIn('module_id', $args['moduleIds']);
+                });
+            }
+
+            if (isset($args['years']) && !empty($args['years'])) {
+                $query->whereHas('lesson.module', function (Builder $q) use ($args) {
+                    $q->whereIn('year', $args['years']);
+                });
+            }
+
+            if (isset($args['lessonIds']) && !empty($args['lessonIds'])) {
+                $query->whereIn('lesson_id', $args['lessonIds']);
+            }
+
+            return $query->distinct()->pluck('source_exam');
+        } catch (\Throwable $e) {
+            file_put_contents($logFile, "[ERROR] sources failed: " . $e->getMessage() . "\n", FILE_APPEND);
+            throw $e;
+        }
     }
 
     /**

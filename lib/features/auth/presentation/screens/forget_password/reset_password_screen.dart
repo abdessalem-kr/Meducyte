@@ -172,14 +172,16 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
         confirmPasswordController.text.trim(),
       );
 
+      if (!mounted) return;
       AppSnackBars.success(context, 'Password reset successfully!');
 
       //Go to login screen
       context.go(AppRoutes.welcome);
     } catch (e) {
+      if (!mounted) return;
       AppSnackBars.error(context, e.toString());
     } finally {
-      setState(() => isLoading = false);
+      if (mounted) setState(() => isLoading = false);
     }
   }
 }

@@ -126,24 +126,28 @@ class PomodoroNotifier extends StateNotifier<FocusSession> {
         ref.read(pomodoroSettingsProvider).value ??
         PomodoroSettings.defaultSettings();
 
+    // Log to backend
+    final repo = ref.read(productivityRepositoryProvider);
+    repo.logPomodoro(
+      type: completedType.name,
+      durationMinutes: (state.durationSeconds / 60).round(),
+      startedAt: state.startTime ?? DateTime.now(),
+      todoItemId: completedType == PomodoroSessionType.work ? state.taskId : null,
+    );
+
     //If it was a work session,increment task pomodoro if selected
     if (completedType == PomodoroSessionType.work) {
       _completedSessionsInCycle++;
-
-      //Log to backend
-      final repo = ref.read(productivityRepositoryProvider);
-      repo.logPomodoro(
-        type: state.type.name,
-        durationMinutes: (state.durationSeconds / 60).round(),
-        startedAt: state.startTime ?? DateTime.now(),
-        todoItemId: state.taskId,
-      );
 
       if (state.taskId != null) {
         ref
             .read(productiveBayProvider.notifier)
             .incrementTaskPomodoro(state.taskId!);
+      } else {
+        ref.invalidate(studyStatsProvider);
       }
+    } else {
+      ref.invalidate(studyStatsProvider);
     }
 
     //Determine next session type

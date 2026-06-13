@@ -76,7 +76,7 @@ class _DeepWorkPageState extends ConsumerState<DeepWorkPage>
                   top: 20,
                   left: 20,
                   child: IconButton(
-                    icon: const Icon(Iconsax.arrow_left, color: Colors.white),
+                    icon: const Icon(Iconsax.arrow_left_2, color: Colors.white),
                     onPressed: () => Navigator.of(context).maybePop(),
                   ),
                 ),

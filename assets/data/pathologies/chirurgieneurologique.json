@@ -1,0 +1,229 @@
+[
+  {
+    "name": "Abscessus épidurale spinale aigu",
+    "description": "L'abscessus épidurale spinale aigu est une infection bactérienne localisée dans l'espace épidural, pouvant progresser rapidement vers une myélite ou une paraplégie. La physiopathologie repose sur une contamination directe (traumatisme, chirurgie), hémato-lymphatique ou par voie de continuité (ostéomyélite vertébrale). La présentation clinique typique inclut une douleur dorsale aiguë, des signes de radiculopathie, une fièvre, et une atteinte neurologique progressive (parésie, perte de sensibilité, incontinence).",
+    "redFlags": [
+      "Douleur dorsale aiguë associée à une fièvre > 38,5°C et une altération neurologique progressive",
+      "Signes de compression médullaire (parésie, perte de réflexes, incontinence) survenant en < 48 heures",
+      "Hypotension artérielle ou tachycardie révélant une septicémie",
+      "Signes locaux de cellulite ou de sinus cutané à la lombaire",
+      "Histoire de traumatisme récent ou d'intervention chirurgicale lombaire"
+    ],
+    "scores": [
+      {
+        "name": "Score de Frankel modifié",
+        "description": "Évalue le degré de préservation de la fonction neurologique médullaire",
+        "criteria": [
+          "Classe A: Paraplégie totale sans sensibilité ou mouvement",
+          "Classe B: Conservation de la sensibilité mais pas du mouvement",
+          "Classe C: Mouvement volontaire partiel avec perte de sensibilité",
+          "Classe D: Mouvement et sensibilité préservés mais altérés"
+        ],
+        "interpretation": "Classe A-C: Urgence chirurgicale immédiate. Classe D: Surveillance étroite avec antibiothérapie agressive."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et orthopédique ciblé",
+        "steps": [
+          {
+            "action": "Palpation des épineuses pour identifier une douleur localisée ou une tuméfaction",
+            "interpretation": "Douleur à la palpation épineuse associée à une limitation de la mobilité suggère une infection ou une lésion vertébrale."
+          },
+          {
+            "action": "Évaluation de la force musculaire des membres inférieurs (MMI et MMS)",
+            "interpretation": "Perte de force > grade 3/5 évoque une compression médullaire. Asymétrie entre les membres indique une localisation unilatérale."
+          },
+          {
+            "action": "Test de la marche sur la pointe des pieds et sur les talons",
+            "interpretation": "Incapacité à effectuer ces tests révèle une atteinte de la coordination ou de la force."
+          },
+          {
+            "action": "Recherche de signes de myélopathie (réflexes anormaux, signes de Babinski)",
+            "interpretation": "Signe de Babinski positif ou réflexes hyperactifs indiquent une lésion supraspinales."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie intraveineuse large spectre (ex: Céphalosporine de 3e génération + aminoside) en attendant les résultats de la culture",
+      "Imagerie urgente par IRM lombaire avec séquences T2 et T1 post-contraste",
+      "Préparation chirurgicale précoce (laminectomie et débridement) si IRM confirme la compression médullaire",
+      "Soutien neurologique: surveillance étroite de la fonction vésicale et intestinale",
+      "Hydratation veineuse et correction des déséquilibres électrolytiques"
+    ],
+    "differentialDiagnosis": [
+      "Myélite aiguë transverse (absence de fièvre, réponse à la corticothérapie)",
+      "Hernie discale aiguë (douleur radiculaire sans fièvre)",
+      "Spondylodiscite (douleur chronique, évoluant sur plusieurs semaines)"
+    ]
+  },
+  {
+    "name": "Fistule carotide-caverneuse aiguë",
+    "description": "La fistule carotide-caverneuse aiguë est une communication anormale entre l'artère carotide interne et le sinus caverneux, souvent secondaire à une lésion traumatique ou une rupture anévrismale. Elle se manifeste par un exophtalmos pulsatile, un bourdonnement auditif, une chemose conjonctivale, et une ptose palpébrale. La physiopathologie implique une augmentation de la pression dans le sinus caverneux, entraînant une ischémie oculaire secondaire.",
+    "redFlags": [
+      "Exophtalmos pulsatile associé à un bruit de souffle palpable sur la tempe",
+      "Perte visuelle aiguë ou altération du champ visuel",
+      "Ptose palpébrale avec mydriase ipsilatérale (syndrome de Horner inversé)",
+      "Hémorragie orbitale spontanée avec proptose violacée",
+      "Histoire de traumatisme crânien ou de chirurgie récente de la région orbitale"
+    ],
+    "scores": [
+      {
+        "name": "Classification de CCF (Cerebrovascular Accident)",
+        "description": "Différencie les fistules directes (haute pression) des fistules indirectes (basse pression)",
+        "criteria": [
+          "Type I: Fistule directe (carotide interne) - haute pression, écoulement rapide",
+          "Type II: Fistule indirecte (veines rétropéritubéraires) - basse pression, écoulement lent",
+          "Type III: Fistule mixte",
+          "Type IV: Fistule associée à un anévrisme de l'artère carotide"
+        ],
+        "interpretation": "Type I nécessite une embolisation endovasculaire d'urgence. Type II peut être traité par embolisation ou chirurgie selon la gravité."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen ophtalmologique et neurologique ciblé",
+        "steps": [
+          {
+            "action": "Palpation de la tempe pour identifier un bruit de souffle ou une pulsation palpable",
+            "interpretation": "Souffle systolique palpable indique une communication haute pression entre l'artère et le sinus."
+          },
+          {
+            "action": "Évaluation de la vision (acuité visuelle, champ visuel) et de la motilité oculaire",
+            "interpretation": "Perte visuelle suggère une ischémie oculaire. Paresie du 3e nerf crânien indique une compression du nerf oculomoteur."
+          },
+          {
+            "action": "Examen de la conjonctive pour chemose et exophtalmos",
+            "interpretation": "Chemose violacée et exophtalmos pulsatile sont des signes pathognomoniques."
+          },
+          {
+            "action": "Test de la pupille (réaction à la lumière)",
+            "interpretation": "Mydriase fixe évoque une ischémie oculaire aiguë nécessitant une intervention immédiate."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Embolisation endovasculaire d'urgence (coils ou glue) pour occlusion de la fistule",
+      "Administration d'anticoagulants (heparine) si la fistule est secondaire à un anévrisme",
+      "Soutien oculaire: collyres anti-inflammatoires et surveillance de l'acuité visuelle",
+      "Préparation chirurgicale (ligature de l'artère carotide externe) si embolisation impossible",
+      "Hospitalisation en unité de soins intensifs pour surveillance neurologique et oculaire"
+    ],
+    "differentialDiagnosis": [
+      "Cellulite orbitale aiguë (fièvre, douleur orbitale sans exophtalmos pulsatile)",
+      "Graves' ophthalmopathy (exophtalmos bilatéral sans bruit de souffle)",
+      "Hémorragie orbitale traumatique (traumatisme récent, exophtalmos non pulsatile)"
+    ]
+  },
+  {
+    "name": "Syndrome de la queue de cheval aigu",
+    "description": "Compression aiguë des racines lombosacrées de la queue de cheval, entraînant une perte neurologique sévère avec altération de la fonction vésicale, rectale et sensorielle. La physiopathologie repose sur une sténose médullaire aiguë due à une hernie discale, une tumeur, une hémorragie épidurale ou une infection. La présentation clinique typique inclut une douleur lombaire aiguë associée à une anesthésie en selle, une incontinence urinaire ou fécale, et une parésie des membres inférieurs.",
+    "redFlags": [
+      "Incontinence urinaire ou fécale aiguë survenant dans les 48 heures",
+      "Anesthésie en selle (perte de sensibilité autour des fesses, cuisses et genoux)",
+      "Parésie des membres inférieurs avec perte de réflexes (genou, cheville)",
+      "Douleur lombaire associée à une perte de la marche",
+      "Signes de compression médullaire avec perte de la réflexologie anale"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Frankel modifiée",
+        "description": "Évalue le degré de perte neurologique dans les lésions de la moelle épinière. Permet de prédire le pronostic et guider la prise en charge chirurgicale.",
+        "criteria": [
+          "Classe A: Perte totale de la sensibilité et de la motricité (0 point)",
+          "Classe B: Perte de la sensibilité mais motricité conservée (1 point)",
+          "Classe C: Perte de la sensibilitation et motricité partielle (2 points)",
+          "Classe D: Perte de la sensibilitation et motricité conservée (3 points)"
+        ],
+        "interpretation": "Classe A-D: Score inférieur à 2 indique une urgence chirurgicale immédiate. Score supérieur à 2 permet une prise en charge chirurgicale programmée."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique lombosacré",
+        "steps": [
+          {
+            "action": "Palpation des dermatomes lombosacrés (L1-S5) pour identifier l'anesthésie en selle",
+            "interpretation": "L'anesthésie en selle (perte de sensibilité autour des fesses, cuisses et genoux) est un signe pathognomonique du syndrome de la queue de cheval."
+          },
+          {
+            "action": "Test de la réflexologie anale (réflexe anal) et de la réflexologie bulbocavernosa",
+            "interpretation": "Perte du réflexe anal indique une atteinte sévère des racines S2-S4, confirmant la compression de la queue de cheval."
+          },
+          {
+            "action": "Évaluation de la force musculaire des membres inférieurs (ischio-jambiers, quadriceps, tibial postérieur)",
+            "interpretation": "Parésie des muscles ischio-jambiers (L5) ou tibial postérieur (S1) évoque une compression radiculaire spécifique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Imagerie urgente par IRM lombaire pour confirmer la sténose médullaire",
+      "Consultation chirurgicale neurochirurgicale dans les 24 heures",
+      "Prévention des complications (escarres, infections urinaires) par surveillance étroite",
+      "Cathétérisme vésical temporaire en cas d'incontinence urinaire",
+      "Administration de corticoïdes à faible dose pour réduire l'inflammation"
+    ],
+    "differentialDiagnosis": [
+      "Hernie discale lombaire simple (absence d'incontinence urinaire)",
+      "Myélite aiguë transverse (évolution subaiguë sans signe de compression mécanique)",
+      "Syndrome radiculaire lombaire (douleur dominante sans perte fonctionnelle majeure)"
+    ]
+  },
+  {
+    "name": "Hématome sous-dural chronique",
+    "description": "Collection de sang entre la dure-mère et l'arachnoïde, évoluant sur plusieurs semaines à mois. La physiopathologie repose sur une rupture de vaisseaux bridants (sagittaux superieurs) après traumatisme mineur, surtout chez les patients âgés ou sous anticoagulants. La présentation clinique typique inclut une céphalée progressive, une confusion, une ataxie et des signes focaux cérébraux.",
+    "redFlags": [
+      "Céphalée de type 'réveil' évoluant sur plusieurs jours",
+      "Confusion ou troubles de l'éveil progressifs",
+      "Signes de compression cérébrale (nausées, vomissements, papilledème)",
+      "Histoire de traumatisme mineur récent (chute, chute de lit)",
+      "Anticoagulation ou traitement antiplaquettaire en cours"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de Glasgow modifiée (GCS) pour hématomes intracrâniens",
+        "description": "Évalue la gravité des lésions cérébrales en fonction de l'éveil, la réponse verbale et motrice. Permet de classer l'hématome comme bénin, modéré ou sévère.",
+        "criteria": [
+          "Classe I (13-15): Éveil conservé, réponse verbale normale",
+          "Classe II (9-12): Éveil altéré, réponse verbale confuse",
+          "Classe III (3-8): Coma profond, absence de réponse"
+        ],
+        "interpretation": "Classe I: Surveillance clinique. Classe II-III: Urgence chirurgicale (drainage par ponction ou craniotomie)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique cérébral",
+        "steps": [
+          {
+            "action": "Palpation du crâne pour identifier une asymétrie ou une dépression",
+            "interpretation": "Une dépression crânienne asymétrique évoque un hématome sous-dural chronique."
+          },
+          {
+            "action": "Auscultation des bruits cérébraux (absence de bruits anormaux)",
+            "interpretation": "Les bruits cérébraux sont normaux, mais l'examen est surtout clinique."
+          },
+          {
+            "action": "Test de la pupille (réaction à la lumière et taille)",
+            "interpretation": "Une pupille asymétrique ou fixe évoque une compression du nerf optique ou une hernie cérébrale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Imagerie urgente par scanner cérébral non contrasté",
+      "Prise en charge neurochirurgicale pour ponction ou craniotomie",
+      "Suspension temporaire des anticoagulants (si possible) avec vitamine K",
+      "Surveillance étroite de l'évolution neurologique",
+      "Prévention des complications (épilepsie, hernie cérébrale)"
+    ],
+    "differentialDiagnosis": [
+      "Hématome épidural aigu (évolution plus rapide et signes de tension intracrânienne aiguë)",
+      "Tumeur cérébrale (évolution subaiguë sans antécédent traumatique)",
+      "Méningite chronique (fièvre, signes de méningite)"
+    ]
+  }
+]

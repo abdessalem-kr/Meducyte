@@ -6,7 +6,7 @@ import 'package:meducyte_app/core/database/app_database.dart';
 enum NotificationType {
   content, // New courses, books, etc.
   community, // General community updates
-  comment_reply, // Replies to comments
+  commentReply, // Replies to comments
   system, // App updates, maintenance
   performance, // Quiz milestones, streaks
 }
@@ -44,7 +44,7 @@ class AppNotification extends Equatable {
       timestamp: db.timestamp,
       isRead: db.isRead,
       type: NotificationType.values.firstWhere(
-        (e) => e.name == db.type,
+        (e) => e.name.toLowerCase().replaceAll('_', '') == db.type.toLowerCase().replaceAll('_', ''),
         orElse: () => NotificationType.system,
       ),
       data: db.data != null
@@ -74,6 +74,8 @@ class AppNotification extends Equatable {
       }
     }
 
+    final typeStr = json['type']?.toString().toLowerCase().replaceAll('_', '') ?? 'system';
+
     return AppNotification(
       id: json['id']?.toString() ?? '',
       remoteId: json['remoteId']?.toString() ?? json['id']?.toString(),
@@ -87,7 +89,7 @@ class AppNotification extends Equatable {
                 : DateTime.now()),
       isRead: json['isRead'] ?? json['is_read'] ?? false,
       type: NotificationType.values.firstWhere(
-        (e) => e.name == (json['type']?.toString().toLowerCase() ?? 'system'),
+        (e) => e.name.toLowerCase().replaceAll('_', '') == typeStr,
         orElse: () => NotificationType.system,
       ),
       data: dataMap.isEmpty ? null : dataMap,

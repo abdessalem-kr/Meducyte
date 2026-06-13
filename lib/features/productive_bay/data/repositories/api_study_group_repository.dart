@@ -19,6 +19,8 @@ class ApiStudyGroupRepository implements StudyGroupRepository {
      type
      members{
        id
+       name
+       email
        }
      is_admin
      }
@@ -45,6 +47,8 @@ class ApiStudyGroupRepository implements StudyGroupRepository {
      type
      members{
        id
+       name
+       email
        }
      is_admin
      }
@@ -72,6 +76,7 @@ class ApiStudyGroupRepository implements StudyGroupRepository {
      members{
        id
        name
+       email
        }
      active_quiz_session_id
      is_admin
@@ -199,6 +204,22 @@ class ApiStudyGroupRepository implements StudyGroupRepository {
       data: {
         'query': mutation,
         'variables': {'groupId': groupId},
+      },
+    );
+  }
+
+  @override
+  Future<void> removeMember(String groupId, String userId) async {
+    const String mutation = r'''
+ mutation RemoveMember($groupId:ID!, $userId:ID!) {
+   removeStudyGroupMember(groupId: $groupId, userId: $userId)
+   }
+ ''';
+    await _client.post(
+      '/graphql',
+      data: {
+        'query': mutation,
+        'variables': {'groupId': groupId, 'userId': userId},
       },
     );
   }
@@ -567,6 +588,21 @@ class ApiStudyGroupRepository implements StudyGroupRepository {
       isPublic:
           (json['title'] as String? ?? '').toUpperCase().contains('PUBLIC') ||
           (json['title'] as String? ?? '').toUpperCase().contains('DEMO'),
+      memberIds: (json['members'] as List?)
+              ?.map((m) => (m as Map)['id'].toString())
+              .toList() ??
+          [],
+      members: (json['members'] as List?)
+              ?.map((m) => User(
+                    id: int.tryParse((m as Map)['id'].toString()) ?? 0,
+                    name: m['name'] ?? '',
+                    email: m['email'] ?? '',
+                    year: 1,
+                    specialty: '',
+                    avatarKey: m['avatar_key']?.toString(),
+                  ))
+              .toList() ??
+          [],
     );
   }
 

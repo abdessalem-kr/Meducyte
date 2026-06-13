@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
@@ -36,6 +37,7 @@ class _QuillInputFieldState extends ConsumerState<QuillInputField> {
   late QuillController _controller;
   final FocusNode _focusNode = FocusNode();
   bool _isFocused = false;
+  Timer? _debounceTimer;
 
   @override
   void initState() {
@@ -52,6 +54,7 @@ class _QuillInputFieldState extends ConsumerState<QuillInputField> {
           ref.read(focusedExamFieldProvider.notifier).state = widget.fieldKey;
         }
       } else {
+        _flushChanges();
         //Only clear if we are the current active one
         if (ref.read(activeQuillControllerProvider) == _controller) {
           ref.read(activeQuillControllerProvider.notifier).state = null;
@@ -68,8 +71,21 @@ class _QuillInputFieldState extends ConsumerState<QuillInputField> {
   }
 
   void _onControllerChanged() {
-    final jsonStr = jsonEncode(_controller.document.toDelta().toJson());
-    widget.onChanged(jsonStr);
+    _debounceTimer?.cancel();
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () {
+      if (mounted) {
+        final jsonStr = jsonEncode(_controller.document.toDelta().toJson());
+        widget.onChanged(jsonStr);
+      }
+    });
+  }
+
+  void _flushChanges() {
+    if (_debounceTimer?.isActive ?? false) {
+      _debounceTimer?.cancel();
+      final jsonStr = jsonEncode(_controller.document.toDelta().toJson());
+      widget.onChanged(jsonStr);
+    }
   }
 
   @override
@@ -127,6 +143,8 @@ class _QuillInputFieldState extends ConsumerState<QuillInputField> {
 
   @override
   void dispose() {
+    _flushChanges();
+    _debounceTimer?.cancel();
     //We check if we can still access ref to clear the active controller
     //This prevents"Cannot use ref after the widget was disposed"
     try {
@@ -146,6 +164,14 @@ class _QuillInputFieldState extends ConsumerState<QuillInputField> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<String?>(focusRequestProvider, (previous, next) {
+      if (next != null && next == widget.fieldKey) {
+        _focusNode.requestFocus();
+        // Clear the focus request
+        ref.read(focusRequestProvider.notifier).state = null;
+      }
+    });
+
     final theme = Theme.of(context);
     final borderColor = _isFocused ? theme.primaryColor : theme.dividerColor;
 

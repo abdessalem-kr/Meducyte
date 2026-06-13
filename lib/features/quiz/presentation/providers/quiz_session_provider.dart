@@ -101,7 +101,12 @@ class QuizSessionNotifier extends StateNotifier<QuizSessionState> {
 
   QuizSessionNotifier(this._repository, this._ref) : super(QuizSessionState());
 
-  void initialize(QuizSession session) {
+  void initialize(
+    QuizSession session, {
+    int? timeSeconds,
+    bool? showFeedback,
+    Set<int>? selectedOptionIds,
+  }) {
     int? timeLimit = session.filters['timeLimit'];
     bool isExplore = session.filters['isExplore'] ?? false;
     bool isPractice = session.filters['isPractice'] ?? true;
@@ -113,22 +118,64 @@ class QuizSessionNotifier extends StateNotifier<QuizSessionState> {
       isCountdown = true;
     }
 
+    final Map<int, AnswerResult> restoredResults = {};
+    session.userAnswers.forEach((qId, ans) {
+      try {
+        final question = session.questions.firstWhere((q) => q.id == qId);
+        final result = _repository.submitQuizAnswerLocal(
+          question,
+          ans,
+          session.correctionMode,
+        );
+        restoredResults[qId] = result;
+      } catch (e) {
+        debugPrint('DEBUG: Failed to restore result for question $qId: $e');
+      }
+    });
+
+    final startIndex = session.currentQuestionIndex;
+
     state = state.copyWith(
+      currentQuestionIndex: startIndex,
       correctionMode: session.correctionMode,
-      timeSeconds: initialTime,
+      timeSeconds: timeSeconds ?? initialTime,
       isCountdown: isCountdown,
       isInitialized: true,
       isExplore: isExplore,
       isPractice: isPractice,
+      userAnswers: session.userAnswers,
+      results: restoredResults,
+      selectedOptionIds: selectedOptionIds ?? {},
+      showFeedback: showFeedback ?? false,
     );
 
     if (session.questions.isNotEmpty) {
-      final q = session.questions[0];
+      final q = session.questions[startIndex < session.questions.length ? startIndex : 0];
       _updateInteractionState(q);
       if (isExplore) {
         autoSolve(q);
       }
     }
+  }
+
+  Future<void> saveSessionForLater(QuizSession session) async {
+    session.currentQuestionIndex = state.currentQuestionIndex;
+    session.userAnswers = state.userAnswers;
+
+    await _repository.saveSavedSession(
+      session: session,
+      timeSeconds: state.timeSeconds,
+      showFeedback: state.showFeedback,
+      selectedOptionIds: state.selectedOptionIds,
+    );
+    _ref.invalidate(savedQuizSessionProvider);
+    _ref.invalidate(hasSavedQuizSessionProvider);
+  }
+
+  Future<void> abandonSession() async {
+    await _repository.clearSavedSession();
+    _ref.invalidate(savedQuizSessionProvider);
+    _ref.invalidate(hasSavedQuizSessionProvider);
   }
 
   void _updateInteractionState(Question q) {
@@ -295,6 +342,7 @@ class QuizSessionNotifier extends StateNotifier<QuizSessionState> {
       session.isCompleted = true;
 
       await _repository.syncQuizSession(session);
+      _ref.invalidate(userStatsProvider);
     } catch (e) {
       debugPrint('DEBUG:syncSession ERROR: $e');
       //Potential for offline persistence here
@@ -388,8 +436,10 @@ class QuizSessionNotifier extends StateNotifier<QuizSessionState> {
     submit(question);
   }
 
-  void finishQuiz(List<Question> questions) {
+  Future<void> finishQuiz(QuizSession session) async {
     stopTimer();
+
+    final questions = session.questions;
 
     //If simulation mode,calculate all results now
     final newResults = Map<int, AnswerResult>.from(state.results);
@@ -418,6 +468,12 @@ class QuizSessionNotifier extends StateNotifier<QuizSessionState> {
       results: newResults,
       userAnswers: newUserAnswers,
     );
+
+    // Sync session to server
+    await syncSession(session);
+
+    // Clear saved session since it's completed
+    await abandonSession();
   }
 
   void resetQuiz() {

@@ -1,133 +1,377 @@
 [
   {
-    "name": "Trouble Dépressif Majeur",
-    "description": "Épisode dépressif caractérisé par une humeur dépressive ou une perte d'intérêt",
+    "name": "Delirium tremens",
+    "description": "Syndrome de sevrage alcoolique aigu caractérisé par une confusion mentale fluctuante, des hallucinations visuelles, une hyperactivité autonome et des tremblements. Il survient généralement après une consommation chronique d'alcool et un arrêt brutal ou une réduction rapide de la consommation. La physiopathologie implique une désinhibition glutamatergique, une excitation de l'acide gamma-aminobutyrique (GABA) et une activation du système sympathique.",
     "redFlags": [
-      "Idées suicidaires",
-      "Comportement auto-agressif",
-      "Perte de poids importante"
+      "Confusion mentale fluctuante avec altération de l'attention et du jugement",
+      "Hallucinations visuelles persistantes avec peur intense des agresseurs imaginaires",
+      "Tremblements généralisés associés à une diaphorèse et une tachycardie",
+      "Agitation motrice avec agitation verbale et agressivité",
+      "Hypotension orthostatique ou hypertension paroxystique"
     ],
     "scores": [
       {
-        "name": "Échelle de dépression de Hamilton (HAM-D)",
-        "description": "Évalue la sévérité de la dépression",
+        "name": "Échelle de gravité des symptômes de sevrage alcoolique (CIWA-AR)",
+        "description": "Score clinique évaluant la gravité des symptômes de sevrage alcoolique pour guider la gestion pharmacologique.",
         "criteria": [
-          "Humeur dépressive",
-          "Perte d'intérêt",
-          "Troubles du sommeil"
+          "Anxiété (0-7 points)",
+          "Somnolence (0-3 points)",
+          "Confusion (0-3 points)",
+          "Tremblements (0-7 points)",
+          "Hallucinations (0-3 points)",
+          "Agitation (0-3 points)",
+          "Nausées/vomissements (0-3 points)",
+          "Sueurs (0-3 points)",
+          "Tachycardie (0-3 points)",
+          "Hypertension (0-3 points)"
         ],
-        "interpretation": "Score élevé indique une dépression plus sévère"
+        "interpretation": "Score total < 8 : surveillance clinique. Score 8-15 : traitement symptomatique. Score > 15 : traitement intensif avec benzodiazépines."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen de l'état mental",
+        "title": "Examen neurologique et somatique ciblé",
         "steps": [
           {
-            "action": "Évaluation de l'humeur",
-            "interpretation": "Permet d'évaluer la présence d'une humeur dépressive"
+            "action": "Évaluation de l'orientation temporo-spatiale et de la mémoire à court terme",
+            "interpretation": "Perte d'orientation et mémoire altérée suggèrent un trouble de conscience aigu."
           },
           {
-            "action": "Évaluation de la pensée",
-            "interpretation": "Permet d'évaluer la présence de troubles de la pensée"
+            "action": "Recherche de signes de déshydratation (peau sèche, muqueuses, turgescence cutanée)",
+            "interpretation": "Déshydratation associée à la diaphorèse et à la consommation chronique d'alcool."
+          },
+          {
+            "action": "Palpation du foie et du rate pour évaluer l'hepatomégalie ou la splénomégalie",
+            "interpretation": "Hépatomégalie évoque une cirrhose alcoolique sous-jacente."
+          },
+          {
+            "action": "Auscultation cardiaque pour détecter une tachycardie ou un souffle",
+            "interpretation": "Tachycardie révèle une activation sympathique. Souffle évoque une cardiopathie alcoolique."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Évaluation du risque suicidaire",
-      "Prescription d'un traitement antidépresseur"
+      "Administration de benzodiazépines (ex: lorazépam 2-4 mg IV) pour contrôler l'agitation et prévenir l'épilepsie",
+      "Supplémentation en thiamine (100 mg IV) pour prévenir le syndrome de Wernicke-Korsakoff",
+      "Hydratation veineuse avec solution saline isotonique pour corriger la déshydratation",
+      "Oxygénothérapie à 2-4 L/min pour corriger l'hypoxie liée à l'agitation",
+      "Surveillance continue des signes vitaux et des troubles du sommeil"
     ],
     "differentialDiagnosis": [
-      "Trouble bipolaire",
-      "Trouble de l'humeur"
+      "Syndrome de sevrage aux benzodiazépines (absence d'histoire d'alcoolisme)",
+      "Toxicomanie aux amphétamines (hallucinations auditives dominantes)",
+      "Encéphalite virale (fièvre, céphalée, signes méningés)"
     ]
   },
   {
-    "name": "Trouble Anxieux Généralisé",
-    "description": "Anxiété excessive et persistante touchant plusieurs domaines de la vie",
+    "name": "Syndrome de stress post-traumatique aigu (Acute Stress Disorder)",
+    "description": "Réaction psychologique aiguë à un événement traumatique (agression, accident, catastrophe) caractérisée par des symptômes dissociatifs, des intrusions mnésiques, une hyperarousal et une évitance. La physiopathologie implique une activation du système limbique, une désrégulation de l'axe HPA et une réponse immunitaire chronique.",
     "redFlags": [
-      "Anxiété intense",
-      "Comportement d'évitement",
-      "Troubles du sommeil"
+      "Détachement de soi ou de l'environnement (dissociation) persistant > 24 heures",
+      "Intrusions mnésiques répétées de l'événement traumatique",
+      "Hypervigilance avec réaction exagérée aux stimuli environnants",
+      "Évitance systématique des lieux, personnes ou objets liés au trauma",
+      "Troubles du sommeil avec insomnie ou cauchemars fréquents"
     ],
     "scores": [
       {
-        "name": "Échelle d'anxiété de Hamilton (HAM-A)",
-        "description": "Évalue la sévérité de l'anxiété",
+        "name": "Échelle de diagnostic du stress post-traumatique (PCL-5)",
+        "description": "Questionnaire évaluant la gravité des symptômes de stress post-traumatique selon les critères DSM-5.",
         "criteria": [
-          "Anxiété somatique",
-          "Anxiété psychique",
-          "Comportement d'évitement"
+          "Intrusions (0-4 points)",
+          "Évitance (0-4 points)",
+          "Négativisme émotionnel (0-4 points)",
+          "Détachement (0-4 points)",
+          "Hyperarousal (0-4 points)"
         ],
-        "interpretation": "Score élevé indique une anxiété plus sévère"
+        "interpretation": "Score total > 33 : diagnostic probable de stress post-traumatique aigu. Score < 33 : surveillance clinique."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen de l'état mental",
+        "title": "Examen psychologique et somatique ciblé",
         "steps": [
           {
-            "action": "Évaluation de l'anxiété",
-            "interpretation": "Permet d'évaluer la présence d'une anxiété excessive"
+            "action": "Évaluation de la conscience de soi et de l'environnement",
+            "interpretation": "Détachement ou dépersonnalisation suggère une dissociation traumatique."
           },
           {
-            "action": "Évaluation de la tolérance à la frustration",
-            "interpretation": "Permet d'évaluer la capacité à gérer le stress"
+            "action": "Recherche de signes de dépression (idées suicidaires, anhédonie)",
+            "interpretation": "Dépression comorbide fréquente dans les traumatismes graves."
+          },
+          {
+            "action": "Palpation des ganglions lymphatiques pour évaluer l'infection ou l'inflammation",
+            "interpretation": "Réaction immunitaire chronique liée au stress chronique."
+          },
+          {
+            "action": "Auscultation pulmonaire pour détecter une hyperventilation",
+            "interpretation": "Hyperventilation liée à l'anxiété chronique."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Prescription d'un traitement anxiolytique",
-      "Thérapie cognitivo-comportementale"
+      "Thérapie cognitivo-comportementale de crise (TCC) pour normaliser les pensées intrusives",
+      "Stabilisation émotionnelle avec des techniques de relaxation (respiration diaphragmatique)",
+      "Éviter les stimulants (caféine, nicotine) pour réduire l'hyperarousal",
+      "Établir un plan de sécurité pour les idées suicidaires ou auto-agressives",
+      "Référencement vers un psychiatre pour suivi à long terme"
     ],
     "differentialDiagnosis": [
-      "Trouble panique",
-      "Trouble de stress post-traumatique"
+      "Dépression majeure (absence de trauma spécifique)",
+      "Trouble anxieux généralisé (symptômes d'hyperarousal sans événement traumatique)",
+      "Schizophrénie (hallucinations non liées à un trauma)"
     ]
   },
   {
-    "name": "Schizophrénie",
-    "description": "Trouble psychotique caractérisé par des hallucinations et des délires",
+    "name": "Délire aigu (Delirium)",
+    "description": "Le délire aigu est un trouble neurocognitif caractérisé par une altération aiguë de l'attention, une désorganisation des pensées et une modification de la conscience. Il survient souvent dans un contexte médical ou chirurgical, chez les personnes âgées ou les patients immunodéprimés. La physiopathologie implique des déséquilibres neurochimiques (cholinergiques, glutamatergiques, sérotoninergiques) et une réponse inflammatoire systémique. La présentation clinique typique inclut une confusion fluctuante, des troubles du sommeil, des hallucinations visuelles ou auditives, une désorientation temporo-spatiale et une altération de la mémoire à court terme.",
     "redFlags": [
-      "Hallucinations",
-      "Délires",
-      "Comportement désorganisé"
+      "Altération soudaine de l'état mental avec fluctuation diurne (ex: confusion matinale avec amélioration temporaire l'après-midi)",
+      "Hallucinations visuelles complexes ou auditives commandant des actions dangereuses",
+      "Agitation motrice ou mutisme catatonique extrême",
+      "Signes de sepsis ou d'insuffisance rénale aiguë associés",
+      "Perte d'orientation temporelle (ex: ne reconnaît pas l'année ou le mois en cours)"
     ],
     "scores": [
       {
-        "name": "Échelle de symptômes positifs et négatifs de la schizophrénie (PANSS)",
-        "description": "Évalue la sévérité des symptômes de la schizophrénie",
+        "name": "Scale for the Assessment of Delirium (SAD)",
+        "description": "Échelle clinique standardisée pour diagnostiquer et quantifier la gravité du délire. Mesure l'attention, l'orientation, la mémoire, la conscience et les hallucinations.",
         "criteria": [
-          "Symptômes positifs (hallucinations, délires)",
-          "Symptômes négatifs (apathie, retrait social)"
+          "Attention : 0-4 points (0 = normale, 4 = impossible à évaluer)",
+          "Orientation : 0-4 points (0 = normale, 4 = non orienté)",
+          "Mémoire : 0-4 points (0 = normale, 4 = mémoire gravement altérée)",
+          "Conscience : 0-4 points (0 = éveillé, 4 = coma)",
+          "Hallucinations : 0-4 points (0 = absence, 4 = hallucinations persistantes)"
         ],
-        "interpretation": "Score élevé indique une schizophrénie plus sévère"
+        "interpretation": "Score total ≥ 4/16 indique un délire probable. Score ≥ 8/16 indique un délire sévère nécessitant une hospitalisation immédiate."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen de l'état mental",
+        "title": "Examen neurologique et psychiatrique ciblé",
         "steps": [
           {
-            "action": "Évaluation des hallucinations",
-            "interpretation": "Permet d'évaluer la présence d'hallucinations"
+            "action": "Évaluation de l'attention via le test de répétition de chiffres (ex: demander de répéter une série de 5 chiffres)",
+            "interpretation": "Une incapacité à répéter correctement ou à conserver la séquence indique une altération de l'attention, critère majeur du délire."
           },
           {
-            "action": "Évaluation des délires",
-            "interpretation": "Permet d'évaluer la présence de délires"
+            "action": "Recherche de signes de désorientation (lieu, temps, personne)",
+            "interpretation": "La désorientation temporelle (ex: ne connaît pas la date) ou spatiale (ex: ne reconnaît pas le lieu) renforce le diagnostic de délire."
+          },
+          {
+            "action": "Auscultation cardiaque et recherche de signes de sepsis",
+            "interpretation": "Une tachycardie, une hypotension ou des râles pulmonaires suggèrent une cause médicale sous-jacente (ex: infection, insuffisance rénale)."
+          },
+          {
+            "action": "Évaluation des hallucinations via l'interrogatoire direct (ex: 'Voyez-vous des choses que les autres ne voient pas ?')",
+            "interpretation": "Les hallucinations visuelles complexes ou auditives commandant des actions sont fortement évocatrices d'un délire."
+          },
+          {
+            "action": "Examen des pupilles et réflexes oculaires",
+            "interpretation": "Des pupilles asymétriques ou des réflexes oculaires anormaux suggèrent une cause neurologique (ex: hémorragie intracrânienne)."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Prescription d'un traitement antipsychotique",
-      "Hospitalisation en cas de crise"
+      "Évaluation de la sécurité du patient (recherche de risque suicidaire ou agressif)",
+      "Stabilisation des paramètres vitaux (correction de l'insuffisance rénale, du sepsis ou de l'hypoglycémie)",
+      "Administration d'un antipsychotique atypique (ex: rispéridone 0,5-1 mg PO ou halopéridol 1-2 mg IM) pour les symptômes sévères",
+      "Installation d'un environnement calme et bien éclairé avec horloge et calendrier visibles",
+      "Notification immédiate de l'équipe médicale pour recherche de cause sous-jacente"
     ],
     "differentialDiagnosis": [
-      "Trouble bipolaire",
-      "Trouble dépressif majeur"
+      "Démence (progressivité lente vs fluctuation aiguë du délire)",
+      "Trouble psychotique chronique (absence de fluctuation diurne)",
+      "Épilepsie partielles complexes (réponse à l'électroencéphalogramme)",
+      "Toxicomanie ou sevrage (contexte de consommation récente)"
+    ]
+  },
+  {
+    "name": "Trouble bipolaire aigu (Épisode maniaque sévère)",
+    "description": "Le trouble bipolaire aigu se manifeste par un épisode maniaque caractérisé par une humeur euphorique ou irritabilité persistante, une diminution du besoin de sommeil, une hyperactivité motrice, une déflation d'idées, une impulsivité accrue et des symptômes psychotiques. La physiopathologie implique des déséquilibres dopaminergiques, sérotoninergiques et glutamatergiques, associés à une hyperactivité des aires limbiques. La présentation clinique typique inclut une agitation motrice, des paroles rapides, des idées fugaces et des comportements à risque (ex: dépenses excessives, relations sexuelles non protégées).",
+    "redFlags": [
+      "Irritabilité extrême associée à des agressivités verbales ou physiques",
+      "Hallucinations auditives commandant des actions impulsives (ex: 'Dieu me dit de brûler la maison')",
+      "Épisodes de délire de grandeur (ex: croyance d'être un prophète ou un dirigeant mondial)",
+      "Perte de contrôle des pulsions (ex: conduite automobile dangereuse, consommation excessive d'alcool)",
+      "Réduction du sommeil à < 2 heures par nuit avec absence de fatigue"
+    ],
+    "scores": [
+      {
+        "name": "Young Mania Rating Scale (YMRS)",
+        "description": "Échelle clinique standardisée pour évaluer la gravité des symptômes maniaques. Mesure l'humeur, l'agitation, la déflation d'idées, la négligence personnelle et les hallucinations.",
+        "criteria": [
+          "Humeur euphorique/irritable : 0-8 points",
+          "Agitation motrice : 0-8 points",
+          "Déflation d'idées : 0-8 points",
+          "Négligence personnelle : 0-4 points",
+          "Hallucinations/illusions : 0-4 points"
+        ],
+        "interpretation": "Score total ≥ 12/60 indique un épisode maniaque probable. Score ≥ 20/60 nécessite une hospitalisation pour sécurité."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen psychiatrique et somatique ciblé",
+        "steps": [
+          {
+            "action": "Évaluation de l'humeur via l'interrogatoire direct (ex: 'Comment vous sentez-vous en ce moment ?')",
+            "interpretation": "Une réponse euphorique exagérée ou une irritabilité malcanalisée est typique de la manie."
+          },
+          {
+            "action": "Recherche de signes de déflation d'idées (ex: demander de décrire sa journée)",
+            "interpretation": "Des phrases rapides, enchaînées, avec des associations libres indiquent une déflation d'idées."
+          },
+          {
+            "action": "Évaluation du sommeil via l'interrogatoire (ex: 'Combien d'heures avez-vous dormi la nuit dernière ?')",
+            "interpretation": "Une réduction du sommeil à < 4 heures avec absence de fatigue est un critère majeur."
+          },
+          {
+            "action": "Recherche de comportements impulsifs (ex: interrogatoire sur les dépenses, les relations sexuelles ou les voyages)",
+            "interpretation": "Des dépenses excessives ou des comportements à risque suggèrent une perte de contrôle impulsif."
+          },
+          {
+            "action": "Examen des pupilles et recherche de tremblements",
+            "interpretation": "Des pupilles dilatées ou des tremblements finaux peuvent indiquer une cause médicale (ex: hyperthyroïdie)."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hospitalisation en unité de soins psychiatriques pour sécurité du patient et des autres",
+      "Administration d'un antipsychotique atypique (ex: olanzapine 10-20 mg PO ou aripiprazole 15 mg PO) pour les symptômes psychotiques",
+      "Évaluation de la nécessité d'un stabilisant de l'humeur (ex: lithium 300 mg PO ou valproate 500 mg PO)",
+      "Éducation du patient et de la famille sur la nature de la maladie et les risques de rechute",
+      "Évaluation de la nécessité d'une électroconvulsivothérapie (ECT) en cas de résistance aux traitements"
+    ],
+    "differentialDiagnosis": [
+      "Trouble de l'usage des substances (contexte de consommation de stimulants)",
+      "Délire aigu (absence de cycles émotionnels bipolaires)",
+      "Épilepsie temporo-limbique (réponse à l'électroencéphalogramme)",
+      "Toxicomanie à la cocaïne (contexte de consommation récente)"
+    ]
+  },
+  {
+    "name": "Trouble schizophrénique",
+    "description": "Le trouble schizophrénique est un trouble psychotique chronique caractérisé par une altération profonde de la pensée, de la perception et du comportement. La physiopathologie implique des déséquilibres neurochimiques (dopamine, sérotonine, glutamate), des anomalies structurales cérébrales (atrophie des aires temporo-limbiques) et des facteurs génétiques. La présentation clinique typique inclut des symptômes positifs (hallucinations auditives, déliriums), des symptômes négatifs (aphasie, anhédonie) et des symptômes cognitifs (troubles de la mémoire, attention). Les épisodes aigus se traduisent par une perte de contact avec la réalité, des troubles du sommeil et une détérioration fonctionnelle.",
+    "redFlags": [
+      "Hallucinations auditives persistantes avec commandes suicidaires ou agressives",
+      "Déliriums bizarres (paranoïa, idées de contrôle par des forces externes) associés à une désorganisation comportementale",
+      "Catatonie avec mutisme absolu ou agitations stéréotypées",
+      "Perte soudaine de la reconnaissance des proches (anosognosie) et isolement social complet",
+      "Déclin cognitif aigu avec troubles de l'orientation temporo-spatiale"
+    ],
+    "scores": [
+      {
+        "name": "Critères DSM-5 pour le trouble schizophrénique",
+        "description": "Classification diagnostique basée sur la présence de symptômes positifs/négatifs/cognitifs persistants (>6 mois) avec fonctionnement social/professionnel gravement altéré.",
+        "criteria": [
+          "Critère A1: Présence de deux ou plus des symptômes suivants pendant au moins une semaine (hallucinations, déliriums, désorganisation du discours, comportement anormal, catatonie)",
+          "Critère A2: Fonctionnement social/professionnel gravement altéré pendant au moins six mois",
+          "Critère B: Symptômes négatifs (aphasie, anhédonie) ou cognitifs (troubles de la mémoire) persistants",
+          "Critère C: Épisode aigu de décompensation psychotique avec hospitalisation requise",
+          "Critère D: Exclusion des troubles bipolaires, schizophrénie à l'état de crise"
+        ],
+        "interpretation": "Diagnostic confirmé si tous les critères A, B, C sont remplis. Les critères D permettent d'éliminer les diagnostics différentiels."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen psychiatrique ciblé et évaluation de la dangerosité",
+        "steps": [
+          {
+            "action": "Évaluation des symptômes positifs via l'entretien semi-structuré (Scale for the Assessment of Positive Symptoms - SAPS)",
+            "interpretation": "La présence de hallucinations auditives commandantes ou de déliriums paranoïaques avec plan d'action agressif indique un risque élevé de dangerosité."
+          },
+          {
+            "action": "Recherche de signes de catatonie (postures stéréotypées, mutisme, rigideur musculaire) par l'observation clinique",
+            "interpretation": "La catatonie associée à des troubles du sommeil profonds (somnolence ou insomnie totale) nécessite une hospitalisation immédiate."
+          },
+          {
+            "action": "Évaluation des symptômes négatifs via l'échelle de Calgary (Scale for the Assessment of Negative Symptoms - SANS)",
+            "interpretation": "Une anhédonie totale avec retrait social complet et perte de motivation évoque une forme résistante à la thérapie."
+          },
+          {
+            "action": "Test de la reconnaissance faciale (Faux-positifs) pour évaluer les troubles de l'identification des émotions",
+            "interpretation": "Une incapacité à reconnaître les émotions de base (tristesse, colère) corrobore des anomalies temporo-limbiques."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hospitalisation en milieu fermé pour sécuriser le patient et les tiers en cas de dangerosité",
+      "Initiation d'un antipsychotique atypique (olanzapine 10 mg/j ou risperidone 4 mg/j) avec surveillance des effets extrapyramidaux",
+      "Évaluation de la sécurité (sécurisation des armes, objets dangereux) et mise en place d'un plan de crise",
+      "Éducation thérapeutique pour la famille sur les signes de rechute et l'importance du suivi",
+      "Prise en charge multidisciplinaire (psychologue, ergothérapeute) dès l'admission"
+    ],
+    "differentialDiagnosis": [
+      "Trouble bipolaire avec épisode maniaque sévère (absence de symptômes négatifs persistants)",
+      "Trouble schizoaffectif (présence d'épisodes dépressifs ou maniaques distincts)",
+      "Toxicomanie avec hallucinations (exclusion par dosage des stupéfiants)"
+    ]
+  },
+  {
+    "name": "Trouble dépressif majeur avec symptômes psychotiques",
+    "description": "Forme sévère du trouble dépressif majeur associant une dépression profonde à des symptômes psychotiques (hallucinations, déliriums). La physiopathologie combine des déséquilibres de la sérotonine, du noradrénaline et de la dopamine, avec des anomalies de la neuroplasticité hippocampique. La présentation clinique typique inclut une tristesse persistante, une perte d'intérêt, des idées suicidaires, des hallucinations auditives ou visuelles, et des déliriums de type négation de la maladie ou de culpabilité exagérée.",
+    "redFlags": [
+      "Hallucinations visuelles persistantes avec contenu négatif (voix accusatrices, figures menaçantes)",
+      "Déliriums de culpabilité exagérée (« Je mérite la mort ») associés à des plans suicidaires concrets",
+      "Catatonie dépressive (immobilité totale, mutisme, posture de cire) avec troubles du sommeil inversés",
+      "Perte soudaine de la reconnaissance de soi (délirium de négation de la maladie)",
+      "Déclin cognitif aigu avec troubles de la mémoire à court terme"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de Hamilton pour la dépression (HDRS)",
+        "description": "Score clinique standardisé évaluant la gravité des symptômes dépressifs, y compris les éléments psychotiques.",
+        "criteria": [
+          "Item 1: Humour déprimé (0-4 points selon la sévérité)",
+          "Item 2: Retardation motrice (0-4 points)",
+          "Item 3: Idées suicidaires (0-4 points selon la dangerosité)",
+          "Item 4: Hallucinations (0-4 points selon la fréquence)",
+          "Item 5: Déliriums (0-4 points selon le contenu)"
+        ],
+        "interpretation": "Score > 24 indique une dépression sévère avec risque élevé de complications. Les items 4-5 permettent de quantifier les éléments psychotiques."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Évaluation de la gravité dépressive et des risques suicidaires",
+        "steps": [
+          {
+            "action": "Utilisation de l'Échelle de Columbia pour les idées suicidaires (C-SSRS)",
+            "interpretation": "Une réponse positive à la question « Avez-vous eu des pensées de suicide au cours des 30 derniers jours ? » nécessite une évaluation immédiate."
+          },
+          {
+            "action": "Test de la mémoire à court terme (Digits Span Test) pour évaluer les troubles cognitifs",
+            "interpretation": "Une performance inférieure à 5 chiffres indique une altération sévère de la mémoire liée à l'hypothèse hippocampique."
+          },
+          {
+            "action": "Observation des mouvements oculaires pour rechercher des signes de catatonie dépressive",
+            "interpretation": "Des clignements oculaires rares ou des fixations prolongées corroborent un état de mutisme catatonique."
+          },
+          {
+            "action": "Évaluation de la perception visuelle via des tests de reconnaissance d'objets familiers",
+            "interpretation": "Une incapacité à identifier des objets de base (ex: horloge, arbre) évoque des hallucinations visuelles persistantes."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hospitalisation en milieu sécurisé pour prévenir le suicide et surveiller l'évolution",
+      "Initiation d'un antidépresseur (sertraline 50 mg/j) associé à un antipsychotique atypique (quetiapine 25 mg/j) pour les symptômes psychotiques",
+      "Évaluation de la sécurité (sécurisation des armes, objets dangereux) et mise en place d'un plan de crise",
+      "Thérapie cognitivo-comportementale (TCC) ciblant les idées suicidaires et les croyances délirantes",
+      "Surveillance étroite des effets secondaires (hypotension orthostatique, sécheresse buccale) et ajustement posologique"
+    ],
+    "differentialDiagnosis": [
+      "Trouble schizophrénique avec épisode dépressif (absence de symptômes psychotiques persistants)",
+      "Trouble bipolaire avec épisode dépressif sévère (historique de manie ou hypomanie antérieur)",
+      "Toxicomanie avec dépression secondaire (exclusion par dosage des stupéfiants)"
     ]
   }
 ]

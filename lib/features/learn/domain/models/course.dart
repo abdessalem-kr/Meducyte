@@ -120,6 +120,9 @@ class LearnLesson extends Equatable {
       'order': order,
       'is_free': isFree,
       'is_studied': isStudied,
+      if (paragraphs != null)
+        'paragraphs': paragraphs!.map((p) => p.toJson()).toList(),
+      if (module != null) 'module': module!.toJson(),
     };
   }
 
@@ -156,11 +159,37 @@ class LearnParagraph extends Equatable {
   });
 
   factory LearnParagraph.fromJson(Map<String, dynamic> json) {
+    // Start with the main content string
+    final contentBuffer = StringBuffer((json['content'] as String?) ?? '');
+
+    // Append any dedicated table rows the backend returns separately
+    final rawTables = json['tables'];
+    if (rawTables is List && rawTables.isNotEmpty) {
+      for (final t in rawTables) {
+        final markdown = t['markdown'] as String?;
+        if (markdown != null && markdown.trim().isNotEmpty) {
+          contentBuffer.write('\n\n$markdown');
+        }
+      }
+    }
+
+    // Append any dedicated images the backend returns separately
+    final rawImages = json['images'];
+    if (rawImages is List && rawImages.isNotEmpty) {
+      for (final img in rawImages) {
+        final url = img['url'] as String?;
+        final alt = (img['alt'] as String?) ?? '';
+        if (url != null && url.trim().isNotEmpty) {
+          contentBuffer.write('\n\n![$alt]($url)');
+        }
+      }
+    }
+
     return LearnParagraph(
       id: json['id'].toString(),
       title: json['title'] as String?,
       lessonId: json['lessonId']?.toString() ?? '',
-      content: json['content'] as String,
+      content: contentBuffer.toString(),
       order: json['order'] as int? ?? 0,
       hasQuiz: json['has_quiz'] == 1 || json['has_quiz'] == true,
       myNote: json['my_note'] != null
@@ -189,6 +218,20 @@ class LearnParagraph extends Equatable {
             .toList();
       }(),
     );
+  }
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'lessonId': lessonId,
+      'content': content,
+      'order': order,
+      'has_quiz': hasQuiz,
+      'my_note': myNote?.toJson(),
+      'my_highlights': highlights.map((h) => h.toJson()).toList(),
+    };
   }
 
   @override
@@ -226,6 +269,16 @@ class ParagraphNote extends Equatable {
       googleDriveWebViewLink: json['google_drive_web_view_link'] as String?,
       thumbnailUrl: json['thumbnail_url'] as String?,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'text': text,
+      'google_drive_file_id': googleDriveFileId,
+      'google_drive_web_view_link': googleDriveWebViewLink,
+      'thumbnail_url': thumbnailUrl,
+    };
   }
 
   @override

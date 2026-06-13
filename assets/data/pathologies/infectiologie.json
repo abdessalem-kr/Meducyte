@@ -60,125 +60,337 @@
     ]
   },
   {
-    "name": "Méningite",
-    "description": "Infection de la méninge",
+    "name": "Infection à VIH (Virus de l'immunodéficience humaine)",
+    "description": "Infection chronique due à un rétrovirus (VIH-1 ou VIH-2) qui cible principalement les lymphocytes T CD4+. La physiopathologie repose sur la destruction progressive des cellules immunitaires, entraînant une immunodépression profonde. La présentation clinique typique inclut une phase aiguë (syndrome réticulaire fébrile, lymphadénopathies, éruption cutanée) suivie d'une phase asymptomatique prolongée, puis de manifestations opportunistes (pneumocystose, tuberculose, kératite herpétique) et de cancers liés à l'immunodépression (lymphomes, kaposi).",
     "redFlags": [
-      "Céphalée intense",
-      "Fièvre élevée",
-      "Raideur de nuque",
-      "Conscience altérée"
+      "Syndrome fébrile persistant > 2 semaines associé à des lymphadénopathies généralisées et une perte de poids > 10 %",
+      "Pneumopathie subaiguë avec dyspnée d'effort et hypoxémie, évoquant une pneumocystose",
+      "Diarrhée chronique réfractaire associée à une amaigrissement marqué et des troubles digestifs",
+      "Éruption cutanée érythémateuse maculo-papuleuse sur les plis, associée à une fièvre et des adénopathies cervicales",
+      "Céphalées persistantes associées à des troubles visuels ou neurologiques, évoquant une méningite à JC virus"
     ],
     "scores": [
       {
-        "name": "Score de Glasgow",
-        "description": "Évaluation de la conscience",
+        "name": "Classification clinique de l'OMS pour le VIH",
+        "description": "Évalue la gravité clinique de l'infection selon les stades de la maladie et les manifestations opportunistes.",
         "criteria": [
-          "Ouverture des yeux",
-          "Réponse verbale",
-          "Réponse motrice"
+          "Stade I: Infection asymptomatique ou symptômes bénins (ex: lymphadénopathies)",
+          "Stade II: Symptômes intermédiaires (ex: éruptions cutanées, diarrhée chronique)",
+          "Stade III: Immunodépression modérée (ex: tuberculose, pneumocystose)",
+          "Stade IV: Immunodépression sévère avec manifestations opportunistes (ex: kaposi, méningite à JC)"
         ],
-        "interpretation": "Score inférieur à 8 : coma"
+        "interpretation": "Le stade IV indique une immunodépression sévère nécessitant une initiation immédiate d'une thérapie antirétrovirale (TAR) et une prophylaxie des infections opportunistes."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen neurologique",
+        "title": "Examen clinique ciblé pour le VIH",
         "steps": [
           {
-            "action": "Évaluation de la conscience",
-            "interpretation": "Évaluation de la gravité"
+            "action": "Palpation des ganglions lymphatiques cervicaux, axillaires et inguinaux pour rechercher des lymphadénopathies généralisées",
+            "interpretation": "Lymphadénopathies bilatérales non douloureuses > 1 cm, typiques de la phase aiguë ou chronique du VIH."
           },
           {
-            "action": "Recherche de signes de focalisation",
-            "interpretation": "Localisation de l'infection"
-          }
-        ]
-      },
-      {
-        "title": "Examen des signes de Kernig et de Brudzinski",
-        "steps": [
-          {
-            "action": "Examen de la raideur de nuque",
-            "interpretation": "Recherche de signes de méningite"
+            "action": "Examen cutané complet pour identifier des lésions érythémateuses, des ulcérations ou des kératoses seborrhéiques",
+            "interpretation": "Éruptions cutanées maculo-papuleuses sur les plis ou ulcérations buccales évoquant une infection herpétique."
           },
           {
-            "action": "Examen des réflexes",
-            "interpretation": "Recherche de signes de neuropathie"
+            "action": "Examen neurologique ciblé (tests de coordination, sensibilité vibratoire, réflexes) pour rechercher des neuropathies ou méningites opportunistes",
+            "interpretation": "Signes de neuropathie sensitive ou troubles visuels suggérant une kératite herpétique."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration de corticostéroïdes",
-      "Antibiothérapie ciblée",
-      "Réanimation"
+      "Initiation d'une thérapie antirétrovirale (TAR) combinée (ex: Ténofovir + Emtricitabine + Dolutégravir) dès le diagnostic confirmé",
+      "Prophylaxie de la pneumocystose (triméthoprime-sulfaméthoxazole) chez les patients avec CD4 < 200/mm³",
+      "Prise en charge des manifestations opportunistes (ex: amphotéricine B pour une cryptococcose cérébrale)",
+      "Éducation du patient sur la transmission du VIH et les mesures de prévention (préservatifs, dépistage des partenaires)",
+      "Surveillance régulière des taux de CD4 et de charge virale pour ajuster la TAR"
     ],
     "differentialDiagnosis": [
-      "Encéphalite",
-      "Méningite virale",
-      "Tumeur cérébrale"
+      "Infection à HTLV-1 (lymphadénopathies et myélite) : absence de manifestations opportunistes typiques du VIH",
+      "Sarcoidose : lymphadénopathies bilatérales sans immunodépression",
+      "Infection à CMV (cytomégalovirus) : manifestations similaires mais sans destruction progressive des CD4"
     ]
   },
   {
-    "name": "Pneumonie",
-    "description": "Infection des poumons",
+    "name": "Tuberculose pulmonaire",
+    "description": "Infection chronique due à Mycobacterium tuberculosis, touchant principalement les poumons. La physiopathologie implique une infection initiale (bacille de Koch) suivie d'une réactivation ou d'une infection secondaire. La présentation clinique typique inclut une toux persistante > 3 semaines, une fièvre basse, une transpiration nocturne, une perte de poids et une expectoration purulente ou hémoptique. Les formes graves peuvent évoluer vers une cavitation pulmonaire ou une tuberculose miliare.",
     "redFlags": [
-      "Toux productive",
-      "Fièvre élevée",
-      "Dyspnée",
-      "Cyanose"
+      "Toux chronique > 3 semaines associée à une hémoptise et une fièvre persistante",
+      "Cavités pulmonaires multiples sur la radiographie thoracique avec ou sans adénopathie médiastinale",
+      "Adénopathies cervicales douloureuses avec ou sans fistule cutanée",
+      "Symptômes neurologiques focaux associés à une méningite (céphalées, photophobie, signes de Kernig)",
+      "Péritoine douloureux avec adénopathies mésentériques et fièvre chronique"
     ],
     "scores": [
       {
-        "name": "Score de CURB-65",
-        "description": "Évaluation de la gravité de la pneumonie",
+        "name": "Score de tuberculose chez l'adulte (TB score)",
+        "description": "Évalue le risque de tuberculose active sur la base de signes cliniques et biologiques.",
         "criteria": [
-          "Confusion",
-          "Uremie",
-          "Respiratory rate ≥ 30/min",
-          "Systolic blood pressure < 90 mmHg",
-          "Âge ≥ 65 ans"
+          "Critère 1: Toux > 2 semaines (+2)",
+          "Critère 2: Fièvre > 1 semaine (+1)",
+          "Critère 3: Perte de poids > 5 % (+1)",
+          "Critère 4: Transpiration nocturne (+1)",
+          "Critère 5: Adénopathie cervicale (+1)"
         ],
-        "interpretation": "2 points ou plus : pneumonie grave"
+        "interpretation": "Un score ≥ 4 points indique un risque élevé de tuberculose pulmonaire et justifie une recherche immédiate de bacilles dans les expectorations."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen thoracique",
+        "title": "Examen clinique ciblé pour la tuberculose pulmonaire",
         "steps": [
           {
-            "action": "Auscultation des poumons",
-            "interpretation": "Recherche de râles ou de sibilances"
+            "action": "Auscultation pulmonaire bilatérale pour rechercher des râles crépitants, des souffles rauques ou des crépitements",
+            "interpretation": "Râles crépitants basaux ou crépitements suggérant une consolidation ou une cavitation."
           },
           {
-            "action": "Examen de la percussion",
-            "interpretation": "Recherche de signes de consolidation"
-          }
-        ]
-      },
-      {
-        "title": "Examen des signes de détresse respiratoire",
-        "steps": [
-          {
-            "action": "Évaluation de la fréquence respiratoire",
-            "interpretation": "Recherche de signes de détresse"
+            "action": "Palpation des ganglions cervicaux et sous-clavières pour rechercher des adénopathies douloureuses ou fluctuantes",
+            "interpretation": "Adénopathies cervicales douloureuses avec ou sans fistule cutanée évoquant une tuberculose ganglionnaire."
           },
           {
-            "action": "Examen de la saturation en oxygène",
-            "interpretation": "Recherche de signes d'hypoxémie"
+            "action": "Examen neurologique ciblé (tests de Kernig, Brudzinski) pour rechercher des signes de méningite tuberculeuse",
+            "interpretation": "Signes de méningite (céphalées, photophobie, signes de Kernig positifs) nécessitant une ponction lombaire urgente."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration d'antibiotiques",
-      "Oxygénothérapie",
-      "Réanimation"
+      "Initiation d'un traitement antituberculeux standardisé (Rifampicine, Isoniazide, Pyrazinamide, Ethambutol) pendant 2 mois, suivi de 4 mois de Rifampicine et Isoniazide",
+      "Isolation respiratoire du patient pour prévenir la transmission (chambre à air négatif, masque N95 pour le personnel)",
+      "Prise en charge des complications (ex: corticoïdes pour une méningite tuberculeuse sévère)",
+      "Surveillance des effets secondaires hépatiques (bilan hépatique toutes les 2 semaines)",
+      "Éducation du patient sur l'importance du traitement complet pour éviter la résistance"
     ],
     "differentialDiagnosis": [
-      "Bronchite aiguë",
-      "Insuffisance cardiaque congestive",
-      "Embolie pulmonaire"
+      "Pneumonie bactérienne aiguë : fièvre aiguë, absence de transpiration nocturne et réponse rapide aux antibiotiques",
+      "Cancer du poumon : toux chronique avec hémoptise, mais absence de fièvre et de transpiration nocturne",
+      "Pneumopathie interstitielle idiopathique : absence de fièvre et de cavités sur les radiographies"
+    ]
+  },
+  {
+    "name": "Méningite à méningocoque aiguë",
+    "description": "Infection bactérienne sévère des méninges causée par Neisseria meningitidis. Elle se caractérise par une inflammation aiguë des pachyglènes et du liquide céphalo-rachidien (LCR), associée à une réponse inflammatoire systémique. La présentation clinique typique inclut une fièvre élevée, céphalées intenses, raideur de nuque, confusion, et signes de méningisme (signes de Kernig et Brudzinski positifs). Les formes graves peuvent évoluer vers un choc septique, une coagulopathie, ou des lésions cutanées purpuriques.",
+    "redFlags": [
+      "Fièvre > 39°C associée à une céphalée pulsatile et raideur de nuque persistante malgré la flexion",
+      "Signes de méningisme (Kernig positif : flexion de 90° du genou impossible, Brudzinski : flexion de la hanche induite par la flexion du cou)",
+      "Éruption cutanée purpurique non soulevable, évoluant vers des nécroses en 24-48 heures",
+      "Chute brutale de la pression artérielle avec tachycardie compensatrice (shock hypovolémique)",
+      "Alteration de l'état de conscience (somnolence à coma) avec réflexes pupillaires asymétriques"
+    ],
+    "scores": [
+      {
+        "name": "Score de Brouwer pour méningite bactérienne",
+        "description": "Score clinique évaluant le risque de méningite bactérienne chez un patient avec méningisme. Il intègre des paramètres comme l'âge, la température, le nombre de leucocytes, et la présence de signes focaux.",
+        "criteria": [
+          "Âge < 1 an : +2 points",
+          "Température corporelle > 39°C : +1 point",
+          "Leucocytes sanguins > 15 000/mm³ : +1 point",
+          "Signes focaux neurologiques : +2 points",
+          "Éruption purpurique : +2 points"
+        ],
+        "interpretation": "Score ≥ 4 points : fortement suggestif de méningite bactérienne. Score < 4 points : méningite virale probable, mais nécessite confirmation par ponction lombaire."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et cutané ciblé",
+        "steps": [
+          {
+            "action": "Palpation des ganglions cervicaux et test de la flexion du cou (signe de Brudzinski)",
+            "interpretation": "Adénopathies cervicales douloureuses associées à une impossibilité de flexion du cou évoquent une méningite aiguë. La douleur à la flexion du cou est un signe de méningisme."
+          },
+          {
+            "action": "Auscultation pulmonaire et recherche de râles crépitants",
+            "interpretation": "Râles crépitants associés à une méningite peuvent indiquer une co-infection pulmonaire ou une surcharge hydro-sodée secondaire à la corticothérapie."
+          },
+          {
+            "action": "Examen cutané pour éruption purpurique non soulevable",
+            "interpretation": "Éruption non soulevable (signe de capillaroscopie négatif) est un signe de coagulopathie secondaire à la méningite à méningocoque, nécessitant une prise en charge immédiate."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie empirique intraveineuse (céphalosporine de 3e génération + vancomycine) avant résultats de cultures",
+      "Ponction lombaire d'urgence pour analyse du LCR (aspect trouble, cellules > 1000/mm³, protéines élevées, glucose bas)",
+      "Réanimation intraveineuse avec perfusion de cristalloïdes (500-1000 mL/h) en cas de choc",
+      "Corticostéroïdes (dexaméthasone) avant ou avec le premier antibiotique pour réduire l'inflammation cérébrale",
+      "Surveillance étroite de la pression intracrânienne avec TDM cérébrale si suspicion de herniation"
+    ],
+    "differentialDiagnosis": [
+      "Méningite virale (fièvre herpétique, méningite à enterovirus) : LCR clair avec lymphocytes dominants",
+      "Méningite tuberculeuse : Évolution insidieuse, LCR avec protéines très élevées et glucose très bas",
+      "Méningite fongique (cryptococcique) : Plus fréquente chez les immunodéprimés, LCR avec cellules lymphocytaires et cryptococcine antigénique positive"
+    ]
+  },
+  {
+    "name": "Pneumonie à Pneumocystis jirovecii (PCP)",
+    "description": "Infection pulmonaire opportuniste causée par le champignon Pneumocystis jirovecii, typiquement chez les patients immunodéprimés (CD4 < 200/mm³). Elle se manifeste par une insuffisance respiratoire progressive, une toux sèche, et une fièvre. La physiopathologie repose sur une infiltration alvéolaire avec épaississement interstitiel, entraînant une hypoxémie sévère. Les formes graves peuvent évoluer vers une insuffisance respiratoire aiguë.",
+    "redFlags": [
+      "Dyspnée d'effort progressive survenant en 1-2 semaines, associée à une toux sèche",
+      "Saturation en oxygène < 92% à l'air ambiant avec hypoxémie résistante à l'oxygénothérapie",
+      "Crachats mousseux ou sanglants en cas de rupture alvéolaire",
+      "Péricardite constrictive secondaire à l'inflammation interstitielle",
+      "Pneumothorax spontané bilatéral (fréquent dans les formes sévères)"
+    ],
+    "scores": [
+      {
+        "name": "Score de CD4 pour PCP",
+        "description": "Classification basée sur le taux de CD4 pour évaluer le risque de PCP chez les patients VIH+. Un CD4 < 200/mm³ est un facteur de risque majeur.",
+        "criteria": [
+          "CD4 ≥ 500/mm³ : Risque négligeable",
+          "CD4 200-499/mm³ : Risque modéré",
+          "CD4 100-199/mm³ : Risque élevé",
+          "CD4 < 100/mm³ : Risque très élevé"
+        ],
+        "interpretation": "Le risque de PCP augmente exponentiellement en dessous de 200/mm³. Un CD4 < 100/mm³ justifie une prophylaxie précoce."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et immunologique ciblé",
+        "steps": [
+          {
+            "action": "Auscultation pulmonaire pour râles crépitants basaux bilatéraux",
+            "interpretation": "Râles crépitants associés à une hypoxémie évoquent une infiltration interstitielle typique de la PCP."
+          },
+          {
+            "action": "Palpation des ganglions lymphatiques cervicaux et axillaires",
+            "interpretation": "Adénopathies cervicales associées à une PCP peuvent indiquer une co-infection opportuniste (ex. lymphome non hodgkinien)."
+          },
+          {
+            "action": "Recherche de signes de décompensation cardiaque (turgescence jugulaire, souffles cardiaques anormaux)",
+            "interpretation": "Péricardite constrictive secondaire à l'inflammation interstitielle peut masquer la gravité de l'insuffisance respiratoire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie intraveineuse (triméthoprime-sulfaméthoxazole) avec corticostéroïdes (dexaméthasone) si PaO2 < 70 mmHg",
+      "Oxygénothérapie à haut débit (HFNC) ou ventilation mécanique non invasive (VNI) en cas d'insuffisance respiratoire",
+      "Prévention des pneumothorax par drainage thoracique si suspicion de rupture alvéolaire",
+      "Reconstitution immunitaire avec antirétroviraux (ARV) en phase initiale pour éviter la réaction de rejet immunitaire",
+      "Surveillance étroite de l'équilibre hydrosaline et correction des déséquilibres électrolytiques"
+    ],
+    "differentialDiagnosis": [
+      "Pneumonie interstitielle idiopathique : Absence de facteurs de risque immunodéprimant, évolution plus lente",
+      "Pneumonie à Mycoplasma : Présentation clinique similaire mais LCR normal et absence de CD4 bas",
+      "Pneumonie à Pneumocystis chez les non-immunodéprimés : Exceptionnel, nécessite confirmation par PCR"
+    ]
+  },
+  {
+    "name": "Méningite à cryptococcus",
+    "description": "Infection fongique du système nerveux central causée par Cryptococcus neoformans, principalement chez les immunodéprimés (VIH, corticothérapie). La physiopathologie repose sur l'ingestion de spores pulmonaires, puis une dissémination hémato-lymphatique vers le SNC. Présentation clinique typique : fièvre, céphalée progressive, vomissements, confusion, troubles visuels, et signes de méningismes. L'évolution peut être insidieuse sur plusieurs semaines.",
+    "redFlags": [
+      "Céphalée persistante > 1 semaine associée à une confusion progressive",
+      "Fièvre basse associée à des troubles visuels (diplopie, ptérygions)",
+      "Signes de surpression intracrânienne (vomissements en jet, papilledème)",
+      "Hypoglycémie associée à une infection chronique",
+      "Antécédents de sida ou de corticothérapie prolongée"
+    ],
+    "scores": [
+      {
+        "name": "Score de Hunt et Hess pour méningite cryptococcique",
+        "description": "Évalue la gravité clinique et le risque de surpression intracrânienne",
+        "criteria": [
+          "Classe I: Céphalée isolée (+0)",
+          "Classe II: Céphalée + troubles visuels (+1)",
+          "Classe III: Céphalée + confusion (+2)",
+          "Classe IV: Céphalée + coma (+3)",
+          "Classe V: Céphalée + surpression intracrânienne documentée (+4)"
+        ],
+        "interpretation": "Les classes III-V nécessitent une intubation précoce et une décompression chirurgicale en cas de surpression intracrânienne > 25 cmH2O."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et oculaire ciblé",
+        "steps": [
+          {
+            "action": "Palpation du fond d'œil avec ophthalmoscope pour rechercher un papilledème",
+            "interpretation": "Un papilledème évoque une surpression intracrânienne secondaire à l'obstruction des espaces sous-arachnoidiens par les kystes fongiques."
+          },
+          {
+            "action": "Test de la convergence oculaire et du regard horizontal",
+            "interpretation": "Une diplopie horizontale ou une ptose oculaire suggère une atteinte des nerfs crâniens VI et III par compression."
+          },
+          {
+            "action": "Évaluation de l'acuité visuelle et du champ visuel",
+            "interpretation": "Une acuité visuelle réduite ou des scotomes centraux évoquent une atteinte du chiasma optique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Amphotéricine B à dose létale (0.7-1 mg/kg/jour) avec flucytosine (100 mg/kg/jour) pendant 2 semaines",
+      "Puncture lombaire diagnostique et thérapeutique pour réduire la pression intracrânienne",
+      "Installation d'un cathéter ventriculaire externe en cas de surpression intracrânienne persistante",
+      "Initiation d'une thérapie antirétrovirale (HAART) après stabilisation clinique",
+      "Surveillance étroite des signes de surcharge hydroélectrolytique liée à l'amphotéricine"
+    ],
+    "differentialDiagnosis": [
+      "Méningite tuberculeuse (présence de lymphocytes > 90% dans le LCR)",
+      "Méningite à cryptococcus vs. méningite à Cryptococcus gattii (prédominance chez les immunocompétents)",
+      "Méningite à Streptococcus pneumoniae (évolution aiguë < 72h)"
+    ]
+  },
+  {
+    "name": "Infection à Listeria monocytogenes",
+    "description": "Infection bactérienne opportuniste causée par Listeria monocytogenes, bactérie Gram positif intracellulaire. Physiopathologie : ingestion de produits contaminés (fromages, charcuterie), puis multiplication intracellulaire avec dissémination hémato-lymphatique. Présentation clinique : fièvre, myalgie, diarrhée, puis évolution vers une infection invasive (méningite, septicémie, myosite). Forme grave chez les immunodéprimés, les femmes enceintes et les personnes âgées.",
+    "redFlags": [
+      "Fièvre > 38.5°C avec myalgie profonde et diarrhée aiguë",
+      "Signes de méningite chez un patient immunodéprimé",
+      "Myosite aiguë avec douleur musculaire localisée et œdème",
+      "Septicémie avec leucopénie (< 4000/mm³)",
+      "Infection materno-fœtale avec prématurité ou fausse couche"
+    ],
+    "scores": [
+      {
+        "name": "Score de dangerosité de l'infection à Listeria",
+        "description": "Évalue le risque de forme invasive",
+        "criteria": [
+          "Critère 1: Âge > 65 ans (+1)",
+          "Critère 2: Immunosuppression (VIH, corticothérapie) (+2)",
+          "Critère 3: Grossesse (+1)",
+          "Critère 4: Diabète mal contrôlé (+1)",
+          "Critère 5: Contact avec aliment contaminé (+1)"
+        ],
+        "interpretation": "Score ≥ 3: Risque élevé de forme invasive nécessitant antibiothérapie précoce."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et musculaire ciblé",
+        "steps": [
+          {
+            "action": "Palpation des muscles parietaux et fessiers pour rechercher une myosite",
+            "interpretation": "Douleur à la palpation avec œdème local évoque une myosite listérienne."
+          },
+          {
+            "action": "Test de la flexion plantaire et de l'extension dorsale",
+            "interpretation": "Une rigidité plantaire évoque une méningite à Listeria."
+          },
+          {
+            "action": "Évaluation de la sensibilité cutanée et des réflexes",
+            "interpretation": "Une anesthésie segmentaire ou une myélite évoquent une atteinte médullaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Amoxicilline à dose létale (2-4 g toutes les 4 heures) ou ampicilline (2 g toutes les 4 heures) + gentamicine",
+      "Lavage gastrique en cas d'ingestion suspecte d'aliment contaminé",
+      "Surveillance étroite de la fonction rénale en cas de corticothérapie concomitante",
+      "Hospitalisation en unité de soins intensifs pour les formes invasives",
+      "Prévention de la transmission materno-fœtale par antibiothérapie précoce chez la femme enceinte"
+    ],
+    "differentialDiagnosis": [
+      "Méningite à Streptococcus agalactiae (présence de signes de méningite aiguë)",
+      "Infection à Escherichia coli (présence de diarrhée hémorragique)",
+      "Myosite à Clostridium (absence de fièvre et présence de myoglobine urinaire)"
     ]
   }
 ]

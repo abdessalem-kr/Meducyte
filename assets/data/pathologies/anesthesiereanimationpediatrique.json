@@ -1,0 +1,452 @@
+[
+  {
+    "name": "Hyperthermie maligne pédiatrique",
+    "description": "L'hyperthermie maligne est une réaction génétique à certains agents anesthésiques (halogénés et succinylcholine) entraînant une hypermétabolisme musculaire. Elle se manifeste par une augmentation rapide de la température corporelle (> 40°C), une rigidité musculaire, une tachycardie, une acidose métabolique, une myoglobinurie et une insuffisance rénale aiguë. La physiopathologie repose sur une dérégulation du calcium intracellulaire dans les myocytes, déclenchant une contraction musculaire incontrolable.",
+    "redFlags": [
+      "Température corporelle > 40°C survenant pendant ou après une anesthésie générale",
+      "Rigidité musculaire généralisée (notamment de la mâchoire, des membres et du tronc)",
+      "Tachycardie réfractaire (> 150 bpm) associée à une hypotension ou hypertension paradoxale",
+      "Acidose métabolique avec anion gap élevé (> 12 mEq/L) et kaliémie élevée (> 5,5 mmol/L)",
+      "Myoglobinurie (urines foncées) et insuffisance rénale aiguë (créatinine > 1,5 x LNM)"
+    ],
+    "scores": [
+      {
+        "name": "Score de suspicion d'hyperthermie maligne (MHS score)",
+        "description": "Score évaluant la probabilité de crise d'hyperthermie maligne basé sur des signes cliniques et biologiques",
+        "criteria": [
+          "Température corporelle > 40°C (+3 points)",
+          "Rigidité musculaire généralisée (+2 points)",
+          "Tachycardie > 150 bpm (+2 points)",
+          "Acidose métabolique avec anion gap > 12 mEq/L (+2 points)",
+          "Myoglobinurie documentée (+2 points)"
+        ],
+        "interpretation": "Score ≥ 7 points : forte suspicion d'hyperthermie maligne. Score < 5 points : diagnostic improbable mais nécessite évaluation clinique continue."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé de l'hyperthermie maligne",
+        "steps": [
+          {
+            "action": "Palpation des muscles masseters et des membres pour évaluer la rigidité",
+            "interpretation": "Rigidité des masseters (« lock jaw ») est un signe précoce et spécifique. Rigidité des membres et du tronc indique une extension du processus pathologique."
+          },
+          {
+            "action": "Mesure de la température corporelle rectale ou tympanique",
+            "interpretation": "Température > 40°C associée à des signes de stress métabolique (sueurs, agitation) est un critère majeur de diagnostic."
+          },
+          {
+            "action": "Évaluation de la perfusion tissulaire (capillarite, mottling cutané)",
+            "interpretation": "Mottling cutané et capillarite > 3 secondes indiquent une insuffisance circulatoire secondaire à l'acidose et à l'ischémie."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Arrêt immédiat des agents déclencheurs (halogénés et succinylcholine)",
+      "Administration de dantrolène intraveineux (2,5 mg/kg en bolus, puis 1 mg/kg/h en perfusion)",
+      "Hyperventilation mécanique avec oxygène pur pour corriger l'acidose",
+      "Réanimation circulatoire avec perfusion de 20-30 ml/kg de cristalloïdes (Ringer lactate)",
+      "Installation d'une perfusion de bicarbonate de sodium (1-2 mEq/kg) pour corriger l'acidose métabolique"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome neuroleptique malin (absence de température > 40°C et absence de myoglobinurie)",
+      "Crise de thyrotoxicose (présence d'exophtalmie et de tremblements)",
+      "Choc septique (présence de signes d'infection et absence de myoglobinurie)"
+    ]
+  },
+  {
+    "name": "Choc septique pédiatrique",
+    "description": "Le choc septique pédiatrique est une réponse systémique à une infection associée à une hypoperfusion tissulaire. Il se caractérise par une hypotension réfractaire, une acidose métabolique, une hypoperfusion tissulaire (capillarite prolongée, mottling cutané) et une insuffisance d'organe. La physiopathologie implique une réponse inflammatoire excessive avec libération de cytokines, entraînant une vasodilatation, une fuite capillaire et une insuffisance myocardique.",
+    "redFlags": [
+      "Hypotension persistante (systolique < 70 + 2 x âge en années) malgré la réanimation initiale",
+      "Capillarite > 3 secondes et mottling cutané étendu",
+      "Alcalose respiratoire avec pH < 7,25 et PaCO2 < 30 mmHg",
+      "Lactatémie > 4 mmol/L persistante malgré la perfusion de 20 ml/kg de cristalloïdes",
+      "Insuffisance rénale aiguë (diurèse < 0,5 ml/kg/h) ou oligo-anurie"
+    ],
+    "scores": [
+      {
+        "name": "qSOFA pédiatrique",
+        "description": "Score de dépistage rapide du choc septique basé sur des signes cliniques",
+        "criteria": [
+          "Respiration > 22/min (+1 point)",
+          "Alcalose respiratoire (PaCO2 < 30 mmHg) (+1 point)",
+          "Glasgow < 13 ou absence de réponse à la douleur (+1 point)"
+        ],
+        "interpretation": "Score ≥ 2 points : risque élevé de mortalité (près de 50%) et nécessité d'une réanimation intensive immédiate."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé du choc septique",
+        "steps": [
+          {
+            "action": "Évaluation de la perfusion tissulaire par le test de capillarite",
+            "interpretation": "Capillarite > 3 secondes indique une hypoperfusion tissulaire. Mottling cutané étendu (pieds, jambes) est un signe de choc septique sévère."
+          },
+          {
+            "action": "Palpation des signes de congestion veineuse jugulaire",
+            "interpretation": "Turgescence jugulaire avec reflux hépato-jugulaire positif suggère une surcharge circulatoire secondaire à la libération de cytokines."
+          },
+          {
+            "action": "Évaluation de la réponse à la douleur (score de Glasgow)",
+            "interpretation": "Score < 13 indique une altération du niveau de conscience liée à l'hypoperfusion cérébrale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réanimation circulatoire avec perfusion de 20 ml/kg de cristalloïdes (Ringer lactate) en 5-10 minutes",
+      "Initiation d'antibiothérapie large spectre (piperacilline-tazobactam ou cefotaxime + vancomycine)",
+      "Installation d'une perfusion de noradrénaline à 0,1 µg/kg/min pour maintenir une PA systolique > 70 + 2 x âge",
+      "Correction de l'acidose métabolique avec bicarbonate de sodium (1 mEq/kg) si pH < 7,15",
+      "Insertion d'un cathéter veineux central pour surveillance de la pression de remplissage"
+    ],
+    "differentialDiagnosis": [
+      "Choc anaphylactique (présence d'urticaire et d'angioedème sans signes d'infection)",
+      "Choc hypovolémique (absence de signes d'infection et présence de déshydratation)",
+      "Choc cardiogénique (présence de souffle cardiaque pathologique et de râles pulmonaires)"
+    ]
+  },
+  {
+    "name": "Syndrome de détresse respiratoire aiguë pédiatrique (SDRA pédiatrique)",
+    "description": "Le SDRA pédiatrique est une pathologie caractérisée par une inflammation alvéolaire aiguë secondaire à une infection, une lésion pulmonaire directe ou indirecte, ou une insuffisance cardiaque. Il se manifeste par une hypoxémie réfractaire, une surcharge hydrique interstitielle et alvéolaire, et une détérioration rapide de l'oxygénation. La physiopathologie implique une libération de cytokines pro-inflammatoires, une altération de la surfactant pulmonaire, et une thrombose microvasculaire. La présentation clinique typique inclut une tachypnée, une cyanose, des crépitements pulmonaires, une hypotension, et une détérioration neurologique secondaire à l'hypoxie.",
+    "redFlags": [
+      "Tachypnée > 60/min avec hypoxémie persistante malgré l'oxygénothérapie à haut débit",
+      "Crépitements pulmonaires bilatéraux associés à une diminution des bruits respiratoires",
+      "Pâleur ou cyanose centrale avec saturation < 90% malgré l'administration d'oxygène",
+      "Signes de surcharge circulatoire (œdèmes, turgescence jugulaire) ou de déshydratation extrême",
+      "Détérioration neurologique (somnolence, convulsions) liée à l'hypoxie cérébrale"
+    ],
+    "scores": [
+      {
+        "name": "Score de Berlin pour le SDRA pédiatrique",
+        "description": "Évalue la gravité du SDRA en fonction de la réponse à l'oxygénation, de l'altération de la surfactant, et de la présence de lésions parenchymateuses. Il permet de stratifier les risques et de guider les décisions thérapeutiques.",
+        "criteria": [
+          "Critère 1: PaO2/FiO2 < 200 (malgré PEEP ≥ 5 cmH2O) (+3 points)",
+          "Critère 2: Crépitements pulmonaires bilatéraux persistants (+2 points)",
+          "Critère 3: Hypotension nécessitant une vasopresseur (+1 point)",
+          "Critère 4: Absence de réponse à l'oxygénation à 100% pendant > 30 minutes (+1 point)"
+        ],
+        "interpretation": "Score total ≥ 5: SDRA sévère (nécessite ventilation mécanique invasive). Score 3-4: SDRA modéré (ventilation non invasive possible). Score < 3: SDRA léger (surveillance étroite suffisante)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et cardiovasculaire ciblé",
+        "steps": [
+          {
+            "action": "Palpation des veines jugulaires pour évaluer la pression veineuse centrale",
+            "interpretation": "Turgescence jugulaire marquée évoque une surcharge circulatoire ou une insuffisance cardiaque secondaire."
+          },
+          {
+            "action": "Auscultation pulmonaire bilatérale avec recherche de crépitements, râles, ou diminution des bruits respiratoires",
+            "interpretation": "Crépitements bilatéraux associés à une diminution des bruits respiratoires indiquent une infiltration alvéolaire étendue."
+          },
+          {
+            "action": "Mesure de la saturation en oxygène (SpO2) et du PaO2/FiO2 ratio",
+            "interpretation": "Un ratio < 200 malgré l'oxygénation à haut débit confirme l'hypoxémie réfractaire typique du SDRA."
+          },
+          {
+            "action": "Examen neurologique pour détecter des signes d'hypoxie cérébrale (somnolence, convulsions)",
+            "interpretation": "Détérioration neurologique suggère une hypoxie cérébrale aiguë nécessitant une intervention immédiate."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Positionnement en décubitus dorsal avec surélévation de la tête (30-45°) pour améliorer l'oxygénation",
+      "Oxygénothérapie à haut débit (HFNC) ou ventilation non invasive (NIV) avec PEEP optimisé",
+      "Administration de corticostéroïdes (dexaméthasone) pour réduire l'inflammation alvéolaire",
+      "Sédation et intubation endotrachéale en cas de détérioration persistante ou de risque d'obstruction aiguë",
+      "Initiation d'une perfusion de vasopresseurs (norepinephrine) en cas d'hypotension réfractaire"
+    ],
+    "differentialDiagnosis": [
+      "Pneumonie bactérienne aiguë (présence de fièvre, de crachats purulents, et de lésions focales à la radiographie)",
+      "Insuffisance cardiaque congestive (œdèmes, galop B3, et absence de crépitements bilatéraux)",
+      "Pneumothorax spontané (douleur thoracique aiguë, absence de bruits respiratoires unilatéraux)"
+    ]
+  },
+  {
+    "name": "Hypoglycémie sévère pédiatrique",
+    "description": "L'hypoglycémie sévère est définie comme une glycémie < 2,2 mmol/L chez l'enfant, associée à des signes neurologiques ou neuroglucoprivatifs. Elle résulte d'une insuffisance d'apport glucidique, d'une augmentation de la dépense énergétique (infection, brûlure), ou d'une dysfonction hépatique. La physiopathologie implique une carence en glucose cérébral, entraînant des convulsions, une perte de conscience, et un risque de lésions cérébrales irréversibles. Les enfants les plus à risque sont les nourrissons, les prématurés, et les patients diabétiques sous insuline.",
+    "redFlags": [
+      "Convulsions généralisées ou partielles sans cause évidente",
+      "Pâleur, transpiration, ou tremblements associés à une perte de conscience",
+      "Glycémie capillaire < 2,2 mmol/L confirmée par analyse sanguine",
+      "Signes de déshydratation (baisse de tension artérielle, tachycardie compensatrice)",
+      "Histoire de maladie diabétique ou de traitement insulinique récent"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'hypoglycémie pédiatrique",
+        "description": "Évalue la gravité clinique de l'hypoglycémie en fonction des signes neurologiques et de la réponse au traitement initial.",
+        "criteria": [
+          "Critère 1: Perte de conscience avec convulsions (+3 points)",
+          "Critère 2: Réponse partielle à l'administration de glucose IV (+2 points)",
+          "Critère 3: Hypotension associée à l'hypoglycémie (+1 point)",
+          "Critère 4: Présence de lésions cérébrales focales à l'exam (0 point)"
+        ],
+        "interpretation": "Score ≥ 5: hypoglycémie critique nécessitant une réanimation intensive. Score 3-4: hypoglycémie modérée avec surveillance étroite. Score < 3: hypoglycémie bénigne réversible."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et métabolique ciblé",
+        "steps": [
+          {
+            "action": "Palpation du pouls périphérique et mesure de la tension artérielle",
+            "interpretation": "Hypotension associée à l'hypoglycémie évoque une instabilité hémodynamique secondaire."
+          },
+          {
+            "action": "Examen des réflexes oculomoteurs (pupilles, réaction à la lumière)",
+            "interpretation": "Pupilles mydriatiques ou asymétriques suggèrent une hypoglycémie sévère avec lésion cérébrale."
+          },
+          {
+            "action": "Prise de sang pour doser la glycémie, l'insuline, et les électrolytes",
+            "interpretation": "Glycémie < 1 mmol/L avec insuline élevée évoque une hypoglycémie insulinique."
+          },
+          {
+            "action": "Évaluation du statut nutritionnel (poids, dernier repas)",
+            "interpretation": "Jeûne prolongé ou carence en glucides antécédente confirme la cause métabolique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de glucose IV à 2-4 ml/kg de solution à 20% (ou 0,5 g/kg) en bolus",
+      "Surveillance continue de la glycémie avec répétition du bolus si nécessaire",
+      "Sédation et intubation en cas de convulsions non contrôlées ou de perte de conscience prolongée",
+      "Correction des déséquilibres électrolytiques (hypokaliémie, acidose métabolique)",
+      "Identification et traitement de la cause sous-jacente (insuline, infection, insuffisance hépatique)"
+    ],
+    "differentialDiagnosis": [
+      "Crise épileptique idiopathique (absence de glycémie anormale et réponse à l'anticonvulsivant)",
+      "Hypocalcémie aiguë (tétanie, signes de Chvostek, et absence de convulsions non contrôlées)",
+      "Toxicité médicamenteuse (ex: paralysants musculaires, antidépresseurs tricycliques)"
+    ]
+  },
+  {
+    "name": "Obstruction aiguë des voies respiratoires pédiatriques",
+    "description": "L'obstruction aiguë des voies respiratoires pédiatriques est une urgence médicale liée à une obstruction partielle ou totale des voies aériennes supérieures, secondaire à des causes infectieuses (croup, épiglottite), des corps étrangers, ou des causes allergiques. La physiopathologie repose sur l'œdème des voies respiratoires, la production de mucus visqueux, ou la présence d'un corps étranger, entraînant une diminution du débit aérien et une hypoxémie progressive. La présentation clinique typique inclut des stridors, des retraits intercostaux, une cyanose, et une détresse respiratoire marquée.",
+    "redFlags": [
+      "Stridors à l'expiration ou à la respiration spontanée, associés à des retraits intercostaux",
+      "Cyanose centrale persistante malgré l'administration d'oxygène",
+      "Incapacité à parler ou à pleurer en raison d'une obstruction totale",
+      "Perte de conscience secondaire à l'hypoxie",
+      "Signes de collapsus circulatoire (pâleur, tachycardie, hypotension)"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de gravité de l'obstruction aiguë pédiatrique",
+        "description": "Score évaluant la gravité de l'obstruction aiguë des voies respiratoires en fonction de signes cliniques objectifs.",
+        "criteria": [
+          "Stridors à l'expiration (+2 points)",
+          "Retraits intercostaux (+1 point)",
+          "Cyanose centrale (+3 points)",
+          "Incapacité à parler ou à pleurer (+4 points)",
+          "Perte de conscience (+5 points)"
+        ],
+        "interpretation": "Score total ≥ 5 points : obstruction critique nécessitant une intubation immédiate. Score 3-4 : surveillance étroite et préparation à l'intubation. Score ≤ 2 : surveillance clinique avec oxygénothérapie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des voies respiratoires et des signes de détresse",
+        "steps": [
+          {
+            "action": "Évaluation de la patence des voies respiratoires par auscultation pulmonaire et recherche de stridors",
+            "interpretation": "La présence de stridors à l'expiration ou à la respiration spontanée indique une obstruction supraglottique. L'absence de bruits respiratoires suggère une obstruction totale."
+          },
+          {
+            "action": "Mesure de la saturation en oxygène (SpO2) et de la fréquence respiratoire",
+            "interpretation": "Une saturation < 92% malgré l'oxygénothérapie est un signe de détresse respiratoire sévère. Une fréquence respiratoire > 60/min chez l'infantile ou > 40/min chez le nourrisson est un signe d'insuffisance respiratoire."
+          },
+          {
+            "action": "Examen de la gorge et recherche de corps étranger visible",
+            "interpretation": "Un corps étranger visible (comme une bille ou un jouet) confirme la cause mécanique. L'absence de corps étranger visible ne permet pas d'exclure une obstruction sous-glottique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Positionnement en décubitus dorsal avec tête en extension pour améliorer la patence des voies respiratoires",
+      "Administration d'oxygène par masque à haute concentration (FiO2 100%)",
+      "Préparation immédiate à l'intubation orotrachéale ou à la trachéotomie en cas de détresse sévère",
+      "Administration de corticoïdes (dexaméthasone 0,6 mg/kg) en cas d'obstruction allergique ou infectieuse",
+      "Préparation de l'équipe de réanimation pédiatrique et mise en place d'une voie veineuse centrale"
+    ],
+    "differentialDiagnosis": [
+      "Croup (stridors inspiratoires, voix en « voix de canard »)",
+      "Épiglottite aiguë (douleur à l'ingestion, posture de gardien de but)",
+      "Aspiration de corps étranger (historique de toux soudaine, stridors bruyants)"
+    ]
+  },
+  {
+    "name": "Insuffisance respiratoire post-opératoire pédiatrique",
+    "description": "L'insuffisance respiratoire post-opératoire pédiatrique est une complication grave survenant après une chirurgie, liée à une altération de la ventilation, une hypoventilation, ou une insuffisance respiratoire aiguë. La physiopathologie inclut des causes anesthésiques (détresse respiratoire post-induction), des causes chirurgicales (hernie diaphragmatique, plévite), ou des causes iatrogènes (surdosage en morphine). La présentation clinique typique inclut une hypoxémie, une hypercapnie, une cyanose, et une détresse respiratoire.",
+    "redFlags": [
+      "Saturation en oxygène < 90% malgré l'oxygénothérapie",
+      "Fréquence respiratoire anormalement basse (< 10/min) ou élevée (> 60/min)",
+      "Pupilles asymétriques ou absence de réflexe pupillaire",
+      "Signes de collapsus circulatoire (pâleur, tachycardie, hypotension)",
+      "Incapacité à maintenir une ventilation spontanée"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité post-opératoire pédiatrique",
+        "description": "Score évaluant le risque de complications respiratoires post-opératoires en fonction de paramètres cliniques.",
+        "criteria": [
+          "Saturation en oxygène < 90% (+3 points)",
+          "Fréquence respiratoire anormale (+2 points)",
+          "Pupilles asymétriques (+2 points)",
+          "Hypotension persistante (+1 point)",
+          "Incapacité à maintenir une ventilation spontanée (+4 points)"
+        ],
+        "interpretation": "Score total ≥ 7 points : intubation immédiate nécessaire. Score 4-6 : surveillance étroite avec préparation à l'intubation. Score ≤ 3 : surveillance clinique standard."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et neurologique post-opératoire",
+        "steps": [
+          {
+            "action": "Auscultation pulmonaire pour rechercher des râles, crépitements, ou absence de bruits respiratoires",
+            "interpretation": "Des râles crépitants suggèrent une surcharge hydrique ou une infection. L'absence de bruits respiratoires bilatéraux indique une obstruction totale."
+          },
+          {
+            "action": "Évaluation du réflexe de toux et de la réponse à la stimulation cutanée",
+            "interpretation": "L'absence de toux ou de réponse à la douleur est un signe de dépression respiratoire sévère. Une toux faible ou inexistante nécessite une intubation préventive."
+          },
+          {
+            "action": "Mesure de la pression artérielle et de la fréquence cardiaque",
+            "interpretation": "Une hypotension associée à une tachycardie indique un collapsus circulatoire secondaire à l'hypoxie. Une bradycardie peut être un signe précurseur de l'arrêt respiratoire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Intubation orotrachéale immédiate si hypoxémie persistante malgré l'oxygénothérapie",
+      "Administration de naloxone (0,1 mg/kg) en cas de suspicion de dépression respiratoire médicamenteuse",
+      "Positionnement en décubitus dorsal avec tête en extension pour optimiser la ventilation",
+      "Préparation d'une ventilation mécanique non invasive (VNM) ou invasive",
+      "Transfert immédiat vers le service de réanimation pédiatrique"
+    ],
+    "differentialDiagnosis": [
+      "Dépression respiratoire post-anesthésique (effet des opiacés ou des benzodiazépines)",
+      "Pneumothorax iatrogène (lié à une intubation ou à une ponction thoracique)",
+      "Hypothermie post-opératoire (altération de la thermorégulation)"
+    ]
+  },
+  {
+    "name": "Syndrome de coagulation intravasculaire disséminée (CIVD) postopératoire pédiatrique",
+    "description": "Le CIVD postopératoire est une complication grave caractérisée par une activation inappropriée du système de coagulation, entraînant une consommation de facteurs de coagulation et de plaquettes, associée à une fibrinolyse secondaire. Il survient souvent après des chirurgies majeures, des traumatismes ou des états septiques. La présentation clinique inclut des saignements multiples (hémorragies cutanées, muqueuses, ou au site chirurgical), des signes de microangiopathie (purpura, cyanose), et des troubles de la perfusion tissulaire.",
+    "redFlags": [
+      "Hémorragie active au site chirurgical ou à distance, associée à une perte de sang visible ou latente",
+      "Plaquettes < 100 G/L avec thrombopénie progressive",
+      "Fibrinogène < 1,5 g/L et D-dimères > 1 mg/L",
+      "Temps de prothrombine (TP) et temps de céphaline activé (TCA) prolongés",
+      "Signes de choc hypovolémique ou de perfusion tissulaire inadéquate (tachycardie, hypotension)"
+    ],
+    "scores": [
+      {
+        "name": "Critères ISTH pour le diagnostic de CIVD",
+        "description": "Score basé sur des critères cliniques et biologiques pour évaluer la probabilité de CIVD.",
+        "criteria": [
+          "Critère 1: Plaquettes < 100 G/L (+1)",
+          "Critère 2: Fibrinogène < 1,5 g/L (+1)",
+          "Critère 3: D-dimères > 1 mg/L (+1)",
+          "Critère 4: TP ou TCA anormaux (+1)"
+        ],
+        "interpretation": "Score ≥ 3 points : diagnostic probable de CIVD. Score < 3 points : diagnostic exclu ou nécessite des investigations complémentaires."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique et biologique ciblé",
+        "steps": [
+          {
+            "action": "Recherche d'hémorragies visibles (purpura, ecchymoses, saignements muqueux)",
+            "interpretation": "La présence de saignements multiples ou au site chirurgical évoque une consommation de facteurs de coagulation."
+          },
+          {
+            "action": "Palpation des signes de perfusion tissulaire (pouls périphériques, température des extrémités)",
+            "interpretation": "Une perfusion inadéquate peut indiquer une hypovolémie secondaire à l'hémorragie ou une microangiopathie."
+          },
+          {
+            "action": "Prélèvements sanguins pour plaquettes, fibrinogène, D-dimères, TP, TCA",
+            "interpretation": "Les anomalies de ces paramètres confirment la consommation de facteurs de coagulation."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Transfusion de plasma frais congelé (15-20 mL/kg) pour recouvrir les facteurs de coagulation",
+      "Administration de cryoprécipité (1-2 unités/kg) pour corriger le déficit en fibrinogène",
+      "Transfusion de plaquettes si < 50 G/L et hémorragie active",
+      "Traitement de l'étiologie sous-jacente (ex: antibiothérapie pour septicémie, arrêt des anticoagulants)",
+      "Surveillance étroite de la perfusion et du bilan coagulatif toutes les 4-6 heures"
+    ],
+    "differentialDiagnosis": [
+      "Hémorragie due à une insuffisance hépatique (facteurs synthétiques diminués)",
+      "Thrombopénie idiopathique (absence de consommation de facteurs)",
+      "Hémophilie A/B (déficit spécifique en facteurs VIII ou IX)"
+    ]
+  },
+  {
+    "name": "Hypothermie postopératoire sévère pédiatrique",
+    "description": "L'hypothermie postopératoire est définie comme une température centrale < 35°C, fréquente chez les enfants en raison de leur surface corporelle élevée et de la perte de chaleur liée à l'anesthésie. Elle peut entraîner des complications cardiovasculaires (arythmies, hypotension), métaboliques (acidose lactique), et neurologiques (délire, confusion).",
+    "redFlags": [
+      "Température centrale < 35°C mesurée par sonde tympanique ou rectale",
+      "Frémissements ou hypothermie perdue malgré les mesures de réchauffement",
+      "Signes de perfusion tissulaire inadéquate (pouls filant, cyanose périphérique)",
+      "Acidose métabolique (pH < 7,35) sur le bilan sanguin",
+      "Délire ou confusion aiguë avec troubles de l'orientation"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de sévérité de l'hypothermie pédiatrique",
+        "description": "Classification basée sur la température centrale et les signes cliniques.",
+        "criteria": [
+          "Classe I: 34-35°C, frémissements, perfusion normale (+0)",
+          "Classe II: 32-34°C, arrêt des frémissements, tachycardie (+1)",
+          "Classe III: 28-32°C, bradycardie, hypotension, arythmies (+2)",
+          "Classe IV: <28°C, arrêt cardiaque ou respiratoire (+3)"
+        ],
+        "interpretation": "La classe détermine la gravité et guide les mesures de réchauffement (actif vs passif)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique et surveillance thermique",
+        "steps": [
+          {
+            "action": "Mesure de la température centrale par sonde tympanique ou rectale",
+            "interpretation": "La température < 35°C confirme l'hypothermie. Une mesure répétée toutes les 15 minutes est nécessaire."
+          },
+          {
+            "action": "Évaluation des signes de perfusion (pouls, capillaires, extrémités)",
+            "interpretation": "Une perfusion inadéquate peut indiquer une hypothermie sévère associée à un choc."
+          },
+          {
+            "action": "Recherche de frémissements ou de tremblements",
+            "interpretation": "Les frémissements sont présents en classe I-II et indiquent une tentative de thermorégulation."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réchauffement actif avec couverture isothermique (couvertures chauffantes, couettes électriques)",
+      "Administration de fluides intraveineux réchauffés (37°C) à 10-20 mL/kg/h",
+      "Oxygénothérapie à 1-2 L/min pour corriger l'hypoxie secondaire à l'hypothermie",
+      "Administration de paracétamol (15 mg/kg) si température > 35°C",
+      "Surveillance étroite de l'ECG pour détecter les arythmies (bradycardie, bloc auriculo-ventriculaire)"
+    ],
+    "differentialDiagnosis": [
+      "Hypoglycémie sévère (absence de frémissements, hypothermie secondaire)",
+      "Sepsis (hypothermie associée à des signes d'infection)",
+      "Hypothyroïdie congénitale (hypothermie chronique sans frémissements)"
+    ]
+  }
+]

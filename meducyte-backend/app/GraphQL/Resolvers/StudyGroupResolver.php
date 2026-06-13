@@ -304,6 +304,22 @@ class StudyGroupResolver
         return true;
     }
 
+    public function removeMember($_, array $args): bool
+    {
+        $group = StudyGroup::findOrFail($args['groupId']);
+        $user = Auth::user();
+
+        // Only group admin can remove members
+        $member = $group->members()->where('user_id', $user->id)->first();
+        if (!$member || $member->pivot->role !== 'admin') {
+            throw new \Exception('Seul l\'administrateur du groupe peut retirer des membres.');
+        }
+
+        $group->members()->detach($args['userId']);
+
+        return true;
+    }
+
     public function invite($_, array $args): bool
     {
         $group = StudyGroup::findOrFail($args['groupId']);

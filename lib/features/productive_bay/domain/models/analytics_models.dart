@@ -43,12 +43,16 @@ class FatigueStatus extends Equatable {
   final String recommendation;
   final String? recommendationKey;
   final double cognitiveLoad; //0.0 to 1.0 gauge value
+  final double capacity; //0.0 to 1.0
+  final Duration breakDue; //Duration until break is due
 
   const FatigueStatus({
     required this.level,
     required this.recommendation,
     this.recommendationKey,
     required this.cognitiveLoad,
+    required this.capacity,
+    required this.breakDue,
   });
 
   @override
@@ -57,5 +61,7 @@ class FatigueStatus extends Equatable {
     recommendation,
     recommendationKey,
     cognitiveLoad,
+    capacity,
+    breakDue,
   ];
 }

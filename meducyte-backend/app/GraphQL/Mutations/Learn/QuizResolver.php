@@ -52,7 +52,7 @@ class QuizResolver
 
             $results = $args['results'];
             file_put_contents($logFile, "[DEBUG] syncQuizSession payload: " . json_encode($results) . "\n", FILE_APPEND);
-            
+
             // Handle if $results is a JSON string instead of an array (common GraphQL JSON scalar issue)
             if (is_string($results)) {
                 $results = json_decode($results, true);
@@ -70,7 +70,7 @@ class QuizResolver
                 $propositionId = $propositionIds[0];
                 file_put_contents($logFile, "[DEBUG] Processing Question: $questionId, Prop: $propositionId\n", FILE_APPEND);
                 $proposition = Proposition::find($propositionId);
-                
+
                 if ($proposition) {
                     // 1. Record the raw answer
                     UserAnswer::updateOrCreate(
@@ -81,6 +81,7 @@ class QuizResolver
                         [
                             'proposition_id' => $propositionId,
                             'is_correct' => $proposition->is_correct,
+                            'quiz_session_id' => $args['sessionId'],
                         ]
                     );
                     file_put_contents($logFile, "[DEBUG] UserAnswer saved\n", FILE_APPEND);

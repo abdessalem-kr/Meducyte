@@ -42,6 +42,8 @@ class _Sq3rStudyBottomSheetState extends ConsumerState<Sq3rStudyBottomSheet> {
   final TextEditingController _manualQuestionController =
       TextEditingController();
   final Map<int, bool> _expandedSections = {};
+  int _reciteIndex = 0;
+  late final TextEditingController _reciteAnswerController;
 
   @override
   void initState() {
@@ -50,12 +52,24 @@ class _Sq3rStudyBottomSheetState extends ConsumerState<Sq3rStudyBottomSheet> {
     _questions = List.from(widget.initialQuestions);
     _answers = Map.from(widget.initialAnswers);
     _modelAnswers = Map.from(widget.initialModelAnswers);
+    _reciteIndex = 0;
+    _reciteAnswerController = TextEditingController();
+    if (_questions.isNotEmpty) {
+      _reciteAnswerController.text = _answers[_reciteIndex] ?? "";
+    }
   }
 
   @override
   void dispose() {
     _manualQuestionController.dispose();
+    _reciteAnswerController.dispose();
     super.dispose();
+  }
+
+  void _updateReciteController() {
+    if (_reciteIndex < _questions.length) {
+      _reciteAnswerController.text = _answers[_reciteIndex] ?? "";
+    }
   }
 
   @override
@@ -202,6 +216,8 @@ class _Sq3rStudyBottomSheetState extends ConsumerState<Sq3rStudyBottomSheet> {
             itemBuilder: (context, index) {
               final p = widget.lesson.paragraphs![index];
               final isExpanded = _expandedSections[index] ?? false;
+              final wordCount = p.content.split(RegExp(r'\s+')).length;
+              final readTimeMin = (wordCount / 200).ceil();
               return Container(
                 margin: const EdgeInsets.only(bottom: 12),
                 decoration: BoxDecoration(
@@ -233,11 +249,18 @@ class _Sq3rStudyBottomSheetState extends ConsumerState<Sq3rStudyBottomSheet> {
                       ),
                     ),
                     title: Text(
-                      p.title ?? "Section${index + 1}",
+                      p.title ?? "Section ${index + 1}",
                       style: GoogleFonts.inter(
                         color: quizTheme.primaryTextColor,
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    subtitle: Text(
+                      "$readTimeMin min read • $wordCount words",
+                      style: GoogleFonts.inter(
+                        color: quizTheme.secondaryTextColor,
+                        fontSize: 11,
                       ),
                     ),
                     children: [
@@ -392,32 +415,83 @@ class _Sq3rStudyBottomSheetState extends ConsumerState<Sq3rStudyBottomSheet> {
 
   Widget _buildReadStep(QuizThemeExtension quizTheme) {
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(32),
+              padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.05),
+                color: Theme.of(context).primaryColor.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Iconsax.book_1, size: 80, color: Colors.grey),
+              child: Icon(Iconsax.book_1, size: 64, color: Theme.of(context).primaryColor),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 24),
             Text(
               "Active Reading Phase",
               style: GoogleFonts.inter(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
+                color: quizTheme.primaryTextColor,
               ),
             ),
-            const SizedBox(height: 16),
-            const Text(
-              "Read the lesson and highlight the answers to your questions.This is the core of the SQ3R method.",
+            const SizedBox(height: 8),
+            Text(
+              "Read the lesson and highlight the answers to your questions. This is the core of the SQ3R method.",
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey, height: 1.5, fontSize: 15),
+              style: GoogleFonts.inter(
+                color: quizTheme.secondaryTextColor,
+                height: 1.5,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: 24),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: quizTheme.cardColor,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.grey.withOpacity(0.15)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Your Reading Focus Checklist:",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: quizTheme.primaryTextColor,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildChecklistItem(
+                    icon: Icons.search,
+                    color: Colors.blue,
+                    title: "Answer Your Questions",
+                    subtitle: "Keep your formulated questions in mind as you read.",
+                    quizTheme: quizTheme,
+                  ),
+                  const SizedBox(height: 12),
+                  _buildChecklistItem(
+                    icon: Icons.border_color,
+                    color: Colors.amber,
+                    title: "Highlight & Annotate",
+                    subtitle: "Highlight key medical terms, metrics, and definitions.",
+                    quizTheme: quizTheme,
+                  ),
+                  const SizedBox(height: 12),
+                  _buildChecklistItem(
+                    icon: Icons.note_alt_outlined,
+                    color: Colors.green,
+                    title: "General Notes",
+                    subtitle: "Add notes to paragraph sections to summarize content.",
+                    quizTheme: quizTheme,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -425,67 +499,268 @@ class _Sq3rStudyBottomSheetState extends ConsumerState<Sq3rStudyBottomSheet> {
     );
   }
 
-  Widget _buildReciteStep(QuizThemeExtension quizTheme, Color primaryColor) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(24),
-      itemCount: _questions.length,
-      itemBuilder: (context, index) {
-        return Container(
-          margin: const EdgeInsets.only(bottom: 24),
+  Widget _buildChecklistItem({
+    required IconData icon,
+    required Color color,
+    required String title,
+    required String subtitle,
+    required QuizThemeExtension quizTheme,
+  }) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: color.withOpacity(0.1),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(icon, color: color, size: 16),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              Text(
+                title,
+                style: GoogleFonts.inter(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                  color: quizTheme.primaryTextColor,
+                ),
+              ),
+              Text(
+                subtitle,
+                style: GoogleFonts.inter(
+                  fontSize: 12,
+                  color: quizTheme.secondaryTextColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildReciteStep(QuizThemeExtension quizTheme, Color primaryColor) {
+    if (_questions.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Iconsax.info_circle, color: quizTheme.secondaryTextColor, size: 48),
+              const SizedBox(height: 16),
+              Text(
+                "No Questions to Recite",
+                style: GoogleFonts.inter(
+                  color: quizTheme.primaryTextColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "Go back to the Question phase to add questions.",
+                style: TextStyle(color: quizTheme.secondaryTextColor),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final reciteQuestion = _questions[_reciteIndex];
+
+    return Padding(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Question ${_reciteIndex + 1} of ${_questions.length}",
+                style: GoogleFonts.inter(
+                  color: quizTheme.secondaryTextColor,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                "${((_reciteIndex + 1) / _questions.length * 100).round()}% Completed",
+                style: GoogleFonts.inter(
+                  color: primaryColor,
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          LinearProgressIndicator(
+            value: (_reciteIndex + 1) / _questions.length,
+            backgroundColor: primaryColor.withOpacity(0.1),
+            valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+            minHeight: 6,
+            borderRadius: BorderRadius.circular(3),
+          ),
+          const SizedBox(height: 24),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: quizTheme.cardColor,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.grey.withOpacity(0.15)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Iconsax.message_question, color: primaryColor, size: 18),
-                  const SizedBox(width: 8),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(Iconsax.message_question, color: primaryColor, size: 24),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          reciteQuestion,
+                          style: GoogleFonts.inter(
+                            color: quizTheme.primaryTextColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                            height: 1.4,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    "Your Answer:",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13,
+                      color: quizTheme.secondaryTextColor,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
                   Expanded(
-                    child: Text(
-                      _questions[index],
+                    child: TextField(
+                      maxLines: null,
+                      expands: true,
+                      textAlignVertical: TextAlignVertical.top,
+                      onChanged: (val) {
+                        _answers[_reciteIndex] = val;
+                        widget.onStateChanged(
+                          _currentStep,
+                          _questions,
+                          _answers,
+                          _modelAnswers,
+                        );
+                      },
+                      controller: _reciteAnswerController,
                       style: GoogleFonts.inter(
+                        fontSize: 15,
                         color: quizTheme.primaryTextColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: "Recite the answer in your own words...",
+                        hintStyle: TextStyle(
+                          color: quizTheme.secondaryTextColor.withOpacity(0.5),
+                        ),
+                        filled: true,
+                        fillColor: Colors.grey.withOpacity(0.03),
+                        contentPadding: const EdgeInsets.all(16),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(
+                            color: Colors.grey.withOpacity(0.2),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(
+                            color: primaryColor,
+                            width: 2,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide(
+                            color: Colors.grey.withOpacity(0.2),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
-              TextField(
-                maxLines: null,
-                onChanged: (val) {
-                  _answers[index] = val;
-                  widget.onStateChanged(
-                    _currentStep,
-                    _questions,
-                    _answers,
-                    _modelAnswers,
-                  );
-                },
-                controller: TextEditingController(text: _answers[index] ?? ""),
-                decoration: InputDecoration(
-                  hintText: "Try to answer without looking...",
-                  filled: true,
-                  fillColor: quizTheme.cardColor,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: quizTheme.secondaryTextColor.withOpacity(0.1),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: _reciteIndex > 0
+                    ? () {
+                        setState(() {
+                          _reciteIndex--;
+                          _updateReciteController();
+                        });
+                      }
+                    : null,
+                icon: const Icon(Iconsax.arrow_left_2),
+                iconSize: 24,
+                padding: const EdgeInsets.all(16),
+                style: IconButton.styleFrom(
+                  backgroundColor: quizTheme.cardColor,
+                  side: BorderSide(color: Colors.grey.withOpacity(0.15)),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_reciteIndex < _questions.length - 1) {
+                      setState(() {
+                        _reciteIndex++;
+                        _updateReciteController();
+                      });
+                    } else {
+                      _nextStep();
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 18),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
                     ),
+                    elevation: 0,
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(
-                      color: quizTheme.secondaryTextColor.withOpacity(0.1),
+                  child: Text(
+                    _reciteIndex < _questions.length - 1
+                        ? "Next Question"
+                        : "Compare with AI Model",
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
                     ),
                   ),
                 ),
               ),
             ],
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 
@@ -605,6 +880,9 @@ class _Sq3rStudyBottomSheetState extends ConsumerState<Sq3rStudyBottomSheet> {
   }
 
   Widget _buildBottomActions(Color primaryColor) {
+    if (_currentStep == 3) {
+      return const SizedBox.shrink();
+    }
     return Padding(
       padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
       child: SizedBox(
@@ -719,8 +997,7 @@ class _Sq3rStudyBottomSheetState extends ConsumerState<Sq3rStudyBottomSheet> {
           .read(noteAiRepositoryProvider)
           .getAiResponse(
             action: 'generate_recall_session',
-            contextText:
-                "Generate questions based on these section headings: $titles",
+            contextText: titles,
             language: language,
           );
 

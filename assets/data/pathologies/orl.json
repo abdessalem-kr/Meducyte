@@ -1,122 +1,329 @@
 [
   {
-    "name": "Otite moyenne aiguë",
-    "description": "Infection bactérienne de l'oreille moyenne",
+    "name": "Abscessus parapharyngien",
+    "description": "L'abscessus parapharyngien est une infection aiguë localisée dans la loge parapharyngienne, souvent secondaire à une infection dentaire, une otite moyenne, ou une lésion traumatique. La physiopathologie repose sur une infiltration bactérienne dans les espaces potentiels du cou, associée à une réponse inflammatoire exsudative. La présentation clinique typique inclut une douleur cervicale unilatérale, une trismus, une voix enrouée, une dysphagie, une fièvre, et une tuméfaction cervicale palpable avec ou sans crépitus. Les signes de gravité incluent une déviation de la langue, une insuffisance respiratoire, ou une voix en « voix de baryton ».",
     "redFlags": [
-      "Douleur otique intense",
-      "Février",
-      "Perte auditive"
+      "Douleur cervicale unilatérale associée à une trismus sévère et une voix enrouée",
+      "Tuméfaction cervicale palpable avec crépitus ou déviation de la langue",
+      "Fièvre élevée (>39°C) associée à une pâleur ou une hypotension",
+      "Stridor ou ronchement inspiratoire évoquant une obstruction des voies aériennes",
+      "Incapacité de déglutir ou de s'alimenter en raison de la douleur"
     ],
     "scores": [
       {
-        "name": "Score de severité de l'otite",
-        "description": "Évalue la gravité de l'otite",
+        "name": "Score de gravité des infections profondes du cou (MODS)",
+        "description": "Évalue la gravité clinique des infections profondes du cou en fonction de paramètres hémodynamiques, respiratoires et neurologiques.",
         "criteria": [
-          "Douleur",
-          "Février",
-          "Perte auditive"
+          "Classe I: Stabilité hémodynamique et respiratoire (0 point)",
+          "Classe II: Hypotension ou tachypnée modérée (1 point)",
+          "Classe III: Hypotension persistante ou hypoxie (2 points)",
+          "Classe IV: Choc ou arrêt respiratoire (3 points)"
         ],
-        "interpretation": "Plus de 5 points : otite sévère"
+        "interpretation": "Un score ≥ 2 indique une nécessité d'intervention chirurgicale d'urgence et d'antibiothérapie intraveineuse."
       }
     ],
     "focusedExam": [
       {
-        "title": "Otoscopie",
+        "title": "Examen clinique ciblé du cou et des voies respiratoires",
         "steps": [
           {
-            "action": "Inspection du tympan",
-            "interpretation": "Rougeur, gonflement, perforation"
+            "action": "Inspection visuelle du cou pour identifier une asymétrie, une tuméfaction ou une déviation de la langue",
+            "interpretation": "Une asymétrie cervicale ou une déviation de la langue vers le côté affecté suggère une infiltration exsudative ou une compression des structures adjacentes."
+          },
+          {
+            "action": "Palpation douce du cou pour détecter une tuméfaction, une douleur à la palpation, ou un crépitus",
+            "interpretation": "Un crépitus indique une présence de gaz dans les tissus (empyème), nécessitant une imagerie immédiate."
+          },
+          {
+            "action": "Évaluation de la mobilité mandibulaire (ouverture buccale) et de la déglutition",
+            "interpretation": "Un trismus sévère (>1 cm d'ouverture buccale) ou une incapacité à déglutir évoque une extension de l'infection vers les espaces sous-mandibulaires."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Antibiothérapie",
-      "Antalgique"
+      "Administration d'antibiotiques intraveineux de large spectre (ex: amoxicilline-clavulanate ou pénicilline G) en attendant les résultats bactériologiques",
+      "Maintien de l'airway avec intubation orotrachéale ou trachéotomie en cas de compromission respiratoire",
+      "Imagerie par TDM du cou avec contraste pour confirmer la localisation et l'étendue de l'abscessus",
+      "Drainage chirurgical percutané ou incision sous contrôle radiologique si l'abscessus est purulent",
+      "Surveillance hémodynamique stricte et réanimation intraveineuse en cas de choc septique"
     ],
     "differentialDiagnosis": [
-      "Otite externe",
-      "Méningite"
+      "Abscessus rétropharyngien (plus fréquent chez les enfants)",
+      "Cellulite cervicale étendue sans collection liquidienne",
+      "Tumeur bénigne ou maligne du cou avec nécrose secondaire"
     ]
   },
   {
-    "name": "Sinusite aiguë",
-    "description": "Infection des sinus paranasaux",
+    "name": "Papillomatose laryngée récidivante",
+    "description": "La papillomatose laryngée récidivante est une tumeur bénigne mais récidivante du larynx, liée à l'infection par le virus du papillome humain (HPV) de type 6 ou 11. La physiopathologie implique une prolifération épithéliale anormale avec formation de papillomes en chou-fleur, pouvant obstruer les voies respiratoires. La présentation clinique typique inclut une voix enrouée progressive, une dysphonie, une dyspnée, et des épisodes de stridor inspiratoire. Les formes婴幼儿 (enfants) sont plus agressives que les formes adultes.",
     "redFlags": [
-      "Douleur faciale",
-      "Février",
-      "Écoulement nasal purulent"
+      "Voix enrouée persistante > 2 semaines sans cause évidente",
+      "Stridor inspiratoire progressif ou intermittent",
+      "Dysphonie associée à une dyspnée lors de l'effort",
+      "Histoire familiale de papillomatose laryngée",
+      "Incapacité de parler ou de respirer en raison de papillomes étendus"
     ],
     "scores": [
       {
-        "name": "Score de sinusite de l'adulte",
-        "description": "Évalue la gravité de la sinusite",
+        "name": "Index de gravité de la papillomatose laryngée (LPI)",
+        "description": "Évalue la gravité fonctionnelle et la progression de la maladie.",
         "criteria": [
-          "Douleur faciale",
-          "Février",
-          "Écoulement nasal purulent"
+          "Classe I: Papillomes localisés sans obstruction (0 point)",
+          "Classe II: Papillomes étendus sans obstruction respiratoire (1 point)",
+          "Classe III: Obstruction respiratoire modérée avec stridor (2 points)",
+          "Classe IV: Obstruction respiratoire sévère ou nécessité d'intubation (3 points)"
         ],
-        "interpretation": "Plus de 6 points : sinusite sévère"
+        "interpretation": "Un score ≥ 2 indique une indication chirurgicale urgente et une surveillance régulière."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen des sinus",
+        "title": "Examen laryngoscopique direct et indirect",
         "steps": [
           {
-            "action": "Palpation des sinus",
-            "interpretation": "Douleur à la palpation"
+            "action": "Laryngoscopie directe avec une lumière fibroscopique pour visualiser les papillomes",
+            "interpretation": "Présence de papillomes en chou-fleur sur les cordes vocales ou les plis aryépiglottiques confirme le diagnostic."
+          },
+          {
+            "action": "Évaluation de la mobilité des cordes vocales et de la présence de sténose",
+            "interpretation": "Une réduction de la mobilité ou une sténose laryngée évoque une infiltration étendue ou une fibrose secondaire."
+          },
+          {
+            "action": "Test de la voix (émission de sons prolongés) pour détecter une dysphonie pathologique",
+            "interpretation": "Une voix rauque ou brisée lors de l'émission de sons indique une atteinte des cordes vocales."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Antibiothérapie",
-      "Décongestionnant"
+      "Chirurgie laryngoscopique (ex: microchirurgie laser CO2) pour exciser les papillomes",
+      "Administration d'interféron alpha ou de cidofovir pour réduire la récidive",
+      "Surveillance régulière par laryngoscopie (tous les 3-6 mois) pour détecter les récidives précocement",
+      "Préparation à l'intubation ou à la trachéotomie en cas de compromission respiratoire aiguë",
+      "Éducation du patient sur les signes d'alerte (stridor, dyspnée) et les consultations régulières"
     ],
     "differentialDiagnosis": [
-      "Rhinite",
-      "Migraine"
+      "Carcinome laryngé (histologie nécessaire pour différencier)",
+      "Laryngite chronique avec polypes vocaux",
+      "Amyloïdose laryngée (sténose laryngée sans papillomes)"
     ]
   },
   {
-    "name": "Laryngite aiguë",
-    "description": "Inflammation aiguë du larynx",
+    "name": "Otite moyenne aiguë compliquée",
+    "description": "L'otite moyenne aiguë compliquée (OMAC) est une infection bactérienne de l'oreille moyenne qui évolue vers des complications intracraniales ou extracrâniennes. La physiopathologie repose sur une obstruction du tympan et une infiltration bactérienne (Streptococcus pneumoniae, Haemophilus influenzae) associée à une réponse inflammatoire intense. La présentation clinique typique inclut une otalgie violente, une fièvre élevée (>39°C), une hyporexia, une otoscopie montrant un tympan rouge, bombé, avec perte de mobilité. Les complications extracrâniennes (ex: mastoïdite, abcès péridurale) ou intracrâniennes (ex: méningite, abcès cérébral) surviennent dans 5-10 % des cas.",
     "redFlags": [
-      "Dysphonie",
-      "Dyspnée",
-      "Stridor"
+      "Fièvre > 39°C persistante malgré l'antibiothérapie initiale",
+      "Otalgie extrême avec irradiation vers la tempe ou la nuque",
+      "Signes de surcharge intracrânienne (céphalées, vomissements, troubles de conscience)",
+      "Tumeur mastoïdienne palpable avec chaleur et douleur",
+      "Perte auditive soudaine ou vertiges associés"
     ],
     "scores": [
       {
-        "name": "Score de gravité de la laryngite",
-        "description": "Évalue la gravité de la laryngite",
+        "name": "Score de Severance pour complications otites",
+        "description": "Évalue le risque de complications intracrâniennes en combinant signes cliniques et biologiques.",
         "criteria": [
-          "Dysphonie",
-          "Dyspnée",
-          "Stridor"
+          "Fièvre > 39°C (+2 points)",
+          "Otalgie intense non réduite par analgésiques (+1 point)",
+          "Tumeur mastoïdienne palpable (+3 points)",
+          "Léucocytose > 15 000/mm³ (+2 points)",
+          "Troubles neurologiques focaux (+4 points)"
         ],
-        "interpretation": "Plus de 4 points : laryngite sévère"
+        "interpretation": "Score ≥ 7 points : risque élevé de complications intracrâniennes nécessitant imagerie cérébrale immédiate. Score < 5 points : surveillance clinique possible."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen du larynx",
+        "title": "Examen otoscopique et neurologique ciblé",
         "steps": [
           {
-            "action": "Inspection du larynx",
-            "interpretation": "Rougeur, gonflement"
+            "action": "Otoscopie avec lumière à 360° pour identifier un tympan bombé, injecté, ou avec perte de la lumière conique",
+            "interpretation": "Tympan bombé avec perte de mobilité à la sonde pneumatique évoque une OMAC. Périphérométrie pour évaluer la conductance auditive."
+          },
+          {
+            "action": "Palpation de la région mastoïdienne et du cou pour rechercher une tumeur ou une lymphadénopathie",
+            "interpretation": "Chaleur, douleur ou tumeur mastoïdienne suggère une mastoïdite. Lymphadénopathie cervicale révèle une réponse inflammatoire."
+          },
+          {
+            "action": "Examen neurologique complet (tonus, réflexes, coordination)",
+            "interpretation": "Signes focaux (ex: ataxie, troubles de la parole) orientent vers une complication intracrânienne."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Corticothérapie",
-      "Antibiothérapie"
+      "Antibiothérapie intraveineuse de haut niveau (céphalosporine de 3e génération + aminoside) en cas de fièvre > 39°C ou tumeur mastoïdienne",
+      "Analgesie associant paracétamol et anti-inflammatoires non stéroïdiens (AINS) pour contrôler la douleur",
+      "Hospitalisation pour surveillance si score de Severance ≥ 7 ou signes neurologiques",
+      "Imagerie cérébrale (scanner ou IRM) en urgence pour évaluer les complications intracrâniennes",
+      "Myringotomie sous anesthésie locale pour décompression en cas de tympan bombé résistant"
     ],
     "differentialDiagnosis": [
-      "Pharyngite",
-      "Trachéite"
+      "Mastoïdite aiguë (différenciation par tumeur mastoïdienne palpable)",
+      "Méningite bactérienne (fièvre, céphalées, signes de méningismes)",
+      "Labyrinthite virale (vertiges prédominants sans otalgie)"
+    ]
+  },
+  {
+    "name": "Apnée du sommeil obstructive sévère",
+    "description": "L'apnée du sommeil obstructive sévère (ASOS) est une pathologie chronique caractérisée par une obstruction répétée des voies respiratoires supérieures pendant le sommeil, entraînant des épisodes d'apnée ou d'hypopnée associés à une oxygénation interrompue. La physiopathologie repose sur une collapsibilité anormale des voies respiratoires (hypertrophie des végus, adénomes, micrognathie) associée à une réponse ventilatoire altérée. La présentation clinique inclut un ronflement intense, des apnées observées, une hypersomnie diurne, une insomnie, et des signes de surcharge veineuse (hypertension artérielle, oedèmes des membres inférieurs).",
+    "redFlags": [
+      "Apnées observées pendant le sommeil avec cyanose ou cyanose centrale",
+      "Hypersomnie diurne sévère avec somnolence pendant les activités à risque (ex: conduite)",
+      "Hypertension artérielle résistante malgré traitement optimal",
+      "Rétrécissement anormal des voies respiratoires supérieures (ex: végus hypertrophique)",
+      "Enfants : rétention nocturne, troubles du comportement, retards de croissance"
+    ],
+    "scores": [
+      {
+        "name": "Échelle d'Epworth de somnolence excessive",
+        "description": "Évalue la probabilité de somnolence inappropriée dans 8 situations quotidiennes.",
+        "criteria": [
+          "S'endormir en lisant assis dans un fauteuil (+1 à +4 selon probabilité)",
+          "S'endormir en regardant la télévision (+1 à +4)",
+          "S'endormir en restant assis après un repas (+1 à +4)",
+          "S'endormir en conduisant (+1 à +4)",
+          "S'endormir en parler à quelqu'un (+1 à +4)",
+          "S'endormir en inactivité (+1 à +4)",
+          "S'endormir en attendre dans une queue (+1 à +4)",
+          "S'endormir en lisant en transport (+1 à +4)"
+        ],
+        "interpretation": "Score ≥ 11/24 : risque élevé d'apnée du sommeil. Score < 5 : faible probabilité."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des voies respiratoires supérieures et anthropométrique",
+        "steps": [
+          {
+            "action": "Examen des amygdales et du végus à la lumière transnasale",
+            "interpretation": "Amygdales hypertrophiques de grade III ou végus élargi augmentent le risque d'obstruction."
+          },
+          {
+            "action": "Mesure du périmètre cervical et de l'indice de masse corporelle (IMC)",
+            "interpretation": "Périmètre cervical > 43 cm chez l'homme ou > 40 cm chez la femme, IMC > 30 kg/m² sont des facteurs de risque."
+          },
+          {
+            "action": "Palpation des maxillaires et du menton pour évaluer la position de la mâchoire",
+            "interpretation": "Micrognathie ou récession mandibulaire suggère une anatomie contributive."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescription de CPAP (Continuous Positive Airway Pressure) en urgence pour les symptômes sévères ou les complications associées",
+      "Éducation du patient sur les risques cardiovasculaires et la nécessité de traitement",
+      "Référer pour polysomnographie diagnostique si score d'Epworth ≥ 11 ou signes cliniques évocateurs",
+      "Optimisation des facteurs modifiables (perte de poids, arrêt du tabac, éviter l'alcool)",
+      "Considérer une chirurgie (ex: uvulopharyngopalatoplastie) en cas de contre-indication au CPAP"
+    ],
+    "differentialDiagnosis": [
+      "Insomnie chronique (absence d'apnées observées)",
+      "Hypersomnie idiopathique (absence de ronflement)",
+      "Troubles du rythme circadien (historique de décalage horaire)"
+    ]
+  },
+  {
+    "name": "Carcinome épidermoïde du larynx",
+    "description": "Tumeur maligne du larynx principalement liée à l'exposition chronique au tabac et à l'alcool. La physiopathologie repose sur une transformation maligne des cellules épithéliales squameuses. La présentation clinique typique inclut une voix rauque persistante (> 2 semaines), une dysphagie progressive, une douleur rétrosternale irradiant vers l'oreille, une perte de poids inexpliquée, et une masse cervicale palpable en cas de métastase ganglionnaire.",
+    "redFlags": [
+      "Rauqueur persistant > 2 semaines sans cause évidente",
+      "Dysphagie associée à une déglutition douloureuse",
+      "Douleur rétrosternale irradiant vers l'oreille gauche ou droite",
+      "Perte de poids inexpliquée > 5 % du poids corporel",
+      "Masse cervicale dure, fixe, non pulsatile palpable"
+    ],
+    "scores": [
+      {
+        "name": "Classification TNM (UICC 8e édition)",
+        "description": "Classification basée sur la taille de la tumeur (T), l'envahissement ganglionnaire (N) et la présence de métastases à distance (M).",
+        "criteria": [
+          "T1: Tumeur limitée à une sous-unité laryngée (glotte, sous-glottique, supraglotte)",
+          "T2: Tumeur envahissant deux sous-unités laryngées adjacentes",
+          "T3: Tumeur envahissant la sous-glottique ou fixant la corde vocale",
+          "T4a: Tumeur envahissant le pré-épiglotte, le cartilage cricoïde ou la trachée",
+          "T4b: Tumeur envahissant le cartilage thyroïde ou les structures voisines"
+        ],
+        "interpretation": "La classification TNM guide le choix du traitement (chirurgie, radiothérapie, chimiothérapie) et prédit la survie globale."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen laryngologique direct",
+        "steps": [
+          {
+            "action": "Laryngoscopie indirecte ou fibroscopie flexible pour visualiser la tumeur",
+            "interpretation": "Identification d'une lésion ulcéro-nécrotique, érythémateuse ou exophytique sur une corde vocale ou la supraglotte. Fixation de la corde vocale suggère une invasion profonde."
+          },
+          {
+            "action": "Palpation cervicale bilatérale pour rechercher des ganglions lymphatiques métastatiques",
+            "interpretation": "Ganglions cervicaux durs, fixes, non douloureux, > 1 cm de diamètre évoquent une métastase ganglionnaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Biopsie laryngée sous anesthésie locale ou générale pour confirmation histologique",
+      "Imagerie par scanner ou IRM pour évaluer l'extension locorégionale",
+      "Prise en charge multidisciplinaire (ORL, oncologie, radiothérapie) pour planifier le traitement",
+      "Surveillance stricte de la fonction respiratoire en cas de sténose laryngée",
+      "Sevrage tabagique et alcoolique immédiat"
+    ],
+    "differentialDiagnosis": [
+      "Papillomatose laryngée récidivante (lésions multiples, récidivantes, sans ulcération)",
+      "Laryngite chronique (rauqueur sans lésion visible)",
+      "Tumeur bénigne laryngée (polype, nodules vocaux)"
+    ]
+  },
+  {
+    "name": "Épiglottite aiguë",
+    "description": "Inflammation aiguë de l'épiglotte, souvent d'origine bactérienne (Haemophilus influenzae type b, Streptococcus pyogenes). La physiopathologie repose sur une infection des tissus mous laryngés, entraînant un œdème massif pouvant provoquer une obstruction aiguë des voies respiratoires. La présentation clinique typique inclut une voix enrouée, une déglutition douloureuse, une respiration sifflante, une posture de respiration en chien de fusil, et une cyanose en phase grave.",
+    "redFlags": [
+      "Stridor inspiratoire progressif",
+      "Voix enrouée associée à une posture de respiration en chien de fusil",
+      "Déglutition douloureuse avec expectoration de salive (absence de déglutition)",
+      "Fievre élevée > 39°C associée à une altération de l'état général",
+      "Cyanose centrale ou pâleur en phase d'obstruction grave"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'épiglottite",
+        "description": "Évaluation clinique basée sur la gravité des signes d'obstruction respiratoire.",
+        "criteria": [
+          "Classe I: Stridor inspiratoire modéré, sans cyanose",
+          "Classe II: Stridor inspiratoire intense, cyanose périphérique",
+          "Classe III: Apnée spontanée, cyanose centrale, nécessité d'intubation ou de trachéotomie"
+        ],
+        "interpretation": "La classe III nécessite une intubation immédiate ou une voie aérienne alternative en raison du risque de décès par asphyxie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des voies respiratoires aiguës",
+        "steps": [
+          {
+            "action": "Inspection visuelle pour identifier des signes de détresse respiratoire (stridor, retraits intercostaux)",
+            "interpretation": "Stridor inspiratoire associé à des retraits intercostaux évoquent une obstruction laryngée aiguë."
+          },
+          {
+            "action": "Palpation du cou pour rechercher un œdème sous-glottique ou une douleur à la déglutition",
+            "interpretation": "Douleur à la déglutition associée à un cou rigide suggère une infection profonde."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Position demi-assise ou en chien de fusil pour faciliter la respiration",
+      "Administration d'oxygène à 100 % par masque à haute concentration",
+      "Antibiothérapie empirique (céphalosporine de 3e génération + aminoside) avant confirmation diagnostique",
+      "Préparation immédiate pour intubation ou trachéotomie en cas de détresse respiratoire",
+      "Imagerie par scanner ou radiographie de la gorge pour confirmer le diagnostic"
+    ],
+    "differentialDiagnosis": [
+      "Laryngite aiguë (stridor associé à une voix enrouée sans posture de chien de fusil)",
+      "Abscessus parapharyngien (douleur unilatérale, déviation de la langue)",
+      "Croup pédiatrique (stridor associé à une voix métallique)"
     ]
   }
 ]

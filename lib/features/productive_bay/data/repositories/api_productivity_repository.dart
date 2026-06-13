@@ -67,10 +67,8 @@ class ApiProductivityRepository implements ProductivityRepository {
      title
      priority
      deadline
-     is_completed
      module_id
      estimated_pomodoros
-     completed_pomodoros
      created_at
      subtasks{
        id
@@ -81,6 +79,7 @@ class ApiProductivityRepository implements ProductivityRepository {
    }
  ''';
 
+    debugPrint("DEBUG: createTodo sending POST to /graphql with variables: title=$title, priority=$priority");
     final response = await _client.post(
       '/graphql',
       data: {
@@ -91,18 +90,25 @@ class ApiProductivityRepository implements ProductivityRepository {
           'deadline': _formatDateTime(deadline),
           'module_id': moduleId,
           'estimated_pomodoros': estimatedPomodoros,
-          'subtasks': subtasks?.map((s) => s.toJson()).toList(),
+          'subtasks': subtasks?.map((s) => s.toApiJson()).toList(),
         },
       },
     );
+    debugPrint("DEBUG: createTodo response status code: ${response.statusCode}");
+    debugPrint("DEBUG: createTodo response data: ${response.data}");
 
     if (response.data['errors'] != null) {
+      debugPrint("DEBUG: createTodo error returned: ${response.data['errors']}");
       throw Exception(response.data['errors'][0]['message']);
     }
 
     final data = response.data['data']?['createTodo'];
-    if (data == null) throw Exception('Failed to create task');
+    if (data == null) {
+      debugPrint("DEBUG: createTodo response data was null");
+      throw Exception('Failed to create task');
+    }
 
+    debugPrint("DEBUG: createTodo parsed TodoItem: $data");
     return TodoItem.fromJson(data);
   }
 
@@ -117,9 +123,50 @@ class ApiProductivityRepository implements ProductivityRepository {
     int? estimatedPomodoros,
     List<SubTask>? subtasks,
   }) async {
-    const String mutation = r'''
- mutation UpdateTodo($id:ID!, $title:String, $priority:String, $deadline:DateTime, $is_completed:Boolean, $completed_pomodoros:Int, $estimated_pomodoros:Int, $subtasks: [SubTaskInput]) {
-   updateTodo(id: $id,title: $title,priority: $priority,deadline: $deadline,is_completed: $is_completed,completed_pomodoros: $completed_pomodoros,estimated_pomodoros: $estimated_pomodoros,subtasks: $subtasks) {
+    final List<String> varDecls = ['\$id: ID!'];
+    final List<String> argsList = ['id: \$id'];
+    final Map<String, dynamic> variables = {'id': id};
+
+    if (title != null) {
+      varDecls.add('\$title: String');
+      argsList.add('title: \$title');
+      variables['title'] = title;
+    }
+    if (priority != null) {
+      varDecls.add('\$priority: String');
+      argsList.add('priority: \$priority');
+      variables['priority'] = priority.name;
+    }
+    if (deadline != null) {
+      varDecls.add('\$deadline: DateTime');
+      argsList.add('deadline: \$deadline');
+      variables['deadline'] = _formatDateTime(deadline);
+    }
+    if (isCompleted != null) {
+      varDecls.add('\$is_completed: Boolean');
+      argsList.add('is_completed: \$is_completed');
+      variables['is_completed'] = isCompleted;
+    }
+    if (completedPomodoros != null) {
+      varDecls.add('\$completed_pomodoros: Int');
+      argsList.add('completed_pomodoros: \$completed_pomodoros');
+      variables['completed_pomodoros'] = completedPomodoros;
+    }
+    if (estimatedPomodoros != null) {
+      varDecls.add('\$estimated_pomodoros: Int');
+      argsList.add('estimated_pomodoros: \$estimated_pomodoros');
+      variables['estimated_pomodoros'] = estimatedPomodoros;
+    }
+    if (subtasks != null) {
+      varDecls.add('\$subtasks: [SubTaskInput]');
+      argsList.add('subtasks: \$subtasks');
+      variables['subtasks'] = subtasks.map((s) => s.toApiJson()).toList();
+    }
+
+    final String mutation =
+        '''
+ mutation UpdateTodo(${varDecls.join(', ')}) {
+   updateTodo(${argsList.join(', ')}) {
      id
      title
      priority
@@ -129,30 +176,18 @@ class ApiProductivityRepository implements ProductivityRepository {
      estimated_pomodoros
      completed_pomodoros
      created_at
-     subtasks{
+     subtasks {
        id
        title
        is_completed
-       }
      }
    }
- ''';
+ }
+''';
 
     final response = await _client.post(
       '/graphql',
-      data: {
-        'query': mutation,
-        'variables': {
-          'id': id,
-          'title': title,
-          'priority': priority?.name,
-          'deadline': _formatDateTime(deadline),
-          'is_completed': isCompleted,
-          'completed_pomodoros': completedPomodoros,
-          'estimated_pomodoros': estimatedPomodoros,
-          'subtasks': subtasks?.map((s) => s.toJson()).toList(),
-        },
-      },
+      data: {'query': mutation, 'variables': variables},
     );
 
     if (response.data['errors'] != null) {
@@ -362,6 +397,8 @@ class ApiProductivityRepository implements ProductivityRepository {
      completed_tasks_today
      current_streak
      pomodoros_completed_today
+     short_breaks_completed_today
+     long_breaks_completed_today
      }
    }
  ''';
@@ -374,6 +411,8 @@ class ApiProductivityRepository implements ProductivityRepository {
       totalHours: (stats['focus_hours_today'] as num)
           .toInt(), //Approximation for UI
       completedPomodorosToday: stats['pomodoros_completed_today'] as int,
+      completedShortBreaksToday: stats['short_breaks_completed_today'] as int,
+      completedLongBreaksToday: stats['long_breaks_completed_today'] as int,
       totalPomodorosGoal: 8, //Could be dynamic
       moduleScores: {}, //Not implemented on backend yet
     );

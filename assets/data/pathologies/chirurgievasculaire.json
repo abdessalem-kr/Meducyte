@@ -1,0 +1,233 @@
+[
+  {
+    "name": "Aneurysme thoracique de l'aorte (ATA)",
+    "description": "L'aneurysme thoracique de l'aorte est une dilatation pathologique de la paroi aortique thoracique, souvent liée à une dégradation de la tunique médiane (dégénérescence médiane). Il peut être symptomatique par des douleurs thoraciques aiguës ou chroniques, des signes de compression (dyspnée, hoquet, voix rauque) ou des complications comme la rupture ou l'embolie. La présentation clinique varie selon la localisation (aorte ascendante, archa, descendante) et la taille.",
+    "redFlags": [
+      "Douleur thoracique aiguë irradiant vers le dos ou le cou, associée à une hypotension artérielle",
+      "Signes de compression trachéobronchique (dyspnée, stridor) ou récurrentielle (voix rauque)",
+      "Perte soudaine de connaissance ou signes neurologiques focaux (embolie cérébrale)",
+      "Hypotension artérielle persistante avec suspicion de fuite aortique",
+      "Crachats hémoptysiques ou hémorragie digestive secondaire à une lésion de l'œsophage"
+    ],
+    "scores": [
+      {
+        "name": "Classification de l'expansion aortique (ACC/AHA)",
+        "description": "Évalue le risque de rupture ou de complications en fonction de la taille et de l'évolution de l'aneurysme.",
+        "criteria": [
+          "Classe I: Taille < 5,5 cm (surveillance clinique)",
+          "Classe II: Taille 5,5-6,0 cm (surveillance étroite)",
+          "Classe III: Taille > 6,0 cm ou expansion > 0,5 cm/an (intervention chirurgicale)",
+          "Classe IV: Symptômes ou complications (intervention urgence)"
+        ],
+        "interpretation": "Les classes III et IV justifient une intervention chirurgicale (réparation endovasculaire ou ouverte) pour prévenir la rupture ou les complications."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et thoracique ciblé",
+        "steps": [
+          {
+            "action": "Palpation du cou et du thorax pour rechercher une pulsation anormale ou une douleur localisée",
+            "interpretation": "Une pulsation anormale ou une douleur à la palpation évoquent une dilatation aortique ou une fuite."
+          },
+          {
+            "action": "Auscultation pulmonaire pour détecter des râles ou des souffles associés à une compression trachéobronchique",
+            "interpretation": "Râles crépitants ou souffles anormaux suggèrent une infiltration pleurale ou une compression aortique."
+          },
+          {
+            "action": "Examen neurologique complet pour rechercher des signes d'embolie cérébrale ou spinale",
+            "interpretation": "Perte de force, paresthésies ou déficit sensitif évoquent une embolie secondaire à l'aneurysme."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation hémodynamique avec perfusion intraveineuse et surveillance étroite de la pression artérielle",
+      "Imagerie de référence (scanner thoracique avec injection de contraste) pour confirmer le diagnostic et évaluer les complications",
+      "Anticoagulation préopératoire (héparine non fractionnée) en cas de suspicion d'embolie",
+      "Préparation chirurgicale immédiate en cas de rupture ou de symptômes évocateurs",
+      "Oxygénothérapie pour prévenir l'hypoxie liée à une compression trachéale"
+    ],
+    "differentialDiagnosis": [
+      "Dissection aortique (douleur déchirante irradiant vers le dos, absence de pulsations périphériques asymétriques)",
+      "Pneumothorax massif (douleur thoracique aiguë, absence de souffle pulmonaire unilatéral)",
+      "Embolie pulmonaire (dyspnée, tachycardie, hypotension, absence de signes locaux d'aneurysme)"
+    ]
+  },
+  {
+    "name": "Ischémie aiguë des membres (IAMD)",
+    "description": "L'ischémie aiguë des membres est une obstruction brutale de l'artère fémorale ou iliaque, entraînant une ischémie tissulaire. Elle est souvent liée à une embolie (souvent cardiaque) ou une thrombose in situ. Les signes classiques sont les 6 P : douleur, pâleur, absence de pouls, paresthésie, paralysie et poikilothermie.",
+    "redFlags": [
+      "Douleur soudaine et intense associée à une pâleur cutanée et absence de pouls distaux",
+      "Paresthésies ou perte de sensibilité dans une distribution dermatomique",
+      "Poikilothermie (température cutanée froide) et cyanose des extrémités",
+      "Paralysie motrice incomplète ou totale",
+      "Hypotension artérielle périphérique asymétrique"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Rutherford de l'ischémie aiguë",
+        "description": "Évalue la gravité de l'ischémie et guide la prise en charge.",
+        "criteria": [
+          "Classe I: Douleur à l'effort, pouls préservés (surveillance)",
+          "Classe IIa: Douleur au repos, pouls préservés (traitement médical)",
+          "Classe IIb: Douleur au repos, pouls absents (intervention chirurgicale)",
+          "Classe III: Nécrose tissulaire localisée (amputation partielle)",
+          "Classe IV: Nécrose tissulaire étendue (amputation totale)"
+        ],
+        "interpretation": "Les classes IIb à IV nécessitent une intervention chirurgicale d'urgence (thrombectomie, réimplantation) pour prévenir la nécrose."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurovasculaire des membres",
+        "steps": [
+          {
+            "action": "Palpation des pouls périphériques (fémoral, poplité, tibial postérieur, péronier)",
+            "interpretation": "Absence de pouls distaux évoque une occlusion artérielle proximale."
+          },
+          {
+            "action": "Test de capillaire (pression digitale et relâchement pour observer le retour rouge)",
+            "interpretation": "Retour rouge > 3 secondes suggère une ischémie sévère."
+          },
+          {
+            "action": "Évaluation de la température cutanée et de la coloration des extrémités",
+            "interpretation": "Pâleur ou cyanose associée à une température froide confirme l'ischémie."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Anticoagulation systémique (héparine non fractionnée) pour prévenir l'extension de la thrombose",
+      "Thrombectomie mécanique ou chirurgicale d'urgence en cas de classe IIb à IV",
+      "Réanimation hémodynamique avec perfusion intraveineuse et oxygénothérapie",
+      "Évaluation chirurgicale pour réimplantation artérielle ou pontage",
+      "Préparation à l'amputation en cas de nécrose tissulaire irréversible"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome compartimental (douleur à la palpation, tension musculaire, absence de pouls distaux)",
+      "Thrombose veineuse profonde (œdème, rougeur, chaleur, absence de pâleur)",
+      "Neuropathie diabétique (douleur chronique, absence de signes vasculaires)"
+    ]
+  },
+  {
+    "name": "Thrombose veineuse profonde (TVP) des membres inférieurs",
+    "description": "La thrombose veineuse profonde est une pathologie caractérisée par la formation d'un caillot sanguin dans les veines profondes, le plus souvent des membres inférieurs. Elle résulte d'un triadisme de Virchow : stase sanguine, lésion endothéliale et hypercoagulabilité. La présentation clinique typique inclut une douleur, une tuméfaction unilatérale, une chaleur locale et une érythématisation. Les complications majeures incluent l'embolie pulmonaire aiguë et la syndrome post-thrombotique.",
+    "redFlags": [
+      "Douleur soudaine et intense dans un membre inférieur, associée à une tuméfaction unilatérale et une chaleur locale",
+      "Signe de Homan positif (douleur à la flexion plantaire du pied) en contexte de risque thrombotique",
+      "Tachycardie inexpliquée associée à une hypotension ou une cyanose des extrémités",
+      "Dyspnée, tachypnée et/ou douleur thoracique constrictive évoquant une embolie pulmonaire aiguë",
+      "Érythème purpurique ou cyanose des tissus mous avec perte de pulsations distales"
+    ],
+    "scores": [
+      {
+        "name": "Score de Wells pour la TVP",
+        "description": "Score clinique évaluant la probabilité pré-test de TVP basé sur des critères cliniques et épidémiologiques.",
+        "criteria": [
+          "Classe I: Absence de facteurs de risque (0 point)",
+          "Classe II: Immobilisation > 3 jours ou chirurgie récente (1 point)",
+          "Classe III: Thrombose veineuse profonde antérieure (1 point)",
+          "Classe IV: Cancer actif ou traitement anticoagulant (1 point)",
+          "Classe V: Douleur focale ou érythème local (1 point)",
+          "Classe VI: Absence de signes d'embolie pulmonaire (1 point)"
+        ],
+        "interpretation": "Score total ≥ 2: Probabilité élevée de TVP; Score < 2: Probabilité faible. Le score guide la décision d'imagerie (échographie Doppler) et le début d'anticoagulation."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique des membres inférieurs et recherche de signes d'embolie pulmonaire",
+        "steps": [
+          {
+            "action": "Palpation des veines profondes (fémorale, poplitée) pour identifier des nodosités douloureuses ou des signes de thrombose",
+            "interpretation": "La présence de nodosités douloureuses ou de signes locaux de thrombose (chaleur, érythème) oriente vers une TVP. L'absence de signes ne permet pas d'exclure la pathologie."
+          },
+          {
+            "action": "Mesure du périmètre des jambes à 10 cm au-dessus de la malléole interne bilatéralement",
+            "interpretation": "Une différence de plus de 2 cm entre les membres évoque une TVP. Cette mesure doit être répétée régulièrement pour surveiller l'évolution."
+          },
+          {
+            "action": "Évaluation de la perfusion distale (pulsations, coloration, température)",
+            "interpretation": "Une perte de pulsations ou une coloration cyanotique évoque une occlusion veineuse étendue ou une embolie pulmonaire secondaire."
+          },
+          {
+            "action": "Auscultation pulmonaire et recherche de signes d'embolie pulmonaire (dyspnée, tachypnée, râles crépitants)",
+            "interpretation": "Les râles crépitants ou une cyanose associée à une hypotension sont des signes d'alerte pour une embolie pulmonaire massive."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Initiation d'une anticoagulation par héparine non fractionnée ou LMWH (ex: énoxaparine 1 mg/kg SC b.i.d.)",
+      "Compression élastique graduée (chaussettes de compression) pour réduire l'œdème et prévenir le syndrome post-thrombotique",
+      "Éviter l'immobilisation prolongée; encourager la mobilisation précoce sous surveillance",
+      "Hospitalisation en cas de TVP étendue ou de risque élevé d'embolie pulmonaire",
+      "Préparation à l'imagerie confirmatoire (échographie Doppler des membres inférieurs)"
+    ],
+    "differentialDiagnosis": [
+      "Cellulite aiguë (présence de fièvre, absence de signes veineux profonds)",
+      "Cyste de Baker rompu (douleur poplitée avec épanchement articulaire)",
+      "Insuffisance veineuse chronique (œdème bilatéral, varices, ulcères trophiques)"
+    ]
+  },
+  {
+    "name": "Syndrome de l'artère fémorale profonde (SAFP)",
+    "description": "Le syndrome de l'artère fémorale profonde est une pathologie chronique due à une sténose ou une occlusion de l'artère fémorale profonde, entraînant une ischémie intermittente des membres inférieurs. Il s'agit d'une forme de maladie artérielle obstructive périphérique (MAOP) localisée au niveau du fémoral profond. La présentation clinique typique inclut des crampes ischémiques à l'effort, une perte de pulsations distales et une coloration pâle des extrémités en position de repos.",
+    "redFlags": [
+      "Douleur ischémique à l'effort (claudication intermittente) avec soulagement au repos",
+      "Perte de pulsations fémorales, poplitées ou tibiales palpables",
+      "Coloration pâle des membres inférieurs en position de repos",
+      "Ulcères ischémiques non cicatrisés ou gangrène digitale",
+      "Perte de la sensibilité vibratoire ou de la perception de la température des extrémités"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Rutherford pour la MAOP",
+        "description": "Classification évaluant la sévérité de la MAOP basée sur les symptômes et les signes fonctionnels.",
+        "criteria": [
+          "Classe I: Asymptomatique",
+          "Classe II: Claudication intermittente (effort-induite)",
+          "Classe III: Douleur ischémique au repos",
+          "Classe IV: Ulcères ou gangrène ischémique"
+        ],
+        "interpretation": "Les classes III et IV nécessitent une intervention chirurgicale ou une révascularisation percutanée. Les classes I et II sont gérées par des mesures conservatrices."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique des membres inférieurs et évaluation de la perfusion",
+        "steps": [
+          {
+            "action": "Palpation des pulsations fémorales, poplitées, tibiales antérieures et postérieures",
+            "interpretation": "L'absence de pulsations distales évoque une occlusion étendue. La présence de pulsations faibles ou irrégulières oriente vers une sténose."
+          },
+          {
+            "action": "Mesure de l'indice de perfusion (ABI) à l'aide d'un tensiomètre Doppler",
+            "interpretation": "Un ABI < 0,9 évoque une MAOP. Un ABI < 0,5 indique une ischémie critique."
+          },
+          {
+            "action": "Évaluation de la coloration cutanée et de la température des membres",
+            "interpretation": "Une coloration pâle ou cyanotique et une température froide évoquent une perfusion insuffisante."
+          },
+          {
+            "action": "Recherche de signes de névralgie ischémique (douleur brûlante, paresthésies)",
+            "interpretation": "Les signes neurologiques associés à l'ischémie suggèrent une atteinte microcirculatoire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Initiation d'une thérapie antiplaquettaire (aspirine ou clopidogrel)",
+      "Optimisation des facteurs de risque (arrêt du tabac, contrôle de l'hypertension, du diabète et du cholestérol)",
+      "Prescription d'exercice supervisé pour améliorer la marche ischémique",
+      "Hospitalisation pour révascularisation chirurgicale (bypass fémoro-poplitique) ou angioplastie percutanée en cas de classe III-IV",
+      "Surveillance étroite des ulcères ischémiques et prévention des infections"
+    ],
+    "differentialDiagnosis": [
+      "Diabète neuropathique (douleur brûlante sans signes ischémiques)",
+      "Arthrose fémoro-tibiale (douleur mécanique à l'effort, non modifiée par la position)",
+      "Syndrome de claudication neurogénique (lié à une sténose du canal lombaire)"
+    ]
+  }
+]

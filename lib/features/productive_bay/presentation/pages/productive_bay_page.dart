@@ -136,14 +136,6 @@ class ProductiveBayPage extends ConsumerWidget {
       children: [
         _buildNavCard(
           context,
-          title: context.l10n.planner,
-          subtitle: "Schedule&AI",
-          icon: Iconsax.calendar_2,
-          color: Colors.blue,
-          onTap: () => context.pushNamed(AppRoutes.planner),
-        ),
-        _buildNavCard(
-          context,
           title: context.l10n.myTasks,
           subtitle: ref
               .watch(productiveBayProvider)
@@ -160,14 +152,6 @@ class ProductiveBayPage extends ConsumerWidget {
           icon: Iconsax.task,
           color: Colors.green,
           onTap: () => context.pushNamed(AppRoutes.tasks),
-        ),
-        _buildNavCard(
-          context,
-          title: context.l10n.analytics,
-          subtitle: "Study Patterns",
-          icon: Iconsax.chart_21,
-          color: Colors.purple,
-          onTap: () => context.pushNamed(AppRoutes.analytics),
         ),
         _buildNavCard(
           context,

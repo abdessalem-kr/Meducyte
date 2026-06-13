@@ -116,10 +116,16 @@ class SettingsPage extends ConsumerWidget {
                   onTap: () => context.push(AppRoutes.srsSettings),
                 ),
                 SettingsTile(
+                  id: '07_fatigue',
+                  icon: Iconsax.flash_1,
+                  title: l10n.fatigueSettingsTitle,
+                  onTap: () => context.push(AppRoutes.fatigueSettings),
+                ),
+                SettingsTile(
                   id: '08',
                   icon: Iconsax.calendar,
                   title: l10n.studyPlan,
-                  onTap: () {},
+                  onTap: () => context.push(AppRoutes.studyPlanSettings),
                 ),
                 SettingsTile(
                   id: '09',

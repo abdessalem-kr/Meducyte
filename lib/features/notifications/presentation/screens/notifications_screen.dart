@@ -667,7 +667,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
         color = Colors.blue;
         break;
       case NotificationType.community:
-      case NotificationType.comment_reply:
+      case NotificationType.commentReply:
         icon = Iconsax.messages_1;
         color = Colors.orange;
         break;
@@ -696,7 +696,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
       case NotificationType.content:
         return l10n.notificationTypeContent;
       case NotificationType.community:
-      case NotificationType.comment_reply:
+      case NotificationType.commentReply:
         return l10n.notificationTypeCommunity;
       case NotificationType.performance:
         return l10n.notificationTypePerformance;
@@ -710,7 +710,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
       l10n.notificationTypeContent: [NotificationType.content],
       l10n.notificationTypeCommunity: [
         NotificationType.community,
-        NotificationType.comment_reply,
+        NotificationType.commentReply,
       ],
       l10n.notificationTypePerformance: [NotificationType.performance],
       l10n.notificationTypeSystem: [NotificationType.system],

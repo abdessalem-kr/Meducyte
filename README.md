@@ -19,25 +19,30 @@ Meducyte is an educational mobile app designed to help medical students study sm
 
 | Layer | Tools |
 |---|---|
-| Frontend | Flutter + Dio + GetX / Provider (planned Riverpod migration) |
-| Backend | Laravel (PHP), SQL, Filament PHP |
-| Local Storage | Isar (for offline performance) |
+| Frontend | Flutter + Riverpod + go_router + Dio |
+| Backend | Laravel (PHP) + GraphQL (Lighthouse), SQL, Filament PHP |
+| Local Storage | Drift (SQLite, for offline performance) |
+| AI | Groq (LLM inference for chatbot, simulation & insights) |
 | Hosting | Freehostia + Railway |
-| Authentication | Secure email login (via Namecheap SMTP) |
+| Authentication | Token auth with refresh, secure email login (via Namecheap SMTP) |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-meducyte/
+meducyte_app/
 ├── lib/
-│   ├── modules/
-│   ├── models/
-│   ├── services/
-│   └── ui/
+│   ├── core/          # config, database, network, routes, themes, l10n
+│   ├── features/      # feature modules (quiz, learn, chatbot, simulation, …)
+│   │   └── <feature>/
+│   │       ├── data/          # repositories & data sources
+│   │       ├── domain/        # models
+│   │       └── presentation/  # screens, widgets, providers
+│   └── shared/        # cross-feature providers, services, widgets
 ├── assets/
-├── backend/ (Laravel API)
+├── load_tests/        # k6 load-testing scripts
+├── meducyte-backend/  # Laravel + GraphQL API
 └── README.md
 ```
 
@@ -51,13 +56,20 @@ To run the Flutter app:
 git clone https://github.com/abdessalem-kr/meducyte.git
 cd meducyte
 flutter pub get
-flutter run
+cp env.json.example env.json   # then put your real Groq API key in env.json
+flutter run --dart-define-from-file=env.json
 ```
+
+> 🔑 AI features (chatbot, clinical insights, drug interactions, TTS) require a
+> Groq API key. Copy `env.json.example` to `env.json` (gitignored) and fill in
+> your key. VS Code launch configs in `.vscode/launch.json` pass it
+> automatically; from the CLI use `--dart-define-from-file=env.json`.
+> Never commit API keys to source control.
 
 To set up the backend locally:
 
 ```bash
-cd backend
+cd meducyte-backend
 cp .env.example .env
 php artisan key:generate
 php artisan migrate

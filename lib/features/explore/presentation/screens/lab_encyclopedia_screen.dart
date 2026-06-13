@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../domain/models/lab_encyclopedia_models.dart';
 import '../../domain/models/lab_encyclopedia_data.dart';
 import '../screens/lab_entry_detail_screen.dart';
@@ -86,8 +87,31 @@ class _LabEncyclopediaScreenState extends State<LabEncyclopediaScreen> {
             ),
           ),
           if (_isLoading)
-            const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator()),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => Skeletonizer(
+                    enabled: true,
+                    child: _buildEntryTile(
+                      index,
+                      const LabEntry(
+                        id: 'dummy',
+                        name: "Nom d'un examen de laboratoire factice",
+                        abbreviation: "ABREV",
+                        category: "Général",
+                        introduction: "",
+                        collectionPrecautions: "",
+                        normalValues: [],
+                        clinique: "",
+                      ),
+                      isDark,
+                      primaryColor,
+                    ),
+                  ),
+                  childCount: 5,
+                ),
+              ),
             )
           else if (_filteredEntries.isEmpty)
             const SliverFillRemaining(

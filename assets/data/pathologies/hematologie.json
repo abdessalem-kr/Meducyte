@@ -1,160 +1,345 @@
 [
   {
-    "name": "Anémie",
-    "description": "Diminution du nombre de globules rouges ou de l'hémoglobine",
+    "name": "Syndrome de l'hémoglobine S (Drépanocytose)",
+    "description": "Maladie génétique héréditaire due à une mutation du gène de la bêta-globine entraînant la production d'hémoglobine S. Cette hémoglobine anormale polymérise en conditions de désoxygénation, déformant les globules rouges en forme de faucille. Les crises vaso-occlusives répétées provoquent des douleurs aiguës, une anémie hémolytique chronique, une splénomégalie initiale puis une asplénie fonctionnelle, et des complications thrombotiques. Les manifestations cliniques incluent des crises douloureuses, des épisodes d'occlusion vasculaire, une jaunisse, une anémie, et des complications à long terme comme la fibrose pulmonaire ou la néphropathie.",
     "redFlags": [
-      "Pâleur",
-      "Essoufflement",
-      "Fatigue"
+      "Douleur aiguë localisée ou généralisée, souvent segmentaire, associée à une élévation de la température corporelle",
+      "Anémie microcytaire hypochrome avec réticulocytose marquée et taux élevé de bilirubine non conjuguée",
+      "Splénomégalie palpable ou asplénie fonctionnelle avec fréquence d'infections à encapsulés",
+      "Crise d'aplasie aiguë révélant une pancytopénie soudaine avec pâleur extrême et asthénie",
+      "Thrombopénie isolée ou associée à des signes de coagulation intravasculaire disséminée (CIVD)"
     ],
     "scores": [
       {
-        "name": "Score de classification de l'anémie",
-        "description": "Évalue la gravité de l'anémie",
+        "name": "Score de risque de crise douloureuse (Sorel)",
+        "description": "Évalue la probabilité de crise douloureuse chez un patient avec drépanocytose en fonction de paramètres biologiques et cliniques.",
         "criteria": [
-          "Hémoglobine",
-          "Volume globulaire moyen"
+          "Hémoglobine < 8 g/dL (+2 points)",
+          "Réticulocytes > 10 % (+1 point)",
+          "Bilirubine non conjuguée > 2 mg/dL (+1 point)",
+          "Présence de douleur aiguë au scanner thoracique (+2 points)",
+          "Antécédents de crise douloureuse dans les 3 mois (+1 point)"
         ],
-        "interpretation": "Permet de déterminer le degré d'anémie"
+        "interpretation": "Score ≥ 5 points : risque élevé de crise douloureuse dans les 72 heures ; Score 3-4 : risque modéré ; Score < 3 : risque faible."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen physique",
+        "title": "Examen clinique ciblé pour drépanocytose",
         "steps": [
           {
-            "action": "Palper le pouls",
-            "interpretation": "Permet d'évaluer la fréquence cardiaque"
+            "action": "Palpation du foie et de la rate pour évaluer la splénomégalie ou l'atrophie splénique",
+            "interpretation": "Splénomégalie palpable évoque une phase de stockage splénique ; asplénie palpable ou inaudible évoque une fibrose splénique secondaire."
           },
           {
-            "action": "Ausculter les poumons",
-            "interpretation": "Permet de détecter les signes de défaillance cardiaque"
+            "action": "Examen cutané pour rechercher des signes de jaunisse (ictère) ou de pigmentation argileuse",
+            "interpretation": "Jaunisse modérée à sévère associée à une anémie évoque une hémolyse chronique ; pigmentation argileuse suggère une insuffisance hépatique secondaire."
+          },
+          {
+            "action": "Examen des extrémités pour rechercher des ulcérations chroniques ou des signes de vaso-occlusion",
+            "interpretation": "Ulcérations des chevilles ou des genoux révèlent une ischémie chronique liée aux crises répétées."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Prescrire un examen de sang",
-      "Administrer du fer si nécessaire"
+      "Administration d'oxygène à 2-4 L/min pour corriger l'hypoxie et prévenir la polymérisation de l'hémoglobine S",
+      "Hydratation intraveineuse avec perfusion de 0,9 % NaCl à 1-2 mL/kg/h pour maintenir un débit urinaire > 0,5 mL/kg/h",
+      "Transfusion sanguine érythrocytaire en cas d'hémoglobine < 7 g/dL ou de crise d'aplasie aiguë",
+      "Analgesie par morphine IV en escalade (5-10 mg toutes 4 heures) avec surveillance des signes de dépendance",
+      "Prévention des infections par vaccination pneumococcique, méningococcique et administration de pénicilline prophylactique"
     ],
     "differentialDiagnosis": [
-      "Anémie ferriprive",
-      "Anémie mégaloblastique"
+      "Anémie falciformante (hémoglobine C) : absence de crises douloureuses mais présence d'ischémie rénale",
+      "Thalassémie bêta-majeure : anémie microcytaire sans hémolyse aiguë",
+      "Anémie par carence en fer : anémie microcytaire avec fer sérique bas et ferritine normale"
     ]
   },
   {
-    "name": "Leucémie aiguë",
-    "description": "Cancer des cellules sanguines",
+    "name": "Syndrome myélodysplasique (SMD)",
+    "description": "Groupe de maladies myéloprolifératives caractérisées par une dysplasie cellulaire, une cytopenie persistante et un risque de transformation en leucémie aiguë. La physiopathologie repose sur des anomalies génétiques des cellules souches hématopoïétiques entraînant une maturation anormale des lignées hématologiques. Les manifestations cliniques incluent une anémie, une thrombopénie, une neutropénie, des infections récidivantes, une fatigue, et des signes de fibrose médullaire. Les formes agressives peuvent évoluer vers une leucémie aiguë myéloïde.",
     "redFlags": [
-      "Fièvre",
-      "Fatigue",
-      "Pertes de poids"
+      "Cytopenie bilineaire ou trilineaire (anémie, thrombopénie, neutropénie) sans cause évidente",
+      "Présence de blastes myéloïdes dans le sang périphérique (> 5 %)",
+      "Anémie macrocytaire associée à une réticulocytose inadéquate",
+      "Biopsie médullaire montrant une dysplasie cellulaire > 10 % dans au moins deux lignées",
+      "Score de HAS (Hematopoietic cellularity, Anemia, and blasts in blood) > 4 points"
     ],
     "scores": [
       {
-        "name": "Score de risque de leucémie aiguë",
-        "description": "Évalue le risque de mortalité",
+        "name": "Score IPSS-R (International Prognostic Scoring System-Revised)",
+        "description": "Classe les patients selon le risque de progression en leucémie aiguë et la mortalité globale.",
         "criteria": [
-          "Âge",
-          "Type de leucémie"
+          "Blastes médullaires 0-4 % (+0 point)",
+          "Blastes médullaires 5-9 % (+1 point)",
+          "Blastes médullaires 10-19 % (+2 points)",
+          "Blastes médullaires ≥ 20 % (+3 points)",
+          "Dysplasie cellulaire modérée à sévère (+1 point)",
+          "Présence de mutations à mauvais pronostic (ASXL1, TP53) (+1 point)"
         ],
-        "interpretation": "Permet de déterminer le traitement"
+        "interpretation": "Score 0-1,5 : faible risque ; 1,6-3 : risque intermédiaire ; 3,1-4,5 : risque élevé ; >4,5 : risque très élevé."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen des ganglions lymphatiques",
+        "title": "Examen clinique ciblé pour syndrome myélodysplasique",
         "steps": [
           {
-            "action": "Palper les ganglions lymphatiques",
-            "interpretation": "Permet de détecter les signes de cancer"
+            "action": "Palpation du foie et de la rate pour évaluer l'hepatosplénomégalie",
+            "interpretation": "Hépatosplénomégalie modérée évoque une infiltration médullaire secondaire ; splénomégalie marquée suggère une transformation leucémique."
+          },
+          {
+            "action": "Examen des muqueuses pour rechercher des signes de pancytopénie (pâleur, saignements, ulcérations)",
+            "interpretation": "Pâleur des conjonctives évoque une anémie ; saignements gingivaux ou épistaxis révèlent une thrombopénie."
+          },
+          {
+            "action": "Examen neurologique pour rechercher des signes de neuropathie périphérique",
+            "interpretation": "Dysesthésies ou paresthésies des membres inférieurs évoquent une carence en vitamine B12 secondaire à une malabsorption."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Prescrire un examen de sang",
-      "Administrer de la chimiothérapie si nécessaire"
+      "Transfusion érythrocytaire en cas d'hémoglobine < 7 g/dL ou symptômes d'ischémie tissulaire",
+      "G-CSF (filgrastim) à 5 µg/kg/jour pour stimuler la production de neutrophiles",
+      "Erythropoïétine à 150 U/kg 3 fois/semaine en cas d'anémie non transfusion-dépendante",
+      "Prévention des infections par vaccination pneumococcique et administration de prophylaxie antifongique",
+      "Évaluation de l'éligibilité à la transplantation de cellules souches hématopoïétiques"
     ],
     "differentialDiagnosis": [
-      "Leucémie lymphoblastique",
-      "Leucémie myéloïde"
+      "Anémie aplasique : pancytopénie sans dysplasie médullaire",
+      "Leucémie aiguë myéloïde : blastes > 20 % dans le sang ou la moelle",
+      "Myélome multiple : anémie associée à une protéinurie Bence-Jones"
     ]
   },
   {
-    "name": "Thrombocytopénie",
-    "description": "Diminution du nombre de plaquettes sanguines",
+    "name": "Leucémie aiguë myéloïde (LAM)",
+    "description": "La leucémie aiguë myéloïde est une maladie maligne du sang caractérisée par une prolifération anormale de cellules myéloïdes immatures dans la moelle osseuse et le sang périphérique. Cette prolifération inhibe la production normale de cellules sanguines, entraînant des cytopénies (anémie, thrombocytopénie, neutropénie). Les symptômes incluent de la fatigue, des infections récurrentes, des saignements, des fièvres et des signes de compression médullaire (p. ex., douleurs osseuses).",
     "redFlags": [
-      "Hémorragie",
-      "Ecchymoses"
+      "Fièvre persistante réfractaire à l'antibiothérapie empirique avec neutropénie sévère (<500/mm³)",
+      "Saignements spontanés multiples (épistaxis, hémorragies digestives, purpura) avec thrombocytopénie profonde (<20 000/mm³)",
+      "Douleurs osseuses intenses et généralisées associées à une pâleur marquée",
+      "Adénopathies cervicales ou splénomégalie palpable à l'examen",
+      "Signes de surcharge médullaire (p. ex., ictère, hépatomégalie, anémie sévère) avec blastes visibles sur frottis sanguin"
     ],
     "scores": [
       {
-        "name": "Score de risque de thrombocytopénie",
-        "description": "Évalue le risque de saignement",
+        "name": "Score de risque cytogénétique (WHO 2016)",
+        "description": "Classification basée sur les anomalies chromosomiques pour prédire la réponse au traitement et la survie globale.",
         "criteria": [
-          "Nombre de plaquettes",
-          "Présence de saignement"
+          "Classe favorable: Cytogénique normale ou anomalies favorables (ex: inversion 16, translocation 8/21) (+0 point)",
+          "Classe intermédiaire: Anomalies non classées ou ambiguës (+1 point)",
+          "Classe défavorable: Anomalies complexes ou chromosomes 5/7 déletés (+2 points)",
+          "Classe très défavorable: Trisomie 8 isolée ou autres anomalies rares (+3 points)"
         ],
-        "interpretation": "Permet de déterminer le traitement"
+        "interpretation": "La somme des points détermine le pronostic: classe favorable (<1 an de survie globale), intermédiaire (1-3 ans), défavorable (>3 ans). Guide le choix des thérapeutiques intensives."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen des ecchymoses",
+        "title": "Examen clinique complet avec recherche de signes de cytopénie et de surcharge médullaire",
         "steps": [
           {
-            "action": "Observer les ecchymoses",
-            "interpretation": "Permet de détecter les signes de thrombocytopénie"
+            "action": "Palpation du foie et de la rate pour évaluer l'hepatosplénomégalie",
+            "interpretation": "Une splénomégalie dure ou une hépatomégalie associée à une pâleur cutanée suggère une infiltration médullaire ou une surcharge en blastes."
+          },
+          {
+            "action": "Examen cutané pour rechercher des purpura, des pétéchies ou des ecchymoses",
+            "interpretation": "Les saignements spontanés cutanés ou muqueux indiquent une thrombocytopénie sévère. Les pétéchies localisées sur les zones de pression (p. ex., cuisse) sont évocatrices."
+          },
+          {
+            "action": "Auscultation cardiaque et pulmonaire pour détecter des râles ou des souffles",
+            "interpretation": "Les râles crépitants peuvent révéler une pneumopathie opportuniste liée à la neutropénie. Les souffles systoliques peuvent être liés à une anémie sévère."
+          },
+          {
+            "action": "Examen neurologique ciblé pour rechercher des signes de compression médullaire",
+            "interpretation": "Des céphalées, des vomissements ou des troubles visuels suggèrent une infiltration médullaire ou une leucémie cérébrale."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Prescrire un examen de sang",
-      "Administrer des plaquettes si nécessaire"
+      "Initiation d'une antibiothérapie large spectre (p. ex., piperacilline-tazobactam) pour couvrir les infections opportunistes",
+      "Transfusion de globules rouges si Hémoglobine <7 g/dL ou symptômes d'ischémie tissulaire",
+      "Transfusion de plaquettes si thrombocytopénie <10 000/mm³ ou saignement actif",
+      "Administration de facteurs de croissance (G-CSF) pour stimuler la myélose",
+      "Hospitalisation en unité de soins intensifs si fièvre persistante malgré l'antibiothérapie"
     ],
     "differentialDiagnosis": [
-      "Thrombocytopénie immune",
-      "Thrombocytopénie médicamenteuse"
+      "Leucémie aiguë lymphoblastique (LAL) - Présence de lymphoblastes sur frottis sanguin",
+      "Myélodysplasie aiguë - Absence de blastes en dehors de la moelle",
+      "Aplasie médullaire - Absence de blastes et cytopénies sans prolifération"
     ]
   },
   {
-    "name": "Purpura thrombotique thrombocytopénique",
-    "description": "Maladie rare caractérisée par une thrombocytopénie et des lésions cutanées",
+    "name": "Thrombocytopénie immune idiopathique (TII)",
+    "description": "La thrombocytopénie immune idiopathique est une maladie auto-immune caractérisée par une destruction accélérée des plaquettes par des anticorps dirigés contre des antigènes plaquettaires. Elle peut être aiguë (enfants) ou chronique (adultes), avec des manifestations cliniques variables allant de l'asymptomatique à des saignements sévères.",
     "redFlags": [
-      "Purpura",
-      "Thrombocytopénie"
+      "Pétéchies généralisées sur le tronc et les membres inférieurs avec thrombocytopénie <20 000/mm³",
+      "Hémorragie gingivale spontanée ou épistaxis répétitives sans cause évidente",
+      "Ecchymoses spontanées étendues après un traumatisme mineur",
+      "Signes de saignement intracrânien (céphalées explosives, vomissements, troubles neurologiques focaux)",
+      "Réponse inadéquate à la corticothérapie initiale (absence d'augmentation de la numération plaquettaire >30 000/mm³ en 7 jours)"
     ],
     "scores": [
       {
-        "name": "Score de risque de purpura thrombotique thrombocytopénique",
-        "description": "Évalue le risque de mortalité",
+        "name": "Score de gravité de la TII (British Society of Haematology)",
+        "description": "Évaluation de la gravité clinique pour guider les décisions thérapeutiques.",
         "criteria": [
-          "Âge",
-          "Présence de thrombocytopénie"
+          "Classe 1: Thrombocytopénie asymptomatique avec plaquettes >20 000/mm³ (+0 point)",
+          "Classe 2: Saignements mineurs (p. ex., pétéchies) avec plaquettes 10 000-20 000/mm³ (+1 point)",
+          "Classe 3: Saignements modérés (p. ex., épistaxis) avec plaquettes 5 000-10 000/mm³ (+2 points)",
+          "Classe 4: Saignements majeurs (p. ex., hémorragie intracrânienne) avec plaquettes <5 000/mm³ (+3 points)"
         ],
-        "interpretation": "Permet de déterminer le traitement"
+        "interpretation": "Classe 1-2: Surveillance et corticothérapie. Classe 3-4: Urgence thérapeutique (IVIG, plasmaphérèse, thérapie ciblée)."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen des lésions cutanées",
+        "title": "Examen ciblé des signes de saignement et de la réponse à la corticothérapie",
         "steps": [
           {
-            "action": "Observer les lésions cutanées",
-            "interpretation": "Permet de détecter les signes de purpura thrombotique thrombocytopénique"
+            "action": "Palpation des ganglions lymphatiques pour exclure une cause secondaire",
+            "interpretation": "Adénopathies élargies suggèrent une cause secondaire (p. ex., lymphome) plutôt qu'une TII idiopathique."
+          },
+          {
+            "action": "Examen des muqueuses (buccales, génitales) pour rechercher des hémorragies",
+            "interpretation": "Des hémorragies muqueuses (p. ex., ulcères buccaux) indiquent une thrombocytopénie sévère. L'absence de signes de saignement malgré une plaquettaire <20 000/mm³ peut évoquer une cause secondaire."
+          },
+          {
+            "action": "Palpation du foie et de la rate pour évaluer l'hepatosplénomégalie",
+            "interpretation": "Une splénomégalie peut indiquer une cause secondaire (p. ex., hémopathie) ou une destruction splénique accrue."
+          },
+          {
+            "action": "Examen neurologique pour rechercher des signes d'hémorragie intracrânienne",
+            "interpretation": "Céphalées, vomissements, ou troubles visuels suggèrent une urgence neurochirurgicale."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Prescrire un examen de sang",
-      "Administrer de la plasmaférese si nécessaire"
+      "Administration d'hydrocortisone IV à 1 mg/kg/jour pour 4-6 semaines",
+      "Transfusion de plaquettes en cas de saignement actif ou de risque intracrânien",
+      "Injections d'immunoglobulines IV (IVIG) à 1 g/kg/jour pendant 2 jours",
+      "Initiation de l'rituximab (anti-CD20) si réponse inadéquate à la corticothérapie",
+      "Hospitalisation en unité de soins intensifs si hémorragie intracrânienne ou état hémorragique instable"
     ],
     "differentialDiagnosis": [
-      "Purpura thrombotique thrombocytopénique",
-      "Syndrome hémolytique et urémique"
+      "Thrombocytopénie médicamenteuse (p. ex., héparine, quinidine) - Antécédents de médicaments récents",
+      "Syndrome de HELLP (hémolyse, élévation des enzymes hépatiques, prééclampsie) - Présence d'ictère et d'hypertension",
+      "Lymphome non hodgkinien - Adénopathies et fièvre associées"
+    ]
+  },
+  {
+    "name": "Syndrome hémolytique urémique (SHU)",
+    "description": "Pathologie thrombotique microangiopathique caractérisée par une triade clinique de microangiopathie hémolytique, thrombocytopénie et insuffisance rénale aiguë. La forme classique est liée à une infection à Escherichia coli producteur de Shiga toxin, entraînant une lésion endothéliale glomérulaire. La présentation clinique typique inclut une anémie hémolytique avec réticulocytose, une thrombocytopénie, une insuffisance rénale avec protéinurie, une oligurie, et des signes de déshydratation. Les formes atypiques (SHU atypique) sont associées à des mutations du gène du facteur H ou à une activité ADAMTS13 anormale.",
+    "redFlags": [
+      "Anémie hémolytique aiguë avec réticulocytose > 150 000/µL et hémoglobine < 8 g/dL",
+      "Thrombocytopénie sévère (< 50 000/µL) associée à des purpuras ou des saignements spontanés",
+      "Insuffisance rénale aiguë avec créatinine > 2 mg/dL et oligurie < 0,5 mL/kg/h",
+      "Signes neurologiques focaux (confusion, convulsions) en l'absence de lésions cérébrales ischémiques",
+      "Hypovolémie secondaire à une diarrhée hémorragique aiguë (souvent dans les 72 heures précédentes)"
+    ],
+    "scores": [
+      {
+        "name": "Score PLASMIC",
+        "description": "Score prédictif de la réponse au plasma frais congelé dans les syndromes thrombotiques microangiopathiques. Évalue la probabilité de réponse à la plasmaphérèse.",
+        "criteria": [
+          "Présence de diarrhée hémorragique (+1 point)",
+          "Créatinine initiale > 2 mg/dL (+1 point)",
+          "Plaquettes < 20 000/µL (+1 point)",
+          "Hémoglobine < 8 g/dL (+1 point)",
+          "Temps de coagulation normal (INR < 1,5) (-1 point)"
+        ],
+        "interpretation": "Score ≥ 3 points : forte probabilité de réponse à la plasmaphérèse. Score ≤ 1 point : réponse probable à la plasmaphérèse limitée. Score intermédiaire (2 points) : nécessite une évaluation individuelle."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé du SHU",
+        "steps": [
+          {
+            "action": "Palpation du foie et de la rate pour rechercher une splénomégalie ou une hépatomégalie",
+            "interpretation": "L'absence de splénomégalie évoque un SHU classique, tandis qu'une splénomégalie pourrait orienter vers une cause secondaire (ex: lymphome)."
+          },
+          {
+            "action": "Examen neurologique complet avec recherche de signes focaux (dysarthrie, ataxie, pareses) et d'alerte (confusion, somnolence)",
+            "interpretation": "Les signes neurologiques focaux associés à une thrombocytopénie et une insuffisance rénale orientent vers un SHU atypique ou une TTP."
+          },
+          {
+            "action": "Évaluation des signes de déshydratation (turgescence cutanée, pression artérielle, diurèse)",
+            "interpretation": "Une déshydratation sévère associée à une diarrhée hémorragique évoque un SHU classique post-diarrhéique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réanimation hydrique avec perfusion de solution saline isotonique (1,5 à 2 mL/kg/h) pour corriger l'hypovolémie",
+      "Transfusion sanguine érythrocytaire si hémoglobine < 7 g/dL ou symptômes ischémiques",
+      "Plasmaphérèse urgente si suspicion de SHU atypique ou TTP (3 à 5 sessions initiales)",
+      "Éviter les antiplaquettaires (aspirine, clopidogrel) en l'absence de confirmation de TTP",
+      "Surveillance étroite de la fonction rénale avec diurèse horaire et créatinine sérique"
+    ],
+    "differentialDiagnosis": [
+      "Thrombopénie thrombotique purpurique (TTP) : absence de diarrhée hémorragique et présence de signes neurologiques focaux",
+      "Syndrome de coagulation intravasculaire disséminée (SCID) : présence de lésions de coagulation (INR > 1,5, fibrinogène < 1,5 g/L)",
+      "Néphropathie glomérulaire aiguë : absence de microangiopathie sur frottis sanguin"
+    ]
+  },
+  {
+    "name": "Syndrome de l'aplasie médullaire aiguë",
+    "description": "Pathologie rare caractérisée par une pancytopénie sévère due à une destruction ou une absence de la moelle osseuse. La physiopathologie implique une réponse auto-immune, une exposition à des toxines (chimiothérapie, médicaments), ou des infections virales (VZV, EBV, CMV). La présentation clinique typique inclut une anémie avec asthénie, une thrombocytopénie avec saignements, et une neutropénie avec fièvre et infections opportunistes. Les formes sévères peuvent évoluer vers un état de pancytopénie fulminante avec risque de choc septique.",
+    "redFlags": [
+      "Pancytopénie sévère (hémoglobine < 8 g/dL, plaquettes < 20 000/µL, neutrophiles < 500/µL) sur bilan sanguin complet",
+      "Fièvre > 38,3°C associée à une neutropénie profonde (< 500/µL)",
+      "Hémorragies spontanées multiples (purpura, épistaxis, hémorragie digestive)",
+      "Infections récidivantes ou opportunistes (candidose, aspergillose)",
+      "Absence de signes de maladie infiltrative (splénomégalie, lymphadénopathie)"
+    ],
+    "scores": [
+      {
+        "name": "Score de Severo",
+        "description": "Score pronostique pour l'aplasie médullaire aiguë sévère. Évalue la gravité clinique et le risque de mortalité.",
+        "criteria": [
+          "Neutrophiles < 500/µL (+1 point)",
+          "Plaquettes < 20 000/µL (+1 point)",
+          "Hémoglobine < 8 g/dL (+1 point)",
+          "Présence de fièvre > 38,3°C (+1 point)",
+          "Présence d'hémorragies spontanées (+1 point)"
+        ],
+        "interpretation": "Score ≥ 4 points : aplasie médullaire sévère (risque de mortalité > 50% sans greffe). Score ≤ 2 points : aplasie médullaire modérée (traitable par immunosuppression)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé de l'aplasie médullaire",
+        "steps": [
+          {
+            "action": "Palpation du sternum et des os longs pour rechercher une splénomégalie ou une hépatomégalie",
+            "interpretation": "L'absence de splénomégalie évoque une aplasie médullaire idiopathique plutôt qu'une cause secondaire (ex: lymphome)."
+          },
+          {
+            "action": "Examen cutané pour rechercher des signes d'infection (lymphadénopathie, ulcères, érythème)",
+            "interpretation": "Des lésions cutanées typiques (ex: éruption vésiculeuse) orientent vers une cause virale (VZV)."
+          },
+          {
+            "action": "Recherche de signes de déshydratation ou de sepsis (tachycardie, hypotension, confusion)",
+            "interpretation": "La fièvre associée à une neutropénie profonde évoque un sepsis neutropénique, nécessitant une antibiothérapie immédiate."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie large spectre (ex: piperacilline-tazobactam) en cas de fièvre neutropénique",
+      "Transfusion érythrocytaire si hémoglobine < 7 g/dL ou symptômes ischémiques",
+      "Transfusion plaquettaire si plaquettes < 10 000/µL ou hémorragies actives",
+      "Initiation d'une immunosuppression (ex: antithymocytaire globuline + ciclosporine) pour les formes sévères",
+      "Hospitalisation en unité de soins intensifs pour surveillance étroite et greffe de moelle osseuse si applicable"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome myélodysplasique (SMD) : présence de dysplasie médullaire et de cytopénies progressives",
+      "Leucémie aiguë : présence de blastes sur frottis sanguin et infiltration médullaire",
+      "Anémie aplasique secondaire à médicaments : antécédents de toxines ou de chimiothérapie"
     ]
   }
 ]

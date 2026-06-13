@@ -75,11 +75,11 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen> {
           children: [
             const Icon(Iconsax.flash, color: Colors.orange),
             const SizedBox(width: 12),
-            const Text("TRIAL LIMIT"),
+            Text(context.l10n.chatTrialLimitTitle),
           ],
         ),
-        content: const Text(
-          "You've reached the limit of 5 trial messages.Upgrade to Premium for unlimited access to the AI Medical Tutor.",
+        content: Text(
+          context.l10n.chatTrialLimitDesc,
         ),
         actions: [
           TextButton(
@@ -98,7 +98,7 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            child: const Text("UPGRADE NOW"),
+            child: Text(context.l10n.chatUpgradeNow),
           ),
         ],
       ),
@@ -125,6 +125,7 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen> {
     final messages = ref.watch(chatMessagesProvider);
     final isLoading = ref.watch(isChatLoadingProvider);
     final theme = Theme.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final user = ref.watch(authControllerProvider).value;
     final isSubscriber = user?.isSubscriber ?? false;
 
@@ -155,7 +156,7 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen> {
                 Row(
                   children: [
                     Text(
-                      AppLocalizations.of(context)!.chatbotTitle,
+                      l10n.chatbotTitle,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -174,9 +175,9 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen> {
                             color: Colors.orange.withOpacity(0.3),
                           ),
                         ),
-                        child: const Text(
-                          "TRIAL",
-                          style: TextStyle(
+                        child: Text(
+                          l10n.chatTrialBadge,
+                          style: const TextStyle(
                             color: Colors.orange,
                             fontSize: 8,
                             fontWeight: FontWeight.bold,
@@ -199,7 +200,7 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen> {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      AppLocalizations.of(context)!.online,
+                      l10n.online,
                       style: theme.textTheme.bodySmall?.copyWith(
                         color: theme.hintColor,
                         fontWeight: FontWeight.w500,
@@ -211,7 +212,7 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen> {
                           .watch(chatMessageCountProvider)
                           .when(
                             data: (count) => Text(
-                              "• $count/5 messages",
+                              l10n.chatMessagesCount(count.toString()),
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: theme.hintColor,
                                 fontSize: 10,
@@ -245,21 +246,21 @@ class _ChatBotScreenState extends ConsumerState<ChatBotScreen> {
               showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: Text(AppLocalizations.of(context)!.newChat),
-                  content: const Text(
-                    "Start a new coversation and clear history?",
+                  title: Text(l10n.newChat),
+                  content: Text(
+                    l10n.chatClearHistoryConfirm,
                   ),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: Text(AppLocalizations.of(context)!.cancel),
+                      child: Text(l10n.cancel),
                     ),
                     TextButton(
                       onPressed: () {
                         ref.read(chatMessagesProvider.notifier).clearHistory();
                         Navigator.pop(context);
                       },
-                      child: Text(AppLocalizations.of(context)!.confirm),
+                      child: Text(l10n.confirm),
                     ),
                   ],
                 ),

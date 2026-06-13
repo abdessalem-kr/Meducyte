@@ -1,118 +1,224 @@
 [
   {
-    "name": "Psoriasis",
-    "description": "Affection chronique de la peau caractérisée par des lésions érythémato-squameuses",
+    "name": "Syndrome de Sweet",
+    "description": "Le syndrome de Sweet est une dermatose neutrophilique caractérisée par l'apparition soudaine de lésions cutanées érythémateuses, douloureuses, souvent localisées sur les membres supérieurs, le visage ou le cou. La physiopathologie repose sur une infiltration aiguë de neutrophiles dans la couche dermique, associée à une réponse immunitaire anormale, souvent déclenchée par des infections, des traitements ou des états néoplasiques. La présentation clinique typique inclut des plaques ou nodules violacés, érythémateux, avec ou sans ulcération, accompagnés de fièvre, d'arthralgies et d'une élévation des marqueurs inflammatoires (CRP, VHS).",
     "redFlags": [
-      "Douleur intense",
-      "Fièvre",
-      "Adénopathie"
+      "Lésions cutanées érythémateuses douloureuses évoluant rapidement avec ulcération centrale",
+      "Fièvre associée à une élévation marquée des marqueurs inflammatoires (CRP > 100 mg/L)",
+      "Présence de lésions multiples sur les membres supérieurs ou le visage",
+      "Douleur intense des lésions cutanées avec érythème purpurique",
+      "Antécédents récents d'infection, de chimiothérapie ou de néoplasie"
     ],
     "scores": [
       {
-        "name": "PASI",
-        "description": "Évaluation de la sévérité de la psoriasis",
+        "name": "Critères diagnostiques modifiés de Sweet",
+        "description": "Score basé sur des critères cliniques et histopathologiques pour établir le diagnostic.",
         "criteria": [
-          "Érythème",
-          "Induration",
-          "Desquamation"
+          "Lésions cutanées érythémateuses douloureuses (1 point)",
+          "Fièvre associée (1 point)",
+          "Élévation des marqueurs inflammatoires (1 point)",
+          "Réponse rapide aux corticostéroïdes (1 point)",
+          "Biopsie cutanée montrant une infiltration neutrophilique (1 point)"
         ],
-        "interpretation": "Score élevé indique une sévérité accrue"
+        "interpretation": "Score ≥ 3 points : diagnostic probable. Score ≥ 4 points : diagnostic confirmé. Score < 3 points : diagnostic incertain."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen cutané",
+        "title": "Examen dermatologique ciblé",
         "steps": [
           {
-            "action": "Inspection des lésions",
-            "interpretation": "Présence de plaques érythémato-squameuses"
+            "action": "Inspection visuelle des lésions cutanées pour noter leur localisation, leur aspect (érythème, ulcération, nécrose) et leur répartition",
+            "interpretation": "Lésions multiples, douloureuses, avec érythème purpurique ou ulcération centrale évoquent fortement le syndrome de Sweet. Une distribution asymétrique ou une localisation sur les membres supérieurs est typique."
+          },
+          {
+            "action": "Palpation des lésions pour évaluer leur consistance, leur douleur et leur température",
+            "interpretation": "Douleur intense à la palpation, chaleur locale et consistance ferme des lésions renforcent le diagnostic. Une douleur modérée ou absente oriente vers d'autres dermatoses neutrophiliques."
+          },
+          {
+            "action": "Recherche de signes systémiques (fièvre, arthralgies, lymphadénopathies)",
+            "interpretation": "Fièvre associée à des arthralgies ou des lymphadénopathies périphériques est un élément de gravité. L'absence de signes systémiques ne permet pas d'exclure le diagnostic."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Traitement topique",
-      "Photothérapie"
+      "Administration de corticostéroïdes systémiques (prednisone 0,5-1 mg/kg/jour) pour réduire l'inflammation",
+      "Traitement de l'étiologie sous-jacente (antibiothérapie si infection, arrêt des médicaments incriminés)",
+      "Antibiotiques de large spectre en cas de suspicion d'infection secondaire",
+      "Analgesiques pour le soulagement de la douleur (paracétamol ou opiacés modérés)",
+      "Surveillance étroite des marqueurs inflammatoires et des lésions cutanées"
     ],
     "differentialDiagnosis": [
-      "Dermatite atopique",
-      "Ichtyose"
+      "Pyoderma gangrenosum : lésions ulcération plus profondes, absence de fièvre",
+      "Dermatite érythémateuse nodulaire : lésions nodulaires, non douloureuses",
+      "Granulome annulaire : lésions circulaires, non érythémateuses"
     ]
   },
   {
-    "name": "Urticaire",
-    "description": "Affection caractérisée par des lésions cutanées prurigineuses et éphémères",
+    "name": "Granulome inguinal (Donovanose)",
+    "description": "Le granulome inguinal, ou donovanose, est une maladie sexuellement transmissible chronique causée par le bacille de Donovan (Calymmatobacterium granulomatis). Elle se manifeste par des ulcérations cutanées et muqueuses, principalement dans les régions génitales et anales, évoluant lentement vers des lésions ulcéro-nécrotiques. La physiopathologie repose sur une infection chronique de l'épithélium squameux, associée à une réponse immunitaire défectueuse. La présentation clinique typique inclut des nodules violacés, ulcération progressive, exulcérations multiples avec bordure en rebord, et une absence de fièvre ou de douleur aiguë.",
     "redFlags": [
-      "Difficulté respiratoire",
-      "Anaphylaxie"
+      "Lésions ulcéro-nécrotiques génitales ou anales persistantes > 2 semaines",
+      "Bordure en rebord des ulcérations avec base purulente",
+      "Absence de fièvre ou de douleur aiguë malgré l'ulcération",
+      "Antécédents de relations sexuelles non protégées",
+      "Lésions multiples ou satellites"
     ],
     "scores": [
       {
-        "name": "Score d'urticaire",
-        "description": "Évaluation de la sévérité de l'urticaire",
+        "name": "Critères diagnostiques cliniques de donovanose",
+        "description": "Score basé sur des critères cliniques et épidémiologiques pour orienter le diagnostic.",
         "criteria": [
-          "Nombre de lésions",
-          "Taille des lésions"
+          "Lésions ulcéro-nécrotiques génitales ou anales (1 point)",
+          "Absence de fièvre ou de douleur aiguë (1 point)",
+          "Bordure en rebord des ulcérations (1 point)",
+          "Antécédents de relations sexuelles non protégées (1 point)",
+          "Réponse à la doxycycline (1 point)"
         ],
-        "interpretation": "Score élevé indique une sévérité accrue"
+        "interpretation": "Score ≥ 3 points : diagnostic probable. Score ≥ 4 points : diagnostic confirmé. Score < 3 points : diagnostic incertain."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen cutané",
+        "title": "Examen génitourinaire et anorectal",
         "steps": [
           {
-            "action": "Inspection des lésions",
-            "interpretation": "Présence de plaques érythémateuses"
+            "action": "Inspection visuelle des lésions génitales et anales pour noter leur aspect (ulcération, nécrose, bordure en rebord)",
+            "interpretation": "Ulcérations multiples avec bordure en rebord, base purulente et absence de douleur aiguë sont typiques. Une ulcération unique ou douloureuse oriente vers d'autres causes."
+          },
+          {
+            "action": "Palpation des lésions pour évaluer leur profondeur, leur consistance et leur douleur",
+            "interpretation": "Consistance molle, profondeur modérée et absence de douleur à la palpation renforcent le diagnostic. Une douleur intense évoque une infection secondaire."
+          },
+          {
+            "action": "Recherche de signes de complications (lymphadénopathies, fistules, cicatrices)",
+            "interpretation": "Lymphadénopathies inguinales ou anales, fistules interne-externe, ou cicatrices anciennes sont des éléments de gravité. L'absence de complications ne permet pas d'exclure le diagnostic."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Antihistaminiques",
-      "Corticostéroïdes"
+      "Antibiothérapie prolongée par doxycycline (100 mg deux fois par jour pendant 3 semaines)",
+      "Surveillance étroite des lésions pour évaluer la réponse au traitement",
+      "Prévention des complications (soins locaux avec antiseptiques, surveillance des fistules)",
+      "Orientation vers un centre de référence pour biopsie cutanée si diagnostic incertain",
+      "Éducation sur les mesures de prévention (préservatifs, abstinence)"
     ],
     "differentialDiagnosis": [
-      "Dermatite de contact",
-      "Pemphigus"
+      "Chancre syphilitique : ulcération unique, indolore, avec base purulente",
+      "Chancroide : ulcération douloureuse, bordure irrégulière, lymphadénopathies inguinales",
+      "Lymphogranulome vénérien : ulcération secondaire à des adénopathies inguinales"
     ]
   },
   {
-    "name": "Syphilis",
-    "description": "Maladie infectieuse sexuellement transmissible",
+    "name": "Psoriasis vulgaris",
+    "description": "Le psoriasis vulgaris est une maladie inflammatoire chronique de la peau d'étiologie multifactorielle, liée à une activation anormale des cellules T et à une hyperprolifération des kératinocytes. Il se caractérise par des lésions érythémateuses, squameuses, en plaques, souvent localisées sur les coudes, genoux, cuir chevelu et régions lombaires. Les lésions sont limitées, avec une couche de squames argentées (signe de la pellicule de miel). Les formes graves peuvent associer des manifestations articulaires (arthrite psoriasique) ou des modifications onycho-unguées (pitting, onycholysie).",
     "redFlags": [
-      "Ulceration génitale",
-      "Adénopathie"
+      "Présence de lésions étendues (> 10 % de la surface corporelle) associées à une douleur articulaire persistante évoquant une arthrite psoriasique",
+      "Involvement du cuir chevelu avec des squames éparses et une perte de cheveux (alopecie psoriasique)",
+      "Lésions flexuraires associées à une sécheresse cutanée marquée et des fissures douloureuses",
+      "Signe de Koebner (apparition de nouvelles lésions sur des zones traumatiques)",
+      "Forme pustuleuse généralisée (psoriasis pustuleux aigu généralisé) avec fièvre et leucocytose"
     ],
     "scores": [
       {
-        "name": "Score de syphilis",
-        "description": "Évaluation de la sévérité de la syphilis",
+        "name": "Index de gravité de l'activité du psoriasis (PASI)",
+        "description": "Score quantitatif évaluant l'étendue, l'érythème, la squame et l'épaisseur des lésions sur quatre régions corporelles (tête, tronc, membres supérieurs, membres inférieurs).",
         "criteria": [
-          "Présence de symptômes",
-          "Résultats des tests de laboratoire"
+          "Érythème: 0 (absent) à 4 (très intense)",
+          "Squames: 0 (absentes) à 4 (très abondantes)",
+          "Épaisseur: 0 (absente) à 4 (très marquée)",
+          "Surface corporelle impliquée: 0 % (0) à 10 % (1), 10-30 % (2), 30-60 % (3), >60 % (4)"
         ],
-        "interpretation": "Score élevé indique une sévérité accrue"
+        "interpretation": "Score total compris entre 0 et 72. Un score > 10 indique une forme modérée à sévère nécessitant une thérapie systémique."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen génital",
+        "title": "Examen dermatologique complet et onycho-ungué",
         "steps": [
           {
-            "action": "Inspection des organes génitaux",
-            "interpretation": "Présence d'ulcérations"
+            "action": "Inspection visuelle des lésions pour leur localisation, leur aspect (érythème, squames, limites), et leur répartition corporelle",
+            "interpretation": "Les lésions en plaques avec squames argentées sur les coudes et genoux sont typiques. Une distribution flexurale (aisselles, plis inguinaux) oriente vers une forme spéciale."
+          },
+          {
+            "action": "Palpation des lésions pour évaluer leur consistance et leur érythème sous-jacent",
+            "interpretation": "Les lésions sont généralement indolores, mais une douleur à la palpation peut indiquer une arthrite psoriasique associée."
+          },
+          {
+            "action": "Examen des ongles pour rechercher des pittings, onycholysie ou hyperkératose",
+            "interpretation": "Les pittings (petits cratères) sont un signe pathognomonique. Une onycholysie étendue évoque une forme grave."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Antibiothérapie",
-      "Conseil en matière de santé sexuelle"
+      "Application de crèmes émollientes et corticostéroïdes topiques de faible à moyenne puissance sur les lésions",
+      "Photothérapie UVB 308 nm ou PUVA pour les formes modérées à sévères",
+      "Initiation d'une thérapie biologique (anti-TNFα, IL-17/23) en cas de réponse insuffisante aux traitements locaux",
+      "Évaluation orthopédique pour les formes associées à une arthrite psoriasique",
+      "Éducation du patient sur l'importance du suivi régulier et la prévention des poussées"
     ],
     "differentialDiagnosis": [
-      "Herpès génital",
-      "Chlamydia"
+      "Eczéma atopique: lésions plus prurigineuses, localisation flexurale dominante",
+      "Lupus érythémateux discoïde: lésions circulaires avec atrophie centrale et perte de cheveux",
+      "Pityriasis rose: lésion mère avec des lésions secondaires linéaires"
+    ]
+  },
+  {
+    "name": "Herpès zoster (zona)",
+    "description": "L'herpès zoster est une réactivation du virus varicelle-zona (VZV) dans les ganglions spinaux, se manifestant par une éruption vésiculeuse unilatérale suivant une dermatome. Il est caractéristique par une douleur brûlante ou lancinante précédant l'éruption de 1 à 5 jours. Les lésions évoluent en 3-5 jours vers des pustules puis des croûtes. Les formes oculaires (démarche oculaire) ou neurologiques (névralgie post-zostérienne) sont des complications majeures.",
+    "redFlags": [
+      "Involvement du dermatome ophtalmique (V1) avec érythème conjonctival ou larmoiement",
+      "Douleur persistante > 3 mois après l'éruption (névralgie post-zostérienne)",
+      "Éruption sur le visage ou le cou associée à une parésie faciale (syndrome de Ramsay Hunt)",
+      "Forme généralisée ou disséminée chez un patient immunodéprimé",
+      "Éruption sur le tronc associée à une fièvre > 38,5 °C et une leucopénie"
+    ],
+    "scores": [
+      {
+        "name": "Score RUSH (Redness, Ulceration, Swelling, Healing)",
+        "description": "Évaluation de la gravité de l'éruption basée sur quatre critères.",
+        "criteria": [
+          "Rougeur: 0 (absente) à 3 (très intense)",
+          "Ulcération: 0 (absente) à 3 (étendue)",
+          "Œdème: 0 (absent) à 3 (très marqué)",
+          "Guérison: 0 (absente) à 3 (complète)"
+        ],
+        "interpretation": "Score total compris entre 0 et 12. Un score > 6 indique une forme sévère nécessitant une hospitalisation."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et dermatologique ciblé",
+        "steps": [
+          {
+            "action": "Inspection visuelle de l'éruption pour sa distribution dermatomale, sa morphologie (vésicules, pustules, croûtes) et sa localisation",
+            "interpretation": "Une distribution unilatérale strictement dermatomale est pathognomonique. Les lésions sur le tronc ou le visage orientent vers des complications spécifiques."
+          },
+          {
+            "action": "Palpation des ganglions lymphatiques périphériques (cervicaux, axillaires) pour rechercher une adénopathie",
+            "interpretation": "Une adénopathie associée à une fièvre évoque une infection secondaire ou une réactivation virale."
+          },
+          {
+            "action": "Évaluation de la sensibilité cutanée dans le dermatome concerné (douleur, allodynie)",
+            "interpretation": "Une allodynie (douleur à la palpation d'une peau normale) est un signe précoce de névralgie post-zostérienne."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Initiation d'une antivirale (aciclovir 800 mg 5 fois/jour ou valaciclovir 1 g 3 fois/jour) dans les 72 heures de l'apparition de l'éruption",
+      "Traitement analgésique (paracétamol, opiacés faibles) pour la douleur aiguë",
+      "Protection des yeux avec collyres antiviraux en cas d'implantation oculaire",
+      "Hospitalisation pour les formes disséminées ou les patients immunodéprimés",
+      "Éducation du patient sur les risques de névralgie post-zostérienne et l'importance du suivi"
+    ],
+    "differentialDiagnosis": [
+      "Dermatite de contact allergique: éruption bilatérale avec limites nettes et prurit intense",
+      "Lupus érythémateux aigu: lésions circulaires avec érythème central et perte de cheveux",
+      "Éruption varicelle: lésions vésiculeuses disséminées sans distribution dermatomale"
     ]
   }
 ]

@@ -1,0 +1,327 @@
+[
+  {
+    "name": "Hémorragie utérine dysfonctionnelle (HUF) aiguë",
+    "description": "L'HUF aiguë est une hémorragie menstruelle abondante ou prolongée liée à une désorganisation du cycle ovarien, souvent anovulatoire. Elle survient chez des femmes en âge de procréer, particulièrement en période de puberté ou de ménopause. La physiopathologie repose sur une hyperplasie endométriale non régulée par la progestérone, entraînant une érosion vasculaire et une hémorragie. La présentation clinique typique inclut des saignements abondants (> 80 mL/jour), des vertiges, une asthénie, et des signes d'anémie aiguë.",
+    "redFlags": [
+      "Hémorragie menstruelle abondante nécessitant un changement de protections hygiéniques toutes les 1-2 heures",
+      "Syncope ou vertiges associés à une pâleur cutanée",
+      "Tachycardie compensatoire (> 110 bpm) avec hypotension (< 90/60 mmHg)",
+      "Hypovolémie clinique avec oligo-anurie (< 0,5 mL/kg/h)",
+      "Douleur abdominale aiguë associée à une distension"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'HUF (PBAC - Pictorial Blood Loss Assessment Chart)",
+        "description": "Évalue la gravité de l'hémorragie menstruelle par une échelle visuelle basée sur le volume de sang perdu.",
+        "criteria": [
+          "Classe 0: Absence de taches ou de saignements (0 point)",
+          "Classe 1: Taches légères sans inondation (1 point)",
+          "Classe 2: Inondation modérée nécessitant un changement toutes les 2-3 heures (2 points)",
+          "Classe 3: Inondation abondante nécessitant un changement toutes les 1-2 heures (3 points)"
+        ],
+        "interpretation": "Un score cumulé sur 7 jours ≥ 100 points indique une HUF sévère nécessitant une hospitalisation et une intervention chirurgicale."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen gynécologique et hémodynamique ciblé",
+        "steps": [
+          {
+            "action": "Palpation abdominale pour évaluer la distension et la douleur",
+            "interpretation": "Une distension abdominale associée à une douleur aiguë évoque une hémorragie intra-abdominale secondaire à une rupture ovarienne ou une décompensation hémorragique."
+          },
+          {
+            "action": "Examen gynécologique avec spéculum pour visualiser le col et l'orifice cervical",
+            "interpretation": "L'absence de saignement visible au niveau du col évoque une hémorragie utérine interne ou une cause extra-utérine (ex: hémorragie digestive)."
+          },
+          {
+            "action": "Évaluation de la saturation en oxygène (SpO2) et de la pression artérielle",
+            "interpretation": "Une SpO2 < 92% ou une hypotension persistante indique une hypovolémie sévère nécessitant une réanimation immédiate."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réanimation hémodynamique avec perfusion de cristalloïdes (1-2 L de Ringer lactate) pour stabiliser la perfusion tissulaire",
+      "Administration d'ocytocine IV (10-20 UI en bolus) pour induire une contraction utérine et limiter l'hémorragie",
+      "Transfusion sanguine précoce si Hémoglobine < 7 g/dL ou symptômes d'anémie aiguë",
+      "Prescription d'agents antifibrinolytiques (ex: tranexamique 1 g IV toutes les 8 heures) pour réduire la perte sanguine",
+      "Préparation chirurgicale (ligature des vaisseaux utérins ou hystérectomie) en cas de résistance aux traitements médicaux"
+    ],
+    "differentialDiagnosis": [
+      "Hémorragie liée à une fibroméatrose utérine (présence de nodules palpables à l'examen pelvien)",
+      "Hémorragie liée à une insuffisance ovarienne prématurée (absence de règles antérieures irrégulières)",
+      "Hémorragie liée à une cause extra-gynécologique (ex: hémorragie digestive ou urinaire)"
+    ]
+  },
+  {
+    "name": "Rupture utérine aiguë",
+    "description": "La rupture utérine aiguë est une complication obstétricale rare mais mortelle, caractérisée par un déchirure du myomètre entraînant une hémorragie intra-abdominale. Elle survient fréquemment en cas de césarienne antérieure, de travail prématuré ou de présentation anormale. La physiopathologie repose sur une augmentation anormale de la pression intra-utérine associée à une fragilité tissulaire. La présentation clinique typique inclut une douleur abdominale aiguë, une distension abdominale, et une détresse fœtale.",
+    "redFlags": [
+      "Douleur abdominale aiguë associée à une distension progressive",
+      "Détresse fœtale avec accélération ou décélération pathologique des battements cardiaques fœtaux",
+      "Hypotension maternelle associée à une tachycardie compensatoire",
+      "Signe de Blumberg positif ou signe de Murphy positif",
+      "Absence de mouvements fœtaux palpables ou auscultés"
+    ],
+    "scores": [
+      {
+        "name": "Classification de la rupture utérine (OMS)",
+        "description": "Classifie la gravité de la rupture utérine selon l'extension et les complications.",
+        "criteria": [
+          "Classe I: Rupture incomplète sans hémorragie intra-abdominale (+0)",
+          "Classe II: Rupture complète avec hémorragie intra-abdominale limitée (+1)",
+          "Classe III: Rupture étendue avec hémorragie massive et détresse fœtale (+2)",
+          "Classe IV: Rupture associée à une hémorragie maternelle fatale ou fœtale mortinatale (+3)"
+        ],
+        "interpretation": "Une classe III ou IV nécessite une césarienne d'urgence et une réanimation chirurgicale immédiate."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen obstétrical et abdominal ciblé",
+        "steps": [
+          {
+            "action": "Palpation abdominale pour évaluer la rigidité musculaire et la douleur",
+            "interpretation": "Une rigidité abdominale associée à une douleur à la palpation évoque une hémorragie intra-péritonéale ou une péritonite secondaire."
+          },
+          {
+            "action": "Évaluation des battements cardiaques fœtaux par Doppler ou stéthoscope",
+            "interpretation": "Une absence de battements cardiaques fœtaux ou des décélérations pathologiques indiquent une détresse fœtale aiguë."
+          },
+          {
+            "action": "Examen pelvien pour rechercher des signes de présentation anormale",
+            "interpretation": "Une présentation par le siège ou une présentation brow peut expliquer la rupture utérine secondaire à une pression anormale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Alerte chirurgicale immédiate pour césarienne d'urgence et exploration abdominale",
+      "Réanimation hémodynamique avec perfusion de cristalloïdes et colloïdes pour stabiliser la perfusion maternelle",
+      "Transfusion sanguine précoce si Hémoglobine < 7 g/dL ou symptômes d'anémie aiguë",
+      "Administration d'antibiotiques à large spectre (ex: céphalosporine de 3e génération + métronidazole) pour prévenir l'infection",
+      "Préparation de l'unité de néonatologie pour prise en charge du nouveau-né en détresse"
+    ],
+    "differentialDiagnosis": [
+      "Placenta præ (saignement vaginal abondant sans douleur associé à une présentation fœtale anormale)",
+      "Décollement prématuré du placenta (douleur abdominale associée à une hémorragie interne et détresse fœtale)",
+      "Hémorragie digestive aiguë (absence de signes obstétricaux et présence de vomissements ou de sang au rectum)"
+    ]
+  },
+  {
+    "name": "Abruption placentaire aiguë",
+    "description": "L'abruption placentaire est une complication obstétricale grave caractérisée par une hémorragie sous-séro-sous-placentaire ou rétropiélique, entraînant une séparation prématurée du placenta du myomètre. Elle se manifeste par une douleur abdominale aiguë, une hémorragie vaginale (variable selon le type d'abruption), une tension utérine anormale, et une détresse fœtale. Les mécanismes physiopathologiques incluent des lésions endothéliales, une hypertension chronique, ou des traumatismes abdominaux.",
+    "redFlags": [
+      "Douleur abdominale aiguë associée à une hémorragie vaginale non cyclique, surtout en fin de troisième trimestre",
+      "Tension utérine anormale avec contractions hypertoniques persistantes",
+      "Signes de détresse fœtale (rythme cardiaque fœtal anormal, absence de mouvements fœtaux)",
+      "Hypotension artérielle associée à une tachycardie compensatoire (signes de choc hypovolémique)",
+      "Présence d'un kyste hémorragique palpable à l'examen pelvien"
+    ],
+    "scores": [
+      {
+        "name": "Classification de l'abruption placentaire (ACOG)",
+        "description": "Classe l'abruption selon la gravité des signes maternels et fœtaux.",
+        "criteria": [
+          "Classe I: Hémorragie minime, absence de détresse fœtale, diagnostic par ultrasons",
+          "Classe II: Hémorragie modérée, détresse fœtale possible, nécessité d'observation étroite",
+          "Classe III: Hémorragie massive, détresse fœtale évidente, risque de mort fœtale in utero",
+          "Classe IV: Abruption rétropiélique étendue, coagulopathie maternelle, risque de mort maternelle"
+        ],
+        "interpretation": "La classe III et IV nécessitent une intervention chirurgicale d'urgence (césarienne) pour prévenir la mort materno-fœtale."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen obstétrical et pelvien ciblé",
+        "steps": [
+          {
+            "action": "Palpation abdominale pour évaluer la tension utérine et la présence d'un kyste hémorragique",
+            "interpretation": "Une tension utérine anormale ou une douleur à la palpation évoquent une abruption placentaire. Un kyste hémorragique palpable est un signe de gravité."
+          },
+          {
+            "action": "Évaluation du rythme cardiaque fœtal par Doppler ou cardiotocographie",
+            "interpretation": "Une détresse fœtale (rythme cardiaque anormal, absence de mouvements) indique une abruption étendue ou rétropiélique."
+          },
+          {
+            "action": "Examen pelvien digital pour rechercher une hémorragie vaginale et un col ouvert",
+            "interpretation": "Une hémorragie vaginale abondante avec col fermé évoque une abruption antérieure. Un col ouvert suggère une menace d'accouchement prématuré."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation hémodynamique avec perfusion de cristalloïdes et évaluation du besoin de transfusion sanguine",
+      "Administration d'antidouleurs (morphine ou paracétamol) pour réduire la douleur et les contractions utérines",
+      "Surveillance étroite du rythme cardiaque fœtal et préparation à la césarienne en cas de détresse",
+      "Préparation à la chirurgie d'urgence si classe III ou IV",
+      "Évaluation de la coagulation maternelle (INR, fibrinogène) pour prévenir les complications hémorragiques"
+    ],
+    "differentialDiagnosis": [
+      "Placenta præ: Hémorragie vaginale sans douleur, diagnostic confirmé par ultrasons",
+      "Rupture utérine: Douleur abdominale aiguë avec signes de détresse fœtale, souvent chez des patientes ayant eu des césariennes",
+      "Hémorragie fœtale: Absence de hémorragie vaginale, diagnostic par Doppler fœtal"
+    ]
+  },
+  {
+    "name": "Torsion ovarienne aiguë",
+    "description": "La torsion ovarienne est une urgence gynécologique due à la rotation de l'ovaire sur son axe vasculaire, entraînant une ischémie et un risque de nécrose. Elle se présente par une douleur abdominale aiguë unilatérale, des nausées/vomissements, une absence de menstruation (si prémenopausée), et une masse adnexale palpable. La physiopathologie implique une mobilité ovarienne anormale (ex: kyste ovarien) et une torsion complète ou partielle.",
+    "redFlags": [
+      "Douleur abdominale aiguë unilatérale associée à des vomissements",
+      "Absence de menstruation ou irrégularité menstruelle chez une patiente prémenopausée",
+      "Masse adnexale palpable à l'examen pelvien avec douleur à la palpation",
+      "Signes de choc (hypotension, tachycardie) en cas de nécrose ovarienne étendue",
+      "Douleur irradiant vers le flanc ou le dos (signe de torsion rénale associée)"
+    ],
+    "scores": [
+      {
+        "name": "Score de torsion ovarienne (GET Score)",
+        "description": "Score clinique basé sur les signes et symptômes pour évaluer le risque de torsion ovarienne.",
+        "criteria": [
+          "Douleur unilatérale > 4/10: +2 points",
+          "Durée de la douleur < 24h: +1 point",
+          "Nausées/vomissements: +1 point",
+          "Masse adnexale palpable: +2 points",
+          "Absence de menstruation: +1 point"
+        ],
+        "interpretation": "Score ≥ 5 points: forte suspicion de torsion ovarienne, nécessitant une échographie pelvienne urgente."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen pelvien et échographie pelvienne ciblé",
+        "steps": [
+          {
+            "action": "Palpation adnexeuse pour rechercher une masse ovarienne douloureuse",
+            "interpretation": "Une masse adnexeuse douloureuse ou une douleur à la palpation unilatérale évoquent une torsion ovarienne."
+          },
+          {
+            "action": "Échographie pelvienne transvaginale pour visualiser l'ovaire et le kyste",
+            "interpretation": "Un ovaire agrandi (>4 cm), une absence de signal Doppler, ou un kyste avec écho hétérogène sont des signes de torsion."
+          },
+          {
+            "action": "Évaluation de la douleur à la rotation du bassin (test de rotation)",
+            "interpretation": "Une douleur exacerbée par la rotation du bassin (test de rotation positif) est spécifique à la torsion ovarienne."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hospitalisation immédiate pour surveillance étroite ou chirurgie d'urgence",
+      "Administration d'antalgiques (morphine) pour contrôler la douleur",
+      "Préparation à la chirurgie laparoscopique ou laparotomique pour détorsion et évaluation de la viabilité ovarienne",
+      "Évaluation de la nécrose ovarienne par examen intraopératoire et décision de salpingo-oophorectomie",
+      "Surveillance des signes de choc en cas de nécrose étendue"
+    ],
+    "differentialDiagnosis": [
+      "Kyste ovarien simple: Douleur chronique, absence de signes de torsion à l'échographie",
+      "Salpingite aiguë: Douleur bilatérale, fièvre, et signes d'inflammation",
+      "Appendicite aiguë: Douleur migratrice vers le quadrant inférieur droit, fièvre, et leucocytose"
+    ]
+  },
+  {
+    "name": "Grossesse tubaire (Grossesse extra-utérine) aiguë",
+    "description": "La grossesse tubaire est une implantation anormale de l'ovule fécondé au niveau de la trompe de Fallope, représentant 90 % des grossesses extra-utérines. La physiopathologie repose sur une migration lente ou rapide de l'embryon hors de l'utérus, souvent secondaire à une stérilité tubaire préalable (adnénoses, salpingites chroniques). La présentation clinique typique inclut une douleur abdominale unilatérale aiguë, parfois associée à une hémorragie génitale, des signes de choc hémorragique (tachycardie, hypotension) en cas de rupture tubaire, et des signes de péricardite (douleur à l'épaule) liés à l'hémorragie péritonéale.",
+    "redFlags": [
+      "Douleur abdominale unilatérale aiguë associée à une absence de règles (amenorrhée) de 4 à 6 semaines",
+      "Douleur à l'épaule (signe de Blumer) secondaire à l'irritation péricardique par hémorragie intrapéritonéale",
+      "Syncope ou hypotension artérielle avec tachycardie > 120 bpm (signes de choc hémorragique)",
+      "Cervical motion tenderness ou adnexal tenderness à l'examen gynécologique",
+      "Absence de battements fœtaux à l'échographie pelvienne avec utérus vide"
+    ],
+    "scores": [
+      {
+        "name": "Score de tri pour grossesse extra-utérine (Ectopic Pregnancy Scoring System)",
+        "description": "Score basé sur la combinaison de critères cliniques et biologiques pour évaluer le risque de grossesse extra-utérine.",
+        "criteria": [
+          "Douleur abdominale unilatérale (1 point)",
+          "Hémorragie génitale (1 point)",
+          "Amenorrhée < 6 semaines (1 point)",
+          "Douleur à l'épaule (1 point)",
+          "Taux de b-hCG < 1000 UI/L avec absence de poche intra-utérine à l'échographie (2 points)"
+        ],
+        "interpretation": "Score ≥ 3 points : fortement évoquant une grossesse extra-utérine. Score < 3 points : nécessite une surveillance étroite et répétition des dosages b-hCG."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen gynécologique ciblé et palpation abdominale",
+        "steps": [
+          {
+            "action": "Palpation douce de l'abdomen pour rechercher des signes de péritonite (défense musculaire, douleur à la distension)",
+            "interpretation": "La présence de défense musculaire ou de signes de péritonite évoque une rupture tubaire avec hémorragie intrapéritonéale."
+          },
+          {
+            "action": "Examen vaginal avec recherche de cervical motion tenderness ou de masse adnexeale palpable",
+            "interpretation": "Cervical motion tenderness suggère une irritation périvaginale. Une masse adnexeale palpable peut correspondre à une trompe dilatée ou hémorragique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation hémodynamique avec perfusion intraveineuse de cristalloïdes (500-1000 mL) en cas de choc hémorragique",
+      "Prise en charge chirurgicale d'urgence par laparotomie ou laparoscopie pour confirmation diagnostique et traitement (salpingectomie ou salpingostomie)",
+      "Transfusion sanguine en cas de hémoglobine < 7 g/dL ou signes de choc",
+      "Administration de méthotrexate (50 mg/m²) en cas de grossesse tubaire non rompue et b-hCG < 5000 UI/L",
+      "Surveillance étroite des signes de détresse hémodynamique et répétition des dosages b-hCG"
+    ],
+    "differentialDiagnosis": [
+      "Rupture ovarienne hémorragique (absence de b-hCG élevé)",
+      "Salpingite aiguë (fièvre, leucocytose, absence de b-hCG élevé)",
+      "Avortement spontané (présence de poche intra-utérine à l'échographie)"
+    ]
+  },
+  {
+    "name": "Môle hydatiforme complet",
+    "description": "Le môle hydatiforme complet est une forme de maladie trophoblastique gestationnelle caractérisée par une hyperplasie trophoblastique anormale sans présence de tissu embryonnaire. Il résulte d'une fécondation d'un ovule non fonctionnel par un spermatozoïde (mono ou diploïde), entraînant une prolifération anormale de villosités choriales ressemblant à des grappes de raisins. La présentation clinique inclut une hémorragie génitale irrégulière, une hyperémèse gravidarum sévère, une taille utérine supérieure à l'âge gestationnel, et des signes de thyrotoxicose (tachycardie, tremblements).",
+    "redFlags": [
+      "Hémorragie génitale abondante associée à une taille utérine supérieure à l'âge gestationnel",
+      "Hyperémèse gravidarum sévère avec déshydratation et perte de poids",
+      "Absence de battements fœtaux à l'échographie avec présence de poche utérine anéchogène",
+      "Tachycardie sinusale > 120 bpm avec tremblements et sueurs (signes de thyrotoxicose)",
+      "Nausées et vomissements persistants > 12 semaines d'âge gestationnel"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité du môle hydatiforme (WHO Mole Scoring System)",
+        "description": "Score évaluant le risque de transformation en choriocarcinome ou de résistance au traitement.",
+        "criteria": [
+          "Age < 20 ans ou > 40 ans (1 point)",
+          "Taille utérine supérieure à l'âge gestationnel (1 point)",
+          "Hémorragie génitale > 30 jours (1 point)",
+          "b-hCG > 100 000 UI/L (1 point)",
+          "Présence de kystes théca-luteins bilatéraux (1 point)"
+        ],
+        "interpretation": "Score ≥ 4 points : risque élevé de résistance au traitement ou de transformation maligne. Score < 4 points : pronostic favorable."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen échographique pelvien et palpation abdominale",
+        "steps": [
+          {
+            "action": "Échographie transvaginale pour visualiser une poche utérine anéchogène avec absence de fœtus et présence de villosités choriales anormales",
+            "interpretation": "L'absence de fœtus et la présence de structure anéchogène typique évoquent le diagnostic de môle hydatiforme."
+          },
+          {
+            "action": "Palpation abdominale pour évaluer la taille utérine et rechercher des kystes ovariens bilatéraux",
+            "interpretation": "Une taille utérine supérieure à l'âge gestationnel et des kystes ovariens bilatéraux (kystes théca-luteins) sont des signes évocateurs."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Evacuation chirurgicale d'urgence par cœliométrie ou cœlioscopie pour éliminer le tissu molaire",
+      "Surveillance étroite des taux de b-hCG post-évacuation avec objectif de normalisation progressive",
+      "Prévention de la thyrotoxicose secondaire par traitement anti-thyroïdien (méthimazole) si nécessaire",
+      "Prévention de la coagulopathie en cas de môle hydatiforme invasif (surveillance de l'INR et du fibrinogène)",
+      "Vaccination contre le virus de l'hépatite B et dépistage du diabète gestationnel"
+    ],
+    "differentialDiagnosis": [
+      "Grossesse normale avec complications (absence de b-hCG anormalement élevé)",
+      "Môle partiel (présence de tissu embryonnaire à l'échographie)",
+      "Choriocarcinome (taux de b-hCG très élevé post-évacuation)"
+    ]
+  }
+]

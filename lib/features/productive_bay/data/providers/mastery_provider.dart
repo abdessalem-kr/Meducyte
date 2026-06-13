@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MasteryData {
   final String subject;
@@ -12,12 +15,30 @@ class MasteryData {
     this.lastDifficultConcept,
     this.history = const [],
   });
+
+  Map<String, dynamic> toJson() => {
+    'subject': subject,
+    'masteryScore': masteryScore,
+    'lastDifficultConcept': lastDifficultConcept,
+    'history': history,
+  };
+
+  factory MasteryData.fromJson(Map<String, dynamic> json) {
+    return MasteryData(
+      subject: json['subject'] as String,
+      masteryScore: (json['masteryScore'] as num).toDouble(),
+      lastDifficultConcept: json['lastDifficultConcept'] as String?,
+      history: List<int>.from(json['history'] as List),
+    );
+  }
 }
 
 class MasteryNotifier extends StateNotifier<Map<String, MasteryData>> {
-  MasteryNotifier() : super(_initialData);
+  MasteryNotifier() : super({}) {
+    _loadFromPrefs();
+  }
 
-  static final Map<String, MasteryData> _initialData = {
+  static final Map<String, MasteryData> _defaultData = {
     'Cardiologie': MasteryData(
       subject: 'Cardiologie',
       masteryScore: 0.84,
@@ -44,6 +65,37 @@ class MasteryNotifier extends StateNotifier<Map<String, MasteryData>> {
     ),
   };
 
+  Future<void> _loadFromPrefs() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final cachedJson = prefs.getString('meducyte_mastery_data');
+      if (cachedJson != null) {
+        final Map<String, dynamic> decoded = jsonDecode(cachedJson);
+        final Map<String, MasteryData> loaded = {};
+        decoded.forEach((key, value) {
+          loaded[key] = MasteryData.fromJson(value as Map<String, dynamic>);
+        });
+        if (!mounted) return;
+        state = loaded;
+        return;
+      }
+    } catch (e) {
+      debugPrint('Error loading mastery data from prefs: $e');
+    }
+    if (!mounted) return;
+    state = _defaultData;
+  }
+
+  Future<void> _saveToPrefs() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final encoded = jsonEncode(state.map((k, v) => MapEntry(k, v.toJson())));
+      await prefs.setString('meducyte_mastery_data', encoded);
+    } catch (e) {
+      debugPrint('Error saving mastery data to prefs: $e');
+    }
+  }
+
   void addSessionResult({
     required String subject,
     required int confidence,
@@ -62,10 +114,11 @@ class MasteryNotifier extends StateNotifier<Map<String, MasteryData>> {
       subject: MasteryData(
         subject: subject,
         masteryScore: newScore,
-        lastDifficultConcept: difficultConcept,
+        lastDifficultConcept: difficultConcept.isEmpty ? current.lastDifficultConcept : difficultConcept,
         history: newHistory,
       ),
     };
+    _saveToPrefs();
   }
 }
 

@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:meducyte_app/features/simulation/domain/models/simulation_models.dart';
 import 'package:meducyte_app/features/simulation/presentation/providers/simulation_providers.dart';
 
@@ -157,7 +158,38 @@ class _AiPatientSetupScreenState extends ConsumerState<AiPatientSetupScreen> {
           ],
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => Skeletonizer(
+        enabled: true,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.simChooseModuleDesc,
+              style: const TextStyle(color: Colors.grey, fontSize: 13),
+            ),
+            const SizedBox(height: 24),
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                childAspectRatio: 1.4,
+              ),
+              itemCount: 4,
+              itemBuilder: (context, index) {
+                return _buildSelectionCard(
+                  title: "Module de spécialité médicale factice",
+                  isSelected: false,
+                  onTap: () {},
+                  icon: Iconsax.book,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
       error: (e, s) => Center(child: Text("Error loading curriculum: $e")),
     );
   }
@@ -233,7 +265,43 @@ class _AiPatientSetupScreenState extends ConsumerState<AiPatientSetupScreen> {
           ],
         );
       },
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => Skeletonizer(
+        enabled: true,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildStepHeader(l10n.simChooseClinicalCase),
+            const SizedBox(height: 16),
+            TextField(
+              decoration: InputDecoration(
+                hintText: l10n.simSearchPathology,
+                prefixIcon: const Icon(Iconsax.search_normal, size: 20),
+                filled: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: 3,
+              separatorBuilder: (context, index) => const SizedBox(height: 12),
+              itemBuilder: (context, index) {
+                return _buildSelectionCard(
+                  title: "Cas clinique de pathologie factice",
+                  subtitle: "Description synthétique et résumé succinct du cas clinique factice pour le chargement.",
+                  isSelected: false,
+                  onTap: () {},
+                  icon: Iconsax.personalcard,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
       error: (e, s) => Center(child: Text("Error loading cases: $e")),
     );
   }

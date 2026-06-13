@@ -1,0 +1,432 @@
+[
+  {
+    "name": "Fracture de stress du métatarsien V proximal (Syndrome de Jones)",
+    "description": "Fracture de fatigue du métatarsien V à la jonction diaphyso-métaphysaire, fréquente chez les coureurs, danseurs et sportifs de saut. Physiopathologie liée à une surcharge répétée sur un terrain inégal ou sur une semelle rigide, associée à une musculature plantaire faible. Présentation clinique : douleur localisée au tiers proximal du métatarsien V, aggravée par la marche, avec ou sans gonflement. L'impulsion de marche est souvent préservée initialement.",
+    "redFlags": [
+      "Douleur insoutenable au tiers proximal du métatarsien V, irradiant vers la face plantaire, associée à une incapacité de marche sur la pointe",
+      "Tendresse à l'auscultation palpatoire du tiers proximal du métatarsien V, avec ou sans déformation osseuse",
+      "Échographie ou IRM révélant une lésion osseuse linéaire avec œdème péri-osseux",
+      "Douleur à l'extension passive du 5e orteil (test de Tinel modifié)",
+      "Histoire de surcharge progressive sans traumatisme aigu"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Toronto pour les fractures de stress",
+        "description": "Score évaluant la probabilité de fracture de stress basé sur la localisation, la durée des symptômes et les tests fonctionnels",
+        "criteria": [
+          "Localisation typique (métatarsien V proximal) : +2 points",
+          "Douleur à l'extension passive du 5e orteil : +1 point",
+          "Durée des symptômes > 2 semaines : +1 point",
+          "Absence de traumatisme aigu : +1 point",
+          "Douleur à la palpation du tiers proximal : +1 point"
+        ],
+        "interpretation": "Score ≥ 5 points : forte suspicion de fracture de stress ; score < 3 points : plus probablement tendinopathie ou névralgie"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique du pied et de la cheville",
+        "steps": [
+          {
+            "action": "Palpation du tiers proximal du métatarsien V avec pression axiale",
+            "interpretation": "Douleur à la palpation précise évoque une lésion osseuse. Absence de douleur suggère une origine tendineuse ou ligamentaire"
+          },
+          {
+            "action": "Test de Tinel modifié : percussion du nerf plantaire médian au niveau de la cheville",
+            "interpretation": "Douleur irradiant vers le 5e orteil évoque une névralgie, non spécifique à la fracture de stress"
+          },
+          {
+            "action": "Examen de la mobilité du 5e orteil avec résistance",
+            "interpretation": "Douleur à l'extension active ou passive suggère une atteinte du tendon du court fléchisseur des orteils"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation en attelle plantaire ou bottier rigide avec interdiction de charge pendant 4-6 semaines",
+      "Réduction de l'activité sportive avec prescription de kinésithérapie isométrique",
+      "Échographie ou IRM pour confirmation diagnostique",
+      "Éducation sur l'adaptation du terrain d'entraînement et le renforcement de la musculature plantaire",
+      "Suivi radiographique à 2 semaines pour évaluation de la consolidation"
+    ],
+    "differentialDiagnosis": [
+      "Tendinopathie du court fléchisseur des orteils (douleur à l'extension active sans localisation osseuse)",
+      "Névralgie du nerf plantaire médian (douleur irradiant vers le 5e orteil avec signe de Tinel positif)",
+      "Arthrose de la cheville (douleur mécanique avec limitation de l'extension dorsale)"
+    ]
+  },
+  {
+    "name": "Syndrome de compression des compartiments antérieur et latéral de la jambe",
+    "description": "Pathologie d'urgence liée à une élévation de la pression intracompartmentale supérieure à 30 mmHg, entrainant une ischémie tissulaire. Fréquente chez les coureurs de fond, cyclistes et haltérophiles. Physiopathologie : microtraumatismes répétés associés à une perfusion tissulaire insuffisante. Présentation clinique : douleur intense, paralysie progressive, paresthésies, pâleur et absence de pouls distaux.",
+    "redFlags": [
+      "Douleur démesurée par rapport à l'effort, persistant après l'arrêt de l'activité",
+      "Paresthésies ou engourdissements des 1er et 2e orteils",
+      "Absence de pouls distaux avec ou sans cyanose",
+      "Douleur à la palpation des muscles tibial antérieur et péronier court",
+      "Histoire de surcharge musculaire récente avec renforcement intensif"
+    ],
+    "scores": [
+      {
+        "name": "Critères des 5 P",
+        "description": "Score diagnostique basé sur les signes cliniques majeurs",
+        "criteria": [
+          "Pain (douleur démesurée) : +2 points",
+          "Paresthésies : +2 points",
+          "Pallor (pâleur) : +1 point",
+          "Pulselessness (absence de pouls) : +1 point",
+          "Paralysis (paralysie) : +2 points"
+        ],
+        "interpretation": "Score ≥ 5 points : diagnostic probable de syndrome de compression aigu ; score < 3 points : nécessite une mesure de pression compartimentale"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurovasculaire de la jambe",
+        "steps": [
+          {
+            "action": "Palpation des muscles tibial antérieur et péronier court avec résistance",
+            "interpretation": "Douleur à la palpation ou résistance réduite suggère une atteinte musculaire"
+          },
+          {
+            "action": "Mesure de la pression compartimentale avec manomètre à ballonnet",
+            "interpretation": "Pression > 30 mmHg ou différence < 30 mmHg par rapport à la pression diastolique évoque le diagnostic"
+          },
+          {
+            "action": "Test de la flexion passive du pied",
+            "interpretation": "Douleur intense à la flexion passive du pied évoque une atteinte du compartiment antérieur"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Fasciotomie d'urgence sous anesthésie générale pour décompresser les compartiments antérieur, latéral et postérieur",
+      "Élévation du membre pour réduire l'œdème pré-opératoire",
+      "Antibiothérapie prophylactique (céphalosporine de 3e génération)",
+      "Réhydratation intraveineuse pour prévenir la néphropathie ischémique",
+      "Kinésithérapie post-opératoire progressive avec surveillance de la cicatrisation"
+    ],
+    "differentialDiagnosis": [
+      "Crampes musculaires aiguës (douleur transitoire sans paresthésies)",
+      "Thrombose veineuse profonde (douleur unilatérale avec œdème)",
+      "Névralgie du nerf sciatique (douleur irradiant vers le mollet sans pâleur)"
+    ]
+  },
+  {
+    "name": "Lésion du ménisque médian du genou",
+    "description": "Le ménisque médian est un ligament fibrocartilagineux interne du genou, fréquemment lésé lors de mouvements de torsion ou de flexion forcée. La pathologie survient souvent chez les sportifs pratiquant des activités à impact articulaire (rugby, football, basket). La lésion peut être déchirure longitudinale, radiaire ou complexe, associée ou non à un traumatisme ligamentaire concomitant. Cliniquement, le patient rapporte une douleur interne, une limitation de l'extension, et une instabilité articulaire. Des signes de synovie (gonflement, chaleur) et une limitation de l'activité physique sont fréquents.",
+    "redFlags": [
+      "Douleur interne aiguë survenant lors d'un mouvement de torsion du genou avec impossibilité de charge",
+      "Cracillement ou clic articulaire à la flexion/extension",
+      "Gonflement persistant malgré le repos et le refroidissement",
+      "Instabilité perçue lors de l'effort (sensation de genou « qui cède »)",
+      "Incapacité de réaliser des mouvements de flexion profonde (>90°) sans douleur"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de Lysholm",
+        "description": "Évalue la fonction du genou après lésion méniscale ou ligamentaire. Mesure la douleur, l'instabilité, la mobilité et la capacité fonctionnelle.",
+        "criteria": [
+          "0-100 points : 100 points = fonction normale, 0 = incapacité totale",
+          "Critères : Douleur (0-20), Instabilité (0-20), Marche (0-10), Montée/descente d'escaliers (0-10), Courir (0-10), Sauter (0-10), Plié (0-10), Position assise (0-10)"
+        ],
+        "interpretation": "Score < 75 indique une fonction altérée nécessitant intervention thérapeutique. Score > 90 correspond à une récupération fonctionnelle satisfaisante."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique du genou",
+        "steps": [
+          {
+            "action": "Test de McMurrary : Flexion maximale du genou avec rotation interne du tibia, puis extension progressive",
+            "interpretation": "Cracillement ou douleur interne à l'extension évoque une lésion méniscale médiane. Absence de signe ne permet pas d'exclure la pathologie."
+          },
+          {
+            "action": "Test de l'Appui de Thessaly : Rotation interne et externe du tibia en position semi-flexion (15°) sur talon appuyé",
+            "interpretation": "Douleur ou craquement à la rotation interne suggère une lésion méniscale médiane. Test positif en flexion profonde."
+          },
+          {
+            "action": "Palpation de la fosse poplitéenne et du ligament croisé antérieur",
+            "interpretation": "Douleur à la palpation interne ou signe de ballottement positif indiquent une lésion concomitante ligamentaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation en plâtre ou attelle de genou en extension pour 1-2 semaines",
+      "Réfrigération locale (15-20 min toutes les 2h) pour réduire l'inflammation",
+      "Compression élastique (bande de contention) pour limiter l'œdème",
+      "Élévation du membre inférieur pour favoriser le retour veineux",
+      "Prescription d'anti-inflammatoires non stéroïdiens (AINS) à dose thérapeutique"
+    ],
+    "differentialDiagnosis": [
+      "Lésion du ligament croisé antérieur (LCA) : Instabilité antérieure et test de Lachman positif",
+      "Bursite pré-patellaire : Douleur localisée sur la rotule sans limitation de l'extension",
+      "Arthrose du genou : Douleur mécanique chronique sans traumatisme aigu"
+    ]
+  },
+  {
+    "name": "Tendinopathie du quadriceps",
+    "description": "Inflammation ou dégénérescence du tendon reliant le fémur à la rotule, fréquente chez les sportifs à haute charge articulaire (course, saut, cyclisme). La pathologie résulte de microtraumatismes répétés ou de surcharge mécanique. Cliniquement, le patient présente une douleur localisée sur la face antérieure du genou, exacerbée par la flexion/extension active ou la résistance. Une hypertrophie du tendon et une sensibilité à la palpation sont souvent observées.",
+    "redFlags": [
+      "Douleur sur la face antérieure du genou irradiant vers la rotule lors de l'effort",
+      "Sensation de « grincement » ou de « craquement » à la flexion/extension",
+      "Rigidité matinale du genou persistant > 30 minutes",
+      "Incapacité de réaliser des mouvements de flexion profonde (>90°) sans douleur",
+      "Épaississement du tendon palpable à la face antérieure du genou"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de VISA (Victorian Institute of Sports Assessment)",
+        "description": "Évalue la sévérité de la tendinopathie du quadriceps. Mesure la douleur, la fonction et la qualité de vie.",
+        "criteria": [
+          "0-100 points : 100 points = absence de symptômes, 0 = incapacité totale",
+          "Critères : Douleur au repos (0-10), Douleur à la marche (0-10), Douleur à la montée/descente d'escaliers (0-10), Douleur au jogging (0-10), Douleur au saut (0-10), Douleur à la flexion/extension (0-10), Douleur à la résistance (0-10), Impact sur la vie quotidienne (0-10)"
+        ],
+        "interpretation": "Score < 60 indique une tendinopathie sévère nécessitant intervention. Score > 80 correspond à une récupération fonctionnelle acceptable."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique du genou",
+        "steps": [
+          {
+            "action": "Test de résistance du quadriceps : Extension active du genou contre résistance",
+            "interpretation": "Douleur ou craquement à la résistance évoque une tendinopathie. Absence de douleur ne permet pas d'exclure la pathologie."
+          },
+          {
+            "action": "Palpation du tendon du quadriceps et de la rotule",
+            "interpretation": "Épaississement du tendon ou douleur à la palpation interne/externe de la rotule suggère une tendinopathie."
+          },
+          {
+            "action": "Test de la flexion profonde : Demander au patient de fléchir le genou à 90°",
+            "interpretation": "Douleur exacerbée en flexion profonde ou impossibilité de réaliser le mouvement indique une lésion tendineuse."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Éviction des activités à haute charge articulaire (course, saut) pendant 2-4 semaines",
+      "Étirements doux du quadriceps et de l'ischio-jambiers 3 fois/jour",
+      "Kinésithérapie ciblée avec renforcement isométrique du quadriceps",
+      "Électrothérapie (ultrasons, TENS) pour réduire l'inflammation",
+      "Éducation du patient sur la gestion de la charge d'entraînement et la prévention des rechutes"
+    ],
+    "differentialDiagnosis": [
+      "Arthrose de la rotule : Douleur mécanique chronique sans déclenchement aigu",
+      "Bursite infrapatellaire : Douleur localisée sous la rotule avec chaleur et érythème",
+      "Lésion du ligament croisé antérieur (LCA) : Instabilité antérieure et test de Lachman positif"
+    ]
+  },
+  {
+    "name": "Strain du muscle fessier médian (ischio-jambier postérieur)",
+    "description": "Lésion musculaire aiguë du muscle fessier médian, souvent liée à des efforts explosifs de flexion-extension du bassin ou de rotation interne de la hanche. La physiopathologie repose sur une micro-rupture des fibres musculaires au niveau de la zone myotendineuse, associée à une réponse inflammatoire aiguë. La présentation clinique typique inclut une douleur aiguë au niveau de la face postérieure de la hanche irradiant vers le grand fesse, associée à une perte de force de la flexion du bassin et une gêne à la station debout prolongée.",
+    "redFlags": [
+      "Douleur aiguë invalidante survenant lors d'un effort de type sprint ou saut, avec incapacité de reprendre l'activité",
+      "Tumeur palpable ou élargissement localisé du muscle fessier médian à l'examen",
+      "Signe de Dugas modifié (incapacité de toucher le genou contralatéral avec le genou ipsilatéral en raison de douleur)",
+      "Hypertrophie asymétrique du muscle fessier médian bilatéral",
+      "Signe de Trendelenburg positif (chute du bassin lors de la station sur une jambe)"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Byrd pour les lésions musculaires",
+        "description": "Échelle de sévérité basée sur l'extension du muscle et la réponse à la charge",
+        "criteria": [
+          "Classe I: Douleur à l'extension passive du muscle sans limitation fonctionnelle (+0)",
+          "Classe II: Douleur à l'extension passive avec limitation de l'extension active (+1)",
+          "Classe III: Douleur à l'extension passive avec incapacité de maintenir l'extension active (+2)",
+          "Classe IV: Douleur à l'extension passive avec atrophie visible du muscle (+3)"
+        ],
+        "interpretation": "Les classes I-II sont traitées de manière conservatrice, les classes III-IV nécessitent une imagerie complémentaire et éventuellement une chirurgie"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique de la hanche et du bassin",
+        "steps": [
+          {
+            "action": "Palpation du muscle fessier médian à l'extension passive du bassin",
+            "interpretation": "Douleur localisée au niveau de la zone myotendineuse évoque une lésion musculaire aiguë. Une tumeur palpable suggère une hémorragie intramusculaire"
+          },
+          {
+            "action": "Test de résistance à la flexion du bassin (patient allongé sur le dos)",
+            "interpretation": "Douleur ou faiblesse lors de la résistance évoque une lésion du muscle fessier médian. Une asymétrie bilatérale >20% confirme la lésion"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation partielle avec élastique à 20% de compression pour limiter l'extension passive du bassin",
+      "Réfrigération locale (15-20 minutes) toutes les 2 heures pendant les 48 premières heures",
+      "Élévation du membre supérieur pour réduire l'œdème péri-musculaire",
+      "Administration d'anti-inflammatoires non stéroïdiens (AINS) à dose anti-inflammatoire",
+      "Éviction de toute activité physique jusqu'à disparition complète de la douleur"
+    ],
+    "differentialDiagnosis": [
+      "Hernie discale L5-S1 (douleur irradiant vers le fessier mais associée à signes neurologiques)",
+      "Lésion du ligament croisé antérieur (douleur articulaire sans localisation musculaire)",
+      "Spondylolisthèse lombaire (douleur mécanique irradiant vers le fessier)"
+    ]
+  },
+  {
+    "name": "Tendinopathie calcifiante du sous-scapulaire",
+    "description": "Dégénérescence du tendon du sous-scapulaire associée à une calcification intra-substance, fréquente chez les sportifs d'endurance. La physiopathologie implique une microtraumatisme répétitif combiné à une altération du métabolisme calcique local. La présentation clinique typique est une douleur aiguë au niveau de la face antérieure de l'épaule irradiant vers l'axilla, associée à une limitation de l'abduction et de la flexion de l'épaule.",
+    "redFlags": [
+      "Douleur aiguë nocturne interrompant le sommeil, associée à une limitation de la mobilité active",
+      "Crépitus palpable au niveau du tendon du sous-scapulaire",
+      "Signe de Neer positif (douleur à l'abduction passive de l'épaule > 90°)",
+      "Signe de Hawkin positif (douleur à la flexion de l'épaule avec rotation interne)",
+      "Atrophie visible du muscle sous-scapulaire"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Bigliani pour les tendinopathies calcifiées",
+        "description": "Échelle basée sur l'extension de la calcification et la réponse à la charge",
+        "criteria": [
+          "Stade I: Calcification ponctuelle <5mm sans limitation fonctionnelle (+0)",
+          "Stade II: Calcification linéaire 5-10mm avec douleur à l'effort (+1)",
+          "Stade III: Calcification >10mm avec douleur au repos et limitation de la mobilité (+2)",
+          "Stade IV: Calcification associée à une rupture partielle du tendon (+3)"
+        ],
+        "interpretation": "Les stades I-II sont traités de manière conservatrice, les stades III-IV nécessitent une aspiration percutanée ou chirurgie"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique de l'épaule",
+        "steps": [
+          {
+            "action": "Palpation du tendon du sous-scapulaire à l'abduction de l'épaule",
+            "interpretation": "Douleur localisée au niveau de la face antérieure de l'épaule avec ou sans crépitus évoque une tendinopathie calcifiante"
+          },
+          {
+            "action": "Test de résistance à l'abduction de l'épaule (patient assis)",
+            "interpretation": "Douleur ou faiblesse lors de la résistance évoque une lésion du tendon du sous-scapulaire. Une asymétrie bilatérale >20% confirme la lésion"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation en position neutre avec épaule en 10° d'abduction et 10° de flexion",
+      "Réfrigération locale (15-20 minutes) toutes les 2 heures pendant les 48 premières heures",
+      "Élévation du membre supérieur pour réduire l'œdème péri-tendineux",
+      "Administration d'AINS à dose anti-inflammatoire",
+      "Éviction de toute activité physique jusqu'à disparition complète de la douleur"
+    ],
+    "differentialDiagnosis": [
+      "Tendinopathie calcifiante du supraspinatus (douleur similaire mais localisation différente)",
+      "Cyste synovial calcifié (douleur associée à une tumeur palpable)",
+      "Spondylose cervicale (douleur irradiant vers l'épaule avec signes neurologiques)"
+    ]
+  },
+  {
+    "name": "Syndrome de l'ischio-jambier postérieur chronique",
+    "description": "Pathologie caractérisée par une douleur persistante au niveau de la face postérieure de la jambe, liée à une irritation ou compression du nerf ischio-jambier. La physiopathologie implique une compression du nerf au niveau de la fosse poplitée ou à son passage entre les muscles biceps fémoral et semi-tendineux. La présentation clinique typique inclut une douleur irradiant de la fesse vers la cheville, exacerbée par l'activité physique, associée à des paresthésies ou une hypoesthésie des surfaces plantaire et dorsale du pied.",
+    "redFlags": [
+      "Douleur irradiant vers la cheville avec paresthésies combinées aux surfaces plantaire et dorsale du pied",
+      "Signe de Tinel positif au niveau de la fosse poplitée",
+      "Atrophie musculaire des muscles tibial antérieur et fessier",
+      "Perte de la force de flexion plantaire et dorsale",
+      "Douleur persistante malgré l'arrêt de l'activité sportive"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de douleur visuelle analogique (VAS)",
+        "description": "Évaluation quantitative de l'intensité de la douleur sur une échelle de 0 à 10.",
+        "criteria": [
+          "0: Absence de douleur",
+          "1-3: Douleur légère, supportable",
+          "4-6: Douleur modérée, perturbe l'activité quotidienne",
+          "7-10: Douleur sévère, incapacitante"
+        ],
+        "interpretation": "Permet de quantifier l'évolution de la douleur et de guider les décisions thérapeutiques."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et musculaire de la jambe",
+        "steps": [
+          {
+            "action": "Palpation de la fosse poplitée pour identifier une tension ou une douleur localisée",
+            "interpretation": "Une douleur à la palpation suggère une compression du nerf ischio-jambier."
+          },
+          {
+            "action": "Test de Tinel au niveau de la fosse poplitée",
+            "interpretation": "Un signe de Tinel positif (pic de douleur ou paresthésie) confirme la localisation de la compression."
+          },
+          {
+            "action": "Évaluation de la force musculaire des muscles tibial antérieur et fessier",
+            "interpretation": "Une atrophie ou une faiblesse musculaire indique une neuropathie chronique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Arrêt immédiat de l'activité sportive et repos complet",
+      "Application de glace locale pendant 15-20 minutes toutes les 2 heures",
+      "Compression élastique modérée pour limiter l'œdème",
+      "Élévation du membre inférieur pour réduire l'œdème",
+      "Prescription d'anti-inflammatoires non stéroïdiens (AINS) à dose thérapeutique"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome de la veine poplitée profonde (douleur irradiant sans paresthésies)",
+      "Lésion du nerf sciatique (douleur irradiant uniquement vers le mollet)",
+      "Tendinopathie du biceps fémoral (douleur localisée à la flexion du genou)"
+    ]
+  },
+  {
+    "name": "Lésion du ligament croisé antérieur (LCA) du genou",
+    "description": "Pathologie traumatique fréquente chez les sportifs, résultant d'une rupture ou d'une distension du ligament croisé antérieur. La physiopathologie implique une hyperextension, une rotation externe ou une valgus du genou. La présentation clinique typique inclut une douleur aiguë, un gonflement immédiat, une instabilité antérieure du genou, et une impossibilité de reprendre l'activité sportive.",
+    "redFlags": [
+      "Cracresm à l'instar d'une déchirure auditive au moment de l'incident",
+      "Instabilité antérieure du genou lors de l'examen clinique",
+      "Signe de Lachman positif (translation antérieure excessive du tibia)",
+      "Hématome articulaire important",
+      "Douleur persistante malgré l'immobilisation"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Lachman",
+        "description": "Évaluation de la stabilité du genou basée sur la translation antérieure du tibia.",
+        "criteria": [
+          "Classe I: Translation normale",
+          "Classe II: Translation légèrement augmentée",
+          "Classe III: Translation marquée avec absence de butée",
+          "Classe IV: Instabilité totale avec déplacement du tibia"
+        ],
+        "interpretation": "Permet de déterminer la gravité de la lésion et l'indication chirurgicale."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique du genou",
+        "steps": [
+          {
+            "action": "Test de Lachman pour évaluer la translation antérieure",
+            "interpretation": "Une translation excessive ou une absence de butée indiquent une lésion du LCA."
+          },
+          {
+            "action": "Test de pivot shift pour identifier l'instabilité rotatoire",
+            "interpretation": "Un signe positif (clic ou déplacement du genou) confirme une instabilité associée."
+          },
+          {
+            "action": "Palpation de la fosse poplitée pour rechercher une effusion",
+            "interpretation": "Une effusion articulaire suggère une lésion concomitante (ménisque, cartilage)."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation du genou en extension avec un plâtre ou une attelle",
+      "Réfrigération locale pendant 20 minutes toutes les 2 heures",
+      "Compression élastique pour limiter l'œdème",
+      "Élévation du membre inférieur pour réduire l'œdème",
+      "Prescription d'AINS et de corticoïdes intra-articulaires en urgence"
+    ],
+    "differentialDiagnosis": [
+      "Lésion du ligament croisé postérieur (instabilité postérieure)",
+      "Lésion du ligament latéral interne (douleur médiane et instabilité valgus)",
+      "Tendinopathie du quadriceps (douleur antérieure sans instabilité)"
+    ]
+  }
+]

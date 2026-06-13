@@ -2,19 +2,25 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:meducyte_app/core/themes/app_colors.dart';
 import 'package:meducyte_app/features/observation/data/providers/observation_providers.dart';
 import 'package:meducyte_app/features/observation/data/models/specialty_config.dart';
+import 'package:meducyte_app/features/observation/data/models/specialty_localization.dart';
 import 'package:meducyte_app/features/observation/presentation/widgets/quill_input_field.dart';
 import 'package:meducyte_app/features/observation/presentation/widgets/section_card.dart';
 import 'package:meducyte_app/features/observation/presentation/widgets/examination_helper_sheet.dart';
 import 'package:meducyte_app/features/observation/presentation/widgets/clinical_coach_bar.dart';
 import 'package:meducyte_app/features/observation/presentation/widgets/pathology_focus_selector.dart';
+import 'package:meducyte_app/features/observation/presentation/widgets/clinical_exam_checklist.dart';
 import 'package:meducyte_app/features/observation/presentation/services/pdf_export_service.dart';
 import 'package:meducyte_app/features/observation/data/repositories/observation_repository.dart';
+import 'package:meducyte_app/features/quiz/data/repositories/note_ai_repository.dart';
+import 'package:meducyte_app/features/chatbot/data/providers/chat_providers.dart';
+import 'package:meducyte_app/features/chatbot/domain/models/chat_models.dart';
 import 'package:meducyte_app/l10n/arb/app_localizations.dart';
 import 'package:intl/intl.dart';
 //Triggering analyzer refresh after localization fixes
@@ -34,6 +40,8 @@ class _ObservationReportScreenState
     with SingleTickerProviderStateMixin {
   Timer? _autoSaveTimer;
   bool _isSaving = false;
+  bool _isGeneratingSummary = false;
+  bool _isGeneratingAssessment = false;
   DateTime? _lastSaved;
   late TabController _tabController;
 
@@ -90,26 +98,21 @@ class _ObservationReportScreenState
     final theme = Theme.of(context);
     final l10n = AppLocalizations.of(context)!;
 
-    //Watch all relevant providers to trigger auto-save
-    ref.listen(introductionDataProvider, (_, __) => _triggerAutoSave());
-    ref.listen(patientInfoProvider, (_, __) => _triggerAutoSave());
-    ref.listen(motifHospitalisationProvider, (_, __) => _triggerAutoSave());
-    ref.listen(histoireMaladieProvider, (_, __) => _triggerAutoSave());
-    ref.listen(antecedentsProvider, (_, __) => _triggerAutoSave());
-    ref.listen(vitalsProvider, (_, __) => _triggerAutoSave());
-    ref.listen(physicalExamProvider, (_, __) => _triggerAutoSave());
-    ref.listen(customPhysicalExamFieldsProvider, (_, __) => _triggerAutoSave());
-    ref.listen(paracliniqueExamsProvider, (_, __) => _triggerAutoSave());
-    ref.listen(resumeTotalProvider, (_, __) => _triggerAutoSave());
-    ref.listen(assessmentAndPlanProvider, (_, __) => _triggerAutoSave());
+    // Watch unified report provider to trigger auto-save
+    ref.listen(observationReportProvider, (_, __) => _triggerAutoSave());
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text(widget.config.title),
+        title: Text(widget.config.specialty.localizedName(context)),
         centerTitle: true,
         actions: [
           _buildSaveStatusIndicator(),
+          IconButton(
+            icon: const Icon(Iconsax.magicpen, color: AppColors.primary),
+            tooltip: "Assistant IA Clinique",
+            onPressed: () => _showAiHelperSheet(context),
+          ),
           IconButton(
             icon: const Icon(Iconsax.refresh),
             onPressed: () {
@@ -118,26 +121,24 @@ class _ObservationReportScreenState
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: const Text('Clear Report?'),
-                    content: const Text(
-                      'Are you sure you want to clear all entered data?',
-                    ),
+                    title: Text(l10n.clearReportQuestion),
+                    content: Text(l10n.clearReportConfirmDesc),
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text('Cancel'),
+                        child: Text(l10n.cancel),
                       ),
                       TextButton(
                         onPressed: () {
                           resetObservationReport(ref);
                           Navigator.pop(context);
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Report cleared')),
+                            SnackBar(content: Text(l10n.reportCleared)),
                           );
                         },
-                        child: const Text(
-                          'Clear',
-                          style: TextStyle(color: Colors.red),
+                        child: Text(
+                          l10n.reset,
+                          style: const TextStyle(color: Colors.red),
                         ),
                       ),
                     ],
@@ -226,8 +227,9 @@ class _ObservationReportScreenState
                     children: [
                       ClinicalCoachBar(config: widget.config),
                       PathologyFocusSelector(config: widget.config),
+                      ClinicalExamChecklist(config: widget.config),
                       SectionCard(
-                        title: 'Examen clinique- ${widget.config.title}',
+                        title: 'Examen clinique - ${widget.config.specialty.localizedName(context)}',
                         icon: Iconsax.health,
                         child: _PhysicalExamForm(config: widget.config),
                       ),
@@ -248,6 +250,7 @@ class _ObservationReportScreenState
                   ListView(
                     padding: const EdgeInsets.all(16.0),
                     children: [
+                      _buildMeducyteAiSection(),
                       SectionCard(
                         title: l10n.section_summary,
                         icon: Iconsax.note_text,
@@ -274,9 +277,9 @@ class _ObservationReportScreenState
               backgroundColor: theme.primaryColor,
               foregroundColor: Colors.white,
               icon: const Icon(Iconsax.teacher),
-              label: const Text(
-                "AIDEÀL'EXAMEN",
-                style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1),
+              label: Text(
+                l10n.examHelp,
+                style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1),
               ),
             )
           : null,
@@ -337,6 +340,7 @@ class _ObservationReportScreenState
     final currentIndex = _tabController.index;
     final isLastTab = currentIndex == 4;
     final isFirstTab = currentIndex == 0;
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       decoration: BoxDecoration(
@@ -416,7 +420,7 @@ class _ObservationReportScreenState
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          isLastTab ? 'COMPILER&COPIER' : 'SUIVANT',
+                          isLastTab ? l10n.compileAndCopy : l10n.next,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1,
@@ -460,12 +464,13 @@ class _ObservationReportScreenState
   }
 
   void _exportReport(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final patient = ref.read(patientInfoProvider);
     final introData = ref.read(introductionDataProvider);
     final introduction = _compileIntroduction(
       introData,
       patient,
-      AppLocalizations.of(context)!,
+      l10n,
     );
     final motif = getPlainText(ref.read(motifHospitalisationProvider));
     final histoire = getPlainText(ref.read(histoireMaladieProvider));
@@ -477,7 +482,9 @@ class _ObservationReportScreenState
     final assessment = getPlainText(ref.read(assessmentAndPlanProvider));
 
     final buffer = StringBuffer();
-    buffer.writeln("OBSERVATION MÉDICALE- ${widget.config.title}");
+    buffer.writeln(
+      "OBSERVATION MÉDICALE - ${widget.config.specialty.localizedName(context).toUpperCase()}",
+    );
     buffer.writeln("----------------------------------------\n");
 
     if (introduction.isNotEmpty) {
@@ -543,7 +550,7 @@ class _ObservationReportScreenState
     Clipboard.setData(ClipboardData(text: reportText));
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Rapport copiédans le presse-papiers')),
+      SnackBar(content: Text(l10n.reportCopiedClipboard)),
     );
   }
 
@@ -607,6 +614,728 @@ class _ObservationReportScreenState
         "${intro.maritalStatus} ${intro.profession} $admittedLabel"
         "${l10n.intro_date_prefix}${intro.admissionDate} ${l10n.intro_for_prefix}${intro.signs}.";
   }
+
+  Widget _buildMeducyteAiSection() {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: isDark
+              ? [
+                  AppColors.primary.withOpacity(0.15),
+                  AppColors.primary.withOpacity(0.05),
+                ]
+              : [
+                  AppColors.primary.withOpacity(0.08),
+                  AppColors.primary.withOpacity(0.02),
+                ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.primary.withOpacity(0.3),
+          width: 1.5,
+        ),
+      ),
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.primary.withOpacity(0.2),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Iconsax.magicpen,
+                  color: AppColors.primary,
+                  size: 20,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Meducyte AI",
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      "Générez automatiquement vos synthèses et conclusions cliniques.",
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: isDark ? Colors.white60 : Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: _isGeneratingSummary
+                    ? const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8),
+                          child: CircularProgressIndicator(strokeWidth: 2.5),
+                        ),
+                      )
+                    : ElevatedButton.icon(
+                        onPressed: _generateSummary,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        icon: const Icon(Iconsax.note_text, size: 16),
+                        label: const Text(
+                          "Résumé Syndromique",
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: _isGeneratingAssessment
+                    ? const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8),
+                          child: CircularProgressIndicator(strokeWidth: 2.5),
+                        ),
+                      )
+                    : ElevatedButton.icon(
+                        onPressed: _generateAssessment,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          foregroundColor: AppColors.primary,
+                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: const BorderSide(color: AppColors.primary, width: 1.5),
+                          ),
+                        ),
+                        icon: const Icon(Iconsax.document_text, size: 16),
+                        label: const Text(
+                          "Conduite à Tenir",
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _generateSummary() async {
+    final contextText = _compileReportContext();
+    if (contextText.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Veuillez d'abord remplir les autres sections de l'observation."),
+        ),
+      );
+      return;
+    }
+
+    setState(() => _isGeneratingSummary = true);
+
+    try {
+      final language = Localizations.localeOf(context).languageCode;
+      final aiRepo = ref.read(noteAiRepositoryProvider);
+      
+      final responseText = await aiRepo.getAiResponse(
+        action: 'generate_observation_summary',
+        contextText: contextText,
+        language: language,
+      );
+
+      final deltaJson = _convertPlainTextToDeltaJson(responseText);
+      ref.read(observationReportProvider.notifier).updateResumeTotal(deltaJson);
+      
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Résumé Syndromique généré avec succès !")),
+        );
+      }
+    } catch (e) {
+      debugPrint("Meducyte AI summary error: $e");
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Erreur lors de la génération: $e")),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isGeneratingSummary = false);
+    }
+  }
+
+  Future<void> _generateAssessment() async {
+    final contextText = _compileReportContext();
+    if (contextText.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Veuillez d'abord remplir les autres sections de l'observation."),
+        ),
+      );
+      return;
+    }
+
+    setState(() => _isGeneratingAssessment = true);
+
+    try {
+      final language = Localizations.localeOf(context).languageCode;
+      final aiRepo = ref.read(noteAiRepositoryProvider);
+      
+      final responseText = await aiRepo.getAiResponse(
+        action: 'generate_observation_assessment',
+        contextText: contextText,
+        language: language,
+      );
+
+      final deltaJson = _convertPlainTextToDeltaJson(responseText);
+      ref.read(observationReportProvider.notifier).updateAssessmentAndPlan(deltaJson);
+      
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Conclusion et Conduite à Tenir générées avec succès !")),
+        );
+      }
+    } catch (e) {
+      debugPrint("Meducyte AI assessment error: $e");
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Erreur lors de la génération: $e")),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isGeneratingAssessment = false);
+    }
+  }
+
+  String _convertPlainTextToDeltaJson(String text) {
+    final doc = Document()..insert(0, text);
+    return jsonEncode(doc.toDelta().toJson());
+  }
+
+  String _compileReportContext() {
+    final patient = ref.read(patientInfoProvider);
+    final introData = ref.read(introductionDataProvider);
+    final l10n = AppLocalizations.of(context)!;
+    final introduction = _compileIntroduction(introData, patient, l10n);
+    final motif = getPlainText(ref.read(motifHospitalisationProvider));
+    final histoire = getPlainText(ref.read(histoireMaladieProvider));
+    final ant = ref.read(antecedentsProvider);
+    final vitals = ref.read(vitalsProvider);
+    final exam = ref.read(physicalExamProvider);
+    final paraExams = ref.read(paracliniqueExamsProvider);
+
+    final buffer = StringBuffer();
+    if (introduction.isNotEmpty) buffer.writeln("Introduction: $introduction");
+    buffer.writeln("Patient: ${patient.name} (${patient.age} ans, ${patient.gender})");
+    if (motif.isNotEmpty) buffer.writeln("Motif de consultation: $motif");
+    if (histoire.isNotEmpty) buffer.writeln("Histoire de la maladie: $histoire");
+    
+    buffer.writeln("Antécédents:");
+    if (ant.medicaux.isNotEmpty) buffer.writeln("- Médicaux: ${getPlainText(ant.medicaux)}");
+    if (ant.chirurgicaux.isNotEmpty) buffer.writeln("- Chirurgicaux: ${getPlainText(ant.chirurgicaux)}");
+    if (ant.familiaux.isNotEmpty) buffer.writeln("- Familiaux: ${getPlainText(ant.familiaux)}");
+    if (ant.gynecoObstetriques.isNotEmpty) buffer.writeln("- Gynéco-obstétriques: ${getPlainText(ant.gynecoObstetriques)}");
+    if (ant.modeDeVie.isNotEmpty) buffer.writeln("- Mode de vie: ${getPlainText(ant.modeDeVie)}");
+
+    buffer.writeln("Examen physique:");
+    buffer.writeln("- Température: ${vitals.temperature}°C, TA: ${vitals.bloodPressure}mmHg, FC: ${vitals.heartRate}bpm, FR: ${vitals.respiratoryRate}cpm, SpO2: ${vitals.oxygenSaturation}%, Poids: ${vitals.weight}kg");
+    
+    for (final field in widget.config.examFields) {
+      final val = getPlainText(exam[field.key] ?? "");
+      if (val.isNotEmpty) {
+        buffer.writeln("- Examen ${field.label}: $val");
+      }
+    }
+
+    final customFields = ref.read(customPhysicalExamFieldsProvider);
+    for (final field in customFields) {
+      final val = getPlainText(exam[field.key] ?? "");
+      if (val.isNotEmpty) {
+        buffer.writeln("- Examen ${field.label}: $val");
+      }
+    }
+
+    if (paraExams.isNotEmpty) {
+      buffer.writeln("Examens complémentaires:");
+      for (final e in paraExams) {
+        buffer.writeln("- ${e.title}:");
+        for (final p in e.parameters) {
+          final pval = getPlainText(p.value);
+          if (pval.isNotEmpty) {
+            buffer.writeln("  * ${p.name}: $pval");
+          }
+        }
+      }
+    }
+    return buffer.toString();
+  }
+
+  void _showAiHelperSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => _ObservationAiHelperSheet(
+        compileContext: _compileReportContext,
+        patientName: ref.read(patientInfoProvider).name,
+      ),
+    );
+  }
+}
+
+// -----------------------------------------------------------------------------
+// AI Helper Sheet Widget
+// -----------------------------------------------------------------------------
+class _ObservationAiHelperSheet extends ConsumerStatefulWidget {
+  final String Function() compileContext;
+  final String patientName;
+
+  const _ObservationAiHelperSheet({
+    required this.compileContext,
+    required this.patientName,
+  });
+
+  @override
+  ConsumerState<_ObservationAiHelperSheet> createState() =>
+      __ObservationAiHelperSheetState();
+}
+
+class __ObservationAiHelperSheetState
+    extends ConsumerState<_ObservationAiHelperSheet> {
+  final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  final List<ChatMessage> _messages = [];
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final name = widget.patientName.trim().isEmpty ? "le patient" : widget.patientName;
+    _messages.add(
+      ChatMessage(
+        id: 'welcome',
+        text: "Bonjour Docteur. Je suis Meducyte AI, votre assistant clinique. "
+            "J'ai analysé les informations saisies pour $name. "
+            "Comment puis-je vous aider dans votre démarche (diagnostic différentiel, examens complémentaires, interprétation) ?",
+        isUser: false,
+        timestamp: DateTime.now(),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  Future<void> _handleSend([String? textToSend]) async {
+    final text = textToSend ?? _controller.text.trim();
+    if (text.isEmpty) return;
+
+    if (textToSend == null) {
+      _controller.clear();
+    }
+
+    final userMessage = ChatMessage(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      text: text,
+      isUser: true,
+      timestamp: DateTime.now(),
+    );
+
+    setState(() {
+      _messages.add(userMessage);
+      _isLoading = true;
+    });
+    _scrollToBottom();
+
+    try {
+      final chatRepo = ref.read(chatRepositoryProvider);
+      final reportContext = widget.compileContext();
+
+      final aiResponse = await chatRepo.sendObservationChatMessage(
+        history: _messages.sublist(1, _messages.length - 1),
+        message: text,
+        observationContext: reportContext,
+      );
+
+      if (mounted) {
+        setState(() {
+          _messages.add(aiResponse);
+          _isLoading = false;
+        });
+        _scrollToBottom();
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _messages.add(
+            ChatMessage(
+              id: DateTime.now().millisecondsSinceEpoch.toString(),
+              text: "Une erreur est survenue lors de la communication avec l'assistant IA: $e",
+              isUser: false,
+              timestamp: DateTime.now(),
+            ),
+          );
+          _isLoading = false;
+        });
+        _scrollToBottom();
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.80,
+      decoration: BoxDecoration(
+        color: theme.scaffoldBackgroundColor,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      child: Column(
+        children: [
+          const SizedBox(height: 12),
+          Container(
+            width: 40,
+            height: 4,
+            decoration: BoxDecoration(
+              color: theme.dividerColor,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(Iconsax.magicpen, color: AppColors.primary),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Assistant IA Clinique",
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Analyse en temps réel de votre observation",
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: theme.hintColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Iconsax.close_circle),
+                  color: theme.hintColor,
+                ),
+              ],
+            ),
+          ),
+          const Divider(height: 32),
+          Expanded(
+            child: ListView.builder(
+              controller: _scrollController,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              itemCount: _messages.length,
+              itemBuilder: (context, index) {
+                final message = _messages[index];
+                return _buildChatBubble(message);
+              },
+            ),
+          ),
+          if (_messages.length == 1) _buildSuggestions(),
+          if (_isLoading)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: LinearProgressIndicator(
+                backgroundColor: Colors.transparent,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  AppColors.primary,
+                ),
+              ),
+            ),
+          _buildInputArea(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSuggestions() {
+    final suggestions = [
+      "Diagnostic différentiel",
+      "Signes de gravité à rechercher",
+      "Examens complémentaires clés",
+      "Plan thérapeutique suggéré",
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: suggestions.map((s) {
+            return Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: ActionChip(
+                label: Text(s, style: const TextStyle(fontSize: 12)),
+                backgroundColor: Theme.of(context).cardColor,
+                elevation: 0,
+                pressElevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: BorderSide(
+                    color: Theme.of(context).dividerColor.withOpacity(0.1),
+                  ),
+                ),
+                onPressed: () => _handleSend(s),
+              ),
+            );
+          }).toList(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChatBubble(ChatMessage message) {
+    final theme = Theme.of(context);
+    final isUser = message.isUser;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Row(
+        mainAxisAlignment:
+            isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (!isUser) ...[
+            Container(
+              margin: const EdgeInsets.only(right: 8, top: 4),
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(0.1),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.smart_toy_outlined,
+                color: AppColors.primary,
+                size: 14,
+              ),
+            ),
+          ],
+          Flexible(
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: isUser
+                    ? AppColors.primary
+                    : theme.cardColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(16),
+                  topRight: const Radius.circular(16),
+                  bottomLeft: Radius.circular(isUser ? 16 : 4),
+                  bottomRight: Radius.circular(isUser ? 4 : 16),
+                ),
+                border: isUser
+                    ? null
+                    : Border.all(
+                        color: theme.dividerColor.withOpacity(0.08),
+                      ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  isUser
+                      ? Text(
+                          message.text,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: Colors.white,
+                          ),
+                        )
+                      : MarkdownBody(
+                          data: message.text,
+                          selectable: true,
+                          styleSheet: MarkdownStyleSheet.fromTheme(theme).copyWith(
+                            p: theme.textTheme.bodyMedium?.copyWith(
+                              height: 1.6,
+                              fontSize: 14.5,
+                            ),
+                            h3: theme.textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: theme.primaryColor,
+                            ),
+                            blockquote: theme.textTheme.bodyMedium?.copyWith(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.amber[900],
+                            ),
+                            blockquotePadding: const EdgeInsets.all(12),
+                            blockquoteDecoration: BoxDecoration(
+                              color: Colors.amber.withOpacity(0.08),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border(
+                                left: BorderSide(color: Colors.amber[700]!, width: 4),
+                              ),
+                            ),
+                            tableBorder: TableBorder.all(
+                              color: theme.dividerColor.withOpacity(0.2),
+                              width: 1,
+                            ),
+                            tableCellsPadding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
+                            tableHead: theme.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                  if (!isUser && message.id != 'welcome') ...[
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Iconsax.copy, size: 16),
+                          constraints: const BoxConstraints(),
+                          padding: EdgeInsets.zero,
+                          tooltip: "Copier la suggestion",
+                          onPressed: () {
+                            Clipboard.setData(ClipboardData(text: message.text));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Copié dans le presse-papiers !"),
+                                duration: Duration(seconds: 1),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ]
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInputArea() {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      decoration: BoxDecoration(
+        color: theme.scaffoldBackgroundColor,
+        border: Border(
+          top: BorderSide(color: theme.dividerColor.withOpacity(0.05)),
+        ),
+      ),
+      child: SafeArea(
+        child: Row(
+          children: [
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: theme.cardColor,
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(
+                    color: theme.dividerColor.withOpacity(0.1),
+                  ),
+                ),
+                child: TextField(
+                  controller: _controller,
+                  maxLines: null,
+                  style: theme.textTheme.bodyMedium,
+                  decoration: InputDecoration(
+                    hintText: "Posez votre question clinique...",
+                    hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.hintColor.withOpacity(0.5),
+                    ),
+                    border: InputBorder.none,
+                    isDense: true,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 10,
+                    ),
+                  ),
+                  onSubmitted: (_) => _handleSend(),
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Material(
+              color: AppColors.primaryDark,
+              shape: const CircleBorder(),
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                onTap: () => _handleSend(),
+                child: const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Icon(Iconsax.send_1, color: Colors.white, size: 20),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -644,8 +1373,9 @@ class _PatientInfoFormState extends ConsumerState<_PatientInfoForm> {
           ],
           onChanged: (newValue) {
             if (newValue != null) {
-              ref.read(patientInfoProvider.notifier).state = patientInfo
-                  .copyWith(gender: newValue);
+              ref.read(observationReportProvider.notifier).updatePatientInfo(
+                    patientInfo.copyWith(gender: newValue),
+                  );
             }
           },
         ),
@@ -751,22 +1481,25 @@ class _VitalsFormState extends ConsumerState<_VitalsForm> {
             TextFormField(
               controller: _bpController,
               decoration: decor(l10n.vitals_bp, 'mmHg'),
-              onChanged: (val) => ref.read(vitalsProvider.notifier).state =
-                  vitals.copyWith(bloodPressure: val),
+              onChanged: (val) => ref.read(observationReportProvider.notifier).updateVitals(
+                    vitals.copyWith(bloodPressure: val),
+                  ),
             ),
             TextFormField(
               controller: _hrController,
               keyboardType: TextInputType.number,
               decoration: decor(l10n.vitals_hr, 'bpm'),
-              onChanged: (val) => ref.read(vitalsProvider.notifier).state =
-                  vitals.copyWith(heartRate: val),
+              onChanged: (val) => ref.read(observationReportProvider.notifier).updateVitals(
+                    vitals.copyWith(heartRate: val),
+                  ),
             ),
             TextFormField(
               controller: _rrController,
               keyboardType: TextInputType.number,
               decoration: decor(l10n.vitals_rr, 'cpm'),
-              onChanged: (val) => ref.read(vitalsProvider.notifier).state =
-                  vitals.copyWith(respiratoryRate: val),
+              onChanged: (val) => ref.read(observationReportProvider.notifier).updateVitals(
+                    vitals.copyWith(respiratoryRate: val),
+                  ),
             ),
             TextFormField(
               controller: _tempController,
@@ -774,8 +1507,9 @@ class _VitalsFormState extends ConsumerState<_VitalsForm> {
                 decimal: true,
               ),
               decoration: decor(l10n.vitals_temp, '°C'),
-              onChanged: (val) => ref.read(vitalsProvider.notifier).state =
-                  vitals.copyWith(temperature: val),
+              onChanged: (val) => ref.read(observationReportProvider.notifier).updateVitals(
+                    vitals.copyWith(temperature: val),
+                  ),
             ),
           ],
         ),
@@ -784,8 +1518,9 @@ class _VitalsFormState extends ConsumerState<_VitalsForm> {
           controller: _spo2Controller,
           keyboardType: TextInputType.number,
           decoration: decor(l10n.vitals_spo2, '%'),
-          onChanged: (val) => ref.read(vitalsProvider.notifier).state = vitals
-              .copyWith(oxygenSaturation: val),
+          onChanged: (val) => ref.read(observationReportProvider.notifier).updateVitals(
+                vitals.copyWith(oxygenSaturation: val),
+              ),
         ),
       ],
     );
@@ -878,34 +1613,34 @@ class _PhysicalExamForm extends ConsumerWidget {
                       size: 18,
                     ),
                     onPressed: () {
-                      final curr = ref.read(customPhysicalExamFieldsProvider);
+                      final curr = ref.read(observationReportProvider).customPhysicalExamFields;
                       ref
-                          .read(customPhysicalExamFieldsProvider.notifier)
-                          .state = curr
-                          .where((f) => f.key != field.key)
-                          .toList();
+                          .read(observationReportProvider.notifier)
+                          .updateCustomPhysicalExamFields(
+                            curr.where((f) => f.key != field.key).toList(),
+                          );
                       //Also clear the data
                       final currData = Map<String, String>.from(
-                        ref.read(physicalExamProvider),
+                        ref.read(observationReportProvider).physicalExam,
                       );
                       currData.remove(field.key);
-                      ref.read(physicalExamProvider.notifier).state = currData;
+                      ref.read(observationReportProvider.notifier).updatePhysicalExam(currData);
                     },
                   )
                 else
                   TextButton(
                     onPressed: () {
-                      final currData = ref.read(physicalExamProvider);
+                      final currData = ref.read(observationReportProvider).physicalExam;
                       String valueToSet = field.normalText;
                       if (!valueToSet.startsWith('[{')) {
                         valueToSet = jsonEncode([
                           {"insert": "$valueToSet\n"},
                         ]);
                       }
-                      ref.read(physicalExamProvider.notifier).state = {
+                      ref.read(observationReportProvider.notifier).updatePhysicalExam({
                         ...currData,
                         field.key: valueToSet,
-                      };
+                      });
                     },
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -937,11 +1672,11 @@ class _PhysicalExamForm extends ConsumerWidget {
                 : field.normalText,
             dense: true,
             onChanged: (value) {
-              final currData = ref.read(physicalExamProvider);
-              ref.read(physicalExamProvider.notifier).state = {
+              final currData = ref.read(observationReportProvider).physicalExam;
+              ref.read(observationReportProvider.notifier).updatePhysicalExam({
                 ...currData,
                 field.key: value,
-              };
+              });
             },
           ),
           const SizedBox(height: 8),
@@ -951,22 +1686,23 @@ class _PhysicalExamForm extends ConsumerWidget {
   }
 
   void _showAddFieldDialog(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     String label = '';
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Nouvelle section d\'examen'),
+        title: Text(l10n.newExamSectionTitle),
         content: TextField(
           autofocus: true,
-          decoration: const InputDecoration(
-            hintText: 'Nom de la section(ex:Examen ORL)',
+          decoration: InputDecoration(
+            hintText: l10n.newSectionHint,
           ),
           onChanged: (val) => label = val,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Annuler'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () {
@@ -977,14 +1713,14 @@ class _PhysicalExamForm extends ConsumerWidget {
                 label: label.trim(),
                 normalText: 'Normal',
               );
-              final curr = ref.read(customPhysicalExamFieldsProvider);
-              ref.read(customPhysicalExamFieldsProvider.notifier).state = [
+              final curr = ref.read(observationReportProvider).customPhysicalExamFields;
+              ref.read(observationReportProvider.notifier).updateCustomPhysicalExamFields([
                 ...curr,
                 newField,
-              ];
+              ]);
               Navigator.pop(context);
             },
-            child: const Text('Ajouter'),
+            child: Text(l10n.add),
           ),
         ],
       ),
@@ -1096,8 +1832,9 @@ class _IntroductionForm extends ConsumerWidget {
           _InlineField(
             value: name,
             hint: l10n.intro_patient_name_hint,
-            onChanged: (val) => ref.read(patientInfoProvider.notifier).state =
-                patient.copyWith(name: val),
+            onChanged: (val) => ref.read(observationReportProvider.notifier).updatePatientInfo(
+                  patient.copyWith(name: val),
+                ),
           ),
           _buildText(
             patient.gender.toLowerCase().contains('f')
@@ -1108,31 +1845,35 @@ class _IntroductionForm extends ConsumerWidget {
           _InlineField(
             value: patient.age,
             hint: l10n.intro_age_hint,
-            onChanged: (val) => ref.read(patientInfoProvider.notifier).state =
-                patient.copyWith(age: val),
+            onChanged: (val) => ref.read(observationReportProvider.notifier).updatePatientInfo(
+                  patient.copyWith(age: val),
+                ),
           ),
           _buildText(l10n.intro_origin_prefix.trim()),
           _InlineField(
             value: intro.origin,
             hint: l10n.intro_origin_hint,
             onChanged: (val) =>
-                ref.read(introductionDataProvider.notifier).state = intro
-                    .copyWith(origin: val),
+                ref.read(observationReportProvider.notifier).updateIntroductionData(
+                      intro.copyWith(origin: val),
+                    ),
           ),
           _buildText(". "),
           _InlineField(
             value: intro.maritalStatus,
             hint: l10n.intro_marital_status_hint,
             onChanged: (val) =>
-                ref.read(introductionDataProvider.notifier).state = intro
-                    .copyWith(maritalStatus: val),
+                ref.read(observationReportProvider.notifier).updateIntroductionData(
+                      intro.copyWith(maritalStatus: val),
+                    ),
           ),
           _InlineField(
             value: intro.profession,
             hint: l10n.intro_profession_hint,
             onChanged: (val) =>
-                ref.read(introductionDataProvider.notifier).state = intro
-                    .copyWith(profession: val),
+                ref.read(observationReportProvider.notifier).updateIntroductionData(
+                      intro.copyWith(profession: val),
+                    ),
           ),
           _buildText(
             patient.gender.toLowerCase().contains('f')
@@ -1144,8 +1885,9 @@ class _IntroductionForm extends ConsumerWidget {
             value: intro.admissionDate,
             hint: l10n.intro_date_hint,
             onChanged: (val) =>
-                ref.read(introductionDataProvider.notifier).state = intro
-                    .copyWith(admissionDate: val),
+                ref.read(observationReportProvider.notifier).updateIntroductionData(
+                      intro.copyWith(admissionDate: val),
+                    ),
           ),
           _buildText(l10n.intro_for_prefix.trim()),
           _InlineField(
@@ -1153,8 +1895,9 @@ class _IntroductionForm extends ConsumerWidget {
             hint: l10n.intro_signs_hint,
             isLong: true,
             onChanged: (val) =>
-                ref.read(introductionDataProvider.notifier).state = intro
-                    .copyWith(signs: val),
+                ref.read(observationReportProvider.notifier).updateIntroductionData(
+                      intro.copyWith(signs: val),
+                    ),
           ),
           _buildText("."),
         ],
@@ -1290,7 +2033,7 @@ class _MotifHospitalisationForm extends ConsumerWidget {
       label: '',
       initialValue: motif,
       onChanged: (value) {
-        ref.read(motifHospitalisationProvider.notifier).state = value;
+        ref.read(observationReportProvider.notifier).updateMotifHospitalisation(value);
       },
     );
   }
@@ -1307,7 +2050,7 @@ class _HistoireMaladieForm extends ConsumerWidget {
       label: '',
       initialValue: histoire,
       onChanged: (value) {
-        ref.read(histoireMaladieProvider.notifier).state = value;
+        ref.read(observationReportProvider.notifier).updateHistoireMaladie(value);
       },
     );
   }
@@ -1326,9 +2069,9 @@ class _AntecedentsForm extends ConsumerWidget {
           label: 'Médicaux',
           initialValue: ant.medicaux,
           onChanged: (val) {
-            ref.read(antecedentsProvider.notifier).state = ant.copyWith(
-              medicaux: val,
-            );
+            ref.read(observationReportProvider.notifier).updateAntecedents(
+                  ant.copyWith(medicaux: val),
+                );
           },
         ),
         const SizedBox(height: 12),
@@ -1336,9 +2079,9 @@ class _AntecedentsForm extends ConsumerWidget {
           label: 'Chirurgicaux',
           initialValue: ant.chirurgicaux,
           onChanged: (val) {
-            ref.read(antecedentsProvider.notifier).state = ant.copyWith(
-              chirurgicaux: val,
-            );
+            ref.read(observationReportProvider.notifier).updateAntecedents(
+                  ant.copyWith(chirurgicaux: val),
+                );
           },
         ),
         const SizedBox(height: 12),
@@ -1346,9 +2089,9 @@ class _AntecedentsForm extends ConsumerWidget {
           label: 'Familiaux',
           initialValue: ant.familiaux,
           onChanged: (val) {
-            ref.read(antecedentsProvider.notifier).state = ant.copyWith(
-              familiaux: val,
-            );
+            ref.read(observationReportProvider.notifier).updateAntecedents(
+                  ant.copyWith(familiaux: val),
+                );
           },
         ),
         const SizedBox(height: 12),
@@ -1356,9 +2099,9 @@ class _AntecedentsForm extends ConsumerWidget {
           label: 'Gynéco-Obstétriques(Si applicable)',
           initialValue: ant.gynecoObstetriques,
           onChanged: (val) {
-            ref.read(antecedentsProvider.notifier).state = ant.copyWith(
-              gynecoObstetriques: val,
-            );
+            ref.read(observationReportProvider.notifier).updateAntecedents(
+                  ant.copyWith(gynecoObstetriques: val),
+                );
           },
         ),
         const SizedBox(height: 12),
@@ -1366,9 +2109,9 @@ class _AntecedentsForm extends ConsumerWidget {
           label: 'Mode de Vie/Habitudes',
           initialValue: ant.modeDeVie,
           onChanged: (val) {
-            ref.read(antecedentsProvider.notifier).state = ant.copyWith(
-              modeDeVie: val,
-            );
+            ref.read(observationReportProvider.notifier).updateAntecedents(
+                  ant.copyWith(modeDeVie: val),
+                );
           },
         ),
       ],
@@ -1466,32 +2209,32 @@ class _ParacliniqueFormState extends ConsumerState<_ParacliniqueForm> {
 
   void _addExam(String title) {
     if (title.isEmpty) return;
-    final exams = ref.read(paracliniqueExamsProvider);
-    ref.read(paracliniqueExamsProvider.notifier).state = [
+    final exams = ref.read(observationReportProvider).paracliniqueExams;
+    ref.read(observationReportProvider.notifier).updateParacliniqueExams([
       ...exams,
       ParaclinicalExam(title: title, parameters: _getDefaultParameters(title)),
-    ];
+    ]);
   }
 
   void _removeExam(int index) {
-    final exams = ref.read(paracliniqueExamsProvider);
+    final exams = ref.read(observationReportProvider).paracliniqueExams;
     final newExams = List<ParaclinicalExam>.from(exams);
     newExams.removeAt(index);
-    ref.read(paracliniqueExamsProvider.notifier).state = newExams;
+    ref.read(observationReportProvider.notifier).updateParacliniqueExams(newExams);
   }
 
   void _updateExamParameter(int examIndex, int paramIndex, String newValue) {
-    final exams = ref.read(paracliniqueExamsProvider);
+    final exams = ref.read(observationReportProvider).paracliniqueExams;
     final newExams = List<ParaclinicalExam>.from(exams);
     final newParams = List<ExamParameter>.from(newExams[examIndex].parameters);
     newParams[paramIndex] = newParams[paramIndex].copyWith(value: newValue);
     newExams[examIndex] = newExams[examIndex].copyWith(parameters: newParams);
-    ref.read(paracliniqueExamsProvider.notifier).state = newExams;
+    ref.read(observationReportProvider.notifier).updateParacliniqueExams(newExams);
   }
 
   void _addParameterToExam(int examIndex, String paramName) {
     if (paramName.isEmpty) return;
-    final exams = ref.read(paracliniqueExamsProvider);
+    final exams = ref.read(observationReportProvider).paracliniqueExams;
     final newExams = List<ParaclinicalExam>.from(exams);
     final newParams = List<ExamParameter>.from(newExams[examIndex].parameters);
     newParams.add(
@@ -1502,29 +2245,29 @@ class _ParacliniqueFormState extends ConsumerState<_ParacliniqueForm> {
       ),
     );
     newExams[examIndex] = newExams[examIndex].copyWith(parameters: newParams);
-    ref.read(paracliniqueExamsProvider.notifier).state = newExams;
+    ref.read(observationReportProvider.notifier).updateParacliniqueExams(newExams);
   }
 
   void _removeParameterFromExam(int examIndex, int paramIndex) {
-    final exams = ref.read(paracliniqueExamsProvider);
+    final exams = ref.read(observationReportProvider).paracliniqueExams;
     final newExams = List<ParaclinicalExam>.from(exams);
     final newParams = List<ExamParameter>.from(newExams[examIndex].parameters);
     newParams.removeAt(paramIndex);
     newExams[examIndex] = newExams[examIndex].copyWith(parameters: newParams);
-    ref.read(paracliniqueExamsProvider.notifier).state = newExams;
+    ref.read(observationReportProvider.notifier).updateParacliniqueExams(newExams);
   }
 
   void _reorderParameterInExam(int examIndex, int oldIndex, int newIndex) {
     if (oldIndex < newIndex) {
       newIndex -= 1;
     }
-    final exams = ref.read(paracliniqueExamsProvider);
+    final exams = ref.read(observationReportProvider).paracliniqueExams;
     final newExams = List<ParaclinicalExam>.from(exams);
     final newParams = List<ExamParameter>.from(newExams[examIndex].parameters);
     final item = newParams.removeAt(oldIndex);
     newParams.insert(newIndex, item);
     newExams[examIndex] = newExams[examIndex].copyWith(parameters: newParams);
-    ref.read(paracliniqueExamsProvider.notifier).state = newExams;
+    ref.read(observationReportProvider.notifier).updateParacliniqueExams(newExams);
   }
 
   @override
@@ -1759,7 +2502,10 @@ class _ParacliniqueFormState extends ConsumerState<_ParacliniqueForm> {
                       //I'll use a hardcoded one for now or just use one of the existing ones.
                       //Let's just use"selectSpecialty".
                       items: _examTypes.map((type) {
-                        return DropdownMenuItem(value: type, child: Text(type));
+                        final displayLabel = type == 'Autre...'
+                            ? AppLocalizations.of(context)!.otherOption
+                            : type;
+                        return DropdownMenuItem(value: type, child: Text(displayLabel));
                       }).toList(),
                       onChanged: (value) {
                         setState(() {
@@ -1775,23 +2521,24 @@ class _ParacliniqueFormState extends ConsumerState<_ParacliniqueForm> {
                         : () {
                             if (_selectedExamType == 'Autre...') {
                               //Ask for custom name
+                              final l10n = AppLocalizations.of(context)!;
                               showDialog(
                                 context: context,
                                 builder: (context) {
                                   String customName = '';
                                   return AlertDialog(
-                                    title: const Text('Nom de l\'examen'),
+                                    title: Text(l10n.examNameTitle),
                                     content: TextField(
                                       autofocus: true,
-                                      decoration: const InputDecoration(
-                                        hintText: 'Ex:Echographie pelvienne',
+                                      decoration: InputDecoration(
+                                        hintText: l10n.pelvicUltrasoundExample,
                                       ),
                                       onChanged: (value) => customName = value,
                                     ),
                                     actions: [
                                       TextButton(
                                         onPressed: () => Navigator.pop(context),
-                                        child: const Text('Annuler'),
+                                        child: Text(l10n.cancel),
                                       ),
                                       TextButton(
                                         onPressed: () {
@@ -1801,7 +2548,7 @@ class _ParacliniqueFormState extends ConsumerState<_ParacliniqueForm> {
                                             () => _selectedExamType = null,
                                           );
                                         },
-                                        child: const Text('Ajouter'),
+                                        child: Text(l10n.add),
                                       ),
                                     ],
                                   );
@@ -1841,7 +2588,7 @@ class _ResumeTotalForm extends ConsumerWidget {
       label: '',
       initialValue: resume,
       onChanged: (value) {
-        ref.read(resumeTotalProvider.notifier).state = value;
+        ref.read(observationReportProvider.notifier).updateResumeTotal(value);
       },
     );
   }
@@ -1858,7 +2605,7 @@ class _AssessmentForm extends ConsumerWidget {
       label: '',
       initialValue: assessment,
       onChanged: (value) {
-        ref.read(assessmentAndPlanProvider.notifier).state = value;
+        ref.read(observationReportProvider.notifier).updateAssessmentAndPlan(value);
       },
     );
   }

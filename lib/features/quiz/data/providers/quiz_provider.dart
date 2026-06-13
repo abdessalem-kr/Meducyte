@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:meducyte_app/export.dart';
 import 'package:uuid/uuid.dart';
 import 'package:meducyte_app/core/network/dio_client.dart';
@@ -341,22 +342,25 @@ class QuizRepository {
   ///Batch sync the entire quiz session results to the backend.
   Future<void> syncQuizSession(QuizSession session) async {
     const String mutation = r'''
-  mutation SyncQuizSession($sessionId:String!, $results:json!) {
-    syncQuizSession(sessionId: $sessionId,results: $results) {
-      success
-     }
-   }
+  mutation SyncQuizSession($sessionId: String!, $results: JSON!) {
+    syncQuizSession(sessionId: $sessionId, results: $results)
+  }
  ''';
 
     try {
       debugPrint('DEBUG:syncQuizSession-Syncing session: ${session.id}');
-      await _client.post(
+      final response = await _client.post(
         '/graphql',
         data: {
           'query': mutation,
           'variables': {'sessionId': session.id, 'results': session.toJson()},
         },
       );
+      final mapData = response.data as Map<String, dynamic>?;
+      if (mapData != null && mapData['errors'] != null) {
+        final errorMsg = mapData['errors'][0]['message'];
+        throw Exception('GraphQL error: $errorMsg');
+      }
       debugPrint('DEBUG:syncQuizSession-Success');
     } on DioException catch (e) {
       if (e.error is ApiException) throw e.error as ApiException;
@@ -434,14 +438,28 @@ class QuizRepository {
     }
   }
 
-  Future<List<String>> fetchSources() async {
+  Future<List<String>> fetchSources({
+    List<int>? years,
+    List<String>? moduleIds,
+    List<String>? lessonIds,
+  }) async {
     const String query = r'''
-  query{
-    sources
+  query GetSources($moduleIds: [ID], $lessonIds: [ID], $years: [Int]) {
+    sources(moduleIds: $moduleIds, lessonIds: $lessonIds, years: $years)
    }
  ''';
     try {
-      final response = await _client.post('/graphql', data: {'query': query});
+      final response = await _client.post(
+        '/graphql',
+        data: {
+          'query': query,
+          'variables': {
+            'moduleIds': moduleIds,
+            'lessonIds': lessonIds,
+            'years': years,
+          },
+        },
+      );
       return List<String>.from(response.data['data']['sources']);
     } on DioException catch (e) {
       if (e.error is ApiException) throw e.error as ApiException;
@@ -1165,12 +1183,84 @@ class QuizRepository {
       return 'Debug Fetch Error: $e';
     }
   }
+
+  Future<void> saveSavedSession({
+    required QuizSession session,
+    required int timeSeconds,
+    required bool showFeedback,
+    required Set<int> selectedOptionIds,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final sessionMap = session.toJson();
+    final wrapper = {
+      'session': sessionMap,
+      'timeSeconds': timeSeconds,
+      'showFeedback': showFeedback,
+      'selectedOptionIds': selectedOptionIds.toList(),
+    };
+    await prefs.setString('saved_quiz_session', json.encode(wrapper));
+  }
+
+  Future<Map<String, dynamic>?> getSavedSession() async {
+    final prefs = await SharedPreferences.getInstance();
+    final str = prefs.getString('saved_quiz_session');
+    if (str == null) return null;
+    try {
+      return json.decode(str) as Map<String, dynamic>;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> clearSavedSession() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('saved_quiz_session');
+  }
+}
+
+class SavedQuizSession {
+  final QuizSession session;
+  final int timeSeconds;
+  final bool showFeedback;
+  final Set<int> selectedOptionIds;
+
+  SavedQuizSession({
+    required this.session,
+    required this.timeSeconds,
+    required this.showFeedback,
+    required this.selectedOptionIds,
+  });
 }
 
 //PROVIDERS
 final quizRepositoryProvider = Provider<QuizRepository>((ref) {
   final dioClient = ref.watch(dioClientProvider);
   return QuizRepository(dioClient);
+});
+
+final savedQuizSessionProvider = FutureProvider<SavedQuizSession?>((ref) async {
+  final repository = ref.watch(quizRepositoryProvider);
+  final savedData = await repository.getSavedSession();
+  if (savedData == null) return null;
+  final sessionJson = savedData['session'] as Map<String, dynamic>;
+  final session = QuizSession.fromJson(sessionJson);
+  final timeSeconds = savedData['timeSeconds'] as int? ?? 0;
+  final showFeedback = savedData['showFeedback'] as bool? ?? false;
+  final selectedOptionIds = (savedData['selectedOptionIds'] as List?)
+      ?.map((e) => e as int)
+      .toSet() ?? <int>{};
+  return SavedQuizSession(
+    session: session,
+    timeSeconds: timeSeconds,
+    showFeedback: showFeedback,
+    selectedOptionIds: selectedOptionIds,
+  );
+});
+
+final hasSavedQuizSessionProvider = FutureProvider<bool>((ref) async {
+  final repository = ref.watch(quizRepositoryProvider);
+  final savedData = await repository.getSavedSession();
+  return savedData != null;
 });
 
 final quizSessionFetcherProvider =
@@ -1210,9 +1300,25 @@ final myQuestionFoldersProvider = FutureProvider<List<QuestionFolder>>((
   return repository.fetchQuestionFolders();
 });
 
-final quizSourcesProvider = FutureProvider<List<String>>((ref) async {
+class QuizSourcesParams extends Equatable {
+  final List<int>? years;
+  final List<String>? moduleIds;
+  final List<String>? lessonIds;
+
+  const QuizSourcesParams({this.years, this.moduleIds, this.lessonIds});
+
+  @override
+  List<Object?> get props => [years, moduleIds, lessonIds];
+}
+
+final quizSourcesProvider =
+    FutureProvider.family<List<String>, QuizSourcesParams>((ref, params) async {
   final repository = ref.watch(quizRepositoryProvider);
-  return repository.fetchSources();
+  return repository.fetchSources(
+    years: params.years,
+    moduleIds: params.moduleIds,
+    lessonIds: params.lessonIds,
+  );
 });
 
 final quizLessonsProvider = FutureProvider.family<List<LearnLesson>, String>((
@@ -1238,5 +1344,10 @@ final mySavedQuestionsProvider = FutureProvider<List<SavedQuestion>>((
   ref,
 ) async {
   final repository = ref.watch(quizRepositoryProvider);
-  return repository.fetchSavedQuestions();
+  final allSaved = await repository.fetchSavedQuestions();
+  final user = ref.watch(authControllerProvider).value;
+  if (user != null && user.year >= 1 && user.year <= 6) {
+    return allSaved.where((s) => s.question?.year == user.year).toList();
+  }
+  return allSaved;
 });

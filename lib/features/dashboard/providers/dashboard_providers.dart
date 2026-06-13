@@ -9,7 +9,12 @@ final navigationIndexProvider = StateProvider<int>((ref) => 0);
 final searchQueryProvider = StateProvider<String>((ref) => '');
 final selectedFilterProvider = StateProvider<String>((ref) => 'All');
 final selectedSortProvider = StateProvider<String>((ref) => 'Relevance');
-final selectedDifficultyProvider = StateProvider<String>((ref) => 'All');
+final selectedSpecialtyProvider = StateProvider<String>((ref) => 'All');
+
+final medicalSpecialtiesProvider = FutureProvider<List<String>>((ref) async {
+  final db = ref.watch(appDatabaseProvider);
+  return db.getMedicalSpecialties();
+});
 
 // ───Search Result Model─────────────────────────────────────────────────────
 enum SearchResultCategory { drug, dictionary }
@@ -100,10 +105,17 @@ final globalSearchProvider = FutureProvider<List<SearchResult>>((ref) async {
     );
   }
 
+  final specialty = ref.watch(selectedSpecialtyProvider);
+
   if (queryDict) {
     futures.add(
       db
-          .searchMedicalTerms(query, limit: 6, offset: 0)
+          .searchMedicalTerms(
+            query, 
+            limit: 6, 
+            offset: 0,
+            specialty: specialty == 'All' ? null : specialty,
+          )
           .then(
             (terms) => terms
                 .map(

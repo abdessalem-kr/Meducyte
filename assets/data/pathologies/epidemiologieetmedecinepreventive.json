@@ -1,0 +1,336 @@
+[
+  {
+    "name": "Syndrome de l'air conditionné chronique",
+    "description": "Pathologie multifactorielle liée à l'exposition prolongée à des environnements climatisés mal ventilés, associant déséquilibre hydrique, exposition à des allergènes et microorganismes, et stress oxydatif. Présente une physiopathologie complexe avec irritation muqueuse, réponse inflammatoire chronique et altération de la barrière cutanée. Cliniquement, elle se manifeste par une triade de symptômes respiratoires (sécheresse nasale, toux sèche), neurologiques (céphalées, confusion) et cutanés (peau sèche, prurit).",
+    "redFlags": [
+      "Douleurs articulaires persistantes associées à une exposition quotidienne > 8 heures dans des environnements climatisés",
+      "Symptômes neurologiques (vertiges, troubles de la mémoire) s'aggravant en été malgré l'absence de fièvre",
+      "Sécheresse cutanée avec desquamations en zones non exposées au soleil",
+      "Réaction allergique cutanée (urticaire) survenant 2-4 heures après l'entrée dans un environnement climatisé",
+      "Dyspnée d'effort inexpliquée dans des environnements fermés malgré un test pulmonaire normal"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité de l'air conditionné (IGAC)",
+        "description": "Score évaluant l'impact cumulatif des symptômes et de l'environnement. Corrélation étroite avec la qualité de vie et le risque de complications à long terme.",
+        "criteria": [
+          "Symptômes respiratoires persistants (0-3 points)",
+          "Exposition quotidienne > 10 heures (2 points)",
+          "Présence de comorbidités allergiques (1 point)",
+          "Niveau d'humidité < 30% dans l'environnement (2 points)",
+          "Exposition à des fongicides dans les systèmes de climatisation (3 points)"
+        ],
+        "interpretation": "Score total < 5: Forme bénigne, Score 5-8: Forme modérée nécessitant aménagement environnemental, Score > 8: Forme sévère avec risque de complications systémiques."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et cutané ciblé",
+        "steps": [
+          {
+            "action": "Palpation des ganglions cervicaux et sous-maxillaires",
+            "interpretation": "Adénopathies réactives suggérant une réponse immunitaire chronique à des allergènes aériens"
+          },
+          {
+            "action": "Examen de la peau avec attention aux zones non exposées au soleil",
+            "interpretation": "Peau sèche avec desquamations linéaires évoquant une barrière cutanée altérée par l'air sec"
+          },
+          {
+            "action": "Test de réaction allergique cutanée avec antigènes de moisissures courantes",
+            "interpretation": "Réaction positive confirmant une sensibilisation à des microorganismes présents dans les systèmes de climatisation"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Installation d'un humidificateur d'air avec contrôle de l'humidité relative (40-60%)",
+      "Utilisation de masques filtrants N95 lors des déplacements en environnements climatisés",
+      "Hydratation orale fortement recommandée (2-3 L/jour) avec supplémentation en acides gras oméga-3",
+      "Éviction temporaire de l'environnement pathogène pendant 72 heures avec suivi des symptômes",
+      "Prescription d'antihistaminiques non sédatifs (ex: Cétirizine) pour les formes allergiques"
+    ],
+    "differentialDiagnosis": [
+      "Rhinite allergique saisonnière (absence de corrélation avec l'air conditionné)",
+      "Syndrome de l'air conditionné aigu (symptômes < 72 heures)",
+      "Séborrhée cutanée chronique (présence de squames huileuses)"
+    ]
+  },
+  {
+    "name": "Hypovitaminose D chronique liée à l'urbanisation",
+    "description": "Déficit vitaminique D chronique d'origine environnementale, caractérisé par une exposition insuffisante au rayonnement UV-B dans les zones urbaines denses. Physiopathologie basée sur la diminution de la synthèse cutanée de cholecalciférol, associée à une alimentation pauvre en sources naturelles de vitamine D. Présente une progression insidieuse avec manifestations osseuses (ostéomalacie), immunitaires (fréquence d'infections) et neurologiques (dystonie musculaire).",
+    "redFlags": [
+      "Douleurs osseuses diffuses associées à une activité en plein air < 1 heure/jour",
+      "Fractures spontanées de la ceinture pelvienne chez un sujet jeune",
+      "Résistance au traitement antirétroviral chez un patient VIH avec taux de 25-OH-D < 10 ng/mL",
+      "Éruption prurigineuse en gouttières costales",
+      "Diminution de la densité minérale osseuse > 2,5 DS sans cause évidente"
+    ],
+    "scores": [
+      {
+        "name": "Index de risque urbain-vitaminique (IRUV)",
+        "description": "Score évaluant le risque de développement de complications à long terme. Corrélation forte avec la densité de population et l'indice d'urbanisation.",
+        "criteria": [
+          "Indice d'urbanisation > 80% (3 points)",
+          "Exposition solaire < 10 minutes/jour (2 points)",
+          "Consommation de poisson < 1 fois/semaine (1 point)",
+          "Présence de comorbidités auto-immunes (2 points)",
+          "Antécédents familiaux de rachitisme (1 point)"
+        ],
+        "interpretation": "Score < 5: Risque faible, Score 5-7: Surveillance recommandée, Score > 7: Risque élevé de complications osseuses et immunitaires."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique et immunitaire ciblé",
+        "steps": [
+          {
+            "action": "Test de la marche sur talons (Romberg modifié)",
+            "interpretation": "Instabilité statique évoquant une dystonie musculaire liée à l'hypocalcémie"
+          },
+          {
+            "action": "Palpation des gouttières costales et du crâne",
+            "interpretation": "Crépitement costal ou craniotabé (signes de rachitisme osseux)"
+          },
+          {
+            "action": "Évaluation de la réponse immunitaire par test de tuberculine",
+            "interpretation": "Réaction anormalement faible suggérant une immunosuppression liée au déficit en vitamine D"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Supplémentation orale de vitamine D3 (50 000 UI/semaine pendant 8 semaines)",
+      "Exposition contrôlée au soleil (15 minutes/jour sans protection solaire entre 10h et 14h)",
+      "Alimentation enrichie en sources naturelles (saumon, huile de foie de morue)",
+      "Évaluation de la densité minérale osseuse par DEXA",
+      "Éducation sur les risques de l'urbanisation excessive et les habitudes de vie"
+    ],
+    "differentialDiagnosis": [
+      "Ostéoporose post-ménopausique (présence de ménopause)",
+      "Hypoparathyroïdie congénitale (hypocalcémie avec TSH normale)",
+      "Syndrome de malabsorption (présence de diarrhée chronique)"
+    ]
+  },
+  {
+    "name": "Syndrome métabolique post-pandémique",
+    "description": "Pathologie multifactorielle émergente liée aux modifications de mode de vie durant les confinements pandémiques. Elle se caractérise par une résistance à l'insuline, une obésité viscérale, une dyslipidémie mixte et une hypertension artérielle secondaire à l'immobilisme, l'alimentation déséquilibrée et le stress chronique. La physiopathologie implique une dysrégulation de l'axe hypothalamo-hypophyso-surrénalien, une inflammation chronique basale et une altération de la microbiote intestinale.",
+    "redFlags": [
+      "Gain de poids corporel > 10 % du poids initial en < 6 mois avec localisation centrale marquée",
+      "Hypertension artérielle persistante (> 140/90 mmHg) malgré l'absence de facteurs classiques",
+      "Dyslipidémie mixte avec triglycérides > 200 mg/dL et HDL-C < 40 mg/dL",
+      "Insulinorésistance documentée par test de tolérance glucidique anormal",
+      "Symptômes de fatigue chronique et troubles du sommeil persistants post-confinement"
+    ],
+    "scores": [
+      {
+        "name": "Score de risque métabolique post-pandémique (SRMPP)",
+        "description": "Évaluation quantitative des facteurs de risque associés au syndrome métabolique post-pandémique",
+        "criteria": [
+          "Classe I: Perte d'activité physique > 50 % (0 point)",
+          "Classe II: Alimentation hyperlipidique et hyperglycémique (1 point)",
+          "Classe III: Stress post-traumatique lié au confinement (2 points)",
+          "Classe IV: Présence de 3 facteurs métaboliques (3 points)"
+        ],
+        "interpretation": "Score total ≥ 4 points: risque élevé de complications cardiovasculaires; 2-3 points: surveillance renforcée; < 2 points: risque modéré"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen métabolique et anthropométrique ciblé",
+        "steps": [
+          {
+            "action": "Mesure du tour de taille à la hauteur du nombril",
+            "interpretation": "Tour de taille > 102 cm chez l'homme et > 88 cm chez la femme évoque une obésité viscérale"
+          },
+          {
+            "action": "Palpation des ganglions lymphatiques cervicaux et axillaires",
+            "interpretation": "Adénopathies réticulaires non douloureuses peuvent indiquer une réponse immunitaire chronique"
+          },
+          {
+            "action": "Examen de la peau recherchant des stries blanchâtres et des acanthoses",
+            "interpretation": "Signes cutanés d'obésité pathologique et d'insulinorésistance"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Programme d'activité physique progressif (30 minutes/jour de marche modérée)",
+      "Rééquilibrage alimentaire avec réduction des sucres rapides et des lipides saturés",
+      "Thérapie comportementale pour gérer le stress post-confinement",
+      "Surveillance biologique trimestrielle des paramètres métaboliques",
+      "Éducation à la gestion du sommeil et à la réduction de l'anxiété"
+    ],
+    "differentialDiagnosis": [
+      "Obésité génétique (ex: syndrome de Prader-Willi) - absence de facteurs pandémiques",
+      "Syndrome de Cushing iatrogène - corticostéroïdes antérieurs",
+      "Hypothyroïdie - taux d'hormones thyroïdiennes anormaux"
+    ]
+  },
+  {
+    "name": "Troubles neurocognitifs chroniques liés à l'usage intensif des écrans",
+    "description": "Pathologie émergente caractérisée par une altération progressive des fonctions exécutives, de l'attention et de la mémoire, liée à l'exposition prolongée (≥ 6 heures/jour) aux écrans numériques. La physiopathologie implique une désynchronisation des rythmes circadiens, une hyperstimulation des voies dopaminergiques et une atrophie des aires cérébrales impliquées dans la mémoire à long terme.",
+    "redFlags": [
+      "Détérioration des performances scolaires ou professionnelles sans cause organique",
+      "Troubles du sommeil persistants avec insomnie initiale et réveils nocturnes",
+      "Attention fragmentée avec incapacité de concentration sur des tâches non digitales",
+      "Mémoire à court terme altérée avec oubli fréquent d'informations récemment apprises",
+      "Agitation psychomotrice et irritabilité en dehors de l'utilisation d'écrans"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de gravité neurocognitive écran (ENGE)",
+        "description": "Évaluation quantitative de l'impact des écrans sur les fonctions cognitives",
+        "criteria": [
+          "Classe I: Utilisation < 2 heures/jour (0 point)",
+          "Classe II: 2-4 heures/jour avec troubles légers (1 point)",
+          "Classe III: 4-6 heures/jour avec troubles modérés (2 points)",
+          "Classe IV: > 6 heures/jour avec troubles sévères (3 points)"
+        ],
+        "interpretation": "Score ≥ 3 points: indication de réduction drastique de l'exposition; 1-2 points: surveillance; 0 point: risque négligeable"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurocognitif et oculaire ciblé",
+        "steps": [
+          {
+            "action": "Test de Trail Making (partie B) pour évaluer les fonctions exécutives",
+            "interpretation": "Temps de réalisation supérieur au percentile 90 pour l'âge indique une altération significative"
+          },
+          {
+            "action": "Examen de la vision binoculaire et de l'accommodation",
+            "interpretation": "Syndrome de fatigue visuelle numérique avec convergence insuffisante"
+          },
+          {
+            "action": "Évaluation de l'attention divisée par test de Stroop modifié",
+            "interpretation": "Temps de réaction anormalement élevé suggère une surcharge cognitive chronique"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prise en charge multidisciplinaire avec orthoptiste, psychologue et ergothérapeute",
+      "Programme de réduction progressive de l'exposition aux écrans (règle 20-20-20: 20 secondes sur 20 pieds toutes les 20 minutes)",
+      "Thérapie luminothérapie pour rééduquer les rythmes circadiens",
+      "Exercices cognitifs ciblés (mémoire, attention sélective) 3 fois/semaine",
+      "Éducation à l'alternance entre activités numériques et non-numériques"
+    ],
+    "differentialDiagnosis": [
+      "Trouble du déficit de l'attention avec hyperactivité (TDAH) - absence de facteurs écrans",
+      "Démence précoce - examen neurologique anormal",
+      "Burn-out professionnel - facteurs de stress non liés aux écrans"
+    ]
+  },
+  {
+    "name": "Syndrome métabolique postural chronique",
+    "description": "Pathologie multifactorielle liée à l'immobilité prolongée dans des positions statiques (assise ou station debout), entraînant une dysrégulation métabolique secondaire à l'atrophie musculaire, l'insulinorésistance et l'accumulation de graisse viscérale. La physiopathologie implique une activation chronique du système nerveux sympathique, une altération de la microcirculation périphérique et une résistance à l'insuline au niveau des cellules adipeuses et musculaires.",
+    "redFlags": [
+      "Surpoids ou obésité centrale (IMC > 30) associée à une activité physique < 150 minutes/semaine",
+      "Insulinorésistance confirmée par un test de tolérance glucidique anormal",
+      "Hypertension artérielle secondaire à la stase veineuse chronique",
+      "Doléances articulaires récurrentes liées à la surcharge mécanique",
+      "Fatigue chronique non expliquée par d'autres causes"
+    ],
+    "scores": [
+      {
+        "name": "Score de risque métabolique postural (SRMP)",
+        "description": "Évalue la gravité du syndrome en combinant des paramètres anthropométriques, métaboliques et comportementaux.",
+        "criteria": [
+          "IMC ≥ 35 : +3 points",
+          "Sédentarité > 8 heures/jour : +2 points",
+          "Circonférence abdominale > 102 cm (H) / 88 cm (F) : +2 points",
+          "Hémoglobine glyquée ≥ 6.5% : +2 points",
+          "Force musculaire < 50% de la normale : +1 point"
+        ],
+        "interpretation": "Score total ≥ 8 : risque élevé de complications métaboliques ; 5-7 : risque modéré ; <5 : surveillance simple."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen anthropométrique et métabolique",
+        "steps": [
+          {
+            "action": "Mesure de la circonférence abdominale à la hauteur du nombril",
+            "interpretation": "Circonférence > 102 cm chez l'homme ou > 88 cm chez la femme indique une accumulation graisseuse viscérale pathologique."
+          },
+          {
+            "action": "Test de force musculaire isométrique des membres inférieurs",
+            "interpretation": "Diminution de la force > 30% par rapport aux valeurs de référence suggère une atrophie musculaire fonctionnelle."
+          },
+          {
+            "action": "Palpation des zones de stase veineuse (chevilles, genoux)",
+            "interpretation": "Édème indolore ou douleur à la palpation évoque une insuffisance veineuse secondaire à l'immobilité."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Programme d'activité physique progressif (30 minutes/jour de marche) pour améliorer la microcirculation",
+      "Diète hypocalorique personnalisée avec restriction des glucides rapides",
+      "Orthèses de soutien veineux pour les patients avec stase chronique",
+      "Éducation sur les micro-mouvements posturaux (étirements, changements de position toutes les 30 minutes)",
+      "Surveillance trimestrielle des paramètres métaboliques (glycémie, lipides)"
+    ],
+    "differentialDiagnosis": [
+      "Obésité simple sans composante posturale : absence de douleurs articulaires liées à la surcharge",
+      "Diabète de type 2 : insulinorésistance sans facteur postural dominant",
+      "Insuffisance veineuse chronique : édèmes persistants sans composante métabolique"
+    ]
+  },
+  {
+    "name": "Dépression chronique liée à l'isolement social urbain",
+    "description": "Trouble psychiatrique multifactoriel survenant chez les individus vivant dans des environnements urbains à forte densité démographique, caractérisé par une absence de réseaux sociaux fonctionnels et une exposition chronique à la pollution sensorielle. La physiopathologie combine des mécanismes neuroinflammatoires (élévation des cytokines pro-inflammatoires) et une dysrégulation de l'axe HPA (hypothalamo-hypophyso-surrénalien) entraînant une résistance à la cortisolisation.",
+    "redFlags": [
+      "Absence de contacts sociaux significatifs > 6 mois",
+      "Scores anormaux sur l'échelle de dépression de Beck (BDI > 20)",
+      "Insomnie chronique avec fragmentation du sommeil",
+      "Perte d'intérêt pour les activités sociales ou professionnelles",
+      "Symptômes somatoformes non expliqués (céphalées, troubles digestifs)"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité de l'isolement social urbain (IGISU)",
+        "description": "Évalue la sévérité clinique en combinant des paramètres psychologiques et environnementaux.",
+        "criteria": [
+          "Absence de réseau social actif : +3 points",
+          "Exposition quotidienne à la pollution sonore > 80 dB : +2 points",
+          "Scores anormaux sur l'échelle de satisfaction vitale (SWLS) : +2 points",
+          "Utilisation excessive des réseaux sociaux (≥ 5 heures/jour) : +1 point",
+          "Antécédents de traumatismes psychiques : +1 point"
+        ],
+        "interpretation": "Score ≥ 7 : indication de prise en charge multidisciplinaire ; 4-6 : suivi psychologique ; <4 : surveillance simple."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen psychologique et environnemental",
+        "steps": [
+          {
+            "action": "Administration de l'échelle de dépression de Hamilton (HDRS)",
+            "interpretation": "Score ≥ 17 indique une dépression majeure nécessitant une intervention thérapeutique."
+          },
+          {
+            "action": "Évaluation de la qualité de vie urbaine via l'indice de satisfaction résidentielle",
+            "interpretation": "Scores inférieurs à la moyenne nationale suggèrent une contribution environnementale significative."
+          },
+          {
+            "action": "Recherche de signes de stress chronique (hypertension, tachycardie basale)",
+            "interpretation": "Tension artérielle > 130/85 mmHg ou fréquence cardiaque > 80 bpm évoquent une activation chronique du SNS."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Programme de thérapie cognitivo-comportementale (TCC) sur 12 semaines",
+      "Prescription d'antidépresseurs sérotoninergiques (SSRI) en cas de symptômes sévères",
+      "Inscription à des groupes de soutien communautaires locaux",
+      "Réduction de l'exposition à la pollution sonore via des mesures d'isolation acoustique",
+      "Éducation sur les techniques de gestion du stress (méditation, respiration diaphragmatique)"
+    ],
+    "differentialDiagnosis": [
+      "Dépression endogène : absence de facteur déclenchant environnemental évident",
+      "Burnout professionnel : liens étroits avec le stress lié au travail",
+      "Trouble anxieux généralisé : prédominance des symptômes d'anxiété sur la tristesse"
+    ]
+  }
+]

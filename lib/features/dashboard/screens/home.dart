@@ -11,7 +11,7 @@ import 'package:meducyte_app/features/drugs/presentation/screens/drug_database_s
 import 'package:meducyte_app/features/drugs/presentation/screens/drug_interactions_screen.dart';
 import 'package:meducyte_app/features/chatbot/presentation/screens/chat_chatbot_screen.dart';
 import 'package:meducyte_app/features/learn/presentation/screens/dictionary_screen.dart';
-import 'package:meducyte_app/features/observation/presentation/screens/specialty_selection_screen.dart';
+
 import 'package:meducyte_app/features/productive_bay/presentation/widgets/productive_bay_section.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -113,16 +113,49 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const ChatBotScreen()),
-          );
-        },
-        backgroundColor: AppColors.primaryDark,
-        elevation: 4,
-        child: const Icon(Iconsax.message_question, color: Colors.white),
+      floatingActionButton: Container(
+        height: 54,
+        width: 54,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: isDark
+                ? [AppColors.surfaceDark, AppColors.surfaceDark.withOpacity(0.8)]
+                : [AppColors.primaryDark, AppColors.primary],
+          ),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: isDark ? Colors.white.withOpacity(0.08) : Colors.transparent,
+            width: 1.5,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: isDark
+                  ? Colors.black.withOpacity(0.2)
+                  : AppColors.primaryDark.withOpacity(0.2),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(16),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ChatBotScreen()),
+              );
+            },
+            child: const Center(
+              child: Icon(
+                Iconsax.message_question,
+                color: Colors.white,
+                size: 22,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -216,12 +249,7 @@ class QuickAccessSection extends StatelessWidget {
         icon: Iconsax.clipboard_text,
         title: l10n.observationReport,
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const SpecialtySelectionScreen(),
-            ),
-          );
+          context.push(AppRoutes.observation);
         },
       ),
       QuickAccessItem(

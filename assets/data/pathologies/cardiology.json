@@ -1,137 +1,558 @@
 [
   {
     "name": "Insuffisance cardiaque",
-    "description": "Etat pathologique caracterise par l'incapacite du coeur a assurer un debit sanguin adequat",
+    "description": "État pathologique caractérisé par l'incapacité du ventricule à éjecter une quantité de sang suffisante pour couvrir les besoins métaboliques de l'organisme.",
     "redFlags": [
-      "Dyspnee au repos",
-      "Orthopnee",
-      "Paroxysmes nocturnes de dyspnee"
+      "Dyspnée de repos ou d'effort minime",
+      "Orthopnée (nécessité de dormir avec plusieurs oreillers)",
+      "Dyspnée paroxystique nocturne",
+      "Crachats mousseux rosés (OAP)",
+      "Instabilité hémodynamique / Choc cardiogénique"
     ],
     "scores": [
       {
-        "name": "NYHA",
-        "description": "Classification de l'insuffisance cardiaque",
+        "name": "Classification NYHA",
+        "description": "Évalue la sévérité fonctionnelle de l'insuffisance cardiaque",
         "criteria": [
-          "Absence de symptomes",
-          "Symptomes legers",
-          "Symptomes moderes",
-          "Symptomes graves"
+          "Classe I : Pas de limitation de l'activité physique ordinaire (+0)",
+          "Classe II : Limitation légère. Confort au repos, mais l'activité ordinaire entraîne fatigue/dyspnée (+1)",
+          "Classe III : Limitation marquée. Confort au repos, mais une activité moindre que l'activité ordinaire entraîne fatigue/dyspnée (+2)",
+          "Classe IV : Incapacité de mener une activité physique sans gêne. Symptômes présents même au repos (+3)"
         ],
-        "interpretation": "Classe I : absence de limitation, Classe II : limitation legere, Classe III : limitation moderee, Classe IV : limitation grave"
+        "interpretation": "Classe I (0 pt) : asymptomatique ; Classe II (1 pt) : légère limitation ; Classe III (2 pts) : limitation marquée ; Classe IV (3 pts) : dyspnée au repos."
+      },
+      {
+        "name": "Critères de Framingham",
+        "description": "Outil d'aide au diagnostic clinique de l'insuffisance cardiaque (diagnostic positif si score >= 4)",
+        "criteria": [
+          "Majeur: Dyspnée paroxystique nocturne (+2)",
+          "Majeur: Turgescence veineuse jugulaire (+2)",
+          "Majeur: Râles crépitants pulmonaires (+2)",
+          "Majeur: Cardiomégalie (+2)",
+          "Majeur: OEdème aigu du poumon (+2)",
+          "Majeur: Bruit de galop B3 (+2)",
+          "Majeur: Reflux hépato-jugulaire (+2)",
+          "Mineur: OEdèmes bilatéraux des membres inférieurs (+1)",
+          "Mineur: Toux nocturne (+1)",
+          "Mineur: Dyspnée d'effort (+1)",
+          "Mineur: Hépatomégalie (+1)",
+          "Mineur: Épanchement pleural (+1)",
+          "Mineur: Tachycardie > 120/min (+1)"
+        ],
+        "interpretation": "Score >= 4 : Insuffisance cardiaque cliniquement confirmée (soit 2 critères majeurs ou 1 majeur + 2 mineurs)."
       }
     ],
     "focusedExam": [
       {
-        "title": "Auscultation",
+        "title": "Examen cardio-vasculaire et pulmonaire",
         "steps": [
           {
-            "action": "Ecouter les bruits de souffle",
-            "interpretation": "Signe de regurgitation mitrale ou tricuspide"
+            "action": "Auscultation cardiaque (recherche de galop B3, bruits de souffle de régurgitation)",
+            "interpretation": "Le B3 signe une surcharge de volume ventriculaire. Les souffles orientent vers une cause valvulaire."
           },
           {
-            "action": "Ecouter les rales",
-            "interpretation": "Signe de congestion pulmonaire"
+            "action": "Auscultation pulmonaire (recherche de crépitants bilatéraux)",
+            "interpretation": "Des râles crépitants bilatéraux remontant vers les sommets signent un OAP (insuffisance ventriculaire gauche)."
+          },
+          {
+            "action": "Recherche de signes droits (TVJ, reflux hépato-jugulaire, reflux jugulaire à la palpation du foie)",
+            "interpretation": "Indiquent une surcharge veineuse systémique (insuffisance ventriculaire droite)."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration d'oxygene",
-      "Position semi-assise"
+      "Position assise ou demi-assis (jambes pendantes pour réduire le retour veineux)",
+      "Oxygénothérapie pour viser une saturation > 90% (ou 94% chez le non-BPCO)",
+      "Diurétiques de l'anse par voie IV (ex. Furosémide 20 à 40 mg)",
+      "Dérivés nitrés en spray ou IV si la pression artérielle systolique est > 110 mmHg",
+      "Transfert d'urgence en soins intensifs de cardiologie si signes de choc"
     ],
     "differentialDiagnosis": [
-      "Pneumonie",
-      "Embolie pulmonaire"
+      "Exacerbation aiguë de BPCO",
+      "Pneumonie ou bronchite bactérienne",
+      "Embolie pulmonaire aiguë",
+      "Épanchement pleural d'origine néoplasique"
     ]
   },
   {
     "name": "Infarctus du myocarde",
-    "description": "Necrose du myocarde due a une obstruction de l'artere coronaire",
+    "description": "Nécrose du muscle cardiaque secondaire à une occlusion thrombotique aiguë d'une artère coronaire.",
     "redFlags": [
-      "Douleur thoracique typique",
-      "Elevation du segment ST",
-      "Augmentation de la troponine"
+      "Douleur thoracique constrictive, rétrosternale, irradiant vers le bras gauche/mâchoire, durant > 20 min",
+      "Symptômes associés : sueurs, nausées, angoisse de mort imminente",
+      "Résistance à la Trinitrine sublinguale",
+      "Sous-décalage ou sus-décalage du segment ST à l'ECG",
+      "Instabilité hémodynamique ou arrêt cardiaque"
     ],
     "scores": [
       {
-        "name": "TIMI",
-        "description": "Evaluation du risque de mortalite",
+        "name": "Score TIMI (SCA non ST+)",
+        "description": "Évalue le risque de mortalité ou d'infarctus récurrent à 14 jours",
         "criteria": [
-          "Age > 75 ans",
-          "Antecedents d'infarctus du myocarde",
-          "Diabete"
+          "Âge >= 65 ans (+1)",
+          "Au moins 3 facteurs de risque cardiovasculaire (HTA, diabète, tabac, dyslipidémie, hérédité) (+1)",
+          "Sténose coronaire documentée >= 50% (+1)",
+          "Modifications du segment ST à l'ECG d'entrée (> 0,5 mm) (+1)",
+          "Au moins 2 crises d'angor dans les dernières 24h (+1)",
+          "Prise d'Aspirine au cours des 7 derniers jours (+1)",
+          "Élévation des biomarqueurs cardiaques (Troponines) (+1)"
         ],
-        "interpretation": "Score eleve : risque de mortalite eleve"
+        "interpretation": "Score 0-2 (faible risque : <5% à 14j) ; Score 3-4 (risque intermédiaire : 5-20%) ; Score 5-7 (haut risque : >26%)."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen cardiovasculaire",
+        "title": "Examen clinique d'urgence",
         "steps": [
           {
-            "action": "Palper les pouls",
-            "interpretation": "Signe de cardiogenese"
+            "action": "Mesurer la pression artérielle aux deux bras et ausculter le cœur",
+            "interpretation": "Rechercher une asymétrie tensionnelle (évoquant une dissection aortique) ou un souffle de régurgitation mitrale aiguë (complication)."
           },
           {
-            "action": "Ecouter les bruits de souffle",
-            "interpretation": "Signe de regurgitation mitrale"
+            "action": "Auscultation pulmonaire (recherche d'une insuffisance ventriculaire gauche)",
+            "interpretation": "Présence de râles crépitants (classification de Killip de I à IV pour le pronostic)."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration de thrombolytiques",
-      "Anticoagulation"
+      "Repos strict au lit, monitoring ECG continu",
+      "Double antiagrégation plaquettaire (Aspirine 150-300 mg per os ou IV + inhibiteur de P2Y12 ex. Ticagrelor ou Prasugrel)",
+      "Anticoagulation par HNF ou HBPM (ex. Énoxaparine)",
+      "Traitement antalgique par Morphine IV si douleur intense résistante",
+      "Revascularisation d'urgence (Angioplastie coronaire primaire en cas de STEMI dans les < 120 min, ou thrombolyse si indisponible)"
     ],
     "differentialDiagnosis": [
-      "Angine de poitrine",
-      "Pneumonie"
+      "Dissection aortique aiguë (douleur migratrice, asymétrie des pouls)",
+      "Embolie pulmonaire (douleur basithoracique, dyspnée aiguë)",
+      "Péricardite aiguë (douleur augmentée à l'inspiration et soulagée en position penchée en avant)",
+      "Spasme oesophagien ou RGO sévère"
     ]
   },
   {
     "name": "Fibrillation auriculaire",
-    "description": "Rhythme cardiaque caracterise par des contractions auriculaires rapides et irregulieres",
+    "description": "Tachyarythmie supraventriculaire caractérisée par une activation auriculaire anarchique et une réponse ventriculaire irrégulière.",
     "redFlags": [
-      "Palpitations",
-      "Dyspnee",
-      "Syncope"
+      "Palpitations rapides et irrégulières à début brutal",
+      "Dyspnée d'effort ou de repos",
+      "Asthénie ou fatigue inexpliquée",
+      "Déficit neurologique focal ou aphasie (accident embolique)",
+      "Douleur thoracique ou syncope"
     ],
     "scores": [
       {
-        "name": "CHADS2",
-        "description": "Evaluation du risque d'embolie systemique",
+        "name": "Score CHA2DS2-VASc",
+        "description": "Évalue le risque annuel d'accident vasculaire cérébral thromboembolique",
         "criteria": [
-          "Insuffisance cardiaque",
-          "Hypertension",
-          "Age > 75 ans",
-          "Diabete",
-          "Insuffisance renale"
+          "Insuffisance cardiaque congestive ou dysfonction VG majeure (+1)",
+          "Hypertension artérielle (+1)",
+          "Âge >= 75 ans (+2)",
+          "Diabète (+1)",
+          "Antécédent d'AVC, AIT ou thromboembolie (+2)",
+          "Maladie vasculaire (Infarctus du myocarde, AOMI, plaque aortique) (+1)",
+          "Âge entre 65 et 74 ans (+1)",
+          "Sexe féminin (+1)"
         ],
-        "interpretation": "Score eleve : risque d'embolie systemique eleve"
+        "interpretation": "Score 0 (hommes) ou 1 (femmes) : Risque faible (pas d'anticoagulation). Score 1 (hommes) ou 2 (femmes) : Anticoagulation à envisager. Score >= 2 (hommes) ou >= 3 (femmes) : Anticoagulation obligatoire."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen cardiovasculaire",
+        "title": "Examen cardiovasculaire et neurologique",
         "steps": [
           {
-            "action": "Palper les pouls",
-            "interpretation": "Signe de fibrillation auriculaire"
+            "action": "Prise du pouls radial et auscultation cardiaque",
+            "interpretation": "Mise en évidence d'une arythmie complète (pouls totalement irrégulier avec déficit de pouls)."
           },
           {
-            "action": "Ecouter les bruits de souffle",
-            "interpretation": "Signe de regurgitation mitrale"
+            "action": "Examen neurologique rapide (recherche de déficit focal)",
+            "interpretation": "Recherche de signes d'AVC constitué ou d'accident ischémique transitoire (AIT) par embolie."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Controle de la frequence cardiaque",
-      "Anticoagulation"
+      "Contrôle de la fréquence cardiaque (bêtabloquant ex. Métoprolol, ou inhibiteur calcique bradycardisant ex. Diltiazem)",
+      "Anticoagulation par Anticoagulants Oraux Directs (AOD, ex. Apixaban, Rivaroxaban) ou AVK",
+      "Discussion d'une cardioversion (pharmacologique par Amiodarone ou électrique par CEE) si FA < 48h ou après anticoagulation efficace d'au moins 3 semaines"
     ],
     "differentialDiagnosis": [
-      "Tachycardie supraventriculaire",
-      "Tachycardie ventriculaire"
+      "Flutter auriculaire (rythme régulier ou en marches d'escalier)",
+      "Tachycardie sinusale (sur fièvre, anémie, hyperthyroïdie)",
+      "Extrasystolie auriculaire ou ventriculaire polymorphe très fréquente"
+    ]
+  },
+  {
+    "name": "Péricardite aiguë",
+    "description": "Inflammation aiguë du péricarde, caractérisée par une douleur thoracique positionnelle et des modifications typiques de l'ECG.",
+    "redFlags": [
+      "Douleur thoracique persistante ou intense",
+      "Signes de tamponnade (turgescence jugulaire, pouls paradoxal, hypotension)",
+      "Frottement péricardique audible",
+      "Fièvre élevée associée (> 39°C)",
+      "Épanchement péricardique abondant à l'échographie"
+    ],
+    "scores": [
+      {
+        "name": "Critères Diagnostiques de la Péricardite (ESC)",
+        "description": "Diagnostic si au moins 2 critères sur 4 sont présents",
+        "criteria": [
+          "Douleur thoracique typique (pleurétique, augmentée à l'inspiration et en décubitus) (+1)",
+          "Frottement péricardique à l'auscultation (+1)",
+          "Modifications ECG typiques (sus-décalage diffus du ST ou sous-décalage du PR) (+1)",
+          "Épanchement péricardique nouveau ou majoré à l'échocardiographie (+1)"
+        ],
+        "interpretation": "Score >= 2 : Diagnostic de péricardite aiguë retenu."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen péricardique ciblé",
+        "steps": [
+          {
+            "action": "Auscultation cardiaque en position assise penchée en avant lors d'une expiration bloquée",
+            "interpretation": "Permet de rechercher le frottement péricardique (bruit superficiel, râpeux, systolo-diastolique)."
+          },
+          {
+            "action": "Recherche de signes de tamponnade (hypotension, turgescence jugulaire, assourdissement des bruits du cœur)",
+            "interpretation": "La triade de Beck signe une tamponnade péricardique, urgence vitale extrême."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Repos physique strict jusqu'à normalisation de la CRP et de l'ECG",
+      "Traitement anti-inflammatoire de première ligne : Aspirine (750-1000 mg 3x/j) ou Ibuprofène (600 mg 3x/j)",
+      "Association systématique à la Colchicine (0.5 mg 1 à 2x/j) pendant 3 mois pour réduire les récidives",
+      "Protection gastrique systématique par IPP (ex. Ésoméprazole)"
+    ],
+    "differentialDiagnosis": [
+      "Infarctus du myocarde (angor persistant, troponine positive)",
+      "Embolie pulmonaire",
+      "Pneumonie ou péricardite infectieuse",
+      "Dissection aortique"
+    ]
+  },
+  {
+    "name": "Cardiomyopathie hypertrophique",
+    "description": "Pathologie génétique caractérisée par une hypertrophie asymétrique du myocarde, principalement du ventricule gauche, sans cause secondaire. Elle entraîne une obstruction du flux sanguin ventriculaire, une diastolopathie et un risque accru d'arythmies mortelles. La présentation clinique typique inclut des syncopes à l'effort, des douleurs thoraciques à repos, une dyspnée d'effort et une hypertension artérielle. Les formes sévères peuvent révéler une insuffisance cardiaque ou des arythmies ventriculaires.",
+    "redFlags": [
+      "Syncope ou presyncope à l'effort ou après l'effort, souvent sans antécédent de maladie coronarienne",
+      "Douleur thoracique à repos ou à faible effort, non révélée par une coronaropathie",
+      "Famille avec antécédents de mort subite cardiaque avant 35 ans",
+      "Souffle systolique crescendo-décroissant à l'auscultation, amplifié par la manœuvre de Valsalva",
+      "Électrocardiogramme (ECG) avec des ondes T inversées en précordiales et des Q ondulations pathologiques"
+    ],
+    "scores": [
+      {
+        "name": "Score de Seattle",
+        "description": "Score pronostique évaluant le risque de mortalité cardiaque chez les patients avec cardiomyopathie hypertrophique. Il intègre des facteurs cliniques et biologiques.",
+        "criteria": [
+          "Classe fonctionnelle NYHA III-IV (+2 points)",
+          "Antécédent de syncope (+2 points)",
+          "Électrocardiogramme avec onde T inversée en D1, aVL, V5-V6 (+1 point)",
+          "Hypertrophie septale > 30 mm sur échocardiographie (+1 point)",
+          "Fréquence de palpitations > 3 fois/semaine (+1 point)"
+        ],
+        "interpretation": "Score ≥ 10 points : risque élevé de mortalité cardiaque (surveillance stricte et implantation possible d'un DAI). Score < 10 points : risque modéré à faible."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et familial",
+        "steps": [
+          {
+            "action": "Auscultation cardiaque avec attention au souffle systolique à l'apex, amplifié par la manœuvre de Valsalva et atténué par la position de Trendelenburg",
+            "interpretation": "Un souffle systolique crescendo-décroissant, amplifié par la manœuvre de Valsalva, évoque une sténose sous-aortique dynamique. L'atténuation en position de Trendelenburg suggère une obstruction valvulaire."
+          },
+          {
+            "action": "Recherche de signes de diastolopathie : galop de 3e, râles crépitants pulmonaires, œdèmes pédieux",
+            "interpretation": "La présence de râles crépitants et d'un galop de 3e indique une insuffisance cardiaque congestive secondaire à la diastolopathie."
+          },
+          {
+            "action": "Interrogatoire familial détaillé sur antécédents de mort subite, arythmies ou cardiomyopathie",
+            "interpretation": "Un antécédent familial de mort subite chez un proche de moins de 35 ans renforce le diagnostic génétique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de bêtabloquants (ex: métoprolol) pour réduire la contractilité et l'obstruction ventriculaire",
+      "Éviter les stimulants (caféine, amphétamines) et les exercices intenses à haute intensité",
+      "Implantation d'un défibrillateur automatique implantable (DAI) chez les patients à risque élevé de mort subite",
+      "Hospitalisation pour échocardiographie et évaluation de la gravité de l'obstruction",
+      "Éducation du patient sur les signes d'alerte (syncope, palpitations, dyspnée soudaine)"
+    ],
+    "differentialDiagnosis": [
+      "Sténose aortique valvulaire : souffle systolique à la 2e intercostale droite, absence d'hypertrophie septale sur échocardiographie",
+      "Cardiomyopathie arrhythmogénique du ventricule droit : localisation de l'hypertrophie au niveau du ventricule droit, ECG avec onde epsilon",
+      "Insuffisance mitrale aiguë : souffle systolique holosystolique, absence d'hypertrophie septale"
+    ]
+  },
+  {
+    "name": "Dissection aortique aiguë",
+    "description": "Pathologie vasculaire grave caractérisée par une lésion de l'intima aortique, créant un faux lumen et une séparation de la paroi. Elle peut affecter l'aorte ascendante (type A) ou descendante (type B). La présentation clinique typique est une douleur thoracique déchirante soudaine, irradiant vers le dos ou le cou. Les complications incluent la rupture, l'ischémie viscérale, la paralysie rénale et l'embolie cérébrale.",
+    "redFlags": [
+      "Douleur thoracique déchirante soudaine, décrivant une « lame de couteau » ou une « déchirure », souvent irradiant vers le cou ou le dos",
+      "Pouls asymétriques entre les membres supérieurs ou inférieurs",
+      "Signes neurologiques focaux (paralysie faciale, aphasie) suggérant une embolie cérébrale",
+      "Hypertension artérielle associée à une douleur thoracique aiguë",
+      "Hypotension artérielle soudaine avec signes de choc, en cas de rupture aortique"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Stanford",
+        "description": "Classification basée sur l'implantation de la dissection aortique.",
+        "criteria": [
+          "Type A : Dissection impliquant l'aorte ascendante (+1 point)",
+          "Type B : Dissection limitée à l'aorte descendante (0 point)"
+        ],
+        "interpretation": "Type A : chirurgie d'urgence nécessaire. Type B : gestion médicale ou endovasculaire possible selon la gravité."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire, neurologique et pulsations périphériques",
+        "steps": [
+          {
+            "action": "Palpation des pouls périphériques (radial, fémoral, poplité) pour détecter une asymétrie",
+            "interpretation": "Une asymétrie des pouls suggère une ischémie périphérique secondaire à l'obstruction de l'arc aortique."
+          },
+          {
+            "action": "Auscultation cardiaque pour rechercher un souffle d'insuffisance aortique aiguë",
+            "interpretation": "Un souffle systolique holosystolique à l'apex, associé à une hypotension, évoque une insuffisance aortique aiguë."
+          },
+          {
+            "action": "Examen neurologique complet pour détecter des signes d'embolie cérébrale ou de syndrome de TIA",
+            "interpretation": "Une paralysie faciale ou une aphasie suggère une embolie cérébrale secondaire à la dissection."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation hémodynamique avec bêtabloquants (ex: ésmolol) pour réduire la pression pulsatile et la tension pariétale",
+      "Contrôle de la pression artérielle avec un objectif de 100-120 mmHg (systolique) et 60-80 mmHg (diastolique)",
+      "Imagerie de référence (TDM spiralée ou échocardiographie transœsophagienne) pour confirmer le diagnostic et évaluer l'extension",
+      "Préparation chirurgicale d'urgence pour les dissections de type A ou complications aiguës (rupture, ischémie viscérale)",
+      "Anticoagulation en cas de dissection type B non compliquée, sous surveillance étroite"
+    ],
+    "differentialDiagnosis": [
+      "Infarctus du myocarde (exclure par biomarqueurs cardiaques et ECG)",
+      "Pneumothorax massif : absence de souffle pulmonaire, hypotension, absence de pouls",
+      "Péricardite aiguë (exclure par l'absence de douleur irradiant vers le cou et l'absence de souffle aortique)"
+    ]
+  },
+  {
+    "name": "Cardiomyopathie restrictive",
+    "description": "Pathologie caractérisée par une altération du remplissage ventriculaire due à une infiltration ou une fibrose myocardique, entraînant une rigidité ventriculaire. Les causes incluent l'amylose, la sarcoidose, ou des infiltrations de substances toxiques. Présentation clinique dominée par une insuffisance cardiaque congestive avec dyspnée orthopnée, œdèmes, et signes de surcharge veineuse. L'ECG montre souvent des ondes P biphasiques (en V1) et une ECG non spécifique. L'échocardiographie révèle une contraction ventriculaire préservée mais un remplissage diastolique altéré avec épaississement pariétal.",
+    "redFlags": [
+      "Dyspnée orthopnée s'aggravant en position allongée avec œdèmes des membres inférieurs persistants malgré un traitement diurétique",
+      "Signes de surcharge veineuse jugulaire associés à une tachycardie sinusoïdale non compensée",
+      "Crises de précipitation de l'insuffisance cardiaque après un effort modéré ou une infection",
+      "ECG révélant des ondes P en fente (P mitrale) ou des signes d'hypertrophie ventriculaire gauche",
+      "Échocardiographie montrant une contraction ventriculaire préservée avec épaississement pariétal asymétrique"
+    ],
+    "scores": [
+      {
+        "name": "Score de Mayo Clinic pour la cardiomyopathie restrictive",
+        "description": "Évalue la gravité clinique et le risque de complications basé sur les symptômes, l'ECG, et l'échocardiographie.",
+        "criteria": [
+          "Classe I: Symptômes légers avec ECG normal et échocardiographie sans fibrose (0 point)",
+          "Classe II: Dyspnée modérée avec ECG anormal (1 point)",
+          "Classe III: Insuffisance cardiaque sévère avec fibrose myocardique évidente (2 points)",
+          "Classe IV: Choc cardiogénique ou arrêt cardiaque (3 points)"
+        ],
+        "interpretation": "Score ≥ 2 indique une nécessité d'implantation de stimulateur ou de transplantation cardiaque en urgence."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et échocardiographie ciblée",
+        "steps": [
+          {
+            "action": "Palpation du pouls périphérique pour rechercher une pulsation paradoxale ou une hypotension diastolique",
+            "interpretation": "Pulsation paradoxale suggère une insuffisance cardiaque diastolique sévère; hypotension diastolique peut indiquer une fibrose myocardique."
+          },
+          {
+            "action": "Auscultation cardiaque pour identifier un souffle systolique ejection ou un souffle diastolique de type 'trompette'",
+            "interpretation": "Souffle systolique ejection peut indiquer une sténose aortique associée; souffle diastolique suggère une insuffisance tricuspide secondaire."
+          },
+          {
+            "action": "Échocardiographie avec Doppler tissulaire pour évaluer la rigidité ventriculaire et la présence de fibrose",
+            "interpretation": "Épaississement pariétal asymétrique et absence de mouvement des valves mitrales en 'bascule' sont des signes évocateurs."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Diurèse ciblée avec furosémide à dose fractionnée pour réduire la surcharge veineuse sans hypovolémie",
+      "Restriction stricte de sodium (<2g/jour) et surveillance quotidienne du poids corporel",
+      "Initiation d'un traitement inotrope (ex: dobutamine) en cas de tachycardie inefficace",
+      "Préparation à la transplantation cardiaque si score Mayo ≥ 3",
+      "Éviction immédiate de toute médication vasoconstricteur (ex: bêtabloquants en cas de comorbidité hypertensive)"
+    ],
+    "differentialDiagnosis": [
+      "Cardiomyopathie hypertrophique obstructive (présence d'hypertrophie asymétrique vs épaississement diffus)",
+      "Insuffisance cardiaque congestive chronique (insuffisance systolique vs diastolique)",
+      "Péricardite constrictive (présence de souffle pericardique vs souffle valvulaire)"
+    ]
+  },
+  {
+    "name": "Tachycardie ventriculaire non soutenue",
+    "description": "Arrhythmie caractérisée par des épisodes de tachycardie ventriculaire (>100 bpm) de courte durée (<30 secondes), souvent asymptomatiques mais pouvant déclencher des syncopes ou des crises de tachycardie. Physiopathologie liée à une réentrée ventriculaire ou à une automatisme anormal. L'ECG montre des complexes QRS larges (>120ms) avec axe dévié. Les causes incluent des cardiopathies structurales, des anomalies électriques (ex: syndrome de Brugada), ou des facteurs déclencheurs (ex: hypokaliémie).",
+    "redFlags": [
+      "Syncope soudaine sans antécédent de maladie cardiaque connue",
+      "Tachycardie ventriculaire répétée sur ECG Holter avec QRS larges et axe incohérent",
+      "Crises de tachycardie associées à une hypotension transitoire (<90mmHg systolique)",
+      "ECG de repos montrant des anomalies de repolarisation ou des signes de cardiopathie ischémique",
+      "Antécédents familiaux de mort subite cardiaque avant 40 ans"
+    ],
+    "scores": [
+      {
+        "name": "Score de Framingham pour le risque de tachycardie ventriculaire",
+        "description": "Évalue le risque de survenue de tachycardie ventriculaire basé sur des facteurs cliniques et électrocardiographiques.",
+        "criteria": [
+          "Facteur I: Cardiopathie ischémique (1 point)",
+          "Facteur II: Fréquence de complexes ventriculaires précoce >10.000/jour (2 points)",
+          "Facteur III: Hypertension artérielle non contrôlée (1 point)",
+          "Facteur IV: Anomalies de repolarisation sur ECG (1 point)",
+          "Facteur V: Antécédents de syncope (2 points)"
+        ],
+        "interpretation": "Score ≥ 5 indique un risque élevé de tachycardie ventriculaire nécessitant une ablation électrique ou un DAI."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Évaluation holterienne et examen électrophysiologique",
+        "steps": [
+          {
+            "action": "Enregistrement d'un ECG de 24h avec repérage des complexes ventriculaires précoce et de leur morphologie",
+            "interpretation": "Morphologie monofocale vs multifocale indique une origine structurale vs électrique."
+          },
+          {
+            "action": "Test d'effort sous surveillance ECG pour reproduire la tachycardie et évaluer la réponse hémodynamique",
+            "interpretation": "Réduction de la tachycardie à l'effort suggère une origine non ischémique."
+          },
+          {
+            "action": "Échocardiographie pour rechercher une cardiopathie sous-jacente (ex: anévrisme ventriculaire)",
+            "interpretation": "Anévrisme ventriculaire gauche est un facteur de risque majeur de tachycardie ventriculaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation hémodynamique avec amiodarone IV en cas de tachycardie associée à hypotension",
+      "Correction des déséquilibres électrolytiques (K+ >4mmol/L, Mg2+ >1.5mmol/L)",
+      "Implantation d'un défibrillateur automatique implantable (DAI) si score Framingham ≥ 5",
+      "Prescription d'un bêtabloquant à longue durée d'action (ex: bisoprolol) pour réduire la fréquence des crises",
+      "Préparation à l'ablation électrique si tachycardie multifocale ou résistante aux médicaments"
+    ],
+    "differentialDiagnosis": [
+      "Tachycardie supraventriculaire avec bloc de branche (QRS large mais axe normal)",
+      "Fibrillation auriculaire avec conduction inégale (rythme irrégulier vs régulier)",
+      "Tachycardie sinusoïdale accélérée (QRS étroits vs larges)"
+    ]
+  },
+  {
+    "name": "Cardiomyopathie arrhythmogène du ventricule droit (CAVRD)",
+    "description": "Pathologie génétique rare caractérisée par une fibrose graisseuse progressive du myocarde ventriculaire droit, entraînant des arythmies ventriculaires majeures, des syncopes et un risque de mort subite. La physiopathologie repose sur des mutations des gènes codant pour les protéines intermédiaires de la désoxyribopeptidase (desmoplakin, plakoglobin). La présentation clinique typique inclut des palpitations, des syncopes précoces (souvent avant 30 ans), une dyspnée d'effort et une insuffisance cardiaque progressive.",
+    "redFlags": [
+      "Palpitations associées à une tachycardie ventriculaire non soutenue ou soutenue avec un QRS large et une onde epsilon sur l'ECG",
+      "Syncope idiopathique chez un patient jeune (<40 ans) sans cause vasovagale évidente",
+      "Antécédents familiaux de mort subite cardiaque à jeune âge",
+      "Dyspnée d'effort inexpliquée avec une hypokinésie segmentaire du ventricule droit à l'échocardiographie",
+      "ECG en dérivation V1-V3 montrant une onde epsilon (onde de basse amplitude après le complexe QRS) ou une inversion des ondes T persistantes"
+    ],
+    "scores": [
+      {
+        "name": "Score de diagnostic de la CAVRD (Task Force 2010)",
+        "description": "Score basé sur des critères électrocardiographiques, échocardiographiques, scintigraphiques et histologiques pour établir le diagnostic de CAVRD.",
+        "criteria": [
+          "Critère majore (4 points) : Tachycardie ventriculaire non soutenue ou soutenue avec onde epsilon",
+          "Critère intermédiaire (2 points) : Hypokinésie du ventricule droit à l'échocardiographie",
+          "Critère mineur (1 point) : Inversion des ondes T en V1-V3 persistantes",
+          "Critère mineur (1 point) : Dilation du ventricule droit (diamètre transverse > 45 mm)"
+        ],
+        "interpretation": "Score ≥ 2 points : diagnostic probable ; score ≥ 4 points : diagnostic certain ; score < 2 points : diagnostic exclu."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen échocardiographique ciblé",
+        "steps": [
+          {
+            "action": "Évaluation de la morphologie ventriculaire droit (dilatation, hypokinésie, anévrisme) en mode 2D et Doppler",
+            "interpretation": "Une dilatation du ventricule droit (> 45 mm) ou une hypokinésie segmentaire évoque la CAVRD. La présence d'anévrisme mural est fortement spécifique."
+          },
+          {
+            "action": "Recherche d'onde epsilon en dérivation V1-V3 à l'ECG",
+            "interpretation": "L'onde epsilon (onde de basse amplitude après le complexe QRS) est un signe pathognomonique de la CAVRD."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Implantation d'un défibrillateur cardiaque implantable (DCI) chez les patients avec antécédents de tachycardie ventriculaire ou de risque élevé de mort subite",
+      "Prescription de bêta-bloquants (ex: métoprolol) pour réduire la fréquence cardiaque et prévenir les arythmies",
+      "Éviction des stimulants (caféine, amphétamines) et des activités physiques intenses",
+      "Évaluation génétique familiale pour identifier les porteurs asymptomatiques",
+      "Suivi régulier par échocardiographie et test d'effort pour surveiller l'évolution de la pathologie"
+    ],
+    "differentialDiagnosis": [
+      "Cardiomyopathie dilatée : absence d'onde epsilon et de fibrose graisseuse localisée au ventricule droit",
+      "Tachycardie ventriculaire idiopathique : absence de signes de fibrose myocardique",
+      "Myocardite aiguë : présence de signes d'inflammation (fièvre, élévation des marqueurs inflammatoires)"
+    ]
+  },
+  {
+    "name": "Myocardite aiguë virale",
+    "description": "Inflammation du myocarde d'origine virale, souvent liée à des agents comme le virus de la coxsackie, l'adénovirus ou le coronavirus. La physiopathologie implique une réponse immunitaire contre le myocarde infecté, entraînant une myocytolysie, une fibrose et une insuffisance cardiaque. La présentation clinique varie de formes bénignes (fièvre, fatigue) à des formes graves (choc cardiogénique, arythmies).",
+    "redFlags": [
+      "Fièvre associée à une dyspnée d'effort inexpliquée et une palpitation",
+      "Douleur thoracique non typique (non irradiante, non constrictive) avec élévation des enzymes myocardiques (troponine, CK-MB)",
+      "Signes d'insuffisance cardiaque aiguë (galop B3, râles pulmonaires) sans antécédents de cardiopathie",
+      "ECG montrant des modifications diffuses (ST élevés ou déprimés, onde T inversée) sans coronaropathie évidente",
+      "Antécédents récents d'infection virale (grippale, rhinopharyngite) avec survenue de symptômes cardiaques"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Dallas pour le diagnostic histologique",
+        "description": "Critères histopathologiques définissant la myocardite aiguë virale.",
+        "criteria": [
+          "Infiltrat lymphocytaire interstitiel (> 10 cellules/mm²)",
+          "Nécrose myocytique (fragmentation, karyorrhexie)",
+          "Présence de virus intracellulaire (démonstration par PCR ou immunohistochimie)"
+        ],
+        "interpretation": "Diagnostic confirmé par biopsie myocardique si ≥ 2 critères sont présents."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique et paraclinique ciblé",
+        "steps": [
+          {
+            "action": "Recherche d'antécédents récents d'infection virale (grippale, rhinopharyngite) et d'antécédents familiaux de cardiopathie",
+            "interpretation": "Une infection virale récente associée à des symptômes cardiaques évoque fortement la myocardite."
+          },
+          {
+            "action": "Échocardiographie pour évaluer la fonction ventriculaire (fraction d'éjection, hypokinésie segmentaire)",
+            "interpretation": "Une fraction d'éjection réduite (< 45 %) ou une hypokinésie diffusée évoque une myocardite aiguë."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Repos strict (absence d'activité physique pendant 3-6 mois) pour éviter l'aggravation de la myocytolysie",
+      "Support symptomatique : diurétiques pour la surcharge hydro-sodée, bêta-bloquants pour les arythmies",
+      "Immunosuppression (ex: corticoïdes) en cas de myocardite auto-immune ou de réaction de type hypersensibilité",
+      "Hospitalisation en unité de soins intensifs pour les formes graves (choc cardiogénique, arythmies complexes)",
+      "Biopsie myocardique pour confirmation diagnostique et orientation thérapeutique"
+    ],
+    "differentialDiagnosis": [
+      "Infarctus du myocarde aigu : absence de fièvre et de signes d'inflammation, présence de coronaropathie",
+      "Pericardite aiguë : douleur thoracique constrictive irradiant vers le cou, absence de signes d'insuffisance cardiaque",
+      "Cardiomyopathie dilatée idiopathique : absence d'antécédents d'infection virale récente"
     ]
   }
 ]

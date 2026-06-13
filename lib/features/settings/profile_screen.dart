@@ -53,6 +53,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   void _showAvatarSelection(String currentKey) {
+    final l10n = context.l10n;
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -75,13 +76,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
             ),
             const SizedBox(height: 24),
-            const Text(
-              "Choisissez votre identité",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+            Text(
+              l10n.profileChooseIdentity,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 8),
             Text(
-              "Sélectionnez l'avatar qui vous ressemble",
+              l10n.profileSelectAvatarDesc,
               style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
             ),
             const SizedBox(height: 32),
@@ -234,6 +235,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   }
 
   void _showInterestsSelection(List<String> currentInterests) {
+    final l10n = context.l10n;
     //Placeholder list of common medical interests if not found elsewhere
     final allInterests = [
       "Cardiology",
@@ -273,9 +275,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-              const Text(
-                "Vos Intérêts Médicaux",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+              Text(
+                l10n.profileMedicalInterests,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
               ),
               const SizedBox(height: 32),
               Expanded(
@@ -330,9 +332,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         borderRadius: BorderRadius.circular(16),
                       ),
                     ),
-                    child: const Text(
-                      "Enregistrer les intérêts",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    child: Text(
+                      l10n.profileSaveInterests,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -363,14 +365,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           maxLines: isNumber ? 1 : null,
           autofocus: true,
           decoration: InputDecoration(
-            hintText: 'Enter$title',
+            hintText: title,
             border: const OutlineInputBorder(),
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           ElevatedButton(
             onPressed: () {
@@ -380,7 +382,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               Navigator.pop(context);
               _updateField(key, value);
             },
-            child: const Text('Save'),
+            child: Text(l10n.saveChanges),
           ),
         ],
       ),
@@ -466,7 +468,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     const SizedBox(height: 16),
                     _buildInfoTile(
                       l10n.year,
-                      'Année${user.year}',
+                      l10n.profileYearPrefix(user.year.toString()),
                       Iconsax.calendar,
                       onEdit: () => _showSelectionSheet(
                         title: l10n.year,
@@ -478,7 +480,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     const SizedBox(height: 16),
                     _buildInfoTile(
                       l10n.specialty,
-                      user.specialty.isEmpty ? 'Non spécifié' : user.specialty,
+                      user.specialty.isEmpty ? l10n.profileNotSpecified : user.specialty,
                       Iconsax.teacher,
                       onEdit: () => _showSelectionSheet(
                         title: l10n.specialty,
@@ -492,7 +494,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     _buildSectionHeader(l10n.authCurrentFocusTitle),
                     _buildInfoTile(
                       l10n.profileLearningGoal,
-                      user.learningGoal ?? 'Non défini',
+                      user.learningGoal ?? l10n.profileNotDefined,
                       Iconsax.status_up,
                       onEdit: () => _showSelectionSheet(
                         title: l10n.profileLearningGoal,
@@ -510,7 +512,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     _buildInfoTile(
                       l10n.profileInterests,
                       user.interests.isEmpty
-                          ? 'Aucun intérêt choisi'
+                          ? l10n.profileNoInterestSelected
                           : user.interests.join(", "),
                       Iconsax.heart,
                       onEdit: () => _showInterestsSelection(user.interests),
@@ -520,7 +522,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       l10n.profileNextExam,
                       user.nextExamDate != null
                           ? user.nextExamDate!.toIso8601String().split('T')[0]
-                          : 'Non défini',
+                          : l10n.profileNotDefined,
                       Iconsax.timer_1,
                       onEdit: () async {
                         final date = await showDatePicker(
@@ -543,10 +545,10 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     ),
 
                     const SizedBox(height: 32),
-                    _buildSectionHeader('Habitudes d\'Étude'),
+                    _buildSectionHeader(l10n.profileStudyHabits),
                     _buildInfoTile(
                       l10n.profileStudyTime,
-                      user.studyTime ?? 'Non défini',
+                      user.studyTime ?? l10n.profileNotDefined,
                       Iconsax.clock,
                       onEdit: () async {
                         final now = TimeOfDay.now();
@@ -565,7 +567,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     const SizedBox(height: 16),
                     _buildInfoTile(
                       l10n.profileQuizPreference,
-                      user.quizPreference ?? 'Non défini',
+                      user.quizPreference ?? l10n.profileNotDefined,
                       Iconsax.note_2,
                       onEdit: () => _showSelectionSheet(
                         title: l10n.profileQuizPreference,

@@ -337,6 +337,8 @@ class NotificationService {
         router.push(AppRoutes.medicalCalculator);
       } else if (route == AppRoutes.notifications) {
         router.push(AppRoutes.notifications);
+      } else if (route == AppRoutes.productiveBay) {
+        router.push(AppRoutes.productiveBay);
       } else {
         debugPrint('DEBUG: Unhandled notification route: $route');
       }
@@ -351,6 +353,46 @@ class NotificationService {
       (e) => e.name == typeStr.toLowerCase(),
       orElse: () => NotificationType.system,
     );
+  }
+
+  Future<void> showLocalNotification({
+    required String title,
+    required String body,
+    required NotificationType type,
+    Map<String, dynamic>? data,
+  }) async {
+    // 1. Add to database
+    await addNotification(
+      title: title,
+      body: body,
+      type: type,
+      data: data,
+    );
+
+    // 2. Show native popup (unless on web)
+    if (!kIsWeb) {
+      await _localNotifications.show(
+        id: title.hashCode ^ body.hashCode,
+        title: title,
+        body: body,
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'high_importance_channel',
+            'High Importance Notifications',
+            channelDescription: 'This channel is used for important notifications.',
+            importance: Importance.max,
+            priority: Priority.high,
+            icon: '@mipmap/ic_launcher',
+          ),
+          iOS: DarwinNotificationDetails(
+            presentAlert: true,
+            presentBadge: true,
+            presentSound: true,
+          ),
+        ),
+        payload: data != null ? jsonEncode(data) : null,
+      );
+    }
   }
 
   Future<void> addNotification({

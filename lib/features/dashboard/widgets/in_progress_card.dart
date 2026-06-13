@@ -6,8 +6,9 @@ class InProgressCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final quizSession = ref.watch(quizSessionProvider);
+    final hasSaved = ref.watch(hasSavedQuizSessionProvider).value ?? false;
     final l10n = AppLocalizations.of(context)!;
-    final isInitialized = quizSession.isInitialized;
+    final isInitialized = quizSession.isInitialized || hasSaved;
 
     return InkWell(
       onTap: () {
@@ -73,7 +74,9 @@ class InProgressCard extends ConsumerWidget {
             const SizedBox(height: 4),
             Text(
               isInitialized
-                  ? '${quizSession.userAnswers.length}Questions'
+                  ? (quizSession.isInitialized
+                      ? '${quizSession.userAnswers.length} Questions'
+                      : 'Progression sauvegardée')
                   : l10n.startNewQuiz,
               style: TextStyle(
                 color: Colors.white.withOpacity(0.9),

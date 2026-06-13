@@ -85,7 +85,7 @@ class ObservationRepository {
         specialtyKey,
         jsonContent,
       );
-      _ref.read(activeObservationIdProvider.notifier).state = newId;
+      _ref.read(observationReportProvider.notifier).updateActiveObservationId(newId);
       return newId;
     }
   }
@@ -96,70 +96,70 @@ class ObservationRepository {
     //Reset first
     resetObservationReport(_ref);
 
+    final notifier = _ref.read(observationReportProvider.notifier);
+
     //Load pieces
     if (data.containsKey('patient')) {
       final p = data['patient'];
-      _ref.read(patientInfoProvider.notifier).state = PatientInfo(
+      notifier.updatePatientInfo(PatientInfo(
         name: p['name'] ?? '',
         age: p['age'] ?? '',
         gender: p['gender'] ?? '',
-      );
+      ));
     }
 
     if (data.containsKey('introduction')) {
       final intro = data['introduction'];
       if (intro is Map) {
-        _ref.read(introductionDataProvider.notifier).state = IntroductionData(
+        notifier.updateIntroductionData(IntroductionData(
           origin: intro['origin'] ?? '',
           maritalStatus: intro['maritalStatus'] ?? '',
           profession: intro['profession'] ?? '',
           admissionDate: intro['admissionDate'] ?? '',
           signs: intro['signs'] ?? '',
-        );
+        ));
       } else {
         //Fallback for old simple string data if any
-        _ref.read(introductionDataProvider.notifier).state = IntroductionData(
+        notifier.updateIntroductionData(IntroductionData(
           signs: intro?.toString() ?? '',
-        );
+        ));
       }
     }
     if (data.containsKey('motif')) {
-      _ref.read(motifHospitalisationProvider.notifier).state =
-          data['motif'] ?? '';
+      notifier.updateMotifHospitalisation(data['motif'] ?? '');
     }
 
     if (data.containsKey('histoire')) {
-      _ref.read(histoireMaladieProvider.notifier).state =
-          data['histoire'] ?? '';
+      notifier.updateHistoireMaladie(data['histoire'] ?? '');
     }
 
     if (data.containsKey('antecedents')) {
       final a = data['antecedents'];
-      _ref.read(antecedentsProvider.notifier).state = Antecedents(
+      notifier.updateAntecedents(Antecedents(
         medicaux: a['medicaux'] ?? '',
         chirurgicaux: a['chirurgicaux'] ?? '',
         familiaux: a['familiaux'] ?? '',
         gynecoObstetriques: a['gyneco'] ?? '',
         modeDeVie: a['modeDeVie'] ?? '',
-      );
+      ));
     }
 
     if (data.containsKey('vitals')) {
       final v = data['vitals'];
-      _ref.read(vitalsProvider.notifier).state = Vitals(
+      notifier.updateVitals(Vitals(
         temperature: v['temp'] ?? '',
         bloodPressure: v['bp'] ?? '',
         heartRate: v['hr'] ?? '',
         respiratoryRate: v['rr'] ?? '',
         oxygenSaturation: v['spo2'] ?? '',
         weight: v['weight'] ?? '',
-      );
+      ));
     }
 
     if (data.containsKey('physicalExam')) {
-      _ref.read(physicalExamProvider.notifier).state = Map<String, String>.from(
+      notifier.updatePhysicalExam(Map<String, String>.from(
         data['physicalExam'],
-      );
+      ));
     }
 
     if (data.containsKey('customFields')) {
@@ -172,7 +172,7 @@ class ObservationRepository {
             ),
           )
           .toList();
-      _ref.read(customPhysicalExamFieldsProvider.notifier).state = fields;
+      notifier.updateCustomPhysicalExamFields(fields);
     }
 
     if (data.containsKey('paraclinical')) {
@@ -192,20 +192,19 @@ class ObservationRepository {
             ),
           )
           .toList();
-      _ref.read(paracliniqueExamsProvider.notifier).state = exams;
+      notifier.updateParacliniqueExams(exams);
     }
 
     if (data.containsKey('resume')) {
-      _ref.read(resumeTotalProvider.notifier).state = data['resume'] ?? '';
+      notifier.updateResumeTotal(data['resume'] ?? '');
     }
 
     if (data.containsKey('assessment')) {
-      _ref.read(assessmentAndPlanProvider.notifier).state =
-          data['assessment'] ?? '';
+      notifier.updateAssessmentAndPlan(data['assessment'] ?? '');
     }
 
     //Set the active ID so auto-save updates this entry instead of creating a new one
-    _ref.read(activeObservationIdProvider.notifier).state = report.id;
+    notifier.updateActiveObservationId(report.id);
   }
 
   Future<List<DbSavedObservation>> getAllReports() => _db.getAllObservations();

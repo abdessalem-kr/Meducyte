@@ -13,6 +13,9 @@ import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:flutter_timezone/flutter_timezone.dart';
 
+// Focus & Fatigue / Notifications Imports
+import 'package:meducyte_app/features/productive_bay/application/services/fatigue_notification_observer.dart';
+
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   //Initialize Firebase for the background isolate
@@ -129,6 +132,9 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Watch global fatigue notifications observer
+    ref.watch(fatigueNotificationObserverProvider);
+
     final themeMode = ref.watch(themeModeProvider);
     final locale = ref.watch(localeProvider);
     final router = ref.watch(goRouterProvider);

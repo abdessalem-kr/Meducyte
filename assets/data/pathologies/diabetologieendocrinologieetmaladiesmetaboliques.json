@@ -1,131 +1,448 @@
 [
   {
-    "name": "Diabète de type 1",
-    "description": "Diabète auto-immun",
+    "name": "Hypoparathyroïdie idiopathique",
+    "description": "Pathologie caractérisée par une insuffisance fonctionnelle des glandes parathyroïdes entraînant une hypocalcémie, une hyperphosphorémie et une diminution de la calcitriol. La physiopathologie repose sur une sécrétion inadéquate de parathormone (PTH), conduisant à une dérégulation du métabolisme du calcium. La présentation clinique typique inclut des symptômes neurologiques (tétanie, crampes musculaires, paresthésies), des manifestations cutanées (cheveux fragiles, ongles cassants) et des anomalies cardiaques (prolongation du QT sur l'ECG).",
     "redFlags": [
-      "Hyperglycémie",
-      "Cétose",
-      "Déséquilibre hydrique"
+      "Tétanie avec crampes des muscles du visage ou des mains persistantes malgré un repos",
+      "Crises convulsives non épileptiques associées à une hypocalcémie confirmée",
+      "Prolongation du QT sur l'ECG avec risque de tachycardie ventriculaire torsade de pointe",
+      "Signe de Chvostek positif (twitchement facial à la percussion de la nerf facial)",
+      "Signe de Trousseau positif (spasme carpiopédieux lors de la compression d'un garrot)"
     ],
     "scores": [
       {
-        "name": "Score de cétose",
-        "description": "Évaluation de la gravité de la cétose",
+        "name": "Score de gravité de l'hypocalcémie",
+        "description": "Évalue la gravité clinique de l'hypocalcémie en fonction des symptômes et des anomalies biologiques.",
         "criteria": [
-          "Niveau de corps cétoniques",
-          "pH sanguin"
+          "Classe I: Hypocalcémie asymptomatique (<1.85 mmol/L) sans anomalies ECG (+0)",
+          "Classe II: Hypocalcémie modérée (1.6-1.85 mmol/L) avec paresthésies (+1)",
+          "Classe III: Hypocalcémie sévère (<1.6 mmol/L) avec tétanie ou QT prolongé (+2)",
+          "Classe IV: Hypocalcémie critique (<1.4 mmol/L) avec convulsions ou arrêt cardiaque (+3)"
         ],
-        "interpretation": "Score élevé : cétose grave"
+        "interpretation": "La somme des points guide la gravité et la nécessité d'une correction immédiate. Les classes III-IV nécessitent une supplémentation calcique intraveineuse."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen clinique",
+        "title": "Examen neurologique et musculaire",
         "steps": [
           {
-            "action": "Évaluation de la conscience",
-            "interpretation": "Altération de la conscience : urgence vitale"
+            "action": "Recherche de tétanie par la percussion du nerf facial (signe de Chvostek)",
+            "interpretation": "Un signe positif (twitchement facial) évoque une hypocalcémie sévère avec dérégulation du seuil de dépolarisation des nerfs."
           },
           {
-            "action": "Recherche de signes de déshydratation",
-            "interpretation": "Déséquilibre hydrique : nécessité de réhydratation"
+            "action": "Compression d'un garrot sur le bras pendant 2 minutes (signe de Trousseau)",
+            "interpretation": "Un spasme carpiopédieux indique une hypocalcémie critique avec hyperexcitabilité des muscles squelettiques."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Réhydratation",
-      "Insulinothérapie"
+      "Supplémentation calcique intraveineuse (gluconate de calcium 10% à 1-2 g sur 10-20 minutes) pour les symptômes sévères",
+      "Administration de vitamine D active (calcitriol) à dose ajustée selon la sévérité",
+      "Surveillance continue de l'ECG pour détecter les anomalies de conduction",
+      "Hospitalisation pour correction progressive de l'hypocalcémie et prévention des complications",
+      "Éducation du patient sur les signes d'urgence (crampes, convulsions) et l'autocontrôle des symptômes"
     ],
     "differentialDiagnosis": [
-      "Diabète de type 2",
-      "Diabète gestationnel"
+      "Insuffisance rénale chronique (hypocalcémie secondaire à une carence en calcitriol)",
+      "Déficit en vitamine D (hypocalcémie avec PTH inappropriée)",
+      "Hypomagnésémie (hypocalcémie réfractaire à la supplémentation calcique)"
     ]
   },
   {
-    "name": "Hyperparathyroïdie primitive",
-    "description": "Trouble du métabolisme du calcium",
+    "name": "Syndrome de Cushing exogène",
+    "description": "État pathologique induit par une exposition chronique à des corticostéroïdes exogènes (glucocorticoïdes), entraînant une surcharge de cortisol artificielle. La physiopathologie implique une inhibition de l'axe hypothalamo-hypophyso-surrénalien, des effets métaboliques (obésité centrale, hyperglycémie) et des manifestations cutanées (stries, acné). La présentation clinique typique inclut une perte de masse musculaire, une hypertension artérielle et une intolérance au glucose.",
     "redFlags": [
-      "Hypercalcémie",
-      "Néphrolithiase",
-      "Insuffisance rénale"
+      "Perte de masse musculaire proximale associée à une obésité centrale marquée",
+      "Hypertension artérielle résistante malgré une thérapeutique optimale",
+      "Stries cutanées érythémateuses sur les cuisses ou les fesses",
+      "Hyperglycémie persistante avec diabète de type 2 induit par les stéroïdes",
+      "Atrophie des surrénales sur imagerie secondaire à l'inhibition chronique de l'ACTH"
     ],
     "scores": [
       {
-        "name": "Score de Karolyi",
-        "description": "Évaluation de la gravité de l'hyperparathyroïdie",
+        "name": "Score de gravité du syndrome de Cushing exogène",
+        "description": "Évalue la gravité clinique et métabolique liée à l'excès de glucocorticoïdes.",
         "criteria": [
-          "Niveau de calcium",
-          "Niveau de phosphore"
+          "Classe I: Exposition à des stéroïdes à faible dose (<10 mg/jour de prednisone) sans complications (+0)",
+          "Classe II: Exposition à des stéroïdes à dose modérée (10-30 mg/jour) avec intolérance au glucose (+1)",
+          "Classe III: Exposition à des stéroïdes à dose élevée (>30 mg/jour) avec hypertension artérielle résistante (+2)",
+          "Classe IV: Exposition prolongée (>3 mois) avec atrophie surrénalienne ou ostéoporose sévère (+3)"
         ],
-        "interpretation": "Score élevé : hyperparathyroïdie grave"
+        "interpretation": "Les classes III-IV nécessitent une surveillance étroite et une réduction progressive de la dose de stéroïdes."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen clinique",
+        "title": "Examen dermatologique et musculaire",
         "steps": [
           {
-            "action": "Recherche de signes de lithiase rénale",
-            "interpretation": "Néphrolithiase : nécessité de prise en charge"
+            "action": "Recherche de stries érythémateuses sur les cuisses, les fesses et le ventre",
+            "interpretation": "Les stries érythémateuses sont typiques d'une hypercortisolémie chronique liée à la fragilité capillaire et à l'atrophie cutanée."
           },
           {
-            "action": "Évaluation de la fonction rénale",
-            "interpretation": "Insuffisance rénale : nécessité de prise en charge"
+            "action": "Évaluation de la force musculaire proximale (hanches, épaules)",
+            "interpretation": "Une atrophie musculaire proximale évoque une myopathie liée aux stéroïdes."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Réhydratation",
-      "Traitement de l'hypercalcémie"
+      "Réduction progressive de la dose de corticostéroïdes sous surveillance endocrinologique",
+      "Initiation d'une thérapie de substitution avec des stéroïdes à action plus courte (hydrocortisone) si atrophie surrénalienne",
+      "Contrôle strict de l'hypertension artérielle avec des antihypertenseurs de première intention",
+      "Surveillance glycémique quotidienne et ajustement de l'insulinothérapie si diabète induit",
+      "Éducation du patient sur les effets secondaires à long terme (ostéoporose, cataracte)"
     ],
     "differentialDiagnosis": [
-      "Hyperparathyroïdie secondaire",
-      "Pseudo-hyperparathyroïdie"
+      "Syndrome de Cushing endogène (surrénale ou hypophyse) avec ACTH sécrétée",
+      "Obésité centrale idiopathique sans exposition à des stéroïdes",
+      "Hypertension artérielle secondaire liée à une sténose rénale"
     ]
   },
   {
-    "name": "Syndrome de Cushing",
-    "description": "Trouble de l'axe hypothalamo-hypophyso-surrénalien",
+    "name": "Diabète de type 1 avec acidocétose diabétique (ACD)",
+    "description": "Pathologie auto-immune caractérisée par une destruction des cellules bêta pancréatiques, entraînant une carence absolue en insuline. Présentation clinique typique : polyurie, polydipsie, amaigrissement, cétonurie, acidose métabolique. Complication aiguë majeure de l'insulinopenie, l'ACD se manifeste par une déshydratation sévère, une kaliémie anormale et une altération de l'état de conscience.",
     "redFlags": [
-      "Hypertension artérielle",
-      "Diabète",
-      "Obésité"
+      "Polydipsie intense associée à une perte de poids rapide (>10 % du poids corporel en <1 mois)",
+      "Respiration de Kussmaul (respiration profonde et rapide) avec odeur fruitée (acétone) à l'expiration",
+      "Déshydratation cutanée (peau lâche, turgescence cutanée diminuée, capillaires rétractés > 3 secondes)",
+      "Altération de l'état de conscience (confusion, somnolence, coma) avec ou sans convulsions",
+      "Signes de décompensation cardiaque (tachycardie > 120 bpm, hypotension orthostatique)"
     ],
     "scores": [
       {
-        "name": "Score de Cushing",
-        "description": "Évaluation de la gravité du syndrome de Cushing",
+        "name": "Score de gravité de l'acidocétose diabétique (ADA 2023)",
+        "description": "Évalue la gravité de l'ACD en fonction des paramètres biologiques et cliniques.",
         "criteria": [
-          "Niveau de cortisol",
-          "Niveau de corticotropine"
+          "pH sanguin < 7,1 (+3 points)",
+          "Bicarbonates < 10 mmol/L (+2 points)",
+          "Glycémie > 33,3 mmol/L (+1 point)",
+          "Coma diabétique (+2 points)",
+          "Déshydratation sévère (poids < 90 % du poids habituel) (+2 points)"
         ],
-        "interpretation": "Score élevé : syndrome de Cushing grave"
+        "interpretation": "Score total ≥ 8 : ACD sévère nécessitant une réanimation immédiate. Score 5-7 : ACD modérée. Score < 5 : ACD bénigne."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen clinique",
+        "title": "Examen clinique ciblé pour l'ACD",
         "steps": [
           {
-            "action": "Recherche de signes de syndrome de Cushing",
-            "interpretation": "Syndrome de Cushing : nécessité de prise en charge"
+            "action": "Palpation des téguments et turgescence cutanée",
+            "interpretation": "Déshydratation cutanée marquée (peau lâche, turgescence < 2 secondes) évoque une perte hydrique > 5 % du poids corporel."
           },
           {
-            "action": "Évaluation de la fonction cardiaque",
-            "interpretation": "Insuffisance cardiaque : nécessité de prise en charge"
+            "action": "Auscultation cardiaque et recherche de râles pulmonaires",
+            "interpretation": "Tachycardie > 120 bpm avec absence de râles pulmonaires évoque une déshydratation hypovolémique. Râles crépitants associés à une tachypnée suggèrent une acidose métabolique associée à une insuffisance respiratoire."
+          },
+          {
+            "action": "Évaluation de l'état de conscience (échelle de Glasgow)",
+            "interpretation": "Score < 8 indique un coma diabétique, nécessitant une intubation précoce pour protéger l'airway."
+          },
+          {
+            "action": "Recherche de signes de décompensation rénale (oligurie, œdèmes)",
+            "interpretation": "Oligurie < 0,5 mL/kg/h avec azotémie > 2 fois la normale évoque une insuffisance rénale aiguë secondaire à l'ACD."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Traitement de l'hypertension artérielle",
-      "Traitement du diabète"
+      "Réanimation intraveineuse avec perfusion de glucose 5 % à 15-20 mL/kg/h pour prévenir l'hypoglycémie iatrogène",
+      "Insuline continue en perfusion (0,1 U/kg/h) avec ajustement selon la glycémie (objectif 10-15 mmol/L)",
+      "Correction des électrolytes (potassium 2-4 mmol/L) par voie intraveineuse",
+      "Alcalinisation sanguine avec bicarbonate de sodium (100-200 mmol) si pH < 7,1",
+      "Hypotension orthostatique : perfusion de chlorure de sodium 0,9 % à 1-2 L/h pour rétablir le volume intravasculaire"
     ],
     "differentialDiagnosis": [
-      "Syndrome de Cushing iatrogène",
-      "Pseudo-syndrome de Cushing"
+      "Diabète de type 2 avec hyperglycémie hyperosmolaire non cétosique (HHNS) : absence de cétones urinaires et osmolarité sanguine > 320 mOsm/kg",
+      "Toxicité aux médicaments (ex: SGLT2 inhibiteurs) : présence d'antécédents de traitement diabétique récent",
+      "Infection aiguë (pyélonéphrite, pancréatite) : fièvre > 38,5 °C avec leucocytose"
+    ]
+  },
+  {
+    "name": "Thyrotoxicose fatale (crise thyrotoxique)",
+    "description": "Complication grave de l'hyperthyroïdie caractérisée par une libération massive d'hormones thyroïdiennes, entraînant une défaillance multi-organes. Physiopathologie : activation des récepteurs bêta-adrénergiques par les hormones thyroïdiennes, avec tachycardie, hyperthermie, myocardiopathie et dérèglement métabolique. Présentation clinique : fièvre > 40 °C, tachycardie > 140 bpm, confusion, tremblements, et signes de décompensation cardiaque.",
+    "redFlags": [
+      "Fièvre > 40 °C associée à une tachycardie > 140 bpm et une transpiration profuse",
+      "Délire ou hallucinations avec agressivité ou apathie extrême",
+      "Tremblements fin des mains associés à un exophtalmos marqué",
+      "Signes de décompensation cardiaque (galop B3, œdème pulmonaire)",
+      "Hypertension artérielle > 180/110 mmHg avec ou sans crise convulsive"
+    ],
+    "scores": [
+      {
+        "name": "Score de Burch-Wartofsky pour la thyrotoxicose fatale",
+        "description": "Évalue la gravité de la crise thyrotoxique en fonction des signes cliniques et biologiques.",
+        "criteria": [
+          "Fièvre > 40 °C (+10 points)",
+          "Tachycardie > 140 bpm (+10 points)",
+          "Délire ou hallucinations (+10 points)",
+          "Tremblements fin des mains (+5 points)",
+          "Exophtalmos marqué (+5 points)",
+          "Crise convulsive (+5 points)",
+          "Oedème pulmonaire (+5 points)",
+          "Hypertension artérielle > 180/110 mmHg (+5 points)"
+        ],
+        "interpretation": "Score ≥ 45 : thyrotoxicose fatale confirmée. Score 30-44 : crise thyrotoxique modérée. Score < 30 : hyperthyroïdie non compliquée."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé pour la thyrotoxicose fatale",
+        "steps": [
+          {
+            "action": "Palpation de la thyroïde et recherche de nodule ou de goitre",
+            "interpretation": "Goitre diffus ou nodulaire avec ou sans bruit de souffle évoque une hyperthyroïdie. Absence de goitre suggère une thyrotoxicose factice (ex: consommation de L-thyroxine)."
+          },
+          {
+            "action": "Évaluation des signes oculaires (exophtalmos, clignotement réduit)",
+            "interpretation": "Exophtalmos > 24 mm (échelle de NOSPEF) associé à une réduction du clignotement évoque une thyroïdite de Basedow."
+          },
+          {
+            "action": "Auscultation cardiaque et recherche de galop B3",
+            "interpretation": "Galop B3 associé à une tachycardie > 140 bpm évoque une insuffisance cardiaque secondaire à la thyrotoxicose."
+          },
+          {
+            "action": "Recherche de signes de déshydratation (peau sèche, capillaires rétractés)",
+            "interpretation": "Déshydratation marquée (capillaires rétractés > 3 secondes) nécessite une réanimation intraveineuse immédiate."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antithyroïdiens (méthimazole 60 mg/j ou propylthiouracile 600 mg/j) pour inhiber la synthèse hormonale",
+      "Bêtabloquants non sélectifs (propranolol 1-2 mg IV toutes les 4 heures) pour contrôler la tachycardie et les symptômes adrénergiques",
+      "Iode colloïdal (Lugol) 5 g/j pour bloquer la libération des hormones thyroïdiennes",
+      "Corticoïdes (dexaméthasone 4 mg IV toutes les 6 heures) pour prévenir la myocardiopathie thyrotoxique",
+      "Réanimation intraveineuse avec perfusion de chlorure de sodium 0,9 % à 1-2 L/h pour corriger la déshydratation"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome de libération des hormones thyroïdiennes (ex: thyroïdite de De Quervain) : absence de goitre et présence d'agrandissement thyroïdien douloureux",
+      "Toxicité aux médicaments (ex: amiodarone) : antécédents de traitement avec amiodarone et taux de thyroxine libre normal",
+      "Sepsis : fièvre > 40 °C avec leucocytose et source infectieuse identifiable"
+    ]
+  },
+  {
+    "name": "Hypoglycémie d'origine inconnue (syndrome de Whipple)",
+    "description": "Pathologie caractérisée par des épisodes répétés de symptômes hypoglycémiques associés à des taux plasmatiques de glucose < 3,3 mmol/L, sans cause évidente (insulinothérapie, jeûne, alcool). La physiopathologie implique une sécrétion anormale d'insuline endogène ou une résistance à l'insuline. Les symptômes neuroglucergiques (tremblements, sueurs, confusion) et neuroglycopeniques (amaurose, convulsions, coma) sont typiques. L'exclusion des causes secondaires (insulinome, tumeurs neuroendocrines, insuffisance hépatique) est essentielle.",
+    "redFlags": [
+      "Symptômes hypoglycémiques récurrents associés à des taux de glucose < 2,8 mmol/L confirmés par dosage plasmatique",
+      "Symptômes neurologiques focaux (paralysie faciale, ataxie) lors de l'hypoglycémie",
+      "Réponse inadéquate à l'administration de glucose (hypoglycémie persistante > 30 minutes)",
+      "Présence de corps cétoniques associés à l'hypoglycémie (suggérant une cause hépatique ou métabolique)",
+      "Hypoglycémie nocturne récurrente avec réveil pour consommer du sucre"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Whipple",
+        "description": "Score diagnostique basé sur la triade clinique pour suspecter un insulinome",
+        "criteria": [
+          "Classe I: Hypoglycémie confirmée (< 2,8 mmol/L) (+3 points)",
+          "Classe II: Symptômes neuroglucergiques typiques (+2 points)",
+          "Classe III: Réponse à l'administration de glucose (+1 point)",
+          "Classe IV: Absence de corps cétoniques (+1 point)"
+        ],
+        "interpretation": "Score ≥ 5 points fortement évocateur d'un insulinome. Score < 3 points oriente vers d'autres causes hypoglycémiantes."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et endocrinien ciblé",
+        "steps": [
+          {
+            "action": "Palpation abdominale pour rechercher une tumeur pancréatique ou une hypertrophie du pancréas",
+            "interpretation": "Une tumeur palpable au niveau du pancréas est fortement évocatrice d'un insulinome. L'absence de masse ne permet pas d'exclure la pathologie."
+          },
+          {
+            "action": "Examen neurologique complet avec recherche de signes de lésion cérébrale focale",
+            "interpretation": "Les signes neurologiques focaux lors de l'hypoglycémie suggèrent une lésion cérébrale secondaire à l'hypoglycémie prolongée."
+          },
+          {
+            "action": "Mesure de la pression artérielle orthostatique",
+            "interpretation": "Une hypotension orthostatique associée à l'hypoglycémie évoque une insuffisance adrénocortico-surrénale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'une solution de glucose à 20% par voie intraveineuse (10-20 mL) pour les symptômes neuroglucergiques",
+      "Surveillance continue du glucose sanguin capillaire toutes les 15 minutes",
+      "Prélèvement sanguin pour dosage de l'insuline, C-peptide, glucose, corps cétoniques",
+      "Hospitalisation en unité de soins intensifs pour surveillance neurologique",
+      "Préparation à l'imagerie pancréatique (échographie endoscopique ou IRM) pour recherche d'insulinome"
+    ],
+    "differentialDiagnosis": [
+      "Insulinome fonctionnel (confirmé par dosage de l'insuline et C-peptide pendant l'hypoglycémie)",
+      "Syndrome de l'hypoglycémie réactive postprandiale (lié à une sécrétion d'insuline anormalement tardive)",
+      "Hypoglycémie due à un déficit en alpha-1-antitrypsine"
+    ]
+  },
+  {
+    "name": "Hyperthyroïdie de type de Basedow (hyperthyroïdie auto-immune)",
+    "description": "Pathologie auto-immune caractérisée par la production d'anticorps stimulants de la TSH (TSI) qui activent le récepteur de la TSH thyroïdienne, entraînant une hyperproduction de thyroxine. Présentation clinique typique avec tachycardie, tremor, exophtalmie, perte de poids et transpiration excessive. La physiopathologie implique une infiltration lymphocytaire de la thyroïde avec formation de follicules autonomes.",
+    "redFlags": [
+      "Tachycardie sinusal > 120 bpm associée à une thyrotoxicose",
+      "Exophtalmie bilatérale avec signes de compression orbitaire (diplopie, vision trouble)",
+      "Crises de thyrotoxicose aiguë (palpitations, tremor, confusion) sur fond de traitement inadéquat",
+      "Présence de nodules thyroïdiens avec fixation des mouvements (signe de Wartofsky)",
+      "Hypercalcémie associée à la thyrotoxicose (syndrome de Woltmann)"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Thompson pour le diagnostic de Basedow",
+        "description": "Score diagnostique basé sur les signes cliniques et biologiques",
+        "criteria": [
+          "Classe I: Exophtalmie bilatérale (+3 points)",
+          "Classe II: Tremor fin des mains (+2 points)",
+          "Classe III: Tachycardie > 100 bpm (+2 points)",
+          "Classe IV: Goitre diffus et mou (+1 point)",
+          "Classe V: Anticorps anti-TPO positifs (+1 point)"
+        ],
+        "interpretation": "Score ≥ 7 points fortement évocateur de Basedow. Score < 5 points oriente vers d'autres causes d'hyperthyroïdie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen thyroïdien et oculaire ciblé",
+        "steps": [
+          {
+            "action": "Palpation thyroïdienne pour évaluer la taille, la consistance et la fixation des mouvements",
+            "interpretation": "Un goitre diffus, mou et non douloureux est typique. La fixation des mouvements lors de la déglutition évoque une infiltration lymphocytaire."
+          },
+          {
+            "action": "Examen des yeux avec recherche de signes de compression orbitaire",
+            "interpretation": "L'exophtalmie avec réduction de la mobilité oculaire et signe de lid lag (retard de fermeture des paupières) sont caractéristiques."
+          },
+          {
+            "action": "Mesure de la pression intraorbitaire par tonométrie",
+            "interpretation": "Une pression orbitaire augmentée (> 15 mmHg) suggère une compression du nerf optique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de bêta-bloquants non sélectifs (propranolol 10-40 mg PO toutes les 6-8 heures) pour contrôler les symptômes sympathomimétiques",
+      "Initiation d'antithyroïdiens (méthimazole 10-30 mg/j ou carbimazole 15-30 mg/j)",
+      "Précaution contre la thyrotoxicose fatale (surveillance étroite de la température, du rythme cardiaque et de l'état mental)",
+      "Préparation à l'administration d'iode radioactif ou à la thyroïdectomie en cas de résistance aux traitements",
+      "Hospitalisation en cas de signes de crise thyrotoxique (fièvre > 39°C, confusion, tachycardie > 140 bpm)"
+    ],
+    "differentialDiagnosis": [
+      "Adénome thyroïdien fonctionnant (confirmé par scintigraphie thyroïdienne)",
+      "Hyperthyroïdie factice (consommation de thyroxine exogène)",
+      "Syndrome de Riedel (infiltration fibreuse de la thyroïde)"
+    ]
+  },
+  {
+    "name": "Syndrome de Cushing endogène (adénome corticosurrénalien ou hypophyse)",
+    "description": "Le syndrome de Cushing endogène résulte d'une hyperproduction chronique de cortisol d'origine corticosurrénalienne (adénome ou carcinome) ou hypophysaire (adénome ACTH-dépendant). La physiopathologie implique une stimulation excessive des récepteurs glucocorticoïdes, entraînant une résistance à l'insuline, une lipolyse centrale, une protéolyse musculaire et une hyperglycémie. La présentation clinique typique inclut une obésité centrale, des stries cutanées, une faciès pleine (moon face), une hypertension artérielle, une hypokaliémie, une hyperglycémie et une atrophie musculaire.",
+    "redFlags": [
+      "Obésité centrale associée à une atrophie des membres supérieurs et inférieurs",
+      "Stries cutanées étendues sur le ventre, les fesses et les cuisses",
+      "Hypertension artérielle résistante malgré un traitement optimal",
+      "Hyperglycémie persistante avec glycosurie et cétonurie absente",
+      "Amincissement de la peau avec fragilité capillaire et ecchymoses spontanées"
+    ],
+    "scores": [
+      {
+        "name": "Critères diagnostiques de l'Institut National de la Santé (NIH)",
+        "description": "Score évaluant la probabilité de syndrome de Cushing basé sur des critères cliniques et biologiques.",
+        "criteria": [
+          "Critère 1: Obésité centrale (IMC > 30 kg/m²) + stries cutanées (≥ 3 cm) → +2 points",
+          "Critère 2: Hypertension artérielle (TA > 140/90 mmHg) → +1 point",
+          "Critère 3: Hyperglycémie (glycémie à jeun > 1,26 g/L) → +1 point",
+          "Critère 4: Amincissement de la peau ou fragilité capillaire → +1 point"
+        ],
+        "interpretation": "Score ≥ 4 points: Probabilité élevée de syndrome de Cushing. Score < 4 points: Étude complémentaire nécessaire (ex: test de suppression de la dexaméthasone)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé pour le syndrome de Cushing",
+        "steps": [
+          {
+            "action": "Palpation des glandes surrénales pour rechercher une hypertrophie ou une masse",
+            "interpretation": "Une hypertrophie bilatérale évoque une hyperplasie adénome, tandis qu'une masse unilatérale suggère un adénome ou carcinome."
+          },
+          {
+            "action": "Mesure de la pression artérielle en position assise et allongée",
+            "interpretation": "Une hypotension orthostatique associée à une hypertension artérielle chronique évoque une insuffisance corticosurrénalienne secondaire."
+          },
+          {
+            "action": "Examen dermatologique des stries cutanées et de l'épaisseur de la peau",
+            "interpretation": "Les stries blanchâtres ou violacées > 3 cm sont fortement évocatrices d'une hypercorticisme chronique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension immédiate des corticostéroïdes exogènes si administrés",
+      "Initiation d'une thérapie anti-hypertensive (ex: béta-bloquants ou inhibiteurs de l'enzyme de conversion) pour contrôler l'hypertension",
+      "Correction des déséquilibres électrolytiques (hypokaliémie) par voie intraveineuse",
+      "Prise en charge de l'hyperglycémie par insuline à débit continu si glycémie > 3 g/L",
+      "Préparation pour une imagerie cérébrale (IRM hypophyse) ou une tomodensitométrie des surrénales"
+    ],
+    "differentialDiagnosis": [
+      "Pseudo-Cushing (obésité, dépression sévère, alcoolisme) : absence de stries cutanées et réponse normale au test de suppression de la dexaméthasone",
+      "Hyperaldostéronisme primaire : hypertension associée à une hypokaliémie sans stries cutanées",
+      "Syndrome de Conn : hypertension associée à une hypokaliémie et un taux plasmatique d'aldostérone élevé"
+    ]
+  },
+  {
+    "name": "État hyperglycémique hyperosmolaire non cétosique (EHHC)",
+    "description": "L'EHHC est une urgence métabolique caractérisée par une hyperglycémie extrême (> 33 mmol/L), une hyperosmolalité plasmatique (> 320 mOsm/kg) et une absence de cétose significative. La physiopathologie repose sur une déshydratation extrême due à une diabèse osmotique, associée à une résistance à l'insuline. La présentation clinique typique inclut une confusion mentale, une polyurie, une soif intense, une déshydratation cutanée et une hypotension orthostatique.",
+    "redFlags": [
+      "Glycémie > 33 mmol/L avec osmolalité plasmatique > 320 mOsm/kg",
+      "Déshydratation cutanée marquée avec turgescence cutanée absente",
+      "Confusion mentale ou coma sans cétonurie",
+      "Hypotension orthostatique associée à une tachycardie",
+      "Polyurie inexpliquée avec une densité urinaire élevée"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'EHHC (HHS score)",
+        "description": "Score évaluant la gravité clinique et la réponse au traitement.",
+        "criteria": [
+          "Critère 1: Âge > 60 ans → +1 point",
+          "Critère 2: Glycémie > 33 mmol/L → +1 point",
+          "Critère 3: Osmolalité plasmatique > 320 mOsm/kg → +1 point",
+          "Critère 4: Coma ou confusion profonde → +2 points"
+        ],
+        "interpretation": "Score ≥ 5 points: Risque élevé de complications (insuffisance rénale, AVC). Score < 3 points: Pronostic favorable."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé pour l'EHHC",
+        "steps": [
+          {
+            "action": "Palpation des muqueuses buccales et de la peau pour évaluer la déshydratation",
+            "interpretation": "Des muqueuses sèches et une peau lâche évoquent une déshydratation sévère."
+          },
+          {
+            "action": "Mesure de la pression artérielle en position assise et allongée",
+            "interpretation": "Une hypotension orthostatique associée à une tachycardie évoque une hypovolémie."
+          },
+          {
+            "action": "Examen neurologique pour rechercher des signes de confusion ou de coma",
+            "interpretation": "Une altération de l'état de conscience sans cétonurie évoque fortement l'EHHC."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réanimation intraveineuse avec perfusion de solution saline isotonique (0,9 %) à 500-1000 mL/h pendant les 2 premières heures",
+      "Initiation d'une perfusion d'insuline à faible débit (0,1 U/kg/h) après correction initiale de la déshydratation",
+      "Correction des déséquilibres électrolytiques (hypokaliémie, hyponatrémie) par voie intraveineuse",
+      "Surveillance étroite de la glycémie (cible: 10-15 mmol/L) et de l'osmolalité plasmatique",
+      "Prévention des complications (ischémie cérébrale, insuffisance rénale) par une réanimation précoce"
+    ],
+    "differentialDiagnosis": [
+      "Acidocétose diabétique (ACD): présence de cétonurie et de pH acide (< 7,3)",
+      "Diabète de type 2 non contrôlé: absence de déshydratation sévère et d'osmolalité élevée",
+      "Syndrome néphrotique: oedèmes associés à une protéinurie"
     ]
   }
 ]

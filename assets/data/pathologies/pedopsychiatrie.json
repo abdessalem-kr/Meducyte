@@ -1,0 +1,336 @@
+[
+  {
+    "name": "Trouble de l'humeur dysrégulé chez l'enfant (THD)",
+    "description": "Le THD est caractérisé par des crises d'irritabilité fréquentes, intenses et inappropriées à l'âge du sujet, associées à une humeur irritabilité persistante intercurrente. La physiopathologie implique probablement une dysrégulation du système limbique et une altération des mécanismes de modulation émotionnelle. Les crises surviennent au moins deux fois par semaine, durent plus d'une heure, et perturbent significativement les fonctions sociales, scolaires ou familiales.",
+    "redFlags": [
+      "Crises d'irritabilité fréquentes (>2 par semaine) avec agressivité verbale ou physique envers les pairs ou les adultes",
+      "Humeur irritabilité persistante pendant au moins 12 mois, sans période de rémission complète",
+      "Impact fonctionnel majeur sur les performances scolaires ou les relations interpersonnelles",
+      "Absence de réponse aux interventions comportementales standardisées",
+      "Présence de symptômes associés comme des troubles du sommeil ou de l'appétit"
+    ],
+    "scores": [
+      {
+        "name": "Critères DSM-5 pour le THD",
+        "description": "Évaluation basée sur la fréquence, l'intensité et l'impact des crises d'irritabilité, ainsi que sur la durée de l'humeur persistante.",
+        "criteria": [
+          "Crises d'irritabilité fréquentes (≥2/semaine) (+1 point)",
+          "Durée moyenne des crises >1 heure (+1 point)",
+          "Humeur irritabilité persistante ≥12 mois (+1 point)",
+          "Impact fonctionnel majeur sur au moins deux domaines (scolaire, social, familial) (+1 point)",
+          "Exclusion des troubles du spectre autistique ou de l'ADHD (+0 point)"
+        ],
+        "interpretation": "Score ≥3 points : diagnostic probable de THD. Score <3 : nécessite un suivi plus long ou une évaluation différentielle."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique comportemental et développemental",
+        "steps": [
+          {
+            "action": "Interview structurée des parents et enseignants sur la fréquence, la durée et le contexte des crises d'irritabilité",
+            "interpretation": "Permet d'identifier des schémas répétitifs et des déclencheurs spécifiques, essentiels pour le diagnostic."
+          },
+          {
+            "action": "Observation directe du comportement de l'enfant en situation de stress mineur (ex: changement de routine)",
+            "interpretation": "Révèle une réponse émotionnelle exagérée par rapport à la situation, confirmant la dysrégulation émotionnelle."
+          },
+          {
+            "action": "Évaluation du fonctionnement social et scolaire via des questionnaires standardisés (ex: CBCL)",
+            "interpretation": "Quantifie l'impact fonctionnel et guide l'orientation thérapeutique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Mise en place d'un programme de thérapie comportementale intensive (TCC) avec renforcement positif",
+      "Éducation des parents sur les techniques de gestion des crises (ex: compter jusqu'à 10, espace de calme)",
+      "Évaluation de la nécessité d'une thérapie pharmacologique (ex: SSRIs à faible dose en cas de comorbidité anxieuse)",
+      "Coordination avec l'école pour adapter l'environnement scolaire (ex: pauses régulières)",
+      "Suivi mensuel avec ajustement du plan thérapeutique selon l'évolution"
+    ],
+    "differentialDiagnosis": [
+      "Trouble de l'attention avec hyperactivité (ADHD) : crises d'irritabilité secondaires à l'impulsivité, non persistantes",
+      "Trouble autistique de l'enfant (TDA) : humeur irritabilité liée à des difficultés sensorielles, non associée à des crises",
+      "Trouble bipolaire de type I : épisodes maniaques avec humeur euphorique, non observés dans le THD"
+    ]
+  },
+  {
+    "name": "Syndrome de l'immaturité émotionnelle post-traumatique (SIET)",
+    "description": "Le SIET survient après un traumatisme psychique majeur (ex: abus, négligence) et se manifeste par une régression émotionnelle, une hypervigilance, et des troubles du sommeil. La physiopathologie implique une hyperactivation de l'axe HPA et une altération de la maturation cérébrale. Les symptômes incluent une peur excessive de séparation, des hallucinations sensorielles, et une incapacité à réguler les émotions.",
+    "redFlags": [
+      "Régression développementale après un événement traumatique (ex: réapparition de la pipi au lit à l'âge de 7 ans)",
+      "Hypervigilance constante avec réponse exagérée aux stimuli environnementaux",
+      "Troubles du sommeil persistants (ex: cauchemars >3 fois/semaine)",
+      "Peur irrationnelle de séparation parent-enfant",
+      "Symptômes physiques non expliqués (ex: maux de ventre chroniques)"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de l'impact post-traumatique (PCL-5)",
+        "description": "Évaluation des 20 symptômes majeurs du trouble de stress post-traumatique (TSPT) adaptée aux enfants.",
+        "criteria": [
+          "Intrusion (ex: souvenirs intrusifs) : 0-4 points",
+          "Évitement : 0-4 points",
+          "Réactions négatives à l'humeur : 0-4 points",
+          "Réactivité psychomotrice : 0-4 points",
+          "Désengagement : 0-4 points"
+        ],
+        "interpretation": "Score ≥33 : diagnostic probable de TSPT. Score <33 : nécessite une évaluation complémentaire."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurodéveloppemental et psychologique",
+        "steps": [
+          {
+            "action": "Évaluation de l'histoire traumatique via l'interview de l'enfant et des parents",
+            "interpretation": "Identifie la nature, la durée et l'intensité du trauma, clés pour le diagnostic."
+          },
+          {
+            "action": "Test de mémoire visuelle (ex: Test de Rey-Osterrieth) pour évaluer les déficits cognitifs secondaires",
+            "interpretation": "Révèle des anomalies de la mémoire de travail liées à l'hyperactivation amygdalienne."
+          },
+          {
+            "action": "Observation des interactions parent-enfant pour détecter des schémas d'attachement anormaux",
+            "interpretation": "Présence de dépendance excessive ou rejet du parent, indiquant une altération de l'attachement."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Thérapie de traitement des traumatismes (TCC-T) avec des séances hebdomadaires",
+      "Stabilisation de l'environnement familial via un soutien psychosocial intensif",
+      "Prescription d'un hypnotique à faible dose (ex: melatonin) pour améliorer la qualité du sommeil",
+      "Éducation des parents sur les mécanismes de régulation émotionnelle",
+      "Évaluation de la nécessité d'une hospitalisation en milieu sécurisé en cas de risque suicidaire"
+    ],
+    "differentialDiagnosis": [
+      "Trouble de stress post-traumatique (TSPT) : diagnostic différentiel principal, nécessite une évaluation des critères DSM-5",
+      "Trouble de l'anxiété généralisée : anxiété diffuse sans lien direct avec un trauma spécifique",
+      "Trouble dépressif majeur : humeur dépressive sans éléments de trauma explicite"
+    ]
+  },
+  {
+    "name": "Trouble du spectre autistique (TSA)",
+    "description": "Neurodysfonctionnement développemental caractérisé par des déficits persistants dans l'interaction sociale, la communication non verbale et des comportements restreints, répétitifs ou stéréotypés. Physiopathologie liée à des anomalies des connexions cortico-corticales et des circuits neuronaux impliqués dans la théorie de l'esprit. Présentation clinique typique : absence de contact visuel spontané, retard du langage, intérêts restreints, répétitions motrices (mouvements de balancement), absence de réponse au prénom avant 12-18 mois.",
+    "redFlags": [
+      "Absence de contact visuel spontané avant 12 mois avec absence de réponse au prénom",
+      "Langage non fonctionnel à 24 mois (absence de phrases de 2 mots)",
+      "Comportements stéréotypés répétitifs (mouvements de balancement, fixation d'objets)",
+      "Absence d'attention partagée (pointage pour attirer l'attention) avant 18 mois",
+      "Réaction anormalement forte à des stimuli sensoriels (hypersensibilité auditive ou visuelle)"
+    ],
+    "scores": [
+      {
+        "name": "Critères diagnostiques DSM-5 pour le TSA",
+        "description": "Classification basée sur 2 domaines principaux : déficits sociaux/communicationnels et comportements restreints/répétitifs",
+        "criteria": [
+          "Critère A1: Déficits dans l'échange social (contact visuel, lecture des expressions faciales)",
+          "Critère A2: Difficultés dans l'utilisation de la communication non verbale (gestes, postures)",
+          "Critère A3: Déficits dans la flexibilité sociale (adaptation aux changements)",
+          "Critère B1: Intérêts restreints (fixation sur des objets ou thèmes spécifiques)",
+          "Critère B2: Comportements répétitifs (stéréotypies, routines rigides)"
+        ],
+        "interpretation": "Diagnostic confirmé si au moins 3 critères A et 2 critères B sont présents, avec apparition avant 36 mois et impactant significativement la vie quotidienne."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique global du développement",
+        "steps": [
+          {
+            "action": "Observation spontanée du contact visuel et de la réponse au prénom",
+            "interpretation": "Absence de contact visuel spontané ou réponse au prénom avant 18 mois évoque fortement un TSA"
+          },
+          {
+            "action": "Évaluation de la communication non verbale (gestes, pointage, expressions faciales)",
+            "interpretation": "Absence de pointage pour attirer l'attention ou de lecture des expressions faciales indique un déficit social majeur"
+          },
+          {
+            "action": "Analyse des jeux symboliques et interactions sociales",
+            "interpretation": "Préférence pour des jeux solitaires, absence de partage d'objets ou de jeux collaboratifs"
+          },
+          {
+            "action": "Recherche de stéréotypies motrices (balancement, fixation d'objets)",
+            "interpretation": "Présence de mouvements répétitifs ou de fixations sensorielles anormales"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Évaluation multidisciplinaire (pédiatre, psychologue, orthophoniste) dans les 48 heures",
+      "Prise en charge éducative individualisée (PEI) avec thérapie comportementale intensive",
+      "Soutien parental par des ateliers de communication non verbale",
+      "Éviter les stimuli sensoriels intenses en cas d'hypersensibilité",
+      "Suivi régulier par un neuropsychiatre de l'enfance"
+    ],
+    "differentialDiagnosis": [
+      "Trouble du langage spécifique (absence de déficits sociaux)",
+      "Retard mental isolé (déficits cognitifs sans comportements stéréotypés)",
+      "Trouble de l'attention avec hyperactivité (TAH) (comportements impulsifs sans déficits sociaux)"
+    ]
+  },
+  {
+    "name": "Trouble de conduite (TC)",
+    "description": "Désordre comportemental caractérisé par une persistance de comportements agressifs, destructeurs ou mensongers enfreignant les normes sociales. Physiopathologie liée à des anomalies des circuits limbiques et des neurotransmetteurs (dopamine, sérotonine). Présentation clinique : agressivité physique, destruction de biens, mensonges pathologiques, fugues, truandage, harcèlement systématique.",
+    "redFlags": [
+      "Violence physique répétée contre des animaux ou des personnes",
+      "Destruction intentionnelle de biens appartenant à autrui",
+      "Mensonges pathologiques pour obtenir des avantages matériels",
+      "Fugues répétées sans préavis (plus de 2 fois/mois)",
+      "Truandage systématique (vols, escroqueries) avant l'âge de 12 ans"
+    ],
+    "scores": [
+      {
+        "name": "Critères diagnostiques DSM-5 pour le TC",
+        "description": "Classification basée sur 4 catégories de comportements antisociaux",
+        "criteria": [
+          "Catégorie A: Agressivité physique (4 critères requis)",
+          "Catégorie B: Dommages matériels (2 critères requis)",
+          "Catégorie C: Duperie ou tromperie (2 critères requis)",
+          "Catégorie D: Violation des règles (3 critères requis)",
+          "Durée persistante > 6 mois avec impact sur la vie scolaire/familiale"
+        ],
+        "interpretation": "Diagnostic confirmé si au moins 3 catégories sont atteintes avec des comportements persistants depuis plus de 6 mois."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Évaluation comportementale contextuelle",
+        "steps": [
+          {
+            "action": "Interview structurée des parents sur les incidents récents",
+            "interpretation": "Présence de schémas répétitifs d'agression ou de mensonge pathologique"
+          },
+          {
+            "action": "Observation des interactions sociales en milieu scolaire",
+            "interpretation": "Comportements de harcèlement systématique ou de manipulation des pairs"
+          },
+          {
+            "action": "Évaluation des antécédents familiaux de troubles antisociaux",
+            "interpretation": "Facteur de risque majeur pour le développement du TC"
+          },
+          {
+            "action": "Analyse des réponses émotionnelles face à des frustrations",
+            "interpretation": "Réactions violentes ou destructrices en réponse à des obstacles mineurs"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Programme de thérapie comportementale intensive (TCC) avec renforcement des comportements positifs",
+      "Intervention familiale structurée (thérapie comportementale parentale)",
+      "Collaboration avec l'école pour un plan d'intervention éducatif personnalisé",
+      "Évaluation psychiatrique pour exclure les troubles de l'humeur sous-jacents",
+      "Suivi régulier par un psychologue de l'enfance avec ajustement des stratégies"
+    ],
+    "differentialDiagnosis": [
+      "Trouble oppositionnel démentiel (absence de comportements destructeurs)",
+      "Trouble de l'humeur bipolaire (épisodes de colère sans persistance des comportements)",
+      "Trouble de l'attention avec hyperactivité (TAH) (comportements impulsifs sans mensonges pathologiques)"
+    ]
+  },
+  {
+    "name": "Trouble dissociatif de l'enfance (TDE)",
+    "description": "Le TDE est un trouble psychiatrique caractérisé par une dissociation pathologique de la conscience, de l'identité ou de la mémoire, survenant principalement chez les enfants exposés à des traumatismes répétés ou prolongés. La physiopathologie implique des mécanismes de défense neuroplastiques visant à isoler des souvenirs traumatiques, entraînant des altérations de l'intégrité psychique. Cliniquement, il se manifeste par des épisodes de perte de mémoire contextuelle, des identités alternantes (dissociation de l'identité), ou des troubles sensoriels dissociatifs (dépersonnalisation, déréalisation).",
+    "redFlags": [
+      "Perte soudaine de mémoire contextuelle pour des événements récents (amnésie dissociative) en contexte de traumatisme",
+      "Comportements incohérents ou identités alternantes observés par des tiers (ex: changement brutal de ton de voix ou de personnalité)",
+      "Dépersonnalisation persistante (sensation de ne pas être soi-même) associée à des troubles de l'identité",
+      "Déréalisation (sensation d'irréalité environnante) associée à des troubles de l'attention",
+      "Réactions de dissociation en réponse à des stimuli anodins (ex: perte de conscience lors de discussions sur des thèmes neutres)"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de dissociation pour enfants (DIS-Q)",
+        "description": "Échelle validée évaluant la sévérité des symptômes dissociatifs chez les enfants, avec un score seuil de 20/50 pour suspecter un TDE",
+        "criteria": [
+          "Critère 1: Fréquence des épisodes dissociatifs (0-4 points selon la régularité)",
+          "Critère 2: Intensité des symptômes dissociatifs (0-4 points selon la gravité perçue)",
+          "Critère 3: Impact fonctionnel sur la vie quotidienne (0-4 points selon la perturbation)",
+          "Critère 4: Présence d'identités alternantes (0-4 points selon la complexité)"
+        ],
+        "interpretation": "Un score supérieur à 20/50 indique une dissociation cliniquement significative nécessitant une évaluation psychiatrique approfondie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé des troubles dissociatifs",
+        "steps": [
+          {
+            "action": "Interview structurée utilisant l'ESD-C (Enfant Structured Dissociation Interview for Children)",
+            "interpretation": "La détection de réponses incohérentes ou de changements soudains de tonalité narrative évoque une dissociation de l'identité."
+          },
+          {
+            "action": "Observation des comportements non verbals (ex: mouvements oculaires dissociés, troubles de la coordination)",
+            "interpretation": "Des mouvements oculaires dissociés ou des pauses soudaines dans la communication non verbale suggèrent une dissociation de la conscience."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Établir un plan de sécurité immédiat pour prévenir les risques de suicide ou d'automutilation",
+      "Initier une thérapie de stabilisation (ex: thérapie cognitivo-comportementale modifiée pour les dissociations)",
+      "Impliquer la famille dans un programme d'éducation thérapeutique sur les mécanismes dissociatifs",
+      "Prescrire un traitement pharmacologique symptomatique (ex: anxiolytiques à faible dose en cas de comorbidité anxieuse)",
+      "Organiser une hospitalisation en milieu spécialisé si les symptômes compromettent la sécurité ou l'autonomie"
+    ],
+    "differentialDiagnosis": [
+      "Trouble bipolaire (absence de cycles maniaques typiques)",
+      "Trouble de l'identité dissociative (TID) (présence d'identités plus structurées)",
+      "Trouble de l'humeur réactif (absence de mécanismes dissociatifs)"
+    ]
+  },
+  {
+    "name": "Trouble de stress post-traumatique complexe (TSPTC)",
+    "description": "Le TSPTC est une forme avancée du trouble de stress post-traumatique (TSPT) observée chez les enfants soumis à des traumatismes répétés ou prolongés (ex: maltraitance, négligence). Il se caractérise par une combinaison de symptômes de re-vécu, d'évitement, d'hyperarousal et de troubles régulateurs (émotionnels, comportementaux, interpersonnels). La physiopathologie implique des altérations des circuits limbiques et de l'axe HPA, associées à une plasticité cérébrale anormale.",
+    "redFlags": [
+      "Réactions de re-vécu persistantes (ex: flashbacks) associées à des événements traumatiques récents",
+      "Évitement systématique de stimuli liés au trauma (ex: refus de parler de la famille)",
+      "Symptômes d'hyperarousal (ex: insomnie chronique, hypervigilance) associés à des troubles du sommeil",
+      "Dépendance aux substances ou comportements à risque (ex: automutilations) pour gérer les émotions",
+      "Perturbation des relations interpersonnelles (ex: rejet des figures parentales)"
+    ],
+    "scores": [
+      {
+        "name": "CAPS-CA (Clinician-Administered PTSD Scale for Children and Adolescents)",
+        "description": "Échelle clinicien-administrée évaluant la sévérité du TSPTC, avec un score seuil de 50/80 pour diagnostic",
+        "criteria": [
+          "Critère 1: Fréquence des symptômes de re-vécu (0-4 points selon la régularité)",
+          "Critère 2: Intensité des symptômes d'évitement (0-4 points selon l'impact fonctionnel)",
+          "Critère 3: Sévérité des symptômes d'hyperarousal (0-4 points selon la gravité)",
+          "Critère 4: Présence de troubles régulateurs (0-4 points selon la complexité)"
+        ],
+        "interpretation": "Un score supérieur à 50/80 indique un TSPTC nécessitant une intervention multidisciplinaire."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé des traumatismes complexes",
+        "steps": [
+          {
+            "action": "Interview détaillée des antécédents traumatiques (ex: chronologie des événements, contexte socio-familial)",
+            "interpretation": "La détection de traumatismes répétés ou prolongés oriente vers un TSPTC plutôt qu'un TSPT simple."
+          },
+          {
+            "action": "Évaluation des compétences régulatrices (ex: test de résilience émotionnelle)",
+            "interpretation": "Des compétences régulatrices altérées (ex: incapacité à gérer les émotions) renforcent le diagnostic."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Établir un plan de sécurité pour prévenir les risques de suicide ou d'automutilation",
+      "Initier une thérapie de stabilisation (ex: thérapie EMDR modifiée pour les traumatismes complexes)",
+      "Impliquer la famille dans un programme d'éducation thérapeutique sur les mécanismes de stress post-traumatique",
+      "Prescrire un traitement pharmacologique symptomatique (ex: antidépresseurs SNRI en cas de comorbidité dépressive)",
+      "Organiser une hospitalisation en milieu spécialisé si les symptômes compromettent la sécurité ou l'autonomie"
+    ],
+    "differentialDiagnosis": [
+      "Trouble de l'humeur réactif (absence de mécanismes de re-vécu typiques)",
+      "Trouble de l'attachement réactif (absence de traumatismes répétés)",
+      "Trouble de l'anxiété généralisée (absence de contexte traumatique)"
+    ]
+  }
+]

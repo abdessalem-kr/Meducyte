@@ -1,0 +1,224 @@
+[
+  {
+    "name": "Xanthogranulomatose pyélonéphrite",
+    "description": "Inflammation chronique destructive du rein, caractérisée par une infiltration de cellules xanthomateuses, de macrophages et de lymphocytes, associée à une infection urinaire chronique. Elle évolue vers une fibrose extensive, une destruction parenchymateuse et une insuffisance rénale. Présentation clinique : douleur lombaire chronique, fièvre intermittente, pyurie, hématurie, perte de poids et signes d'insuffisance rénale.",
+    "redFlags": [
+      "Douleur lombaire unilatérale persistante associée à une fièvre basse récidivante",
+      "Hématurie macroscopique associée à une pyurie persistante",
+      "Perte de poids inexpliquée supérieure à 10 % du poids corporel en 6 mois",
+      "Insuffisance rénale unilatérale avec atrophie parenchymateuse sur imagerie",
+      "Signes d'obstruction urinaire associés à une infection chronique"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de la xanthogranulomatose pyélonéphrite (XGPN)",
+        "description": "Évalue la sévérité de la lésion parenchymateuse et le risque de perte rénale",
+        "criteria": [
+          "Score 0: Conservation > 70 % du parenchyme rénal",
+          "Score 1: Atrophie 50-70 % du parenchyme",
+          "Score 2: Atrophie 30-50 % du parenchyme",
+          "Score 3: Atrophie < 30 % du parenchyme ou fonction résiduelle < 10 %"
+        ],
+        "interpretation": "Un score ≥ 2 indique une indication chirurgicale (néphrectomie) en raison du risque élevé de perte fonctionnelle. Un score ≤ 1 justifie une surveillance étroite avec antibiothérapie ciblée."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen lombaire et urinaire ciblé",
+        "steps": [
+          {
+            "action": "Palpation des flancs pour rechercher une douleur à la percussion lombaire",
+            "interpretation": "Douleur à la percussion lombaire unilatérale évoque une infection ou une inflammation rénale chronique"
+          },
+          {
+            "action": "Examen urinaire complet avec recherche de pyurie, hématurie et protéinurie",
+            "interpretation": "Pyurie persistante (> 10 leucocytes/µL) et hématurie associées à une infection chronique orientent vers une XGPN"
+          },
+          {
+            "action": "Échographie rénale avec évaluation de la taille parenchymateuse et de la présence de calculs",
+            "interpretation": "Atrophie parenchymateuse unilatérale avec calculs calcaires en \"étoile\" est typique de la XGPN"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie de longue durée (3-6 mois) avec association de pénicilline et de cotrimoxazole",
+      "Drainage percutané en cas de pyonephrose aiguë",
+      "Contrôle de la glycémie et correction des facteurs de risque (diabète, lithiase urinaire)",
+      "Évaluation chirurgicale (néphrectomie) en cas de score XGPN ≥ 2 ou de perte fonctionnelle > 80 %",
+      "Suivi trimestriel de la fonction rénale par clairance de la créatinine"
+    ],
+    "differentialDiagnosis": [
+      "Calculs urinaires chroniques avec infection secondaire (présence de calculs visibles vs absence de calculs en XGPN)",
+      "Adénocarcinome rénal (absence de signes d'infection vs présence de fièvre et pyurie)",
+      "Tuberculose rénale (bacille de Koch positif vs absence de bacille en XGPN)"
+    ]
+  },
+  {
+    "name": "Cystite interstitielle à cellules géantes",
+    "description": "Inflammation chronique de la vessie d'origine auto-immune, caractérisée par des cellules géantes de type Touton entourant des dépôts de calcium. Présentation clinique : douleur bas-ventrale cyclothymique, pollakiurie, nycturie, brûlures mictionnelles et hématurie. Évolution vers une fibrose vésicale et une réduction de la capacité vésicale.",
+    "redFlags": [
+      "Douleur bas-ventrale cyclothymique (aggravation le matin, amélioration après miction)",
+      "Pollakiurie supérieure à 30 fois/jour avec nycturie > 3 fois/nuits",
+      "Hématurie microscopique persistante sans infection urinaire documentée",
+      "Réduction de la capacité vésicale < 150 mL sur urodynamique",
+      "Douleur vésicale résistante aux traitements antibactériens"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité de la cystite interstitielle (ICIS)",
+        "description": "Évalue la sévérité des symptômes et la compromission fonctionnelle",
+        "criteria": [
+          "Score 0: Symptômes légers (pollakiurie < 15 fois/jour)",
+          "Score 1: Symptômes modérés (pollakiurie 15-30 fois/jour)",
+          "Score 2: Symptômes sévères (pollakiurie > 30 fois/jour ou capacité vésicale < 100 mL)",
+          "Score 3: Complications (fibrose vésicale, strictures uretrales)"
+        ],
+        "interpretation": "Un score ≥ 2 justifie une intervention chirurgicale (augmentation vésicale ou cystectomie). Un score ≤ 1 permet une gestion médicale avec immunosuppressifs."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen urologique et urodynamique ciblé",
+        "steps": [
+          {
+            "action": "Cystoscopie avec coloration bleue de méthylène",
+            "interpretation": "Présence de points jaunes ou ulcérations Hunner typiques de la cystite interstitielle"
+          },
+          {
+            "action": "Urodynamique vésicale",
+            "interpretation": "Capacité vésicale réduite (< 150 mL) avec pressions de remplissage élevées (> 40 cmH2O) en l'absence de réflexe détrusor"
+          },
+          {
+            "action": "Biopsie vésicale",
+            "interpretation": "Présence de cellules géantes de Touton et de dépôts calcaires dans la muqueuse"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Thérapie à domicile (dilatation vésicale périodique, thérapie au dextranomère)",
+      "Immunosuppression (cyclophosphamide ou mycophénolate mofétil) en cas de score ICIS ≥ 2",
+      "Évaluation chirurgicale (augmentation vésicale ou cystectomie) en cas de fibrose avancée",
+      "Éducation du patient sur les triggers (alcool, caféine, stress)",
+      "Suivi urodynamique trimestriel pour surveiller l'évolution de la capacité vésicale"
+    ],
+    "differentialDiagnosis": [
+      "Infection urinaire chronique (présence de germes vs absence de germes en cystite interstitielle)",
+      "Cancer de la vessette (ulcérations malinnes vs ulcérations bien délimitées en cystite interstitielle)",
+      "Syndrome de l'urètre interne (douleur urétrale vs douleur bas-ventrale cyclothymique)"
+    ]
+  },
+  {
+    "name": "Torsion testiculaire aiguë",
+    "description": "La torsion testiculaire est une urgence urologique liée à la rotation de l'appendice spermatozoïde ou du testicule autour de l'axe vasculo-testiculaire, entraînant une ischémie aiguë. Elle se manifeste par une douleur scrotale brutale, souvent unilatérale, associée à une tuméfaction, une érythrose et une absence de réflexe crémastérien. La physiopathologie repose sur une anatomie prédisposante (appendice spermatozoïde allongé) et des facteurs déclenchants (traumatismes, mouvements brusques).",
+    "redFlags": [
+      "Douleur scrotale aiguë survenant dans les 6 heures précédentes avec absence de réflexe crémastérien",
+      "Tumeur testiculaire palpable avec érythrose et chaleur locale",
+      "Signe de Prehn positif (douleur augmentée par la traction du scrotum)",
+      "Hypotension orthostatique secondaire à une hémorragie périnéale",
+      "Fièvre associée à une nécrose testiculaire avancée"
+    ],
+    "scores": [
+      {
+        "name": "Score de Toronto pour la torsion testiculaire",
+        "description": "Évalue la probabilité de torsion testiculaire basé sur des signes cliniques et paracliniques",
+        "criteria": [
+          "Douleur unilatérale > 2 heures (+2)",
+          "Absence de réflexe crémastérien (+2)",
+          "Signe de Prehn positif (+1)",
+          "Tumeur testiculaire palpable (+1)",
+          "Échographie montrant une absence de signal Doppler testiculaire (+3)"
+        ],
+        "interpretation": "Score ≥ 4 points : fortement évoquateur de torsion testiculaire. Score < 4 : plus probablement épididymite. À utiliser en complément des examens complémentaires."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen scrotal et périnéal ciblé",
+        "steps": [
+          {
+            "action": "Palpation douce du scrotum en position allongée avec observation de la position testiculaire",
+            "interpretation": "Testicule en position haute (« testis high riding ») est un signe majeur de torsion. La fixation testiculaire anormale ou l'absence de mobilité confirment le diagnostic."
+          },
+          {
+            "action": "Évaluation du réflexe crémastérien bilatéral",
+            "interpretation": "Absence de réflexe crémastérien du côté touché est un signe de torsion. Présence bilatérale ou asymétrique évoque une épididymite."
+          },
+          {
+            "action": "Examen de la prostate et des vésicules séminales",
+            "interpretation": "Tumeur ou douleur prostatique évoque une cause non ischémique. Absence de douleur prostatique renforce le diagnostic de torsion."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Décompression testiculaire urgente sous anesthésie générale (délai < 6 heures pour préserver la fonction testiculaire)",
+      "Antibiothérapie prophylactique (céphalosporine de 3e génération) en attendant l'exploration chirurgicale",
+      "Fixation testiculaire bilatérale en chirurgie pour prévenir les récidives",
+      "Échographie Doppler testiculaire en urgence pour confirmer l'ischémie",
+      "Hospitalisation en service urologique pour surveillance postopératoire"
+    ],
+    "differentialDiagnosis": [
+      "Épididymite aiguë (douleur associée à fièvre, réflexe crémastérien présent)",
+      "Hernie inguinale (masquant une torsion testiculaire)",
+      "Hémato-scrotum traumatique (signes locaux de traumatisme)"
+    ]
+  },
+  {
+    "name": "Calcul urétéral aigu avec colique néphrétique",
+    "description": "La colique néphrétique est une douleur aiguë liée à la migration d'un calcul urétéral, associée à une obstruction urétérale et une hypertension hydrique. Elle se manifeste par une douleur lombaire irradiant vers le flanc, l'abdomen inférieur ou le pénis, associée à une hématurie macroscopique ou microscopique. La physiopathologie implique une obstruction mécanique, une irritation urétérale et une réponse inflammatoire.",
+    "redFlags": [
+      "Douleur lombaire irradiant vers le flanc avec hématurie macroscopique",
+      "Nausées/vomissements associées à une douleur colique",
+      "Pyélonéphrite aiguë secondaire à un calcul (fièvre > 38,5°C, leucocytose)",
+      "Hypertension artérielle secondaire à une stase urinaire",
+      "Absence de miction sur 12 heures évoquant une obstruction bilatérale"
+    ],
+    "scores": [
+      {
+        "name": "Score de Stone (calcul urétéral)",
+        "description": "Évalue la probabilité de passage spontané d'un calcul urétéral",
+        "criteria": [
+          "Taille du calcul < 5 mm (+0)",
+          "Taille du calcul 5-10 mm (+1)",
+          "Taille du calcul > 10 mm (+2)",
+          "Présence d'hématurie macroscopique (+1)",
+          "Douleur persistante > 48 heures (+1)"
+        ],
+        "interpretation": "Score ≤ 4 : forte probabilité de passage spontané. Score ≥ 5 : nécessité d'intervention (lithotritie ou stent)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal et urétal ciblé",
+        "steps": [
+          {
+            "action": "Palpation des flancs et du bas-ventre pour rechercher une douleur à la palpation",
+            "interpretation": "Douleur à la palpation du flanc (angle costo-vertébral) évoque un calcul pyélique. Douleur infra-ombilicale évoque un calcul urétéral bas."
+          },
+          {
+            "action": "Examen urétal avec cathétérisme urétal si suspicion d'obstruction basse",
+            "interpretation": "Échec du cathétérisme urétal évoque une sténose urétale ou une obstruction basse. Retour de sang au cathéter confirme l'hématurie."
+          },
+          {
+            "action": "Palpation de la prostate chez les hommes",
+            "interpretation": "Prostate hypertrophiée ou douloureuse évoque une cause associée (BPH) ou une infection urinaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Analgesie forte (opiacés associés à des anti-inflammatoires non stéroïdiens)",
+      "Hydratation intraveineuse pour favoriser l'expulsion du calcul",
+      "Antibiothérapie ciblée en cas de pyélonéphrite (céphalosporine ou fluoroquinolone)",
+      "Échographie abdominale et scanner non contrasté pour localiser le calcul",
+      "Stent urétéral ou lithotritie extracorporelle en cas d'obstruction persistante"
+    ],
+    "differentialDiagnosis": [
+      "Pyélonéphrite aiguë (fièvre, frissons, leucocytose)",
+      "Diverticule vésical (douleur irradiant vers le périnée)",
+      "Hernie inguinale (masquant une colique néphrétique)"
+    ]
+  }
+]

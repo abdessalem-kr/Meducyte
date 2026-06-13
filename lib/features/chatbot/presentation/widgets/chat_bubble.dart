@@ -68,12 +68,40 @@ class ChatBubble extends StatelessWidget {
                       : MarkdownBody(
                           data: message.text,
                           selectable: true,
-                          styleSheet: MarkdownStyleSheet.fromTheme(theme)
-                              .copyWith(
-                                p: theme.textTheme.bodyMedium?.copyWith(
-                                  height: 1.5,
-                                ),
+                          styleSheet: MarkdownStyleSheet.fromTheme(theme).copyWith(
+                            p: theme.textTheme.bodyMedium?.copyWith(
+                              height: 1.6,
+                              fontSize: 14.5,
+                            ),
+                            h3: theme.textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: theme.primaryColor,
+                            ),
+                            blockquote: theme.textTheme.bodyMedium?.copyWith(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.amber[900],
+                            ),
+                            blockquotePadding: const EdgeInsets.all(12),
+                            blockquoteDecoration: BoxDecoration(
+                              color: Colors.amber.withOpacity(0.08),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border(
+                                left: BorderSide(color: Colors.amber[700]!, width: 4),
                               ),
+                            ),
+                            tableBorder: TableBorder.all(
+                              color: theme.dividerColor.withOpacity(0.2),
+                              width: 1,
+                            ),
+                            tableCellsPadding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
+                            tableHead: theme.textTheme.bodyMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                 ),
               ),

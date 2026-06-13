@@ -1,0 +1,222 @@
+[
+  {
+    "name": "Syndrome de contracture cicatricielle multifocale post-brûlure profonde",
+    "description": "Pathologie caractérisée par la formation de cicatrices contractiles diffuses suite à des brûlures de troisième degré étendues. La nécrose complète de l'épiderme et du derme profond entraîne une fibrose inadéquate, avec rétraction des tissus et altération des mouvements articulaires. Les patients présentent des déformations angulaires, des retractions cutanées, et une perte fonctionnelle des articulations touchées, souvent associées à une douleur chronique et une altération de la qualité de vie.",
+    "redFlags": [
+      "Retraction cutanée > 30 % de la surface corporelle totale avec impossibilité de flexion/extension des articulations majeures",
+      "Douleur mécanique à la mobilisation articulaire avec craquements cicatriciels",
+      "Perte de la fonction de la main avec impossibilité de saisir un objet de 5 cm",
+      "Déformations angulaires des articulations du coude ou du genou > 45°",
+      "Infection cicatricielle secondaire avec écoulement purulent et fièvre > 38,5 °C"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité des contractures cicatricielles (IGCC)",
+        "description": "Échelle évaluant l'étendue, la profondeur et l'impact fonctionnel des contractures",
+        "criteria": [
+          "Surface corporelle touchée (0-4 points): <10 % (0), 10-25 % (1), 26-50 % (2), 51-75 % (3), >75 % (4)",
+          "Profondeur des contractures (0-3 points): Superficielles (0), sous-cutanées (1), musculaires (2), osseuses (3)",
+          "Impact fonctionnel (0-3 points): Aucun (0), limité à une activité quotidienne (1), invalidant partiel (2), invalidant complet (3)",
+          "Douleur chronique (0-2 points): Absente (0), modérée (1), sévère (2)"
+        ],
+        "interpretation": "Score total <5: Surveillance clinique. 5-8: Rééducation orthopédique. >8: Intervention chirurgicale urgente."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des cicatrices et mobilité articulaire",
+        "steps": [
+          {
+            "action": "Palpation des zones cicatricielles pour évaluer la densité fibreuse et la mobilité cutanée",
+            "interpretation": "Une densité fibreuse marquée et une absence de glissement cutané indiquent une fibrose avancée"
+          },
+          {
+            "action": "Mesure de l'angle de flexion/extension des articulations majeures (coude, genou, épaule)",
+            "interpretation": "Une déviation angulaire > 30° par rapport à l'articulation contralatérale évoque une contracture fonctionnellement invalidante"
+          },
+          {
+            "action": "Test de la main ouverte: capacité à saisir un objet de 5 cm entre le pouce et l'index",
+            "interpretation": "Incapacité de saisir l'objet indique une perte fonctionnelle de la main"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Positionnement orthopédique des articulations touchées avec attelles à pression continue",
+      "Kinésithérapie intensive avec étirements progressifs sous anesthésie locale",
+      "Antibiothérapie prophylactique en cas de signes d'infection cicatricielle",
+      "Administration de corticostéroïdes transcutanés pour réduire l'inflammation fibreuse",
+      "Préparation chirurgicale précoce (débridement et greffes cutanées) en cas de perte fonctionnelle majeure"
+    ],
+    "differentialDiagnosis": [
+      "Arthrose post-traumatique: douleur mécanique sans retractions cutanées",
+      "Sclérose systémique: fibrose diffusée sans antécédent de brûlure",
+      "Contractures iatrogènes post-chirurgicales: localisation limitée à des zones opérées"
+    ]
+  },
+  {
+    "name": "Nécrose ischémique aiguë du greffon cutané libre",
+    "description": "Complication vasculaire majeure des greffons cutanés libres, caractérisée par une ischémie soudaine due à l'occlusion des vaisseaux d'anastomose. La perte de perfusion entraîne une nécrose progressive du greffon, avec altération de la coloration, de la température et de la vitalité tissulaire. Les patients présentent des douleurs intenses, une pâleur ou une cyanose du greffon, et une absence de réponse capillaire.",
+    "redFlags": [
+      "Pâleur ou cyanose soudaine du greffon > 24 heures post-opératoire",
+      "Absence de réponse capillaire au toucher avec un délai > 2 secondes",
+      "Douleur aiguë localisée au niveau du greffon sans cause mécanique",
+      "Température du greffon inférieure de 3-5 °C par rapport au tissu adjacent",
+      "Écoulement sanguin purulent au niveau des points d'anastomose"
+    ],
+    "scores": [
+      {
+        "name": "Index de vitalité du greffon (IVG)",
+        "description": "Score évaluant la perfusion et la viabilité du greffon cutané",
+        "criteria": [
+          "Coloration (0-2 points): Rouge vif (0), Pâle (1), Cyanosique (2)",
+          "Réponse capillaire (0-2 points): <1 seconde (0), 1-2 secondes (1), >2 secondes (2)",
+          "Température (0-2 points): Égale au tissu adjacent (0), Différence <3 °C (1), Différence >3 °C (2)",
+          "Douleur (0-2 points): Absente (0), Modérée (1), Sévère (2)"
+        ],
+        "interpretation": "Score total <3: Surveillance. 3-5: Intervention chirurgicale urgente. >5: Abandon du greffon."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen de la perfusion du greffon",
+        "steps": [
+          {
+            "action": "Inspection visuelle de la coloration du greffon sous lumière blanche et polarisée",
+            "interpretation": "Une coloration uniformément rouge vif indique une perfusion adéquate"
+          },
+          {
+            "action": "Test de la réponse capillaire: pression digitale sur une zone centrale du greffon",
+            "interpretation": "Une repulsion capillaire <1 seconde confirme une perfusion normale"
+          },
+          {
+            "action": "Palpation des vaisseaux d'anastomose pour évaluer la pulsation et la température",
+            "interpretation": "Absence de pulsation ou température froide évoque une occlusion vasculaire"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Réexploration chirurgicale urgente pour détection et réparation des vaisseaux occlus",
+      "Administration d'anticoagulants intraveineux (héparine) pour prévenir l'extension de l'ischémie",
+      "Réhydratation intraveineuse avec perfusion de sérum physiologique à 150 ml/h",
+      "Application locale de compresses tièdes (37 °C) pour améliorer la microcirculation",
+      "Préparation d'un second greffon en attente de réimplantation"
+    ],
+    "differentialDiagnosis": [
+      "Nécrose secondaire à l'infection: associée à une hyperthermie et un écoulement purulent",
+      "Rejet immunologique: survenant >7 jours post-opératoire avec érythème inflammatoire",
+      "Nécrose mécanique post-chirurgicale: liée à une compression anormale du greffon"
+    ]
+  },
+  {
+    "name": "Infection profonde du site chirurgical (IPSC) après chirurgie plastique reconstructrice",
+    "description": "L'infection profonde du site chirurgical (IPSC) est une complication majeure des interventions chirurgicales, caractérisée par une infiltration bactérienne des tissus sous-cutanés ou musculaires. Elle survient généralement dans les 30 premiers jours post-opératoires, avec une présentation clinique typique comprenant une douleur persistante ou croissante, une chaleur locale, une rougeur inflammatoire, une douleur à la palpation, et une éventuelle décoloration ou déhiscence de la suture. Les signes systémiques incluent une fièvre supérieure à 38,3 °C, une leucocytose avec déviation à gauche, et une élévation des marqueurs inflammatoires (CRP, VS).",
+    "redFlags": [
+      "Douleur post-opératoire inexpliquée persistant au-delà de la période normale de cicatrisation",
+      "Déhiscence cutanée associée à un écoulement purulent ou sanguinolent",
+      "Fièvre aiguë (>38,3 °C) survenant après la période initiale post-opératoire",
+      "Odorat anormal ou présence de gaz dans les sécrétions (signe de myonecrose)",
+      "Tumeur locale associée à une perte de fonction articulaire ou musculaire"
+    ],
+    "scores": [
+      {
+        "name": "Classification de la profondeur de l'infection chirurgicale (CDC)",
+        "description": "Classe les infections selon leur localisation tissulaire et leur gravité clinique.",
+        "criteria": [
+          "Classe I: Infection de la peau et du tissu sous-cutané (+1 point)",
+          "Classe II: Infection des tissus profonds (fascia, muscles) (+2 points)",
+          "Classe III: Infection de l'organe ou de la cavité chirurgicale (+3 points)",
+          "Classe IV: Infection associée à un dispositif implanté (+4 points)"
+        ],
+        "interpretation": "La somme des points détermine la gravité et guide le choix thérapeutique (antibiothérapie de couverture large, débridement chirurgical, ou extraction de dispositif)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique du site chirurgical et des paramètres systémiques",
+        "steps": [
+          {
+            "action": "Inspection visuelle et palpation du site chirurgical pour identifier des signes locaux d'infection (rougeur, chaleur, douleur, déhiscence)",
+            "interpretation": "La présence de déhiscence associée à un écoulement purulent ou sanguinolent évoque une infection profonde. Une douleur à la palpation au-delà de la douleur post-opératoire normale est un signe alarmant."
+          },
+          {
+            "action": "Mesure de la température corporelle et recherche de fièvre",
+            "interpretation": "Une fièvre persistante (>38,3 °C) après la période initiale post-opératoire (48-72 heures) est un signe majeur d'infection."
+          },
+          {
+            "action": "Examen des paramètres biologiques (CRP, VS, hémogramme)",
+            "interpretation": "Une CRP élevée (>50 mg/L) et une leucocytose (>12 000/mm³) corroborent le diagnostic d'infection. Une VS >100 mm/h est fortement évocatrice."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prélèvement de cultures bactériologiques des sécrétions pour antibiogramme",
+      "Initiation d'une antibiothérapie intraveineuse de couverture large (ex: pénicilline de 3e génération + aminoside) en attendant les résultats",
+      "Débridement chirurgical urgent si présence de myonecrose ou de collection purulente",
+      "Surveillance étroite des signes systémiques (fièvre, état général)",
+      "Suspension des anti-inflammatoires non stéroïdiens (AINS) et des corticoïdes si suspicion d'infection"
+    ],
+    "differentialDiagnosis": [
+      "Hématome post-opératoire (absence de fièvre, absence de déhiscence)",
+      "Inflammation réactionnelle non infectieuse (présence de douleur sans signes d'infection)",
+      "Thrombophlébite superficielle (rougeur linéaire, absence de fièvre)"
+    ]
+  },
+  {
+    "name": "Hypertrophie cicatriculaire iatrogène post-liposuccion",
+    "description": "L'hypertrophie cicatriculaire iatrogène post-liposuccion est une complication esthétique fréquente, caractérisée par une cicatrisation anormale de la peau après une intervention de liposuccion. Elle se manifeste par une cicatrice rouge, épaissie, douloureuse, et souvent asymétrique, localisée sur les sites d'incision chirurgicale. La physiopathologie implique une réponse fibroblastique exagérée à la microtraumatisme tissulaire, associée à une altération de la vascularisation locale. Les facteurs de risque incluent la tension cutanée, la technique chirurgicale agressive, et les antécédents de cicatrisation anormale.",
+    "redFlags": [
+      "Cicatrice rouge, épaissie, et douloureuse apparaissant 2-4 semaines post-opératoire",
+      "Évolution rapide de la cicatrice avec élargissement asymétrique",
+      "Présence de prurit ou de brûlures associés à la cicatrisation",
+      "Déformation cutanée associée à une perte de mobilité locale",
+      "Réaction allergique locale (rougeur, gonflement, éruption)"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de Vancouver des cicatrices (VSS)",
+        "description": "Évalue la qualité de la cicatrisation selon quatre critères.",
+        "criteria": [
+          "Couleur (0: normale, 1: rouge ou violacé, 2: pâle)",
+          "Texture (0: lisse, 1: irrégulière, 2: très irrégulière)",
+          "Hauteur (0: au niveau de la peau, 1: 1-2 mm, 2: >2 mm)",
+          "Douleur (0: absente, 1: modérée, 2: intense)"
+        ],
+        "interpretation": "Un score total ≥6 évoque une hypertrophie cicatriculaire cliniquement significative nécessitant un traitement spécifique."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen dermatologique et évaluation de la cicatrisation",
+        "steps": [
+          {
+            "action": "Inspection visuelle des cicatrices sous lumière blanche et lumière polarisée",
+            "interpretation": "Une coloration rouge ou violacé, une texture irrégulière, et une hauteur supérieure à 2 mm sont des signes évocateurs d'hypertrophie."
+          },
+          {
+            "action": "Palpation douce des cicatrices pour évaluer la douleur, la dureté, et la mobilité",
+            "interpretation": "Une douleur à la palpation ou une mobilité réduite suggère une fibrose excessive."
+          },
+          {
+            "action": "Évaluation de la mobilité cutanée et des fonctions articulaires adjacentes",
+            "interpretation": "Une restriction de la mobilité cutanée ou articulaire indique une contracture cicatriculaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Application de pression continue avec des bandes élastiques ou coussinets de pression (12-24 heures/jour pendant 6-12 mois)",
+      "Injections locales de corticostéroïdes (ex: triamcinolone acétonide) toutes les 4-6 semaines",
+      "Thérapie par laser à faible niveau (LLLT) pour réduire l'inflammation et la fibrose",
+      "Éducation du patient sur l'hydratation cutanée et l'éviction des frottements mécaniques",
+      "Considération d'une chirurgie correctrice si l'hypertrophie persiste après 6-12 mois"
+    ],
+    "differentialDiagnosis": [
+      "Keloid (extension au-delà des limites chirurgicales initiales)",
+      "Cicatrisation normale (couleur pâle, texture lisse)",
+      "Réaction allergique à la suture ou au matériau chirurgical"
+    ]
+  }
+]

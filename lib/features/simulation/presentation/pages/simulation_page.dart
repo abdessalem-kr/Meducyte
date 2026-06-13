@@ -149,7 +149,7 @@ class SimulationPage extends ConsumerWidget {
                         subtitle: l10n.ecosDesc,
                         icon: Iconsax.clipboard_tick,
                         color: const Color(0xFF00D1FF),
-                        onTap: () {},
+                        onTap: () => context.push(AppRoutes.ecos),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -160,7 +160,7 @@ class SimulationPage extends ConsumerWidget {
                         subtitle: l10n.erChallengeDesc,
                         icon: Iconsax.danger,
                         color: const Color(0xFFFF5252),
-                        onTap: () {},
+                        onTap: () => context.push(AppRoutes.emergencyRoom),
                       ),
                     ),
                   ],
@@ -174,6 +174,7 @@ class SimulationPage extends ConsumerWidget {
                   desc: l10n.wardRoundsDesc,
                   icon: Iconsax.hospital,
                   color: const Color(0xFF4CAF50),
+                  onTap: () => context.push(AppRoutes.virtualWardRounds),
                 ),
                 const SizedBox(height: 12),
                 _buildSimListItem(
@@ -182,6 +183,7 @@ class SimulationPage extends ConsumerWidget {
                   desc: l10n.diagnosticChallengeDesc,
                   icon: Iconsax.frame_1,
                   color: const Color(0xFFFFC107),
+                  onTap: () => context.push(AppRoutes.diagnosticChallenge),
                 ),
                 const SizedBox(height: 12),
                 _buildSimListItem(
@@ -190,6 +192,7 @@ class SimulationPage extends ConsumerWidget {
                   desc: l10n.proceduralGuideDesc,
                   icon: Iconsax.menu_board,
                   color: const Color(0xFF7C4DFF),
+                  onTap: () => context.push(AppRoutes.proceduralGuide),
                 ),
                 const SizedBox(height: 40),
               ]),
@@ -432,52 +435,56 @@ class SimulationPage extends ConsumerWidget {
     required String desc,
     required IconData icon,
     required Color color,
+    required VoidCallback onTap,
   }) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: Theme.of(context).dividerColor.withOpacity(0.03),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: color.withOpacity(0.15),
+          ),
         ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, color: color, size: 20),
             ),
-            child: Icon(icon, color: color, size: 20),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.bodyLarge?.color,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  desc,
-                  style: TextStyle(
-                    color: Theme.of(context).hintColor,
-                    fontSize: 11,
+                  const SizedBox(height: 2),
+                  Text(
+                    desc,
+                    style: TextStyle(
+                      color: Theme.of(context).hintColor,
+                      fontSize: 11,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Icon(Iconsax.lock, color: Colors.amber.withOpacity(0.5), size: 14),
-        ],
+            Icon(Iconsax.arrow_right_3, color: color, size: 16),
+          ],
+        ),
       ),
     );
   }

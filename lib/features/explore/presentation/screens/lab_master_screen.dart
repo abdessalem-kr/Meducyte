@@ -1,4 +1,7 @@
-import 'package:meducyte_app/export.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:meducyte_app/features/explore/domain/models/game_models.dart';
 import 'package:meducyte_app/features/explore/data/providers/game_content_provider.dart';
 
@@ -10,312 +13,429 @@ class LabMasterScreen extends ConsumerStatefulWidget {
 }
 
 class _LabMasterScreenState extends ConsumerState<LabMasterScreen> {
-  int _currentIndex = 0;
-  int? _selectedIndex;
-  bool _showResult = false;
+  int _currentCaseIndex = 0;
+  int _revealedStepsCount = 1; // Always start with the first step revealed
+  List<String> _shuffledOptions = [];
+  String? _lastErrorText;
+  bool _showCaseSuccess = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initCurrentCase();
+  }
+
+  void _initCurrentCase() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final cases = ref.read(physiologyFlowCasesProvider);
+      if (_currentCaseIndex >= cases.length) return;
+
+      final currentCase = cases[_currentCaseIndex];
+      // Shuffle all steps except the first one
+      final optionsToShuffle = currentCase.correctSteps.sublist(1);
+      setState(() {
+        _shuffledOptions = List<String>.from(optionsToShuffle)..shuffle();
+        _revealedStepsCount = 1;
+        _lastErrorText = null;
+        _showCaseSuccess = false;
+      });
+    });
+  }
+
+  void _onOptionTap(String selectedOption, PhysiologyFlowCase currentCase) {
+    if (_showCaseSuccess) return;
+
+    final nextCorrectStep = currentCase.correctSteps[_revealedStepsCount];
+    if (selectedOption == nextCorrectStep) {
+      setState(() {
+        _revealedStepsCount++;
+        _shuffledOptions.remove(selectedOption);
+        _lastErrorText = null;
+        HapticFeedback.lightImpact();
+
+        if (_revealedStepsCount == currentCase.correctSteps.length) {
+          _showCaseSuccess = true;
+          HapticFeedback.heavyImpact();
+        }
+      });
+    } else {
+      // Find the index of the wrong selected option to find its correct context/explanation
+      int wrongIdx = currentCase.correctSteps.indexOf(selectedOption);
+      setState(() {
+        _lastErrorText = wrongIdx != -1
+            ? "Faux. ${currentCase.explanations[wrongIdx]}"
+            : "Ce lien n'est pas correct physiologiquement.";
+        HapticFeedback.mediumImpact();
+      });
+    }
+  }
+
+  void _nextCase() {
+    setState(() {
+      _currentCaseIndex++;
+      _initCurrentCase();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final List<LabResult> results = ref.watch(labResultsProvider);
+    final List<PhysiologyFlowCase> cases = ref.watch(physiologyFlowCasesProvider);
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
-    if (_currentIndex >= results.length) {
-      return _buildFinalSuccess(theme);
+    if (_currentCaseIndex >= cases.length) {
+      return _buildFinalSuccess(theme, isDark);
     }
 
-    final current = results[_currentIndex];
+    final currentCase = cases[_currentCaseIndex];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF0FDFA), //Bio-teal background
-      extendBodyBehindAppBar: true,
+      backgroundColor: isDark ? const Color(0xFF0B132B) : const Color(0xFFF1F5F9),
       appBar: AppBar(
         title: const Text(
-          "LAB BIOLOGY v3.1",
+          "PHYSIOLOGY FLOW",
           style: TextStyle(
             fontWeight: FontWeight.w900,
             fontSize: 16,
             letterSpacing: 2,
-            color: Colors.teal,
           ),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: RadialGradient(
-            center: Alignment.topRight,
-            radius: 1.5,
-            colors: [Colors.teal.withOpacity(0.1), Colors.transparent],
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  "ANALYSE DU BILAN BIOLOGIQUE",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueGrey,
-                    letterSpacing: 1,
-                  ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Case Info Header
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: isDark ? const Color(0xFF1C2541) : Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: isDark ? Colors.white.withOpacity(0.04) : Colors.grey.shade200,
                 ),
-                const SizedBox(height: 32),
-                //Laboratory Result Card
-                Container(
-                  padding: const EdgeInsets.all(32),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(32),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.teal.withOpacity(0.05),
-                        blurRadius: 40,
-                        offset: const Offset(0, 20),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Iconsax.diagram, color: Colors.cyan, size: 20),
+                      const SizedBox(width: 8),
+                      Text(
+                        currentCase.title,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ],
-                    border: Border.all(
-                      color: Colors.teal.withOpacity(0.1),
-                      width: 2,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    currentCase.description,
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      color: isDark ? Colors.grey.shade400 : Colors.grey.shade600,
+                      height: 1.4,
                     ),
                   ),
-                  child: Column(
-                    children: [
+                ],
+              ),
+            ),
+
+            // Vertical Interactive Flow Graph
+            Expanded(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                child: Column(
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: currentCase.correctSteps.length,
+                      itemBuilder: (context, idx) {
+                        final isRevealed = idx < _revealedStepsCount;
+                        final stepText = isRevealed ? currentCase.correctSteps[idx] : "Option manquante";
+                        final explanation = isRevealed ? currentCase.explanations[idx] : null;
+
+                        return Column(
+                          children: [
+                            // Node Container
+                            Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: isRevealed
+                                    ? (isDark ? const Color(0xFF1C2541) : Colors.white)
+                                    : Colors.transparent,
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(
+                                  color: isRevealed
+                                      ? Colors.cyan.withOpacity(0.4)
+                                      : (isDark ? Colors.white10 : Colors.grey.shade300),
+                                  width: isRevealed ? 2 : 1.5,
+                                ),
+                                boxShadow: isRevealed
+                                    ? [
+                                        BoxShadow(
+                                          color: Colors.cyan.withOpacity(0.05),
+                                          blurRadius: 10,
+                                        ),
+                                      ]
+                                    : [],
+                              ),
+                              child: Row(
+                                children: [
+                                  // Circle Index
+                                  Container(
+                                    width: 28,
+                                    height: 28,
+                                    decoration: BoxDecoration(
+                                      color: isRevealed ? Colors.cyan : Colors.transparent,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: isRevealed ? Colors.cyan : (isDark ? Colors.white30 : Colors.grey.shade400),
+                                        width: 1.5,
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "${idx + 1}",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12,
+                                          color: isRevealed ? Colors.black : (isDark ? Colors.white54 : Colors.grey.shade600),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          stepText,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13.5,
+                                            color: isRevealed
+                                                ? (isDark ? Colors.white : Colors.black87)
+                                                : (isDark ? Colors.white24 : Colors.grey.shade400),
+                                            fontStyle: isRevealed ? FontStyle.normal : FontStyle.italic,
+                                          ),
+                                        ),
+                                        if (explanation != null) ...[
+                                          const SizedBox(height: 6),
+                                          Text(
+                                            explanation,
+                                            style: TextStyle(
+                                              fontSize: 11,
+                                              color: isDark ? Colors.grey.shade400 : Colors.grey.shade600,
+                                              height: 1.35,
+                                            ),
+                                          ),
+                                        ],
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            // Connective line between nodes
+                            if (idx < currentCase.correctSteps.length - 1)
+                              Container(
+                                width: 2,
+                                height: 24,
+                                color: idx + 1 < _revealedStepsCount
+                                    ? Colors.cyan
+                                    : (isDark ? Colors.white10 : Colors.grey.shade300),
+                              ),
+                          ],
+                        );
+                      },
+                    ),
+
+                    if (_showCaseSuccess) ...[
+                      const SizedBox(height: 24),
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
-                        ),
+                        padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: Colors.teal.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.green.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: Colors.green.withOpacity(0.3)),
                         ),
-                        child: Text(
-                          current.parameter.toUpperCase(),
-                          style: const TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.w900,
-                            fontSize: 12,
-                            letterSpacing: 1,
-                          ),
+                        child: const Row(
+                          children: [
+                            Icon(Iconsax.verify, color: Colors.green),
+                            SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                "Cascade Complète ! La logique physiopathologique est validée.",
+                                style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 32),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            "${current.value}",
-                            style: const TextStyle(
-                              fontSize: 64,
-                              fontWeight: FontWeight.w900,
-                              color: Color(0xFF0F172A),
-                              letterSpacing: -2,
-                            ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: _nextCase,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.cyan,
+                          foregroundColor: Colors.black,
+                          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                          const SizedBox(width: 8),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
+                        ),
+                        child: const Text(
+                          "CASCADE SUIVANTE",
+                          style: TextStyle(fontWeight: FontWeight.w900),
+                        ),
+                      ),
+                    ],
+
+                    const SizedBox(height: 40),
+                  ],
+                ),
+              ),
+            ),
+
+            // Error Message HUD
+            if (_lastErrorText != null)
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.redAccent.withOpacity(0.12),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.redAccent.withOpacity(0.3)),
+                ),
+                child: Text(
+                  _lastErrorText!,
+                  style: const TextStyle(
+                    color: Colors.redAccent,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+
+            // Draggable/Selectable Step Options Drawer
+            if (!_showCaseSuccess)
+              Container(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
+                decoration: BoxDecoration(
+                  color: isDark ? const Color(0xFF1C2541) : Colors.white,
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(isDark ? 0.3 : 0.05),
+                      blurRadius: 20,
+                      offset: const Offset(0, -5),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      "SÉLECTIONNEZ LE LIEN PHYSIOLOGIQUE SUIVANT :",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 0.5,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: _shuffledOptions.map((opt) {
+                        return InkWell(
+                          onTap: () => _onOptionTap(opt, currentCase),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                            decoration: BoxDecoration(
+                              color: isDark ? const Color(0xFF0B132B) : Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: isDark ? Colors.white12 : Colors.grey.shade200,
+                              ),
+                            ),
                             child: Text(
-                              current.unit,
+                              opt,
                               style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blueGrey,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 32),
-                      const Divider(),
-                      const SizedBox(height: 16),
-                      const Text(
-                        "VALEURS DE RÉFÉRENCE",
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "${current.minNormal} - ${current.maxNormal} ${current.unit}",
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.teal,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 48),
-                const Text(
-                  "INTERPRÉTATION:",
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Row(
-                  children: [
-                    _buildOption(
-                      0,
-                      "Normal",
-                      Iconsax.tick_circle,
-                      Colors.green,
+                        );
+                      }).toList(),
                     ),
-                    const SizedBox(width: 12),
-                    _buildOption(
-                      1,
-                      "Diminué",
-                      Iconsax.arrow_down,
-                      Colors.orange,
-                    ),
-                    const SizedBox(width: 12),
-                    _buildOption(2, "Augmenté", Iconsax.arrow_up, Colors.red),
                   ],
                 ),
-                const Spacer(),
-                if (_showResult) ...[
-                  Container(
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF0F172A),
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "NOTE CLINIQUE",
-                          style: TextStyle(
-                            color: Colors.teal,
-                            fontWeight: FontWeight.w900,
-                            fontSize: 10,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          current.interpretation,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            height: 1.5,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                ],
-                ElevatedButton(
-                  onPressed: _selectedIndex == null
-                      ? null
-                      : (_showResult
-                            ? _next
-                            : () => setState(() => _showResult = true)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.all(20),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: Text(
-                    _showResult ? "PROCHAIN BILAN" : "VÉRIFIER L'ANALYSE",
-                    style: const TextStyle(fontWeight: FontWeight.w900),
-                  ),
-                ),
-                const SizedBox(height: 16),
-              ],
-            ),
-          ),
+              ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildOption(int index, String label, IconData icon, Color color) {
-    final isSelected = _selectedIndex == index;
-    return Expanded(
-      child: GestureDetector(
-        onTap: _showResult
-            ? null
-            : () => setState(() => _selectedIndex = index),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          decoration: BoxDecoration(
-            color: isSelected ? color.withOpacity(0.1) : Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: isSelected ? color : Colors.grey.withOpacity(0.1),
-              width: 2,
-            ),
-          ),
+  Widget _buildFinalSuccess(ThemeData theme, bool isDark) {
+    return Scaffold(
+      backgroundColor: isDark ? const Color(0xFF0B132B) : const Color(0xFFF1F5F9),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: isSelected ? color : Colors.grey, size: 24),
-              const SizedBox(height: 8),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w900,
-                  color: isSelected ? color : Colors.grey,
+              const Icon(Iconsax.diagram, color: Colors.cyan, size: 100),
+              const SizedBox(height: 24),
+              const Text(
+                "EXPERT EN PHYSIOLOGIE !",
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                "Vous avez reconstitué toutes les cascades physiopathologiques avec brio.",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.grey, fontSize: 13.5, height: 1.4),
+              ),
+              const SizedBox(height: 48),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.cyan,
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text(
+                  "RETOUR AUX JEUX",
+                  style: TextStyle(fontWeight: FontWeight.w900),
                 ),
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  void _next() {
-    setState(() {
-      _currentIndex++;
-      _selectedIndex = null;
-      _showResult = false;
-    });
-  }
-
-  Widget _buildFinalSuccess(ThemeData theme) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF0FDFA),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Iconsax.radar_2, color: Colors.teal, size: 100),
-            const SizedBox(height: 24),
-            const Text(
-              "LAB DIRECTOR",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w900,
-                color: Colors.teal,
-              ),
-            ),
-            const SizedBox(height: 48),
-            ElevatedButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text("Retour"),
-            ),
-          ],
         ),
       ),
     );

@@ -35,6 +35,14 @@ class SubTask extends Equatable {
     'is_completed': isCompleted,
   };
 
+  /// Used for GraphQL payloads. Omits `id` so the backend correctly
+  /// treats every subtask as new on createTodo, and relies on the
+  /// numeric-id check in updateTodo only for entries with real DB ids.
+  Map<String, dynamic> toApiJson() => {
+    'title': title,
+    'is_completed': isCompleted,
+  };
+
   @override
   List<Object?> get props => [id, title, isCompleted];
 }

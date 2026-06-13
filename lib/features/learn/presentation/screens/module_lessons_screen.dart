@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:meducyte_app/shared/services/access_gating_service.dart';
 import 'package:meducyte_app/features/learn/presentation/providers/lesson_interaction_provider.dart';
 import 'package:meducyte_app/features/learn/presentation/widgets/lesson_comment_bottom_sheet.dart';
@@ -58,8 +59,31 @@ class ModuleLessonsScreen extends ConsumerWidget {
                 ),
               );
             },
-            loading: () => const SliverFillRemaining(
-              child: Center(child: CircularProgressIndicator()),
+            loading: () => SliverPadding(
+              padding: const EdgeInsets.all(16),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return Skeletonizer(
+                    enabled: true,
+                    child: _buildLessonItem(
+                      context,
+                      const LearnLesson(
+                        id: 'dummy',
+                        moduleId: 'dummy',
+                        title: 'Titre de leçon factice en cours de chargement',
+                        order: 1,
+                        isFree: true,
+                        isStudied: false,
+                      ),
+                      primaryColor,
+                      isDark,
+                      index,
+                      l10n,
+                      ref,
+                    ),
+                  );
+                }, childCount: 3),
+              ),
             ),
             error: (err, _) =>
                 SliverFillRemaining(child: Center(child: Text('$err'))),
@@ -83,7 +107,7 @@ class ModuleLessonsScreen extends ConsumerWidget {
       pinned: true,
       backgroundColor: primaryColor,
       leading: IconButton(
-        icon: const Icon(Iconsax.arrow_left, color: Colors.white),
+        icon: const Icon(Iconsax.arrow_left_2, color: Colors.white),
         onPressed: () => context.pop(),
       ),
       actions: [
@@ -242,9 +266,9 @@ class ModuleLessonsScreen extends ConsumerWidget {
                                   color: Colors.green.withOpacity(0.3),
                                 ),
                               ),
-                              child: const Text(
-                                "FREE",
-                                style: TextStyle(
+                              child: Text(
+                                l10n.freeBadge,
+                                style: const TextStyle(
                                   color: Colors.green,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,

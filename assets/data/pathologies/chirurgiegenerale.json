@@ -1,86 +1,5 @@
 [
   {
-    "name": "Appendicite aigue",
-    "description": "Inflammation aigue de l'appendice ileocolique",
-    "redFlags": [
-      "Douleur abdominale diffuse",
-      "Fievre",
-      "Nausees et vomissements"
-    ],
-    "scores": [
-      {
-        "name": "Score d'Alvarado",
-        "description": "Evaluation de la probabilite d'appendicite aigue",
-        "criteria": [
-          "Douleur migratoire",
-          "Anorexie",
-          "Nausees et vomissements",
-          "Fievre",
-          "Leucocytose"
-        ],
-        "interpretation": "Score >= 7 : appendicite aigue probable"
-      }
-    ],
-    "focusedExam": [
-      {
-        "title": "Palpation abdominale",
-        "steps": [
-          {
-            "action": "Recherche d'une douleur a la palpation",
-            "interpretation": "Douleur a la palpation dans le quadrant inferieur droit"
-          }
-        ]
-      }
-    ],
-    "immediateManagement": [
-      "Hospitalisation",
-      "Antibiotherapie",
-      "Chirurgie d'urgence"
-    ],
-    "differentialDiagnosis": [
-      "Diverticulite",
-      "Colite"
-    ]
-  },
-  {
-    "name": "Hernie inguinale",
-    "description": "Protrusion d'un organe abdominal a travers une faille de la paroi abdominale",
-    "redFlags": [
-      "Douleur inguinale",
-      "Gonflement inguinal"
-    ],
-    "scores": [
-      {
-        "name": "Classification de Gilbert",
-        "description": "Evaluation de la taille de la hernie",
-        "criteria": [
-          "Taille de la hernie",
-          "Reductibilite"
-        ],
-        "interpretation": "Hernie reducible ou irreducible"
-      }
-    ],
-    "focusedExam": [
-      {
-        "title": "Examen de la paroi abdominale",
-        "steps": [
-          {
-            "action": "Recherche d'une hernie",
-            "interpretation": "Presence d'une hernie inguinale"
-          }
-        ]
-      }
-    ],
-    "immediateManagement": [
-      "Reduction de la hernie",
-      "Chirurgie elective"
-    ],
-    "differentialDiagnosis": [
-      "Lymphadenite",
-      "Orchite"
-    ]
-  },
-  {
     "name": "Choc hemorragique",
     "description": "Etat de choc cause par une perte de sang importante",
     "redFlags": [
@@ -119,6 +38,240 @@
     "differentialDiagnosis": [
       "Choc cardiogenique",
       "Choc septique"
+    ]
+  },
+  {
+    "name": "Perforation gastrique aiguë",
+    "description": "La perforation gastrique aiguë est une complication grave de l'ulcère gastrique ou duodénal, caractérisée par une fuite de contenu gastrique dans la cavité péritonéale. Elle se manifeste par une douleur abdominale aiguë, intense et localisée initialement à l'épigastre, puis devenant diffuse. L'examen révèle un abdomen rigide, à la défense, avec une douleur à la palpation et un signe de Blumberg positif. Le patient peut présenter une fièvre, une hypotension et une tachycardie en cas de choc septique.",
+    "redFlags": [
+      "Douleur abdominale aiguë de survenue brutale avec irradiation vers l'épigastre ou l'hypochondre droit",
+      "Abdomen rigide à la palpation avec défense musculaire et douleur à la palpation profonde",
+      "Signe de Blumberg positif (douleur à la palpation de l'abdomen qui s'atténue à la relâche)",
+      "Fièvre élevée (>38,5°C) associée à une leucocytose marquée",
+      "Signe de Graham-Stewart (taches de peau jaunes ou blanchâtres sur les flancs) ou signe de Cullen (érythème périnéal) en cas de hémorragie intrabdominale"
+    ],
+    "scores": [
+      {
+        "name": "Score de Glasgow-Blatchford",
+        "description": "Score utilisé pour évaluer le risque de complications hémorragiques dans les ulcères digestifs, mais adapté pour les perforations aiguës en cas de saignement concomitant.",
+        "criteria": [
+          "Clôtures de plaquettes <100 000/mm³ (+2)",
+          "Hémoglobine <10 g/dL (+2)",
+          "Fièvre >38°C (+1)",
+          "Tension artérielle <90 mmHg (+1)",
+          "Leucocytose >15 000/mm³ (+1)"
+        ],
+        "interpretation": "Un score ≥4 indique un risque élevé de complications nécessitant une intervention chirurgicale immédiate."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal ciblé",
+        "steps": [
+          {
+            "action": "Palpation de l'abdomen pour identifier la douleur à l'épigastre ou l'hypochondre droit",
+            "interpretation": "Douleur localisée à l'épigastre ou l'hypochondre droit suggérant une source gastrique ou duodénale. La douleur diffuse avec défense musculaire évoque une péritonite secondaire."
+          },
+          {
+            "action": "Recherche du signe de Blumberg (douleur à la palpation qui s'atténue à la relâche)",
+            "interpretation": "Signe positif indiquant une péritonite secondaire due à la fuite de contenu gastrique."
+          },
+          {
+            "action": "Évaluation de la tension artérielle et de la fréquence cardiaque",
+            "interpretation": "Hypotension et tachycardie suggèrent un choc septique ou hémorragique secondaire à la perforation."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension immédiate des anticoagulants ou antiplaquettaires",
+      "Administration de fluides intraveineux (sérum physiologique ou Ringer lactate) pour stabiliser l'hémodynamique",
+      "Antibiothérapie empirique large spectre (ex: Ceftriaxone + Metronidazole)",
+      "NPO (interdiction de l'alimentation) et mise en place d'une sonde nasogastrique pour décompression",
+      "Préparation chirurgicale urgente (laparotomie exploratrice ou laparoscopie) pour réparation de la perforation"
+    ],
+    "differentialDiagnosis": [
+      "Péritonite secondaire à cause non gastrique (ex: appendicite perforée)",
+      "Hémorragie digestive haute avec coagulation intravasculaire disséminée",
+      "Cholecystite aiguë avec rupture"
+    ]
+  },
+  {
+    "name": "Hernie inguinale strangulée",
+    "description": "L'hernie inguinale strangulée est une complication grave d'une hernie inguinale, caractérisée par l'ischémie du contenu hernié (généralement un segment intestinal) en raison de la compression des vaisseaux. Elle se manifeste par une douleur inguinale aiguë, une tuméfaction indolore ou douloureuse, et des signes de nécrose intestinale (nausées, vomissements, constipation, absence de gaz).",
+    "redFlags": [
+      "Douleur inguinale aiguë avec une tuméfaction non réductible",
+      "Tuméfaction inguinale douloureuse à la palpation avec signe de la « corde à piano »",
+      "Nausées et vomissements bilieux associés à une constipation",
+      "Fièvre élevée (>38,5°C) avec leucocytose",
+      "Absence de passage de gaz ou de selles"
+    ],
+    "scores": [
+      {
+        "name": "Score de Strangulation de la Hernie (SSH)",
+        "description": "Score clinique évaluant le risque de strangulation d'une hernie inguinale.",
+        "criteria": [
+          "Douleur inguinale aiguë (+2)",
+          "Tuméfaction non réductible (+2)",
+          "Fièvre (>38°C) (+1)",
+          "Leucocytose (>12 000/mm³) (+1)",
+          "Vomissements bilieux (+1)"
+        ],
+        "interpretation": "Un score ≥5 indique un risque élevé de strangulation nécessitant une chirurgie d'urgence."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen inguinal et abdominal ciblé",
+        "steps": [
+          {
+            "action": "Palpation de la région inguinale pour identifier une tuméfaction non réductible",
+            "interpretation": "Tuméfaction douloureuse et non réductible évoque une strangulation. La palpation peut révéler une corde à piano (segment intestinal ischémié)."
+          },
+          {
+            "action": "Recherche de signes de nécrose intestinale (absence de péristaltisme, absence de passage de gaz)",
+            "interpretation": "Absence de péristaltisme et de passage de gaz suggère une ischémie intestinale grave."
+          },
+          {
+            "action": "Évaluation de la tension artérielle et de la fréquence cardiaque",
+            "interpretation": "Hypotension et tachycardie peuvent indiquer un choc septique ou hémorragique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension immédiate des anticoagulants ou antiplaquettaires",
+      "Administration de fluides intraveineux (sérum physiologique ou Ringer lactate) pour stabiliser l'hémodynamique",
+      "Antibiothérapie empirique large spectre (ex: Ceftriaxone + Metronidazole)",
+      "Préparation chirurgicale urgente (réduction manuelle si possible, puis chirurgie d'urgence pour réparation et résection intestinale si nécrose)",
+      "Surveillance étroite des signes de choc ou de sepsis"
+    ],
+    "differentialDiagnosis": [
+      "Hernie fémorale strangulée",
+      "Appendicite aiguë avec adénopathie inguinale",
+      "Infection de la paroi abdominale"
+    ]
+  },
+  {
+    "name": "Cholécystite aiguë calculaire",
+    "description": "Inflammation aiguë de la vésicule biliaire liée à l'obstruction du col vésiculaire par un calcul, entraînant une stase biliaire, une ischémie et une infection secondaire. Présentation clinique typique : douleur aiguë en quadrant supérieur droit irradiant vers l'épaule droite, fièvre, nausées, vomissements, et signe de Murphy positif. L'association de fièvre, de douleur et de leucocytose définit le triad de Charcot.",
+    "redFlags": [
+      "Douleur en quadrant supérieur droit persistante > 6 heures avec irradiation vers l'épaule droite",
+      "Fébricule ou fièvre > 38,3°C associée à une leucocytose > 15 000/mm³",
+      "Signe de Murphy positif (douleur inspiratoire sur la vésicule palpée)",
+      "Ictère associé (suggérant une lithiase du cholédoque)",
+      "Hypotension orthostatique ou tachycardie > 120 bpm (signe de sepsis)"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Tokyo 2018 pour cholécystite aiguë",
+        "description": "Score de gravité basé sur des critères cliniques, biologiques et radiologiques pour stratifier le risque de complications.",
+        "criteria": [
+          "Critère 1: Douleur en quadrant supérieur droit (+1)",
+          "Critère 2: Fièvre > 37,8°C ou hypothermie < 35,5°C (+1)",
+          "Critère 3: Leucocytose > 15 000/mm³ ou leucopénie < 4 000/mm³ (+1)",
+          "Critère 4: Hémoglobine < 12 g/dL ou hémoglobine > 18 g/dL (+1)",
+          "Critère 5: Bilirubine totale > 2 mg/dL (+1)",
+          "Critère 6: ASAT/ALAT > 3 fois la normale (+1)",
+          "Critère 7: Épaississement de la paroi vésiculaire > 3 mm (+1)",
+          "Critère 8: Péricystique (+1)",
+          "Critère 9: Calcul vésiculaire (+1)",
+          "Critère 10: Calcul cholédocien (+1)"
+        ],
+        "interpretation": "Score total ≥ 3: cholécystite aiguë probable; ≥ 7: cholécystite aiguë sévère avec risque élevé de complications."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal ciblé",
+        "steps": [
+          {
+            "action": "Palpation du quadrant supérieur droit avec recherche du signe de Murphy",
+            "interpretation": "Douleur inspiratoire sur la vésicule (signe de Murphy positif) évoque une cholécystite aiguë."
+          },
+          {
+            "action": "Recherche de douleur à la rebond (signe de Blumberg) et de défense musculaire",
+            "interpretation": "Douleur à la rebond ou défense musculaire suggère une péritonite secondaire à perforation."
+          },
+          {
+            "action": "Palpation du foie pour évaluer l'ictère et la douleur hépatique",
+            "interpretation": "Ictère associé à une cholécystite évoque une lithiase cholédocienne."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Régime NPO (Niente Per Os) et insertion d'une sonde nasogastrique si vomissements persistants",
+      "Hydratation veineuse avec 1-2 L de cristalloïde par voie intraveineuse",
+      "Antibiothérapie empirique (piperacilline-tazobactam ou ceftriaxone + metronidazole)",
+      "Analgesie avec morphine ou paracétamol (éviter les opiacés en cas de suspicion de cholédocien)",
+      "Cholécystectomie programmée en urgence si cholécystite sévère ou complications"
+    ],
+    "differentialDiagnosis": [
+      "Colique hépatique (douleur intermittente sans fièvre)",
+      "Pancréatite aiguë (douleur épigastrique irradiant vers le dos)",
+      "Cholangite aiguë (ictère, fièvre, douleur)"
+    ]
+  },
+  {
+    "name": "Pancreatite aiguë sévère",
+    "description": "Inflammation aiguë du pancréas liée à l'activation prématurée des enzymes pancréatiques (lipase, amylase) dans le parenchyme, entraînant autodigestion. Facteurs déclencheurs fréquents: lithiase vésiculaire (40%) et consommation d'alcool (30%). Présentation clinique: douleur épigastrique violente irradiant vers le dos, vomissements, hypotension, et signes de défaillance d'organe.",
+    "redFlags": [
+      "Douleur épigastrique violente irradiant vers le dos persistant > 24 heures",
+      "Hypotension artérielle (PA < 90/60 mmHg) ou tachycardie > 120 bpm",
+      "Signe de Cullen (érythème périnéal) ou signe de Grey-Turner (érythème flancs) (signes de hémorragie interne)",
+      "Déficit de perfusion tissulaire (oligurie, confusion)",
+      "Leucocytose > 15 000/mm³ avec déviation à gauche"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Ranson",
+        "description": "Score de gravité à l'admission pour prédire la mortalité dans la pancréatite aiguë.",
+        "criteria": [
+          "Critère 1: Âge > 55 ans (+1)",
+          "Critère 2: Leucocytose > 16 000/mm³ (+1)",
+          "Critère 3: Calcium sanguin < 2 mmol/L (+1)",
+          "Critère 4: Glucose > 200 mg/dL (+1)",
+          "Critère 5: ASAT > 250 UI/L (+1)",
+          "Critère 6: Hémoglobine < 12 g/dL (+1)",
+          "Critère 7: Lactate déshydrogénase > 350 UI/L (+1)",
+          "Critère 8: Amylase sanguine > 300 UI/L (+1)",
+          "Critère 9: Albumine < 3,5 g/dL (+1)",
+          "Critère 10: Tension artérielle < 90 mmHg ou tachycardie > 120 bpm (+1)"
+        ],
+        "interpretation": "Score ≥ 3: risque élevé de complications; ≥ 8: mortalité > 50%."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal et général",
+        "steps": [
+          {
+            "action": "Palpation de l'épigastre pour évaluer la douleur et la distension",
+            "interpretation": "Douleur épigastrique associée à distension évoque une pancréatite aiguë."
+          },
+          {
+            "action": "Recherche de signes de défaillance respiratoire (râles, cyanose)",
+            "interpretation": "Râles crépitants ou cyanose suggèrent une atteinte pulmonaire secondaire."
+          },
+          {
+            "action": "Examen des membres pour évaluer la perfusion (pouls, coloration)",
+            "interpretation": "Pouls faible ou coloration pâle indiquent une hypovolémie ou un choc."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Régime NPO et insertion d'une sonde nasogastrique pour décompression",
+      "Réanimation liquidienne agressive avec 250-500 mL/h de cristalloïde (objectif: CVP 8-12 mmHg)",
+      "Analgesie avec morphine ou fentanyl (éviter les opiacés en cas de suspicion de cholédocien)",
+      "Correction des déséquilibres électrolytiques (calcium, magnésium)",
+      "Surveillance en unité de soins intensifs pour défaillance d'organe"
+    ],
+    "differentialDiagnosis": [
+      "Cholécystite aiguë (douleur en quadrant supérieur droit)",
+      "Perforation gastrique (douleur soudaine et intense)",
+      "Infarctus du myocarde (douleur irradiant vers l'épaule gauche)"
     ]
   }
 ]

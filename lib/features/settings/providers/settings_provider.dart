@@ -8,6 +8,7 @@ class AppSettings extends Equatable {
   final String fontSize; //Small,Medium,Large
   final String quizFontSize; //Small,Medium,Large
   final String courseFontSize; //Small,Medium,Large
+  final String courseFontFamily; //Inter, Roboto, OpenDyslexic, EB Garamond
   final String downloadMode; //Wi-Fi only,cellular
 
   //Granular Notification Toggles
@@ -22,6 +23,11 @@ class AppSettings extends Equatable {
   final bool srsNotifyEnabled;
   final String srsNotifyTime;
 
+  // Fatigue settings
+  final bool fatigueAnalysisEnabled;
+  final String fatigueSensitivity; // 'Low', 'Medium', 'High'
+  final bool fatigueNotificationsEnabled;
+
   const AppSettings({
     required this.notificationsEnabled,
     required this.highContrastEnabled,
@@ -29,6 +35,7 @@ class AppSettings extends Equatable {
     required this.fontSize,
     this.quizFontSize = 'Medium',
     this.courseFontSize = 'Medium',
+    this.courseFontFamily = 'Inter',
     required this.downloadMode,
     this.examNotificationsEnabled = true,
     this.taskNotificationsEnabled = true,
@@ -38,6 +45,9 @@ class AppSettings extends Equatable {
     this.srsReviewLimit = 100,
     this.srsNotifyEnabled = true,
     this.srsNotifyTime = '09:00',
+    this.fatigueAnalysisEnabled = true,
+    this.fatigueSensitivity = 'Medium',
+    this.fatigueNotificationsEnabled = false,
   });
 
   AppSettings copyWith({
@@ -47,6 +57,7 @@ class AppSettings extends Equatable {
     String? fontSize,
     String? quizFontSize,
     String? courseFontSize,
+    String? courseFontFamily,
     String? downloadMode,
     bool? examNotificationsEnabled,
     bool? taskNotificationsEnabled,
@@ -56,6 +67,9 @@ class AppSettings extends Equatable {
     int? srsReviewLimit,
     bool? srsNotifyEnabled,
     String? srsNotifyTime,
+    bool? fatigueAnalysisEnabled,
+    String? fatigueSensitivity,
+    bool? fatigueNotificationsEnabled,
   }) {
     return AppSettings(
       notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
@@ -64,6 +78,7 @@ class AppSettings extends Equatable {
       fontSize: fontSize ?? this.fontSize,
       quizFontSize: quizFontSize ?? this.quizFontSize,
       courseFontSize: courseFontSize ?? this.courseFontSize,
+      courseFontFamily: courseFontFamily ?? this.courseFontFamily,
       downloadMode: downloadMode ?? this.downloadMode,
       examNotificationsEnabled:
           examNotificationsEnabled ?? this.examNotificationsEnabled,
@@ -77,6 +92,11 @@ class AppSettings extends Equatable {
       srsReviewLimit: srsReviewLimit ?? this.srsReviewLimit,
       srsNotifyEnabled: srsNotifyEnabled ?? this.srsNotifyEnabled,
       srsNotifyTime: srsNotifyTime ?? this.srsNotifyTime,
+      fatigueAnalysisEnabled:
+          fatigueAnalysisEnabled ?? this.fatigueAnalysisEnabled,
+      fatigueSensitivity: fatigueSensitivity ?? this.fatigueSensitivity,
+      fatigueNotificationsEnabled:
+          fatigueNotificationsEnabled ?? this.fatigueNotificationsEnabled,
     );
   }
 
@@ -88,6 +108,7 @@ class AppSettings extends Equatable {
     fontSize,
     quizFontSize,
     courseFontSize,
+    courseFontFamily,
     downloadMode,
     examNotificationsEnabled,
     taskNotificationsEnabled,
@@ -97,6 +118,9 @@ class AppSettings extends Equatable {
     srsReviewLimit,
     srsNotifyEnabled,
     srsNotifyTime,
+    fatigueAnalysisEnabled,
+    fatigueSensitivity,
+    fatigueNotificationsEnabled,
   ];
 }
 
@@ -108,6 +132,7 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
   static const _fontSizeKey = 'settings_font_size';
   static const _quizFontSizeKey = 'settings_quiz_font_size';
   static const _courseFontSizeKey = 'settings_course_font_size';
+  static const _courseFontFamilyKey = 'settings_course_font_family';
   static const _downloadModeKey = 'settings_download_mode';
 
   static const _examNotifyKey = 'settings_exam_notify';
@@ -120,6 +145,10 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
   static const _srsNotifyKey = 'settings_srs_notify';
   static const _srsNotifyTimeKey = 'settings_srs_notify_time';
 
+  static const _fatigueEnabledKey = 'settings_fatigue_enabled';
+  static const _fatigueSensitivityKey = 'settings_fatigue_sensitivity';
+  static const _fatigueNotificationsEnabledKey = 'settings_fatigue_notifications_enabled';
+
   AppSettingsNotifier()
     : super(
         const AppSettings(
@@ -127,6 +156,7 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
           highContrastEnabled: false,
           syncSettingsEnabled: true,
           fontSize: 'Medium',
+          courseFontFamily: 'Inter',
           downloadMode: 'Wi-Fi only',
         ),
       ) {
@@ -135,6 +165,7 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
 
   Future<void> _loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
+    if (!mounted) return;
     state = state.copyWith(
       notificationsEnabled: prefs.getBool(_notificationsKey),
       highContrastEnabled: prefs.getBool(_highContrastKey),
@@ -142,6 +173,7 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
       fontSize: prefs.getString(_fontSizeKey),
       quizFontSize: prefs.getString(_quizFontSizeKey),
       courseFontSize: prefs.getString(_courseFontSizeKey),
+      courseFontFamily: prefs.getString(_courseFontFamilyKey) ?? 'Inter',
       downloadMode: prefs.getString(_downloadModeKey),
       examNotificationsEnabled: prefs.getBool(_examNotifyKey),
       taskNotificationsEnabled: prefs.getBool(_taskNotifyKey),
@@ -151,6 +183,9 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
       srsReviewLimit: prefs.getInt(_srsReviewLimitKey) ?? 100,
       srsNotifyEnabled: prefs.getBool(_srsNotifyKey) ?? true,
       srsNotifyTime: prefs.getString(_srsNotifyTimeKey) ?? '09:00',
+      fatigueAnalysisEnabled: prefs.getBool(_fatigueEnabledKey) ?? true,
+      fatigueSensitivity: prefs.getString(_fatigueSensitivityKey) ?? 'Medium',
+      fatigueNotificationsEnabled: prefs.getBool(_fatigueNotificationsEnabledKey) ?? false,
     );
   }
 
@@ -214,6 +249,12 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
     state = state.copyWith(courseFontSize: value);
   }
 
+  Future<void> setCourseFontFamily(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_courseFontFamilyKey, value);
+    state = state.copyWith(courseFontFamily: value);
+  }
+
   Future<void> setDownloadMode(String value) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_downloadModeKey, value);
@@ -244,6 +285,24 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
     state = state.copyWith(srsNotifyTime: value);
   }
 
+  Future<void> toggleFatigueAnalysis(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_fatigueEnabledKey, value);
+    state = state.copyWith(fatigueAnalysisEnabled: value);
+  }
+
+  Future<void> setFatigueSensitivity(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_fatigueSensitivityKey, value);
+    state = state.copyWith(fatigueSensitivity: value);
+  }
+
+  Future<void> toggleFatigueNotifications(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_fatigueNotificationsEnabledKey, value);
+    state = state.copyWith(fatigueNotificationsEnabled: value);
+  }
+
   Future<void> resetAllData() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.clear();
@@ -252,11 +311,15 @@ class AppSettingsNotifier extends StateNotifier<AppSettings> {
       highContrastEnabled: false,
       syncSettingsEnabled: true,
       fontSize: 'Medium',
+      courseFontFamily: 'Inter',
       downloadMode: 'Wi-Fi only',
       srsNewCardsPerDay: 20,
       srsReviewLimit: 100,
       srsNotifyEnabled: true,
       srsNotifyTime: '09:00',
+      fatigueAnalysisEnabled: true,
+      fatigueSensitivity: 'Medium',
+      fatigueNotificationsEnabled: false,
     );
   }
 }

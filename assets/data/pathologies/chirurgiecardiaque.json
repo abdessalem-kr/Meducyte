@@ -1,0 +1,336 @@
+[
+  {
+    "name": "Syndrome d'Eisenmenger",
+    "description": "Pathologie caractérisée par une hypertension pulmonaire sévère secondaire à un shunt intracardiaque non corrigé (souvent un défaut septal atrial ou ventriculaire) évoluant vers une cyanose centrale. La physiopathologie repose sur une progression de la résistance vasculaire pulmonaire, entraînant un shunt droit-gauche et une insuffisance cardiaque droite. La présentation clinique typique inclut une cyanose progressive, une dyspnée d'effort, des syncopes, des épisodes de tachycardie paroxystique et une clubbing des doigts.",
+    "redFlags": [
+      "Cyanose centrale persistante avec clubbing des doigts associée à une dyspnée d'effort sévère",
+      "Syncope paroxystique lors d'un effort modéré ou d'une activité quotidienne",
+      "Crises de tachycardie paroxystique sans cause évidente, associées à une hypotension",
+      "Crachats écarlates (épistaxis ou hémoptysie) liés à une hypertension pulmonaire sévère",
+      "Insuffisance cardiaque droite clinique avec édème des membres inférieurs et ascite"
+    ],
+    "scores": [
+      {
+        "name": "Classification fonctionnelle de l'hypertension pulmonaire (WHO)",
+        "description": "Évalue la gravité clinique de l'hypertension pulmonaire en fonction de la tolérance à l'effort.",
+        "criteria": [
+          "Classe I: Aucun symptôme à l'effort (+0)",
+          "Classe II: Symptômes limitant l'effort modéré (+1)",
+          "Classe III: Symptômes à l'effort léger (+2)",
+          "Classe IV: Symptômes à l'immobilité (+3)"
+        ],
+        "interpretation": "Les classes III-IV indiquent une gravité sévère nécessitant une prise en charge multidisciplinaire immédiate."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et respiratoire ciblé",
+        "steps": [
+          {
+            "action": "Palpation des pouls périphériques et recherche de clubbing des doigts",
+            "interpretation": "Clubbing des doigts associé à une cyanose centrale évoque un syndrome d'Eisenmenger."
+          },
+          {
+            "action": "Auscultation cardiaque pour identifier un souffle systolique de régurgitation tricuspide",
+            "interpretation": "Un souffle systolique à la 4e intercostale gauche peut indiquer une insuffisance tricuspide secondaire."
+          },
+          {
+            "action": "Mesure de la saturation en oxygène (SpO2) au repos et à l'effort",
+            "interpretation": "Une saturation < 85 % à l'effort confirme une hypoxémie sévère."
+          },
+          {
+            "action": "Examen des membres inférieurs pour édème et ascite",
+            "interpretation": "L'insuffisance cardiaque droite est un signe de décompensation avancée."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'anticoagulants (ex: warfarine) pour prévenir les embolies pulmonaires",
+      "Prescription d'ergotamine ou de prostacycline en perfusion continue pour réduire la résistance pulmonaire",
+      "Restriction stricte de l'effort physique et interdiction de la grossesse",
+      "Hospitalisation pour surveillance de la fonction cardiaque et ajustement des traitements",
+      "Préparation chirurgicale pour transplantation cardiaque en cas de décompensation sévère"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance cardiaque congestive (absence de cyanose centrale)",
+      "Anémie sévère (absence de clubbing des doigts)",
+      "Maladie pulmonaire obstructive chronique (absence de souffle cardiaque anormal)"
+    ]
+  },
+  {
+    "name": "Insuffisance aortique aiguë secondaire à une dissection aortique",
+    "description": "Complication grave de la dissection aortique, caractérisée par une insuffisance aortique aiguë due à une lésion de la valve aortique par l'extension de la dissection. La physiopathologie implique une déchirure de la paroi aortique, créant un faux lumen qui comprime ou déforme la valve aortique. La présentation clinique typique inclut une douleur thoracique aiguë déchirante, une hypotension, une insuffisance cardiaque aiguë et des signes de choc cardiogénique.",
+    "redFlags": [
+      "Douleur thoracique déchirante soudaine irradiant vers le cou ou le dos",
+      "Hypotension artérielle associée à une tachycardie réflexe",
+      "Souffle diastolique à la 2e intercostale gauche (insuffisance aortique)",
+      "Signes de choc cardiogénique (pâleur, confusion, oligurie)",
+      "Signes de compression de structures adjacentes (voix rauque, parésie rénale)"
+    ],
+    "scores": [
+      {
+        "name": "Score de Stanford pour la dissection aortique",
+        "description": "Classifie la dissection en type A (impliquant l'arche aortique) ou type B (limitée au thorax descendu).",
+        "criteria": [
+          "Type A: Dissection impliquant l'arche aortique ou l'orifice aortique (+3 points)",
+          "Type B: Dissection limitée au thorax descendu (+1 point)"
+        ],
+        "interpretation": "Le type A nécessite une intervention chirurgicale d'urgence, tandis que le type B est souvent géré médicalement."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et neurologique ciblé",
+        "steps": [
+          {
+            "action": "Palpation des pouls périphériques et comparaison bilatérale",
+            "interpretation": "Une asymétrie des pouls suggère une occlusion ischémique secondaire à la dissection."
+          },
+          {
+            "action": "Auscultation cardiaque pour identifier un souffle diastolique de régurgitation aortique",
+            "interpretation": "Un souffle diastolique à la 2e intercostale gauche est spécifique à l'insuffisance aortique."
+          },
+          {
+            "action": "Examen neurologique pour détecter des signes de lésion cérébrale ischémique",
+            "interpretation": "Une perte de connaissance ou une parésie focale évoque une embolie cérébrale."
+          },
+          {
+            "action": "Palpation de la turgescence jugulaire et recherche de galop",
+            "interpretation": "Un galop diastolique indique une insuffisance cardiaque aiguë."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation hémodynamique avec des bêtabloquants (ex: ésmolol) pour réduire la pression pulsatile",
+      "Administration d'analgésiques puissants (ex: morphine) pour atténuer la douleur et la tachycardie",
+      "Préparation chirurgicale d'urgence pour résection de la dissection et réparation de la valve aortique",
+      "Perfusion de vasopresseurs (ex: noradrénaline) en cas de choc cardiogénique",
+      "Imagerie par tomodensitométrie ou échocardiographie transœsophagienne pour confirmation diagnostique"
+    ],
+    "differentialDiagnosis": [
+      "Infarctus du myocarde (absence de douleur déchirante et présence de signes ischémiques)",
+      "Pneumothorax aigu (absence de souffle cardiaque anormal)",
+      "Péricardite aiguë (douleur thoracique améliorée par la flexion du tronc)"
+    ]
+  },
+  {
+    "name": "Tétralogie de Fallot",
+    "description": "La tétralogie de Fallot est une malformation cardiaque congénitale caractérisée par quatre anomalies associées : une sténose pulmonaire, un défaut du septum interventriculaire (DVI), une aorte qui s'inscrit sur les deux ventricules (aorte surmontante), et une hypertrophie du ventricule droit. La physiopathologie repose sur une obstruction du flux sanguin pulmonaire, entraînant une shunt droit-gauche et une cyanose. La présentation clinique typique inclut une cyanose centrale, des épisodes de cyanose aiguë (crises de tétanos), une dyspnée à l'effort, et un souffle systolique ejection au niveau du sternum droit. Les complications possibles incluent l'insuffisance cardiaque, l'endocardite infectieuse, et des arrhythmies.",
+    "redFlags": [
+      "Cyanose centrale persistante depuis la naissance ou apparaissant progressivement",
+      "Épisodes de cyanose aiguë (crises de tétanos) avec agitation, hyperventilation, et perte de conscience",
+      "Souffle systolique ejection au sternum droit associé à un souffle diastolique de l'insuffisance mitrale",
+      "Clubbing des doigts et des orteils",
+      "Signes d'insuffisance cardiaque aiguë (turgescence jugulaire, râles pulmonaires, œdèmes)"
+    ],
+    "scores": [
+      {
+        "name": "Classification de cyanose de Fallot",
+        "description": "Évalue la gravité de la cyanose et la réponse à l'oxygénation.",
+        "criteria": [
+          "Classe I: Cyanose modérée, saturation > 85% à l'air libre (+0)",
+          "Classe II: Cyanose sévère, saturation 70-85% à l'air libre (+1)",
+          "Classe III: Cyanose extrême, saturation < 70% à l'air libre (+2)"
+        ],
+        "interpretation": "La classe III indique une urgence chirurgicale immédiate en raison du risque de crise de tétanos réfractaire."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et respiratoire ciblé",
+        "steps": [
+          {
+            "action": "Auscultation cardiaque pour identifier un souffle systolique ejection au sternum droit et un souffle diastolique de l'insuffisance mitrale",
+            "interpretation": "Un souffle systolique ejection suggère une sténose pulmonaire, tandis qu'un souffle diastolique évoque une insuffisance mitrale secondaire à l'hypertrophie ventriculaire."
+          },
+          {
+            "action": "Recherche de cyanose centrale (lèvres, ongles) et de clubbing des doigts",
+            "interpretation": "La cyanose centrale et le clubbing sont des signes de longue date d'hypoxémie chronique."
+          },
+          {
+            "action": "Palpation de la poulsation carotidienne et de l'impulsion apicale",
+            "interpretation": "Une poulsation carotidienne forte et une impulsion apicale déplacée vers l'extérieur et en bas indiquent une hypertrophie ventriculaire gauche."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Positionnement en Trendelenburg pour améliorer le retour veineux et réduire la cyanose aiguë",
+      "Administration d'oxygène à haut débit (100%) pour corriger l'hypoxémie",
+      "Sédation avec morphine pour réduire l'anxiété et la consommation d'oxygène",
+      "Administration de propranolol en cas de crise de tétanos pour diminuer la contractilité myocardique",
+      "Préparation chirurgicale d'urgence (shunt de Blalock-Taussig ou correction complète) pour les cas graves"
+    ],
+    "differentialDiagnosis": [
+      "Transposition des grands vaisseaux (absence de souffle cardiaque, cyanose immédiate post-natale)",
+      "Atresie tricuspide (absence de souffle pulmonaire, cyanose centrale sévère)",
+      "Sténose aortique congénitale (souffle systolique au sternum gauche, absence de cyanose)"
+    ]
+  },
+  {
+    "name": "Sténose aortique sévère",
+    "description": "La sténose aortique sévère est une obstruction du flux sanguin au niveau de la valve aortique, entraînant une hypertrophie concentrique du ventricule gauche et une insuffisance myocardique. La physiopathologie repose sur l'obstruction du flux sanguin, augmentant la pression dans le ventricule gauche et réduisant le débit coronarien. La présentation clinique typique inclut une angine de poitrine, une syncope, une dyspnée à l'effort, et un souffle systolique ejection au sternum gauche. Les complications possibles incluent l'insuffisance cardiaque, l'embolie systémique, et des arrhythmies mortelles.",
+    "redFlags": [
+      "Angine de poitrine à l'effort ou au repos non expliquée",
+      "Syncope à l'effort ou au repos avec hypotension",
+      "Souffle systolique ejection au sternum gauche associé à un souffle diastolique de l'insuffisance aortique",
+      "Signes d'insuffisance cardiaque aiguë (dyspnée orthopnée, œdèmes, râles pulmonaires)",
+      "Hypotension paradoxale (différence >10 mmHg entre la pression systolique à l'inspiration et l'expiration)"
+    ],
+    "scores": [
+      {
+        "name": "Classification ACC/AHA de la sténose aortique",
+        "description": "Évalue la gravité de la sténose et le risque de complications.",
+        "criteria": [
+          "Classe A: Sténose bénigne, gradient <20 mmHg, vitesse <2.5 m/s (+0)",
+          "Classe B: Sténose modérée, gradient 20-40 mmHg, vitesse 2.5-3.5 m/s (+1)",
+          "Classe C: Sténose sévère, gradient >40 mmHg, vitesse >3.5 m/s (+2)"
+        ],
+        "interpretation": "La classe C indique une urgence chirurgicale ou une intervention percutanée (valvuloplastie aortique) en raison du risque élevé de mortalité."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et respiratoire ciblé",
+        "steps": [
+          {
+            "action": "Auscultation cardiaque pour identifier un souffle systolique ejection au sternum gauche et un souffle diastolique de l'insuffisance aortique",
+            "interpretation": "Un souffle systolique ejection suggère une sténose aortique, tandis qu'un souffle diastolique évoque une insuffisance aortique secondaire à la sténose."
+          },
+          {
+            "action": "Palpation de la poulsation carotidienne et de l'impulsion apicale",
+            "interpretation": "Une poulsation carotidienne douce et une impulsion apicale déplacée vers l'extérieur indiquent une hypertrophie ventriculaire gauche."
+          },
+          {
+            "action": "Recherche de signes d'insuffisance cardiaque (œdèmes, râles pulmonaires, turgescence jugulaire)",
+            "interpretation": "Les signes d'insuffisance cardiaque indiquent une sténose aortique sévère avec insuffisance myocardique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'agents inotropes (ex: dobutamine) pour améliorer le débit cardiaque",
+      "Oxygénothérapie pour corriger l'hypoxémie et réduire la consommation d'oxygène myocardique",
+      "Éviter les bêta-bloquants en cas de sténose aortique sévère non corrigée",
+      "Préparation chirurgicale d'urgence (valvuloplastie aortique ou remplacement valvulaire) pour les cas symptomatiques",
+      "Surveillance étroite de la pression artérielle et de la saturation en oxygène"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance aortique aiguë (absence de souffle systolique, hypotension, œdème pulmonaire aigu)",
+      "Sténose mitrale (souffle diastolique au apex, ballottement apical)",
+      "Hypertrophie ventriculaire asymétrique (souffle systolique au sternum gauche, absence de gradient aortique)"
+    ]
+  },
+  {
+    "name": "Insuffisance mitrale aiguë secondaire à une rupture de cordon choroïde",
+    "description": "L'insuffisance mitrale aiguë (IMA) due à une rupture de cordon choroïde est une urgence cardiovasculaire rare mais grave, souvent survenant dans le contexte d'une cardiopathie ischémique. La rupture du cordon entraîne une insuffisance valvulaire mitrale majeure, avec un flux sanguin rétrograde massif du ventricule gauche vers l'oreillette gauche. Cela provoque une surcharge de volume de l'oreillette gauche, une augmentation de la pression pulmonaire et une insuffisance cardiaque aiguë. La présentation clinique typique inclut une dyspnée aiguë, une hypotension, une tachycardie, et des signes d'œdème pulmonaire.",
+    "redFlags": [
+      "Dyspnée aiguë sévère avec orthopnée et paroxysme nocturne de dyspnée",
+      "Crachats rosâtres ou hémoptysie suggérant une surcharge alvéolaire",
+      "Souffle holosystolique à la 5e intercostale gauche irradiant vers l'axillaire",
+      "Signes de choc cardiogénique : tachycardie, hypotension, oligurie",
+      "Signes de surcharge veineuse pulmonaire : râles crépitants bilatéraux, cyanose"
+    ],
+    "scores": [
+      {
+        "name": "Score de classification de l'insuffisance mitrale aiguë (SMIA)",
+        "description": "Évalue la gravité clinique et la réponse à la thérapeutique initiale pour orienter vers une chirurgie d'urgence.",
+        "criteria": [
+          "Classe I: Stabilité hémodynamique avec absence de signes de surcharge veineuse pulmonaire (+0)",
+          "Classe II: Dyspnée modérée avec râles crépitants et tachycardie (+1)",
+          "Classe III: Dyspnée sévère, hypoxémie, et signes de surcharge veineuse pulmonaire (+2)",
+          "Classe IV: Choc cardiogénique ou arrêt cardiorespiratoire (+3)"
+        ],
+        "interpretation": "Classe I: Surveillance étroite et chirurgie programmée. Classe II-III: Stabilisation préopératoire et chirurgie d'urgence. Classe IV: Réanimation immédiate et chirurgie d'urgence."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et pulmonaire ciblé",
+        "steps": [
+          {
+            "action": "Auscultation cardiaque pour identifier un souffle holosystolique à la 5e intercostale gauche",
+            "interpretation": "Un souffle holosystolique irradiant vers l'axillaire est fortement évocateur d'une insuffisance mitrale aiguë. Son intensité et sa radiation aident à évaluer la gravité du défaut valvulaire."
+          },
+          {
+            "action": "Palpation du pouls périphérique pour rechercher une tachycardie ou une hypotension",
+            "interpretation": "Une tachycardie compensatrice associée à une hypotension suggère une insuffisance cardiaque aiguë. L'absence de pouls périphériques peut indiquer un état de choc."
+          },
+          {
+            "action": "Examen des membres inférieurs pour rechercher des signes d'œdème ou de cyanose",
+            "interpretation": "L'œdème des membres inférieurs associé à une cyanose peut refléter une insuffisance cardiaque chronique sous-jacente ou une surcharge veineuse pulmonaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Position demi-assise pour réduire la surcharge veineuse pulmonaire",
+      "Oxygénothérapie à haut débit pour corriger l'hypoxémie",
+      "Diurèse ciblée avec furosémide pour réduire la surcharge veineuse",
+      "Stabilisation hémodynamique avec vasopresseurs (ex: noradrénaline) en cas de choc",
+      "Préparation chirurgicale immédiate pour réparation ou remplacement valvulaire"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance mitrale chronique avec décompensation aiguë (absence de souffle holosystolique aigu)",
+      "Péricardite constrictive (absence de souffle valvulaire, présence de signes de taponnade)",
+      "Sténose mitrale aiguë (souffle diastolique, absence de souffle holosystolique)"
+    ]
+  },
+  {
+    "name": "Sténose mitrale aiguë secondaire à une endocardite infectieuse",
+    "description": "La sténose mitrale aiguë (SMA) due à une endocardite infectieuse est une complication rare mais potentiellement fatale. Elle survient lorsque la valve mitrale est infiltrée par un végétant infectieux, entraînant un rétrécissement du lumen valvulaire. Cela provoque une obstruction du flux sanguin du ventricule gauche vers l'oreillette gauche, avec une augmentation de la pression dans l'oreillette gauche et une surcharge veineuse pulmonaire. La présentation clinique inclut une dyspnée aiguë, une tachycardie, des signes d'œdème pulmonaire, et des signes de fièvre ou de septicémie.",
+    "redFlags": [
+      "Dyspnée aiguë avec orthopnée et paroxysme nocturne de dyspnée",
+      "Fièvre persistante associée à une tachycardie non expliquée",
+      "Souffle diastolique à la 5e intercostale gauche",
+      "Signes de septicémie : hypotension, confusion, ou lésions cutanées",
+      "Râles crépitants bilatéraux avec cyanose"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'endocardite infectieuse (SEI)",
+        "description": "Évalue la gravité clinique et la réponse à l'antibiothérapie pour orienter vers une chirurgie d'urgence.",
+        "criteria": [
+          "Classe I: Stabilité hémodynamique avec absence de signes de surcharge veineuse pulmonaire (+0)",
+          "Classe II: Dyspnée modérée avec râles crépitants et tachycardie (+1)",
+          "Classe III: Dyspnée sévère, hypoxémie, et signes de surcharge veineuse pulmonaire (+2)",
+          "Classe IV: Choc septique ou arrêt cardiorespiratoire (+3)"
+        ],
+        "interpretation": "Classe I: Surveillance étroite et chirurgie programmée. Classe II-III: Stabilisation préopératoire et chirurgie d'urgence. Classe IV: Réanimation immédiate et chirurgie d'urgence."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et pulmonaire ciblé",
+        "steps": [
+          {
+            "action": "Auscultation cardiaque pour identifier un souffle diastolique à la 5e intercostale gauche",
+            "interpretation": "Un souffle diastolique à la 5e intercostale gauche est fortement évocateur d'une sténose mitrale. Son intensité et sa radiation aident à évaluer la gravité du rétrécissement."
+          },
+          {
+            "action": "Palpation du pouls périphérique pour rechercher une tachycardie ou une hypotension",
+            "interpretation": "Une tachycardie compensatrice associée à une hypotension suggère une insuffisance cardiaque aiguë. L'absence de pouls périphériques peut indiquer un état de choc."
+          },
+          {
+            "action": "Examen des membres inférieurs pour rechercher des signes d'œdème ou de cyanose",
+            "interpretation": "L'œdème des membres inférieurs associé à une cyanose peut refléter une insuffisance cardiaque chronique sous-jacente ou une surcharge veineuse pulmonaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Position demi-assise pour réduire la surcharge veineuse pulmonaire",
+      "Oxygénothérapie à haut débit pour corriger l'hypoxémie",
+      "Antibiothérapie de large spectre ciblée selon les résultats de la culture sanguine",
+      "Diurèse ciblée avec furosémide pour réduire la surcharge veineuse",
+      "Préparation chirurgicale immédiate pour réparation ou remplacement valvulaire"
+    ],
+    "differentialDiagnosis": [
+      "Sténose mitrale chronique avec décompensation aiguë (absence de souffle diastolique aigu)",
+      "Insuffisance mitrale aiguë (souffle holosystolique, absence de souffle diastolique)",
+      "Péricardite constrictive (absence de souffle valvulaire, présence de signes de taponnade)"
+    ]
+  }
+]

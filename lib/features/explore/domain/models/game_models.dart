@@ -143,3 +143,59 @@ class CrosswordWord {
     required this.isHorizontal,
   });
 }
+
+class ClueOption {
+  final String label;
+  final String result;
+  final int cost;
+
+  const ClueOption({
+    required this.label,
+    required this.result,
+    required this.cost,
+  });
+}
+
+class CaseDetectiveCase {
+  final String id;
+  final String difficulty; // "Débutant", "Intermédiaire", "Avancé"
+  final String patientDemographics;
+  final String chiefComplaint;
+  final String vitals;
+  final List<ClueOption> historyOptions;
+  final List<ClueOption> labOptions;
+  final List<ClueOption> imagingOptions;
+  final String correctDiagnosis;
+  final List<String> differentials;
+  final String teachingPoints;
+
+  const CaseDetectiveCase({
+    required this.id,
+    required this.difficulty,
+    required this.patientDemographics,
+    required this.chiefComplaint,
+    required this.vitals,
+    required this.historyOptions,
+    required this.labOptions,
+    required this.imagingOptions,
+    required this.correctDiagnosis,
+    required this.differentials,
+    required this.teachingPoints,
+  });
+}
+
+class PhysiologyFlowCase {
+  final String id;
+  final String title;
+  final String description;
+  final List<String> correctSteps;
+  final List<String> explanations;
+
+  const PhysiologyFlowCase({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.correctSteps,
+    required this.explanations,
+  });
+}

@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:meducyte_app/features/drugs/data/providers/drug_providers.dart';
 import 'package:meducyte_app/features/drugs/domain/models/drug_models.dart';
 import 'package:meducyte_app/features/drugs/presentation/screens/drug_details_screen.dart';
@@ -331,7 +332,32 @@ class _DrugDatabaseScreenState extends ConsumerState<DrugDatabaseScreen> {
                   ],
                 );
               },
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => Skeletonizer(
+                enabled: true,
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: 6,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12.0),
+                      child: _DrugCard(
+                        drug: Drug(
+                          id: 'dummy_$index',
+                          name: "Nom du médicament",
+                          genericName: "Nom générique du médicament",
+                          drugClass: "Classe",
+                          category: "Catégorie du médicament",
+                          indications: const [],
+                          contraindications: const [],
+                          dosage: "",
+                          sideEffects: "",
+                          mechanismOfAction: "",
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
               error: (err, stack) => Center(child: Text('Error: $err')),
             ),
           ),

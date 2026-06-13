@@ -1,14 +1,114 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:meducyte_app/features/simulation/domain/models/simulation_models.dart';
+import 'package:meducyte_app/features/simulation/data/repositories/simulation_repository.dart';
 import 'package:meducyte_app/features/simulation/presentation/providers/simulation_providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class FakeSimulationRepository implements SimulationRepository {
+  @override
+  Future<SimSession> startSession({
+    required String pathologyId,
+    required SimulationDifficulty difficulty,
+    required SimulationSetting setting,
+  }) async {
+    const mockCase = PatientCase(
+      id: 'case_001',
+      name: 'John Doe',
+      age: 58,
+      gender: 'M',
+      mainComplaint: 'Chest pain and shortness of breath',
+      occupation: 'Taxi Driver',
+      medicalHistory: 'Hypertension, Smoker (20 years)',
+      personality: 'Anxious',
+      targetPathology: 'Acute Myocardial Infarction',
+      secretDetails: 'The pain radiates to the left jaw and arm.',
+      expectedFindings: ['ST-segment elevation', 'Troponin elevation'],
+      initialVitals: Vitals(
+        heartRate: 105,
+        bloodPressure: '150/95',
+        temperature: 37,
+        spo2: 94,
+        respiratoryRate: 22,
+      ),
+      physicalExamResults: {},
+      labResults: {},
+      mediaFindings: {},
+    );
+
+    return SimSession(
+      id: 'session_123',
+      patientCase: mockCase,
+      difficulty: difficulty,
+      setting: setting,
+      messages: [
+        SimMessage(
+          id: 'msg_000',
+          text: 'Patient John Doe admitted to emergency room.',
+          isFromUser: false,
+          timestamp: DateTime.now(),
+        ),
+      ],
+    );
+  }
+
+  @override
+  Future<SimMessage> sendMessage(String sessionId, String text) async {
+    return SimMessage(
+      id: 'msg_ai_${DateTime.now().millisecondsSinceEpoch}',
+      text: 'Response from AI',
+      isFromUser: false,
+      timestamp: DateTime.now(),
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>> performAction(
+    String sessionId,
+    String type,
+    String name,
+  ) async {
+    return {
+      'result': 'Action result',
+      'finding': 'Action finding',
+    };
+  }
+
+  @override
+  Future<Map<String, dynamic>> submitDiagnosis(
+    String sessionId,
+    String diagnosis,
+  ) async {
+    return {
+      'score': 85,
+      'feedback': 'Good job',
+    };
+  }
+
+  @override
+  Future<List<SimCaseSummary>> getCases() async {
+    return [
+      const SimCaseSummary(
+        pathologyId: 'case_001',
+        moduleName: 'Cardiology',
+        summary: 'John Doe Case',
+        targetPathology: 'Acute Myocardial Infarction',
+      ),
+    ];
+  }
+}
 
 void main() {
   group('SimSessionNotifier Tests', () {
     late ProviderContainer container;
 
     setUp(() {
-      container = ProviderContainer();
+      container = ProviderContainer(
+        overrides: [
+          simulationRepositoryProvider.overrideWithValue(
+            FakeSimulationRepository(),
+          ),
+        ],
+      );
     });
 
     tearDown(() {

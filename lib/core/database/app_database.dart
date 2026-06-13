@@ -251,7 +251,7 @@ class AppDatabase extends _$AppDatabase {
     }
 
     if (specialty != null && specialty.isNotEmpty) {
-      selectQuery.where((t) => t.spec.equals(specialty));
+      selectQuery.where((t) => t.spec.like('%$specialty%'));
     }
 
     if (isTermView) {
@@ -305,11 +305,32 @@ class AppDatabase extends _$AppDatabase {
   }
 
   Future<List<String>> getMedicalSpecialties() async {
-    final query = selectOnly(medicalTerms, distinct: true)
-      ..addColumns([medicalTerms.spec]);
-    final result = await query.map((row) => row.read(medicalTerms.spec)).get();
-    return result.whereType<String>().where((s) => s.isNotEmpty).toList()
-      ..sort();
+    return [
+      'Anatomie',
+      'Biochimie',
+      'Cardiologie',
+      'Chirurgie',
+      'Dermatologie',
+      'Endocrinologie',
+      'Gastroentérologie',
+      'Gynécologie',
+      'Hématologie',
+      'Imagerie médicale',
+      'Immunologie',
+      'Infectiologie',
+      'Neurologie',
+      'Obstétrique',
+      'Oncologie',
+      'Ophtalmologie',
+      'Pharmacologie',
+      'Pneumologie',
+      'Psychiatrie',
+      'Psychologie',
+      'Pédiatrie',
+      'Rhumatologie',
+      'Toxicologie',
+      'Urologie',
+    ];
   }
 
   Future<int> getMedicalTermsCount() async {
@@ -471,5 +492,9 @@ class AppDatabase extends _$AppDatabase {
       moduleCaches,
     )..where((t) => t.id.equals(1))).getSingleOrNull();
     return result?.dataJson;
+  }
+
+  Future<void> clearModulesCache() async {
+    await (delete(moduleCaches)..where((t) => t.id.equals(1))).go();
   }
 }

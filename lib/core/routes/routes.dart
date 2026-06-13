@@ -26,6 +26,11 @@ class AppRoutes {
   static const String simulation = '/simulation';
   static const String aiPatientSim = '/simulation/ai-patient';
   static const String aiPatientChat = '/simulation/ai-patient/chat';
+  static const String ecos = '/simulation/ecos';
+  static const String emergencyRoom = '/simulation/emergency-room';
+  static const String virtualWardRounds = '/simulation/ward-rounds';
+  static const String diagnosticChallenge = '/simulation/diagnostic-challenge';
+  static const String proceduralGuide = '/simulation/procedural-guide';
   static const String explore = '/explore';
   static const String ecgHelper = '/explore/ecg-helper';
   static const String radiologyHelper = '/explore/radiology-helper';
@@ -43,18 +48,15 @@ class AppRoutes {
   static const String settings = '/settings';
   static const String statistics = '/statistics';
   static const String medicalCalculator = '/medical-calculator';
-  static const String bmi = '/medical-calculator/bmi';
-  static const String glasgow = '/medical-calculator/glasgow';
-  static const String apgar = '/medical-calculator/apgar';
-  static const String wells = '/medical-calculator/wells-pe';
-  static const String cha2ds2vasc = '/medical-calculator/cha2ds2vasc';
-  static const String generic = '/medical-calculator/generic/:id';
   static const String notificationSettings = '/settings/notifications';
   static const String fontSettings = '/settings/font-size';
   static const String srsSettings = '/settings/spaced-repetition';
+  static const String fatigueSettings = '/settings/fatigue-analysis';
+  static const String studyPlanSettings = '/settings/study-plan';
   static const String notifications = '/notifications';
   static const String productiveBay = '/productive-bay';
   static const String medicalGames = '/explore/medical-games';
+  static const String clinicalPearls = '/explore/clinical-pearls';
   static const String anatomyQuiz = '/explore/anatomy-quiz';
   static const String wordAssociation = '/explore/word-association';
   static const String diagnosisMystery = '/explore/diagnosis-mystery';
@@ -68,8 +70,8 @@ class AppRoutes {
   static const String studyGroups = '/productive-bay/study-groups';
   static const String studyGroupDetails = '/productive-bay/study-groups/:id';
   static const String quizGroupStudy = '/productive-bay/study-groups/:id/quiz';
-  static const String planner = '/productive-bay/planner';
   static const String tasks = '/productive-bay/tasks';
+
   static const String analytics = '/productive-bay/analytics';
   static const String customizeBay = '/productive-bay/customize';
   static const String deepWork = '/productive-bay/deep-work';
@@ -77,4 +79,10 @@ class AppRoutes {
   static const String privacyPolicy = '/privacy-policy';
   static const String termsOfUse = '/terms-of-use';
   static const String faq = '/settings/faq';
+
+  // Observation routes
+  static const String observation = '/observation';
+  static const String observationReport = '/observation/report/:specialty';
+  static const String observationHistory = '/observation/history';
+  static const String pathologyDirectory = '/observation/pathology-directory';
 }

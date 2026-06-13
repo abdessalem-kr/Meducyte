@@ -18,46 +18,23 @@ class SmartTodoListWidget extends ConsumerWidget {
                 .toList(),
           ),
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (err, _) => Text("${context.l10n.errorLabel}: $err"),
-        ),
-        const SizedBox(height: 20),
-        _buildAddTaskButton(context, ref),
-      ],
-    );
-  }
-
-  Widget _buildAddTaskButton(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    return InkWell(
-      onTap: () {
-        ref
-            .read(productiveBayProvider.notifier)
-            .addTask('1', context.l10n.newStudyModuleTask);
-      },
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: theme.primaryColor.withOpacity(0.3),
-            width: 1.5,
-          ),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Iconsax.add, color: theme.primaryColor),
-            const SizedBox(width: 8),
-            Text(
-              context.l10n.addSmartTask,
-              style: TextStyle(
-                color: theme.primaryColor,
-                fontWeight: FontWeight.bold,
+          error: (err, _) => Column(
+            children: [
+              Text(
+                "${context.l10n.errorLabel}: $err",
+                style: const TextStyle(color: Colors.red, fontSize: 13),
+                textAlign: TextAlign.center,
               ),
-            ),
-          ],
+              const SizedBox(height: 12),
+              TextButton.icon(
+                onPressed: () => ref.invalidate(productiveBayProvider),
+                icon: const Icon(Icons.refresh, size: 18),
+                label: Text(context.l10n.retry),
+              ),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -209,13 +186,13 @@ class _SmartTodoItemCardState extends ConsumerState<SmartTodoItemCard> {
                             }
                           },
                           itemBuilder: (context) => [
-                            const PopupMenuItem(
+                            PopupMenuItem(
                               value: 'edit',
                               child: Row(
                                 children: [
-                                  Icon(Iconsax.edit, size: 18),
-                                  SizedBox(width: 12),
-                                  Text("Modifier"),
+                                  const Icon(Iconsax.edit, size: 18),
+                                  const SizedBox(width: 12),
+                                  Text(context.l10n.editLabel),
                                 ],
                               ),
                             ),
@@ -223,15 +200,15 @@ class _SmartTodoItemCardState extends ConsumerState<SmartTodoItemCard> {
                               value: 'delete',
                               child: Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Iconsax.trash,
                                     size: 18,
                                     color: Colors.red,
                                   ),
                                   const SizedBox(width: 12),
-                                  const Text(
-                                    "Supprimer",
-                                    style: TextStyle(color: Colors.red),
+                                  Text(
+                                    context.l10n.deleteLabel,
+                                    style: const TextStyle(color: Colors.red),
                                   ),
                                 ],
                               ),
@@ -267,19 +244,19 @@ class _SmartTodoItemCardState extends ConsumerState<SmartTodoItemCard> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Supprimer la tâche"),
-        content: Text("Voulez-vous vraiment supprimer'${task.title}' ?"),
+        title: Text(context.l10n.deleteTaskTitle),
+        content: Text(context.l10n.deleteTaskConfirm(task.title)),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Annuler"),
+            child: Text(context.l10n.cancel),
           ),
           TextButton(
             onPressed: () {
               ref.read(productiveBayProvider.notifier).removeTask(task.id);
               Navigator.pop(context);
             },
-            child: const Text("Supprimer", style: TextStyle(color: Colors.red)),
+            child: Text(context.l10n.deleteLabel, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
@@ -313,13 +290,17 @@ class _SmartTodoItemCardState extends ConsumerState<SmartTodoItemCard> {
       children: [
         Icon(icon, size: 12, color: color.withOpacity(0.7)),
         const SizedBox(width: 4),
-        Text(
-          label.toUpperCase(),
-          style: TextStyle(
-            color: color.withOpacity(0.7),
-            fontSize: 10,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 0.5,
+        Flexible(
+          child: Text(
+            label.toUpperCase(),
+            style: TextStyle(
+              color: color.withOpacity(0.7),
+              fontSize: 10,
+              fontWeight: FontWeight.w900,
+              letterSpacing: 0.5,
+            ),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
           ),
         ),
       ],

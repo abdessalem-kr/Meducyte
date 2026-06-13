@@ -121,7 +121,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete();
-            $table->foreignId('proposition_id')->nullable()->constrained('propositions'); // Null if skipped
+            $table->foreignId('proposition_id')->nullable()->constrained('propositions')->nullOnDelete(); // Null if skipped
+            $table->string('quiz_session_id')->nullable();
             $table->boolean('is_correct');
             $table->timestamps();
 

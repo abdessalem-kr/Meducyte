@@ -1,0 +1,338 @@
+[
+  {
+    "name": "Ostéoradionécrose de la mâchoire",
+    "description": "Pathologie secondaire à l'irradiation des tissus maxillo-faciaux, caractérisée par une nécrose osseuse due à une ischémie et une radiosensibilité accrue. La pathogénèse repose sur une microcirculation altérée, une réponse inflammatoire chronique et une régénération osseuse déficiente. La présentation clinique typique inclut des ulcérations non cicatrisantes, une exposition osseuse visible, des douleurs persistantes, des fistules oro-cutanées, et une mobilité anormale des dents adjacentes. Les complications peuvent inclure des infections secondaires, des lésions neurologiques (névralgies) et une déformation osseuse.",
+    "redFlags": [
+      "Exposition osseuse visible à la palpation ou à la vision directe",
+      "Ulcérations non cicatrisantes depuis plus de 3 mois post-irradiation",
+      "Douleurs osseuses persistantes non réductibles par les analgésiques standards",
+      "Fistules oro-cutanées associées à une sécrétion purulente",
+      "Signes d'infection secondaire (fièvre, gonflement, rougeur, chaleur localisée)"
+    ],
+    "scores": [
+      {
+        "name": "Classification RTOG (Radiation Therapy Oncology Group)",
+        "description": "Échelle de gravité basée sur la symptomatologie, la nécessité de traitement chirurgical et les complications",
+        "criteria": [
+          "Classe I: Symptômes mineurs (douleur contrôlée, ulcérations non cicatrisantes) (+0)",
+          "Classe II: Symptômes modérés nécessitant une intervention chirurgicale mineure (+1)",
+          "Classe III: Symptômes sévères avec complications neurologiques ou fonctionnelles (+2)",
+          "Classe IV: Nécrose étendue avec perte fonctionnelle majeure ou nécessité de résection osseuse étendue (+3)"
+        ],
+        "interpretation": "La somme des points détermine la gravité de la pathologie et guide le choix thérapeutique. Une classe III ou IV justifie une intervention chirurgicale urgente."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique maxillo-facial et neurologique",
+        "steps": [
+          {
+            "action": "Inspection visuelle et palpation des zones irradiées pour détecter des ulcérations, des lésions osseuses exposées ou des fistules",
+            "interpretation": "La présence d'exposition osseuse ou de lésions non cicatrisantes depuis plus de 3 mois post-irradiation évoque fortement l'ostéoradionécrose."
+          },
+          {
+            "action": "Évaluation de la mobilité mandibulaire et des dents adjacentes",
+            "interpretation": "Une mobilité anormale ou une perte de dents peut indiquer une destruction osseuse sous-jacente."
+          },
+          {
+            "action": "Palpation des ganglions cervicaux pour rechercher des signes d'infection secondaire",
+            "interpretation": "Un ganglionome ou une réaction inflammatoire suggère une infection secondaire."
+          },
+          {
+            "action": "Examen neurologique ciblé pour détecter des névralgies ou des déficits sensoriels",
+            "interpretation": "Des névralgies trigéminales ou faciales peuvent indiquer une implication neurologique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hyperbarie à 2,5 à 3 atmosphères pour améliorer la perfusion tissulaire et stimuler la régénération osseuse",
+      "Antibiothérapie de large spectre (ex: pénicilline associée à une aminoside) en cas de signes d'infection",
+      "Débridement chirurgical des tissus nécrosés si l'exposition osseuse est étendue",
+      "Administration de bisphosphonates intraveineux pour stabiliser le tissu osseux",
+      "Rééducation fonctionnelle et orthodontique pour prévenir les complications esthétiques et fonctionnelles"
+    ],
+    "differentialDiagnosis": [
+      "Ostéomyélite chronique (absence de prémédication radiologique)",
+      "Tumeurs osseuses secondaires (imagerie nécessaire pour différencier)",
+      "Lésions osseuses liées à la sialodochite (présence de calculs salivaires)"
+    ]
+  },
+  {
+    "name": "Abscès palatin avec extension intracrânienne",
+    "description": "Infection localisée du palais secondaire à une pathologie dentaire ou traumatique, s'étendant vers les espaces profonds maxillo-faciaux et pouvant compromettre l'airway ou le système neurologique central. La physiopathologie repose sur une propagation bactérienne via les espaces mous et les sinus paranasaux. La présentation clinique typique inclut une douleur palatine intense, une fièvre, une tuméfaction du palais, et des signes neurologiques (céphalées, confusion, vomissements). Les complications graves incluent l'abscessus cérébral, la méningite, et l'obstruction de l'airway.",
+    "redFlags": [
+      "Douleur palatine intense associée à une tuméfaction progressive",
+      "Fièvre élevée (>39°C) avec frissons",
+      "Céphalées intenses et confusion mentale",
+      "Vomissements non régressifs",
+      "Signes de méningite (rigidité nucale, photophobie)"
+    ],
+    "scores": [],
+    "focusedExam": [
+      {
+        "title": "Examen clinique neurologique et maxillo-facial",
+        "steps": [
+          {
+            "action": "Inspection du palais pour détecter des lésions ulcéreuses, des vésicules ou des zones de tuméfaction",
+            "interpretation": "Une tuméfaction du palais associée à une douleur à la palpation évoque un abcès profond."
+          },
+          {
+            "action": "Palpation des espaces mous maxillo-faciaux pour rechercher des zones de chaleur, de douleur ou de fluctuation",
+            "interpretation": "La fluctuation indique une collection purulente."
+          },
+          {
+            "action": "Évaluation de l'airway pour détecter une obstruction (voix rauque, stridor)",
+            "interpretation": "Une voix rauque ou un stridor suggèrent une compression des voies respiratoires."
+          },
+          {
+            "action": "Examen neurologique complet (Glasgow, réflexes, coordination)",
+            "interpretation": "Des signes neurologiques focaux ou une confusion mentale indiquent une extension intracrânienne."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie intraveineuse de large spectre (ex: piperacilline-tazobactam ou ceftriaxone + metronidazole)",
+      "Imagerie urgente (TDM ou IRM) pour visualiser l'extension intracrânienne",
+      "Incision et drainage chirurgical si l'abcès est accessible et si l'airway est compromis",
+      "Intubation précoce si des signes d'obstruction respiratoire sont présents",
+      "Surveillance étroite des signes neurologiques et réanimation en cas de méningite"
+    ],
+    "differentialDiagnosis": [
+      "Abscessus cérébral (absence de prémédication dentaire)",
+      "Méningite bactérienne (absence de lésion palatine)",
+      "Sinusite étendue avec extension intracrânienne"
+    ]
+  },
+  {
+    "name": "Fracture de la mâchoire inférieure avec malocclusion",
+    "description": "La fracture de la mâchoire inférieure est une pathologie traumatique courante, souvent liée à des traumatismes faciaux (agression, accident de la route). Elle se caractérise par une rupture osseuse du corps mandibulaire, du symphyse ou des angles, associée à une altération de l'occlusion dentaire. La physiopathologie repose sur une force mécanique supérieure à la résistance osseuse, entraînant un déplacement des fragments et une perte de l'alignement dentaire. Les signes cliniques incluent une douleur intense, une impossibilité de fermer la bouche, une déviation de la mâchoire lors de la mastication, des ecchymoses faciales, et des signes neurologiques en cas de lésion du nerf alvéolaire inférieur.",
+    "redFlags": [
+      "Douleur constrictive au niveau de la ligne médiane mandibulaire avec impossibilité de prononcer certaines syllabes (ex: 'p', 'b')",
+      "Déviation de la mâchoire inférieure vers le côté non lésé lors de la mastication",
+      "Ecchymoses et œdèmes bilatéraux associés à une perte de la sensibilité du nerf alvéolaire inférieur",
+      "Décalage de l'occlusion dentaire (malocclusion) avec contact anormal des dents antérieures",
+      "Hématome sous-muqueux au niveau de la symphyse mandibulaire"
+    ],
+    "scores": [
+      {
+        "name": "Classification AO/ASIF des fractures mandibulaires",
+        "description": "Classification basée sur la localisation, le nombre de fragments et le mécanisme de fracture pour guider la prise en charge chirurgicale.",
+        "criteria": [
+          "Type A: Fractures simples (ex: une fracture non déplacée du corps mandibulaire)",
+          "Type B: Fractures complexes (ex: deux fragments déplacés avec déviation de la mâchoire)",
+          "Type C: Fractures comminutives (ex: trois fragments ou plus avec instabilité osseuse)",
+          "Sous-type 1: Fracture sans lésion neurologique",
+          "Sous-type 2: Fracture avec lésion du nerf alvéolaire inférieur"
+        ],
+        "interpretation": "Le type A nécessite une immobilisation orthopédique, le type B une fixation interne, et le type C une reconstruction osseuse associée à une greffe."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique de la région mandibulaire",
+        "steps": [
+          {
+            "action": "Palpation bilatérale du corps mandibulaire et des angles pour identifier des points de douleur localisée ou des déformations osseuses",
+            "interpretation": "Une douleur accentuée au niveau de la symphyse ou des angles, associée à une déformation palpable, évoque une fracture déplacée."
+          },
+          {
+            "action": "Test de la mobilité mandibulaire en demandant au patient d'ouvrir et de fermer la bouche lentement",
+            "interpretation": "Une limitation de l'ouverture buccale ou une déviation latérale lors de la mastication suggère une fracture avec déplacement des fragments."
+          },
+          {
+            "action": "Examen de l'occlusion dentaire en comparant les contacts des dents antérieures et postérieures",
+            "interpretation": "Une malocclusion antérieure (dents supérieures en avant par rapport aux inférieures) ou postérieure (contacts anormaux) indique une fracture déplacée."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation temporaire de la mâchoire avec un fil de ligature interdentaire pour stabiliser les fragments",
+      "Administration de paracétamol ou d'anti-inflammatoires non stéroïdiens (AINS) pour le contrôle de la douleur",
+      "Prescription d'antibiotiques de première intention (ex: amoxicilline + acide clavulanique) pour prévenir l'infection",
+      "Imagerie radiologique (radiographie panoramique ou scanner) pour confirmer la localisation et le type de fracture",
+      "Préparation chirurgicale en urgence si déplacement important ou lésion neurologique associée"
+    ],
+    "differentialDiagnosis": [
+      "Luxation du maxillaire inférieur (déviation sans fracture osseuse)",
+      "Lésion du nerf facial (perte de la motricité faciale sans fracture)",
+      "Fracture du maxillaire supérieur (signes cliniques distincts)"
+    ]
+  },
+  {
+    "name": "Ostéomyélite odontogène de la mâchoire",
+    "description": "L'ostéomyélite odontogène est une infection osseuse aiguë ou chronique secondaire à une infection dentaire non traitée (ex: abcès périapical). Elle se caractérise par une infiltration de bactéries dans le trabécule osseux, entraînant une nécrose osseuse et une réponse inflammatoire intense. Les signes cliniques incluent une douleur pulsatile, une tuméfaction locale, une fièvre, et des signes systémiques (frissons, asthénie). L'extension peut atteindre les tissus mous adjacents ou les voies respiratoires, nécessitant une prise en charge chirurgicale immédiate.",
+    "redFlags": [
+      "Douleur pulsatile au niveau d'une dent spécifique avec irradiation vers la région temporale",
+      "Tuméfaction progressive de la muqueuse gingivale associée à une ulcération",
+      "Fièvre supérieure à 38,5°C avec frissons et asthénie",
+      "Décoloration de la gencive (rouge vif) avec exsudat purulent",
+      "Incapacité de manger en raison de douleur intense"
+    ],
+    "scores": [
+      {
+        "name": "Critères SIRS pour l'identification de la septicémie",
+        "description": "Score évaluant les signes systémiques d'infection pour orienter vers une septicémie.",
+        "criteria": [
+          "Température corporelle > 38°C ou < 36°C (+1)",
+          "Fréquence cardiaque > 90 battements/min (+1)",
+          "Fréquence respiratoire > 20 cycles/min (+1)",
+          "Leucocytose > 12 000/mm³ ou leucopénie < 4 000/mm³ (+1)"
+        ],
+        "interpretation": "Un score ≥ 2 points évoque une infection systémique nécessitant une antibiothérapie intraveineuse."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique de la région infectée",
+        "steps": [
+          {
+            "action": "Palpation de la gencive et des tissus mous adjacents pour identifier des zones de chaleur, de douleur ou de fluctuation",
+            "interpretation": "Une fluctuation palpable indique une collection purulente sous-muqueuse."
+          },
+          {
+            "action": "Examen radiologique (radiographie ou scanner) pour visualiser l'ostéolyse osseuse et les limites de l'infection",
+            "interpretation": "Une lésion osseuse en forme de « cloche à fromage » ou une perte de la densité trabéculaire évoque une ostéomyélite."
+          },
+          {
+            "action": "Test de la sensibilité dentaire avec une aiguille de test (ex: test électrique ou thermique)",
+            "interpretation": "Une absence de réponse indique une nécrose pulpaire secondaire à l'infection."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie intraveineuse de large spectre (ex: pénicilline G + métronidazole) adaptée aux germes anaérobies",
+      "Incision et drainage chirurgical des collections purulentes sous anesthésie locale",
+      "Extraction de la dent source de l'infection si possible",
+      "Hydratation intraveineuse pour corriger la déshydratation associée à la fièvre",
+      "Surveillance étroite des signes de septicémie (tachycardie, hypotension)"
+    ],
+    "differentialDiagnosis": [
+      "Abscès périapical aigu (infection limitée à la racine d'une dent)",
+      "Granulome radiculaire chronique (inflammation non purulente)",
+      "Tumeur osseuse maligne (douleur chronique sans signes infectieux)"
+    ]
+  },
+  {
+    "name": "Angine de Ludwig avec compromission de la voie aérienne",
+    "description": "Infection aiguë, polymicrobienne, de la loge sous-moussue du plancher buccal, caractérisée par une cellulite expansible rapide, souvent secondaire à une infection odontogène (molaire inférieure). La physiopathologie repose sur une invasion bactérienne (Staphylococcus aureus, Streptococcus, anaérobies) avec édème des tissus mous, trismus, et risque d'obstruction aiguë des voies respiratoires. La présentation clinique typique inclut une tuméfaction du plancher buccal, une voix enrouée, une déglutition douloureuse, et une fièvre. L'évolution peut être marquée par une hypoxie, une cyanose, et une insuffisance respiratoire.",
+    "redFlags": [
+      "Tumeur du plancher buccal associée à une voix enrouée et une déglutition douloureuse survenant dans les 24-48 heures",
+      "Trismus sévère limitant l'ouverture buccale > 1 cm",
+      "Édème des lèvres et du cou avec déformation du visage en « visage en masque »",
+      "Signes de septicémie (tachycardie > 120 bpm, hypotension, confusion)",
+      "Compromission de la voie aérienne avec stridor inspiratoire ou cyanose"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'angine de Ludwig (modifié)",
+        "description": "Évalue la gravité clinique basée sur l'extension de l'infection et les signes de gravité.",
+        "criteria": [
+          "Classe I: Infection limitée au plancher buccal sans signe de gravité (+0)",
+          "Classe II: Extension au cou antérieur ou laryngée avec trismus modéré (+1)",
+          "Classe III: Extension à la loge prétrachéale ou paratrachéale avec stridor (+2)",
+          "Classe IV: Compromission aiguë de la voie aérienne avec cyanose ou hypoxie (+3)"
+        ],
+        "interpretation": "Classe I-III: Surveillance étroite et antibiothérapie. Classe IV: Intubation immédiate ou trachéotomie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique du plancher buccal et voies respiratoires",
+        "steps": [
+          {
+            "action": "Inspection visuelle du plancher buccal et des lèvres pour identifier une tuméfaction asymétrique ou une déformation du visage",
+            "interpretation": "Une asymétrie ou une déformation suggère une extension de l'infection au-delà du plancher buccal, nécessitant une imagerie immédiate."
+          },
+          {
+            "action": "Palpation des ganglions cervicaux pour rechercher une adénopathie douloureuse ou indolore",
+            "interpretation": "Adénopathie cervicale réactive ou purulente indique une réponse inflammatoire ou une extension ganglionnaire."
+          },
+          {
+            "action": "Évaluation de l'ouverture buccale (trismus) en mesurant la distance entre les incisives",
+            "interpretation": "Un trismus sévère (< 1 cm) corrobore une infiltration des muscles masticateurs, augmentant le risque de voie aérienne."
+          },
+          {
+            "action": "Auscultation des voies respiratoires pour détecter un stridor inspiratoire ou des râles",
+            "interpretation": "Stridor inspiratoire = compromission aiguë de la voie aérienne. Râles = édème laryngé ou pneumopathie secondaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Préparation immédiate pour intubation orotrachéale ou trachéotomie en cas de compromission aiguë de la voie aérienne",
+      "Antibiothérapie empirique large spectre (pénicilline + métronidazole) en perfusion continue",
+      "Position semi-assise pour réduire l'œdème et faciliter la respiration",
+      "Hydratation intraveineuse pour prévenir la déshydratation et soutenir la perfusion tissulaire",
+      "Consultation chirurgicale d'urgence pour débridement chirurgical si abcès localisé"
+    ],
+    "differentialDiagnosis": [
+      "Abscès péri-amygdalien (absence de compromission du plancher buccal)",
+      "Cellulite cervicale post-opératoire (antécédents chirurgicaux récents)",
+      "Tumeur maligne du plancher buccal (évolution plus lente, absence de fièvre)"
+    ]
+  },
+  {
+    "name": "Tumeur maligne infiltrante du sinus maxillaire",
+    "description": "Tumeur primitive ou métastatique infiltrant le sinus maxillaire, souvent de type carcinome épidermoïde. La physiopathologie implique une invasion locale des tissus osseux et mous, avec possible extension au voisinage (orbite, cavité nasale, voies respiratoires). La présentation clinique typique inclut une perte de volume maxillaire, une sinusite réfractaire, une hypoesthésie du nerf infra-orbital, et une décoloration de la muqueuse. L'évolution peut être marquée par une destruction osseuse visible à l'imagerie et une adénopathie cervicale.",
+    "redFlags": [
+      "Perte de volume maxillaire associée à une hypoesthésie du nerf infra-orbital",
+      "Décoloration muqueuse (rouge-violacé) ou ulcération non cicatrisante",
+      "Déformation du visage asymétrique avec élargissement de la fosse nasale",
+      "Adénopathie cervicale dure, fixée, indolore",
+      "Signes de métastase à distance (douleurs osseuses, lésions cutanées)"
+    ],
+    "scores": [
+      {
+        "name": "Classification TNM (UICC 8e édition)",
+        "description": "Évalue la taille de la tumeur (T), l'envahissement ganglionnaire (N), et les métastases (M).",
+        "criteria": [
+          "T1: Tumeur limitée au sinus maxillaire (+0)",
+          "T2: Extension au plancher orbital ou à la fosse nasale (+1)",
+          "T3: Extension au plancher orbital ou à la cavité orbitaire (+2)",
+          "T4a: Extension au plancher orbital ou à la cavité orbitaire avec invasion du nerf optique (+3)",
+          "T4b: Extension au plancher orbital ou à la cavité orbitaire avec invasion du nerf optique et du sinus frontal (+4)"
+        ],
+        "interpretation": "Stade T1-2: Chirurgie possible. Stade T3-4: Chirurgie associée à radiothérapie et chimiothérapie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique du visage et des sinus",
+        "steps": [
+          {
+            "action": "Palpation du visage pour identifier une asymétrie ou une douleur osseuse",
+            "interpretation": "Asymétrie ou douleur osseuse suggère une destruction osseuse secondaire à la tumeur."
+          },
+          {
+            "action": "Inspection de la muqueuse nasale et maxillaire pour rechercher une décoloration ou une ulcération",
+            "interpretation": "Décoloration violacée ou ulcération non cicatrisante est fortement évoquée pour un carcinome."
+          },
+          {
+            "action": "Test de la sensibilité du nerf infra-orbital (stimulation du foramen infra-orbital)",
+            "interpretation": "Hypoesthésie indique une infiltration du nerf par la tumeur."
+          },
+          {
+            "action": "Palpation des ganglions cervicaux pour rechercher une adénopathie",
+            "interpretation": "Adénopathie cervicale fixée ou dure évoque une métastase ganglionnaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Imagerie diagnostique (scanner ou IRM) pour évaluer l'extension de la tumeur",
+      "Biopsie dirigée pour confirmation histologique",
+      "Consultation multidisciplinaire (chirurgie, oncologie, radiothérapie)",
+      "Préparation préopératoire (bilan sanguin, vaccination pneumococcique)",
+      "Surveillance étroite pour complications (hémorragie, infection)"
+    ],
+    "differentialDiagnosis": [
+      "Polype nasal ou sinusite chronique (absence de décoloration muqueuse)",
+      "Cyste dentaire maxillaire (évolution plus lente, absence de ganglion)",
+      "Sarcome osseux (douleur osseuse aiguë, absence de décoloration)"
+    ]
+  }
+]

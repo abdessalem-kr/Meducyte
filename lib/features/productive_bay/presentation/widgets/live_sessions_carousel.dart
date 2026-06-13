@@ -87,6 +87,7 @@ class _SessionCard extends ConsumerWidget {
         context.pushNamed(
           AppRoutes.quizGroupStudy,
           pathParameters: {'id': session.studyGroupId},
+          extra: {'session': session},
         );
       },
       child: Container(
@@ -169,6 +170,7 @@ class _SessionCard extends ConsumerWidget {
                     context.pushNamed(
                       AppRoutes.quizGroupStudy,
                       pathParameters: {'id': session.studyGroupId},
+                      extra: {'session': session},
                     );
                   },
                   style: ElevatedButton.styleFrom(

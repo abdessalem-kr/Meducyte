@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'app_routes.dart';
@@ -14,6 +15,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: AppRoutes.splash,
     debugLogDiagnostics: true,
+    extraCodec: const RouteExtraCodec(),
     routes: appRoutes.map((r) => r.toGoRoute()).toList(),
     refreshListenable: routerNotifier,
     redirect: (context, state) {
@@ -76,3 +78,70 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     },
   );
 });
+
+class RouteExtraCodec extends Codec<Object?, Object?> {
+  const RouteExtraCodec();
+
+  @override
+  Converter<Object?, Object?> get decoder => const _RouteExtraDecoder();
+
+  @override
+  Converter<Object?, Object?> get encoder => const _RouteExtraEncoder();
+}
+
+// Memory registry to store references to non-serializable objects
+final Map<String, Object> _extraRegistry = {};
+
+class _RouteExtraEncoder extends Converter<Object?, Object?> {
+  const _RouteExtraEncoder();
+  @override
+  Object? convert(Object? input) {
+    if (input == null) return null;
+
+    // If it's already a standard primitive JSON-encodable type, return it as-is
+    if (input is num || input is bool || input is String) {
+      return input;
+    }
+
+    if (input is Map || input is List) {
+      try {
+        jsonEncode(input);
+        return input;
+      } catch (_) {
+        // Fall through to register it
+      }
+    }
+
+    // Generate a unique reference ID
+    final refId = '${input.runtimeType}_${input.hashCode}_${DateTime.now().microsecondsSinceEpoch}';
+    _extraRegistry[refId] = input;
+
+    // Clean up older entries to prevent memory growth (keep last 100 entries)
+    if (_extraRegistry.length > 100) {
+      final keys = _extraRegistry.keys.toList();
+      _extraRegistry.remove(keys.first);
+    }
+
+    return {
+      '__type': 'RegistryRef',
+      'id': refId,
+    };
+  }
+}
+
+class _RouteExtraDecoder extends Converter<Object?, Object?> {
+  const _RouteExtraDecoder();
+  @override
+  Object? convert(Object? input) {
+    if (input == null) return null;
+
+    if (input is Map && input['__type'] == 'RegistryRef') {
+      final refId = input['id'] as String?;
+      if (refId != null && _extraRegistry.containsKey(refId)) {
+        return _extraRegistry[refId];
+      }
+    }
+
+    return input;
+  }
+}

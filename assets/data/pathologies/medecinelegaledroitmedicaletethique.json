@@ -1,0 +1,334 @@
+[
+  {
+    "name": "Syndrome de non-respect des directives anticipées",
+    "description": "Pathologie éthique et juridique caractérisée par l'absence de respect des directives anticipées (testament biologique) d'un patient en situation de perte de capacité décisionnelle. Elle survient lorsqu'un tiers (famille, soignants ou institutions) ignore les volontés préalablement exprimées par le patient concernant les soins à prodiguer ou à refuser en cas d'incapacité. La physiopathologie repose sur un conflit entre l'autonomie du patient et l'obligation des soignants de respecter les directives légalement validées.",
+    "redFlags": [
+      "Refus de traitement contraire aux directives anticipées malgré leur validité juridique",
+      "Pression familiale insistante pour modifier les soins programmés",
+      "Absence de consultation du patient lui-même lors de la prise de décision",
+      "Documentation incomplète ou absente des directives dans le dossier médical",
+      "Délai supérieur à 72 heures entre l'activation des directives et leur mise en œuvre"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de gravité des violations éthiques (EGVE)",
+        "description": "Score évaluant la gravité des écarts entre les soins prodigués et les directives anticipées",
+        "criteria": [
+          "Niveau 1: Délai < 24h entre violation et correction (+1)",
+          "Niveau 2: Violation technique mineure (ex: médicament non conforme) (+2)",
+          "Niveau 3: Violation de principe éthique majeur (ex: soins non désirés) (+3)",
+          "Niveau 4: Dommages physiques ou psychiques avérés (+4)"
+        ],
+        "interpretation": "Score total ≥ 3 nécessite une expertise juridique immédiate et une médiation éthique"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des documents juridiques et entretien éthique",
+        "steps": [
+          {
+            "action": "Recherche des directives anticipées dans le dossier médical et vérification de leur validité légale",
+            "interpretation": "L'absence de documents signés ou non datés évoque une violation potentielle du principe d'autonomie"
+          },
+          {
+            "action": "Entretien semi-directif avec le patient (si possible) sur ses attentes actuelles",
+            "interpretation": "Discrépances entre les attentes actuelles et les directives antérieures nécessitent une médiation éthique"
+          },
+          {
+            "action": "Analyse des registres de décision par les proches",
+            "interpretation": "Présence de conflits familiaux répétés suggère un risque de non-respect des directives"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension immédiate des soins non conformes aux directives validées",
+      "Notification obligatoire au médecin référent de l'établissement",
+      "Mise en place d'une commission éthique dans les 48 heures",
+      "Documentation complète de l'incident dans le dossier médical",
+      "Accompagnement psychologique des proches si nécessaire"
+    ],
+    "differentialDiagnosis": [
+      "Refus thérapeutique temporaire (distinction par la nature non définitive du refus)",
+      "Conflit familial sans violation de directives (distinction par l'absence de documents juridiques)",
+      "Décision médicale contestée (distinction par l'existence d'une alternative thérapeutique)"
+    ]
+  },
+  {
+    "name": "Violence obstétrique médicale",
+    "description": "Pathologie éthique et juridique définie comme l'usage abusif de l'autorité médicale dans le cadre de l'accompagnement du travail et de l'accouchement, entraînant des dommages physiques ou psychiques. Elle inclut les pratiques coercitives, le manque de consentement éclairé, ou l'absence de prise en compte des préférences de la patiente. La physiopathologie combine des facteurs systémiques (pression institutionnelle) et individuels (manque de formation éthique des soignants).",
+    "redFlags": [
+      "Absence de consentement écrit pour une césarienne programmée",
+      "Utilisation de techniques de contention sans justification médicale",
+      "Refus systématique de l'épouse de l'accouchement sans justification clinique",
+      "Documentation incomplète des préférences de la patiente",
+      "Délai supérieur à 30 minutes entre la demande de l'accouchée et l'intervention"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité de la violence obstétrique (IGVO)",
+        "description": "Score évaluant la gravité des actes de violence obstétrique",
+        "criteria": [
+          "Critère A: Violation du consentement éclairé (+2)",
+          "Critère B: Utilisation de coercition physique (+3)",
+          "Critère C: Dommages psychologiques avérés (+4)",
+          "Critère D: Répétition d'actes similaires (+1)"
+        ],
+        "interpretation": "Score ≥ 5 nécessite une expertise judiciaire et une suspension temporaire de l'agent concerné"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen post-accouchement et entretien psychosocial",
+        "steps": [
+          {
+            "action": "Inspection des signes de traumatismes physiques (ecchymoses, lésions cutanées)",
+            "interpretation": "Présence de lésions non expliquées par les risques obstétriques normaux évoque une violence"
+          },
+          {
+            "action": "Entretien post-partum avec l'accouchée sur son vécu de l'accouchement",
+            "interpretation": "Déclarations de type « J'ai eu l'impression d'être traitée comme un objet » suggèrent une violence psychologique"
+          },
+          {
+            "action": "Analyse des registres de soins et des consignes données aux soignants",
+            "interpretation": "Absence de documentation des préférences de la patiente évoque un manque de respect de l'autonomie"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension immédiate des soins non consentis",
+      "Notification obligatoire au conseil de l'ordre médical",
+      "Accès à un soutien psychologique spécialisé",
+      "Documentation complète de l'incident dans le dossier médical",
+      "Mise en place d'une commission d'enquête hospitalière"
+    ],
+    "differentialDiagnosis": [
+      "Pratiques obstétricales standard (distinction par l'absence de coercition)",
+      "Complications médicales inévitables (distinction par l'existence de justification clinique)",
+      "Conflits interpersonnels sans dimension éthique (distinction par l'absence de violation de principes éthiques)"
+    ]
+  },
+  {
+    "name": "Violation de la confidentialité médicale dans le partage de données",
+    "description": "Cette pathologie concerne la divulgation non autorisée d'informations médicales sensibles d'un patient à des tiers non concernés, en violation des principes éthiques et légaux de la confidentialité. Elle peut survenir lors de l'échange de données entre professionnels, lors de consultations externes non justifiées, ou via des fuites accidentelles dans les systèmes informatiques. La physiopathologie repose sur un manque de respect des obligations de réserve imposées par le Code de la santé publique (article L1111-7) et le Code de déontologie médicale.",
+    "redFlags": [
+      "Divulgation d'antécédents médicaux sans consentement explicite du patient pour un usage non médical (ex: transmission à une assurance sans autorisation)",
+      "Accès non autorisé aux dossiers médicaux par des employés non habilités (ex: personnel administratif consultant des données sans motif thérapeutique)",
+      "Publication de données cliniques identifiables sur des plateformes non sécurisées (ex: réseaux sociaux, bases de données non anonymisées)",
+      "Utilisation de données pour des études sans anonymisation conforme aux normes RGPD",
+      "Demande de partage d'informations par des tiers non justifiée (ex: employeur ou conjoint non autorisé)"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de gravité de la violation de confidentialité (ECVC)",
+        "description": "Évalue la gravité d'une fuite de données médicales selon l'impact sur le patient et la conformité légale.",
+        "criteria": [
+          "Niveau 1: Divulgation accidentelle à un tiers habilité (+1)",
+          "Niveau 2: Divulgation à un tiers non habilité mais sans conséquence (+2)",
+          "Niveau 3: Divulgation entraînant un préjudice psychologique ou social (+3)",
+          "Niveau 4: Divulgation impliquant des données de mineurs ou de personnes vulnérables (+4)",
+          "Niveau 5: Divulgation à des fins commerciales ou discriminatoires (+5)"
+        ],
+        "interpretation": "Un score ≥ 3 nécessite une notification obligatoire au patient, une enquête interne et une déclaration à la CNIL. Un score ≥ 5 implique des sanctions pénales possibles selon l'article 226-18 du Code pénal."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Audit des pratiques de confidentialité",
+        "steps": [
+          {
+            "action": "Recherche de consentements écrits validés pour chaque partage de données",
+            "interpretation": "L'absence de consentement écrit valide évoque une violation de l'article L1111-7 du Code de la santé publique."
+          },
+          {
+            "action": "Vérification des logs d'accès aux dossiers électroniques",
+            "interpretation": "Des connexions anormales (ex: accès nocturnes, multiples tentatives) suggèrent une violation de la sécurité informatique."
+          },
+          {
+            "action": "Analyse des protocoles de transmission des données (email, courrier)",
+            "interpretation": "L'utilisation de canaux non sécurisés (ex: email non chiffré) constitue une faille éthique et juridique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension immédiate de toute transmission non justifiée",
+      "Notification au patient dans les 72 heures selon l'article L1111-7",
+      "Déclaration à la Commission nationale de l'informatique et des libertés (CNIL)",
+      "Mise en place d'une procédure de correction interne avec formation du personnel",
+      "Conservation des preuves numériques pour éventuelle expertise judiciaire"
+    ],
+    "differentialDiagnosis": [
+      "Violence psychologique médicale (distinction par l'absence de lien direct avec les données)",
+      "Conflit de loyauté médicale (lié à des pressions externes, non à la confidentialité)",
+      "Défaillance de la chaîne de soins (liée à la qualité des traitements, non à la protection des données)"
+    ]
+  },
+  {
+    "name": "Conflit éthique dans l'allocation des ressources médicales critiques",
+    "description": "Cette pathologie se manifeste par des tensions entre les principes d'équité, d'utilité et de respect des volontés du patient lors de l'attribution de soins limités (ex: respirateurs, lits en réanimation). Elle survient fréquemment en situation de crise sanitaire (pandémie) ou dans les zones de conflits. La physiopathologie repose sur la contradiction entre les normes éthiques (principe de non-discrimination) et les contraintes matérielles.",
+    "redFlags": [
+      "Priorisation des patients basée sur des critères non médicaux (ex: statut socio-économique, appartenance religieuse)",
+      "Absence de protocole écrit pour l'attribution des ressources",
+      "Refus de soins à des patients en raison de leur âge ou de comorbidités non pertinentes",
+      "Décision prise sans implication du comité d'éthique local",
+      "Communication non transparente des critères d'attribution aux familles"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de gravité des conflits éthiques (ECCE)",
+        "description": "Évalue la gravité d'un conflit éthique selon l'impact sur les droits du patient et la conformité aux directives.",
+        "criteria": [
+          "Niveau 1: Désaccord mineur entre soignants (+1)",
+          "Niveau 2: Désaccord avec le patient ou sa famille (+2)",
+          "Niveau 3: Violation d'une directive anticipée (+3)",
+          "Niveau 4: Décision contraire aux recommandations de l'OMS (+4)",
+          "Niveau 5: Décision impliquant un risque de poursuites pénales (+5)"
+        ],
+        "interpretation": "Un score ≥ 3 nécessite l'implication d'un comité d'éthique. Un score ≥ 5 implique une notification au procureur de la République selon l'article 223-1 du Code pénal."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Évaluation des critères d'attribution des ressources",
+        "steps": [
+          {
+            "action": "Vérification de la présence d'un protocole écrit conforme aux recommandations de l'OMS",
+            "interpretation": "L'absence de protocole écrit évoque une violation de l'article L1111-7 du Code de la santé publique."
+          },
+          {
+            "action": "Analyse des critères objectifs utilisés (ex: score de gravité, potentiel de rémission)",
+            "interpretation": "L'utilisation de critères subjectifs (ex: jugement de valeur) suggère un risque de discrimination."
+          },
+          {
+            "action": "Recherche de consensus entre les soignants via une réunion interdisciplinaire",
+            "interpretation": "L'absence de consensus évoque un risque de conflit post-décisionnel."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Activation du comité d'éthique local dans les 24 heures",
+      "Documentation détaillée de la décision avec justification médicale",
+      "Communication transparente avec le patient/famille selon le Code de déontologie médicale",
+      "Mise en place d'une procédure de recours indépendante",
+      "Notification au procureur de la République en cas de décision contestable"
+    ],
+    "differentialDiagnosis": [
+      "Refus de soins par le patient (distinction par l'absence de contrainte externe)",
+      "Conflit de loyauté médicale (lié à des pressions institutionnelles, non à l'allocation)",
+      "Violation des directives anticipées (lié à un refus préalable, non à une attribution)"
+    ]
+  },
+  {
+    "name": "Pratiques médicales non autorisées sans consentement éclairé",
+    "description": "Cette pathologie juridique et éthique concerne la réalisation de soins ou d'actes médicaux sans l'accord explicite et informé du patient, en violation des principes de respect de l'autonomie et de la dignité. Elle englobe les interventions chirurgicales, les traitements pharmacologiques, ou les procédures diagnostiques effectuées sans information adéquate sur les risques, bénéfices et alternatives. La physiopathologie juridique repose sur la violation des lois sur l'autodétermination du patient (ex: Code de la santé publique, article L1111-7). Cliniquement, elle se manifeste par des plaintes du patient, des anomalies dans les dossiers médicaux, ou des conflits avec les familles.",
+    "redFlags": [
+      "Absence de formulaire de consentement signé par le patient ou son représentant légal",
+      "Déclaration du patient d'avoir subi un acte sans information préalable sur les risques",
+      "Désaccord entre le récit du patient et les notes médicales sur l'acte effectué",
+      "Intervention médicale réalisée en dehors des protocoles établis sans justification documentée",
+      "Réclamation légale ou plainte déposée par le patient ou sa famille dans les 72 heures suivant l'acte"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de gravité des violations de consentement (EGVC)",
+        "description": "Score évaluant la gravité des infractions liées au manque de consentement éclairé, basé sur l'impact psychologique, la nature de l'acte et la violation des lois.",
+        "criteria": [
+          "Classe I: Violation mineure avec information partielle du patient (+1)",
+          "Classe II: Acte non urgent réalisé sans consentement (+3)",
+          "Classe III: Acte chirurgical majeur sans consentement (+5)",
+          "Classe IV: Acte réalisé sous contrainte ou confusion mentale (+7)"
+        ],
+        "interpretation": "Un score ≥ 5 nécessite une alerte au conseil de l'ordre et une expertise judiciaire. Un score ≥ 7 justifie une suspension immédiate de l'acte médical concerné."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen des dossiers médicaux et entretien avec le patient",
+        "steps": [
+          {
+            "action": "Recherche systématique de formulaires de consentement signés datant de moins de 72 heures avant l'acte",
+            "interpretation": "L'absence de document signé évoque une violation du Code de la santé publique, article L1111-7."
+          },
+          {
+            "action": "Entretien semi-directif avec le patient pour évaluer sa compréhension des risques et bénéfices de l'acte",
+            "interpretation": "Une réponse confuse ou négative à des questions sur l'acte suggère une absence de consentement éclairé."
+          },
+          {
+            "action": "Vérification des notes du médecin sur les motifs de l'acte et les alternatives proposées",
+            "interpretation": "L'absence de mention d'alternatives dans le dossier renforce l'hypothèse d'une violation éthique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension immédiate de l'acte médical en cours si en cours",
+      "Notification au patient et à sa famille des risques juridiques et éthiques",
+      "Conservation des preuves (dossiers, témoins) pour expertise légale",
+      "Signalement au conseil de l'ordre des professions de santé",
+      "Proposition d'expertise médicale indépendante pour évaluer les dommages"
+    ],
+    "differentialDiagnosis": [
+      "Consentement implicite dans les urgences vitales (ex: état de choc) vs. absence de consentement",
+      "Consentement donné sous influence (ex: intoxication alcoolique) vs. consentement valide",
+      "Violation de la confidentialité médicale vs. violation du consentement"
+    ]
+  },
+  {
+    "name": "Conflit éthique dans l'utilisation d'expérimentations thérapeutiques non validées",
+    "description": "Cette pathologie éthique concerne l'utilisation d'expérimentations thérapeutiques (ex: médicaments en phase de recherche, dispositifs non homologués) sur des patients sans protocole scientifique rigoureux ou sans autorisation réglementaire. Elle repose sur une tension entre l'innovation médicale et le respect des principes de sécurité, d'efficacité et d'équité. Cliniquement, elle se manifeste par des prescriptions non conformes aux bonnes pratiques, des effets secondaires inattendus, ou des pressions du patient pour accéder à des traitements non validés.",
+    "redFlags": [
+      "Prescription d'un médicament en phase I ou II sans autorisation de l'Agence nationale de sécurité du médicament (ANSM)",
+      "Absence de protocole de recherche approuvé par un comité d'éthique",
+      "Refus du patient de participer à un essai clinique standard pour bénéficier d'une thérapie expérimentale",
+      "Publicité non contrôlée sur les réseaux sociaux sur l'efficacité de l'expérimentation",
+      "Utilisation d'un dispositif médical non homologué par la Haute Autorité de santé (HAS)"
+    ],
+    "scores": [
+      {
+        "name": "Index de risque éthique des thérapies expérimentales (IRETE)",
+        "description": "Score évaluant le risque éthique d'une thérapie non validée, en fonction de la gravité de la maladie, de l'existence d'alternatives et du niveau de preuve scientifique.",
+        "criteria": [
+          "Critère A: Maladie non mortelle avec alternatives validées (-1)",
+          "Critère B: Maladie grave sans alternatives (-2)",
+          "Critère C: Thérapie basée sur des données précliniques uniquement (-3)",
+          "Critère D: Thérapie testée dans un essai contrôlé randomisé (+1)"
+        ],
+        "interpretation": "Un score ≥ -2 justifie une alerte au comité d'éthique et une suspension de l'expérimentation. Un score ≤ -4 nécessite une autorisation exceptionnelle de l'ANSM."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Évaluation du protocole expérimental et entretien avec le patient",
+        "steps": [
+          {
+            "action": "Recherche d'un protocole de recherche approuvé par un comité d'éthique et enregistré sur ClinicalTrials.gov",
+            "interpretation": "L'absence de protocole valide évoque une violation des directives de la Commission nationale de l'informatique et des libertés (CNIL)."
+          },
+          {
+            "action": "Interrogatoire du patient sur sa compréhension des risques et de l'absence de garantie d'efficacité",
+            "interpretation": "Une réponse affirmant une « certitude d'efficacité » sans justification scientifique suggère une manipulation éthique."
+          },
+          {
+            "action": "Vérification des effets secondaires rapportés dans la littérature scientifique",
+            "interpretation": "La présence d'effets graves non mentionnés au patient évoque une violation du principe d'information."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Suspension de l'expérimentation thérapeutique si non conforme aux réglementations",
+      "Information du patient sur les risques et l'absence de preuve scientifique",
+      "Signalement au comité d'éthique de l'établissement",
+      "Conservation des données pour expertise scientifique",
+      "Proposition d'alternatives validées si disponibles"
+    ],
+    "differentialDiagnosis": [
+      "Thérapie palliative standard vs. thérapie expérimentale",
+      "Utilisation de médicaments orphelins homologués vs. thérapies non validées",
+      "Participation à un essai clinique contrôlé vs. utilisation isolée d'une molécule"
+    ]
+  }
+]

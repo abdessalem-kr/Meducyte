@@ -1,7 +1,7 @@
 import 'package:meducyte_app/export.dart';
 import 'package:flutter/services.dart';
-import 'dart:math' as math;
 import 'package:meducyte_app/features/productive_bay/data/providers/study_group_provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class StudyGroupsPage extends ConsumerStatefulWidget {
   const StudyGroupsPage({super.key});
@@ -10,34 +10,53 @@ class StudyGroupsPage extends ConsumerStatefulWidget {
   ConsumerState<StudyGroupsPage> createState() => _StudyGroupsPageState();
 }
 
-class _StudyGroupsPageState extends ConsumerState<StudyGroupsPage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-  }
+class _StudyGroupsPageState extends ConsumerState<StudyGroupsPage> {
+  final TextEditingController _searchController = TextEditingController();
+  String _searchQuery = '';
+  String? _selectedType; // null = All
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _searchController.dispose();
     super.dispose();
+  }
+
+  List<StudyGroup> _applyFilters(List<StudyGroup> groups) {
+    return groups.where((g) {
+      final matchesSearch = _searchQuery.isEmpty ||
+          g.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
+          g.description.toLowerCase().contains(_searchQuery.toLowerCase());
+      final matchesType = _selectedType == null ||
+          g.type.name.toLowerCase() == _selectedType!.toLowerCase();
+      return matchesSearch && matchesType;
+    }).toList();
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final myGroupsAsync = ref.watch(myStudyGroupsProvider);
 
     return Scaffold(
       backgroundColor: isDark
           ? AppColors.backgroundDark
           : AppColors.backgroundLight,
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
+      body: RefreshIndicator(
+        color: AppColors.primary,
+        backgroundColor: isDark ? AppColors.surfaceDark : Colors.white,
+        onRefresh: () async {
+          ref.invalidate(availableStudyGroupsProvider);
+          ref.invalidate(myStudyGroupsProvider);
+          try {
+            await ref.read(myStudyGroupsProvider.future);
+          } catch (_) {}
+        },
+        child: CustomScrollView(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(),
+          ),
+          slivers: [
             SliverAppBar(
               title: Text(
                 context.l10n.studyGroups,
@@ -53,7 +72,7 @@ class _StudyGroupsPageState extends ConsumerState<StudyGroupsPage>
               elevation: 0,
               pinned: true,
               centerTitle: false,
-              expandedHeight: 120,
+              expandedHeight: 0,
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
                   decoration: BoxDecoration(
@@ -69,65 +88,232 @@ class _StudyGroupsPageState extends ConsumerState<StudyGroupsPage>
                 ),
               ),
             ),
-            SliverPersistentHeader(
-              pinned: true,
-              delegate: _SliverAppBarDelegate(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 8,
-                  ),
-                  color: isDark
-                      ? AppColors.backgroundDark
-                      : AppColors.backgroundLight,
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: isDark ? AppColors.surfaceDark : Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: isDark
-                            ? AppColors.dividerDark
-                            : AppColors.dividerLight,
-                        width: 1,
+            SliverToBoxAdapter(
+              child: SingleChildScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // ── Search bar ──
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: isDark ? AppColors.surfaceDark : Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: isDark ? AppColors.dividerDark : AppColors.dividerLight,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.04),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: TextField(
+                          controller: _searchController,
+                          onChanged: (v) => setState(() => _searchQuery = v),
+                          decoration: InputDecoration(
+                            hintText: 'Rechercher un groupe...',
+                            hintStyle: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: isDark ? Colors.white38 : Colors.black38,
+                            ),
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.only(left: 16, right: 12),
+                              child: Icon(
+                                Iconsax.search_normal,
+                                size: 20,
+                                color: AppColors.primary,
+                              ),
+                            ),
+                            prefixIconConstraints: const BoxConstraints(),
+                            suffixIcon: _searchQuery.isNotEmpty
+                                ? IconButton(
+                                    icon: const Icon(Icons.close_rounded, size: 18),
+                                    color: Colors.grey,
+                                    onPressed: () {
+                                      _searchController.clear();
+                                      setState(() => _searchQuery = '');
+                                    },
+                                  )
+                                : null,
+                            border: InputBorder.none,
+                            contentPadding: const EdgeInsets.symmetric(vertical: 14),
+                          ),
+                        ),
                       ),
                     ),
-                    child: TabBar(
-                      controller: _tabController,
-                      indicator: BoxDecoration(
-                        color: AppColors.primary,
-                        borderRadius: BorderRadius.circular(12),
+                    // ── Filter chips ──
+                    SizedBox(
+                      height: 40,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        children: [
+                          _FilterChip(
+                            label: 'Tous',
+                            icon: Iconsax.category,
+                            isSelected: _selectedType == null,
+                            onTap: () => setState(() => _selectedType = null),
+                          ),
+                          const SizedBox(width: 8),
+                          _FilterChip(
+                            label: 'Silent',
+                            icon: Iconsax.volume_cross,
+                            isSelected: _selectedType == 'silent',
+                            onTap: () => setState(
+                              () => _selectedType = _selectedType == 'silent' ? null : 'silent',
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          _FilterChip(
+                            label: 'QCM Battle',
+                            icon: Iconsax.flash,
+                            isSelected: _selectedType == 'qcmBattle',
+                            onTap: () => setState(
+                              () => _selectedType = _selectedType == 'qcmBattle' ? null : 'qcmBattle',
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          _FilterChip(
+                            label: 'Focus',
+                            icon: Iconsax.timer_1,
+                            isSelected: _selectedType == 'focus',
+                            onTap: () => setState(
+                              () => _selectedType = _selectedType == 'focus' ? null : 'focus',
+                            ),
+                          ),
+                        ],
                       ),
-                      labelColor: Colors.white,
-                      unselectedLabelColor: isDark
-                          ? Colors.white54
-                          : Colors.black54,
-                      labelStyle: const TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 13,
-                      ),
-                      unselectedLabelStyle: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      dividerColor: Colors.transparent,
-                      tabs: [
-                        Tab(text: context.l10n.available),
-                        Tab(text: context.l10n.myProgression),
-                      ],
                     ),
-                  ),
+                    const SizedBox(height: 24),
+                    // ── Groups list ──
+                    myGroupsAsync.when(
+                      data: (groups) {
+                        final filtered = _applyFilters(groups);
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  _buildSectionHeader(context.l10n.myActiveGroups),
+                                  if (groups.isNotEmpty)
+                                    Text(
+                                      '${filtered.length}/${groups.length}',
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w700,
+                                        color: isDark ? Colors.white38 : Colors.black38,
+                                      ),
+                                    ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              if (filtered.isEmpty)
+                                Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 40),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          _searchQuery.isNotEmpty || _selectedType != null
+                                              ? Iconsax.search_status
+                                              : Iconsax.people,
+                                          size: 48,
+                                          color: Colors.grey.withOpacity(0.5),
+                                        ),
+                                        const SizedBox(height: 16),
+                                        Text(
+                                          _searchQuery.isNotEmpty || _selectedType != null
+                                              ? 'Aucun groupe trouvé'
+                                              : context.l10n.noActiveGroups,
+                                          style: const TextStyle(
+                                            color: Colors.grey,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        if (_searchQuery.isNotEmpty || _selectedType != null) ...[
+                                          const SizedBox(height: 8),
+                                          TextButton(
+                                            onPressed: () => setState(() {
+                                              _searchController.clear();
+                                              _searchQuery = '';
+                                              _selectedType = null;
+                                            }),
+                                            child: const Text('Effacer les filtres'),
+                                          ),
+                                        ],
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              else
+                                Column(
+                                  children: filtered.map((group) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(bottom: 12),
+                                      child: _buildMiniGroupTile(
+                                        context,
+                                        group.title,
+                                        context.l10n.pomodorosToday,
+                                        group.icon,
+                                        group.themeColor,
+                                        onTap: () {
+                                          context.pushNamed(
+                                            AppRoutes.studyGroupDetails,
+                                            pathParameters: {'id': group.id},
+                                            extra: {'group': group},
+                                          ).then((_) {
+                                            ref.invalidate(availableStudyGroupsProvider);
+                                            ref.invalidate(myStudyGroupsProvider);
+                                          });
+                                        },
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                            ],
+                          ),
+                        );
+                      },
+                      loading: () => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildSectionHeader(context.l10n.myActiveGroups),
+                            const SizedBox(height: 20),
+                            Skeletonizer(
+                              enabled: true,
+                              child: _buildMiniGroupTile(
+                                context,
+                                "Groupe d'étude factice de chargement",
+                                "10 pomodoros aujourd'hui",
+                                Iconsax.timer_1,
+                                AppColors.primary,
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+                          ],
+                        ),
+                      ),
+                      error: (e, s) => Center(child: Text("Erreur: $e")),
+                    ),
+                    const SizedBox(height: 100), // FAB space
+                  ],
                 ),
-                minHeight: 70,
-                maxHeight: 70,
               ),
             ),
-          ];
-        },
-        body: TabBarView(
-          controller: _tabController,
-          children: [_buildRoomsView(context), _buildMyProgressView(context)],
+          ],
         ),
       ),
       floatingActionButton: Container(
@@ -163,374 +349,6 @@ class _StudyGroupsPageState extends ConsumerState<StudyGroupsPage>
     );
   }
 
-  Widget _buildRoomsView(BuildContext context) {
-    final availableGroupsAsync = ref.watch(availableStudyGroupsProvider);
-    final isSubscriber =
-        ref.watch(authControllerProvider).value?.isSubscriber ?? false;
-
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (!isSubscriber)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: AppColors.primary.withOpacity(0.05),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: AppColors.primary.withOpacity(0.1)),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Iconsax.info_circle,
-                      size: 20,
-                      color: AppColors.primary,
-                    ),
-                    const SizedBox(width: 16),
-                    const Expanded(
-                      child: Text(
-                        "COMMUNITY GROUPS:Groups marked'PUBLIC'are free for all meducytes to join and study together.",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: _buildSearchBar(context),
-          ),
-          const SizedBox(height: 24),
-          _buildCategoryFilters(context),
-          const SizedBox(height: 32),
-          _buildRecommendedSection(context, availableGroupsAsync),
-          const SizedBox(height: 32),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildSectionHeader(context.l10n.popularRooms),
-                const SizedBox(height: 20),
-                availableGroupsAsync.when(
-                  data: (groups) => Column(
-                    children: groups.map((group) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: _buildGroupCard(context, group: group),
-                      );
-                    }).toList(),
-                  ),
-                  loading: () =>
-                      const Center(child: CircularProgressIndicator()),
-                  error: (error, stack) =>
-                      Center(child: Text("Erreur: $error")),
-                ),
-                const SizedBox(height: 100), //FAB space
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSearchBar(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: isDark ? AppColors.dividerDark : AppColors.dividerLight,
-          width: 1,
-        ),
-      ),
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: context.l10n.searchRoomHint,
-          hintStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-          prefixIcon: Icon(
-            Iconsax.search_normal,
-            size: 20,
-            color: AppColors.primary,
-          ),
-          border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 14),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCategoryFilters(BuildContext context) {
-    final categories = [
-      context.l10n.allCaps,
-      context.l10n.silent.toUpperCase(),
-      context.l10n.qcmBattle.toUpperCase(),
-      "SPRINT",
-      "GROUPE",
-      context.l10n.categoryPaces.toUpperCase(),
-    ];
-    return SizedBox(
-      height: 48,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          final isSelected = index == 0;
-          return Container(
-            margin: const EdgeInsets.only(right: 8),
-            child: ChoiceChip(
-              label: Text(
-                categories[index],
-                style: TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.w900,
-                  color: isSelected ? Colors.white : AppColors.primary,
-                ),
-              ),
-              selected: isSelected,
-              onSelected: (val) {},
-              backgroundColor: isSelected
-                  ? AppColors.primary
-                  : AppColors.primary.withOpacity(0.05),
-              selectedColor: AppColors.primary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-                side: BorderSide(
-                  color: isSelected
-                      ? Colors.transparent
-                      : AppColors.primary.withOpacity(0.1),
-                ),
-              ),
-              showCheckmark: false,
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildRecommendedSection(
-    BuildContext context,
-    AsyncValue<List<StudyGroup>> groupsAsync,
-  ) {
-    return groupsAsync.when(
-      data: (groups) {
-        if (groups.isEmpty) return const SizedBox.shrink();
-        final recommended = groups.take(3).toList();
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSectionHeader(context.l10n.recommendedForYou),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              height: 180,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                itemCount: recommended.length,
-                separatorBuilder: (context, _) => const SizedBox(width: 16),
-                itemBuilder: (context, index) {
-                  final group = recommended[index];
-                  return _buildMiniGroupCard(
-                    context,
-                    group.title,
-                    "${group.membersCount} ${context.l10n.onlineSuffix}",
-                    group.icon,
-                    group.themeColor,
-                    index == 0 ? context.l10n.topRated : context.l10n.trending,
-                  );
-                },
-              ),
-            ),
-          ],
-        );
-      },
-      loading: () => const SizedBox.shrink(),
-      error: (_, __) => const SizedBox.shrink(),
-    );
-  }
-
-  Widget _buildMiniGroupCard(
-    BuildContext context,
-    String title,
-    String status,
-    IconData icon,
-    Color color,
-    String label,
-  ) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Container(
-      width: 160,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: isDark ? AppColors.dividerDark : AppColors.dividerLight,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.02),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(icon, color: color, size: 20),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color: color.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  label,
-                  style: TextStyle(
-                    color: color,
-                    fontSize: 8,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const Spacer(),
-          Text(
-            title.toUpperCase(),
-            style: const TextStyle(
-              fontWeight: FontWeight.w900,
-              fontSize: 13,
-              letterSpacing: -0.2,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Row(
-            children: [
-              Container(
-                width: 6,
-                height: 6,
-                decoration: const BoxDecoration(
-                  color: Colors.green,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              const SizedBox(width: 6),
-              Text(
-                status.toUpperCase(),
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 9,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMyProgressView(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildSectionHeader("VOTRE RÉSUMÉ"),
-          const SizedBox(height: 20),
-          Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.05),
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: AppColors.primary.withOpacity(0.1)),
-            ),
-            child: const Center(
-              child: Text(
-                "Statistiques globales en cours de synchronisation...",
-                style: TextStyle(
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 40),
-          _buildSectionHeader(context.l10n.myActiveGroups),
-          const SizedBox(height: 20),
-          ref
-              .watch(myStudyGroupsProvider)
-              .when(
-                data: (groups) => groups.isEmpty
-                    ? Center(
-                        child: Text(
-                          context.l10n.noActiveGroups,
-                          style: const TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      )
-                    : Column(
-                        children: groups.map((group) {
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: _buildMiniGroupTile(
-                              context,
-                              group.title,
-                              context.l10n.pomodorosToday,
-                              group.icon,
-                              group.themeColor,
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (e, s) => Center(child: Text("Erreur: $e")),
-              ),
-          const SizedBox(height: 100),
-        ],
-      ),
-    );
-  }
-
   Widget _buildSectionHeader(String title) {
     return Text(
       title,
@@ -543,275 +361,17 @@ class _StudyGroupsPageState extends ConsumerState<StudyGroupsPage>
     );
   }
 
-  Widget _buildGroupCard(BuildContext context, {required StudyGroup group}) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final title = group.title;
-    final members = group.membersCount;
-    final description = group.description;
-    final icon = group.icon;
-    final color = group.themeColor;
-    final tags = group.tags;
-    final totalPomodoros = group.totalPomodoros;
-
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.surfaceDark : Colors.white,
-        borderRadius: BorderRadius.circular(32),
-        border: Border.all(
-          color: isDark ? AppColors.dividerDark : AppColors.dividerLight,
-          width: 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.03),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: color.withOpacity(0.1),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(icon, color: color, size: 28),
-                  ),
-                  if (totalPomodoros > 1000)
-                    Positioned(
-                      top: -4,
-                      right: -4,
-                      child: Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: AppColors.primary.withOpacity(0.8),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Iconsax.star1,
-                          color: Colors.white,
-                          size: 12,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-              const SizedBox(width: 20),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            title,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 18,
-                              letterSpacing: -0.2,
-                            ),
-                          ),
-                        ),
-                        if (group.isPublic)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.green.withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: Colors.green.withOpacity(0.2),
-                              ),
-                            ),
-                            child: const Text(
-                              "PUBLIC",
-                              style: TextStyle(
-                                color: Colors.green,
-                                fontSize: 8,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 6),
-                    Row(
-                      children: [
-                        const Icon(
-                          Iconsax.radar,
-                          size: 14,
-                          color: Colors.green,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          "$members${context.l10n.onlineSuffix}",
-                          style: const TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.green,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        const Text("🍅", style: TextStyle(fontSize: 12)),
-                        const SizedBox(width: 4),
-                        Text(
-                          "$totalPomodoros TOTAL",
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w900,
-                            color: isDark ? Colors.white54 : Colors.black54,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Text(
-            description,
-            style: TextStyle(
-              color: isDark ? Colors.white70 : Colors.black54,
-              fontSize: 14,
-              height: 1.5,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 20),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: tags
-                .map(
-                  (tag) => Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isDark
-                          ? Colors.white.withOpacity(0.05)
-                          : Colors.black.withOpacity(0.03),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      "#$tag",
-                      style: TextStyle(
-                        color: isDark ? Colors.white54 : Colors.black54,
-                        fontSize: 10,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
-          const SizedBox(height: 28),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              if (group.activeQuizSessionId != null) _buildMembersPreview(),
-              if (group.activeQuizSessionId == null) const Spacer(),
-              ElevatedButton(
-                onPressed: () {
-                  context.pushNamed(
-                    AppRoutes.studyGroupDetails,
-                    pathParameters: {'id': group.id},
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 14,
-                  ),
-                  elevation: 0,
-                ),
-                child: Text(
-                  context.l10n.joinRoom,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMembersPreview() {
-    return Row(
-      children: [
-        SizedBox(
-          width: 80,
-          height: 32,
-          child: Stack(
-            children: [
-              for (int i = 0; i < 4; i++)
-                Positioned(
-                  left: i * 20.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 2),
-                    ),
-                    child: CircleAvatar(
-                      radius: 14,
-                      backgroundImage: NetworkImage(
-                        "https://i.pravatar.cc/150?u=$i",
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 8),
-        Text(
-          context.l10n.liveSession,
-          style: const TextStyle(
-            color: Colors.green,
-            fontSize: 9,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 0.5,
-          ),
-        ),
-      ],
-    );
-  }
-
   Widget _buildMiniGroupTile(
     BuildContext context,
     String title,
     String subtitle,
     IconData icon,
-    Color color,
-  ) {
+    Color color, {
+    VoidCallback? onTap,
+  }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       borderRadius: BorderRadius.circular(24),
       child: Container(
         padding: const EdgeInsets.all(20),
@@ -878,6 +438,88 @@ class _StudyGroupsPageState extends ConsumerState<StudyGroupsPage>
   }
 }
 
+// ── Filter chip widget ──────────────────────────────────────────────────────
+class _FilterChip extends StatelessWidget {
+  const _FilterChip({
+    required this.label,
+    required this.icon,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  final String label;
+  final IconData icon;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    return GestureDetector(
+      onTap: () {
+        HapticFeedback.selectionClick();
+        onTap();
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? AppColors.primary
+              : isDark
+              ? AppColors.surfaceDark
+              : Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: isSelected
+                ? AppColors.primary
+                : isDark
+                ? AppColors.dividerDark
+                : AppColors.dividerLight,
+          ),
+          boxShadow: isSelected
+              ? [
+                  BoxShadow(
+                    color: AppColors.primary.withOpacity(0.3),
+                    blurRadius: 8,
+                    offset: const Offset(0, 3),
+                  ),
+                ]
+              : [],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 14,
+              color: isSelected
+                  ? Colors.white
+                  : isDark
+                  ? Colors.white54
+                  : Colors.black54,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w900,
+                color: isSelected
+                    ? Colors.white
+                    : isDark
+                    ? Colors.white54
+                    : Colors.black54,
+                letterSpacing: 0.3,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _CreateGroupSheet extends ConsumerStatefulWidget {
   const _CreateGroupSheet();
 
@@ -889,7 +531,13 @@ class _CreateGroupSheetState extends ConsumerState<_CreateGroupSheet> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   String selectedType = "Silent";
-  String selectedCategory = "Medicine";
+  // Module/lesson selection
+  String? selectedModuleId;
+  String? selectedModuleName;
+  String? selectedLessonId;
+  String? selectedLessonName;
+  // Expanded module for lesson drill-down
+  String? expandedModuleId;
   Color selectedColor = AppColors.primary;
   bool isLoading = false;
 
@@ -915,6 +563,14 @@ class _CreateGroupSheetState extends ConsumerState<_CreateGroupSheet> {
         ? StudyGroupType.qcmBattle
         : StudyGroupType.focus;
 
+    // Build category & tags from module/lesson selection
+    final category = selectedModuleName ?? 'Général';
+    final tags = [
+      selectedType,
+      if (selectedModuleName != null) selectedModuleName!,
+      if (selectedLessonName != null) selectedLessonName!,
+    ];
+
     final newGroup = StudyGroup(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       title: _nameController.text,
@@ -923,7 +579,7 @@ class _CreateGroupSheetState extends ConsumerState<_CreateGroupSheet> {
           : _descriptionController.text,
       membersCount: 0,
       totalPomodoros: 0,
-      tags: [selectedCategory, selectedType],
+      tags: tags,
       themeColor: selectedColor,
       icon: type == StudyGroupType.silent
           ? Iconsax.book_1
@@ -931,14 +587,15 @@ class _CreateGroupSheetState extends ConsumerState<_CreateGroupSheet> {
           ? Iconsax.flash
           : Iconsax.timer_1,
       type: type,
-      category: selectedCategory,
+      category: category,
     );
 
     try {
       await repository.createGroup(newGroup);
 
-      //Refresh the available groups
+      //Refresh the available groups and user's active groups
       ref.invalidate(availableStudyGroupsProvider);
+      ref.invalidate(myStudyGroupsProvider);
 
       if (!mounted) return;
 
@@ -1109,19 +766,22 @@ class _CreateGroupSheetState extends ConsumerState<_CreateGroupSheet> {
                 _buildTypeOption(
                   "Silent",
                   Iconsax.volume_cross,
-                  context.l10n.silent.toUpperCase(),
+                  context.l10n.silent,
+                  'Travail calme,\nsans interactions',
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 10),
                 _buildTypeOption(
                   "QCM Battle",
                   Iconsax.flash,
-                  context.l10n.qcmBattle.toUpperCase(),
+                  context.l10n.qcmBattle,
+                  'Quiz en temps réel\ncontre tes amis',
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 10),
                 _buildTypeOption(
                   "Focus",
                   Iconsax.timer_1,
-                  context.l10n.focus.toUpperCase(),
+                  context.l10n.focus,
+                  'Sessions Pomodoro\nminutées',
                 ),
               ],
             ),
@@ -1185,7 +845,7 @@ class _CreateGroupSheetState extends ConsumerState<_CreateGroupSheet> {
             ),
             const SizedBox(height: 32),
             Text(
-              context.l10n.medicalCategory,
+              'MODULE & COURS',
               style: TextStyle(
                 fontSize: 10,
                 fontWeight: FontWeight.w900,
@@ -1193,50 +853,73 @@ class _CreateGroupSheetState extends ConsumerState<_CreateGroupSheet> {
                 letterSpacing: 1,
               ),
             ),
-            const SizedBox(height: 16),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: ["Medicine", "Surgery", "Gyneco", "Paces", "Exams"].map(
-                (cat) {
-                  final label = cat == "Medicine"
-                      ? context.l10n.categoryMedicine
-                      : cat == "Surgery"
-                      ? context.l10n.categorySurgery
-                      : cat == "Gyneco"
-                      ? context.l10n.categoryGyneco
-                      : cat == "Paces"
-                      ? context.l10n.categoryPaces
-                      : context.l10n.categoryExam;
-                  final isSelected = selectedCategory == cat;
-                  return ChoiceChip(
-                    label: Text(
-                      label,
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w900,
-                        color: isSelected ? Colors.white : AppColors.primary,
-                      ),
+            const SizedBox(height: 12),
+            // Module selector row
+            ref.watch(learnModulesProvider).when(
+              loading: () => _buildSelectorRow(
+                context,
+                isDark,
+                icon: Iconsax.book_1,
+                label: 'Chargement des modules...',
+                hasValue: false,
+                onTap: null,
+              ),
+              error: (_, __) => _buildSelectorRow(
+                context,
+                isDark,
+                icon: Iconsax.book_1,
+                label: 'Erreur de chargement',
+                hasValue: false,
+                onTap: null,
+              ),
+              data: (modules) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildSelectorRow(
+                    context,
+                    isDark,
+                    icon: Iconsax.book_1,
+                    label: selectedModuleName ?? 'Choisir un module...',
+                    hasValue: selectedModuleId != null,
+                    onTap: () => _pickModule(context, isDark, modules),
+                    onClear: selectedModuleId != null
+                        ? () => setState(() {
+                              selectedModuleId = null;
+                              selectedModuleName = null;
+                              selectedLessonId = null;
+                              selectedLessonName = null;
+                            })
+                        : null,
+                  ),
+                  if (selectedModuleId != null) ...[
+                    const SizedBox(height: 8),
+                    _buildSelectorRow(
+                      context,
+                      isDark,
+                      icon: Iconsax.document_text,
+                      label: selectedLessonName ?? 'Choisir un cours (optionnel)',
+                      hasValue: selectedLessonId != null,
+                      onTap: () {
+                        final mod = modules.firstWhere(
+                          (m) => m.id == selectedModuleId,
+                        );
+                        final lessons = mod.lessons ?? [];
+                        if (lessons.isNotEmpty) {
+                          _pickLesson(context, isDark, lessons);
+                        }
+                      },
+                      onClear: selectedLessonId != null
+                          ? () => setState(() {
+                                selectedLessonId = null;
+                                selectedLessonName = null;
+                              })
+                          : null,
                     ),
-                    selected: isSelected,
-                    onSelected: (val) => setState(() => selectedCategory = cat),
-                    backgroundColor: isSelected
-                        ? AppColors.primary
-                        : AppColors.primary.withOpacity(0.05),
-                    selectedColor: AppColors.primary,
-                    showCheckmark: false,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 10,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: BorderSide.none,
-                    ),
-                  );
-                },
-              ).toList(),
+                  ],
+                ],
+              ),
             ),
+
             const SizedBox(height: 48),
             SizedBox(
               width: double.infinity,
@@ -1292,40 +975,95 @@ class _CreateGroupSheetState extends ConsumerState<_CreateGroupSheet> {
     );
   }
 
-  Widget _buildTypeOption(String id, IconData icon, String label) {
+  Widget _buildTypeOption(
+    String id,
+    IconData icon,
+    String label,
+    String subtitle,
+  ) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final isSelected = selectedType == id;
     return Expanded(
       child: GestureDetector(
-        onTap: () => setState(() => selectedType = id),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+        onTap: () {
+          HapticFeedback.selectionClick();
+          setState(() => selectedType = id);
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
           decoration: BoxDecoration(
             color: isSelected
-                ? AppColors.primary.withOpacity(0.05)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(20),
+                ? AppColors.primary.withOpacity(0.08)
+                : isDark
+                ? Colors.white.withOpacity(0.03)
+                : Colors.black.withOpacity(0.02),
+            borderRadius: BorderRadius.circular(18),
             border: Border.all(
               color: isSelected
                   ? AppColors.primary
-                  : Colors.grey.withOpacity(0.2),
-              width: 2,
+                  : isDark
+                  ? Colors.white12
+                  : Colors.black12,
+              width: isSelected ? 2 : 1,
             ),
+            boxShadow: isSelected
+                ? [
+                    BoxShadow(
+                      color: AppColors.primary.withOpacity(0.15),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : [],
           ),
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                icon,
-                color: isSelected ? AppColors.primary : Colors.grey,
-                size: 24,
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: isSelected
+                      ? AppColors.primary
+                      : isDark
+                      ? Colors.white10
+                      : Colors.black.withOpacity(0.05),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  icon,
+                  color: isSelected
+                      ? Colors.white
+                      : isDark
+                      ? Colors.white54
+                      : Colors.black45,
+                  size: 18,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
-                label.toUpperCase(),
+                label,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.w900,
+                  color: isSelected
+                      ? AppColors.primary
+                      : isDark
+                      ? Colors.white70
+                      : Colors.black87,
+                  letterSpacing: 0.3,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                subtitle,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 8,
-                  fontWeight: FontWeight.w900,
-                  color: isSelected ? AppColors.primary : Colors.grey,
-                  letterSpacing: 0.5,
+                  fontWeight: FontWeight.w500,
+                  color: isDark ? Colors.white38 : Colors.black38,
+                  height: 1.4,
                 ),
               ),
             ],
@@ -1334,36 +1072,280 @@ class _CreateGroupSheetState extends ConsumerState<_CreateGroupSheet> {
       ),
     );
   }
-}
 
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
-    required this.minHeight,
-    required this.maxHeight,
-    required this.child,
-  });
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
-  @override
-  double get minExtent => minHeight;
-  @override
-  double get maxExtent => math.max(maxHeight, minHeight);
-
-  @override
-  Widget build(
+  // ── Compact selector row ─────────────────────────────────────────────────
+  Widget _buildSelectorRow(
     BuildContext context,
-    double shrinkOffset,
-    bool overlapsContent,
-  ) {
-    return SizedBox.expand(child: child);
+    bool isDark, {
+    required IconData icon,
+    required String label,
+    required bool hasValue,
+    required VoidCallback? onTap,
+    VoidCallback? onClear,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: hasValue
+              ? AppColors.primary.withOpacity(0.06)
+              : isDark
+              ? Colors.white.withOpacity(0.04)
+              : Colors.black.withOpacity(0.03),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: hasValue
+                ? AppColors.primary.withOpacity(0.5)
+                : isDark
+                ? Colors.white12
+                : Colors.black12,
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              size: 16,
+              color: hasValue ? AppColors.primary : (isDark ? Colors.white38 : Colors.black38),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: hasValue ? FontWeight.w700 : FontWeight.w500,
+                  color: hasValue
+                      ? (isDark ? Colors.white : Colors.black87)
+                      : (isDark ? Colors.white38 : Colors.black38),
+                ),
+              ),
+            ),
+            if (onClear != null)
+              GestureDetector(
+                onTap: onClear,
+                child: Icon(Icons.close_rounded, size: 16, color: Colors.grey),
+              )
+            else
+              Icon(
+                Icons.chevron_right_rounded,
+                size: 18,
+                color: isDark ? Colors.white24 : Colors.black26,
+              ),
+          ],
+        ),
+      ),
+    );
   }
 
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
+  // ── Module picker sheet ───────────────────────────────────────────────────
+  void _pickModule(BuildContext context, bool isDark, List<LearnModule> modules) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (_) => Container(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.6,
+        ),
+        decoration: BoxDecoration(
+          color: isDark ? AppColors.surfaceDark : Colors.white,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 12),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'Choisir un module',
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Flexible(
+              child: ListView.separated(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+                shrinkWrap: true,
+                itemCount: modules.length,
+                separatorBuilder: (_, __) => const SizedBox(height: 8),
+                itemBuilder: (_, i) {
+                  final mod = modules[i];
+                  final isSelected = selectedModuleId == mod.id;
+                  return GestureDetector(
+                    onTap: () {
+                      HapticFeedback.selectionClick();
+                      setState(() {
+                        selectedModuleId = mod.id;
+                        selectedModuleName = mod.name;
+                        selectedLessonId = null;
+                        selectedLessonName = null;
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? AppColors.primary
+                            : isDark
+                            ? Colors.white.withOpacity(0.05)
+                            : AppColors.primary.withOpacity(0.04),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: isSelected
+                              ? AppColors.primary
+                              : isDark
+                              ? Colors.white12
+                              : AppColors.primary.withOpacity(0.15),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Iconsax.book_1,
+                            size: 16,
+                            color: isSelected ? Colors.white : AppColors.primary.withOpacity(0.7),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              mod.name,
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                                color: isSelected
+                                    ? Colors.white
+                                    : isDark ? Colors.white : Colors.black87,
+                              ),
+                            ),
+                          ),
+                          if (isSelected)
+                            const Icon(Icons.check_circle_rounded, size: 16, color: Colors.white),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ── Lesson picker sheet ───────────────────────────────────────────────────
+  void _pickLesson(BuildContext context, bool isDark, List<LearnLesson> lessons) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (_) => Container(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.6,
+        ),
+        decoration: BoxDecoration(
+          color: isDark ? AppColors.surfaceDark : Colors.white,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 12),
+            Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'Choisir un cours',
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Flexible(
+              child: ListView.separated(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+                shrinkWrap: true,
+                itemCount: lessons.length,
+                separatorBuilder: (_, __) => const SizedBox(height: 8),
+                itemBuilder: (_, i) {
+                  final lesson = lessons[i];
+                  final isSelected = selectedLessonId == lesson.id;
+                  return GestureDetector(
+                    onTap: () {
+                      HapticFeedback.selectionClick();
+                      setState(() {
+                        selectedLessonId = lesson.id;
+                        selectedLessonName = lesson.title;
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? AppColors.primary.withOpacity(0.1)
+                            : isDark
+                            ? Colors.white.withOpacity(0.04)
+                            : Colors.black.withOpacity(0.02),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: isSelected
+                              ? AppColors.primary
+                              : isDark ? Colors.white10 : Colors.black.withOpacity(0.08),
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            isSelected ? Iconsax.tick_circle : Iconsax.document_text,
+                            size: 14,
+                            color: isSelected
+                                ? AppColors.primary
+                                : isDark ? Colors.white38 : Colors.black38,
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              lesson.title,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                                color: isSelected
+                                    ? AppColors.primary
+                                    : isDark ? Colors.white70 : Colors.black87,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

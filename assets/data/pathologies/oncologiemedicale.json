@@ -1,0 +1,212 @@
+[
+  {
+    "name": "Lymphome à cellules B agressif avec mutation MYC (Double-hit lymphome)",
+    "description": "Le lymphome à cellules B agressif avec mutation MYC (double-hit) est une forme hautement agressive de lymphome non hodgkinien caractérisé par la co-activation des gènes MYC et BCL2/BCL6. La physiopathologie repose sur des translocations chromosomiques (t(8;14) pour MYC et t(14;18) pour BCL2) qui conduisent à une prolifération cellulaire incontrôlée et une résistance à l'apoptose. La présentation clinique typique inclut une lymphadénopathie rapide, des symptômes B (fièvre, perte de poids, sueurs nocturnes), et une atteinte extranodale fréquente (spleen, foie, cerveau).",
+    "redFlags": [
+      "Lymphadénopathie cervicale ou axillaire progressant en moins de 3 mois avec consistance ferme et non douloureuse",
+      "Fièvre récurrente sans cause identifiée associée à une perte de poids involontaire >10 %",
+      "Sueurs nocturnes abondantes nécessitant le changement de vêtements ou de draps",
+      "Hépatomégalie ou splénomégalie palpable à l'examen abdominal",
+      "Signes neurologiques focaux ou troubles visuels suggérant une atteinte cérébrale"
+    ],
+    "scores": [
+      {
+        "name": "Score d'International Prognostic Index (IPI)",
+        "description": "Score pronostique basé sur 5 critères cliniques pour stratifier le risque de récidive et guider la thérapie",
+        "criteria": [
+          "Âge >60 ans (+1 point)",
+          "Stade clinique avancé (III ou IV) (+1 point)",
+          "Hémoglobine <10,5 g/dL (+1 point)",
+          "Lymphocytes <1500/mm³ (+1 point)",
+          "Performance status ECOG ≥2 (+1 point)"
+        ],
+        "interpretation": "Score total de 0 à 5 points : 0-1 (faible risque), 2 (risque intermédiaire), 3-5 (risque élevé). Les patients à risque élevé nécessitent une chimiothérapie intensifiée."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen lymphatique et hépatosplénique",
+        "steps": [
+          {
+            "action": "Palpation des ganglions cervicaux, axillaires et inguinaux avec attention à leur taille (>2 cm), consistance (ferme vs. molle), mobilité et douleur",
+            "interpretation": "Ganglions durs, non mobiles et non douloureux suggèrent une infiltration lymphomateuse. Ganglions molles et mobiles évoquent une infection."
+          },
+          {
+            "action": "Examen abdominal pour rechercher hépatomégalie ou splénomégalie avec percussion hépatique et palpation du foie et rate",
+            "interpretation": "Hépatomégalie associée à une atteinte extranodale est fréquente dans les formes agressives. Splénomégalie peut indiquer une infiltration lymphomateuse."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prélèvement de biopsie ganglionnaire ou extranodale pour confirmation histologique et recherche de translocations MYC/BCL2",
+      "Initiation d'une chimiothérapie intensifiée (R-DA-EPOCH) dans les 48 heures si confirmation histologique",
+      "Prévention des complications infectieuses par prophylaxie à l'aciclovir et à la triméthoprime-sulfaméthoxazole",
+      "Évaluation de la fonction hépatique et rénale avant tout traitement cytotoxique",
+      "Hospitalisation en unité d'oncologie pour surveillance étroite pendant la chimiothérapie"
+    ],
+    "differentialDiagnosis": [
+      "Lymphome de Burkitt (absence de BCL2, présentation plus pédiatrique)",
+      "Lymphome folliculaire (absence de MYC, présentation chronique)",
+      "Lymphome à cellules mémoire (absence de translocations, présentation nodale)"
+    ]
+  },
+  {
+    "name": "Carcinome neuroendocrine de l'estomac (G3, haut grade)",
+    "description": "Le carcinome neuroendocrine de l'estomac de grade G3 est une tumeur neuroendocrine hautement malinissante avec une prolifération cellulaire rapide (Ki-67 >60 %). Sa physiopathologie repose sur des altérations génétiques (ex: mutations de TP53, amplification de MYC) associées à une sécrétion hormonale parfois secondaire (syndrome de Cushing ou carcinome de l'insulinome). La présentation clinique inclut des signes digestifs (douleurs épigastriques, hémorragie), des signes de métastases hépatiques (ictère, ascite) et des syndromes parahormonaux.",
+    "redFlags": [
+      "Douleur épigastrique résistante aux traitements anti-acides avec vomissements bilieux",
+      "Ictère obstructif associé à une douleur en arc de cercle",
+      "Sueurs profuses nocturnes et hypoglycémie répétée sans cause diététique",
+      "Lésions cutanées érythémateuses ou ulcération cutanée suggérant une métastase",
+      "Perte de poids >5 % en 6 mois sans cause identifiée"
+    ],
+    "scores": [
+      {
+        "name": "Classification WHO 2022 des tumeurs neuroendocrines",
+        "description": "Classification basée sur la différenciation histologique et l'indice de prolifération (Ki-67)",
+        "criteria": [
+          "G1 (bien différencié) : Ki-67 <2 %",
+          "G2 (modérément différencié) : Ki-67 2-20 %",
+          "G3 (mal différencié) : Ki-67 >20 %"
+        ],
+        "interpretation": "Les tumeurs G3 sont associées à une mauvaise pronostic et nécessitent une chimiothérapie à base de platine (ex: cisplatine + étoposide). Les tumeurs G1/G2 peuvent être traitées par chirurgie et surveillance."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Endoscopie digestive haute et imagerie abdominale",
+        "steps": [
+          {
+            "action": "Endoscopie avec biopsie ciblée de la lésion gastrique et recherche de lésions multiples",
+            "interpretation": "Lésion ulcéro-nécrotique avec bordure irrégulière et infiltration sous-muqueuse suggère une tumeur neuroendocrine. Lésions multiples évoquent une forme multifocale."
+          },
+          {
+            "action": "Échographie abdominale ou IRM pour évaluer la présence de métastases hépatiques",
+            "interpretation": "Lésions hépatiques multiples avec bordures irrégulières sont typiques des métastases neuroendocrines. Ascite associée indique une décompensation hépatique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hospitalisation pour évaluation endoscopique et imagerie diagnostique",
+      "Initiation d'une chimiothérapie à base de cisplatine et étoposide si confirmation histologique G3",
+      "Prise en charge des syndromes parahormonaux (ex: dexaméthasone pour le syndrome de Cushing)",
+      "Prévention des complications digestives par traitement anti-acide (PPI) et surveillance endoscopique",
+      "Préparation chirurgicale en cas de suspicion de tumeur opérable (ex: tumeur localisée sans métastase)"
+    ],
+    "differentialDiagnosis": [
+      "Adénocarcinome gastrique (absence de marqueurs neuroendocrines, présentation ulcéro-inflammatoire)",
+      "Lymphome gastrique (présence de lymphocytes, absence de Ki-67 élevé)",
+      "Tumeur de l'isthme (localisation sous-carotidienne, absence de lésion gastrique)"
+    ]
+  },
+  {
+    "name": "Cancer du sein triple-négatif (TNBC)",
+    "description": "Le cancer du sein triple-négatif est une sous-type agressif de cancer du sein caractérisé par l'absence d'expression des récepteurs à l'œstrogène (ER), à la progestérone (PR) et à la protéine HER2. Cette absence de cibles thérapeutiques classiques limite les options de traitement ciblées. La physiopathologie repose sur des altérations génétiques (ex. BRCA1/2) et une prolifération cellulaire rapide. La présentation clinique typique inclut une tumeur palpable indolore, une peau du sein modifiée (érythème, épaississement), ou une rétraction du mamelon. Les formes avancées peuvent présenter des adénopathies axillaires ou des métastases viscérales.",
+    "redFlags": [
+      "Tumeur palpable de croissance rapide (< 3 mois) avec contours irréguliers et fixation à la peau ou au plan profond",
+      "Peau du sein présentant un aspect en « peau d'orange » ou des ulcérations",
+      "Rétraction mamelonnaire unilatérale associée à une tumeur sous-jacente",
+      "Adénopathies axillaires denses et indolores palpables",
+      "Symptômes systémiques (perte de poids > 10 %, asthénie) en l'absence de signes locaux évidents"
+    ],
+    "scores": [
+      {
+        "name": "Index pronostique de Nottingham (NPI)",
+        "description": "Score combinant la taille tumorale, le grade histologique et le statut des ganglions pour évaluer le risque de récidive",
+        "criteria": [
+          "Taille tumorale < 1 cm (+1), 1-2 cm (+2), 2-5 cm (+3), >5 cm (+4)",
+          "Grade histologique 1 (+1), 2 (+2), 3 (+3)",
+          "0 ganglion positif (+0), 1-3 ganglions (+3), >3 ganglions (+5)"
+        ],
+        "interpretation": "Score total < 3.4: faible risque; 3.4-5.4: risque intermédiaire; >5.4: haut risque de récidive"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique du sein et des aires ganglionnaires",
+        "steps": [
+          {
+            "action": "Palpation bilatérale des seins en position assise et allongée pour identifier des nodosités, des rétractions ou des épaississements",
+            "interpretation": "Une nodosité dure, irrégulière, fixe ou associée à des signes cutanés (érythème, ulcération) évoque un cancer"
+          },
+          {
+            "action": "Examen des ganglions axillaires par palpation en position allongée avec bras levé",
+            "interpretation": "Adénopathies denses, indolores, non mobiles ou fixées à la paroi sont suspectes de métastases"
+          },
+          {
+            "action": "Inspection des mamelons pour rétractions, écoulements ou ulcérations",
+            "interpretation": "Rétraction mamelonnaire unilatérale ou écoulement sanguinolent sont des signes d'alerte"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Imagerie mammaire (mammographie, échographie) pour caractériser la lésion",
+      "Biopsie percutanée ou chirurgicale pour confirmation histologique",
+      "Dosage des marqueurs tumoraux (CA 15-3, CEA) et test immunohistochimique (ER, PR, HER2)",
+      "Imagerie de stade (scanner thoraco-abdominal, IRM cérébrale) pour recherche de métastases",
+      "Prise en charge multidisciplinaire (chirurgie, oncologie médicale, radiothérapie) selon le stade"
+    ],
+    "differentialDiagnosis": [
+      "Kyste fibro-adipeux (nodosité mobile, douleur réactive)",
+      "Carcinome canalaire in situ (érythème diffus sans nodosité palpable)",
+      "Infection cutanée (fluctuance, chaleur, douleur)"
+    ]
+  },
+  {
+    "name": "Carcinome à petites cellules du poumon (SCLC)",
+    "description": "Le carcinome à petites cellules du poumon est une forme hautement agressive de cancer du poumon, fortement associé au tabagisme. Caractérisé par une croissance exponentielle et une prédisposition à la métastase précoce, il se manifeste souvent par des symptômes non spécifiques (toux, dyspnée) ou des syndromes paraneoplastiques (hypokaliémie, syndrome de Cushing). La physiopathologie repose sur des mutations de BRCA1/2 et une hyperprolifération cellulaire avec un temps de doublement court.",
+    "redFlags": [
+      "Toux chronique associée à une hémoptysie récente",
+      "Dyspnée progressive avec ou sans signes d'obstruction bronchique",
+      "Perte de poids inexpliquée (>5 kg en 6 mois)",
+      "Signes de syndrome paraneoplastique (polydipsie, polyurie, asthénie)",
+      "Adénopathies médiastinales massives à l'imagerie"
+    ],
+    "scores": [
+      {
+        "name": "Index oligométastatique (Oligometastatic Index)",
+        "description": "Score évaluant la réponse à la thérapie ciblée dans les formes oligométastatiques",
+        "criteria": [
+          "Nombre de métastases <3 (+0), 3-5 (+1), >5 (+2)",
+          "Taille maximale des métastases <3 cm (+0), 3-5 cm (+1), >5 cm (+2)",
+          "Localisation viscérale (+1), osseuse (+0), cérébrale (+2)"
+        ],
+        "interpretation": "Score total <3: candidat idéal pour thérapie ciblée; 3-5: réponse incertaine; >5: pronostic défavorable"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et neurologique",
+        "steps": [
+          {
+            "action": "Auscultation pulmonaire pour détecter des râles ou des souffles bronchiques rapprochés",
+            "interpretation": "Râles crépitants ou souffles rapprochés évoquent une infiltration tumorale ou une infection secondaire"
+          },
+          {
+            "action": "Examen neurologique complet pour rechercher des signes de métastases cérébrales (dysarthrie, ataxie)",
+            "interpretation": "Signes focaux ou confusion suggèrent une atteinte cérébrale"
+          },
+          {
+            "action": "Palpation des ganglions cervicaux et sus-claviculaires",
+            "interpretation": "Adénopathies denses et indolores sont suspectes de métastases"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Scanner thoracique avec injection de contraste pour caractériser la lésion",
+      "Biopsie bronchique ou trans-thoracique pour confirmation histologique",
+      "Dosage des marqueurs tumoraux (NSE, ProGRP) et bilan sanguin complet",
+      "Imagerie de stade (scanner cérébral, IRM, TEP-CT) pour recherche de métastases",
+      "Prise en charge chimiothérapeutique à haut-dose (études de phase III recommandées) associée à la radiothérapie"
+    ],
+    "differentialDiagnosis": [
+      "Adénocarcinome pulmonaire (croissance lente, absence de signes paraneoplastiques)",
+      "Tuberculose pulmonaire (cavités, adénopathies médiastinales)",
+      "Pneumopathie interstitielle (dyspnée d'effort, râles crépitants bas"
+    ]
+  }
+]

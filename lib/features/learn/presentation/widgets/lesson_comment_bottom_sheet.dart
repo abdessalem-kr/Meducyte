@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:collection/collection.dart';
 import 'package:meducyte_app/core/themes/quiz_theme_extension.dart';
 import 'package:meducyte_app/features/quiz/domain/models/comment_model.dart';
 import 'package:meducyte_app/features/learn/presentation/providers/lesson_interaction_provider.dart';
@@ -316,35 +317,63 @@ class _InteractionCommentBottomSheetState
   }
 
   Widget _buildNotesTab(QuizThemeExtension quizTheme, AppLocalizations l10n) {
-    final List<MapEntry<String, HighlightModel>> notesHighlights = [];
+    final List<_MyNoteItem> notesItems = [];
 
-    if (widget.type == InteractionType.lesson && widget.lesson != null) {
-      if (widget.lesson!.paragraphs != null) {
-        for (var paragraph in widget.lesson!.paragraphs!) {
-          for (var h in paragraph.highlights) {
-            if (h.note != null && h.note!.isNotEmpty) {
-              notesHighlights.add(MapEntry(paragraph.id, h));
-            }
-          }
+    final lesson = widget.type == InteractionType.lesson
+        ? (ref.watch(lessonDetailsProvider(widget.id)).valueOrNull ?? widget.lesson)
+        : widget.lesson;
+
+    // Watch optimistic state so the tab updates instantly after edits/deletes
+    final params = (id: widget.id, type: widget.type);
+    final interactionState = ref.watch(interactionProvider(params));
+
+    void addParagraphNotes(LearnParagraph paragraph) {
+      // Use optimistic note if available, otherwise fall back to persisted note
+      final optimisticNoteText = interactionState.optimisticNotes[paragraph.id];
+      final noteText = optimisticNoteText ?? paragraph.myNote?.text;
+      if (noteText != null && noteText.isNotEmpty) {
+        notesItems.add(_MyNoteItem(
+          paragraphId: paragraph.id,
+          title: "General Note",
+          content: noteText,
+          color: Colors.amber,
+        ));
+      }
+
+      // Use optimistic highlights if available
+      final activeHighlights =
+          interactionState.optimisticHighlights[paragraph.id] ??
+          paragraph.highlights;
+      for (var h in activeHighlights) {
+        if (h.note != null && h.note!.isNotEmpty) {
+          notesItems.add(_MyNoteItem(
+            paragraphId: paragraph.id,
+            title: h.text,
+            content: h.note!,
+            highlight: h,
+            color: h.color,
+          ));
         }
+      }
+    }
+
+    if (lesson != null && lesson.paragraphs != null) {
+      for (var paragraph in lesson.paragraphs!) {
+        addParagraphNotes(paragraph);
       }
     } else if (widget.type == InteractionType.course && widget.module != null) {
       if (widget.module!.lessons != null) {
-        for (var lesson in widget.module!.lessons!) {
-          if (lesson.paragraphs != null) {
-            for (var paragraph in lesson.paragraphs!) {
-              for (var h in paragraph.highlights) {
-                if (h.note != null && h.note!.isNotEmpty) {
-                  notesHighlights.add(MapEntry(paragraph.id, h));
-                }
-              }
+        for (var lessonItem in widget.module!.lessons!) {
+          if (lessonItem.paragraphs != null) {
+            for (var paragraph in lessonItem.paragraphs!) {
+              addParagraphNotes(paragraph);
             }
           }
         }
       }
     }
 
-    if (notesHighlights.isEmpty) {
+    if (notesItems.isEmpty) {
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -366,11 +395,27 @@ class _InteractionCommentBottomSheetState
 
     return ListView.builder(
       padding: const EdgeInsets.all(20),
-      itemCount: notesHighlights.length,
+      itemCount: notesItems.length,
       itemBuilder: (context, index) {
-        final entry = notesHighlights[index];
-        final highlight = entry.value;
-        final hColor = highlight.color;
+        final item = notesItems[index];
+        final hColor = item.color;
+
+        LearnParagraph? paragraph;
+        if (lesson != null && lesson.paragraphs != null) {
+          paragraph = lesson.paragraphs!.firstWhereOrNull((p) => p.id == item.paragraphId);
+        } else if (widget.module != null && widget.module!.lessons != null) {
+          for (var lessonItem in widget.module!.lessons!) {
+            if (lessonItem.paragraphs != null) {
+              paragraph = lessonItem.paragraphs!.firstWhereOrNull((p) => p.id == item.paragraphId);
+              if (paragraph != null) break;
+            }
+          }
+        }
+
+        // Use optimistic highlights for edit/delete actions
+        final activeHighlights = paragraph != null
+            ? (interactionState.optimisticHighlights[paragraph.id] ?? paragraph.highlights)
+            : <HighlightModel>[];
 
         return Container(
           margin: const EdgeInsets.only(bottom: 16),
@@ -382,23 +427,116 @@ class _InteractionCommentBottomSheetState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color: hColor.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                child: Text(
-                  highlight.text,
-                  style: TextStyle(
-                    color: quizTheme.primaryTextColor,
-                    fontStyle: FontStyle.italic,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: hColor.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Text(
+                          item.title,
+                          style: TextStyle(
+                            color: quizTheme.primaryTextColor,
+                            fontStyle: FontStyle.italic,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(width: 8),
+                  if (paragraph != null) ...[
+                    // Edit Button
+                    GestureDetector(
+                      onTap: () {
+                        _showNoteEditorInBottomSheet(
+                          context,
+                          ref,
+                          paragraph!,
+                          activeHighlights,
+                          highlight: item.highlight,
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          color: Colors.amber.withOpacity(0.1),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Iconsax.edit_2,
+                          size: 14,
+                          color: Colors.amber,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    // Delete Button
+                    GestureDetector(
+                      onTap: () async {
+                        final confirmed = await showDialog<bool>(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text("Delete Note"),
+                            content: const Text("Are you sure you want to delete this study note?"),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, false),
+                                child: Text(l10n.cancel),
+                              ),
+                              TextButton(
+                                onPressed: () => Navigator.pop(context, true),
+                                child: Text(
+                                  l10n.delete,
+                                  style: const TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                        if (confirmed == true && paragraph != null) {
+                          if (item.highlight != null) {
+                            ref
+                                .read(interactionProvider(params).notifier)
+                                .updateHighlightNote(
+                                  paragraph.id,
+                                  activeHighlights,
+                                  item.highlight!.id,
+                                  "",
+                                );
+                          } else {
+                            ref
+                                .read(interactionProvider(params).notifier)
+                                .deleteParagraphNote(paragraph.id, paragraph.myNote?.id);
+                          }
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          color: Colors.red.withOpacity(0.1),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Iconsax.trash,
+                          size: 14,
+                          color: Colors.redAccent,
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
               ),
               const SizedBox(height: 12),
               QuillSimpleViewer(
-                content: highlight.note ?? '',
+                content: item.content,
                 textColor: quizTheme.primaryTextColor,
                 fontSize: 15,
               ),
@@ -406,6 +544,59 @@ class _InteractionCommentBottomSheetState
           ),
         );
       },
+    );
+  }
+
+  void _showNoteEditorInBottomSheet(
+    BuildContext context,
+    WidgetRef ref,
+    LearnParagraph paragraph,
+    List<HighlightModel> currentHighlights, {
+    HighlightModel? highlight,
+  }) {
+    final params = (id: widget.id, type: widget.type);
+    final interactionNotifier = ref.read(interactionProvider(params).notifier);
+
+    // Prefer the optimistic note text so the editor opens pre-populated
+    // with the latest state, even before the server has confirmed the save.
+    final optimisticNoteText = ref.read(interactionProvider(params)).optimisticNotes[paragraph.id];
+    final initialNoteVal = highlight?.note ??
+        optimisticNoteText ??
+        paragraph.myNote?.text ??
+        "";
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => NoteEditorBottomSheet(
+        initialValue: initialNoteVal,
+        onSave: (newNote) {
+          if (highlight != null) {
+            interactionNotifier.updateHighlightNote(
+              paragraph.id,
+              currentHighlights,
+              highlight.id,
+              newNote,
+            );
+          } else {
+            interactionNotifier.saveParagraphNote(paragraph.id, newNote);
+          }
+        },
+        onDelete: () {
+          if (highlight != null) {
+            interactionNotifier.updateHighlightNote(
+              paragraph.id,
+              currentHighlights,
+              highlight.id,
+              "",
+            );
+          } else {
+            interactionNotifier.deleteParagraphNote(paragraph.id, paragraph.myNote?.id);
+          }
+        },
+        contextText: highlight?.text ?? "General Note",
+      ),
     );
   }
 
@@ -831,4 +1022,20 @@ class LessonCommentBottomSheet extends InteractionCommentBottomSheet {
     super.lesson,
     super.initialTabIndex = 0,
   }) : super(id: lessonId, type: InteractionType.lesson);
+}
+
+class _MyNoteItem {
+  final String paragraphId;
+  final String title;
+  final String content;
+  final HighlightModel? highlight;
+  final Color color;
+
+  const _MyNoteItem({
+    required this.paragraphId,
+    required this.title,
+    required this.content,
+    this.highlight,
+    required this.color,
+  });
 }

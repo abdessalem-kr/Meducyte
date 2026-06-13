@@ -1,0 +1,320 @@
+[
+  {
+    "name": "Tumeur neuroendocrine avec expression des récepteurs à la somatostatine",
+    "description": "Les tumeurs neuroendocrines (TNE) exprimant les récepteurs à la somatostatine (SSTR) sont des néoplasies dérivées de cellules neuroendocrines, souvent localisées au niveau du système digestif ou des glandes endocrines. La surexpression des SSTR permet leur détection par imagerie moléculaire ciblée, notamment par la scintigraphie au DOTATATE (68Ga-DOTATATE PET/CT). Ces tumeurs peuvent se comporter de manière bénigne ou maligne, avec une tendance à la métastase hépatique. La physiopathologie repose sur la libération de peptides vasoactifs (ex: sécrétine, gastrine) ou sur la production de médiateurs biologiques (ex: syndrome de carcinome de l'intestin). La présentation clinique varie selon le site d'origine et la sécrétion hormonale associée.",
+    "redFlags": [
+      "Syndrome de carcinome (rougeurs, diarrhée, tachycardie) avec antécédents de tumeur neuroendocrine",
+      "Lésions hépatiques multiples non expliquées sur imagerie morphologique",
+      "Crises hypoglycémiques répétées avec tumeur pancréatique",
+      "Crises de tachycardie orthostatique associées à une tumeur adrénergique",
+      "Douleurs osseuses localisées avec scanner FDG-PET positif"
+    ],
+    "scores": [
+      {
+        "name": "Classification WHO 2010 des tumeurs neuroendocrines",
+        "description": "Classification basée sur l'indice de prolifération (Ki-67) et la densité mitotique pour déterminer le grade biologique et le pronostic.",
+        "criteria": [
+          "Grade 1: Ki-67 < 2% et < 2 mitoses/HPF",
+          "Grade 2: Ki-67 2-20% et 2-20 mitoses/HPF",
+          "Grade 3: Ki-67 > 20% et > 20 mitoses/HPF"
+        ],
+        "interpretation": "Le grade 1 indique une tumeur de faible agressivité, le grade 3 une tumeur hautement maligne avec risque de métastase. Cette classification guide le choix des thérapeutiques ciblées (ex: lanreotide, everolimus)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen ciblé par imagerie moléculaire",
+        "steps": [
+          {
+            "action": "Imagerie PET/CT au 68Ga-DOTATATE après injection de 100-200 MBq",
+            "interpretation": "Une captation intense des SSTR dans les lésions suspectes (tumeur primaire, métastases hépatiques ou osseuses) confirme le diagnostic. L'absence de captation évoque une tumeur non exprimant les SSTR."
+          },
+          {
+            "action": "Échographie abdominale pour rechercher des lésions hépatiques",
+            "interpretation": "Les métastases hépatiques apparaissent comme des lésions hypervasculaires en phase artériale et hypoéchogènes en phase portale, confirmant la localisation secondaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de lanreotide (120 mg IM toutes les 4 semaines) pour contrôler les symptômes hormonaux",
+      "Préparation chirurgicale pour résection de la tumeur primaire si localisée",
+      "Évaluation de l'indication à la thérapie radionucléide (177Lu-DOTATATE) en cas de métastases",
+      "Surveillance stricte de la glycémie en cas de tumeur pancréatique sécrétant de l'insuline",
+      "Hospitalisation pour stabilisation des symptômes en cas de crise carcinomateuse"
+    ],
+    "differentialDiagnosis": [
+      "Adénocarcinome du pancréas (absence de captation des SSTR sur PET/CT)",
+      "Syndrome de Zollinger-Ellison (gastrinome non exprimant les SSTR)",
+      "Tumeur à cellules de Cajal (absence de sécrétion hormonale)"
+    ]
+  },
+  {
+    "name": "Fibromyalgie avec captation anormale de FDG sur PET",
+    "description": "La fibromyalgie est une pathologie chronique caractérisée par une douleur musculaire diffusée et une fatigue persistante, associée à des anomalies de l'activité métabolique cérébrale. L'imagerie PET au FDG révèle une captation anormale dans les régions cérébrales impliquées dans la modulation de la douleur (ex: noyaux raphe, cortex cingulaire). Cette captation reflète une hyperactivation des circuits de traitement de la douleur centrale. La physiopathologie repose sur une sensibilisation centrale (central sensitization) et une dysrégulation des neurotransmetteurs (sérotonine, noradrénaline).",
+    "redFlags": [
+      "Douleur diffusée bilatérale persistant > 3 mois sans cause organique",
+      "Fatigue invalidante associée à troubles du sommeil",
+      "Captation FDG asymétrique dans les noyaux raphe sur PET cérébral",
+      "Douleurs musculaires sans signes d'inflammation biologique",
+      "Réponse inadéquate aux analgésiques opiacés"
+    ],
+    "scores": [
+      {
+        "name": "Critères de diagnostic ACR 2010",
+        "description": "Score basé sur l'intensité de la douleur et la présence de points tendus pour établir le diagnostic.",
+        "criteria": [
+          "WPI (Widespread Pain Index): 0-19 points (somme des zones douloureuses)",
+          "SSS (Symptom Severity Scale): 0-12 points (évaluation des symptômes associés)"
+        ],
+        "interpretation": "Un WPI ≥ 7 et un SSS ≥ 5 confirment le diagnostic. Ce score guide la stratification des patients pour les essais thérapeutiques."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen ciblé par imagerie moléculaire",
+        "steps": [
+          {
+            "action": "PET cérébrale au FDG après jeûne de 6 heures",
+            "interpretation": "Une captation anormale dans les noyaux raphe et le cortex cingulaire évoque une hyperactivation des circuits de douleur centrale. L'absence de captation FDG dans ces zones oriente vers une douleur périphérique."
+          },
+          {
+            "action": "Examen neurologique pour exclure les causes organiques",
+            "interpretation": "L'absence de signes neurologiques focaux (ex: déficit moteur, ataxie) renforce le diagnostic de fibromyalgie."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Initiation de la milnacipran (25 mg PO BID) pour moduler la douleur centrale",
+      "Programme de thérapie cognitivo-comportementale (TCC) pour gérer le stress et l'anxiété",
+      "Éducation du patient sur les techniques de gestion de la douleur (ex: relaxation, exercice doux)",
+      "Évaluation de l'indication à la thérapie par stimulation cérébrale profonde (DBS) en cas de résistance aux traitements",
+      "Hospitalisation pour évaluation multidisciplinaire en cas de dépression majeure associée"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome de fatigue chronique (absence de points tendus sur l'examen physique)",
+      "Dépression majeure (absence de captation FDG anormale dans les noyaux raphe)",
+      "Myopathie inflammatoire (présence d'enzymes musculaires élevées)"
+    ]
+  },
+  {
+    "name": "Adénocarcinome du pancréas avec captation de Ga-68 DOTATATE",
+    "description": "L'adénocarcinome pancréatique est une tumeur maligne agressive avec une mauvaise pronostic. Bien que le DOTATATE (68Ga-DOTATATE) soit principalement utilisé pour les tumeurs neuroendocrines, une captation anormale peut survenir dans les adénocarcinomes pancréatiques secondaires à une expression hétérogène des récepteurs à la somatostatine. La présentation clinique typique inclut une douleur épigastrique irradiant vers le dos, une perte de poids inexpliquée, une jaunisse obstructive, et des signes de syndrome de malabsorption. L'imagerie par TEP-DOTATATE permet d'identifier des lésions métastatiques hépatiques ou lymphatiques, souvent indétectables sur les imageries morphologiques classiques.",
+    "redFlags": [
+      "Douleur épigastrique persistante associée à une perte de poids >10 % en <6 mois",
+      "Jaunisse obstructive avec bilirubine totale >3 mg/dL et absence de lithiase biliaire",
+      "Syndrome de malabsorption (diarrhée grasse, carences en vitamines liposolubles)",
+      "Lésions hépatiques multiples sur imagerie morphologique sans cause évidente",
+      "Antécédents familiaux de cancer pancréatique ou syndrome de Cowden"
+    ],
+    "scores": [
+      {
+        "name": "Score de Rénaud (adapté pour les tumeurs pancréatiques)",
+        "description": "Évalue le risque de métastases hépatiques basé sur la captation TEP-DOTATATE et les marqueurs tumoraux",
+        "criteria": [
+          "Classe I: Captation focale pancréatique sans lésions hépatiques (+0)",
+          "Classe II: Captation pancréatique + 1-3 lésions hépatiques (<2 cm) (+1)",
+          "Classe III: Captation pancréatique + 4-6 lésions hépatiques (2-5 cm) (+2)",
+          "Classe IV: Captation pancréatique + >6 lésions hépatiques (>5 cm) (+3)"
+        ],
+        "interpretation": "Score ≥2 indique un risque élevé de métastases hépatiques et justifie une approche palliative. Score <2 permet une chirurgie curative en cas d'indication."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen TEP-DOTATATE ciblé",
+        "steps": [
+          {
+            "action": "Acquisition TEP-DOTATATE en phase statique (60 min post-injection) avec fusion CT",
+            "interpretation": "Une captation focale pancréatique >1,5 cm avec rapport signal/bruit >1,8 par rapport aux ganglions lymphatiques sus-claviculaires évoque une tumeur maligne. La présence de lésions hépatiques multiples avec captation homogène suggère une métastase."
+          },
+          {
+            "action": "Évaluation de la biodistribution du radiotraceur au niveau des ganglions lymphatiques péritonéaux",
+            "interpretation": "Une captation anormale des ganglions lymphatiques péritonéaux (>3 lésions >5 mm) est un signe de stade III et justifie une ablation chirurgicale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prise en charge multidisciplinaire (chirurgien, oncologue, radiologue) pour évaluer l'opérabilité",
+      "Préparation préopératoire avec bilan hépatique, coagulation, et évaluation nutritionnelle",
+      "Initiation d'une chimiothérapie néoadjuvante (gemcitabine + nab-paclitaxel) en cas de stade III",
+      "Pose d'une sonde de dérivation biliaire endoscopique en cas de jaunisse obstructive",
+      "Éducation du patient sur les risques post-opératoires et le suivi à long terme"
+    ],
+    "differentialDiagnosis": [
+      "Pancréatite chronique avec calcifications (absence de captation TEP-DOTATATE focale)",
+      "Adénome fonctionnel du pancréas (captation TEP-DOTATATE homogène sans lésions hépatiques)",
+      "Carcinome cholangiocellulaire (captation TEP-DOTATATE périhilar sans lésions pancréatiques)"
+    ]
+  },
+  {
+    "name": "Amylose AL avec captation de 18F-FDG",
+    "description": "L'amylose AL est une maladie systémique liée à la déposition de fibrilles amyloïdes dérivées d'immunoglobulines lourdes. L'imagerie par TEP-FDG révèle une captation anormale des lésions amyloïdes, particulièrement au niveau du foie, du rein, et du myocarde. La présentation clinique inclut une insuffisance rénale aiguë, une insuffisance cardiaque congestive, une neuropathie périphérique, et une perte de poids. La TEP-FDG permet d'évaluer la charge amyloïde et de surveiller la réponse thérapeutique.",
+    "redFlags": [
+      "Insuffisance rénale aiguë avec protéinurie >3 g/jour et absence de glomérulonéphrite",
+      "Hypertension artérielle pulmonaire avec échocardiographie montrant un myocarde épaissi",
+      "Neuropathie sensorimotrice asymétrique associée à une perte de la proprioception",
+      "Hypokaliémie réfractaire avec polyurie et polydipsie",
+      "Antécédents de myélome monoclonal ou de maladie de Waldenström"
+    ],
+    "scores": [
+      {
+        "name": "Score d'AL Amyloidosis (adapté de la Mayo Clinic)",
+        "description": "Évalue la gravité clinique et le pronostic basé sur les lésions visibles à la TEP-FDG",
+        "criteria": [
+          "Classe I: Captation focale hépatique sans lésions cardiaques (+0)",
+          "Classe II: Captation hépatique + lésions rénales unilatérales (+1)",
+          "Classe III: Captation hépatique + lésions rénales bilatérales + lésions cardiaques (+2)",
+          "Classe IV: Captation hépatique + lésions rénales bilatérales + lésions cardiaques + neuropathie (+3)"
+        ],
+        "interpretation": "Score ≥2 indique une forme grave nécessitant une chimiothérapie immédiate. Score <2 permet une surveillance étroite avec corticoïdes."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen TEP-FDG ciblé",
+        "steps": [
+          {
+            "action": "Acquisition TEP-FDG en phase statique (60 min post-injection) avec fusion CT",
+            "interpretation": "Une captation anormale du foie (>1,5 fois la valeur du foie sain) associée à une captation cardiaque évoque une amylose AL. La présence de lésions rénales bilatérales avec captation hétérogène est un signe de stade III."
+          },
+          {
+            "action": "Évaluation de la captation au niveau des nerfs périphériques (surtout les nerfs sciatiques)",
+            "interpretation": "Une captation anormale des nerfs périphériques >1,8 fois la valeur des nerfs sains évoque une neuropathie amyloïde."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hospitalisation pour une évaluation multidisciplinaire (néphrologue, cardiologue, neurologue)",
+      "Préparation d'une biopsie du rein ou du myocarde pour confirmation histologique",
+      "Initiation d'une chimiothérapie (bortézomib + dexaméthasone) en cas de stade III",
+      "Pose d'un cathéter veineux central pour administration des traitements",
+      "Éducation du patient sur les signes d'insuffisance cardiaque et la nécessité d'un suivi régulier"
+    ],
+    "differentialDiagnosis": [
+      "Amylose AA (captation TEP-FDG hépatique sans lésions cardiaques)",
+      "Amylose secondaire (liée à une infection chronique, captation TEP-FDG hépatique homogène)",
+      "Amylose de type familial (absence de captation TEP-FDG cardiaque)"
+    ]
+  },
+  {
+    "name": "Hyperparathyroïdie primaire avec imagerie nucléaire par Tc-99m sestamibi",
+    "description": "L'hyperparathyroïdie primaire est une pathologie endocrinienne caractérisée par une hyperplasie ou une adénome d'une ou plusieurs glandes parathyroïdiennes, entraînant une hypercalcémie chronique. La physiopathologie repose sur une sécrétion excessive de parathormone (PTH), conduisant à une résorption osseuse, une kaliourie calcique et des manifestations cliniques variées. L'imagerie nucléaire par Tc-99m sestamibi est l'examen de référence pour localiser les glandes hyperactives, grâce à la captation différentielle du radiotraceur entre les tissus parathyroïdiens et thyroïdiens.",
+    "redFlags": [
+      "Hypercalcémie sérique > 14 mg/dL associée à une PTH supérieure à la normale pour le stade de la calcémie",
+      "Calculs rénaux multiples ou lithiase urinaire récidivante",
+      "Douleurs osseuses diffuses ou fractures pathologiques",
+      "Symptômes neurologiques (confusion, asthénie, constipation) en contexte d'hypercalcémie sévère",
+      "Tumeur parathyroïdienne palpable ou élargissement du cou"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'hypercalcémie (SGH)",
+        "description": "Évalue la gravité clinique de l'hypercalcémie et guide les décisions thérapeutiques urgentes.",
+        "criteria": [
+          "Classe I: Calcémie < 12 mg/dL, asymptomatique (+0)",
+          "Classe II: Calcémie 12-14 mg/dL, symptômes mineurs (fatigue, constipation) (+1)",
+          "Classe III: Calcémie 14-16 mg/dL, symptômes modérés (nausées, confusion) (+2)",
+          "Classe IV: Calcémie > 16 mg/dL, symptômes sévères (déshydratation, coma) (+3)"
+        ],
+        "interpretation": "Classe I: Surveillance. Classe II: Hydratation. Classe III: Bisphosphonates. Classe IV: Calcitonine + bisphosphonates + dialyse."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé de l'hyperparathyroïdie",
+        "steps": [
+          {
+            "action": "Palpation du cou pour rechercher une tumeur parathyroïdienne ou une thyroïde élargie",
+            "interpretation": "Une tumeur parathyroïdienne palpable oriente vers une localisation unique, tandis qu'une thyroïde élargie suggère une co-pathologie."
+          },
+          {
+            "action": "Examen des os pour identifier des douleurs, des déformations ou des fractures pathologiques",
+            "interpretation": "Douleurs osseuses diffuses ou fractures sans traumatisme évoquent une ostéomalacie secondaire à l'hyperparathyroïdie."
+          },
+          {
+            "action": "Palpation des reins pour détecter une lithiase ou une insuffisance rénale",
+            "interpretation": "Calculs rénaux multiples ou insuffisance rénale chronique sont des signes évocateurs d'hypercalcémie chronique."
+          },
+          {
+            "action": "Évaluation neurologique (état de conscience, coordination, réflexes)",
+            "interpretation": "Confusion, asthénie ou réflexes diminués sont des signes d'hypercalcémie sévère."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hydratation intraveineuse avec perfusion de solution saline isotonique pour augmenter la kaliourie calcique",
+      "Administration de bisphosphonates (zoledronate) pour réduire la résorption osseuse",
+      "Utilisation de calcitonine en urgence pour abaisser rapidement la calcémie",
+      "Réferral chirurgical pour ablation de la glande hyperactive (parathyroïdectomie) en cas de score SGH > 2",
+      "Surveillance étroite de la calcémie et des fonctions rénales"
+    ],
+    "differentialDiagnosis": [
+      "Hypercalcémie secondaire à un cancer (ex: myélome multiple) avec PTH normale ou basse",
+      "Toxicité de la vitamine D avec PTH basse",
+      "Sarcoidose ou tuberculose avec hypercalcémie et PTH normale"
+    ]
+  },
+  {
+    "name": "Carcinome prostatique avec imagerie par PSMA PET/CT",
+    "description": "Le carcinome prostatique est un cancer fréquent chez l'homme, souvent dépisté par l'antigène prostatique spécifique (PSA). L'imagerie par PSMA PET/CT (68Ga-PSMA-11) est une avancée majeure pour le stade initial, la détection de récidives et l'évaluation des métastases. Cette technique utilise la captation spécifique du radiotraceur par les cellules cancéreuses exprimant le PSMA (prostate-specific membrane antigen).",
+    "redFlags": [
+      "PSA sérique élevé (> 10 ng/mL) sans cause bénigne évidente",
+      "Douleur osseuse localisée ou diffusée en contexte de PSA élevé",
+      "Hématurie ou hémorragie rectale inexpliquée",
+      "Perte de poids non intentionnelle > 5 kg en 6 mois",
+      "Incontinence urinaire ou rétention aiguë d'urine"
+    ],
+    "scores": [
+      {
+        "name": "Score de risque oncologique (Gleason + PSA + stade clinique)",
+        "description": "Évalue le risque biologique et la nécessité de traitement agressif.",
+        "criteria": [
+          "Classe 1: PSA < 10 ng/mL, Gleason < 7, stade T1c (+0)",
+          "Classe 2: PSA 10-20 ng/mL, Gleason 7, stade T2 (+1)",
+          "Classe 3: PSA > 20 ng/mL, Gleason 8-10, stade T3/T4 (+2)"
+        ],
+        "interpretation": "Classe 1: Surveillance active. Classe 2: Radiothérapie ou chirurgie. Classe 3: Chimiothérapie ou hormonothérapie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique ciblé du carcinome prostatique",
+        "steps": [
+          {
+            "action": "Examen rectal digital pour évaluer la consistance, la taille et la mobilité de la prostate",
+            "interpretation": "Nodule dur, fixe ou irrégulier évoque un cancer, tandis qu'une prostate élargie et ferme oriente vers une HBP."
+          },
+          {
+            "action": "Palpation des aires ganglionnaires inguinales et iliaques",
+            "interpretation": "Adénopathies palpables suggèrent une extension ganglionnaire."
+          },
+          {
+            "action": "Évaluation des signes de métastases (douleurs osseuses, œdèmes, hématurie)",
+            "interpretation": "Douleurs osseuses localisées ou diffuses orientent vers une métastase viscérale."
+          },
+          {
+            "action": "Examen neurologique pour détecter une compression médullaire",
+            "interpretation": "Symptômes neurologiques (parésie, perte de sensibilité) évoquent une compression médullaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Prescription d'une PSMA PET/CT pour évaluer l'extension tumorale et la localisation des lésions",
+      "Biopsie prostatique dirigée par imagerie multiparamétrique (MRI) en cas de PSA élevé",
+      "Début d'une hormonothérapie anti-androgénique (ex: bicalutamide) en cas de stade avancé",
+      "Réferral chirurgical pour prostatectomie radicale en cas de stade localisé",
+      "Surveillance étroite du PSA et des complications (ostéolyse, infection)"
+    ],
+    "differentialDiagnosis": [
+      "Hyperplasie bénigne de la prostate (HBP) avec PSA élevé mais Gleason normal",
+      "Cancer de la vessie avec hématurie et PSA normal",
+      "Lymphome non hodgkinien avec adénopathies et PSA normal"
+    ]
+  }
+]

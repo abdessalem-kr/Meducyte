@@ -197,7 +197,7 @@ class FontSettingsScreen extends ConsumerWidget {
                     ),
                   ),
                   Text(
-                    "Il y a 2 heures",
+                    l10n.twoHoursAgo,
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: theme.hintColor,
                     ),

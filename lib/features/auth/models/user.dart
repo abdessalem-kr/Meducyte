@@ -76,6 +76,14 @@ class User {
 
   bool get hasPremiumAccess => tier == SubscriptionTier.premium;
 
+  bool get hasResidencyPremium {
+    final sub = activeSubscription;
+    if (sub == null || !sub.isActive) return false;
+    final plan = sub.plan;
+    if (plan == null) return false;
+    return plan.accessLevel.toLowerCase() == 'residency' && plan.hasAiAccess;
+  }
+
   factory User.fromJson(Map<String, dynamic> data) {
     return User(
       id: data['id'] != null ? int.tryParse(data['id'].toString()) ?? 0 : 0,

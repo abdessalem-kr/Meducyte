@@ -122,6 +122,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
       final authController = ref.read(authControllerProvider.notifier);
       await authController.forgotPassword(emailController.text.trim());
 
+      if (!mounted) return;
       AppSnackBars.success(context, 'OTP sent to your email!');
 
       //Navigate to OTP verification for password reset
@@ -134,9 +135,10 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         },
       );
     } catch (e) {
+      if (!mounted) return;
       AppSnackBars.error(context, e.toString());
     } finally {
-      setState(() => isLoading = false);
+      if (mounted) setState(() => isLoading = false);
     }
   }
 }

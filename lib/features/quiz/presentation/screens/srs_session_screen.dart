@@ -49,17 +49,21 @@ class _SrsSessionScreenState extends ConsumerState<SrsSessionScreen> {
       return true;
     });
   }
-
   Future<void> _loadQuestions() async {
     final srsRepo = ref.read(srsRepositoryProvider);
     final quizRepo = ref.read(quizRepositoryProvider);
+    final user = ref.read(authControllerProvider).value;
+    final is1to6YearUser = user != null && user.year >= 1 && user.year <= 6;
 
     final dueReviews = await srsRepo.getDueReviews();
     final ids = dueReviews.map((r) => r.questionId).toList();
 
     if (ids.isNotEmpty) {
       debugPrint('DEBUG:SrsSessionScreen-Fetching${ids.length}questions: $ids');
-      _questions = await quizRepo.getQuestionsByIds(ids);
+      final fetched = await quizRepo.getQuestionsByIds(ids);
+      _questions = is1to6YearUser
+          ? fetched.where((q) => q.year == user.year).toList()
+          : fetched;
       debugPrint('DEBUG:SrsSessionScreen-Loaded${_questions?.length}questions');
     } else {
       _questions = [];
@@ -1075,7 +1079,7 @@ class _SrsSessionScreenState extends ConsumerState<SrsSessionScreen> {
         AppSnackBars.success(context, 'Removed from Saved');
       }
     } catch (e) {
-      if (context.mounted) {
+      if (mounted) {
         final l10n = AppLocalizations.of(context)!;
         context.pop();
         AppSnackBars.error(context, l10n.errorLoadingQuestionsShort);

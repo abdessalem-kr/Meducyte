@@ -1,0 +1,437 @@
+[
+  {
+    "name": "Syndrome de Long QT Acquis",
+    "description": "Pathologie biophysique cardiaque caractérisée par un allongement anormal de l'intervalle QT sur l'électrocardiogramme, entraînant un risque accru de tachycardie ventriculaire polymorphe (torsade de pointes) et d'arythmie mortelle. La physiopathologie repose sur des déséquilibres ioniques (potassium, sodium, calcium) ou des effets médicamenteux sur les canaux ioniques, perturbant la repolarisation myocardique. La présentation clinique typique inclut des syncopes soudaines, souvent déclenchées par l'effort ou les émotions, et des crises convulsives associées à une perte de conscience.",
+    "redFlags": [
+      "Syncopes soudaines sans cause évidente, survenant pendant ou après un effort physique",
+      "Palpitations associées à une hypotension orthostatique",
+      "Antécédents familiaux de mort subite ou de syndrome de Long QT",
+      "Prise de médicaments connus pour allonger le QT (ex: quinidine, certaines antihistaminiques)",
+      "Électrocardiogramme montrant un QTc > 500 ms ou une onde T biphasique"
+    ],
+    "scores": [
+      {
+        "name": "Score de LQTS (Long QT Syndrome)",
+        "description": "Score clinique évaluant le risque de syndrôme de Long QT basé sur des critères génétiques, électrocardiographiques et cliniques.",
+        "criteria": [
+          "Classe I: QTc > 500 ms (+3 points)",
+          "Classe II: QTc 470-499 ms chez les femmes ou 450-469 ms chez les hommes (+2 points)",
+          "Classe III: Antécédents familiaux de mort subite (+1 point)",
+          "Classe IV: Présence d'ondes T biphasiques (+1 point)",
+          "Classe V: Syncopes non expliquées (+1 point)"
+        ],
+        "interpretation": "Score total ≥ 4 points: risque élevé de syndrome de Long QT; 2-3 points: risque intermédiaire; <2 points: risque faible."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen électrocardiographique et neurologique",
+        "steps": [
+          {
+            "action": "Enregistrement d'un ECG 12 dérivations avec mesure du QTc (corrigé selon la formule de Bazett)",
+            "interpretation": "Un QTc > 500 ms est fortement évocateur. Les ondes T biphasiques ou les pauses sinusales associées renforcent le diagnostic."
+          },
+          {
+            "action": "Recherche de signes neurologiques focaux (ex: myoclonies, réflexes anormaux) après une crise",
+            "interpretation": "L'absence de lésions focales évoque une origine épileptique ou arythmique plutôt qu'ischemique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de sulfate de magnésium IV (1-2 g en bolus) pour stabiliser les canaux ioniques",
+      "Suspension immédiate de tout médicament prolongeant le QT",
+      "Installation en position semi-assise pour prévenir les syncopes",
+      "Surveillance continue du rythme cardiaque avec monitoring Holter",
+      "Préparation à la défibrillation externe non synchronisée en cas de torsade de pointes"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome de Brugada (présence d'onde ST en chape de plomb sur ECG)",
+      "Tachycardie ventriculaire polymorphe idiopathique",
+      "Épilepsie myoclonique secondaire à hypocalcémie"
+    ]
+  },
+  {
+    "name": "Edème Cérébral Hypertonique Aigu",
+    "description": "Complication neurobiophysique grave liée à une hyperosmolarité sanguine soudaine, entraînant un déplacement osmotique de l'eau vers l'extérieur des cellules cérébrales. Cette pathologie survient typiquement dans le contexte d'un diabète sucré non contrôlé (hyperglycémie sévère) ou d'une déshydratation extrême. La présentation clinique inclut une confusion progressive, une somnolence, des convulsions et une perte de conscience.",
+    "redFlags": [
+      "Hyperglycémie sévère (> 30 mmol/L) associée à une confusion mentale",
+      "Signes de déshydratation extrême (turgescence cutanée anormale, hypotension orthostatique)",
+      "Réflexes anormaux (ex: réflexes exagérés, signe de Babinski positif)",
+      "Papilledème observé lors de l'examen ophtalmoscopique",
+      "Échographie cérébrale montrant une augmentation du volume intracrânien"
+    ],
+    "scores": [
+      {
+        "name": "Score de Glasgow Coma Scale (GCS)",
+        "description": "Évaluation de l'état de conscience pour quantifier le degré de lésion cérébrale.",
+        "criteria": [
+          "Classe I: GCS < 8 (risque élevé de décès ou de séquelles neurologiques majeures)",
+          "Classe II: GCS 9-12 (risque modéré de complications)",
+          "Classe III: GCS 13-15 (prognostic favorable si traité rapidement)"
+        ],
+        "interpretation": "Un score inférieur à 8 nécessite une intubation immédiate pour protéger la voie aérienne."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et ophtalmoscopique",
+        "steps": [
+          {
+            "action": "Palpation des sinus temporaux et du cou pour rechercher une turgescence jugulaire",
+            "interpretation": "Une turgescence jugulaire anormale suggère une hypertension intracrânienne."
+          },
+          {
+            "action": "Examen ophtalmoscopique pour identifier un papilledème",
+            "interpretation": "La présence de papilledème est un signe de gravité indiquant une pression intracrânienne critique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration lente de solution saline isotonique (0.9% NaCl) pour prévenir une correction osmotique trop rapide",
+      "Insuline IV en perfusion continue pour réduire l'hyperglycémie de manière contrôlée",
+      "Thérapie anticonvulsivante préventive (ex: phénobarbital) en cas de risque de crise",
+      "Placage de la tête en position neutre pour optimiser la perfusion cérébrale",
+      "Surveillance continue de la pression intracrânienne via sonde ou échographie Doppler transcrânienne"
+    ],
+    "differentialDiagnosis": [
+      "Hypoglycémie sévère (réponse à l'administration de glucose)",
+      "Encéphalopathie toxique métabolique (ex: insuffisance rénale aiguë)",
+      "Hémorragie intracrânienne (imagerie cérébrale nécessaire pour différencier)"
+    ]
+  },
+  {
+    "name": "Syndrome de la canule de l'artère coronaire",
+    "description": "Le syndrome de la canule de l'artère coronaire est une malformation vasculaire rare caractérisée par une communication anormale entre une artère coronaire et une cavité cardiaque ou un vaisseau sanguin adjacent. Cette fistule peut entraîner une ischémie myocardique secondaire à une diminution du débit coronarien, une insuffisance cardiaque par surcharge volumétrique ou des arythmies. La présentation clinique varie de l'asymptomatique à des douleurs thoraciques, une dyspnée ou des syncopes.",
+    "redFlags": [
+      "Douleur thoracique à repos non typique associée à une hypotension artérielle",
+      "Murmure systolique continu à l'auscultation cardiaque, localisé au niveau de la communication fistuleuse",
+      "Signes d'insuffisance cardiaque aiguë (turgescence jugulaire, râles pulmonaires, œdèmes)",
+      "Tachycardie sinusale ou arythmie atriale persistante sans cause évidente",
+      "Hypertension artérielle secondaire à une surcharge volumétrique chronique"
+    ],
+    "scores": [
+      {
+        "name": "Classification de la fistule coronarienne (modifiée)",
+        "description": "Évalue la gravité clinique et la nécessité d'intervention selon la taille, le débit et les symptômes.",
+        "criteria": [
+          "Classe I: Fistule petite (< 2 mm), asymptomatique (+0)",
+          "Classe II: Fistule moyenne (2-4 mm), symptômes intermittents (+1)",
+          "Classe III: Fistule large (> 4 mm), insuffisance cardiaque ou ischémie documentée (+2)",
+          "Classe IV: Fistule complexe avec anévrisme ou thrombose associée (+3)"
+        ],
+        "interpretation": "Classe I: Surveillance radiologique. Classe II-III: Évaluation interventionnelle. Classe IV: Intervention chirurgicale urgente."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiaque et angiographique ciblé",
+        "steps": [
+          {
+            "action": "Auscultation cardiaque complète avec recherche d'un souffle systolique continu ou diastolique",
+            "interpretation": "Un souffle systolique continu à la fente de la communication évoque une fistule coronarienne. L'absence de souffle ne permet pas d'exclure la pathologie."
+          },
+          {
+            "action": "Échocardiographie transthoracique avec Doppler couleur",
+            "interpretation": "Permet d'identifier la fistule, d'évaluer le débit sanguin et de rechercher des signes d'insuffisance cardiaque (dilatation ventriculaire, fraction d'éjection réduite)."
+          },
+          {
+            "action": "Angiographie coronarienne sélective",
+            "interpretation": "Gold standard pour visualiser la fistule, sa taille, son origine et son débit. Permet de guider l'intervention endovasculaire."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation hémodynamique avec surveillance continue de la pression artérielle et du rythme cardiaque",
+      "Administration d'un bêta-bloquant (ex: métoprolol) pour réduire le débit sanguin à travers la fistule",
+      "Oxygénation à 2-4 L/min pour prévenir l'hypoxie myocardique",
+      "Préparation pour angiographie coronarienne ou intervention endovasculaire en cas de symptômes sévères",
+      "Hospitalisation en unité de soins intensifs si insuffisance cardiaque ou ischémie documentée"
+    ],
+    "differentialDiagnosis": [
+      "Anévrisme de l'artère coronaire (absence de communication avec une cavité cardiaque)",
+      "Sténose coronarienne aiguë (douleur thoracique typique, ECG pathologique)",
+      "Insuffisance cardiaque congestive (absence de souffle fistuleux à l'auscultation)"
+    ]
+  },
+  {
+    "name": "Hypertension intracrânienne idiopathique",
+    "description": "L'hypertension intracrânienne idiopathique (HII) est une augmentation anormale de la pression du liquide céphalo-rachidien (LCR) sans cause identifiable (tumeur, infection, thrombose). Elle se manifeste principalement par des céphalées pulsatives, des troubles visuels (papilledème, vision floue) et des acouphènes. La physiopathologie implique une dysrégulation de l'absorption ou de la production du LCR.",
+    "redFlags": [
+      "Céphalées matinales pulsatives associées à des vomissements non rhénoïdes",
+      "Papilledème bilatéral à l'examen ophtalmoscopique",
+      "Perte visuelle progressive ou acouphènes bilatéraux",
+      "Signes de compression du nerf optique (champ visuel en coin)",
+      "Hypertension intracrânienne confirmée par ponction lombaire (> 250 mmH2O)"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Dandy modifiés",
+        "description": "Évalue la probabilité de HII en fonction des signes cliniques et des résultats de la ponction lombaire.",
+        "criteria": [
+          "Critère 1: Céphalées matinales typiques (+1 point)",
+          "Critère 2: Papilledème bilatéral (+2 points)",
+          "Critère 3: Pression LCR > 250 mmH2O sans cellules ou protéines anormales (+3 points)",
+          "Critère 4: Absence de cause secondaire identifiée (-1 point)"
+        ],
+        "interpretation": "Score ≥ 5: Probabilité élevée de HII. Score 3-4: Probabilité intermédiaire. Score < 3: Diagnostique douteux."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et ophtalmologique ciblé",
+        "steps": [
+          {
+            "action": "Ophtalmoscopie directe pour évaluer le papilledème",
+            "interpretation": "Papilledème bilatéral avec élargissement du disque optique et écoulement sanguin peripapillaire. L'absence de papilledème ne permet pas d'exclure la HII."
+          },
+          {
+            "action": "Ponction lombaire avec mesure de la pression LCR",
+            "interpretation": "Pression LCR > 250 mmH2O avec LCR clair, sans cellules ou protéines anormales. Une pression < 180 mmH2O élimine le diagnostic."
+          },
+          {
+            "action": "Imagerie cérébrale (IRM ou scanner) avec injection de contraste",
+            "interpretation": "Exclusion des causes secondaires (tumeurs, thromboses). Peut montrer une sacculation du sinus veineux transverse."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'acétazolamide 500 mg PO toutes les 12 heures pour réduire la production de LCR",
+      "Positionnement en décubitus latéral pour soulager la pression intracrânienne",
+      "Thérapie par la lumbar drain (ponction lombaire répétée) en cas de symptômes sévères",
+      "Surveillance ophtalmologique quotidienne pour détecter l'aggravation du papilledème",
+      "Hospitalisation en unité neurologique pour surveillance hémodynamique et neurologique"
+    ],
+    "differentialDiagnosis": [
+      "Tumeur cérébrale (imagerie cérébrale nécessaire pour l'exclusion)",
+      "Thrombophlébite du sinus veineux (présence de fièvre, signes d'infection)",
+      "Hypertension artérielle intracrânienne secondaire à hypervitaminose A"
+    ]
+  },
+  {
+    "name": "Syndrome de l'embolie gazeuse aiguë",
+    "description": "L'embolie gazeuse aiguë se produit lorsque des bulles d'air pénètrent le système circulatoire, obstruant les vaisseaux sanguins et provoquant une ischémie tissulaire. Elle peut être veineuse (après pénétration dans la circulation veineuse) ou artérielle (après passage à travers un shunt interauriculaire ou une valve cardiaque défectueuse). La présentation clinique typique inclut une dyspnée soudaine, une douleur thoracique, une hypotension, une cyanose, des signes neurologiques (confusion, perte de connaissance) et des râles crépitants pulmonaires. Les complications graves comprennent l'insuffisance respiratoire, l'ischémie cérébrale et le choc.",
+    "redFlags": [
+      "Symptômes soudains après une procédure invasive (ex: insertion de cathéter central, plongée sous-marine, chirurgie orthopédique)",
+      "Hypotension associée à une cyanose et une tachycardie",
+      "Neurologie aiguë (confusion, perte de connaissance, hémiparésie) sans cause évidente",
+      "Râles crépitants pulmonaires bilatéraux avec hypoxémie",
+      "Signes de coagulation intravasculaire disséminée (ex: purpura, hémorragies multiples)"
+    ],
+    "scores": [
+      {
+        "name": "Index de Gravité de l'Embolie Gazeuse (IGEG)",
+        "description": "Score évaluant la gravité de l'embolie gazeuse en fonction du volume d'air, des signes cliniques et des paramètres hémodynamiques.",
+        "criteria": [
+          "Volume d'air < 50 ml (+0)",
+          "Volume d'air 50-100 ml (+1)",
+          "Volume d'air > 100 ml (+2)",
+          "Signes neurologiques présents (+2)",
+          "Hypotension persistante (< 90 mmHg) (+3)"
+        ],
+        "interpretation": "Score total < 3 : Surveillance étroite. Score 3-5 : Traitement intensif. Score > 5 : Risque de mortalité élevé, nécessité d'une hyperbare."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et neurologique",
+        "steps": [
+          {
+            "action": "Palpation des signes de cyanose et de turgescence jugulaire",
+            "interpretation": "La cyanose suggère une hypoxémie sévère, tandis que la turgescence jugulaire indique une insuffisance cardiaque droite secondaire à l'obstruction pulmonaire."
+          },
+          {
+            "action": "Auscultation pulmonaire pour détecter des râles crépitants ou des souffles anormaux",
+            "interpretation": "Les râles crépitants bilatéraux évoquent une surcharge alvéolaire secondaire à l'ischémie pulmonaire. Les souffles anormaux peuvent indiquer une insuffisance valvulaire secondaire à l'embolie."
+          },
+          {
+            "action": "Examen neurologique complet (réflexes, coordination, conscience)",
+            "interpretation": "Les signes neurologiques focaux (ex: hémiparésie, aphasie) suggèrent une embolie cérébrale. La confusion diffuse peut être liée à une hypoxie cérébrale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Positionnement en Trendelenburg et décubitus latéral gauche pour piéger l'air dans l'oreillette droite",
+      "Oxygénothérapie à haut débit (15 L/min) pour réduire la taille des bulles",
+      "Administration de corticoïdes (ex: hydrocortisone 100 mg IV) pour atténuer l'inflammation pulmonaire",
+      "Hyperbare à 2,8 atmosphères si disponible, pour dissoudre les bulles d'air",
+      "Surveillance étroite de la pression artérielle et de la saturation en oxygène"
+    ],
+    "differentialDiagnosis": [
+      "Embolie pulmonaire aiguë (présence de signes de thrombose veineuse profonde)",
+      "Infarctus du myocarde (douleur thoracique irradiant vers l'épaule, ST élévés à l'ECG)",
+      "Pneumothorax sous-tension (absence de souffle pulmonaire, décalage du point de Herz)"
+    ]
+  },
+  {
+    "name": "Syndrome de la décompensation aiguë de la myasthénie grave",
+    "description": "La myasthénie grave est une maladie auto-immune caractérisée par une faiblesse musculaire fluctuante due à une désunion neuromusculaire. La décompensation aiguë survient lorsque la faiblesse progresse rapidement, affectant les muscles respiratoires et le bulbe. La présentation clinique inclut une faiblesse musculaire progressive, une dysphagie, une ptose palpebrale, une diplopie, une insuffisance respiratoire aiguë et une paralysie bulbaire (dysarthrie, dysphagie, voix faible).",
+    "redFlags": [
+      "Faiblesse musculaire soudaine avec insuffisance respiratoire",
+      "Diplopie ou ptose palpebrale associée à une faiblesse proximale",
+      "Dysphagie ou voix faible avec risque de dénutrition",
+      "Réponse inadéquate à la testostimulation (ex: amélioration temporaire après injection de Tensilon)",
+      "Signes de myasthénie grave crise (ex: paralysie des muscles intercostaux)"
+    ],
+    "scores": [
+      {
+        "name": "Score de Gravité de la Myasthénie (SGM)",
+        "description": "Échelle évaluant la gravité de la myasthénie en fonction de la force musculaire respiratoire et des fonctions bulbares.",
+        "criteria": [
+          "Force inspiratoire > 60 L/min (+0)",
+          "Force inspiratoire 40-60 L/min (+1)",
+          "Force inspiratoire < 40 L/min (+2)",
+          "Absence de dysphagie (+0)",
+          "Dysphagie modérée (+1)",
+          "Dysphagie sévère (+2)"
+        ],
+        "interpretation": "Score total < 2 : Surveillance ambulatoire. Score 2-4 : Hospitalisation avec surveillance respiratoire. Score > 4 : Intubation précoce recommandée."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et fonctionnel",
+        "steps": [
+          {
+            "action": "Test de la ptose palpebrale et de la diplopie",
+            "interpretation": "La ptose palpebrale bilatérale et la diplopie horizontale sont des signes classiques de la myasthénie grave. Leur fluctuation au cours de la journée confirme le diagnostic."
+          },
+          {
+            "action": "Évaluation de la force musculaire proximale et distale",
+            "interpretation": "La faiblesse proximale (épaules, hanches) est typique, tandis que la faiblesse distale est rare. Une asymétrie musculaire suggère une neuropathie concomitante."
+          },
+          {
+            "action": "Test de la voix et de la déglutition",
+            "interpretation": "Une voix faible ou rauque (dysarthrie) et une déglutition difficile (dysphagie) indiquent une atteinte bulbaire, nécessitant une intubation préventive."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Intubation orotrachéale précoce si force inspiratoire < 40 L/min ou signes de paralysie bulbaire",
+      "Administration d'immunoglobulines intraveineuses (IVIG) à 0,4 g/kg/jour sur 5 jours",
+      "Plasmaphérèse en cas de crise myasthénique sévère",
+      "Surveillance étroite de la pression artérielle et de la saturation en oxygène",
+      "Précaution contre les infections et les médicaments bloquants les canaux calciques"
+    ],
+    "differentialDiagnosis": [
+      "Myasthénie congénitale (absence de testostimulation positive)",
+      "Guillain-Barré aigu (faiblesse ascendante, absence de ptose)",
+      "Myopathie de Duchenne (faiblesse proximale, absence de signes bulbares)"
+    ]
+  },
+  {
+    "name": "Syndrome de l'irradiation aiguë",
+    "description": "Pathologie liée à l'exposition aiguë à des doses élevées de rayonnement ionisant (>1 Gy). La physiopathologie repose sur la lésion cellulaire directe via l'ionisation des molécules d'eau et l'induction d'espèces réactives. La présentation clinique typique inclut une phase prodromale (nausées, vomissements, diarrhée) dans les heures suivant l'exposition, suivie d'une phase latente, puis de manifestations hémorragiques, infectieuses et neurologiques selon la dose reçue.",
+    "redFlags": [
+      "Vomissements précoces (<2 heures) après exposition suspecte à un rayonnement (ex: accident nucléaire ou radiologique)",
+      "Perte de cheveux diffus dans les 2-3 semaines post-exposition",
+      "Pancytopénie avec neutrophiles <500/mm³ sur hémogramme",
+      "Diarrhée hémorragique associée à une fièvre >39°C",
+      "Coma avec myoclonies et hypotension réfractaire dans les 48 heures"
+    ],
+    "scores": [
+      {
+        "name": "Score de Tri des Exposés à la Radioactivité (STER)",
+        "description": "Évalue la gravité clinique et la mortalité attendue selon la dose reçue et les signes fonctionnels",
+        "criteria": [
+          "Classe I (0-2 Gy): Symptômes légers, survie probable sans traitement",
+          "Classe II (2-4 Gy): Syndrome myélocytique, mortalité <20%",
+          "Classe III (4-6 Gy): Syndrome myélocytique sévère, mortalité 20-60%",
+          "Classe IV (>6 Gy): Syndrome neurologique, mortalité >80%"
+        ],
+        "interpretation": "La classe détermine la stratégie thérapeutique: surveillance stricte pour les classes I-II, transfusion cellulaire et antibiothérapie pour les classes III-IV."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique et biologique ciblé",
+        "steps": [
+          {
+            "action": "Recherche de lésions cutanées typiques (érythème, brûlure radiologique) avec délimitation des zones exposées",
+            "interpretation": "L'érythème cutané apparaît généralement 2-6 heures post-exposition et évolue vers des ulcérations profondes en 7-10 jours"
+          },
+          {
+            "action": "Hémogramme complet avec formule sanguine et hémoculture",
+            "interpretation": "La chute des lymphocytes (<500/mm³) dans les 24-48 heures est un marqueur de dose >2 Gy"
+          },
+          {
+            "action": "Évaluation neurologique complète (réflexes, coordination, conscience)",
+            "interpretation": "Les myoclonies et l'ataxie sont des signes de gravité associés aux doses >6 Gy"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Décontamination immédiate avec lavage cutané à l'eau tiède et savon non ionique",
+      "Administration de cétamine pour le soulagement de la douleur neurogénique",
+      "Transfusion de globules rouges concentrés si Hémoglobine <7g/dL",
+      "Antibiothérapie de couverture large (ex: Piperacilline-tazobactam) pour prévenir les infections opportunistes",
+      "Hospitalisation en unité de soins intensifs avec surveillance continue des paramètres hémodynamiques"
+    ],
+    "differentialDiagnosis": [
+      "Syndrome de l'ingestion de substances chimiques toxiques (absence de lésions cutanées localisées)",
+      "Septicémie aiguë (présence de fièvre sans exposition radiologique)",
+      "Intoxication par les radiopharmaceutiques (contexte thérapeutique connu)"
+    ]
+  },
+  {
+    "name": "Nécrose tissulaire secondaire à hyperthermie ciblée",
+    "description": "Complication iatrogène de la thérapie par hyperthermie ciblée (ex: radiofréquence, micro-ondes) utilisée dans les cancers. La physiopathologie repose sur la coagulation protéique et la lyse cellulaire par élévation de température >60°C. La présentation clinique typique inclut une douleur aiguë, une coloration violacée du tissu et des ulcérations progressives dans les 24-48 heures post-procédure.",
+    "redFlags": [
+      "Douleur brûlante persistante >48 heures post-procédure",
+      "Érythème purpurique avec perte de sensibilité cutanée",
+      "Bulles sanguinolentes apparaissant après 72 heures",
+      "Odorat de chair brûlée à l'auscultation",
+      "Nécrose circulaire avec bordure nette de 2-3 cm"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité de la nécrose thermique (IGN)",
+        "description": "Évalue la profondeur et l'étendue de la nécrose",
+        "criteria": [
+          "Classe I: Nécrose cutanée superficielle (<1 cm de profondeur)",
+          "Classe II: Nécrose sous-cutanée avec perte de tissu adipeux",
+          "Classe III: Nécrose musculaire avec atteinte des tendons",
+          "Classe IV: Nécrose osseuse avec ostéolyse"
+        ],
+        "interpretation": "Les classes I-II sont traitées par soins locaux, les classes III-IV nécessitent une chirurgie de débridement et/ou greffe cutanée"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen topographique et échographique",
+        "steps": [
+          {
+            "action": "Palpation douce avec recherche de zones anesthésiques ou hypoesthésiques",
+            "interpretation": "L'anesthésie cutanée est un signe précoce de nécrose neurovasculaire"
+          },
+          {
+            "action": "Échographie Doppler pour évaluer la perfusion tissulaire",
+            "interpretation": "L'absence de signal Doppler dans les zones nécrosées confirme l'ischémie"
+          },
+          {
+            "action": "Biopsie tissulaire dirigée si doute diagnostique",
+            "interpretation": "La présence de corps de Cowdry et de coagulation des cellules endothéliales est pathognomonique"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Arrêt immédiat de toute thérapie thermique",
+      "Application de compresses froides (15-20°C) pour limiter la propagation de la nécrose",
+      "Antibiothérapie prophylactique (ex: Céphalosporine de 3ème génération)",
+      "Élévation du membre affecté pour réduire l'œdème interstitiel",
+      "Consultation chirurgicale d'urgence pour évaluation du débridement"
+    ],
+    "differentialDiagnosis": [
+      "Nécrose ischémique secondaire à embolie (absence de contexte thermique)",
+      "Infection cutanée aiguë (présence de signes inflammatoires locaux)",
+      "Réaction allergique à l'anesthésique local (contexte d'injection)"
+    ]
+  }
+]

@@ -52,7 +52,7 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
     }
 
     //Get Stats
-    final stats = ref.read(studyStatsProvider).value;
+    final stats = ref.read(studyStatsProvider).valueOrNull;
 
     WidgetService.updateWidget(
       nextEvent: nextEvent.isNotEmpty ? nextEvent.first : null,
@@ -68,9 +68,22 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
     );
   }
 
+  Future<void> _reloadTasks() async {
+    final repo = ref.read(productivityRepositoryProvider);
+    final tasks = await repo.getTodoItems();
+    state = AsyncValue.data(tasks);
+    _syncToWidget(tasks: tasks);
+  }
+
   Future<void> toggleTask(String taskId) async {
     final tasks = state.value ?? [];
-    final task = tasks.firstWhere((t) => t.id == taskId);
+    final index = tasks.indexWhere((t) => t.id == taskId);
+    if (index == -1) return;
+
+    final task = tasks[index];
+    final updatedList = List<TodoItem>.from(tasks);
+    updatedList[index] = task.copyWith(isCompleted: !task.isCompleted);
+    state = AsyncValue.data(updatedList); // Optimistic Update
 
     final repo = ref.read(productivityRepositoryProvider);
     final updatedTask = await repo.updateTodo(
@@ -78,10 +91,7 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
       isCompleted: !task.isCompleted,
     );
 
-    state = AsyncValue.data(
-      tasks.map((t) => t.id == taskId ? updatedTask : t).toList(),
-    );
-    _syncToWidget();
+    _reloadTasks();
 
     //Cancel notification if completed,schedule if reopened
     final notificationService = ref.read(notificationServiceProvider);
@@ -108,13 +118,14 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
   }
 
   Future<void> addTask(
-    String moduleId,
+    String? moduleId,
     String title, {
     TodoPriority priority = TodoPriority.optional,
     DateTime? deadline,
     int estimatedPomodoros = 1,
     List<SubTask> subtasks = const [],
   }) async {
+    debugPrint("DEBUG: Notifier addTask started for title: $title");
     final repo = ref.read(productivityRepositoryProvider);
     final newTask = await repo.createTodo(
       title: title,
@@ -124,11 +135,12 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
       estimatedPomodoros: estimatedPomodoros,
       subtasks: subtasks,
     );
+    debugPrint("DEBUG: Notifier addTask repository returned task: ${newTask.id}");
 
-    state = AsyncValue.data([...(state.value ?? []), newTask]);
-    _syncToWidget();
+    _reloadTasks();
 
     if (deadline != null) {
+      debugPrint("DEBUG: Notifier addTask scheduling notification reminder");
       ref
           .read(notificationServiceProvider)
           .scheduleTaskReminder(
@@ -137,6 +149,7 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
             deadline: deadline,
           );
     }
+    debugPrint("DEBUG: Notifier addTask completed successfully");
   }
 
   Future<void> updateTask({
@@ -149,6 +162,21 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
     bool? isCompleted,
   }) async {
     final tasks = state.value ?? [];
+    final index = tasks.indexWhere((t) => t.id == taskId);
+    if (index != -1) {
+      final task = tasks[index];
+      final updatedList = List<TodoItem>.from(tasks);
+      updatedList[index] = task.copyWith(
+        title: title ?? task.title,
+        priority: priority ?? task.priority,
+        deadline: deadline ?? task.deadline,
+        estimatedPomodoros: estimatedPomodoros ?? task.estimatedPomodoros,
+        subtasks: subtasks ?? task.subtasks,
+        isCompleted: isCompleted ?? task.isCompleted,
+      );
+      state = AsyncValue.data(updatedList); // Optimistic Update
+    }
+
     final repo = ref.read(productivityRepositoryProvider);
 
     final updatedTask = await repo.updateTodo(
@@ -161,10 +189,7 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
       isCompleted: isCompleted,
     );
 
-    state = AsyncValue.data(
-      tasks.map((t) => t.id == taskId ? updatedTask : t).toList(),
-    );
-    _syncToWidget();
+    _reloadTasks();
 
     //Re-schedule/Cancel based on update
     final notificationService = ref.read(notificationServiceProvider);
@@ -222,10 +247,7 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
     final repo = ref.read(productivityRepositoryProvider);
     await repo.deleteTodo(taskId);
 
-    state = AsyncValue.data(
-      (state.value ?? []).where((t) => t.id != taskId).toList(),
-    );
-    _syncToWidget();
+    await _reloadTasks();
 
     //Cancel notification
     ref.read(notificationServiceProvider).cancelNotification(taskId);
@@ -236,15 +258,12 @@ class ProductiveBayNotifier extends AsyncNotifier<List<TodoItem>> {
     final task = tasks.firstWhere((t) => t.id == taskId);
 
     final repo = ref.read(productivityRepositoryProvider);
-    final updatedTask = await repo.updateTodo(
+    await repo.updateTodo(
       id: taskId,
       completedPomodoros: task.completedPomodoros + 1,
     );
 
-    state = AsyncValue.data(
-      tasks.map((t) => t.id == taskId ? updatedTask : t).toList(),
-    );
-    _syncToWidget();
+    await _reloadTasks();
     ref.invalidate(studyStatsProvider);
   }
 }
@@ -255,68 +274,44 @@ final productiveBayProvider =
     );
 
 //Provider to get progress for a specific module
-final moduleProgressProvider = Provider.family<double, String>((ref, moduleId) {
-  final modulesAsync = ref.watch(learnModulesProvider);
-
-  return modulesAsync.maybeWhen(
-    data: (modules) {
-      //Helper function to find a module and its total/studied lessons
-      (int, int)? getStats(LearnModule m) {
-        if (m.id == moduleId) {
-          final lessons = m.lessons ?? [];
-          final children = m.children ?? [];
-
-          if (children.isNotEmpty) {
-            int total = 0;
-            int studied = 0;
-            for (final child in children) {
-              final childLessons = child.lessons ?? [];
-              total += childLessons.length;
-              studied += childLessons.where((l) => l.isStudied).length;
-            }
-            return (total, studied);
-          }
-
-          if (lessons.isEmpty) return null;
-          return (lessons.length, lessons.where((l) => l.isStudied).length);
-        }
-
-        if (m.children != null) {
-          for (final child in m.children!) {
-            final stats = getStats(child);
-            if (stats != null) return stats;
-          }
-        }
-        return null;
-      }
-
-      for (final m in modules) {
-        final stats = getStats(m);
-        if (stats != null) {
-          final (total, studied) = stats;
-          if (total == 0) return 0.0;
-          return studied / total;
-        }
-      }
-
-      return 0.0;
-    },
-    orElse: () => 0.0,
-  );
+final moduleProgressProvider = FutureProvider.family<double, String>((
+  ref,
+  moduleId,
+) async {
+  try {
+    final lessons = await ref.watch(moduleLessonsProvider(moduleId).future);
+    if (lessons.isEmpty) return 0.0;
+    final studiedCount = lessons.where((l) => l.isStudied).length;
+    return studiedCount / lessons.length;
+  } catch (_) {
+    return 0.0;
+  }
 });
 
 // ---Advanced Study Intelligence Providers---
 
 //Study Pulse(SRS Data)
 final studyPulseProvider = Provider<StudyPulse>((ref) {
-  return const StudyPulse(
-    cardsDueToday: 124,
-    currentReviewStreak: 15,
-    masteryLevel: 0.72,
+  final dueCountAsync = ref.watch(dueQuestionsCountProvider);
+  final statsAsync = ref.watch(studyStatsProvider);
+  final srsStatsAsync = ref.watch(srsStatsProvider);
+
+  final dueCount = dueCountAsync.valueOrNull ?? 0;
+  final streak = statsAsync.valueOrNull?.currentStreak ?? 0;
+
+  final srsStats = srsStatsAsync.valueOrNull;
+  final total = srsStats?['total'] ?? 0;
+  final mastered = srsStats?['mastered'] ?? 0;
+  final double mastery = total > 0 ? (mastered / total) : 0.72;
+
+  return StudyPulse(
+    cardsDueToday: dueCount,
+    currentReviewStreak: streak,
+    masteryLevel: mastery,
   );
 });
 
-//AI Study Scheduler
+// ---AI Study Scheduler---
 final aiSchedulerProvider = Provider<List<ScheduledBlock>>((ref) {
   final tasksAsync = ref.watch(productiveBayProvider);
   final l10nAsync = ref.watch(appLocalizationsProvider);
@@ -358,10 +353,78 @@ final aiSchedulerProvider = Provider<List<ScheduledBlock>>((ref) {
 
 // ---Other Basic Providers---
 
-final studyStatsProvider = FutureProvider<StudyStats>((ref) {
-  return ref.watch(productivityRepositoryProvider).getStats();
+final studyStatsProvider = FutureProvider<StudyStats>((ref) async {
+  final stats = await ref.watch(productivityRepositoryProvider).getStats();
+  try {
+    final modules = await ref.watch(learnModulesProvider.future);
+    final Map<String, double> realScores = {};
+
+    // Fetch all lessons lists in parallel using ref.read to prevent creating 80+ observers
+    final lessonsLists = await Future.wait(
+      modules.map((m) => ref.read(moduleLessonsProvider(m.id).future)),
+    );
+
+    for (int i = 0; i < modules.length; i++) {
+      final module = modules[i];
+      final lessons = lessonsLists[i];
+      if (lessons.isNotEmpty) {
+        final studiedCount = lessons.where((l) => l.isStudied).length;
+        realScores[module.name] = studiedCount / lessons.length;
+      } else {
+        realScores[module.name] = 0.0;
+      }
+    }
+    return StudyStats(
+      currentStreak: stats.currentStreak,
+      totalHours: stats.totalHours,
+      completedPomodorosToday: stats.completedPomodorosToday,
+      completedShortBreaksToday: stats.completedShortBreaksToday,
+      completedLongBreaksToday: stats.completedLongBreaksToday,
+      totalPomodorosGoal: stats.totalPomodorosGoal,
+      moduleScores: realScores,
+    );
+  } catch (e) {
+    debugPrint("DEBUG: Error calculating real module stats: $e");
+    return stats;
+  }
 });
 
 final dailyGoalsProvider = Provider<List<DailyGoal>>((ref) {
-  return const [];
+  final statsAsync = ref.watch(studyStatsProvider);
+  final todoListAsync = ref.watch(productiveBayProvider);
+
+  final stats = statsAsync.valueOrNull;
+  final tasks = todoListAsync.valueOrNull ?? [];
+
+  final hoursCompleted = stats?.totalHours ?? 0;
+  final pomodorosCompleted = stats?.completedPomodorosToday ?? 0;
+  final pomodorosGoal = stats?.totalPomodorosGoal ?? 8;
+
+  final tasksCompleted = tasks.where((t) => t.isCompleted).length;
+  final totalTasksCount = tasks.length;
+  final targetTasksGoal = totalTasksCount > 0 ? totalTasksCount : 3;
+
+  return [
+    DailyGoal(
+      id: 'focus_hours',
+      title: "Heures de concentration",
+      targetValue: 8,
+      currentValue: hoursCompleted,
+      icon: Iconsax.clock,
+    ),
+    DailyGoal(
+      id: 'pomodoro_sessions',
+      title: "Séances Pomodoro",
+      targetValue: pomodorosGoal,
+      currentValue: pomodorosCompleted,
+      icon: Iconsax.timer_1,
+    ),
+    DailyGoal(
+      id: 'tasks_completed',
+      title: "Tâches accomplies",
+      targetValue: targetTasksGoal,
+      currentValue: tasksCompleted,
+      icon: Iconsax.task,
+    ),
+  ];
 });

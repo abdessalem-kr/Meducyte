@@ -1,5 +1,6 @@
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:meducyte_app/core/config/env.dart';
 import 'package:meducyte_app/export.dart';
 import 'package:meducyte_app/shared/services/edge_tts_service.dart';
 import 'dart:async';
@@ -46,9 +47,7 @@ class TtsNotifier extends StateNotifier<TtsStatus> {
   final EdgeTtsService _edgeTts = EdgeTtsService();
   final Dio _dio = Dio();
 
-  //Using the same API key as ChatRepository for consistency in this demo
-  static const String _apiKey =
-      "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";
+  static const String _apiKey = Env.groqApiKey;
 
   static const String _openAiUrl = "https://api.openai.com/v1/audio/speech";
 

@@ -1,0 +1,358 @@
+[
+  {
+    "name": "Fracture péri-prothétique du fémur",
+    "description": "Fracture se produisant dans la zone adjacente à une prothèse fémorale implantée, souvent liée à un traumatisme modéré ou à une ostéoporose. La physiopathologie repose sur une combinaison de fragilité osseuse, de stress mécanique localisé et de défaillance de l'interface os-prothèse. La présentation clinique typique inclut une douleur aiguë au niveau de la hanche ou du genou, une déformation de l'extrémité inférieure, une impossibilité de charge et une instabilité articulaire.",
+    "redFlags": [
+      "Douleur aiguë localisée au niveau de la prothèse fémorale avec irradiation vers le genou ou la hanche",
+      "Déformation visible ou palpable de l'extrémité inférieure suggérant une luxation ou une fracture",
+      "Incapacité totale de charge ou de mouvement de l'articulation",
+      "Signes d'instabilité mécanique de la prothèse (craquements, claquements lors des mouvements)",
+      "Édème, ecchymoses ou hématomes locaux associés à une perte de mobilité"
+    ],
+    "scores": [
+      {
+        "name": "Classification AO/OTA des fractures fémorales",
+        "description": "Classification basée sur la localisation, la morphologie et la complexité de la fracture pour guider le choix thérapeutique.",
+        "criteria": [
+          "Type A: Fractures simples (ex: A1: fracture transversale, A2: fracture oblique, A3: fracture spiralée)",
+          "Type B: Fractures partiellement comminutives (ex: B1: fracture communiquant avec une articulation, B2: fracture communiquant avec deux articulations)",
+          "Type C: Fractures comminutives (ex: C1: fracture communiquant avec une articulation et comminution, C2: fracture communiquant avec deux articulations et comminution)",
+          "Sous-type selon la localisation (proximale, diaphysaire, distale)",
+          "Sous-type selon le mécanisme (traumatisme direct, effort indirect)"
+        ],
+        "interpretation": "La classification permet de déterminer si une fracture est traitable par immobilisation ou nécessite une intervention chirurgicale (ostéosynthèse ou remplacement prothétique). Les types C et B2/B3 sont associés à une plus grande complexité chirurgicale."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique et neurologique ciblé",
+        "steps": [
+          {
+            "action": "Palpation du site prothétique pour identifier des douleurs localisées, des déformations ou des points de fixation anormaux",
+            "interpretation": "La présence de douleur à la palpation ou de déformations suggère une fracture ou une défaillance de l'implant."
+          },
+          {
+            "action": "Évaluation de la mobilité active et passive de l'articulation fémoro-tibiale et de la hanche",
+            "interpretation": "Une limitation de la mobilité ou des douleurs à l'extension ou à la flexion indiquent une instabilité ou une fracture."
+          },
+          {
+            "action": "Test de l'alignement de l'extrémité inférieure (comparaison bilatérale)",
+            "interpretation": "Une déviation de l'alignement (varus/valgus) ou une inégalité de longueur des membres évoque une fracture ou une luxation."
+          },
+          {
+            "action": "Examen neurologique des membres inférieurs (force, sensibilité, réflexes)",
+            "interpretation": "Une atteinte neurologique focale (paralysie, hypoesthésie) peut indiquer une lésion associée ou une compression nerveuse."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation du membre avec une attelle ou un plâtre spécifique pour éviter les mouvements anormaux",
+      "Prescription d'antalgiques (ex: paracétamol, morphine) pour contrôler la douleur aiguë",
+      "Imagerie radiologique (radiographies standard, scanner ou IRM) pour confirmer le diagnostic et évaluer la complexité de la fracture",
+      "Consultation chirurgicale d'urgence pour planifier une ostéosynthèse ou un remplacement prothétique",
+      "Précautions anti-thrombotiques (héparine de bas poids moléculaire) pour prévenir les thromboses veineuses profondes"
+    ],
+    "differentialDiagnosis": [
+      "Luxation de la prothèse fémorale (douleur aiguë avec déformation et blocage mécanique)",
+      "Infection péri-prothétique (fièvre, douleur chronique, édème localisé)",
+      "Fracture pathologique liée à une tumeur osseuse (douleur insidieuse, lésion radiologique spécifique)"
+    ]
+  },
+  {
+    "name": "Abscessus épidurale spinaux aigus",
+    "description": "Infection purulente localisée dans l'espace épidural, souvent secondaire à une bactériémie ou à une infection voisine (pyomyosite, otite). La physiopathologie implique une colonisation bactérienne avec compression du moignon spinal ou des racines nerveuses. La présentation clinique typique inclut une douleur radiculaire aiguë, des signes de myélite ou de myélopathie, et une fièvre associée.",
+    "redFlags": [
+      "Douleur radiculaire aiguë associée à une fièvre > 38,5°C et une altération neurologique progressive",
+      "Perte de contrôle vésico-bulbaire ou rectale (signes de myélite sévère)",
+      "Hyporéflexie ou aréflexie des membres inférieurs",
+      "Signes de myosite paraspinale (douleur à la palpation des muscles paravertébraux)",
+      "Antécédent de traumatisme, d'intervention chirurgicale ou d'infection récente"
+    ],
+    "scores": [
+      {
+        "name": "Score de Frankel modifié pour les lésions spinale",
+        "description": "Évaluation de la sévérité fonctionnelle de la lésion spinale pour orienter le pronostic.",
+        "criteria": [
+          "Classe A: Paraplégie totale avec absence de sensibilité et de motricité",
+          "Classe B: Paraplégie avec préservation de la sensibilité mais absence de motricité",
+          "Classe C: Paraplégie avec motricité partielle (force < 3/5)",
+          "Classe D: Paraplégie avec motricité complète (force ≥ 3/5)",
+          "Classe E: Fonction normale"
+        ],
+        "interpretation": "Les classes A et B sont associées à un pronostic défavorable et nécessitent une intervention chirurgicale d'urgence. Les classes C et D peuvent être traitées par une combinaison de décompression et d'antibiothérapie."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et orthopédique ciblé",
+        "steps": [
+          {
+            "action": "Évaluation de la douleur radiculaire (localisation, irradiation, caractéristiques)",
+            "interpretation": "Une douleur irradiant vers les membres inférieurs ou associée à des signes de myélite évoque une compression spinale."
+          },
+          {
+            "action": "Test de la force musculaire des membres inférieurs (ex: flexion du genou, extension du pied)",
+            "interpretation": "Une diminution de la force musculaire ou une paralysie suggère une lésion spinale."
+          },
+          {
+            "action": "Examen de la sensibilité (toucher, douleur, température) et des réflexes (réflexe rotulien, achilléen)",
+            "interpretation": "Une hypoesthésie ou une aréflexie indique une atteinte des racines nerveuses."
+          },
+          {
+            "action": "Recherche de signes d'encéphalite ou de méningite (rigidité nucale, signes de Brudzinski)",
+            "interpretation": "L'absence de ces signes oriente vers une localisation spinale plutôt que cérébrale."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'antibiotiques à large spectre (ex: céphalosporine de 3e génération + aminoside) en attente des résultats bactériologiques",
+      "Imagerie par résonance magnétique (IRM) de la colonne vertébrale pour confirmer le diagnostic et localiser l'abscessus",
+      "Décompression chirurgicale d'urgence si préservation neurologique est menacée",
+      "Immobilisation du segment spinal concerné avec un corset orthopédique rigide",
+      "Surveillance neurologique continue et stabilisation des fonctions vésicales et intestinales"
+    ],
+    "differentialDiagnosis": [
+      "Myélite aiguë transverse (douleur radiculaire sans fièvre, lésion neurologique ascendante)",
+      "Hernie discale aiguë (douleur radiculaire avec signes neurologiques focaux, absence de fièvre)",
+      "Métastase spinale (douleur chronique, lésion radiologique spécifique, absence d'atteinte neurologique aiguë)"
+    ]
+  },
+  {
+    "name": "Fracture du col du fémur non déplacée",
+    "description": "Fracture du col du fémur non déplacée, fréquente chez les personnes âgées, liée à une ostéoporose associée à un traumatisme mineur (chute de hauteur de siège). La physiopathologie repose sur une résistance osseuse diminuée, exposant à une fracture en flexion-rotation. Présentation clinique : douleur aiguë du quadrant fémoral interne, incapacité de charge, signes de déviation de l'axe (court de jambe, rotation externe). Risque de non-union ou de nécrose avasculaire du fémur.",
+    "redFlags": [
+      "Douleur fémorale interne aiguë sur un traumatisme mineur chez un sujet âgé (>70 ans)",
+      "Incapacité de charge sur la jambe touchée avec court de jambe",
+      "Rotation externe du membre inférieur touché à l'examen",
+      "Signes de déviation de l'axe fémoral (fémur en arc de cercle)",
+      "Douleur irradiant vers le genou ou l'ischion sans lésion locale évidente"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Garden",
+        "description": "Échelle de classification radiologique des fractures du col fémoral basée sur le degré de déplacement",
+        "criteria": [
+          "Classe I: Fracture incomplète (craquelure) (+0)",
+          "Classe II: Fracture complète non déplacée (+1)",
+          "Classe III: Fracture déplacée en rotation interne (+2)",
+          "Classe IV: Fracture déplacée en rotation externe (+3)"
+        ],
+        "interpretation": "Classe I et II: Indication de traitement non chirurgical (immobilisation). Classe III-IV: Indication de chirurgie urgente (champignon fémoral ou vis à vis)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique du membre inférieur",
+        "steps": [
+          {
+            "action": "Palpation du quadrant fémoral interne et du genou pour identifier la douleur à la pression",
+            "interpretation": "Douleur localisée au niveau du col fémoral évoque une fracture. Absence de douleur focale évoque une lésion capsulaire ou ligamentaire."
+          },
+          {
+            "action": "Mesure de la longueur des jambes et recherche de court de jambe",
+            "interpretation": "Court de jambe >2 cm suggère une fracture déplacée. Court de jambe <2 cm compatible avec fracture non déplacée."
+          },
+          {
+            "action": "Test de rotation externe passive du membre inférieur",
+            "interpretation": "Douleur ou résistance à la rotation externe évoque une fracture du col fémoral. Absence de douleur oriente vers une lésion capsulaire."
+          },
+          {
+            "action": "Examen neurovasculaire distal (pulsations fémorales, sensibilité, motricité)",
+            "interpretation": "Perte de pulsations ou signes neurologiques évoquent une ischémie secondaire à une fracture déplacée."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation du membre inférieur en position neutre avec attelle fémoro-péronée",
+      "Analgesie par morphiniques (ex: morphine 2-4 mg IV) pour soulager la douleur aiguë",
+      "Radiographies standard (AP et latérale du bassin) pour confirmer le diagnostic",
+      "Consultation orthopédique urgente (<24h) pour décision chirurgicale",
+      "Prévention de la thrombose veineuse profonde (héparine de bas poids moléculaire)"
+    ],
+    "differentialDiagnosis": [
+      "Fracture du fémur diaphysaire (douleur plus distale, déviation de l'axe fémoral différente)",
+      "Luxation de la hanche (déviation de l'axe associée à douleur ischio-pubienne)",
+      "Lésion capsulaire de la hanche (douleur irradiant vers le genou sans court de jambe)"
+    ]
+  },
+  {
+    "name": "Fracture bicondylaire du plateau tibial",
+    "description": "Fracture complexe du plateau tibial impliquant les deux condyles, souvent liée à un traumatisme haute énergie (accident de la route, chutes de hauteur). La mécanique typique est une flexion du genou avec force axiale associée. Présentation clinique : gonflement massif du genou, déformité en valgus ou varus, douleur intense à la palpation des condyles. Risques de lésions ligamentaires associées et de syndrome compartimental.",
+    "redFlags": [
+      "Gonflement aigu du genou avec déformité en valgus ou varus",
+      "Douleur intense à la palpation des condyles tibiaux",
+      "Incapacité de flexion/extension du genou",
+      "Signes de syndrome compartimental (douleur à la palpation, paresthésies, pâleur distale)",
+      "Histoire de traumatisme haute énergie (chute de hauteur >3m, accident moto)"
+    ],
+    "scores": [
+      {
+        "name": "Classification AO/OTA",
+        "description": "Classification radiologique basée sur la morphologie et la complexité de la fracture",
+        "criteria": [
+          "Type A: Fractures simples (A1: fracture unicondylaire, A2: fracture bicondylaire, A3: fracture associée à l'apophyse) (+0)",
+          "Type B: Fractures partielles en escalier (B1: unicondylaire, B2: bicondylaire) (+1)",
+          "Type C: Fractures complexes en escalier (C1: unicondylaire, C2: bicondylaire, C3: fracture associée à l'apophyse) (+2)"
+        ],
+        "interpretation": "Type A: Traitement chirurgical conservateur. Type B-C: Nécessite une stabilisation interne complexe (plaque ou vis à vis)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen orthopédique du genou",
+        "steps": [
+          {
+            "action": "Palpation des condyles tibiaux et du genou pour identifier la douleur focale",
+            "interpretation": "Douleur intense localisée aux condyles évoque une fracture. Douleur diffusée oriente vers une lésion ligamentaire."
+          },
+          {
+            "action": "Mesure de l'alignement du genou (valgus/varus)",
+            "interpretation": "Déviation en valgus ou varus suggère une fracture déplacée. Alignement normal évoque une lésion ligamentaire."
+          },
+          {
+            "action": "Test de Lachman et de l'arcboutement pour évaluer les ligaments croisés",
+            "interpretation": "Instabilité antérieure ou postérieure évoque une lésion ligamentaire associée. Stabilité normale oriente vers une fracture isolée."
+          },
+          {
+            "action": "Examen neurovasculaire distal (pulsations poplitées, sensibilité, motricité)",
+            "interpretation": "Perte de pulsations ou signes neurologiques évoquent une ischémie secondaire à une fracture déplacée."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation du genou en position neutre avec attelle orthopédique",
+      "Réduction orthostatique sous anesthésie locale pour aligner le genou",
+      "Perfusion intraveineuse de corticoïdes (ex: dexaméthasone 4 mg) pour réduire l'œdème",
+      "Consultation orthopédique d'urgence (<24h) pour décision chirurgicale",
+      "Surveillance étroite du syndrome compartimental (pression compartimentale >30 mmHg indique une chirurgie d'urgence)"
+    ],
+    "differentialDiagnosis": [
+      "Fracture du fémur distal (douleur plus proximale, déviation de l'axe différente)",
+      "Lésion ligamentaire du genou (douleur diffusée sans déviation de l'alignement)",
+      "Hémarthrose traumatique (gonflement sans déviation de l'alignement)"
+    ]
+  },
+  {
+    "name": "Luxation postérieure de l'articulation fémoro-fémorale associée à une fracture du cotyle",
+    "description": "Cette pathologie résulte d'un traumatisme à haute énergie (accident de la route, chute de hauteur) entraînant une luxation postérieure du fémur par rapport au cotyle, souvent associée à une fracture du cotyle. La mécanique implique une flexion, adduction et rotation interne du genou, combinée à une force axiale sur le fémur. La présentation clinique typique inclut une douleur aiguë au niveau de l'articulation fémoro-fémorale, une impossibilité de charge, une déformation de l'extrémité inférieure (jambe en adduction et rotation externe), et une atteinte neurologique (ischialgie, perte de la flexion plantaire).",
+    "redFlags": [
+      "Douleur aiguë au niveau de l'articulation fémoro-fémorale avec impossibilité de charge",
+      "Jambe en adduction et rotation externe (signe de la jambe en 'chaise de longue')",
+      "Perte de la flexion plantaire ou de l'extension du genou (atteinte du nerf ischiatique)",
+      "Hypotension ou tachycardie secondaire à une hémorragie interne",
+      "Signes de choc neurogénique (pâleur, transpiration, hypothermie) en cas de lésion médullaire associée"
+    ],
+    "scores": [
+      {
+        "name": "Classification OTA (Orthopaedic Trauma Association) des fractures du cotyle",
+        "description": "Classification basée sur l'extension et la complexité de la fracture du cotyle, influençant le choix du traitement chirurgical.",
+        "criteria": [
+          "Type A: Fractures simples, non déplacées ou partiellement déplacées",
+          "Type B: Fractures partielles avec déplacement important",
+          "Type C: Fractures complexes avec déplacement global",
+          "Sous-types (A1-A3, B1-B3, C1-C3) définis par la localisation et l'extension de la fracture"
+        ],
+        "interpretation": "Les types A et B peuvent être traités de manière non opératoire ou par ostéosynthèse minimale, tandis que les types C nécessitent une réduction ouverte et une fixation rigide."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et articulaire du membre inférieur",
+        "steps": [
+          {
+            "action": "Inspection visuelle de l'alignement de l'articulation fémoro-fémorale et de la jambe",
+            "interpretation": "Une déviation postérieure de la tête fémorale ou une déformation en adduction/rotation externe évoque une luxation postérieure."
+          },
+          {
+            "action": "Palpation de la fosse ischio-jugulaire et de la fosse poplitée pour détecter des hématomas ou des lésions vasculaires",
+            "interpretation": "Une douleur à la palpation de la fosse ischio-jugulaire ou une absence de pouls poplité suggère une atteinte vasculaire."
+          },
+          {
+            "action": "Test de la flexion plantaire et de l'extension du genou",
+            "interpretation": "Une perte de la flexion plantaire ou de l'extension du genou indique une lésion du nerf ischiatique."
+          },
+          {
+            "action": "Évaluation de la sensibilité cutanée sur la face postérieure de la jambe et du pied",
+            "interpretation": "Une anesthésie ou une hypoesthésie dans la distribution du nerf ischiatique confirme l'atteinte neurologique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation du membre inférieur en position de traction (traction cutanée ou intra-osseuse) pour réduire la luxation",
+      "Administration de morphine ou de fentanyl pour le contrôle de la douleur aiguë",
+      "Préparation pour une radiographie de l'articulation fémoro-fémorale et une tomodensitométrie du bassin",
+      "Évaluation de la perfusion et de la sensibilité du membre inférieur pour détecter une ischémie",
+      "Préparation chirurgicale d'urgence en cas de déplacement important ou de lésion neurologique persistante"
+    ],
+    "differentialDiagnosis": [
+      "Fracture du col du fémur (absence de luxation, jambe en adduction interne)",
+      "Luxation antérieure de l'articulation fémoro-fémorale (jambe en abduction et rotation interne)",
+      "Lésion ligamentaire du genou (absence de déformation articulaire fémoro-fémorale)"
+    ]
+  },
+  {
+    "name": "Fracture ouverte du tibia avec syndrome de compartiment",
+    "description": "Cette pathologie survient après un traumatisme pénétrant ou un traumatisme à haute énergie (accident de la route, chute) entraînant une fracture ouverte du tibia associée à un syndrome de compartiment. La physiopathologie repose sur une augmentation de la pression intra-compartmentale due à l'œdème et au saignement, compromettant la perfusion tissulaire. La présentation clinique typique inclut une douleur intense, une pâleur, une perte de pouls, une paresthésie et une paralysie (les 5 P).",
+    "redFlags": [
+      "Douleur intense proportionnellement au traumatisme",
+      "Pâleur ou cyanose de la jambe",
+      "Absence ou diminution des pouls distaux",
+      "Paresthésies ou perte de sensibilité dans les compartiments tibiaux",
+      "Paralysie des muscles de la jambe (perte de la flexion plantaire ou de la dorsiflexion)"
+    ],
+    "scores": [
+      {
+        "name": "Score de MESS (Mangled Extremity Severity Score)",
+        "description": "Score évaluant la gravité des lésions pour prédire le pronostic et guider la prise en charge chirurgicale.",
+        "criteria": [
+          "Perfusion: 0 (normale), 1 (douteuse), 2 (absente)",
+          "Sensibilité: 0 (normale), 1 (altérée), 2 (absente)",
+          "Mouvement: 0 (normal), 1 (altéré), 2 (absent)",
+          "Énergie du traumatisme: 0 (faible), 1 (modérée), 2 (élevée)",
+          "Temps d'ischémie: 0 (0-2h), 1 (2-4h), 2 (>4h)"
+        ],
+        "interpretation": "Un score total ≥ 7 suggère une amputation probable, tandis qu'un score < 7 justifie une tentative de sauvetage du membre."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurovasculaire et compartimental de la jambe",
+        "steps": [
+          {
+            "action": "Palpation des pouls poplité, tibial postérieur et péronier",
+            "interpretation": "L'absence de pouls distaux évoque une ischémie aiguë ou un syndrome de compartiment."
+          },
+          {
+            "action": "Évaluation de la sensibilité cutanée dans les distributions des nerfs tibial et péronier",
+            "interpretation": "Une hypoesthésie ou une anesthésie dans ces zones indique une atteinte nerveuse."
+          },
+          {
+            "action": "Mesure de la pression intra-compartmentale avec un tensiomètre à piqûre",
+            "interpretation": "Une pression > 30 mmHg ou une différence < 30 mmHg par rapport à la pression artérielle diastolique confirme le syndrome de compartiment."
+          },
+          {
+            "action": "Inspection visuelle de la fracture ouverte pour évaluer le degré de contamination",
+            "interpretation": "Une contamination évidente ou un corps étranger visible nécessite une lavage chirurgical immédiat."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Incision chirurgicale d'urgence des compartiments tibiaux pour décompresser la pression intra-compartmentale",
+      "Administration de cefazoline ou de piperacilline-tazobactam pour couvrir les infections bactériennes",
+      "Lavage sous pression de la fracture ouverte avec ostéosynthèse temporaire",
+      "Oxygénothérapie à 100% pour améliorer la perfusion tissulaire",
+      "Préparation pour une angiographie en cas de doute sur l'ischémie"
+    ],
+    "differentialDiagnosis": [
+      "Fracture fermée du tibia avec œdème secondaire",
+      "Thrombose veineuse profonde (absence de syndrome de compartiment)",
+      "Lésion ligamentaire du genou (absence de perte de pouls)"
+    ]
+  }
+]

@@ -6,3 +6,4 @@ export 'screens/responsive_navigation_screen.dart';
 //models
 //providers
 export 'providers/dashboard_providers.dart';
+export 'providers/medical_insight_provider.dart';

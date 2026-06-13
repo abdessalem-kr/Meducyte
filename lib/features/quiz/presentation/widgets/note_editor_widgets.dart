@@ -266,9 +266,7 @@ class _NoteEditorBottomSheetState extends ConsumerState<NoteEditorBottomSheet> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text("AI Error: ${e.toString()}")));
+        AppSnackBars.error(context, e);
       }
     } finally {
       if (mounted) {

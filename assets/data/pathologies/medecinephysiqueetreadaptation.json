@@ -1,0 +1,366 @@
+[
+  {
+    "name": "Syndrome de Guillain-Barré aigu",
+    "description": "Le syndrome de Guillain-Barré (SGB) est une neuropathie auto-immune aiguë, caractérisée par une atteinte des nerfs périphériques, souvent déclenchée par une infection antécédente (virus de la grippe, campylobacter, etc.). La physiopathologie repose sur une réaction immunitaire dirigée contre les myélines des nerfs périphériques, entraînant une perte progressive de la force musculaire, des aréflexies et une ataxie. La présentation clinique typique inclut une céphalée, des paresthésies distales, une faiblesse ascendante bilatérale, une ataxie, et une perte de la coordination. L'évolution est progressive sur 2-4 semaines, avec un pic de sévérité, puis une stabilisation.",
+    "redFlags": [
+      "Faiblesse musculaire progressive bilatérale ascendante associée à des aréflexies, commençant aux membres inférieurs et s'étendant aux membres supérieurs",
+      "Paresthésies distales associées à une perte de la sensibilité vibratoire et positionnelle",
+      "Ataxie motrice ou sensorielle avec impossibilité de marche autonome",
+      "Dysphagie, ptérygodeviation ou altération de la fonction bulbaire",
+      "Dyspnée ou signes de défaillance respiratoire (hypoplasie des muscles intercostaux, dépression du diaphragme)"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de Handicap de Guillain-Barré (GBS-H)",
+        "description": "Évalue la sévérité fonctionnelle du SGB sur une échelle de 0 à 21, en mesurant l'incapacité à effectuer des tâches quotidiennes.",
+        "criteria": [
+          "Classe 0: Aucune incapacité (0 point)",
+          "Classe 1: Incapacité à marcher sans aide (1 point)",
+          "Classe 2: Marche avec canne ou déambulateur (2 points)",
+          "Classe 3: Marche avec fauteuil roulant (3 points)",
+          "Classe 4: Incapacité totale à marcher ou à s'asseoir (4 points)"
+        ],
+        "interpretation": "Un score ≥ 3 indique une sévérité modérée à sévère nécessitant une rééducation intensive. Un score ≥ 4 justifie une prise en charge en réanimation."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique ciblé",
+        "steps": [
+          {
+            "action": "Évaluation de la force musculaire selon la classification de MRC (Medical Research Council) pour chaque groupe musculaire",
+            "interpretation": "Une diminution de la force ≥ grade 3/5 dans ≥ 2 groupes musculaires bilatéraux évoque le SGB. L'absence de force ≥ grade 0/5 dans les muscles respiratoires est un signe d'urgence."
+          },
+          {
+            "action": "Recherche d'aréflexies profondes (réflexes biceps, triceps, rotuliens, achillens)",
+            "interpretation": "L'absence de réflexes profonds bilatéraux est un signe majeur du SGB. Les réflexes anaux et ciliaires doivent être préservés pour écarter une myélopathie."
+          },
+          {
+            "action": "Test de la marche sur talons et sur orteils",
+            "interpretation": "L'incapacité de marcher sur talons ou orteils indique une atteinte des nerfs tibial ou fibulaire, typique du SGB."
+          },
+          {
+            "action": "Évaluation de la sensibilité vibratoire et positionnelle",
+            "interpretation": "Une perte de la sensibilité vibratoire distale associée à une ataxie statique évoque une atteinte sensorielle."
+          },
+          {
+            "action": "Examen des fonctions bulbares (déglutition, phonation, respiration)",
+            "interpretation": "Une dysphagie ou une ptérygodeviation suggère une atteinte des nerfs crâniens, nécessitant une surveillance respiratoire stricte."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hospitalisation en unité de soins intensifs ou en rééducation fonctionnelle pour surveillance respiratoire et prévention des complications",
+      "Administration d'immunoglobulines intraveineuses (IVIG) à 0,4 g/kg/jour pendant 5 jours ou plasmaphérèse (3-5 séances) pour traitement immunomodulateur",
+      "Rééducation précoce sous forme de kinésithérapie passive pour prévenir les contractures et la déconditionnement musculaire",
+      "Surveillance quotidienne de la force respiratoire (pression inspiratoire < 30 cmH2O) et mise en place d'une ventilation non invasive si nécessaire",
+      "Prévention des escarres par changement de position toutes les 2 heures et surveillance des signes de déshydratation"
+    ],
+    "differentialDiagnosis": [
+      "Myasthénie grave (asthénie musculaire fluctuante, amélioration par le test de Tensilon)",
+      "Myopathie inflammatoire (force musculaire proximale dominante, CK élevée)",
+      "Neuropathie diabétique (symétrique, distale, associée à une glycémie anormale)",
+      "Myélite aiguë transverse (atteinte sensorielle et motrice associée à une myélorragie)",
+      "Toxicité médicamenteuse (ex: vincristine, éphédrine) avec anamnèse spécifique"
+    ]
+  },
+  {
+    "name": "Myopathie inflammatoire idiopathique",
+    "description": "Les myopathies inflammatoires idiopathiques (MIIs) sont un groupe hétérogène de maladies auto-immunes chroniques caractérisées par une infiltration lymphocytaire des muscles squelettiques, entraînant une faiblesse proximale progressive. Les formes les plus courantes sont la polymyosite, la dermatomyosite et la myosite à inclusion. La physiopathologie implique une réponse immunitaire dirigée contre des antigènes musculaires, associée à une activation des cellules T et B. La présentation clinique inclut une faiblesse musculaire proximale bilatérale, une myalgie, une fatigue, et des signes cutanés spécifiques (démangeaisons, érythème) dans les formes dermatomyosites.",
+    "redFlags": [
+      "Faiblesse musculaire proximale bilatérale associée à une myalgie et une fatigue inexpliquée",
+      "Érythème violacé du visage, des paupières ou des articulations (signe de Gottron) dans la dermatomyosite",
+      "Myoglobine urinaire ou CK sérique élevée (>5 fois la normale)",
+      "Dysphagie ou altération de la déglutition",
+      "Signes de myosite à inclusion (faiblesse distale, atrophie musculaire)"
+    ],
+    "scores": [
+      {
+        "name": "Index d'intensité de la myosite (MIS)",
+        "description": "Évalue la sévérité clinique de la myosite sur une échelle de 0 à 100, en combinant la force musculaire, la fatigue et les signes cutanés.",
+        "criteria": [
+          "Classe 0: Aucune faiblesse musculaire (0 point)",
+          "Classe 1: Faiblesse < grade 4/5 dans ≥ 2 groupes musculaires (10 points)",
+          "Classe 2: Faiblesse ≥ grade 4/5 dans ≥ 2 groupes musculaires (20 points)",
+          "Classe 3: Faiblesse ≥ grade 3/5 dans ≥ 2 groupes musculaires (30 points)",
+          "Classe 4: Faiblesse ≥ grade 2/5 dans ≥ 2 groupes musculaires (40 points)"
+        ],
+        "interpretation": "Un score ≥ 30 indique une sévérité modérée à sévère nécessitant une corticothérapie à haute dose. Un score ≥ 40 justifie l'adjonction d'immunosuppresseurs."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen musculaire et cutané ciblé",
+        "steps": [
+          {
+            "action": "Évaluation de la force musculaire proximale (épaules, hanches, genoux) selon la classification de MRC",
+            "interpretation": "Une diminution de la force ≥ grade 3/5 dans ≥ 2 groupes musculaires proximaux évoque une MII. L'absence de force ≥ grade 0/5 dans les muscles respiratoires est un signe d'urgence."
+          },
+          {
+            "action": "Recherche de signes cutanés spécifiques (érythème, pétéchies, calcinose)",
+            "interpretation": "Un érythème violacé des paupières ou des articulations (signe de Gottron) est pathognomonique de la dermatomyosite."
+          },
+          {
+            "action": "Test de la marche sur talons et sur orteils",
+            "interpretation": "L'incapacité de marcher sur talons ou orteils indique une atteinte des muscles tibial ou fibulaire, typique des MIIs."
+          },
+          {
+            "action": "Évaluation de la sensibilité vibratoire et positionnelle",
+            "interpretation": "Une perte de la sensibilité vibratoire distale associée à une ataxie statique évoque une atteinte sensorielle."
+          },
+          {
+            "action": "Examen des fonctions bulbares (déglutition, phonation, respiration)",
+            "interpretation": "Une dysphagie ou une ptérygodeviation suggère une atteinte des nerfs crâniens, nécessitant une surveillance respiratoire stricte."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Hospitalisation en unité de rééducation pour surveillance fonctionnelle et prévention des complications",
+      "Corticothérapie à haute dose (prednisone 1 mg/kg/jour) avec adjonction d'immunosuppresseurs (azathioprine, méthotrexate) en cas de réponse insuffisante",
+      "Rééducation précoce sous forme de kinésithérapie passive pour prévenir les contractures et la déconditionnement musculaire",
+      "Surveillance quotidienne de la force respiratoire (pression inspiratoire < 30 cmH2O) et mise en place d'une ventilation non invasive si nécessaire",
+      "Prévention des escarres par changement de position toutes les 2 heures et surveillance des signes de déshydratation"
+    ],
+    "differentialDiagnosis": [
+      "Myopathie de Duchenne (début précoce, atrophie musculaire, CK extrêmement élevée)",
+      "Myopathie de type mitochondrial (faiblesse distale, crises myoglycogéniques)",
+      "Myopathie secondaire à une infection (ex: toxoplasme, CMV) avec anamnèse spécifique",
+      "Myopathie à corps d'inclusion (faiblesse distale, atrophie musculaire)",
+      "Toxicité médicamenteuse (ex: statines, éphédrine) avec anamnèse spécifique"
+    ]
+  },
+  {
+    "name": "Lésion médullaire traumatique aiguë",
+    "description": "Lésion médullaire traumatique aiguë (LMTA) correspond à une lésion structurale du moignon médullaire due à un traumatisme, entraînant une perte partielle ou totale des fonctions motrices, sensitives et autonome. La physiopathologie implique une compression, une lésion contusive ou une section du moignon médullaire, souvent associée à une ischémie secondaire. La présentation clinique varie selon le niveau et l'étendue de la lésion, avec des signes de myélite centrale, de paraplégie ou tétraplégie, et des troubles neurovégétatifs.",
+    "redFlags": [
+      "Perte soudaine de la mobilité ou de la sensibilité en dessous d'un niveau médullaire, associée à une douleur radiculaire aiguë",
+      "Signes de myélite centrale (faiblesse proximale > distale, perte de la sensibilité thermique et vibratoire)",
+      "Dysrégulation autonome (hypertension paroxystique avec céphalées, sueurs profuses au-dessus du niveau de la lésion)",
+      "Incontinence urinaire ou rectale avec perte de la réflexivité sphinctérienne",
+      "Signes de compression médullaire secondaire (œdème cérébral, hypotension, arrêt respiratoire en cas de lésion cervicale haute)"
+    ],
+    "scores": [
+      {
+        "name": "Échelle d'impairment ASIA (American Spinal Injury Association)",
+        "description": "Évaluation standardisée de la fonction médullaire post-lésion, classifiant la gravité selon la préservation de la sensibilité et de la motricité.",
+        "criteria": [
+          "Classe A: Paraplégie complète (absence de sensibilité et motricité préservée en dessous du niveau de la lésion)",
+          "Classe B: Paraplégie incomplète (sensibilité préservée, motricité absente en dessous du niveau)",
+          "Classe C: Paraplégie incomplète (motricité préservée < 50% des muscles clés)",
+          "Classe D: Paraplégie incomplète (motricité préservée > 50% des muscles clés)",
+          "Classe E: Fonction normale (sensibilité et motricité intactes)"
+        ],
+        "interpretation": "La classe A indique une lésion complète nécessitant une rééducation intensive, tandis que les classes C-D suggèrent une récupération partielle possible. La classe E est absente en cas de lésion aiguë."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique ciblé du moignon médullaire",
+        "steps": [
+          {
+            "action": "Détermination du niveau de la lésion par test de la douleur pinçante et de la vibration à l'aide d'une aiguille fine",
+            "interpretation": "L'absence de sensibilité en dessous d'un niveau médullaire spécifique confirme la localisation de la lésion. Une asymétrie des signes suggère une lésion hémilatérale."
+          },
+          {
+            "action": "Évaluation de la force musculaire des groupes musculaires clés (ex: flexion du coude, extension du poignet, flexion de la hanche)",
+            "interpretation": "Une force < 3/5 dans plus de 50% des muscles clés indique une lésion incomplète (classe C). Une force > 50% suggère une lésion D."
+          },
+          {
+            "action": "Recherche de signes de myélite centrale (faiblesse proximale > distale, perte de la sensibilité thermique)",
+            "interpretation": "Présence de myélite centrale associée à des lésions cervicales ou thoraciques hautes, souvent liée à une compression médullaire aiguë."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Stabilisation du rachis avec immobilisation en collier cervicale rigide et sur coussin de roulis",
+      "Administration de corticoïdes à dose élevée (méthylprednisolone 30 mg/kg IV sur 15 min, puis 5.4 mg/kg/h pendant 23h) dans les 8 heures post-lésion",
+      "Prévention des complications immédiates (thromboprophylaxie, surveillance des troubles neurovégétatifs)",
+      "Positionnement en décubitus dorsal avec surélevation des membres inférieurs pour prévenir l'œdème médullaire",
+      "Évaluation neurologique répétée toutes les 2 heures pour détecter une évolution secondaire"
+    ],
+    "differentialDiagnosis": [
+      "Myélite centrale aiguë (absence de traumatisme antérieur, fièvre associée)",
+      "Tumeur médullaire (douleur chronique progressive, signes neurologiques asymétriques)",
+      "Spondylarthrite ankylosante (douleur rachidienne chronique, rigidité matinale)"
+    ]
+  },
+  {
+    "name": "Accident vasculaire cérébral ischémique aigu",
+    "description": "Accident vasculaire cérébral ischémique (AVC) aigu est une ischémie cérébrale focale due à une occlusion artérielle, entraînant une perte soudaine de fonctions cérébrales. La physiopathologie repose sur une thrombose ou embolie artérielle, avec ischémie centrale et pénombre ischémique. La présentation clinique inclut des déficits neurologiques focaux (dysarthrie, hémiplégie, aphasie) et des signes de gravité (coma, convulsions).",
+    "redFlags": [
+      "Déficit neurologique focal soudain (ex: hémiplégie, aphasie, diplopie) avec apparition < 4.5 heures",
+      "Score NIHSS > 15 (dysfonctionnement sévère avec perte de conscience ou déficit visuel bilatéral)",
+      "Hypertension artérielle > 185/110 mmHg associée à une perte de conscience",
+      "Signes de herniation cérébrale (pupilles anisocoriques, réflexe oculovestibulaire absent)",
+      "Évolution secondaire (détérioration progressive du déficit neurologique > 1 heure)"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de NIH Stroke Scale (NIHSS)",
+        "description": "Score standardisé évaluant la gravité du déficit neurologique, avec 15 items couvrant la conscience, la vision, la force, la coordination, la sensibilité et la communication.",
+        "criteria": [
+          "Item 1: Échelle de Glasgow (0-3 points selon le niveau de conscience)",
+          "Item 2: Vision (0-3 points selon la perte unilatérale ou bilatérale)",
+          "Item 3: Force des membres (0-4 points selon la symétrie et la gravité)",
+          "Item 4: Coordination (0-3 points selon l'ataxie ou l'agravation)",
+          "Item 5: Langage et aphasie (0-3 points selon la gravité)"
+        ],
+        "interpretation": "Un score NIHSS > 20 indique une ischémie étendue avec risque élevé de mortalité. Un score < 5 suggère une ischémie mineure. Les scores intermédiaires nécessitent une évaluation individuelle."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique ciblé pour l'AVC",
+        "steps": [
+          {
+            "action": "Test de la face (FAST) : observation de l'asymétrie faciale spontanée et lors de la sourire",
+            "interpretation": "Une asymétrie faciale unilatérale suggère une lésion cérébrale ischémique frontale ou temporale."
+          },
+          {
+            "action": "Test de l'arm (arm drift) : demander au patient de lever les deux bras et de les maintenir horizontalement",
+            "interpretation": "Un dérive unilatéral indique une lésion cérébrale ischémique du lobe pariétal ou du cortex moteur."
+          },
+          {
+            "action": "Test de la parole (speech) : évaluation de la clarté et de la cohérence du langage",
+            "interpretation": "Une aphasie ou une dysarthrie suggère une lésion ischémique du lobe temporal ou pariétal."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'acide acétylsalicylique 160-325 mg PO dans les 48 heures (sauf contre-indication)",
+      "Thrombolyse intraveineuse (rtPA 0.9 mg/kg) si l'AVC est ischémique et si le délai est < 4.5 heures depuis l'apparition des symptômes",
+      "Surveillance étroite de la pression artérielle (cible 140-185 mmHg systolique)",
+      "Prévention des complications immédiates (thromboprophylaxie, surveillance des troubles de la déglutition)",
+      "Imagerie cérébrale urgente (scanner cérébral non contrasté pour exclure l'hémorragie)"
+    ],
+    "differentialDiagnosis": [
+      "Crise épileptique post-ictale (déficit neurologique transitoire avec amnésie post-crise)",
+      "Migraine avec aura (déficit neurologique réversible associé à des céphalées pulsatives)",
+      "Tumeur cérébrale (déficit neurologique progressif avec signes de pression intracrânienne)"
+    ]
+  },
+  {
+    "name": "Abscessus médullaire épidurien aigu",
+    "description": "Infection bactérienne localisée dans l'espace épidurien, entraînant une compression médullaire aiguë. La physiopathologie repose sur une invasion bactérienne secondaire à une bactériémie, une infection voisine (ex: otite, sinusite) ou une traumatologie. La présentation clinique typique inclut une douleur dorsale intense, une fièvre, des signes neurologiques focaux (paresthésies, perte de force, troubles sphinctériens) et une évolution rapide sur 24-48 heures.",
+    "redFlags": [
+      "Fièvre > 38,5°C associée à une douleur dorsale localisée et constante",
+      "Perte de force musculaire segmentaire avec ou sans ataxie",
+      "Troubles sphinctériens (incontinence urinaire ou fécale) ou rétention aiguë d'urine",
+      "Signes de compression médullaire complète (paraplégie flasque ou spastique selon le stade)",
+      "Histoire de récente injection intraveineuse ou infection cutanée"
+    ],
+    "scores": [
+      {
+        "name": "Échelle de Frankel modifiée",
+        "description": "Évalue le degré de fonctionnalité motrice et sensitive après compression médullaire",
+        "criteria": [
+          "Classe A: Paraplégie complète avec absence de sensibilité",
+          "Classe B: Paraplégie incomplète avec perte de sensibilité",
+          "Classe C: Paraplégie incomplète avec conservation partielle de la sensibilité",
+          "Classe D: Paraplégie incomplète avec conservation de la marche autonome"
+        ],
+        "interpretation": "La classe A indique une lésion médullaire complète nécessitant une intervention chirurgicale d'urgence. Les classes B-D permettent une évaluation de la gravité et du pronostic fonctionnel."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique ciblé du rachis et des membres",
+        "steps": [
+          {
+            "action": "Palpation du rachis pour identifier une douleur à la pression ou une tuméfaction",
+            "interpretation": "Douleur à la palpation suggérant une infection ou une lésion focale. Tuméfaction palpable évoque un abcès ou une hémorragie."
+          },
+          {
+            "action": "Évaluation de la force musculaire segmentaire (MMI) des membres inférieurs",
+            "interpretation": "Diminution de la force musculaire > 2/5 dans deux segments indique une compression médullaire significative."
+          },
+          {
+            "action": "Test de la marche en ligne droite et sur la pointe des pieds",
+            "interpretation": "Instabilité ou ataxie suggérant une atteinte du cordon postérieur de la moelle."
+          },
+          {
+            "action": "Recherche de signes de réflexes anormaux (réflexes rotuliens ou achillens hyperactifs)",
+            "interpretation": "Réflexes anormaux indiquent une lésion médullaire supraspinales ou une myélopathie."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Antibiothérapie intraveineuse de large spectre (ex: céphalosporine de 3e génération + aminoside) avant l'imagerie",
+      "Immobilisation du rachis avec collier cervicale rigide ou plâtre thoracique selon le niveau lésionnel",
+      "Imagerie urgente par IRM du rachis avec injection de gadolinium pour visualiser l'abcès",
+      "Consultation chirurgicale d'urgence pour décompression médullaire et drainage de l'abcès",
+      "Surveillance neurologique continue avec évaluation des troubles sphinctériens"
+    ],
+    "differentialDiagnosis": [
+      "Myélite transverse aiguë (absence de fièvre, réaction inflammatoire biologique modérée)",
+      "Hémorragie médullaire (traumatisme antérieur, absence de fièvre)",
+      "Tumeur médullaire (évolution lente, absence de signes infectieux)",
+      "Spondylodiscite (douleur radiculaire dominante, absence de déficit neurologique aigu)"
+    ]
+  },
+  {
+    "name": "Myélopathie cervicale aiguë dégénérative",
+    "description": "Compression médullaire aiguë due à une sténose canalaire cervicale secondaire à une dégénérescence discale ou ligamentaire. La physiopathologie implique une compression mécanique du cordon médullaire par un disque intervertébral hernié, une hypertrophie ligamentaire ou une instabilité articulaire. La présentation clinique typique inclut une céphalée cervicale, des paresthésies des membres supérieurs, une ataxie de marche et une perte de la coordination fine.",
+    "redFlags": [
+      "Céphalée cervicale soudaine associée à des paresthésies des membres supérieurs",
+      "Diminution de la force musculaire des bras > 30% par rapport au contrôle",
+      "Perte de la coordination fine (signe de Hoffman positif)",
+      "Ataxie de marche avec tendance à la chute",
+      "Perte de la sensibilité vibratoire dans les dermatomes C5-T1"
+    ],
+    "scores": [
+      {
+        "name": "Échelle JOA (Japanese Orthopaedic Association)",
+        "description": "Évalue la fonction neurologique médullaire cervicale",
+        "criteria": [
+          "Item 1: Marche autonome (0-4 points)",
+          "Item 2: Coordination des membres supérieurs (0-4 points)",
+          "Item 3: Coordination des membres inférieurs (0-4 points)",
+          "Item 4: Sensibilité (0-4 points)"
+        ],
+        "interpretation": "Score total < 10 indique une myélopathie sévère nécessitant une intervention chirurgicale. Score > 13 suggère une lésion mineure ou une rémission possible."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique ciblé du rachis cervical",
+        "steps": [
+          {
+            "action": "Test de Lhermitte (flexion du cou vers l'avant)",
+            "interpretation": "Évocation de paresthésies irradiant vers les membres inférieurs indique une compression médullaire cervicale."
+          },
+          {
+            "action": "Évaluation de la force des muscles de l'épaule et du coude (MMI)",
+            "interpretation": "Diminution de la force > 3/5 dans deux segments suggère une lésion médullaire focale."
+          },
+          {
+            "action": "Test de la marche en ligne droite et sur la pointe des pieds",
+            "interpretation": "Instabilité ou ataxie évoque une atteinte du cordon postérieur de la moelle."
+          },
+          {
+            "action": "Palpation des ganglions lymphatiques cervicaux",
+            "interpretation": "Adénopathies palpables évoquent une cause infectieuse ou néoplasique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Immobilisation du rachis cervical avec collier rigide ou plâtre cervico-thoracique",
+      "Imagerie urgente par IRM du rachis cervical avec injection de gadolinium",
+      "Consultation chirurgicale d'urgence pour décompression médullaire (laminectomie ou discectomie)",
+      "Administration de corticoïdes à dose pulsée (ex: méthylprednisolone 30 mg/kg) si lésion médullaire récente",
+      "Surveillance neurologique continue avec évaluation des troubles sphinctériens"
+    ],
+    "differentialDiagnosis": [
+      "Myélite transverse aiguë (absence de céphalée cervicale, réaction inflammatoire biologique modérée)",
+      "Sclérose en plaques (épisodes récidivants, absence de lésion focale sur IRM)",
+      "Myélopathie par compression radiculaire (douleur radiculaire dominante, absence de déficit motrice global)",
+      "Myélopathie par compression ligamentaire (évolution lente, absence de céphalée aiguë)"
+    ]
+  }
+]

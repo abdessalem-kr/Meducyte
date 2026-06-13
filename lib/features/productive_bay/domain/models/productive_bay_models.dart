@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:meducyte_app/features/auth/models/user.dart';
 
 class ExamEvent extends Equatable {
   final String id;
@@ -47,6 +48,8 @@ class StudyStats extends Equatable {
   final int currentStreak;
   final int totalHours;
   final int completedPomodorosToday;
+  final int completedShortBreaksToday;
+  final int completedLongBreaksToday;
   final int totalPomodorosGoal;
   final Map<String, double> moduleScores; //Keep for productivity analytics
 
@@ -54,6 +57,8 @@ class StudyStats extends Equatable {
     required this.currentStreak,
     required this.totalHours,
     required this.completedPomodorosToday,
+    required this.completedShortBreaksToday,
+    required this.completedLongBreaksToday,
     required this.totalPomodorosGoal,
     required this.moduleScores,
   });
@@ -63,6 +68,8 @@ class StudyStats extends Equatable {
     currentStreak,
     totalHours,
     completedPomodorosToday,
+    completedShortBreaksToday,
+    completedLongBreaksToday,
     totalPomodorosGoal,
     moduleScores,
   ];
@@ -156,6 +163,8 @@ class StudyGroup extends Equatable {
   final StudyGroupType type;
   final String? category;
   final bool isJoined;
+  final List<String> memberIds;
+  final List<User> members;
 
   const StudyGroup({
     required this.id,
@@ -172,6 +181,8 @@ class StudyGroup extends Equatable {
     this.activeQuizSessionId,
     this.isAdmin = false,
     this.isPublic = false,
+    this.memberIds = const [],
+    this.members = const [],
   });
 
   final String? activeQuizSessionId;
@@ -194,6 +205,8 @@ class StudyGroup extends Equatable {
     activeQuizSessionId,
     isAdmin,
     isPublic,
+    memberIds,
+    members,
   ];
 
   StudyGroup copyWith({
@@ -211,6 +224,8 @@ class StudyGroup extends Equatable {
     String? activeQuizSessionId,
     bool? isAdmin,
     bool? isPublic,
+    List<String>? memberIds,
+    List<User>? members,
   }) {
     return StudyGroup(
       id: id ?? this.id,
@@ -227,6 +242,8 @@ class StudyGroup extends Equatable {
       activeQuizSessionId: activeQuizSessionId ?? this.activeQuizSessionId,
       isAdmin: isAdmin ?? this.isAdmin,
       isPublic: isPublic ?? this.isPublic,
+      memberIds: memberIds ?? this.memberIds,
+      members: members ?? this.members,
     );
   }
 }
@@ -304,23 +321,23 @@ class StudyGroupQuizQuestion extends Equatable {
 
     if (rawCorrectIndices is List) {
       correctIndices = rawCorrectIndices
-          .map((i) => (i as num).toInt())
+          .map((i) => (i as num?)?.toInt() ?? 0)
           .toList();
     } else if (rawCorrectIndices is Map) {
       //PHP sometimes serializes non-sequential arrays as objects/maps
       correctIndices = rawCorrectIndices.values
-          .map((i) => (i as num).toInt())
+          .map((i) => (i as num?)?.toInt() ?? 0)
           .toList();
     } else {
       //Fallback to single index
       final singleIndex = json['correctIndex'] ?? json['correct_index'] ?? 0;
-      correctIndices = [(singleIndex as num).toInt()];
+      correctIndices = [(singleIndex as num?)?.toInt() ?? 0];
     }
 
     return StudyGroupQuizQuestion(
-      id: json['id'].toString(),
-      text: json['text'] as String,
-      options: List<String>.from(json['options'] as List),
+      id: json['id']?.toString() ?? '',
+      text: (json['text'] as String?) ?? '',
+      options: List<String>.from((json['options'] as List?) ?? []),
       correctIndices: correctIndices,
       explanation: (json['explanation'] as String?) ?? '',
       clinicalCase: (json['clinical_case'] ?? json['clinicalCase']) as String?,

@@ -39,8 +39,8 @@ class NotificationController extends StateNotifier<List<AppNotification>>
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState lifecycleState) {
-    if (lifecycleState == AppLifecycleState.resumed && _currentUserId != null) {
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && _currentUserId != null) {
       // Refresh local stream and sync with backend when app resumes
       _repository.syncNotificationsWithBackend(_currentUserId);
     }

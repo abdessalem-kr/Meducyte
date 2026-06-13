@@ -7,59 +7,39 @@ class FaqScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
+    final l10n = context.l10n;
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Help Center'),
+        title: Text(l10n.helpCenter),
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          _buildHeader(context),
+          _buildHeader(context, l10n),
           const SizedBox(height: 32),
-          _buildCategory(context, 'Account&Premium', [
-            _FaqItem(
-              'How do I upgrade to Premium?',
-              'You can upgrade by clicking on the Profile tab or selecting any premium feature(like unlimited AI Chat).We support various payment methods including Chargily for Algerian Dinars.',
-            ),
-            _FaqItem(
-              'Can I use Meducyte on multiple devices?',
-              'Yes!Your data is synced to your account.Simply log in on your new device to continue your study journey.',
-            ),
+          _buildCategory(context, l10n.faqCategoryAccountPremium, [
+            _FaqItem(l10n.faqQ1, l10n.faqA1),
+            _FaqItem(l10n.faqQ2, l10n.faqA2),
           ]),
           const SizedBox(height: 24),
-          _buildCategory(context, 'Study Features', [
-            _FaqItem(
-              'How does Spaced Repetition work?',
-              'Meducyte uses advanced algorithms to track your performance.We show you difficult questions more often and easy ones less frequently to optimize your memory retention.',
-            ),
-            _FaqItem(
-              'What is the AI Medical Tutor?',
-              'Medu-AI is our custom chatbot trained on medical literature.It can explain complex concepts,help you interpret labs,or guide you through clinical cases.',
-            ),
-            _FaqItem(
-              'Does Meducyte follow the Algerian curriculum?',
-              'Yes,our question bank and course structure are specifically designed to align with the curriculum modules of Algerian medical faculties.',
-            ),
+          _buildCategory(context, l10n.faqCategoryStudyFeatures, [
+            _FaqItem(l10n.faqQ3, l10n.faqA3),
+            _FaqItem(l10n.faqQ4, l10n.faqA4),
+            _FaqItem(l10n.faqQ5, l10n.faqA5),
           ]),
           const SizedBox(height: 24),
-          _buildCategory(context, 'Community&Groups', [
-            _FaqItem(
-              'How to start a Group Study?',
-              "Head to the'Productive Bay'and select'Study Groups'.You can create a private group and invite your comrades via a unique code or link.",
-            ),
-            _FaqItem(
-              'Is there a Meducyte community?',
-              'Yes!Join our official Telegram channel to stay updated and discuss with thousands of medical students across Algeria.',
-            ),
+          _buildCategory(context, l10n.faqCategoryCommunityGroups, [
+            _FaqItem(l10n.faqQ6, l10n.faqA6),
+            _FaqItem(l10n.faqQ7, l10n.faqA7),
           ]),
           const SizedBox(height: 48),
           Center(
             child: Text(
-              "Still have questions?",
+              l10n.faqStillHaveQuestions,
               style: TextStyle(
                 color: isDark ? Colors.white70 : Colors.black54,
                 fontWeight: FontWeight.w500,
@@ -71,9 +51,8 @@ class FaqScreen extends StatelessWidget {
             child: TextButton(
               onPressed: () {
                 //Navigate back and open support sheet logic would go here
-                //For now,just a placeholder
               },
-              child: const Text('CONTACT HUMAN SUPPORT'),
+              child: Text(l10n.faqContactSupport),
             ),
           ),
           const SizedBox(height: 40),
@@ -82,7 +61,7 @@ class FaqScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AppLocalizations l10n) {
     final primaryColor = Theme.of(context).primaryColor;
     return Column(
       children: [
@@ -95,13 +74,13 @@ class FaqScreen extends StatelessWidget {
           child: Icon(Iconsax.info_circle, color: primaryColor, size: 48),
         ),
         const SizedBox(height: 20),
-        const Text(
-          "How can we help you?",
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        Text(
+          l10n.faqHowCanWeHelp,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
         Text(
-          "Search our frequently asked questions",
+          l10n.faqSearchDesc,
           style: TextStyle(color: Colors.grey[600]),
         ),
       ],

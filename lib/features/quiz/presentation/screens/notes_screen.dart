@@ -86,11 +86,13 @@ class _NotesScreenState extends ConsumerState<NotesScreen> {
               : allNotes
                     .where((n) => n.moduleName == selectedModuleName)
                     .toList();
-
           //Filter by year
-          if (selectedYear != null) {
+          final user = ref.watch(authControllerProvider).value;
+          final is1to6YearUser = user != null && user.year >= 1 && user.year <= 6;
+          final activeYearFilter = is1to6YearUser ? user.year : selectedYear;
+          if (activeYearFilter != null) {
             filteredNotes = filteredNotes
-                .where((n) => n.year == selectedYear)
+                .where((n) => n.year == activeYearFilter)
                 .toList();
           }
 
@@ -299,10 +301,11 @@ class _NotesScreenState extends ConsumerState<NotesScreen> {
       ),
     );
   }
-
   void _showFilterSheet(BuildContext context, List<QuizNoteEntry> allNotes) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final user = ref.read(authControllerProvider).value;
+    final is1to6YearUser = user != null && user.year >= 1 && user.year <= 6;
 
     final years = allNotes.map((n) => n.year).whereType<int>().toSet().toList()
       ..sort();
@@ -351,7 +354,7 @@ class _NotesScreenState extends ConsumerState<NotesScreen> {
               const SizedBox(height: 16),
 
               //Year Filter
-              if (years.isNotEmpty) ...[
+              if (!is1to6YearUser && years.isNotEmpty) ...[
                 Text(
                   l10n.year,
                   style: const TextStyle(fontWeight: FontWeight.bold),

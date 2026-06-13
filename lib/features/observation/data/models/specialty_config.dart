@@ -923,6 +923,40 @@ class SpecialtyConfigs {
             "Pouls pédieux et tibiaux postérieurs perçus symétriquement",
       ),
     ],
+    examinationGuide: [
+      ExaminationStep(
+        title: "Examen Thyroïdien",
+        relatedFieldKeys: ["thyroide_insp", "thyroide_palp", "thyroide_signes"],
+        steps: [
+          ExaminationSubStep(
+            action: "Palpation thyroïdienne postérieure",
+            description: "Se placer derrière le patient, placer les doigts sous le cartilage cricoïde et lui demander d'avaler une gorgée d'eau.",
+            interpretation: "Un goitre ou un nodule dur/irrégulier nécessite une échographie cervicale et un dosage de la TSH.",
+          ),
+          ExaminationSubStep(
+            action: "Rechercher des signes de dysthyroïdie",
+            description: "Rechercher une exophtalmie, une rétraction palpébrale, un tremblement fin des mains ou une tachycardie au repos.",
+            interpretation: "Signes évocateurs d'une hyperthyroïdie (ex. maladie de Basedow).",
+          ),
+        ],
+      ),
+      ExaminationStep(
+        title: "Examen du Pied Diabétique",
+        relatedFieldKeys: ["diabete_neuro", "diabete_vasc"],
+        steps: [
+          ExaminationSubStep(
+            action: "Test au monofilament (10g)",
+            description: "Appliquer le monofilament perpendiculairement sur la face plantaire du gros orteil et les métatarses pendant 1 seconde, yeux fermés.",
+            interpretation: "Une perte de sensibilité au monofilament indique une neuropathie diabétique (perte de la sensibilité protectrice).",
+          ),
+          ExaminationSubStep(
+            action: "Palpation des pouls distaux",
+            description: "Palper le pouls pédieux (dos du pied) et le pouls tibial postérieur (derrière la malléole interne).",
+            interpretation: "L'absence de pouls suggère une artériopathie oblitérante des membres inférieurs (AOMI).",
+          ),
+        ],
+      ),
+    ],
   );
 
   static const epidemiologieetmedecinepreventive = SpecialtyFormConfig(
@@ -1053,6 +1087,77 @@ class SpecialtyConfigs {
         label: "Toucher Rectal",
         normalText:
             "Ampoule rectale vide,prostate lisse et indolore(homme),pas de sang sur le doigtier",
+      ),
+    ],
+    examinationGuide: [
+      ExaminationStep(
+        title: "Inspection",
+        relatedFieldKeys: ["insp_abd"],
+        steps: [
+          ExaminationSubStep(
+            action: "Circulation Veineuse Collatérale (CVC)",
+            description: "Rechercher des veines superficielles dilatées sur la paroi abdominale.",
+            interpretation: "Une CVC (tête de méduse ou péri-ombilicale) témoigne d'une hypertension portale liée à une cirrhose.",
+          ),
+          ExaminationSubStep(
+            action: "Distension et cicatrices",
+            description: "Vérifier la forme de l'abdomen (plat, distendu, en besace) et la présence de cicatrices chirurgicales.",
+            interpretation: "Une distension globale suggère une ascite, un météorisme ou une occlusion. Les cicatrices orientent sur des chirurgies antérieures.",
+          ),
+        ],
+      ),
+      ExaminationStep(
+        title: "Auscultation & Percussion",
+        relatedFieldKeys: ["ausc_bha", "perc_abd"],
+        steps: [
+          ExaminationSubStep(
+            action: "Bruits Hydro-Aériques (BHA)",
+            description: "Ausculter pendant au moins 1 minute dans la région péri-ombilicale.",
+            interpretation: "Silence auscultatoire = iléus paralytique (urgence). BHA augmentés/métalliques = occlusion mécanique.",
+          ),
+          ExaminationSubStep(
+            action: "Rechercher une matité déclive",
+            description: "Percuter des flancs vers le centre avec le patient sur le dos, puis sur le côté.",
+            interpretation: "Une matité déclive et changeante avec la position confirme la présence d'ascite (épanchement liquidien libre).",
+          ),
+        ],
+      ),
+      ExaminationStep(
+        title: "Palpation",
+        relatedFieldKeys: ["palp_paroi", "palp_dlr", "palp_foie", "palp_rate"],
+        steps: [
+          ExaminationSubStep(
+            action: "Rechercher une défense ou contracture",
+            description: "Palper doucement chaque quadrant, superficiellement puis profondément.",
+            interpretation: "Défense = irritation péritonéale localisée. Contracture = abdomen de bois invincible (urgence chirurgicale de péritonite).",
+          ),
+          ExaminationSubStep(
+            action: "Palpation du foie & flèche hépatique",
+            description: "Palper le bord inférieur lors de l'inspiration profonde. Mesurer la hauteur du foie par percussion.",
+            interpretation: "Hépatomégalie si flèche hépatique > 12 cm. Rechercher un bord tranchant (cirrhose) ou nodulaire (cancer).",
+          ),
+          ExaminationSubStep(
+            action: "Palpation de la rate",
+            description: "Palper l'hypocondre gauche en décubitus latéral droit avec le patient inspirant à fond.",
+            interpretation: "La rate n'est palpable que lorsqu'elle a doublé de volume (splénomégalie).",
+          ),
+        ],
+      ),
+      ExaminationStep(
+        title: "Toucher Rectal",
+        relatedFieldKeys: ["tr_marge", "tr_ampoule"],
+        steps: [
+          ExaminationSubStep(
+            action: "Inspection de la marge anale",
+            description: "Écarter les fesses pour inspecter la marge (fissures, hémorroïdes, fistules).",
+            interpretation: "Une fissure anale provoque une douleur vive à la défécation et au toucher rectal.",
+          ),
+          ExaminationSubStep(
+            action: "Examen de l'ampoule rectale",
+            description: "Introduire l'index lubrifié, évaluer le tonus du sphincter et palper les parois.",
+            interpretation: "Évaluer la prostate (homme), rechercher un fécalome ou la présence de sang/méléna sur le doigtier.",
+          ),
+        ],
       ),
     ],
   );
@@ -1693,6 +1798,35 @@ class SpecialtyConfigs {
             "Taille normale,souple,symétrique,sillon médian conservé,indolore",
       ),
     ],
+    examinationGuide: [
+      ExaminationStep(
+        title: "Évaluation de la Volémie & Clinique",
+        relatedFieldKeys: ["contact_lomb", "globe_vesical"],
+        steps: [
+          ExaminationSubStep(
+            action: "Rechercher le contact lombaire",
+            description: "Placer une main sous la fosse lombaire et l'autre sur l'abdomen pour rechercher un ballottement rénal.",
+            interpretation: "Un contact lombaire positif traduit une néphromégalie (gros rein tumorale ou polykystose).",
+          ),
+          ExaminationSubStep(
+            action: "Palpation d'un globe vésical",
+            description: "Palper la région hypogastrique à la recherche d'une masse mate à la percussion.",
+            interpretation: "Signe une rétention aiguë d'urine (urgence nécessitant un sondage urinaire ou un cathéter sus-pubien).",
+          ),
+        ],
+      ),
+      ExaminationStep(
+        title: "Points Douloureux Urétéraux",
+        relatedFieldKeys: ["points_ureteraux"],
+        steps: [
+          ExaminationSubStep(
+            action: "Palpation des points urétéraux (supérieurs et moyens)",
+            description: "Presser au niveau de l'intersection de l'horizontale ombilic et du bord externe du grand droit (supérieur) et sur la ligne bi-iliaque (moyen).",
+            interpretation: "Une douleur vive peut témoigner du passage d'un calcul rénal (colique néphrétique) ou d'une inflammation urétérale.",
+          ),
+        ],
+      ),
+    ],
   );
 
   static const oncologiemedicale = SpecialtyFormConfig(
@@ -2137,6 +2271,61 @@ class SpecialtyConfigs {
         key: 'sat_oxy',
         label: "Saturation en O2",
         normalText: "Normaleàl'air ambiant",
+      ),
+    ],
+    examinationGuide: [
+      ExaminationStep(
+        title: "Inspection",
+        relatedFieldKeys: ["insp_morpho", "insp_signes_lutte", "insp_cyanose"],
+        steps: [
+          ExaminationSubStep(
+            action: "Recherche de signes de lutte respiratoire",
+            description: "Observer la présence de tirage (sus-claviculaire, intercostal) ou de balancement thoraco-abdominal.",
+            interpretation: "Témoigne d'un épuisement musculaire et d'une détresse respiratoire aiguë imminente.",
+          ),
+          ExaminationSubStep(
+            action: "Recherche d'une cyanose ou hippocratisme",
+            description: "Examiner les conjonctives, les lèvres et le lit unguéal des doigts.",
+            interpretation: "La cyanose indique une hypoxémie sévère (Sat O2 < 85%). L'hippocratisme digital suggère une hypoxie chronique (BPCO, cancer, dilatation des bronches).",
+          ),
+        ],
+      ),
+      ExaminationStep(
+        title: "Palpation & Percussion",
+        relatedFieldKeys: ["palp_vv", "perc_sonorite"],
+        steps: [
+          ExaminationSubStep(
+            action: "Transmission des vibrations vocales (VV)",
+            description: "Poser les mains à plat sur le dos du patient et lui faire répéter '33' à voix haute.",
+            interpretation: "VV abolies = épanchement (pleurésie, pneumothorax). VV augmentées = condensation pulmonaire (pneumonie).",
+          ),
+          ExaminationSubStep(
+            action: "Percussion thoracique",
+            description: "Percuter symétriquement les espaces intercostaux de haut en bas.",
+            interpretation: "Matité = épanchement pleural liquide ou condensation. Tympanisme (hyper-sonorité) = pneumothorax ou emphysème.",
+          ),
+        ],
+      ),
+      ExaminationStep(
+        title: "Auscultation Pulmonaire",
+        relatedFieldKeys: ["ausc_mv", "ausc_rales", "ausc_frottement", "sat_oxy"],
+        steps: [
+          ExaminationSubStep(
+            action: "Évaluation du Murmure Vésiculaire (MV)",
+            description: "Ausculter les poumons symétriquement pendant des cycles inspiration/expiration profonds.",
+            interpretation: "Diminution/abolition du MV = épanchement ou atélectasie. Prolongation de l'expiration = obstruction bronchique (asthme, BPCO).",
+          ),
+          ExaminationSubStep(
+            action: "Recherche de râles crépitants",
+            description: "Écouter les bruits de 'velcro' en fin d'inspiration, principalement aux bases.",
+            interpretation: "Crépitants bilatéraux = surcharge interstitielle (OAP, fibrose). Crépitants localisés = pneumonie.",
+          ),
+          ExaminationSubStep(
+            action: "Recherche de râles sibilants",
+            description: "Écouter les sifflements expiratoires continus.",
+            interpretation: "Sibilants = bronchospasme et réduction du calibre des voies aériennes (crise d'asthme, décompensation de BPCO).",
+          ),
+        ],
       ),
     ],
   );

@@ -1,0 +1,340 @@
+[
+  {
+    "name": "Pancréatite aiguë",
+    "description": "Inflammation aiguë du pancréas liée à l'activation prématurée des enzymes pancréatiques (lipase, amylase) dans le parenchyme, entraînant autodigestion et nécrose tissulaire. Présentation clinique typique : douleur épigastrique violente irradiant vers le dos, nausées, vomissements, fièvre. Formes graves associées à des complications locales (pseudokystes, nécrose) ou systémiques (choc septique, insuffisance rénale aiguë).",
+    "redFlags": [
+      "Douleur épigastrique perçue comme un couteau dans le dos, persistant > 24 heures malgré les analgésiques",
+      "Signe de Cullen (érythème périnombril) ou signe de Grey Turner (érythème bilatéral des flancs) évoquant une hémorragie pancréatique",
+      "Hypotension artérielle persistante (< 90 mmHg) avec tachycardie (> 120 bpm) indiquant un choc septique",
+      "Hyperglycémie > 15 mmol/L associée à une anurie suggérant une insuffisance rénale aiguë",
+      "Péricardite constrictive secondaire à calcifications pancréatiques étendues"
+    ],
+    "scores": [
+      {
+        "name": "Critères de Ranson",
+        "description": "Score pronostique évaluant le risque de complications graves dans la pancréatite aiguë",
+        "criteria": [
+          "Age > 55 ans (+1)",
+          "Leucocytose > 16 000/mm³ (+1)",
+          "Calcémie < 2 mmol/L (+1)",
+          "Glycémie > 10 mmol/L (+1)",
+          "Prolongation de la créatinine > 1,5 mg/dL (+1)",
+          "Hémoglobine < 12 g/dL à l'admission (+1)",
+          "Prolongation de la bilirubine > 2 mg/dL (+1)",
+          "Prolongation de l'INR > 1,5 (+1)",
+          "Tachycardie > 120 bpm (+1)",
+          "Hypotension artérielle < 90 mmHg (+1)"
+        ],
+        "interpretation": "Score ≥ 3 points : risque élevé de complications graves (nécrose, chocs, insuffisance multi-organique). Score ≥ 8 points : mortalité > 30%."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal et systémique ciblé",
+        "steps": [
+          {
+            "action": "Palpation douce de l'épigastre avec recherche de douleur à la palpation profonde et signe de Blumberg",
+            "interpretation": "Douleur à la palpation profonde associée à une rigidité abdominale évoque une péritonite secondaire à fuite pancréatique"
+          },
+          {
+            "action": "Examen des membres pour rechercher des thromboses veineuses profondes (œdèmes, douleur sur les veines fémorales)",
+            "interpretation": "Thromboses veineuses profondes fréquentes dans les formes graves liées à l'hypocoagulabilité secondaire"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "NPO strict avec perfusion intraveineuse de 250-500 mL/h de solution saline isotonique pour prévenir la déshydratation",
+      "Analgésie par morphine IV (5-10 mg) ou fentanyl (50-100 µg) avec surveillance stricte de la respiration",
+      "Antibiothérapie prophylactique par imipénème (500 mg IV toutes 6h) en cas de nécrose pancréatique étendue",
+      "Correction des déséquilibres électrolytiques (calcémie, magnésémie) par perfusion lente",
+      "Position semi-assise pour réduire la pression intra-abdominale et améliorer la ventilation"
+    ],
+    "differentialDiagnosis": [
+      "Ulcère pérforé (douleur brusque, signe de Blumberg positif)",
+      "Cholécystite aiguë (douleur droite irradiant vers l'épaule, fièvre, leucocytose)",
+      "Insuffisance cardiaque congestive (œdèmes, râles pulmonaires)"
+    ]
+  },
+  {
+    "name": "Insuffisance rénale aiguë",
+    "description": "Détérioration soudaine de la fonction rénale définie par une augmentation de la créatinine sanguine ≥ 0,3 mg/dL ou une diminution du débit urinaire < 0,5 mL/kg/h pendant ≥ 6 heures. Physiopathologie multifactorielle : prérénale (ischémie), intrarénale (nécrose tubulaire aiguë), post-rénale (obstruction urinaire). Formes graves associées à une acidose métabolique, hyperkaliémie, encéphalopathie urémique.",
+    "redFlags": [
+      "Anurie persistante > 12 heures avec turgescence veineuse jugulaire",
+      "Hyperkaliémie > 6,5 mmol/L associée à des ondes P plates sur l'ECG",
+      "Acidose métabolique avec pH < 7,2 et Kussmaul",
+      "Signes de déshydratation sévère (turgescence cutanée < 2 secondes, hypotension orthostatique)",
+      "Encéphalopathie urémique avec confusion et myoclonies"
+    ],
+    "scores": [
+      {
+        "name": "Classification RIFLE",
+        "description": "Classification pronostique de l'insuffisance rénale aiguë basée sur la réponse au traitement",
+        "criteria": [
+          "Risque (Risk) : diminution de 1,5-1,9 fois la créatinine de référence",
+          "Injury (Injury) : diminution ≥ 2 fois la créatinine ou débit urinaire < 0,5 mL/kg/h pendant ≥ 12h",
+          "Failure (Failure) : diminution ≥ 3 fois la créatinine ou débit urinaire < 0,3 mL/kg/h pendant ≥ 24h",
+          "Lésion (Loss) : fonction rénale perdue pendant ≥ 4 semaines",
+          "Échec (End-stage) : fonction rénale perdue pendant ≥ 3 mois"
+        ],
+        "interpretation": "Les stades Injury et Failure nécessitent une dialyse précoce. Le stade Loss évoque une nécrose tubulaire aiguë irréversible."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et cardiovasculaire ciblé",
+        "steps": [
+          {
+            "action": "Recherche de signes de décompensation cardiaque (galop B3, souffles systoliques)",
+            "interpretation": "Galop B3 associé à une turgescence jugulaire évoque une insuffisance cardiaque secondaire à l'insuffisance rénale"
+          },
+          {
+            "action": "Test de la peau (turgescence) et examen des muqueuses pour évaluer l'état de perfusion",
+            "interpretation": "Turgescence cutanée < 2 secondes indique une déshydratation sévère"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Perfusion intraveineuse de 1-2 L de solution saline isotonique en 1 heure pour les formes prérénales",
+      "Arrêt immédiat de tous les médicaments néphrotoxiques (AINS, aminoglycosides)",
+      "Dialyse d'urgence si hyperkaliémie > 6,5 mmol/L ou acidose métabolique résistante",
+      "Correction lente de l'acidose par perfusion de bicarbonate de sodium (100-200 mmol) en 24h",
+      "Position semi-assise pour réduire la pression veineuse et améliorer la perfusion rénale"
+    ],
+    "differentialDiagnosis": [
+      "Insuffisance cardiaque congestive (œdèmes, râles pulmonaires)",
+      "Hypovolémie post-hémorragique (hypotension, tachycardie)",
+      "Néphropathie interstitielle aiguë (rash, arthralgies)"
+    ]
+  },
+  {
+    "name": "Embolie pulmonaire aiguë",
+    "description": "L'embolie pulmonaire aiguë résulte d'une obstruction soudaine d'une artère pulmonaire par un thrombus, généralement issu d'une thrombose veineuse profonde. Elle se manifeste par une dyspnée soudaine, une douleur thoracique pleuritique, une tachycardie, une hypoxémie et des signes de coagulation intravasculaire disséminée. Les formes graves peuvent entraîner une hypotension, une insuffisance cardiaque droite et un collapsus circulatoire.",
+    "redFlags": [
+      "Dyspnée soudaine et sévère associée à une hypoxémie (SpO2 < 90%)",
+      "Douleur thoracique pleuritique irradiant vers l'épaule ou le cou, aggravée par l'inspiration",
+      "Tachycardie sinusale > 120 bpm avec ou sans hypotension",
+      "Signes de thrombose veineuse profonde (œdème, douleur, chaleur localisée d'une jambe)",
+      "Conscience altérée ou confusion sans cause évidente en contexte de risque thrombotique"
+    ],
+    "scores": [
+      {
+        "name": "Score de Wells pour l'embolie pulmonaire",
+        "description": "Score prédictif de la probabilité clinique d'embolie pulmonaire basé sur des critères cliniques.",
+        "criteria": [
+          "Classe I: Tachycardie sinusale (>100 bpm) (+1.5)",
+          "Classe II: Thrombose veineuse profonde cliniquement diagnostiquée (+1.5)",
+          "Classe III: Douleur thoracique pleuritique (+1)",
+          "Classe IV: Hémoptysie (+1)",
+          "Classe V: Altération de l'état général (+1)",
+          "Classe VI: Absence de facteurs étiologiques alternatifs (+3)",
+          "Classe VII: Imagerie thoracique anormale sans cause alternative (+1)"
+        ],
+        "interpretation": "Score ≥ 4: Probabilité élevée d'embolie pulmonaire. Score < 4: Probabilité faible. Nécessite confirmation par D-dimères et imagerie (scintigraphie ou scanner)."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et respiratoire ciblé",
+        "steps": [
+          {
+            "action": "Palpation des membres inférieurs pour rechercher un œdème asymétrique ou une douleur à la palpation des veines profondes",
+            "interpretation": "Un œdème asymétrique ou une douleur localisée évoque une thrombose veineuse profonde, facteur de risque majeur d'embolie pulmonaire."
+          },
+          {
+            "action": "Auscultation pulmonaire pour rechercher des râles crépitants ou des souffles anormaux",
+            "interpretation": "Les râles crépitants peuvent indiquer une insuffisance cardiaque secondaire à une hypertension pulmonaire aiguë."
+          },
+          {
+            "action": "Palpation de la veine jugulaire pour évaluer la pression jugulaire",
+            "interpretation": "Une turgescence jugulaire associée à un souffle de galop (S3/S4) suggère une insuffisance cardiaque droite aiguë."
+          },
+          {
+            "action": "Mesure de la saturation en oxygène et du rythme cardiaque",
+            "interpretation": "Une hypoxémie persistante malgré l'oxygénation et une tachycardie réfractaire orientent vers une embolie pulmonaire étendue."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'oxygène à 15 L/min par masque à haute concentration pour corriger l'hypoxémie",
+      "Initiation d'une anticoagulation par héparine non fractionnée (5000 UI IV puis 1000 UI/h) ou par héparine de bas poids moléculaire",
+      "Posologie de thrombolyse (ex: Alteplase 100 mg sur 2h) en cas de choc ou d'insuffisance cardiaque droite sévère",
+      "Installation du patient en position semi-assise pour améliorer la ventilation et réduire la charge veineuse",
+      "Surveillance continue de la pression artérielle, de la saturation et des signes de collapsus circulatoire"
+    ],
+    "differentialDiagnosis": [
+      "Infarctus du myocarde (douleur thoracique constrictive, absence de pleurésie, élévations de biomarqueurs cardiaques)",
+      "Pneumothorax (absence de souffle pulmonaire unilatéral, déviation de la trachée)",
+      "Pneumonie (fièvre, expectoration purulente, râles localisés)"
+    ]
+  },
+  {
+    "name": "Hypoglycémie sévère",
+    "description": "L'hypoglycémie sévère est définie par une glycémie < 0.55 g/L (30 mg/dL) associée à des signes neurologiques fonctionnels (confusion, convulsions, coma). Elle résulte d'une insuffisance d'apport glucidique, d'une surdose d'insuline ou d'antidiabétiques, ou d'une hyperinsulinisme endogène. Les mécanismes pathogéniques incluent une défaillance de la glycogénolyse hépatique et une résistance à l'insuline.",
+    "redFlags": [
+      "Confusion ou désorientation soudaine sans cause évidente",
+      "Convulsions non épileptiques en contexte de diabète ou de traitement antidiabétique",
+      "Coma non réactif à la stimulation avec réflexes pupillaires conservés",
+      "Réaction de stress (sueur, tremblements, palpitations) associée à des signes neurologiques",
+      "Glycémie capillaire < 0.55 g/L confirmée par analyse sanguine veineuse"
+    ],
+    "scores": [
+      {
+        "name": "Index de sévérité de l'hypoglycémie",
+        "description": "Échelle clinique évaluant la gravité des manifestations neurologiques.",
+        "criteria": [
+          "Classe I: Signes précoce (tremblements, sueurs, palpitations) (+1)",
+          "Classe II: Confusion, troubles du comportement (+2)",
+          "Classe III: Convulsions ou coma (+3)"
+        ],
+        "interpretation": "Score ≥ 2: Nécessite une intervention immédiate avec glucose IV. Score ≥ 3: Indication de glucagon ou de glucose à 50% en urgence."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et état de conscience",
+        "steps": [
+          {
+            "action": "Évaluation de l'état de conscience (échelle de Glasgow) et des réflexes pupillaires",
+            "interpretation": "Une réduction de l'échelle de Glasgow < 12 ou des pupilles anisocéphales évoquent une hypoglycémie neurologique sévère."
+          },
+          {
+            "action": "Recherche de signes de convulsions post-ictales (désorientation, amnésie)",
+            "interpretation": "Les convulsions post-hypoglycémiques peuvent masquer une étiologie épileptique."
+          },
+          {
+            "action": "Palpation des signes de stress (tachycardie, hypotension orthostatique)",
+            "interpretation": "Une tachycardie réactive à l'hypoglycémie suggère une activation sympathique compensatoire."
+          },
+          {
+            "action": "Examen des signes de diabète (œdèmes, ulcères, neuropathie)",
+            "interpretation": "Les patients diabétiques présentant des ulcères ou neuropathies sont à risque accru de hypoglycémie asymptomatique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de glucose IV à 50% (20 à 50 mL) ou de glucagon 1 mg IM/SC en cas d'incapacité à ingérer",
+      "Répétition de la dose de glucose si pas d'amélioration clinique en 10-15 minutes",
+      "Surveillance continue de la glycémie toutes les 15 minutes jusqu'à stabilisation > 0.7 g/L",
+      "Initiation d'une perfusion de glucose à 5-10% pour prévenir la récidive",
+      "Identification et correction de la cause (arrêt des antidiabétiques, alimentation orale)"
+    ],
+    "differentialDiagnosis": [
+      "Hypoglycémie réactionnelle (glycémie normale à jeun, symptômes post-prandiaux)",
+      "Syndrome de Wernicke (nystagmus, ataxie, confusion avec carence en vitamine B1)",
+      "Toxicité médicamenteuse (ex: salicylates, biguanides)"
+    ]
+  },
+  {
+    "name": "Sepsis",
+    "description": "Le sepsis est une réponse inflammatoire systémique à une infection, caractérisée par une désorganisation de la réponse immunitaire menant à une perfusion tissulaire inadéquate. Il se manifeste par une combinaison de fièvre, tachycardie, tachypnée, et hypotension, souvent associée à une confusion ou une altération de l'état mental. La physiopathologie implique la libération de cytokines pro-inflammatoires (comme le TNF-α et l'IL-1β) et une réponse anti-inflammatoire compensatoire, entraînant une dysfonction endothéliale, une coagulation intravasculaire disséminée, et une insuffisance d'organe.",
+    "redFlags": [
+      "Fièvre >38,3°C ou hypothermie <36°C associée à des signes d'infection localisée (ex: pyélonéphrite, pneumopathie)",
+      "Tachycardie >90 bpm avec hypotension (systolique <90 mmHg) et oligurie <0,5 mL/kg/h",
+      "Tachypnée >22 cycles/min avec saturation en oxygène <92% en air ambiant",
+      "Capillarite cutanée ou purpura fulminans évoquant une coagulation intravasculaire disséminée",
+      "Altération de l'état mental (confusion, somnolence) ou hypoglycémie inexpliquée"
+    ],
+    "scores": [
+      {
+        "name": "qSOFA (Quick Sequential Organ Failure Assessment)",
+        "description": "Score de tri rapide pour identifier les patients à risque élevé de mortalité liée au sepsis.",
+        "criteria": [
+          "Respiration >22 cycles/min (+1 point)",
+          "Alteration de l'état mental (GCS <15) (+1 point)",
+          "Tension artérielle systolique <100 mmHg (+1 point)"
+        ],
+        "interpretation": "Un score ≥2 points indique un risque accru de mortalité et nécessite une évaluation immédiate pour le sepsis."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen clinique systématique pour le sepsis",
+        "steps": [
+          {
+            "action": "Palpation des ganglions lymphatiques et recherche de signes locaux d'infection (ex: abcès, cellulite)",
+            "interpretation": "La présence d'un foyer infectieux local (ex: abcès hépatique, pyélonéphrite) oriente vers la source de l'infection."
+          },
+          {
+            "action": "Évaluation de la perfusion tissulaire (capillarite, temps de remplissage capillaire >2 secondes)",
+            "interpretation": "Un temps de remplissage capillaire prolongé ou une peau pâle, froidre évoquent une hypoperfusion."
+          },
+          {
+            "action": "Auscultation pulmonaire pour détecter des râles ou des crépitements",
+            "interpretation": "Des râles bilatéraux associés à une tachypnée suggèrent une pneumopathie ou une insuffisance cardiaque."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'antibiotiques largement couvrants (ex: piperacilline-tazobactam) dans les 1 heure suivant le diagnostic",
+      "Réanimation liquidienne avec 30 mL/kg de cristalloïdes (ex: solution saline 0,9%) pour corriger l'hypovolémie",
+      "Oxygénothérapie nasale à 15 L/min pour maintenir une saturation ≥92%",
+      "Placement en position semi-assise pour améliorer la ventilation et réduire la charge prédébitale",
+      "Surveillance continue de la tension artérielle et de la diurèse pour ajuster la thérapeutique"
+    ],
+    "differentialDiagnosis": [
+      "Choc anaphylactique (absence de signes d'infection et présence d'urticaire)",
+      "Choc cardiogénique (présence de râles pulmonaires et galop B3)",
+      "Hypoglycémie sévère (absence de signes d'infection et réponse à l'administration de glucose)"
+    ]
+  },
+  {
+    "name": "Insuffisance cardiaque aiguë",
+    "description": "L'insuffisance cardiaque aiguë est une altération soudaine de la fonction cardiaque, entraînant une incapacité à répondre aux besoins métaboliques du corps. Elle se manifeste par une dyspnée orthopnée, une tachycardie, des râles pulmonaires, et une oligurie. La physiopathologie implique une diminution du débit cardiaque, une surcharge de liquide, et une activation des systèmes neurohormonaux (rénine-angiotensine, SNS).",
+    "redFlags": [
+      "Dyspnée aiguë avec orthopnée ou paroxysme nocturne de dyspnée",
+      "Râles crépitants bilatéraux associés à une tachycardie >120 bpm",
+      "Turgescence jugulaire avec reflux hépato-jugulaire positif",
+      "Oedèmes pitting des membres inférieurs et/ou ascite",
+      "Hypotension (systolique <90 mmHg) avec confusion ou oligurie"
+    ],
+    "scores": [
+      {
+        "name": "Classification de Killip",
+        "description": "Classification basée sur la gravité clinique de l'insuffisance cardiaque secondaire à un infarctus du myocarde.",
+        "criteria": [
+          "Classe I: Aucun signe d'insuffisance cardiaque (+0)",
+          "Classe II: Râles crépitants aux bases, galop B3 (+1)",
+          "Classe III: Oedème pulmonaire aigu (+2)",
+          "Classe IV: Choc cardiogénique (+3)"
+        ],
+        "interpretation": "La classe III-IV nécessite une intervention immédiate (ex: diurétiques, vasodilatateurs) pour prévenir la mort."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cardiovasculaire et pulmonaire ciblé",
+        "steps": [
+          {
+            "action": "Auscultation cardiaque pour rechercher un galop B3 ou B4",
+            "interpretation": "Un galop B3 évoque une surcharge de volume, tandis qu'un galop B4 suggère une hypertension artérielle ou une sténose aortique."
+          },
+          {
+            "action": "Palpation des membres inférieurs pour évaluer la présence d'oedèmes pitting",
+            "interpretation": "Des oedèmes symétriques associés à une turgescence jugulaire indiquent une insuffisance cardiaque droite."
+          },
+          {
+            "action": "Mesure de la pression artérielle et de la fréquence cardiaque",
+            "interpretation": "Une hypotension associée à une tachycardie révèle une insuffisance cardiaque sévère ou un choc cardiogénique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration de diurétiques (ex: furosémide) pour réduire la surcharge liquidienne",
+      "Oxygénothérapie à 4-6 L/min pour améliorer l'oxygénation tissulaire",
+      "Position demi-assise pour diminuer la précharge cardiaque et soulager la dyspnée",
+      "Surveillance de la diurèse et de l'équilibre hydrosaline pour ajuster la thérapeutique",
+      "Administration de bêtabloquants (ex: métoprolol) en cas de tachycardie persistante"
+    ],
+    "differentialDiagnosis": [
+      "Crise d'asthme aiguë (présence de sibilants et réponse aux bronchodilatateurs)",
+      "Embolie pulmonaire aiguë (absence de râles et présence de douleur thoracique pleurétique)",
+      "Péricardite constrictive (absence de galop B3 et présence de souffle pericardique)"
+    ]
+  }
+]

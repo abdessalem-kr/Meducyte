@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:meducyte_app/features/dashboard/providers/dashboard_providers.dart';
-import 'package:meducyte_app/features/drugs/presentation/screens/drug_database_screen.dart';
 import 'package:meducyte_app/features/learn/presentation/screens/dictionary_screen.dart';
+import 'package:meducyte_app/features/drugs/presentation/screens/drug_details_screen.dart';
 import 'package:meducyte_app/l10n/arb/app_localizations.dart';
 
 class SearchResultsOverlay extends ConsumerWidget {
@@ -22,13 +22,18 @@ class SearchResultsOverlay extends ConsumerWidget {
       case SearchResultCategory.drug:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => const DrugDatabaseScreen()),
+          MaterialPageRoute(
+            builder: (_) => DrugDetailsScreen(drugId: result.id),
+          ),
         );
         break;
       case SearchResultCategory.dictionary:
+        final termId = int.tryParse(result.id);
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => const DictionaryScreen()),
+          MaterialPageRoute(
+            builder: (_) => DictionaryScreen(initialSelectedTermId: termId),
+          ),
         );
         break;
     }

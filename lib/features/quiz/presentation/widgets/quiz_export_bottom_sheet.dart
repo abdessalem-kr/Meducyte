@@ -318,14 +318,12 @@ class _QuizExportBottomSheetState extends State<QuizExportBottomSheet> {
               ? 'Can you answer this medical question? 🧠🩺 #Meducyte#MedicalStudent'
               : 'I just completed a quiz on Meducyte! 🎓 #Meducyte#MedicalStudent',
         );
-        Navigator.pop(context);
+        if (mounted) Navigator.pop(context);
       }
     } catch (e) {
       debugPrint('Export Error: $e');
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Error exporting: $e')));
+        AppSnackBars.error(context, e);
       }
     } finally {
       if (mounted) setState(() => _isExporting = false);
@@ -388,12 +386,7 @@ class _QuizExportBottomSheetState extends State<QuizExportBottomSheet> {
     } catch (e) {
       debugPrint('Save Error: $e');
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error saving: $e'),
-            backgroundColor: Colors.redAccent,
-          ),
-        );
+        AppSnackBars.error(context, e);
       }
     } finally {
       if (mounted) setState(() => _isSaving = false);

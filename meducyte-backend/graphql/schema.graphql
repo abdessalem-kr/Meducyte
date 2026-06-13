@@ -494,6 +494,7 @@ type Mutation {
   updateStudyGroup(groupId: ID!, title: String, description: String, color: String!, type: String): StudyGroup! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@update")
   deleteStudyGroup(groupId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@delete")
   leaveStudyGroup(groupId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@leave")
+  removeStudyGroupMember(groupId: ID!, userId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@removeMember")
   inviteToStudyGroup(groupId: ID!, friendId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@invite")
   joinStudyGroup(groupId: ID!): Boolean! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@join")
   sendMessage(groupId: ID!, text: String!): StudyGroupMessage! @guard(with: ["sanctum"]) @field(resolver: "App\\GraphQL\\Resolvers\\StudyGroupResolver@sendMessage")

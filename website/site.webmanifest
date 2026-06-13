@@ -1,0 +1,12 @@
+{
+  "name": "Meducyte — Medical Education, Reinvented",
+  "short_name": "Meducyte",
+  "description": "Smart quizzes with spaced repetition, clinical calculators, a drug database and an AI patient simulator for medical students.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050C1D",
+  "theme_color": "#050C1D",
+  "icons": [
+    { "src": "assets/logo.png", "sizes": "402x402", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

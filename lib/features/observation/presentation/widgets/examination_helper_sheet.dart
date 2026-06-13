@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:meducyte_app/features/observation/data/models/specialty_config.dart';
+import 'package:meducyte_app/features/observation/data/models/specialty_localization.dart';
 import 'package:meducyte_app/features/observation/data/providers/pathology_assistant_provider.dart';
 
 class ExaminationHelperSheet extends ConsumerWidget {
@@ -73,7 +74,7 @@ class ExaminationHelperSheet extends ConsumerWidget {
                         ),
                       ),
                       Text(
-                        config.title,
+                        config.specialty.localizedName(context),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.hintColor,
                         ),

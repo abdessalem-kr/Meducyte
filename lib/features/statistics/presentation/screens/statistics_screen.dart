@@ -1,5 +1,10 @@
 import 'package:meducyte_app/export.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:meducyte_app/features/productive_bay/presentation/widgets/fatigue_tracker_widget.dart';
+import 'package:meducyte_app/features/productive_bay/presentation/widgets/mastery_heatmap_widget.dart';
+import 'package:meducyte_app/features/productive_bay/presentation/widgets/study_dashboard_widget.dart';
+import 'package:meducyte_app/features/productive_bay/presentation/widgets/daily_goals_widget.dart';
+import 'package:meducyte_app/features/productive_bay/presentation/widgets/study_recap_widget.dart';
 
 class StatisticsScreen extends ConsumerWidget {
   const StatisticsScreen({super.key});
@@ -10,30 +15,84 @@ class StatisticsScreen extends ConsumerWidget {
     final statsAsync = ref.watch(userStatsProvider);
     final l10n = AppLocalizations.of(context)!;
 
-    return Scaffold(
-      backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: AppBar(title: Text(l10n.statistics), centerTitle: true),
-      body: statsAsync.when(
-        data: (stats) => SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildSummaryHeader(context, stats),
-              const SizedBox(height: 24),
-              _buildSectionTitle(context, 'Performance Trend'),
-              const SizedBox(height: 16),
-              _buildAccuracyChart(context, stats),
-              const SizedBox(height: 32),
-              _buildSectionTitle(context, 'Specialty Accuracy'),
-              const SizedBox(height: 16),
-              _buildSpecialtyChart(context, stats),
-              const SizedBox(height: 32),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: theme.scaffoldBackgroundColor,
+        appBar: AppBar(
+          title: Text(l10n.statistics),
+          centerTitle: true,
+          bottom: TabBar(
+            labelColor: theme.primaryColor,
+            unselectedLabelColor: theme.textTheme.bodyMedium?.color?.withOpacity(0.5),
+            indicatorColor: theme.primaryColor,
+            tabs: const [
+              Tab(
+                icon: Icon(Iconsax.chart_21, size: 20),
+                text: "Quiz & Performance",
+              ),
+              Tab(
+                icon: Icon(Iconsax.coffee, size: 20),
+                text: "Productivité & Fatigue",
+              ),
             ],
           ),
         ),
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (e, st) => Center(child: Text('Error: $e')),
+        body: TabBarView(
+          children: [
+            // Tab 1: Quiz & Performance
+            statsAsync.when(
+              data: (stats) => SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildSummaryHeader(context, stats, l10n),
+                    const SizedBox(height: 24),
+                    _buildSectionTitle(context, l10n.statsPerformanceTrend),
+                    const SizedBox(height: 16),
+                    _buildAccuracyChart(context, stats),
+                    const SizedBox(height: 32),
+                    _buildSectionTitle(context, l10n.statsSpecialtyAccuracy),
+                    const SizedBox(height: 16),
+                    _buildSpecialtyChart(context, stats),
+                    const SizedBox(height: 32),
+                  ],
+                ),
+              ),
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (e, st) => Center(child: Text('Error: $e')),
+            ),
+            
+            // Tab 2: Productivité & Fatigue
+            SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const FatigueTrackerWidget(),
+                  const SizedBox(height: 32),
+                  _buildSectionTitle(context, "Maîtrise Clinique par Sujet"),
+                  const SizedBox(height: 16),
+                  const MasteryHeatmapWidget(),
+                  const SizedBox(height: 32),
+                  _buildSectionTitle(context, "Tableau de Bord Efficacité"),
+                  const SizedBox(height: 16),
+                  const StudyDashboardWidget(),
+                  const SizedBox(height: 32),
+                  _buildSectionTitle(context, "Objectifs de Productivité"),
+                  const SizedBox(height: 16),
+                  const DailyGoalsWidget(),
+                  const SizedBox(height: 32),
+                  _buildSectionTitle(context, "Journalisation & Récap"),
+                  const SizedBox(height: 16),
+                  const StudyRecapWidget(),
+                  const SizedBox(height: 32),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -47,7 +106,7 @@ class StatisticsScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildSummaryHeader(BuildContext context, UserStats stats) {
+  Widget _buildSummaryHeader(BuildContext context, UserStats stats, AppLocalizations l10n) {
     return GridView.count(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -58,28 +117,28 @@ class StatisticsScreen extends ConsumerWidget {
       children: [
         _buildStatCard(
           context,
-          'Total Accuracy',
+          l10n.statsTotalAccuracy,
           '${(stats.overallAccuracy * 100).toStringAsFixed(0)}%',
           Iconsax.chart_2,
           AppColors.primary,
         ),
         _buildStatCard(
           context,
-          'Quizzes Done',
+          l10n.statsQuizzesDone,
           '${stats.quizzesCompleted}',
           Iconsax.task,
           AppColors.accentLight,
         ),
         _buildStatCard(
           context,
-          'Study Streak',
-          '${stats.studyStreak}Days',
+          l10n.statsStreak,
+          l10n.daysLabel(stats.studyStreak.toString()),
           Iconsax.flash,
           Colors.orange,
         ),
         _buildStatCard(
           context,
-          'Questions',
+          l10n.statsQuestions,
           '${stats.questionsAnswered}',
           Iconsax.message_question,
           Colors.purple,

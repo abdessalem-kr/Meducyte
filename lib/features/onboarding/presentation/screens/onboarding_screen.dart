@@ -102,7 +102,7 @@ class OnboardingButton extends ConsumerWidget {
     await ref.read(onboardingProvider.notifier).completeOnboarding();
 
     // ✅Then navigate to authentication
-    context.go('/auth'); //assuming your route is/auth
+    if (context.mounted) context.go('/auth');
   }
 
   @override

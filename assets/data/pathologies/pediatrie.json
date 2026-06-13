@@ -1,117 +1,361 @@
 [
   {
-    "name": "Dysplasie bronchopulmonaire",
-    "description": "Maladie pulmonaire chronique des nourrissons prématurés",
+    "name": "Syndrome de Kawasaki",
+    "description": "Le syndrome de Kawasaki est une vasculite systémique aiguë d'origine inconnue, principalement affectant les enfants de moins de 5 ans. Il entraîne une inflammation des vaisseaux sanguins, notamment des artères coronaires, pouvant provoquer des anévrismes coronaires. La présentation clinique typique inclut une fièvre persistante (>5 jours), une éruption cutanée, des conjonctivites bilatérales, des lèvres sèches et fissurées, une langue en fraise, des paumes et plantes rouges, et des ganglions lymphatiques cervicaux unilatéraux. Les complications cardiaques sont les plus graves.",
     "redFlags": [
-      "Détresse respiratoire",
-      "Apnée",
-      "Cyanose"
+      "Fièvre prolongée (>5 jours) non réactive aux antibiotiques",
+      "Éruption cutanée polymorphe associée à des lésions des paumes/plantes",
+      "Conjonctivite bilatérale sans exsudat",
+      "Lèvres sèches et fissurées avec langue érythémateuse en \"fraise\"",
+      "Ganglions lymphatiques cervicaux unilatéraux de plus de 1,5 cm"
     ],
     "scores": [
       {
-        "name": "Score de Silverman",
-        "description": "Évaluation de la gravité de la maladie",
+        "name": "Critères diagnostiques du ministère japonais de la santé",
+        "description": "Score basé sur la présence de 5 critères majeurs ou 4 critères majeurs avec des preuves d'inflammation vasculaire (ex: CRP élevée, VHS > 100 mm/h).",
         "criteria": [
-          "Fréquence respiratoire",
-          "Taux de saturation en oxygène",
-          "Présence d'apnée"
+          "Fièvre ≥ 5 jours (+1)",
+          "Éruption cutanée (+1)",
+          "Conjonctivite bilatérale (+1)",
+          "Changements des lèvres et de la langue (+1)",
+          "Paumes/plantes érythémateuses ou desquamation (+1)",
+          "Ganglions lymphatiques cervicaux ≥ 1,5 cm (+1)"
         ],
-        "interpretation": "Score élevé indique une maladie plus grave"
+        "interpretation": "Diagnostic confirmé avec ≥ 5 critères majeurs ou 4 critères + preuve d'inflammation vasculaire. Score ≥ 4 points avec preuve d'inflammation est considéré comme positif."
       }
     ],
     "focusedExam": [
       {
-        "title": "Auscultation pulmonaire",
+        "title": "Examen cardiovasculaire et cutané",
         "steps": [
           {
-            "action": "Écouter les bruits respiratoires",
-            "interpretation": "Râles, sifflements ou diminution des bruits respiratoires"
+            "action": "Palpation des paumes et plantes pour détecter des érythèmes ou des desquamations",
+            "interpretation": "Desquamation des paumes/plantes en phase convalescente (journées 10-14) est un signe de diagnostic majeur."
+          },
+          {
+            "action": "Examen des lèvres et de la langue pour érythème, sécheresse ou fissures",
+            "interpretation": "Lèvres sèches et fissurées avec langue érythémateuse \"en fraise\" sont des signes évocateurs."
+          },
+          {
+            "action": "Palpation des ganglions lymphatiques cervicaux",
+            "interpretation": "Ganglions cervicaux unilatéraux ≥ 1,5 cm sont un critère majeur."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration d'oxygène",
-      "Intubation et ventilation mécanique si nécessaire"
+      "Injections intraveineuses d'immunoglobulines (IVIG) à 2 g/kg sur 10-12 heures",
+      "Aspirine à haute dose (80-100 mg/kg/jour) divisée en 4 prises pendant les 2 premières semaines",
+      "Surveillance cardiaque quotidienne par échocardiographie pour détecter les anévrismes coronaires",
+      "Hospitalisation en unité de soins intensifs pour les formes graves avec complications",
+      "Éviter les anti-inflammatoires non stéroïdiens (AINS) en raison du risque d'aggravation"
     ],
     "differentialDiagnosis": [
-      "Pneumonie",
-      "Syndrome de détresse respiratoire aiguë"
+      "Scarlatine (présence de rash \"en papier de verre\" et pharyngite streptococcique)",
+      "Lupus érythémateux juvénile (présence d'antinucléaires positifs et manifestations cutanées chroniques)",
+      "Fièvre méditerranéenne familiale (fièvre intermittente avec manifestations abdominales)"
     ]
   },
   {
-    "name": "Meningite bactérienne",
-    "description": "Infection bactérienne du système nerveux central",
+    "name": "Entérite nécrosante du nouveau-né (ENN)",
+    "description": "L'entérite nécrosante est une pathologie grave des intestins, principalement chez les prématurés, caractérisée par une ischémie intestinale secondaire à une perfusion inadéquate. Elle se manifeste par une distension abdominale, une intolérance aux aliments, des saignements digestifs, et des signes de septicémie. La physiopathologie implique une dysfonction endothéliale, une stase sanguine, et une colonisation intestinale par des bactéries pathogènes.",
     "redFlags": [
-      "Février, convulsions, raideur de nuque"
+      "Distension abdominale progressive avec ballottement de la paroi",
+      "Présence de sang dans les selles (sang rouge vif ou \"café au lait\")",
+      "Intolérance totale aux aliments avec vomissements bilieux",
+      "Signes de septicémie (fièvre, hypothermie, tachycardie, tachypnée)",
+      "Bruit intestinal diminué ou absent"
     ],
     "scores": [
       {
-        "name": "Score de Glasgow",
-        "description": "Évaluation de la conscience",
+        "name": "Classification de Bell",
+        "description": "Score de stade clinique et radiologique pour évaluer la gravité de l'ENN.",
         "criteria": [
-          "Ouverture des yeux",
-          "Réponse verbale",
-          "Réponse motrice"
+          "Stade I: Intolérance aux aliments + distension abdominale (+1)",
+          "Stade II: Stade I + saignement digestif ou bruits intestinaux diminués (+2)",
+          "Stade III: Stade II + signes de choc ou perforation (+3)",
+          "Stade IIIa: Stade III + absence de signes de perforation (+3)",
+          "Stade IIIb: Stade III + signes de perforation (air libre sur radiographie) (+4)"
         ],
-        "interpretation": "Score bas indique une altération de la conscience"
+        "interpretation": "Stade I: Surveillance stricte. Stade II: Surveillance étroite. Stade III: Intervention chirurgicale urgente."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen neurologique",
+        "title": "Examen abdominal et radiologique",
         "steps": [
           {
-            "action": "Vérifier la raideur de nuque",
-            "interpretation": "Signe de méningite"
+            "action": "Palpation de l'abdomen pour détecter la distension et la douleur",
+            "interpretation": "Distension abdominale avec ballottement de la paroi est un signe évocateur de stase intestinale."
+          },
+          {
+            "action": "Examen des selles pour présence de sang",
+            "interpretation": "Sang rouge vif ou \"café au lait\" indique une ischémie intestinale active."
+          },
+          {
+            "action": "Radiographie abdominale sans préparation",
+            "interpretation": "Air portal (air dans les vaisseaux portal) ou air libre (perforation) sont des signes radiologiques majeurs."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration d'antibiotiques",
-      "Réhydratation"
+      "Arrêt immédiat des alimentations orales (NPO)",
+      "Insertion d'un sonde nasogastrique pour décompression",
+      "Antibiothérapie large spectre (amoxicilline + gentamicine + metronidazole)",
+      "Réanimation intraveineuse avec perfusion de sérum physiologique",
+      "Préparation chirurgicale en cas de stade III ou de signes de perforation"
     ],
     "differentialDiagnosis": [
-      "Meningite virale",
-      "Encéphalite"
+      "Hernie ombilicale stranglée (distension localisée avec douleur aiguë)",
+      "Hémorragie méconium (présence de méconium dans les selles)",
+      "Atresie intestinale (absence de méconium au-delà de 24-48 heures)"
     ]
   },
   {
-    "name": "Diabète sucré de type 1",
-    "description": "Maladie auto-immune entraînant une carence en insuline",
+    "name": "Sepsis néonatal",
+    "description": "Le sepsis néonatal est une infection systémique grave chez le nouveau-né, pouvant être de survenue précoce (0-7 jours) ou tardive (7-28 jours). La physiopathologie repose sur une réponse immunitaire dysrégulée à un agent infectieux (bactérien, viral ou fongique), entraînant une défaillance d'organe. Les signes cliniques incluent une instabilité thermique, une détresse respiratoire, une hypoglycémie, une léthargie, une jaunisse anormale et une hypotension.",
     "redFlags": [
-      "Polyurie, polydipsie, perte de poids"
+      "Instabilité thermique (hyperthermie >38°C ou hypothermie <36°C) chez un nouveau-né <7 jours, indiquant une suspicion de sepsis précoce",
+      "Tachypnée >60/min avec grincement nasal ou rétractions sous-costales, signe de détresse respiratoire sévère",
+      "Hypoglycémie persistante malgré une perfusion glucidique adaptée",
+      "Léthargie profonde avec absence de réponse aux stimuli auditifs ou tactiles",
+      "Jaunisse anormalement précoce (<24h) ou persistante (>14 jours) sans cause évidente"
     ],
     "scores": [
       {
-        "name": "Score de Clarke",
-        "description": "Évaluation de la gravité de l'hyperglycémie",
+        "name": "Score de sepsis néonatal modifié (MCSS)",
+        "description": "Évalue la gravité clinique du sepsis néonatal en combinant des paramètres physiologiques et biologiques",
         "criteria": [
-          "Glycémie",
-          "Présence de corps cétoniques"
+          "Critère 1: Fréquence cardiaque <100/min ou >180/min (+1 point)",
+          "Critère 2: Fréquence respiratoire >70/min (+1 point)",
+          "Critère 3: Capillarite >3 secondes (+1 point)",
+          "Critère 4: Pâleur ou cyanose centrale (+1 point)",
+          "Critère 5: Plaques cutanées ou purpura (+2 points)"
         ],
-        "interpretation": "Score élevé indique une hyperglycémie plus grave"
+        "interpretation": "Score ≥3 points indique une forte suspicion de sepsis sévère nécessitant une prise en charge immédiate"
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen clinique",
+        "title": "Examen clinique ciblé du nouveau-né suspecté de sepsis",
         "steps": [
           {
-            "action": "Vérifier la présence de signes de déshydratation",
-            "interpretation": "Signe de diabète sucré non contrôlé"
+            "action": "Palpation du fontanelle pour évaluer la tension (bulbeuse ou déprimée)",
+            "interpretation": "Fontanelle bulbeuse suggère une hypertension intracrânienne secondaire à méningite ou édème cérébral"
+          },
+          {
+            "action": "Évaluation de la perfusion périphérique (capillarite, coloration des extrémités)",
+            "interpretation": "Capillarite >3 secondes ou extrémités froides indiquent une hypoperfusion et risque de choc"
+          },
+          {
+            "action": "Auscultation cardiaque pour rechercher une tachycardie ou un souffle anormal",
+            "interpretation": "Tachycardie persistante malgré l'hydratation évoque une insuffisance cardiaque secondaire"
+          },
+          {
+            "action": "Examen des muqueuses et de la peau pour identifier des lésions hémorragiques",
+            "interpretation": "Purpura ou éruption pétéchiale suggère une coagulopathie ou méningite bactérienne"
+          },
+          {
+            "action": "Évaluation du réflexe de succion et de l'alerte neurologique",
+            "interpretation": "Réflexe de succion absent ou réponse neurologique abolie indique une gravité neurologique"
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration d'insuline",
-      "Réhydratation"
+      "Stabilisation vitale immédiate (oxygénation, réanimation cardiopulmonaire si nécessaire)",
+      "Prélèvements biologiques urgents (hémoculture, urinoculture, PCR pour CMV/HSV)",
+      "Initiation d'antibiothérapie large spectre (ampicilline + gentamicine) dans les 1h de suspicion",
+      "Réanimation liquidienne par perfusion de 20ml/kg de solution cristalloïde",
+      "Surveillance continue des paramètres vitaux et des signes de décompensation"
     ],
     "differentialDiagnosis": [
-      "Diabète sucré de type 2",
-      "Prédiabète"
+      "Hypoglycémie néonatale (absence de signes infectieux et normalisation après glucose)",
+      "Hypothermie néonatale (absence de signes d'infection et réponse à la réchauffe)",
+      "Hémorragie intracrânienne (signes neurologiques focaux sans fièvre)"
+    ]
+  },
+  {
+    "name": "Méningite bactérienne aiguë",
+    "description": "La méningite bactérienne aiguë est une infection des méninges causée par des agents comme Streptococcus pneumoniae, Neisseria meningitidis ou Haemophilus influenzae. Elle se caractérise par une réponse inflammatoire intense avec exsudat purulent dans le liquide céphalo-rachidien. Les signes incluent une fièvre, une céphalée, une raideur de nuque, des photophobies et des signes de méningite (signes de Brudzinski et Kernig).",
+    "redFlags": [
+      "Fièvre >39°C associée à une raideur de nuque avec résistance à la flexion (signe de Kernig positif)",
+      "Alteration de l'état de conscience (somnolence à l'agitation) avec réponse pupillaire anormale",
+      "Photophobie marquée avec signes de méningite (Brudzinski positif)",
+      "Éruption cutanée pétéchiale ou purpurique non blanchissante",
+      "Crises épileptiques focales ou généralisées sans cause évidente"
+    ],
+    "scores": [
+      {
+        "name": "Score de méningite bactérienne de van de Beek",
+        "description": "Prédit le risque de méningite bactérienne en combinant des signes cliniques et biologiques",
+        "criteria": [
+          "Critère 1: Âge <3 mois (x2 points)",
+          "Critère 2: Fièvre >39°C (x1 point)",
+          "Critère 3: LCR avec WBC >1000/mm³ (x1 point)",
+          "Critère 4: Glucose LCR <40% du glucose sanguin (x1 point)",
+          "Critère 5: Protéine LCR >1g/L (x1 point)"
+        ],
+        "interpretation": "Score ≥4 points indique une forte probabilité de méningite bactérienne nécessitant une antibiothérapie immédiate"
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique ciblé pour méningite",
+        "steps": [
+          {
+            "action": "Test du signe de Brudzinski (flexion du cou avec observation des hanches)",
+            "interpretation": "Flexion involontaire des hanches indique une irritation méningée"
+          },
+          {
+            "action": "Palpation du fontanelle chez l'infant (si applicable)",
+            "interpretation": "Fontanelle bulbeuse suggère une hypertension intracrânienne"
+          },
+          {
+            "action": "Évaluation de la réponse pupillaire et de la symétrie faciale",
+            "interpretation": "Réaction pupillaire asymétrique ou absence de mouvement oculaire indique une atteinte neurologique focale"
+          },
+          {
+            "action": "Recherche de signes de surdité ou de troubles visuels",
+            "interpretation": "Surdité soudaine ou vision trouble évoquent une complication de la méningite"
+          },
+          {
+            "action": "Test de la flexion plantaire (Babinski) et de la réflexologie",
+            "interpretation": "Réflexes anormaux ou Babinski positif indiquent une atteinte pyramidaux"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Ponction lombaire d'urgence si stable (avant ou avec antibiothérapie selon protocole local)",
+      "Administration d'antibiotiques de première intention (céfotaxime ou ceftriaxone) + dexaméthasone",
+      "Surveillance étroite de la pression intracrânienne (TDM cérébrale si suspicion de surdure)",
+      "Support respiratoire (oxygénation, intubation si coma profond)",
+      "Prélèvements biologiques (hémoculture, LCR, PCR pour méningocoque)"
+    ],
+    "differentialDiagnosis": [
+      "Méningite virale (LCR avec WBC <1000/mm³, glucose normal, protéines modérément élevées)",
+      "Encéphalite (signes neurologiques focaux sans méningite)",
+      "Hypocalcémie sévère (tétanie sans signes d'infection)"
+    ]
+  },
+  {
+    "name": "Crise d'asthme aiguë pédiatrique",
+    "description": "L'asthme est une maladie inflammatoire chronique des voies respiratoires caractérisée par une obstruction bronchique réversible, une hyper-réactivité bronchique et une composante allergique. La crise aiguë se manifeste par une exacerbation soudaine de l'obstruction bronchique, entraînant une dyspnée, une toux, une sibilance et une détérioration de la fonction respiratoire. Les mécanismes incluent l'inflammation aiguë, l'œdème muqueux, la production de mucus et le spasme bronchique.",
+    "redFlags": [
+      "Dyspnée sévère avec retrait intercostal et usage des muscles accessoires (signe de retractions) chez l'enfant < 2 ans",
+      "Saturation en oxygène < 92% malgré l'administration d'oxygène",
+      "Score de gravité de l'asthme pédiatrique (Bousquet) > 4/6 avec absence de réponse à l'administration initiale de bêta-2-mimétiques",
+      "Perte de conscience ou confusion mentale secondaire à hypoxie",
+      "Pouls paradoxal > 15 mmHg sur l'auscultation pulmonaire"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'asthme pédiatrique (Bousquet)",
+        "description": "Évalue la gravité clinique de la crise d'asthme en fonction des signes respiratoires, de la saturation en oxygène et de la réponse au traitement",
+        "criteria": [
+          "Classe I: Dyspnée modérée, saturation > 95%, réponse rapide au traitement (+0)",
+          "Classe II: Dyspnée sévère avec retractions, saturation 92-94%, réponse partielle (+2)",
+          "Classe III: Dyspnée critique avec cyanose, saturation < 92%, absence de réponse (+4)"
+        ],
+        "interpretation": "Classe I: Surveillance ambulatoire possible. Classe II: Hospitalisation recommandée. Classe III: Urgence vitale nécessitant une intubation précoce."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen respiratoire et neurologique ciblé",
+        "steps": [
+          {
+            "action": "Palpation des retractions intercostales et observation des mouvements respiratoires",
+            "interpretation": "Présence de retractions intercostales ou sous-costales évoque une obstruction sévère des voies aériennes"
+          },
+          {
+            "action": "Auscultation pulmonaire complète avec recherche de sibilances, râles ou absence de souffle",
+            "interpretation": "Sibilances diffuses bilatérales typiques de l'asthme. Absence de souffle suggère une obstruction totale ou collapsus alvéolaire"
+          },
+          {
+            "action": "Mesure de la saturation en oxygène par oxymétrie de pouls",
+            "interpretation": "Saturation < 92% indique une hypoxie sévère nécessitant une oxygénothérapie immédiate"
+          },
+          {
+            "action": "Évaluation de l'état neurologique (réponse à la douleur, confusion)",
+            "interpretation": "Perte de conscience ou confusion mentale évoque une hypoxie cérébrale secondaire"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'oxygène à 1-2 L/min via masque nasal pour maintenir une saturation > 94%",
+      "Inhalation de bêta-2-mimétiques (salbutamol) à dose élevée (0.15-0.3 mg/kg) par nébuliseur toutes les 20 minutes",
+      "Administration de corticoïdes intraveineux (dexaméthasone 0.6 mg/kg) pour réduire l'inflammation",
+      "Surveillance continue de la saturation, de la fréquence respiratoire et de la pression artérielle",
+      "Préparation à l'intubation en cas d'échec du traitement ou de détérioration neurologique"
+    ],
+    "differentialDiagnosis": [
+      "Pneumopathie aiguë: absence de sibilances, présence de râles crépitants et fièvre",
+      "Crise de laryngite aiguë: stridor inspiratoire, voix éraillée et absence de sibilances",
+      "Obstruction des voies aériennes supérieures (corps étranger): bradypnée paradoxale et absence de réponse aux bêta-2-mimétiques"
+    ]
+  },
+  {
+    "name": "Syndrome de l'intestin court néonatal",
+    "description": "Le syndrome de l'intestin court est une complication grave de la chirurgie néonatale, survenant après une résection intestinale étendue pour des causes comme la malrotation avec volvulus, la sténose pylorique ou l'ischémie intestinale. Il se caractérise par une insuffisance digestive sévère due à une surface résiduelle intestinale insuffisante pour assurer l'absorption des nutriments. Les mécanismes incluent une malabsorption, une dénutrition, une dépendance à la nutrition parentérale et une insuffisance hépatique secondaire.",
+    "redFlags": [
+      "Poids inférieur au 5e percentile pour l'âge postnatal avec absence de prise de poids",
+      "Dépendance totale à la nutrition parentérale > 30 jours avec insuffisance hépatique (bilirubine > 2 mg/dL, transaminases élevées)",
+      "Diarrhée chronique avec perte de liquide intestinal > 100 mL/kg/jour",
+      "Acidose métabolique résistante au traitement avec pCO2 < 25 mmHg",
+      "Hypoprotéinémie sévère (< 3 g/dL) avec oedème généralisé"
+    ],
+    "scores": [
+      {
+        "name": "Score de gravité de l'intestin court (Short Bowel Score)",
+        "description": "Évalue la probabilité de dépendance à la nutrition parentérale à long terme",
+        "criteria": [
+          "Longueur résiduelle < 20 cm (+3 points)",
+          "Absence de valve iléo-cæcale (+2 points)",
+          "Age < 3 mois à l'opération (+2 points)",
+          "Présence d'insuffisance hépatique (+2 points)",
+          "Débit intestinal > 15 mL/kg/jour (+1 point)"
+        ],
+        "interpretation": "Score > 8: Prognostic très sombre avec dépendance parentérale probable. Score < 5: Chance de rémission possible avec adaptation intestinale."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen abdominal et nutritionnel ciblé",
+        "steps": [
+          {
+            "action": "Palpation de l'abdomen pour rechercher des signes de distension ou de douleur",
+            "interpretation": "Distension abdominale évoque une obstruction résiduelle ou une surcharge intestinale"
+          },
+          {
+            "action": "Évaluation de la turgescence cutanée et des muqueuses",
+            "interpretation": "Déshydratation sévère (turgescence < 2 secondes) indique une perte de liquide intestinal importante"
+          },
+          {
+            "action": "Mesure de la circonférence abdominale et du poids",
+            "interpretation": "Poids stables ou en baisse malgré la nutrition parentérale suggère une malabsorption"
+          },
+          {
+            "action": "Examen des selles pour quantifier le volume et la consistance",
+            "interpretation": "Diarrhée aqueuse évoque une malabsorption de sucre ou de graisse"
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Optimisation de la nutrition parentérale totale avec surveillance des électrolytes et de la fonction hépatique",
+      "Administration de suppléments de vitamines liposolubles (A, D, E, K) et de minéraux",
+      "Initiation progressive de la nutrition entérale avec lécithine de soja pour stimuler l'adaptation intestinale",
+      "Traitement de l'insuffisance hépatique par ursodésoxycholéate et surveillance de la bilirubine",
+      "Préparation chirurgicale pour la création d'un réservoir entéral (pouch) en cas de dépendance parentérale prolongée"
+    ],
+    "differentialDiagnosis": [
+      "Malabsorption due à une atresie intestinale résiduelle: absence de transit intestinal et absence de selles",
+      "Sépsis néonatal: fièvre, tachycardie et leucopénie associés à une insuffisance digestive",
+      "Intolérance au lactose: diarrhée après l'introduction de lait maternel ou formulé"
     ]
   }
 ]

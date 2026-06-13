@@ -2,9 +2,12 @@ import 'package:meducyte_app/export.dart';
 import 'package:meducyte_app/core/themes/quiz_theme_extension.dart';
 import 'package:meducyte_app/features/quiz/presentation/widgets/quiz_option_card.dart';
 import 'package:meducyte_app/features/productive_bay/data/providers/study_group_provider.dart';
-import 'package:meducyte_app/features/quiz/presentation/widgets/quiz_comment_bottom_sheet.dart';
+import 'package:meducyte_app/features/productive_bay/presentation/widgets/quiz_selection_sheet.dart';
 import 'package:meducyte_app/shared/widgets/highlightable_text.dart';
+import 'package:meducyte_app/features/auth/presentation/widgets/notion_avatar_renderer.dart';
+import 'package:collection/collection.dart';
 import 'dart:async';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class QuizGroupStudyPage extends ConsumerStatefulWidget {
   final String groupId;
@@ -39,6 +42,12 @@ class _QuizGroupStudyPageState extends ConsumerState<QuizGroupStudyPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final session = ref.read(activeStudyGroupQuizProvider(widget.groupId)).value ?? widget.initialSession;
+      if (session != null) {
+        ref.read(studyGroupRepositoryProvider).joinQuizSession(widget.groupId, session.id).catchError((_) {});
+      }
+    });
   }
 
   @override
@@ -171,7 +180,7 @@ class _QuizGroupStudyPageState extends ConsumerState<QuizGroupStudyPage> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => QuizCommentBottomSheet(questionId: questionId),
+      builder: (_) => _GroupDiscussionBottomSheet(groupId: widget.groupId),
     );
   }
 
@@ -346,17 +355,77 @@ class _QuizGroupStudyPageState extends ConsumerState<QuizGroupStudyPage> {
             group,
             currentUser,
           ),
-          loading: () => _buildMainContent(
-            quizTheme,
-            widget.initialSession,
-            group,
-            currentUser,
+          loading: () => Skeletonizer(
+            enabled: true,
+            child: _buildMainContent(
+              quizTheme,
+              widget.initialSession ??
+                  StudyGroupQuizSession(
+                    id: 'dummy',
+                    studyGroupId: widget.groupId,
+                    quizId: 'dummy',
+                    title: 'Chargement...',
+                    participantIds: const ['Me'],
+                    participantScores: const {'Me': 0},
+                    questions: [
+                      StudyGroupQuizQuestion(
+                        id: 'dummy',
+                        text: 'Ceci est une question factice en cours de chargement.',
+                        options: const ['Option A', 'Option B', 'Option C', 'Option D'],
+                        correctIndices: const [0],
+                        explanation: 'Explication factice.',
+                      ),
+                    ],
+                    isActive: true,
+                    startTime: DateTime.now(),
+                  ),
+              group,
+              currentUser,
+            ),
           ),
           error: (e, s) => Scaffold(body: Center(child: Text("Erreur: $e"))),
         );
       },
-      loading: () =>
-          const Scaffold(body: Center(child: CircularProgressIndicator())),
+      loading: () => Scaffold(
+        body: Skeletonizer(
+          enabled: true,
+          child: _buildMainContent(
+            quizTheme,
+            widget.initialSession ??
+                StudyGroupQuizSession(
+                  id: 'dummy',
+                  studyGroupId: widget.groupId,
+                  quizId: 'dummy',
+                  title: 'Chargement...',
+                  participantIds: const ['Me'],
+                  participantScores: const {'Me': 0},
+                  questions: [
+                    StudyGroupQuizQuestion(
+                      id: 'dummy',
+                      text: 'Ceci est une question factice en cours de chargement.',
+                      options: const ['Option A', 'Option B', 'Option C', 'Option D'],
+                      correctIndices: const [0],
+                      explanation: 'Explication factice.',
+                    ),
+                  ],
+                  isActive: true,
+                  startTime: DateTime.now(),
+                ),
+            StudyGroup(
+              id: widget.groupId,
+              title: 'Groupe d\'étude',
+              description: 'Description...',
+              membersCount: 0,
+              totalPomodoros: 0,
+              tags: const [],
+              themeColor: Colors.blue,
+              icon: Icons.group,
+              type: StudyGroupType.qcmBattle,
+            ),
+            currentUser,
+          ),
+        ),
+      ),
       error: (e, s) => Scaffold(body: Center(child: Text("Erreur: $e"))),
     );
   }
@@ -370,20 +439,32 @@ class _QuizGroupStudyPageState extends ConsumerState<QuizGroupStudyPage> {
     final isDiscussion = displaySession?.secondsPerQuestion == 0;
 
     if (displaySession == null) {
-      return Scaffold(
-        backgroundColor: quizTheme.backgroundColor,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircularProgressIndicator(),
-              const SizedBox(height: 24),
-              Text(
-                "Chargement de la session...",
-                style: TextStyle(color: quizTheme.secondaryTextColor),
-              ),
-            ],
+      final dummySession = StudyGroupQuizSession(
+        id: 'dummy',
+        studyGroupId: widget.groupId,
+        quizId: 'dummy',
+        title: 'Chargement...',
+        participantIds: const ['Me'],
+        participantScores: const {'Me': 0},
+        questions: [
+          StudyGroupQuizQuestion(
+            id: 'dummy',
+            text: 'Ceci est une question factice en cours de chargement.',
+            options: const ['Option A', 'Option B', 'Option C', 'Option D'],
+            correctIndices: const [0],
+            explanation: 'Explication factice.',
           ),
+        ],
+        isActive: true,
+        startTime: DateTime.now(),
+      );
+      return Skeletonizer(
+        enabled: true,
+        child: _buildMainContent(
+          quizTheme,
+          dummySession,
+          group,
+          currentUser,
         ),
       );
     }
@@ -462,6 +543,21 @@ class _QuizGroupStudyPageState extends ConsumerState<QuizGroupStudyPage> {
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
+          if (group.isAdmin)
+            IconButton(
+              icon: Icon(Iconsax.setting_5, color: quizTheme.primaryTextColor),
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => QuizSelectionSheet(
+                    group: group,
+                    editingSession: displaySession,
+                  ),
+                );
+              },
+            ),
           IconButton(
             icon: Icon(Iconsax.info_circle, color: quizTheme.primaryTextColor),
             onPressed: () => _showQuestionInfo(
@@ -863,127 +959,250 @@ class _QuizGroupStudyPageState extends ConsumerState<QuizGroupStudyPage> {
 
   Widget _buildLiveInteraction(QuizThemeExtension quizTheme, String groupId) {
     final messagesAsync = ref.watch(studyGroupMessagesProvider(groupId));
+    final groupAsync = ref.watch(studyGroupProvider(groupId));
+    final group = groupAsync.value;
+    final isAdmin = group?.isAdmin ?? false;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
       constraints: const BoxConstraints(maxHeight: 400),
-      decoration: BoxDecoration(
-        color: quizTheme.cardColor,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: quizTheme.secondaryTextColor.withOpacity(0.05),
-        ),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: messagesAsync.when(
-                data: (messages) {
-                  if (messages.isEmpty) {
-                    return Center(
+            child: messagesAsync.when(
+              data: (messages) {
+                if (messages.isEmpty) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(40.0),
                       child: Text(
-                        "Aucun message pour le moment",
+                        context.l10n.beFirstToEncourage,
                         style: TextStyle(
-                          fontSize: 12,
-                          color: quizTheme.secondaryTextColor,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                          color: quizTheme.secondaryTextColor.withOpacity(0.5),
                         ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                }
+                final recentMessages = messages.reversed.take(10).toList();
+
+                return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemCount: recentMessages.length,
+                  itemBuilder: (context, index) {
+                    final m = recentMessages[index];
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: isDark ? AppColors.surfaceDark : Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: isDark
+                              ? AppColors.dividerDark
+                              : AppColors.dividerLight,
+                        ),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Builder(
+                            builder: (context) {
+                              final group = ref.watch(studyGroupProvider(widget.groupId)).value;
+                              final senderUser = group?.members.firstWhereOrNull((u) => u.id.toString() == m.senderId);
+                              final avatarKey = senderUser?.avatarKey ?? 'avatar_1';
+                              return NotionAvatarRenderer(avatarKey: avatarKey, size: 28);
+                            },
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      m.senderName.toUpperCase(),
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 11,
+                                        color: AppColors.primary,
+                                      ),
+                                    ),
+                                    if (m.isEdited) ...[
+                                      const SizedBox(width: 6),
+                                      Text(
+                                        "(${context.l10n.edited})",
+                                        style: TextStyle(
+                                          fontSize: 9,
+                                          color: Colors.grey.withOpacity(0.7),
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ],
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  m.text,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    height: 1.4,
+                                    fontWeight: FontWeight.w500,
+                                    color: quizTheme.primaryTextColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              PopupMenuButton<String>(
+                                icon: Icon(
+                                  Icons.more_vert,
+                                  size: 18,
+                                  color: Colors.grey.withOpacity(0.7),
+                                ),
+                                padding: EdgeInsets.zero,
+                                constraints: const BoxConstraints(),
+                                onSelected: (value) {
+                                  if (value == 'edit') {
+                                    _showEditMessageDialog(context, m);
+                                  } else if (value == 'delete') {
+                                    _confirmDeleteMessage(context, m);
+                                  } else if (value == 'report') {
+                                    _showReportMessageDialog(context, m);
+                                  }
+                                },
+                                itemBuilder: (context) => [
+                                  if (m.isMine)
+                                    PopupMenuItem(
+                                      value: 'edit',
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Iconsax.edit,
+                                            size: 18,
+                                            color: Colors.blue,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(context.l10n.edit),
+                                        ],
+                                      ),
+                                    ),
+                                  if (m.isMine || isAdmin)
+                                    PopupMenuItem(
+                                      value: 'delete',
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Iconsax.trash,
+                                            size: 18,
+                                            color: Colors.red,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(context.l10n.delete),
+                                        ],
+                                      ),
+                                    ),
+                                  if (!m.isMine)
+                                    PopupMenuItem(
+                                      value: 'report',
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Iconsax.danger,
+                                            size: 18,
+                                            color: Colors.orange,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(context.l10n.reportError),
+                                        ],
+                                      ),
+                                    ),
+                                ],
+                              ),
+                              Text(
+                                _timeAgo(m.timestamp),
+                                style: const TextStyle(
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     );
-                  }
-                  final recentMessages = messages.reversed.take(10).toList();
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    itemCount: recentMessages.length,
-                    itemBuilder: (context, index) {
-                      final m = recentMessages[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              m.senderName,
-                              style: const TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w900,
-                                color: AppColors.primary,
-                              ),
-                            ),
-                            Text(
-                              m.text,
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: quizTheme.primaryTextColor,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (e, s) => Center(child: Text("Erreur: $e")),
-              ),
+                  },
+                );
+              },
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (e, s) => Center(child: Text("Erreur: $e")),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _messageController,
-                    style: TextStyle(
-                      color: quizTheme.primaryTextColor,
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _messageController,
+                  style: TextStyle(
+                    color: quizTheme.primaryTextColor,
+                    fontSize: 13,
+                  ),
+                  decoration: InputDecoration(
+                    hintText: context.l10n.sendEncouragement,
+                    hintStyle: TextStyle(
+                      color: quizTheme.secondaryTextColor.withOpacity(0.6),
                       fontSize: 13,
                     ),
-                    decoration: InputDecoration(
-                      hintText: "Votre message...",
-                      hintStyle: TextStyle(
-                        color: quizTheme.secondaryTextColor,
-                        fontSize: 13,
-                      ),
-                      filled: true,
-                      fillColor: quizTheme.backgroundColor,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 10,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: BorderSide.none,
-                      ),
+                    filled: true,
+                    fillColor: isDark
+                        ? Colors.white.withOpacity(0.05)
+                        : Colors.black.withOpacity(0.03),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 12,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide.none,
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
-                IconButton(
-                  onPressed: () async {
-                    if (_messageController.text.trim().isEmpty) return;
-                    final text = _messageController.text.trim();
-                    _messageController.clear();
+              ),
+              const SizedBox(width: 12),
+              IconButton(
+                onPressed: () async {
+                  if (_messageController.text.trim().isEmpty) return;
+                  final text = _messageController.text.trim();
+                  _messageController.clear();
 
-                    final repo = ref.read(studyGroupRepositoryProvider);
-                    await repo.sendMessage(
-                      groupId,
-                      StudyGroupMessage(
-                        id: DateTime.now().millisecondsSinceEpoch.toString(),
-                        senderId: "me",
-                        senderName: "Me",
-                        text: text,
-                        timestamp: DateTime.now(),
-                      ),
-                    );
-                    ref.invalidate(studyGroupMessagesProvider(groupId));
-                  },
-                  icon: const Icon(Iconsax.send_1, color: AppColors.primary),
-                ),
-              ],
-            ),
+                  final repo = ref.read(studyGroupRepositoryProvider);
+                  await repo.sendMessage(
+                    groupId,
+                    StudyGroupMessage(
+                      id: DateTime.now().millisecondsSinceEpoch.toString(),
+                      senderId: "me",
+                      senderName: context.l10n.you,
+                      text: text,
+                      timestamp: DateTime.now(),
+                    ),
+                  );
+                  ref.invalidate(studyGroupMessagesProvider(groupId));
+                },
+                icon: const Icon(Iconsax.send_1, color: AppColors.primary),
+              ),
+            ],
           ),
         ],
       ),
@@ -1229,6 +1448,162 @@ class _QuizGroupStudyPageState extends ConsumerState<QuizGroupStudyPage> {
       ),
     );
   }
+
+  String _timeAgo(DateTime dateTime) {
+    final local = dateTime.toLocal();
+    final diff = DateTime.now().difference(local);
+
+    if (diff.inSeconds < 60) return "Maintenant";
+    if (diff.inMinutes < 60) return "${diff.inMinutes}m";
+    if (diff.inHours < 24) return "${diff.inHours}h";
+    if (diff.inDays < 7) return "${diff.inDays}j";
+    return "${local.day}/${local.month}";
+  }
+
+  void _showEditMessageDialog(BuildContext context, StudyGroupMessage message) {
+    final controller = TextEditingController(text: message.text);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(context.l10n.edit),
+        content: TextField(
+          controller: controller,
+          maxLines: 3,
+          decoration: InputDecoration(
+            hintText: context.l10n.editNote,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(context.l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () async {
+              if (controller.text.trim().isEmpty) return;
+              try {
+                await ref
+                    .read(studyGroupRepositoryProvider)
+                    .editMessage(message.id, controller.text.trim());
+                if (context.mounted) Navigator.pop(context);
+                ref.invalidate(studyGroupMessagesProvider(widget.groupId));
+              } catch (e) {
+                if (context.mounted) {
+                  AppSnackBars.error(context, e);
+                }
+              }
+            },
+            child: Text(context.l10n.save),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _confirmDeleteMessage(
+    BuildContext context,
+    StudyGroupMessage message,
+  ) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(context.l10n.confirmDelete),
+        content: Text(context.l10n.deleteCommentConfirm),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(context.l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: Text(context.l10n.delete),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      try {
+        await ref.read(studyGroupRepositoryProvider).deleteMessage(message.id);
+        ref.invalidate(studyGroupMessagesProvider(widget.groupId));
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Message supprimé'),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        }
+      } catch (e) {
+        if (context.mounted) {
+          AppSnackBars.error(context, e);
+        }
+      }
+    }
+  }
+
+  void _showReportMessageDialog(
+    BuildContext context,
+    StudyGroupMessage message,
+  ) {
+    final reasons = [
+      context.l10n.reasonInaccurate,
+      context.l10n.reasonUnclear,
+      context.l10n.reasonOther,
+    ];
+    String selectedReason = reasons.first;
+
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: Text(context.l10n.reportError),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: reasons
+                .map(
+                  (r) => RadioListTile<String>(
+                    title: Text(r),
+                    value: r,
+                    groupValue: selectedReason,
+                    onChanged: (val) => setState(() => selectedReason = val!),
+                  ),
+                )
+                .toList(),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(context.l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () async {
+                try {
+                  await ref
+                      .read(studyGroupRepositoryProvider)
+                      .reportMessage(message.id, selectedReason);
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(context.l10n.reportSent)),
+                    );
+                  }
+                } catch (e) {
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                    AppSnackBars.error(context, e);
+                  }
+                }
+              },
+              child: Text(context.l10n.sendReport),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _GroupNotFoundScreen extends StatefulWidget {
@@ -1271,5 +1646,494 @@ class _GroupNotFoundScreenState extends State<_GroupNotFoundScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(body: Center(child: CircularProgressIndicator()));
+  }
+}
+
+class _GroupDiscussionBottomSheet extends ConsumerStatefulWidget {
+  final String groupId;
+  const _GroupDiscussionBottomSheet({required this.groupId});
+
+  @override
+  ConsumerState<_GroupDiscussionBottomSheet> createState() =>
+      _GroupDiscussionBottomSheetState();
+}
+
+class _GroupDiscussionBottomSheetState
+    extends ConsumerState<_GroupDiscussionBottomSheet> {
+  final _messageController = TextEditingController();
+  final _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  String _timeAgo(DateTime dateTime) {
+    final local = dateTime.toLocal();
+    final diff = DateTime.now().difference(local);
+
+    if (diff.inSeconds < 60) return "Maintenant";
+    if (diff.inMinutes < 60) return "${diff.inMinutes}m";
+    if (diff.inHours < 24) return "${diff.inHours}h";
+    if (diff.inDays < 7) return "${diff.inDays}j";
+    return "${local.day}/${local.month}";
+  }
+
+  void _showEditMessageDialog(BuildContext context, StudyGroupMessage message) {
+    final controller = TextEditingController(text: message.text);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(context.l10n.edit),
+        content: TextField(
+          controller: controller,
+          maxLines: 3,
+          decoration: InputDecoration(
+            hintText: context.l10n.editNote,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(context.l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () async {
+              if (controller.text.trim().isEmpty) return;
+              try {
+                await ref
+                    .read(studyGroupRepositoryProvider)
+                    .editMessage(message.id, controller.text.trim());
+                if (context.mounted) Navigator.pop(context);
+                ref.invalidate(studyGroupMessagesProvider(widget.groupId));
+              } catch (e) {
+                if (context.mounted) {
+                  AppSnackBars.error(context, e);
+                }
+              }
+            },
+            child: Text(context.l10n.save),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _confirmDeleteMessage(
+    BuildContext context,
+    StudyGroupMessage message,
+  ) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(context.l10n.confirmDelete),
+        content: Text(context.l10n.deleteCommentConfirm),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(context.l10n.cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: Text(context.l10n.delete),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      try {
+        await ref.read(studyGroupRepositoryProvider).deleteMessage(message.id);
+        ref.invalidate(studyGroupMessagesProvider(widget.groupId));
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Message supprimé'),
+              behavior: SnackBarBehavior.floating,
+            ),
+          );
+        }
+      } catch (e) {
+        if (context.mounted) {
+          AppSnackBars.error(context, e);
+        }
+      }
+    }
+  }
+
+  void _showReportMessageDialog(
+    BuildContext context,
+    StudyGroupMessage message,
+  ) {
+    final reasons = [
+      context.l10n.reasonInaccurate,
+      context.l10n.reasonUnclear,
+      context.l10n.reasonOther,
+    ];
+    String selectedReason = reasons.first;
+
+    showDialog(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: Text(context.l10n.reportError),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: reasons
+                .map(
+                  (r) => RadioListTile<String>(
+                    title: Text(r),
+                    value: r,
+                    groupValue: selectedReason,
+                    onChanged: (val) => setState(() => selectedReason = val!),
+                  ),
+                )
+                .toList(),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(context.l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () async {
+                try {
+                  await ref
+                      .read(studyGroupRepositoryProvider)
+                      .reportMessage(message.id, selectedReason);
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(context.l10n.reportSent)),
+                    );
+                  }
+                } catch (e) {
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                    AppSnackBars.error(context, e);
+                  }
+                }
+              },
+              child: Text(context.l10n.sendReport),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final quizTheme = Theme.of(context).extension<QuizThemeExtension>()!;
+    final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final messagesAsync = ref.watch(studyGroupMessagesProvider(widget.groupId));
+    final groupAsync = ref.watch(studyGroupProvider(widget.groupId));
+    final group = groupAsync.value;
+    final isAdmin = group?.isAdmin ?? false;
+
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.85,
+      padding: EdgeInsets.only(bottom: bottomPadding),
+      decoration: BoxDecoration(
+        color: quizTheme.backgroundColor,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: quizTheme.secondaryTextColor.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Discussion du Groupe",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: quizTheme.primaryTextColor,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(
+                    Iconsax.close_circle,
+                    color: quizTheme.secondaryTextColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Divider(height: 1),
+          Expanded(
+            child: messagesAsync.when(
+              data: (messages) {
+                if (messages.isEmpty) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(40.0),
+                      child: Text(
+                        context.l10n.beFirstToEncourage,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: quizTheme.secondaryTextColor.withOpacity(0.5),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                }
+
+                return ListView.builder(
+                  controller: _scrollController,
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    final m = messages[index];
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 12),
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: isDark ? AppColors.surfaceDark : Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: isDark
+                              ? AppColors.dividerDark
+                              : AppColors.dividerLight,
+                        ),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Builder(
+                            builder: (context) {
+                              final group = ref.watch(studyGroupProvider(widget.groupId)).value;
+                              final senderUser = group?.members.firstWhereOrNull((u) => u.id.toString() == m.senderId);
+                              final avatarKey = senderUser?.avatarKey ?? 'avatar_1';
+                              return NotionAvatarRenderer(avatarKey: avatarKey, size: 28);
+                            },
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      m.senderName.toUpperCase(),
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 11,
+                                        color: AppColors.primary,
+                                      ),
+                                    ),
+                                    if (m.isEdited) ...[
+                                      const SizedBox(width: 6),
+                                      Text(
+                                        "(${context.l10n.edited})",
+                                        style: TextStyle(
+                                          fontSize: 9,
+                                          color: Colors.grey.withOpacity(0.7),
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ],
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  m.text,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    height: 1.4,
+                                    fontWeight: FontWeight.w500,
+                                    color: quizTheme.primaryTextColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              PopupMenuButton<String>(
+                                icon: Icon(
+                                  Icons.more_vert,
+                                  size: 18,
+                                  color: Colors.grey.withOpacity(0.7),
+                                ),
+                                padding: EdgeInsets.zero,
+                                constraints: const BoxConstraints(),
+                                onSelected: (value) {
+                                  if (value == 'edit') {
+                                    _showEditMessageDialog(context, m);
+                                  } else if (value == 'delete') {
+                                    _confirmDeleteMessage(context, m);
+                                  } else if (value == 'report') {
+                                    _showReportMessageDialog(context, m);
+                                  }
+                                },
+                                itemBuilder: (context) => [
+                                  if (m.isMine)
+                                    PopupMenuItem(
+                                      value: 'edit',
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Iconsax.edit,
+                                            size: 18,
+                                            color: Colors.blue,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(context.l10n.edit),
+                                        ],
+                                      ),
+                                    ),
+                                  if (m.isMine || isAdmin)
+                                    PopupMenuItem(
+                                      value: 'delete',
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Iconsax.trash,
+                                            size: 18,
+                                            color: Colors.red,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(context.l10n.delete),
+                                        ],
+                                      ),
+                                    ),
+                                  if (!m.isMine)
+                                    PopupMenuItem(
+                                      value: 'report',
+                                      child: Row(
+                                        children: [
+                                          const Icon(
+                                            Iconsax.danger,
+                                            size: 18,
+                                            color: Colors.orange,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Text(context.l10n.reportError),
+                                        ],
+                                      ),
+                                    ),
+                                ],
+                              ),
+                              Text(
+                                _timeAgo(m.timestamp),
+                                style: const TextStyle(
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (e, s) => Center(child: Text("Erreur: $e")),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(
+              16,
+              8,
+              16,
+              16 + MediaQuery.of(context).padding.bottom,
+            ),
+            decoration: BoxDecoration(
+              color: isDark ? AppColors.surfaceDark : Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 10,
+                  offset: const Offset(0, -5),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _messageController,
+                    style: TextStyle(
+                      color: quizTheme.primaryTextColor,
+                      fontSize: 13,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: context.l10n.sendEncouragement,
+                      hintStyle: TextStyle(
+                        color: quizTheme.secondaryTextColor.withOpacity(0.6),
+                        fontSize: 13,
+                      ),
+                      filled: true,
+                      fillColor: isDark
+                          ? Colors.white.withOpacity(0.05)
+                          : Colors.black.withOpacity(0.03),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 12,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                IconButton(
+                  onPressed: () async {
+                    if (_messageController.text.trim().isEmpty) return;
+                    final text = _messageController.text.trim();
+                    _messageController.clear();
+
+                    final repo = ref.read(studyGroupRepositoryProvider);
+                    await repo.sendMessage(
+                      widget.groupId,
+                      StudyGroupMessage(
+                        id: DateTime.now().millisecondsSinceEpoch.toString(),
+                        senderId: "me",
+                        senderName: context.l10n.you,
+                        text: text,
+                        timestamp: DateTime.now(),
+                      ),
+                    );
+                    ref.invalidate(studyGroupMessagesProvider(widget.groupId));
+                  },
+                  icon: const Icon(Iconsax.send_1, color: AppColors.primary),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

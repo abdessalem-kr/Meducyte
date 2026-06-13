@@ -150,13 +150,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nextQuestion => 'Next Question';
 
   @override
-  String get correct => 'Correct';
+  String get correct => 'CORRECT';
 
   @override
-  String get incorrect => 'Incorrect';
+  String get incorrect => 'INCORRECT';
 
   @override
-  String get partiallyCorrect => 'Partially Correct';
+  String get partiallyCorrect => 'PARTIALLY CORRECT';
 
   @override
   String get explanation => 'Explanation';
@@ -216,13 +216,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get specialty => 'Specialty';
 
   @override
-  String get saveChanges => 'Save Changes';
+  String get saveChanges => 'Save changes';
 
   @override
   String get profileUpdatedSuccessfully => 'Profile updated successfully!';
 
   @override
   String get profileUpdateFailed => 'Failed to update profile';
+
+  @override
+  String get profileChooseIdentity => 'Choose your identity';
+
+  @override
+  String get profileSelectAvatarDesc =>
+      'Select the avatar that matches your style';
+
+  @override
+  String get profileMedicalInterests => 'Medical Interests';
+
+  @override
+  String get profileSaveInterests => 'Save Interests';
+
+  @override
+  String profileYearPrefix(Object year) {
+    return 'Year $year';
+  }
+
+  @override
+  String get profileNotSpecified => 'Not specified';
+
+  @override
+  String get profileNotDefined => 'Not defined';
+
+  @override
+  String get profileNoInterestSelected => 'No interest selected';
+
+  @override
+  String get profileStudyHabits => 'Study Habits';
 
   @override
   String get notLoggedIn => 'Not logged in';
@@ -309,6 +339,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Meducyte is an advanced learning platform tailored for medical students. It offers clinical cases, flashcards, and a dedicated workspace to enhance your practical knowledge.';
 
   @override
+  String get twoHoursAgo => '2 hours ago';
+
+  @override
   String get fontSmall => 'Small';
 
   @override
@@ -337,6 +370,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get studyPlan => 'Study Plan';
+
+  @override
+  String get studyPlanTitle => 'Study Plan Settings';
+
+  @override
+  String get studyPlanInfo =>
+      'Configure your daily study targets to control how many new cards and review items you tackle each day.';
 
   @override
   String get downloadMode => 'Download Mode';
@@ -1355,7 +1395,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get selectPrompt => 'Select';
 
   @override
-  String get deleteHighlight => 'Remove Highlight';
+  String get deleteHighlight => 'Delete Highlight';
 
   @override
   String get editNoteLabel => 'Edit Note';
@@ -1674,10 +1714,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get testFeatures => 'Test Features';
 
   @override
+  String get sendTestNotification => 'Send a test notification';
+
+  @override
   String get selectBestOption => 'Select the best option';
 
   @override
-  String get correctionMode => 'Correction Mode';
+  String get correctionMode => 'Correction mode';
 
   @override
   String get instantCorrection => 'Instant Correction';
@@ -4240,4 +4283,518 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get simSearchPathology => 'Search for a pathology or symptoms...';
+
+  @override
+  String get peakFocusMsg => 'Excellent focus. Ready to tackle complex topics!';
+
+  @override
+  String get lightFatigueMsg =>
+      'Light fatigue detected. Consider switching subjects or taking a short break.';
+
+  @override
+  String get burnoutRiskMsg =>
+      'High fatigue. Take a real break to recharge your batteries.';
+
+  @override
+  String get elapsedTime => 'Elapsed Time';
+
+  @override
+  String get averagePace => 'Average Pace';
+
+  @override
+  String get recommendedReview => 'Recommended Review';
+
+  @override
+  String get perfectScore => 'Perfect Score!';
+
+  @override
+  String get perfectScoreSubtitle =>
+      'Congratulations, you have mastered all notions of this quiz!';
+
+  @override
+  String get reviewMistakes => 'Review Mistakes';
+
+  @override
+  String get restartQuiz => 'Restart';
+
+  @override
+  String get performanceExcellent => 'Excellent';
+
+  @override
+  String get performanceVeryGood => 'Very Good';
+
+  @override
+  String get performanceAverage => 'Average';
+
+  @override
+  String get performanceNeedsWork => 'Needs Work';
+
+  @override
+  String get feedbackNeedsWork =>
+      'Take your time to review the corrections to improve.';
+
+  @override
+  String get feedbackExcellent =>
+      'Congratulations! You have mastered this topic perfectly.';
+
+  @override
+  String get feedbackVeryGood => 'Great job! You are almost there.';
+
+  @override
+  String get feedbackAverage => 'Good foundation, keep reviewing!';
+
+  @override
+  String get questionsDetailsList => 'Question Details';
+
+  @override
+  String get fatigueSettingsTitle => 'Fatigue Settings';
+
+  @override
+  String get fatigueAnalysis => 'Fatigue Analysis';
+
+  @override
+  String get fatigueAnalysisDesc =>
+      'Enable real-time tracking of mental load based on study sessions, quiz performance, and recovery breaks.';
+
+  @override
+  String get fatigueSensitivity => 'Fatigue Sensitivity';
+
+  @override
+  String get fatigueSensitivityDesc =>
+      'Adjust how fast cognitive load builds up during work and quizzes.';
+
+  @override
+  String get sensitivityLow => 'Low';
+
+  @override
+  String get sensitivityMedium => 'Medium';
+
+  @override
+  String get sensitivityHigh => 'High';
+
+  @override
+  String get fatigueAlerts => 'Fatigue Alert Notifications';
+
+  @override
+  String get fatigueAlertsDesc =>
+      'Receive notifications when fatigue levels indicate a break is due.';
+
+  @override
+  String get fatigueAnalysisSubtitle =>
+      'Enable automatic cognitive fatigue tracking';
+
+  @override
+  String get sensitivityLowDesc => 'Fatigue builds up 50% slower';
+
+  @override
+  String get sensitivityMediumDesc => 'Standard recommended settings';
+
+  @override
+  String get sensitivityHighDesc => 'Fatigue builds up 50% faster';
+
+  @override
+  String get helpCenter => 'Help Center';
+
+  @override
+  String get faqHowCanWeHelp => 'How can we help you?';
+
+  @override
+  String get faqSearchDesc => 'Search our frequently asked questions';
+
+  @override
+  String get faqCategoryAccountPremium => 'Account & Premium';
+
+  @override
+  String get faqCategoryStudyFeatures => 'Study Features';
+
+  @override
+  String get faqCategoryCommunityGroups => 'Community & Groups';
+
+  @override
+  String get faqStillHaveQuestions => 'Still have questions?';
+
+  @override
+  String get faqContactSupport => 'CONTACT HUMAN SUPPORT';
+
+  @override
+  String get faqQ1 => 'How do I upgrade to Premium?';
+
+  @override
+  String get faqA1 =>
+      'You can upgrade by clicking on the Profile tab or selecting any premium feature (like unlimited AI Chat). We support various payment methods including Chargily for Algerian Dinars.';
+
+  @override
+  String get faqQ2 => 'Can I use Meducyte on multiple devices?';
+
+  @override
+  String get faqA2 =>
+      'Yes! Your data is synced to your account. Simply log in on your new device to continue your study journey.';
+
+  @override
+  String get faqQ3 => 'How does Spaced Repetition work?';
+
+  @override
+  String get faqA3 =>
+      'Meducyte uses advanced algorithms to track your performance. We show you difficult questions more often and easy ones less frequently to optimize your memory retention.';
+
+  @override
+  String get faqQ4 => 'What is the AI Medical Tutor?';
+
+  @override
+  String get faqA4 =>
+      'Medu-AI is our custom chatbot trained on medical literature. It can explain complex concepts, help you interpret labs, or guide you through clinical cases.';
+
+  @override
+  String get faqQ5 => 'Does Meducyte follow the Algerian curriculum?';
+
+  @override
+  String get faqA5 =>
+      'Yes, our question bank and course structure are specifically designed to align with the curriculum modules of Algerian medical faculties.';
+
+  @override
+  String get faqQ6 => 'How to start a Group Study?';
+
+  @override
+  String get faqA6 =>
+      'Head to the \'Productive Bay\' and select \'Study Groups\'. You can create a private group and invite your comrades via a unique code or link.';
+
+  @override
+  String get faqQ7 => 'Is there a Meducyte community?';
+
+  @override
+  String get faqA7 =>
+      'Yes! Join our official Telegram channel to stay updated and discuss with thousands of medical students across Algeria.';
+
+  @override
+  String get statsPerformanceTrend => 'Performance Trend';
+
+  @override
+  String get statsSpecialtyAccuracy => 'Specialty Accuracy';
+
+  @override
+  String get statsTotalAccuracy => 'Total Accuracy';
+
+  @override
+  String get statsQuizzesDone => 'Quizzes Done';
+
+  @override
+  String get statsQuestions => 'Questions';
+
+  @override
+  String get statsStreak => 'Study Streak';
+
+  @override
+  String get chatTrialLimitTitle => 'Trial Limit';
+
+  @override
+  String get chatTrialLimitDesc =>
+      'You\'ve reached the limit of 5 trial messages. Upgrade to Premium for unlimited access to the AI Medical Tutor.';
+
+  @override
+  String get chatUpgradeNow => 'Upgrade Now';
+
+  @override
+  String get chatTrialBadge => 'TRIAL';
+
+  @override
+  String chatMessagesCount(Object count) {
+    return '• $count/5 messages';
+  }
+
+  @override
+  String get chatClearHistoryConfirm =>
+      'Start a new conversation and clear history?';
+
+  @override
+  String get unread => 'Unread';
+
+  @override
+  String get freeBadge => 'FREE';
+
+  @override
+  String get studyNote => 'Study Note';
+
+  @override
+  String get emptyNoteHint => 'Empty note. Tap to edit.';
+
+  @override
+  String get premiumFeature => 'Premium Feature';
+
+  @override
+  String get upgradeToUnlockAi =>
+      'Upgrade to a higher tier to unlock high-level AI tools and full module access.';
+
+  @override
+  String get viewPlans => 'View Plans';
+
+  @override
+  String get zenModeEnable => 'Enable Zen Mode';
+
+  @override
+  String get zenModeDisable => 'Disable Zen Mode';
+
+  @override
+  String get sepiaThemeEnable => 'Sepia Paper Theme';
+
+  @override
+  String get sepiaThemeDisable => 'Standard Theme';
+
+  @override
+  String get autoScrollStart => 'Start Auto-Scroll';
+
+  @override
+  String get autoScrollPause => 'Pause Auto-Scroll';
+
+  @override
+  String scrollSpeedLabel(Object speed) {
+    return 'Scroll Speed: ${speed}x';
+  }
+
+  @override
+  String get adjustTextSize => 'Adjust Text Size';
+
+  @override
+  String get printPdfExport => 'Print / PDF Export';
+
+  @override
+  String get reportContent => 'Report Content';
+
+  @override
+  String get listen => 'Listen';
+
+  @override
+  String get aiExplain => 'AI Explain';
+
+  @override
+  String get aiSummarize => 'AI Summarize';
+
+  @override
+  String get aiMnemonic => 'AI Mnemonic';
+
+  @override
+  String get deleteNote => 'Delete Note';
+
+  @override
+  String get highlightColorTitle => 'Highlight Color';
+
+  @override
+  String get highlightOptionsTitle => 'Highlight Options';
+
+  @override
+  String get sq3rReadingModeTitle => 'SQ3R Reading Mode';
+
+  @override
+  String get returnToSq3r => 'Return to SQ3R';
+
+  @override
+  String get tapToZoom => 'Tap to zoom';
+
+  @override
+  String get loadingImage => 'Loading image…';
+
+  @override
+  String get imageUnavailable => 'Image unavailable';
+
+  @override
+  String sectionsCount(Object count) {
+    return '$count sections';
+  }
+
+  @override
+  String get dummyLoadingLessonTitle => 'Loading dummy lesson title...';
+
+  @override
+  String dummyLoadingParagraphTitle(Object number) {
+    return 'Dummy paragraph number $number';
+  }
+
+  @override
+  String get dummyLoadingParagraphContent =>
+      'Loading dummy paragraph content for the active lesson...';
+
+  @override
+  String sectionLabel(Object number) {
+    return 'Section $number';
+  }
+
+  @override
+  String get tableLabel => 'Table';
+
+  @override
+  String get loadingModuleA => 'Loading Module A…';
+
+  @override
+  String get loadingModuleB => 'Loading Module B…';
+
+  @override
+  String get loadingModuleC => 'Loading Module C…';
+
+  @override
+  String get loadingLessonA => 'Loading Lesson A…';
+
+  @override
+  String get loadingLessonB => 'Loading Lesson B…';
+
+  @override
+  String get loadingLessonC => 'Loading Lesson C…';
+
+  @override
+  String get loadingSourceA => 'Loading Source A…';
+
+  @override
+  String get loadingSourceB => 'Loading Source B…';
+
+  @override
+  String modulesError(String error) {
+    return 'Modules Error: $error';
+  }
+
+  @override
+  String lessonsError(String error) {
+    return 'Lessons Error: $error';
+  }
+
+  @override
+  String get revisionMode => 'Revision Mode';
+
+  @override
+  String get showAnswersDirectly => 'Show answers directly';
+
+  @override
+  String get allOrNothing => 'All or nothing';
+
+  @override
+  String get partialPoints => 'Partial points';
+
+  @override
+  String get examDuration => 'Exam duration';
+
+  @override
+  String get durationNone => 'None';
+
+  @override
+  String durationMinutes(String minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get questionCount => 'Number of questions';
+
+  @override
+  String get questionCountAll => 'All';
+
+  @override
+  String get questionCountCustom => 'Custom';
+
+  @override
+  String get preciseNumber => 'Precise number:';
+
+  @override
+  String get enterNumber => 'Enter a number';
+
+  @override
+  String get freeTrialLimitDesc => 'Free Trial: 10 questions per session';
+
+  @override
+  String modulesCount(String count) {
+    return '$count modules';
+  }
+
+  @override
+  String maximumItemsAllowed(String count) {
+    return 'Maximum $count items allowed';
+  }
+
+  @override
+  String get loadingQuestion => 'Loading question, please wait…';
+
+  @override
+  String dummyLoadingOption(int number) {
+    return 'Dummy loading option $number';
+  }
+
+  @override
+  String get sessionSavedSuccess => 'Session saved successfully';
+
+  @override
+  String get quitQuizTitle => 'Quit the quiz?';
+
+  @override
+  String get quitQuizBody =>
+      'Do you want to save your progress to resume later or abandon this session?';
+
+  @override
+  String get saveAndQuit => 'Save and quit';
+
+  @override
+  String get quitWithoutSaving => 'Quit without saving';
+
+  @override
+  String get editTask => 'Edit task';
+
+  @override
+  String get editSubTask => 'Edit sub-task';
+
+  @override
+  String get subTaskName => 'Sub-task name';
+
+  @override
+  String get subTasksLabel => 'Sub-tasks';
+
+  @override
+  String get addSubTaskHint => 'Add a sub-task…';
+
+  @override
+  String get editLabel => 'Edit';
+
+  @override
+  String get deleteTaskTitle => 'Delete task';
+
+  @override
+  String deleteTaskConfirm(String title) {
+    return 'Are you sure you want to delete \'$title\'?';
+  }
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get compileAndCopy => 'Compile & Copy';
+
+  @override
+  String get examHelp => 'Exam Help';
+
+  @override
+  String get newExamSectionTitle => 'New Exam Section';
+
+  @override
+  String get add => 'Add';
+
+  @override
+  String get reportCleared => 'Report cleared';
+
+  @override
+  String get clearReportQuestion => 'Clear Report?';
+
+  @override
+  String get clearReportConfirmDesc =>
+      'Are you sure you want to clear the entire observation report? This cannot be undone.';
+
+  @override
+  String get reportCopiedClipboard => 'Report copied to clipboard';
+
+  @override
+  String get examNameTitle => 'Exam Name';
+
+  @override
+  String get pelvicUltrasoundExample => 'Ex: Pelvic ultrasound';
+
+  @override
+  String get otherOption => 'Other...';
+
+  @override
+  String get newSectionHint => 'Section name (e.g. ENT Exam)';
 }

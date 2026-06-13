@@ -115,6 +115,7 @@ class _AddTaskSheetState extends ConsumerState<AddTaskSheet> {
   late TodoPriority _priority;
   late int _estimatedPomodoros;
   late List<SubTask> _subtasks;
+  bool _isSaving = false;
 
   @override
   void initState() {
@@ -156,16 +157,16 @@ class _AddTaskSheetState extends ConsumerState<AddTaskSheet> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Modifier la sous-tâche"),
+        title: Text(context.l10n.editSubTask),
         content: TextField(
           controller: controller,
           autofocus: true,
-          decoration: const InputDecoration(hintText: "Nom de la sous-tâche"),
+          decoration: InputDecoration(hintText: context.l10n.subTaskName),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Annuler"),
+            child: Text(context.l10n.cancel),
           ),
           TextButton(
             onPressed: () {
@@ -179,7 +180,7 @@ class _AddTaskSheetState extends ConsumerState<AddTaskSheet> {
                 Navigator.pop(context);
               }
             },
-            child: const Text("Enregistrer"),
+            child: Text(context.l10n.save),
           ),
         ],
       ),
@@ -247,7 +248,7 @@ class _AddTaskSheetState extends ConsumerState<AddTaskSheet> {
                       Text(
                         widget.initialTask == null
                             ? context.l10n.newTask
-                            : "Modifier la tâche",
+                            : context.l10n.editTask,
                         style: theme.textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.w900,
                           letterSpacing: -1,
@@ -418,7 +419,7 @@ class _AddTaskSheetState extends ConsumerState<AddTaskSheet> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Sous-tâches",
+                        context.l10n.subTasksLabel,
                         style: theme.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w900,
                           letterSpacing: 0.5,
@@ -498,7 +499,7 @@ class _AddTaskSheetState extends ConsumerState<AddTaskSheet> {
                           controller: _subTaskController,
                           style: const TextStyle(fontSize: 14),
                           decoration: InputDecoration(
-                            hintText: "Ajouter une sous-tâche...",
+                            hintText: context.l10n.addSubTaskHint,
                             filled: true,
                             fillColor: isDark
                                 ? Colors.white.withOpacity(0.03)
@@ -529,31 +530,59 @@ class _AddTaskSheetState extends ConsumerState<AddTaskSheet> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        if (_titleController.text.isNotEmpty) {
-                          final notifier = ref.read(
-                            productiveBayProvider.notifier,
-                          );
-                          if (widget.initialTask == null) {
-                            notifier.addTask(
-                              'manual',
-                              _titleController.text,
-                              priority: _priority,
-                              estimatedPomodoros: _estimatedPomodoros,
-                              subtasks: _subtasks,
-                            );
-                          } else {
-                            notifier.updateTask(
-                              taskId: widget.initialTask!.id,
-                              title: _titleController.text,
-                              priority: _priority,
-                              estimatedPomodoros: _estimatedPomodoros,
-                              subtasks: _subtasks,
-                            );
-                          }
-                          Navigator.pop(context);
-                        }
-                      },
+                      onPressed: _isSaving
+                          ? null
+                          : () async {
+                              debugPrint("DEBUG: Save button clicked, title field: '${_titleController.text}'");
+                              if (_titleController.text.isNotEmpty) {
+                                setState(() => _isSaving = true);
+                                try {
+                                  final notifier = ref.read(
+                                    productiveBayProvider.notifier,
+                                  );
+                                  if (widget.initialTask == null) {
+                                    debugPrint("DEBUG: Calling addTask on notifier");
+                                    await notifier.addTask(
+                                      'manual',
+                                      _titleController.text,
+                                      priority: _priority,
+                                      estimatedPomodoros: _estimatedPomodoros,
+                                      subtasks: _subtasks,
+                                    );
+                                    debugPrint("DEBUG: addTask notifier call completed");
+                                  } else {
+                                    debugPrint("DEBUG: Calling updateTask on notifier");
+                                    await notifier.updateTask(
+                                      taskId: widget.initialTask!.id,
+                                      title: _titleController.text,
+                                      priority: _priority,
+                                      estimatedPomodoros: _estimatedPomodoros,
+                                      subtasks: _subtasks,
+                                    );
+                                    debugPrint("DEBUG: updateTask notifier call completed");
+                                  }
+                                  debugPrint("DEBUG: context.mounted status: $context.mounted");
+                                  if (context.mounted) {
+                                    debugPrint("DEBUG: Popping AddTaskSheet from Navigator");
+                                    Navigator.pop(context);
+                                  }
+                                } catch (e, stackTrace) {
+                                  debugPrint("DEBUG: Exception caught inside Save onPressed: $e\n$stackTrace");
+                                  setState(() => _isSaving = false);
+                                  if (context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          "Erreur : $e",
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                }
+                              } else {
+                                debugPrint("DEBUG: Save button clicked but title was empty");
+                              }
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: theme.primaryColor,
                         foregroundColor: Colors.white,
@@ -563,15 +592,24 @@ class _AddTaskSheetState extends ConsumerState<AddTaskSheet> {
                         ),
                         elevation: 0,
                       ),
-                      child: Text(
-                        widget.initialTask == null
-                            ? context.l10n.addToList
-                            : "Enregistrer les modifications",
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 16,
-                        ),
-                      ),
+                      child: _isSaving
+                          ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.0,
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            )
+                          : Text(
+                              widget.initialTask == null
+                                  ? context.l10n.addToList
+                                  : context.l10n.saveChanges,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 16,
+                              ),
+                            ),
                     ),
                   ),
                 ],

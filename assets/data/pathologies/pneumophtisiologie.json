@@ -1,125 +1,311 @@
 [
   {
-    "name": "Pneumonie communautaire",
-    "description": "Infection bactérienne des poumons",
+    "name": "Tuberculose miliare résistante aux médicaments",
+    "description": "Forme sévère de tuberculose caractérisée par une dissémination hémato-génique de bacilles résistants aux antituberculeux de première ligne. La physiopathologie repose sur une multiplication exponentielle des mycobactéries dans les capillaires pulmonaires, entraînant des nodules miliaires diffus. Présentation clinique typique : fièvre persistante > 38,3°C, perte de poids > 10 %, asthénie, sueurs nocturnes, et signes d'atteinte extrapulmonaire (hépatosplénomégalie, adénopathies cervicales). L'atteinte pulmonaire est souvent asymptomatique initialement, mais peut évoluer vers une insuffisance respiratoire aiguë.",
     "redFlags": [
-      "Dyspnée sévère",
-      "Fièvre élevée",
-      "Confusion"
+      "Fièvre prolongée > 3 semaines associée à une perte de poids > 5 % en 6 mois",
+      "Adénopathies cervicales indolores de plus de 1 cm de diamètre avec aspect caseux à l'échographie",
+      "Hépatosplénomégalie associée à une lymphopénie (< 1 000/mm³)",
+      "Dyspnée d'effort progressive avec hypoxémie (PaO2 < 60 mmHg) en l'absence de comorbidité pulmonaire",
+      "Résistance confirmée à l'isoniazide et à la rifampicine sur antibiogramme moléculaire"
     ],
     "scores": [
       {
-        "name": "Score de CURB-65",
-        "description": "Évaluation de la gravité de la pneumonie",
+        "name": "Classification de l'OMS pour la tuberculose multirésistante",
+        "description": "Évalue le risque de mortalité et la gravité de la résistance aux antituberculeux",
         "criteria": [
-          "Confusion",
-          "Uremie",
-          "Rythme respiratoire élevé",
-          "Pression artérielle basse",
-          "Âge supérieur à 65 ans"
+          "Classe I: Résistance à l'isoniazide uniquement (+0)",
+          "Classe II: Résistance à l'isoniazide et à la rifampicine (+2)",
+          "Classe III: Résistance à l'isoniazide, la rifampicine et au moins un fluoroquinolone (+3)",
+          "Classe IV: Résistance à l'isoniazide, la rifampicine, les fluoroquinolones et aux aminosides (+4)"
         ],
-        "interpretation": "Score élevé indique une gravité accrue"
+        "interpretation": "Classe I: Surveillance stricte. Classe II: Traitement de 18-24 mois avec second-ligne. Classe III/IV: Nécessite une thérapie personnalisée avec des médicaments expérimentaux (bedaquiline, delamanide) et suivi multidisciplinaire."
       }
     ],
     "focusedExam": [
       {
-        "title": "Auscultation pulmonaire",
+        "title": "Examen clinique pulmonaire et lymphatique",
         "steps": [
           {
-            "action": "Écouter les bruits respiratoires",
-            "interpretation": "Râles, sibilances ou égophony"
+            "action": "Palpation des ganglions cervicaux, axillaires et inguinaux avec évaluation de la consistance, de la mobilité et de la douleur",
+            "interpretation": "Ganglions durs, indolores, fixés à la paroi (signe de la 'balle de tennis') suggérant une nécrose caseuse tuberculeuse. Mobilité libre évoque plutôt une lymphadénopathie réactive."
+          },
+          {
+            "action": "Auscultation pulmonaire avec recherche de râles crépitants bas et souffles rauques",
+            "interpretation": "Râles crépitants bas associés à une hyperrésonance à la percussion indiquent une infiltration interstitielle. Absence de râles ne permet pas d'exclure la forme miliare."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration d'antibiotiques",
-      "Oxygénothérapie"
+      "Isolement respiratoire en chambre négative avec masque FFP3 pour les patients non testés négatifs à l'acidofixité",
+      "Initiation d'un schéma de traitement second-ligne (pyrazinamide, éthambutol, capréomycine) avec ajout de bedaquiline (400 mg/j) après confirmation de résistance",
+      "Transfusion sanguine préventive si hémoglobine < 8 g/dL et hémoglobine fédérative positive",
+      "Sédation analgésique avec fentanyl pour les douleurs thoraciques associées à l'effraction pleurale",
+      "Surveillance quotidienne des paramètres de coagulation et de la fonction hépatique"
     ],
     "differentialDiagnosis": [
-      "Pneumonie nosocomiale",
-      "Exacerbation de BPCO"
+      "Sarcoïdose disséminée (absence de bacilles à l'AFB et granulomes non caseux à la biopsie)",
+      "Lymphome non hodgkinien (présence de blastes lymphoïdes à la cytométrie en flux)",
+      "Mycose fongique (culture positive à Cryptococcus neoformans)"
     ]
   },
   {
-    "name": "Embolie pulmonaire",
-    "description": "Obstruction des artères pulmonaires par un caillot",
+    "name": "Lymphadénite tuberculeuse cervicale atypique",
+    "description": "Forme clinique rare de tuberculose extrapulmonaire caractérisée par des adénopathies cervicales de localisation inhabituelle (ganglions pré-auriculaires, sous-maxillaires) ou présentant des signes atypiques (ulcération cutanée, fistule). La physiopathologie implique une infection directe par voie lymphatique ou hémato-génique, avec formation de granulomes non caseux ou caseux atypiques. Présentation clinique: adénopathies dures, fixées, indolores, parfois ulcérees, associées à des signes généraux modérés.",
     "redFlags": [
-      "Dyspnée soudaine",
-      "Douleur thoracique",
-      "Syncope"
+      "Adénopathie cervicale > 2 cm de diamètre persistant > 6 semaines sans fièvre",
+      "Ulcération cutanée sur un ganglion cervicale avec fistule cutanée",
+      "Réaction de Koch négative malgré exposition connue à la tuberculose",
+      "Imagerie par IRM montrant des ganglions avec signal hétérogène en T2 et nécrose centrale",
+      "Biopsie lymphatique montrant des granulomes non caseux avec absence de bacilles"
     ],
     "scores": [
       {
-        "name": "Score de Wells",
-        "description": "Évaluation du risque d'embolie pulmonaire",
+        "name": "Score de diagnostic de la lymphadénite tuberculeuse",
+        "description": "Évalue la probabilité de tuberculose basé sur les critères cliniques et biologiques",
         "criteria": [
-          "Douleur thoracique",
-          "Taux de saturation en oxygène bas",
-          "Fréquence cardiaque élevée",
-          "Immobilisation récente"
+          "Présence d'ulcération cutanée (+2)",
+          "Durée de l'adénopathie > 6 mois (+1)",
+          "Réaction de Mantoux positive (> 15 mm) (+1)",
+          "Biopsie montrant des granulomes caseux (+3)",
+          "Absence de bacilles à l'AFB (-1)"
         ],
-        "interpretation": "Score élevé indique un risque accru"
+        "interpretation": "Score ≥ 5: Probabilité très élevée de tuberculose. Score 2-4: Probabilité intermédiaire nécessitant biopsie. Score < 2: Diagnostique différentiel prioritaire."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen cardiovasculaire",
+        "title": "Examen clinique des adénopathies cervicales",
         "steps": [
           {
-            "action": "Mesurer la pression artérielle",
-            "interpretation": "Hypertension ou hypotension"
+            "action": "Palpation des ganglions cervicaux avec évaluation de la mobilité, de la consistance et de la fixation à la peau",
+            "interpretation": "Ganglions durs, fixés à la peau (signe de la 'balle de tennis') suggérant une nécrose caseuse. Mobilité libre évoque plutôt une lymphadénopathie bénigne."
+          },
+          {
+            "action": "Examen cutané des zones adjacentes pour rechercher des ulcérations ou fistules",
+            "interpretation": "Ulcération cutanée sur un ganglion indique une rupture de la capsule lymphatique. Fistule cutanée avec débit caseux confirme le diagnostic."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration d'anticoagulants",
-      "Oxygénothérapie"
+      "Biopsie incisionnelle des ganglions avec coloration de Ziehl-Neelsen et PCR pour Mycobacterium tuberculosis",
+      "Initiation d'un traitement antituberculeux standard (RIF, INH, PZA, EMB) pendant 2 mois, puis RIF et INH pendant 4 mois",
+      "Antibiothérapie empirique avec ceftriaxone si suspicion de coinfection bactérienne",
+      "Nettoyage des ulcérations cutanées avec solution de povidone iodée",
+      "Surveillance radiologique mensuelle par échographie des adénopathies"
     ],
     "differentialDiagnosis": [
-      "Infarctus du myocarde",
-      "Pneumonie"
+      "Lymphome de type Hodgkin (présence de cellules de Reed-Sternberg à la biopsie)",
+      "Lymphadénite fongique (culture positive à Histoplasma capsulatum)",
+      "Adénite réactionnelle post-vaccinale (historique de BCG récent)"
     ]
   },
   {
-    "name": "Asthme",
-    "description": "Inflammation chronique des voies respiratoires",
+    "name": "Pneumonie tuberculeuse fibro-cavitaire résistante",
+    "description": "Cette pathologie se caractérise par la présence de lésions fibro-cavitaire pulmonaires associées à une résistance aux antituberculeux de première intention. La physiopathologie repose sur une infection chronique par Mycobacterium tuberculosis, associée à une réponse immunitaire défectueuse et/ou une exposition prolongée à des traitements inadaptés. La présentation clinique typique inclut une fièvre persistante, une toux productive avec expectoration purulente, une perte de poids marquée, et une dyspnée progressive. Les lésions radiologiques montrent des cavités pulmonaires irrégulières, des zones de fibrose et des nodules satellites.",
     "redFlags": [
-      "Dyspnée sévère",
-      "Wheezing",
-      "Cyanose"
+      "Fièvre > 38,5°C persistant > 3 semaines malgré un traitement empirique",
+      "Cavités pulmonaires > 3 cm en imagerie thoracique avec parois épaisses",
+      "Résistance confirmée à l'isoniazide et/ou à la rifampicine en culture",
+      "Perte de poids > 10 % du poids corporel en < 6 mois",
+      "Expectoration de sang en quantité modérée à abondante"
     ],
     "scores": [
       {
-        "name": "Score de gravité de l'asthme",
-        "description": "Évaluation de la gravité de l'asthme",
+        "name": "Score de résistance tuberculeuse (TRS)",
+        "description": "Évalue le risque de résistance aux antituberculeux de première intention en fonction des antécédents et des données biologiques.",
         "criteria": [
-          "Fréquence des crises",
-          "Niveau de contrôle des symptômes",
-          "Utilisation de médicaments"
+          "Antécédent de traitement antituberculeux incomplet (+2 points)",
+          "Contact avec un cas de tuberculose résistante (+1 point)",
+          "Culture positive à M. tuberculosis avec résistance in vitro à l'isoniazide (+1 point)",
+          "Présence de cavités multiples en imagerie (+1 point)",
+          "Hémoptysie > 500 mL/jour (+2 points)"
         ],
-        "interpretation": "Score élevé indique une gravité accrue"
+        "interpretation": "Score ≥ 5 : risque élevé de résistance ; Score 3-4 : risque modéré ; Score < 3 : risque faible."
       }
     ],
     "focusedExam": [
       {
-        "title": "Auscultation pulmonaire",
+        "title": "Examen radiologique et biologique ciblé",
         "steps": [
           {
-            "action": "Écouter les bruits respiratoires",
-            "interpretation": "Wheezing, râles ou silence pulmonaire"
+            "action": "TDM thoracique haute résolution avec reconstruction coronale",
+            "interpretation": "Recherche de cavités pulmonaires > 3 cm, de zones de fibrose périphériques, et de nodules satellites. La présence de cavités multiples avec parois épaisses oriente vers une résistance."
+          },
+          {
+            "action": "Prélèvement de crachats pour culture mycobactérienne et test de sensibilité",
+            "interpretation": "Culture positive avec résistance à l'isoniazide et/ou à la rifampicine confirme le diagnostic. L'absence de croissance en 4 semaines évoque une contamination ou une infection non tuberculeuse."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration de bronchodilatateurs",
-      "Oxygénothérapie"
+      "Isolation respiratoire en chambre négative pour prévenir la transmission",
+      "Initiation d'un schéma de traitement de seconde intention (linezolid, bedaquiline, clofazimine) sous surveillance microbiologique",
+      "Sédation analgésique pour gérer la douleur thoracique associée aux lésions fibrosées",
+      "Transfusion sanguine en cas de hémoptysie massive (Hémoglobine < 7 g/dL)",
+      "Consultation chirurgicale pour évaluation de la résection pulmonaire en cas de cavités non réactives"
     ],
     "differentialDiagnosis": [
-      "BPCO",
-      "Pneumonie"
+      "Pneumonie fongique (Aspergillus) : absence de fièvre persistante et présence de mycélium en culture",
+      "Carcinome bronchique : absence de cavités multiples et présence de calcifications centrales",
+      "Pneumonie post-infectieuse chronique : absence de résistance aux antituberculeux"
+    ]
+  },
+  {
+    "name": "Méningite tuberculeuse extrapulmonaire compliquée",
+    "description": "Forme grave de tuberculose extrapulmonaire touchant le système nerveux central, associée à des complications neurologiques majeures. La physiopathologie implique une dissémination hémato-gène de M. tuberculosis vers les méninges, entraînant une réaction inflammatoire intense avec exsudat purulent et adhésions méningées. La présentation clinique typique inclut une céphalée progressive, des vomissements, des signes de méningite (rigidité cervicale, signe de Brudzinski), et des déficits neurologiques focaux. Les complications fréquentes sont l'hydrocéphale obstructif, les abcès cérébraux, et la myélite tuberculeuse.",
+    "redFlags": [
+      "Céphalée évoluant sur plusieurs semaines avec irradiation vers les yeux",
+      "Rigidité cervicale associée à un signe de Kernig positif",
+      "Perte de conscience progressive avec Glasgow < 8",
+      "Hypertension intracrânienne confirmée par ponction lombaire (pression > 250 mmCSF)",
+      "Présence de cellules géantes multinucléées en liquide céphalo-rachidien"
+    ],
+    "scores": [
+      {
+        "name": "Index de gravité de la méningite tuberculeuse (TBI)",
+        "description": "Évalue la gravité clinique et pronostique de la méningite tuberculeuse en fonction des signes neurologiques et des données biologiques.",
+        "criteria": [
+          "Coma (Glasgow < 9) (+3 points)",
+          "Signes focaux neurologiques bilatéraux (+2 points)",
+          "Protéines CSF > 1000 mg/dL (+1 point)",
+          "Absence de réponse à l'anti-inflammatoire stéroïdien après 48h (+2 points)",
+          "Hydrocéphale confirmé en IRM cérébrale (+2 points)"
+        ],
+        "interpretation": "Score ≥ 7 : pronostic réservé avec risque de séquelles majeures ; Score 4-6 : pronostic modéré ; Score < 4 : pronostic favorable."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique et imagerie cérébrale",
+        "steps": [
+          {
+            "action": "Ponction lombaire avec analyse du liquide céphalo-rachidien (LCR)",
+            "interpretation": "LCR avec protéines élevées (> 500 mg/dL), glucose bas (< 40 mg/dL), et lymphocytose dominante. La présence de mycobactéries en Ziehl-Neelsen ou en PCR confirme le diagnostic."
+          },
+          {
+            "action": "IRM cérébrale avec séquences T2 et FLAIR",
+            "interpretation": "Recherche d'adhésions méningées, d'abcès cérébraux, et d'hydrocéphale. Les signes de myélite tuberculeuse (signal hyperintense le long de la moelle) sont spécifiques."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Administration d'anti-TB de première intention (isoniazide, rifampicine, pyrazinamide) associée à des corticoïdes (dexaméthasone) pour réduire l'inflammation",
+      "Drainage de l'hydrocéphale par voie ventriculaire ou lombaire en cas de pression intracrânienne > 250 mmCSF",
+      "Sédation neuroleptique pour gérer l'agitation ou les crises épileptiques",
+      "Antibiothérapie empirique couvrant les méningites bactériennes (ceftriaxone) jusqu'à confirmation mycobactérienne",
+      "Réanimation neurologique avec intubation en cas de Glasgow < 8 ou de détresse respiratoire"
+    ],
+    "differentialDiagnosis": [
+      "Méningite bactérienne (Streptocoque pneumonie) : LCR avec polymorphonucléaires dominants et glucose bas",
+      "Méningite fongique (Cryptococcus) : LCR avec glucose normal et présence de capsule en coloration de mucine",
+      "Méningite virale (Enterovirus) : LCR avec lymphocytose modérée et glucose normal"
+    ]
+  },
+  {
+    "name": "Tuberculose pulmonaire multirésistante avec lésions cavitaires étendues",
+    "description": "Forme sévère de tuberculose pulmonaire caractérisée par une résistance aux deux médicaments antituberculeux de première intention (isoniazide et rifampicine) et des lésions cavitaires multiples dans les lobes supérieurs. La physiopathologie repose sur une infection par Mycobacterium tuberculosis avec une réponse immunitaire défectueuse, associée à une exposition prolongée à des traitements inadaptés. La présentation clinique typique inclut une toux chronique (> 3 semaines) avec expectoration purulente, hémoptysie, fièvre, sueurs nocturnes et perte de poids. Les lésions cavitaires étendues peuvent entraîner une fibrose pulmonaire et une insuffisance respiratoire chronique.",
+    "redFlags": [
+      "Hémoptysie abondante (> 500 mL/jour) avec risque de suffocation",
+      "Dyspnée d'effort progressive avec hypoxémie (SpO2 < 90%)",
+      "Toux productive avec expectoration purulente persistante (> 6 semaines)",
+      "Fièvre quotidienne avec frissons et transpiration nocturne",
+      "Perte de poids involontaire (> 10 % du poids corporel en 6 mois)"
+    ],
+    "scores": [
+      {
+        "name": "Classification de l'American Thoracic Society (ATS) pour la tuberculose multirésistante",
+        "description": "Évalue la gravité clinique et le risque de complications basé sur l'étendue des lésions cavitaires et la réponse au traitement.",
+        "criteria": [
+          "Classe I: Lésions cavitaires limitées (< 2 cavités) et réponse partielle au traitement (+1)",
+          "Classe II: Lésions cavitaires étendues (> 2 cavités) et réponse partielle au traitement (+2)",
+          "Classe III: Lésions cavitaires étendues avec fibrose pulmonaire et réponse insuffisante (+3)",
+          "Classe IV: Complications majeures (hémoptysie massive, pneumothorax) (+4)"
+        ],
+        "interpretation": "La somme des points détermine le pronostic et l'indication d'une chirurgie pulmonaire. Une classe IV nécessite une intervention chirurgicale d'urgence."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen radiologique et fonctionnel respiratoire",
+        "steps": [
+          {
+            "action": "TDM thoracique haute résolution avec reconstruction coronale",
+            "interpretation": "Permet d'identifier les cavités pulmonaires, leur taille, leur localisation et les signes de fibrose interstitielle. Les cavités > 3 cm avec paroi épaissie (> 5 mm) sont fortement évocatrices de tuberculose multirésistante."
+          },
+          {
+            "action": "Spirogramme et mesure de la VEMS (volume expiratoire maximal en 1 seconde)",
+            "interpretation": "Une diminution de la VEMS (< 80 % de la valeur prédite) associée à une capacité vitale réduite suggère une obstruction bronchique secondaire à la fibrose."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Initiation d'un traitement antituberculeux de deuxième intention (linezolid, clofazimine, ciclosporine) sous surveillance microbiologique",
+      "Hospitalisation en unité de soins respiratoires pour surveillance de l'hémoptysie et de l'insuffisance respiratoire",
+      "Thérapie anti-inflammatoire (corticostéroïdes) pour réduire l'inflammation bronchique",
+      "Oxygénothérapie à flux contrôlé (2-4 L/min) pour maintenir une saturation > 92 %",
+      "Préparation chirurgicale (résection lobaire) en cas de cavités non réactives au traitement"
+    ],
+    "differentialDiagnosis": [
+      "Pneumonie à Pneumocystis jirovecii (absence de fièvre et de cavités)",
+      "Adénocarcinome pulmonaire avec nécrose cavitaires (présence de calcifications atypiques)",
+      "Sarcoidose fibrosante (bilan sanguin avec hypercalcémie)"
+    ]
+  },
+  {
+    "name": "Adénite tuberculeuse ganglionnaire médiastinique compliquée de compression trachéale",
+    "description": "Forme extrapulmonaire de la tuberculose caractérisée par une adénopathie médiastinique bilatérale due à une infection ganglionnaire tuberculeuse, associée à une compression trachéale secondaire. La physiopathologie implique une dissémination lymphatique de Mycobacterium tuberculosis vers les ganglions médiastinaux, entraînant une hypertrophie ganglionnaire et une sténose trachéale. La présentation clinique inclut une dyspnée d'effort, un stridor inspiratoire, une voix rauque et une cyanose en position assise.",
+    "redFlags": [
+      "Stridor inspiratoire persistant avec détresse respiratoire",
+      "Voix rauque associée à une déglutition douloureuse",
+      "Dyspnée orthopnéique avec cyanose périphérique",
+      "Adénopathie médiastinique bilatérale sur radiographie thoracique",
+      "Hypoxémie persistante malgré l'oxygénothérapie"
+    ],
+    "scores": [
+      {
+        "name": "Score de sténose trachéale (Tracheal Stenosis Score)",
+        "description": "Évalue la gravité de la compression trachéale basée sur les signes cliniques et radiologiques.",
+        "criteria": [
+          "Classe I: Stridor inspiratoire léger avec VEMS > 80 % (+1)",
+          "Classe II: Stridor inspiratoire modéré avec VEMS 60-80 % (+2)",
+          "Classe III: Stridor inspiratoire sévère avec VEMS 40-60 % (+3)",
+          "Classe IV: Stridor inspiratoire critique avec VEMS < 40 % (+4)"
+        ],
+        "interpretation": "Une classe IV nécessite une intubation trachéale ou une trachéotomie d'urgence pour assurer la voie aérienne."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen endoscopique et radiologique ciblé",
+        "steps": [
+          {
+            "action": "Fibroscopie bronchique avec mesure du diamètre trachéal",
+            "interpretation": "Permet d'identifier une sténose trachéale > 50 % du diamètre normal, avec épaississement des parois et infiltrat granulomateux."
+          },
+          {
+            "action": "TDM thoracique avec injection de contraste",
+            "interpretation": "Recherche d'adénopathies médiastinales > 1 cm avec échogénicité hétérogène et absence de calcifications."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Intubation orotrachéale avec tube de diamètre réduit pour éviter l'aggravation de la sténose",
+      "Administration de corticostéroïdes à dose pulsée (methylprednisolone 1 g/jour) pour réduire l'inflammation",
+      "Thérapie antituberculeuse de première intention (RIF, INH, PZA, EMB) sous surveillance microbiologique",
+      "Positionnement en décubitus latéral pour soulager la compression médiastinique",
+      "Préparation chirurgicale (trachéotomie ou résection trachéale) en cas de sténose > 70 %"
+    ],
+    "differentialDiagnosis": [
+      "Adénopathie lymphomateuse médiastinale (absence de stridor et de calcifications)",
+      "Sténose trachéale idiopathique (absence d'adénopathies)",
+      "Tumeur médiastinale bénigne (calcifications périphériques)"
     ]
   }
 ]

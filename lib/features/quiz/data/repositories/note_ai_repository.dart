@@ -1,15 +1,42 @@
+import 'package:meducyte_app/core/config/env.dart';
 import 'package:meducyte_app/export.dart';
 import 'package:meducyte_app/shared/providers/network_provider.dart';
 
 class NoteAiRepository {
   final Dio _dio;
-  static const String _apiKey =
-      "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";
+  static const String _apiKey = Env.groqApiKey;
   static const String _groqUrl =
       "https://api.groq.com/openai/v1/chat/completions";
   static const String _modelName = "llama-3.3-70b-versatile";
 
   NoteAiRepository(this._dio);
+
+  Future<Response> _postWithRetry(
+    String url, {
+    required Map<String, dynamic> data,
+    required Options options,
+  }) async {
+    int retryCount = 0;
+    while (true) {
+      try {
+        final response = await _dio.post(
+          url,
+          data: data,
+          options: options,
+        );
+        return response;
+      } on DioException catch (e) {
+        final statusCode = e.response?.statusCode;
+        if (statusCode == 429 && retryCount < 3) {
+          retryCount++;
+          final delay = Duration(seconds: retryCount * 2);
+          await Future.delayed(delay);
+          continue;
+        }
+        rethrow;
+      }
+    }
+  }
 
   Future<String> getAiResponse({
     required String action,
@@ -17,14 +44,16 @@ class NoteAiRepository {
     required String language,
     String? currentNote,
   }) async {
-    String languageName = (language == 'fr') ? "French" : "English";
+    String languageName = (language.toLowerCase() == 'fr')
+        ? "French"
+        : "English";
 
     String systemPrompt =
         "You are Meducyte AI, a professional medical assistant. "
         "Your task is to generate high-yield, well-organized medical content. "
         "IMPORTANT: You MUST write your response in $languageName. "
         "FOR NOTES: return your response ONLY as a valid JSON array representing a Quill Delta. "
-        "FOR QUESTIONS/TEXT: If the action involves 'generate_question', 'generate_recall_session', 'generate_answer', or 'generate_cloze_recall', return your response as plain text (or a structured list if multiple items), NOT as a JSON Delta. "
+        "FOR QUESTIONS/TEXT/OBSERVATIONS: If the action involves 'generate_question', 'generate_recall_session', 'generate_answer', 'generate_cloze_recall', 'generate_observation_summary', or 'generate_observation_assessment', return your response as plain text (or a structured markdown list if applicable), NOT as a JSON Delta. "
         "Example note format: [{\"insert\":\"Key info\\n\"}] "
         "Only return the required content. No other text, no intro, no outro.";
 
@@ -71,6 +100,16 @@ class NoteAiRepository {
             ? "Générer EXACTEMENT 3 phrases clés POUR CHAQUE section séparée par '[SECTION]' dans ce contenu : \"$contextText\". Pour chaque phrase, remplacer un terme médical CRUCIAL par [blank]. Formater chaque ligne comme ceci : La [blank] est l'unité de base.|cellule"
             : "Generate EXACTLY 3 key sentences FOR EACH section separated by '[SECTION]' in this content: \"$contextText\". For each sentence, replace one CRUCIAL medical term with [blank]. Format each line like this: The [blank] is the basic unit.|cell";
         break;
+      case 'generate_observation_summary':
+        userPrompt = language == 'fr'
+            ? "En tant que Meducyte AI, analyse l'observation clinique suivante du patient et génère un Résumé Syndromique complet, clair et professionnel (au total) sous forme de liste à puces. N'inclus aucune introduction ou conclusion.\n\n$contextText"
+            : "As Meducyte AI, analyze the following patient clinical observation and generate a comprehensive, clear, and professional Syndromic Summary as a bulleted list. Do not include any introduction or conclusion.\n\n$contextText";
+        break;
+      case 'generate_observation_assessment':
+        userPrompt = language == 'fr'
+            ? "En tant que Meducyte AI, analyse l'observation clinique suivante et génère une Conclusion et Conduite à Tenir structurée (incluant hypothèses diagnostiques principales et plan de prise en charge/investigation thérapeutique). N'inclus aucune introduction ou conclusion.\n\n$contextText"
+            : "As Meducyte AI, analyze the following clinical observation and generate a structured Clinical Conclusion and Action Plan (including differential diagnoses and therapeutic plan). Do not include any introduction or conclusion.\n\n$contextText";
+        break;
       default:
         userPrompt = language == 'fr'
             ? "Organiser ces notes médicales professionnellement en français : \"$contextText\""
@@ -83,7 +122,7 @@ class NoteAiRepository {
     ];
 
     try {
-      final response = await _dio.post(
+      final response = await _postWithRetry(
         _groqUrl,
         options: Options(
           headers: {
@@ -92,7 +131,9 @@ class NoteAiRepository {
           },
         ),
         data: {
-          "model": _modelName,
+          "model": action.startsWith('generate_observation')
+              ? "llama-3.1-8b-instant"
+              : _modelName,
           "messages": messages,
           "temperature": 0.2, // Low temperature for consistent JSON structure
         },
@@ -104,7 +145,9 @@ class NoteAiRepository {
         if (action == 'generate_question' ||
             action == 'generate_recall_session' ||
             action == 'generate_answer' ||
-            action == 'generate_cloze_recall') {
+            action == 'generate_cloze_recall' ||
+            action == 'generate_observation_summary' ||
+            action == 'generate_observation_assessment') {
           return content.trim();
         }
 

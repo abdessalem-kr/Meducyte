@@ -106,7 +106,25 @@ class CourseRepository {
     }
   }
 
-  Future<List<LearnLesson>> fetchLessonsByModule(String moduleId) async {
+  Future<List<LearnLesson>> fetchLessonsByModule(String moduleId, {bool forceRefresh = false}) async {
+    if (!forceRefresh) {
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final cachedJson = prefs.getString('meducyte_lessons_module_$moduleId');
+        if (cachedJson != null) {
+          // debugPrint('DEBUG: fetchLessonsByModule - Loading from cache for $moduleId...');
+          final decoded = jsonDecode(cachedJson);
+          if (decoded is List) {
+            return decoded
+                .map((item) => LearnLesson.fromJson(item as Map<String, dynamic>))
+                .toList();
+          }
+        }
+      } catch (e) {
+        debugPrint('DEBUG: fetchLessonsByModule Cache Error: $e');
+      }
+    }
+
     // Fetch lessons through the module relationship — bypasses the broken
     // top-level "lessons" query entirely. No backend changes needed.
     const String query = r'''
@@ -148,15 +166,33 @@ class CourseRepository {
         throw Exception('GraphQL: $errorMsg');
       }
 
-      final data = mapData['data']?['module']?['lessons'];
+      final moduleData = mapData['data']?['module'];
+      if (moduleData == null) {
+        debugPrint('DEBUG: fetchLessonsByModule - Module not found or is null for $moduleId');
+        return <LearnLesson>[];
+      }
+
+      final data = moduleData['lessons'];
       if (data == null) {
         throw Exception('Field "lessons" missing in response.data');
       }
 
       final List lessonsList = data as List;
-      return lessonsList
+      final lessons = lessonsList
           .map((item) => LearnLesson.fromJson(item as Map<String, dynamic>))
           .toList();
+
+      // Update cache
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final lessonsJson = jsonEncode(lessons.map((l) => l.toJson()).toList());
+        await prefs.setString('meducyte_lessons_module_$moduleId', lessonsJson);
+        debugPrint('DEBUG: fetchLessonsByModule - Cache updated for $moduleId.');
+      } catch (e) {
+        debugPrint('DEBUG: fetchLessonsByModule - Failed to update cache: $e');
+      }
+
+      return lessons;
     } on DioException catch (e) {
       if (e.error is ApiException) throw e.error as ApiException;
       throw ApiException.fromDioError(e);
@@ -166,7 +202,70 @@ class CourseRepository {
     }
   }
 
+  Future<void> clearLessonsByModuleCache(String moduleId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('meducyte_lessons_module_$moduleId');
+      debugPrint('DEBUG: clearLessonsByModuleCache - Cleared cache for $moduleId.');
+    } catch (e) {
+      debugPrint('DEBUG: clearLessonsByModuleCache Error: $e');
+    }
+  }
+
+  Future<void> clearLessonDetailsCache(String lessonId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('meducyte_lesson_details_$lessonId');
+      debugPrint('DEBUG: clearLessonDetailsCache - Cleared cache for $lessonId.');
+    } catch (e) {
+      debugPrint('DEBUG: clearLessonDetailsCache Error: $e');
+    }
+  }
+
+  Future<void> clearAllLessonsByModuleCaches() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final keys = prefs.getKeys();
+      for (final key in keys) {
+        if (key.startsWith('meducyte_lessons_module_')) {
+          await prefs.remove(key);
+        }
+      }
+      debugPrint('DEBUG: clearAllLessonsByModuleCaches - Cleared all module lessons caches.');
+    } catch (e) {
+      debugPrint('DEBUG: clearAllLessonsByModuleCaches Error: $e');
+    }
+  }
+
+  Future<void> _clearCachesForLesson(String lessonId) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final detailsKey = 'meducyte_lesson_details_$lessonId';
+      final cachedJson = prefs.getString(detailsKey);
+      if (cachedJson != null) {
+        final decoded = jsonDecode(cachedJson);
+        final moduleId = decoded['moduleId']?.toString();
+        if (moduleId != null && moduleId.isNotEmpty) {
+          await prefs.remove('meducyte_lessons_module_$moduleId');
+          debugPrint('DEBUG: _clearCachesForLesson - Cleared module cache for $moduleId.');
+        } else {
+          await clearAllLessonsByModuleCaches();
+        }
+      } else {
+        await clearAllLessonsByModuleCaches();
+      }
+      await prefs.remove(detailsKey);
+      await _db.clearModulesCache();
+      debugPrint('DEBUG: _clearCachesForLesson - Cleared lesson details and modules caches.');
+    } catch (e) {
+      debugPrint('DEBUG: _clearCachesForLesson Error: $e');
+    }
+  }
+
   Future<bool> toggleLessonStudied(String lessonId) async {
+    // Clear caches first to prevent stale state loading
+    await _clearCachesForLesson(lessonId);
+
     const String query = r'''
       mutation ToggleLessonStudied($lessonId: ID!) {
         toggleLessonStudied(lesson_id: $lessonId)
@@ -193,7 +292,21 @@ class CourseRepository {
     }
   }
 
-  Future<LearnLesson> fetchLessonDetails(String lessonId) async {
+  Future<LearnLesson> fetchLessonDetails(String lessonId, {bool forceRefresh = false}) async {
+    if (!forceRefresh) {
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final cachedJson = prefs.getString('meducyte_lesson_details_$lessonId');
+        if (cachedJson != null) {
+          debugPrint('DEBUG: fetchLessonDetails - Loading from cache for $lessonId...');
+          final decoded = jsonDecode(cachedJson);
+          return LearnLesson.fromJson(decoded as Map<String, dynamic>);
+        }
+      } catch (e) {
+        debugPrint('DEBUG: fetchLessonDetails Cache Error: $e');
+      }
+    }
+
     const String query = r'''
       query GetLessonDetails($id: ID!) {
         lesson(id: $id) {
@@ -224,9 +337,29 @@ class CourseRepository {
           'variables': {'id': lessonId},
         },
       );
-      final data = response.data['data']['lesson'];
+      final mapData = response.data as Map<String, dynamic>?;
+      if (mapData == null) throw Exception('Response data is null');
+
+      if (mapData['errors'] != null) {
+        final errorMsg = mapData['errors'][0]['message'];
+        throw Exception('GraphQL: $errorMsg');
+      }
+
+      final data = mapData['data']?['lesson'];
       if (data == null) throw Exception('Lesson not found');
-      return LearnLesson.fromJson(data);
+      final lesson = LearnLesson.fromJson(data);
+
+      // Update cache
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final lessonJson = jsonEncode(lesson.toJson());
+        await prefs.setString('meducyte_lesson_details_$lessonId', lessonJson);
+        debugPrint('DEBUG: fetchLessonDetails - Cache updated for $lessonId.');
+      } catch (e) {
+        debugPrint('DEBUG: fetchLessonDetails - Failed to update cache: $e');
+      }
+
+      return lesson;
     } on DioException catch (e) {
       if (e.error is ApiException) throw e.error as ApiException;
       throw ApiException.fromDioError(e);

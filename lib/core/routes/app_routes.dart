@@ -23,31 +23,23 @@ import 'package:meducyte_app/features/explore/presentation/screens/lab_normal_va
 import 'package:meducyte_app/features/explore/presentation/screens/first_aid_helper_screen.dart';
 import 'package:meducyte_app/features/explore/presentation/screens/books_screen.dart';
 import 'package:meducyte_app/features/explore/presentation/pages/medical_games_page.dart';
+import 'package:meducyte_app/features/explore/presentation/pages/clinical_pearls_page.dart';
 import 'package:meducyte_app/features/explore/presentation/screens/anatomy_game_screen.dart';
 import 'package:meducyte_app/features/explore/presentation/screens/word_association_screen.dart';
 import 'package:meducyte_app/features/explore/presentation/screens/diagnosis_mystery_screen.dart';
 import 'package:meducyte_app/features/explore/presentation/screens/ecg_hero_screen.dart';
 import 'package:meducyte_app/features/explore/presentation/screens/pharma_match_screen.dart';
 import 'package:meducyte_app/features/explore/presentation/screens/lab_master_screen.dart';
-import 'package:meducyte_app/features/explore/presentation/screens/medical_crossword_screen.dart';
+import 'package:meducyte_app/features/explore/presentation/screens/medical_scrabble_screen.dart';
 import 'package:meducyte_app/features/explore/presentation/screens/surgical_sim_screen.dart';
 import 'package:meducyte_app/features/quiz/presentation/screens/srs_session_screen.dart';
 import 'package:meducyte_app/features/quiz/presentation/screens/flashcard_study_screen.dart';
 import 'package:meducyte_app/features/calculator/presentation/screens/medical_calculator_screen.dart';
-import 'package:meducyte_app/features/calculator/presentation/calculators/bmi_calculator_screen.dart';
-import 'package:meducyte_app/features/calculator/presentation/calculators/glasgow_calculator_screen.dart';
-import 'package:meducyte_app/features/calculator/presentation/calculators/apgar_calculator_screen.dart';
-import 'package:meducyte_app/features/calculator/presentation/calculators/wells_pe_calculator_screen.dart';
-import 'package:meducyte_app/features/calculator/presentation/calculators/cha2ds2vasc_calculator_screen.dart';
-import 'package:meducyte_app/features/calculator/presentation/screens/generic_calculator_screen.dart';
-import 'package:meducyte_app/features/calculator/domain/models/calculator_models.dart';
 import 'package:meducyte_app/features/productive_bay/presentation/pages/productive_bay_page.dart';
 import 'package:meducyte_app/features/productive_bay/presentation/pages/study_groups_page.dart';
 import 'package:meducyte_app/features/productive_bay/presentation/pages/study_group_details_page.dart';
 import 'package:meducyte_app/features/productive_bay/presentation/pages/quiz_group_study_page.dart';
-import 'package:meducyte_app/features/productive_bay/presentation/pages/planner_page.dart';
 import 'package:meducyte_app/features/productive_bay/presentation/pages/tasks_page.dart';
-import 'package:meducyte_app/features/productive_bay/presentation/pages/analytics_page.dart';
 import 'package:meducyte_app/features/productive_bay/presentation/pages/customize_bay_page.dart';
 import 'package:meducyte_app/features/productive_bay/presentation/pages/deep_work_page.dart';
 import 'package:meducyte_app/features/productive_bay/data/providers/study_group_provider.dart';
@@ -58,6 +50,18 @@ import 'package:meducyte_app/features/settings/font_settings_screen.dart';
 import 'package:meducyte_app/features/settings/notification_settings_screen.dart';
 import 'package:meducyte_app/features/settings/presentation/screens/faq_screen.dart';
 import 'package:meducyte_app/features/settings/presentation/screens/srs_settings_screen.dart';
+import 'package:meducyte_app/features/settings/presentation/screens/fatigue_settings_screen.dart';
+import 'package:meducyte_app/features/settings/presentation/screens/study_plan_settings_screen.dart';
+import 'package:meducyte_app/features/observation/presentation/screens/specialty_selection_screen.dart';
+import 'package:meducyte_app/features/observation/presentation/screens/observation_report_screen.dart';
+import 'package:meducyte_app/features/observation/presentation/screens/observation_history_screen.dart';
+import 'package:meducyte_app/features/observation/presentation/screens/pathology_directory_screen.dart';
+import 'package:meducyte_app/features/observation/data/models/specialty_config.dart';
+import 'package:meducyte_app/features/simulation/presentation/screens/ecos_screen.dart';
+import 'package:meducyte_app/features/simulation/presentation/screens/emergency_room_screen.dart';
+import 'package:meducyte_app/features/simulation/presentation/screens/virtual_ward_rounds_screen.dart';
+import 'package:meducyte_app/features/simulation/presentation/screens/diagnostic_challenge_screen.dart';
+import 'package:meducyte_app/features/simulation/presentation/screens/procedural_guide_screen.dart';
 
 //In app_routes.dart
 final List<AppRoute> appRoutes = [
@@ -73,6 +77,14 @@ final List<AppRoute> appRoutes = [
   AppRoute(
     path: AppRoutes.srsSettings,
     builder: (_, __) => const SrsSettingsScreen(),
+  ),
+  AppRoute(
+    path: AppRoutes.studyPlanSettings,
+    builder: (_, __) => const StudyPlanSettingsScreen(),
+  ),
+  AppRoute(
+    path: AppRoutes.fatigueSettings,
+    builder: (_, __) => const FatigueSettingsScreen(),
   ),
   AppRoute(
     path: AppRoutes.onboarding,
@@ -160,11 +172,13 @@ final List<AppRoute> appRoutes = [
   AppRoute(
     path: AppRoutes.quizSession,
     builder: (context, state) {
+      final id = state.pathParameters['id'] ?? 'new';
       final filters =
           state.extra as QuizFilters? ?? QuizFilters(isPractice: true);
       final questionId = state.uri.queryParameters['questionId'];
       final commentId = state.uri.queryParameters['commentId'];
       return QuizSessionScreen(
+        sessionId: id,
         filters: filters,
         initialQuestionId: questionId,
         initialCommentId: commentId,
@@ -211,6 +225,11 @@ final List<AppRoute> appRoutes = [
     path: AppRoutes.aiPatientChat,
     builder: (context, state) => const AiPatientSimScreen(),
   ),
+  AppRoute(path: AppRoutes.ecos, builder: (_, __) => const EcosScreen()),
+  AppRoute(path: AppRoutes.emergencyRoom, builder: (_, __) => const EmergencyRoomScreen()),
+  AppRoute(path: AppRoutes.virtualWardRounds, builder: (_, __) => const VirtualWardRoundsScreen()),
+  AppRoute(path: AppRoutes.diagnosticChallenge, builder: (_, __) => const DiagnosticChallengeScreen()),
+  AppRoute(path: AppRoutes.proceduralGuide, builder: (_, __) => const ProceduralGuideScreen()),
   AppRoute(path: AppRoutes.explore, builder: (_, __) => const ExplorePage()),
   AppRoute(
     path: AppRoutes.ecgHelper,
@@ -245,6 +264,10 @@ final List<AppRoute> appRoutes = [
     builder: (_, __) => const MedicalGamesPage(),
   ),
   AppRoute(
+    path: AppRoutes.clinicalPearls,
+    builder: (_, __) => const ClinicalPearlsPage(),
+  ),
+  AppRoute(
     path: AppRoutes.anatomyQuiz,
     builder: (_, __) => const AnatomyGameScreen(),
   ),
@@ -267,7 +290,7 @@ final List<AppRoute> appRoutes = [
   ),
   AppRoute(
     path: AppRoutes.medicalCrossword,
-    builder: (_, __) => const MedicalCrosswordScreen(),
+    builder: (_, __) => const MedicalScrabbleScreen(),
   ),
   AppRoute(
     path: AppRoutes.surgicalSim,
@@ -291,39 +314,9 @@ final List<AppRoute> appRoutes = [
     path: AppRoutes.statistics,
     builder: (_, __) => const StatisticsScreen(),
   ),
-  //Medical Calculator Route
   AppRoute(
     path: AppRoutes.medicalCalculator,
     builder: (_, __) => const MedicalCalculatorScreen(),
-    children: [
-      AppRoute(path: 'bmi', builder: (_, __) => const BmiCalculatorScreen()),
-      AppRoute(
-        path: 'glasgow',
-        builder: (_, __) => const GlasgowCalculatorScreen(),
-      ),
-      AppRoute(
-        path: 'apgar',
-        builder: (_, __) => const ApgarCalculatorScreen(),
-      ),
-      AppRoute(
-        path: 'wells-pe',
-        builder: (_, __) => const WellsPeCalculatorScreen(),
-      ),
-      AppRoute(
-        path: 'cha2ds2vasc',
-        builder: (_, __) => const Cha2ds2vascCalculatorScreen(),
-      ),
-      AppRoute(
-        path: 'generic/:id',
-        builder: (context, state) {
-          final extra = state.extra as MedicalCalculatorMetadata?;
-          if (extra != null) {
-            return GenericCalculatorScreen(calculator: extra);
-          }
-          return const Scaffold(body: Center(child: Text('Error:No data')));
-        },
-      ),
-    ],
   ),
   AppRoute(
     path: AppRoutes.productiveBay,
@@ -411,11 +404,6 @@ final List<AppRoute> appRoutes = [
     },
   ),
   AppRoute(
-    path: AppRoutes.planner,
-    name: AppRoutes.planner,
-    builder: (_, __) => const PlannerPage(),
-  ),
-  AppRoute(
     path: AppRoutes.tasks,
     name: AppRoutes.tasks,
     builder: (_, __) => const TasksPage(),
@@ -423,7 +411,7 @@ final List<AppRoute> appRoutes = [
   AppRoute(
     path: AppRoutes.analytics,
     name: AppRoutes.analytics,
-    builder: (_, __) => const AnalyticsPage(),
+    builder: (_, __) => const StatisticsScreen(),
   ),
   AppRoute(
     path: AppRoutes.customizeBay,
@@ -451,4 +439,29 @@ final List<AppRoute> appRoutes = [
     builder: (_, __) => const TermsOfUseScreen(),
   ),
   AppRoute(path: AppRoutes.faq, builder: (_, __) => const FaqScreen()),
+
+  // Observation routes
+  AppRoute(
+    path: AppRoutes.observation,
+    builder: (_, __) => const SpecialtySelectionScreen(),
+  ),
+  AppRoute(
+    path: AppRoutes.observationReport,
+    builder: (context, state) {
+      final specialtyName = state.pathParameters['specialty'];
+      final config = SpecialtyConfigs.all.firstWhere(
+        (c) => c.specialty.name == specialtyName,
+        orElse: () => SpecialtyConfigs.general,
+      );
+      return ObservationReportScreen(config: config);
+    },
+  ),
+  AppRoute(
+    path: AppRoutes.observationHistory,
+    builder: (_, __) => const ObservationHistoryScreen(),
+  ),
+  AppRoute(
+    path: AppRoutes.pathologyDirectory,
+    builder: (_, __) => const PathologyDirectoryScreen(),
+  ),
 ];

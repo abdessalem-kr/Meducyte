@@ -1,4 +1,5 @@
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:meducyte_app/core/themes/quiz_theme_extension.dart';
 import 'package:meducyte_app/features/quiz/presentation/widgets/quiz_progress_bar.dart';
 import 'package:meducyte_app/features/quiz/presentation/widgets/quiz_option_card.dart';
@@ -14,12 +15,14 @@ import 'package:meducyte_app/shared/widgets/reading_settings_bottom_sheet.dart';
 import '../widgets/quiz_export_bottom_sheet.dart';
 
 class QuizSessionScreen extends ConsumerStatefulWidget {
+  final String sessionId;
   final QuizFilters filters;
   final String? initialQuestionId;
   final String? initialCommentId;
 
   const QuizSessionScreen({
     super.key,
+    this.sessionId = 'new',
     required this.filters,
     this.initialQuestionId,
     this.initialCommentId,
@@ -30,9 +33,15 @@ class QuizSessionScreen extends ConsumerStatefulWidget {
 }
 
 class _QuizSessionScreenState extends ConsumerState<QuizSessionScreen> {
+  bool _isExiting = false;
+
   @override
   Widget build(BuildContext context) {
-    final sessionAsync = ref.watch(quizSessionFetcherProvider(widget.filters));
+    final isCurrent = widget.sessionId == 'current';
+    final savedSessionAsync = ref.watch(savedQuizSessionProvider);
+    final fetchSessionAsync = ref.watch(quizSessionFetcherProvider(widget.filters));
+
+    final sessionAsync = isCurrent ? savedSessionAsync : fetchSessionAsync;
     final quizState = ref.watch(quizSessionProvider);
     final quizNotifier = ref.read(quizSessionProvider.notifier);
 
@@ -40,22 +49,160 @@ class _QuizSessionScreenState extends ConsumerState<QuizSessionScreen> {
         ref.watch(authControllerProvider).value?.isSubscriber ?? false;
 
     return sessionAsync.when(
-      loading: () =>
-          const Scaffold(body: Center(child: CircularProgressIndicator())),
+      loading: () {
+        final quizTheme = Theme.of(context).extension<QuizThemeExtension>()!;
+        return Skeletonizer(
+          enabled: true,
+          child: Scaffold(
+            backgroundColor: quizTheme.backgroundColor,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  QuizTopBar(
+                    onClose: () => context.pop(),
+                    timerText: "00:00",
+                    isStarred: false,
+                    onStarTap: () {},
+                    onStarLongPress: () {},
+                    onChatTap: () {},
+                    onFlagTap: () {},
+                    onShareTap: () {},
+                    onFontSizeTap: () {},
+                  ),
+                  QuizProgressBar(
+                    isTrial: false,
+                    trialQuestionIndex: 0,
+                    current: 0,
+                    total: 10,
+                    onInfoTap: () {},
+                    onQuestionTap: () {},
+                  ),
+                  const SizedBox(height: 12),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 16),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            child: Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: quizTheme.cardColor,
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color: quizTheme.secondaryTextColor
+                                      .withOpacity(0.05),
+                                ),
+                              ),
+                              child: Text(
+                                AppLocalizations.of(context)!.loadingQuestion,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  height: 1.6,
+                                  fontWeight: FontWeight.w500,
+                                  color: quizTheme.primaryTextColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            itemCount: 4,
+                            itemBuilder: (context, index) {
+                              return QuizOptionCard(
+                                label: String.fromCharCode(65 + index),
+                                text: AppLocalizations.of(context)!.dummyLoadingOption(index + 1),
+                                state: OptionState.idle,
+                                fontSize: 16,
+                                highlights: const [],
+                                onHighlight: (_) {},
+                                onNote: (_) {},
+                                onHighlightTap: (_) {},
+                                onTap: () {},
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 32),
+                        ],
+                      ),
+                    ),
+                  ),
+                  QuizBottomActions(
+                    onPrevious: null,
+                    onPrimary: () {},
+                    primaryLabel: AppLocalizations.of(context)!.verify,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
       error: (err, stack) => Scaffold(body: Center(child: Text('Error: $err'))),
-      data: (session) {
-        final l10n = AppLocalizations.of(context)!;
-        if (session.questions.isEmpty) {
+      data: (data) {
+        final QuizSession? session = isCurrent
+            ? (data as SavedQuizSession?)?.session
+            : (data as QuizSession);
+
+        if (session == null || session.questions.isEmpty) {
+          final l10n = AppLocalizations.of(context)!;
           return Scaffold(
             appBar: AppBar(title: const Text('Quiz')),
             body: Center(child: Text(l10n.noQuestionsFound)),
           );
         }
 
+        final l10n = AppLocalizations.of(context)!;
+
+        void handleExitConfirmation() async {
+          final result = await _showExitConfirmationDialog(context);
+          if (result == null) return;
+
+          if (result == 'save') {
+            await quizNotifier.saveSessionForLater(session);
+            if (context.mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(l10n.sessionSavedSuccess),
+                  duration: const Duration(seconds: 2),
+                ),
+              );
+              setState(() {
+                _isExiting = true;
+              });
+              context.pop();
+            }
+          } else if (result == 'abandon') {
+            await quizNotifier.abandonSession();
+            if (context.mounted) {
+              setState(() {
+                _isExiting = true;
+              });
+              context.pop();
+            }
+          }
+        }
+
         //Initialize quiz if not already done
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!quizState.isInitialized && !quizState.isFinished) {
-            quizNotifier.initialize(session);
+            if (isCurrent && data is SavedQuizSession) {
+              quizNotifier.initialize(
+                data.session,
+                timeSeconds: data.timeSeconds,
+                showFeedback: data.showFeedback,
+                selectedOptionIds: data.selectedOptionIds,
+              );
+            } else {
+              quizNotifier.initialize(session);
+            }
             quizNotifier.startTimer();
 
             //Jump to initial question if provided
@@ -71,7 +218,7 @@ class _QuizSessionScreenState extends ConsumerState<QuizSessionScreen> {
                   //Show chat after a slight delay to allow jump animation/rebuild
                   if (widget.initialCommentId != null) {
                     Future.delayed(const Duration(milliseconds: 500), () {
-                      if (mounted) {
+                      if (context.mounted) {
                         _showChat(
                           context,
                           session.questions[index],
@@ -86,66 +233,69 @@ class _QuizSessionScreenState extends ConsumerState<QuizSessionScreen> {
           }
         });
 
+        Widget mainContent;
+
         if (quizState.isFinished) {
           if (quizState.isExplore) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (mounted) context.pop();
             });
-            return const Scaffold(
+            mainContent = const Scaffold(
               body: Center(child: CircularProgressIndicator()),
             );
+          } else {
+            mainContent = QuizResultScreen(
+              session: session,
+              questions: session.questions,
+              isPractice: session.filters['isPractice'] ?? true,
+            );
           }
-          return QuizResultScreen(
-            questions: session.questions,
-            isPractice: session.filters['isPractice'] ?? true,
-          );
-        }
+        } else {
+          final questions = session.questions;
+          final q = questions[quizState.currentQuestionIndex < questions.length ? quizState.currentQuestionIndex : 0];
+          final quizTheme = Theme.of(context).extension<QuizThemeExtension>()!;
+          final settings = ref.watch(appSettingsProvider);
 
-        final questions = session.questions;
-        final q = questions[quizState.currentQuestionIndex];
-        final quizTheme = Theme.of(context).extension<QuizThemeExtension>()!;
-        final settings = ref.watch(appSettingsProvider);
+          double quizFontScale = 1.0;
+          if (settings.quizFontSize == 'Small' ||
+              settings.quizFontSize == 'Petit') {
+            quizFontScale = 0.85;
+          } else if (settings.quizFontSize == 'Large' ||
+              settings.quizFontSize == 'Grand') {
+            quizFontScale = 1.25;
+          }
 
-        double quizFontScale = 1.0;
-        if (settings.quizFontSize == 'Small' ||
-            settings.quizFontSize == 'Petit') {
-          quizFontScale = 0.85;
-        } else if (settings.quizFontSize == 'Large' ||
-            settings.quizFontSize == 'Grand') {
-          quizFontScale = 1.25;
-        }
-
-        return Scaffold(
-          backgroundColor: quizTheme.backgroundColor,
-          body: SafeArea(
-            child: SubscriptionGate(
-              isEnabled: !isSubscriber && quizState.currentQuestionIndex >= 10,
-              child: Column(
-                children: [
-                  QuizTopBar(
-                    onClose: () => context.pop(),
-                    timerText: _formatTime(quizState.timeSeconds),
-                    isStarred: quizState.isStarred,
-                    onStarTap: () => quizNotifier.toggleSave(q.id),
-                    onStarLongPress: () => _showSaveToFolder(context, q),
-                    onChatTap: () => _showChat(context, q),
-                    onFlagTap: () => _showReport(context, q),
-                    onShareTap: () => _shareQuestion(context, q),
-                    onFontSizeTap: () => _showFontSizeSettings(context, ref),
-                  ),
-                  QuizProgressBar(
-                    isTrial: !isSubscriber,
-                    trialQuestionIndex: quizState.currentQuestionIndex,
-                    current: quizState.currentQuestionIndex,
-                    total: questions.length,
-                    onInfoTap: () => _showQuestionInfo(context, q, l10n),
-                    onQuestionTap: () => _showQuestionNavigator(
-                      context,
-                      questions,
-                      quizState,
-                      quizNotifier,
+          mainContent = Scaffold(
+            backgroundColor: quizTheme.backgroundColor,
+            body: SafeArea(
+              child: SubscriptionGate(
+                isEnabled: !isSubscriber && quizState.currentQuestionIndex >= 10,
+                child: Column(
+                  children: [
+                    QuizTopBar(
+                      onClose: handleExitConfirmation,
+                      timerText: _formatTime(quizState.timeSeconds),
+                      isStarred: quizState.isStarred,
+                      onStarTap: () => quizNotifier.toggleSave(q.id),
+                      onStarLongPress: () => _showSaveToFolder(context, q),
+                      onChatTap: () => _showChat(context, q),
+                      onFlagTap: () => _showReport(context, q),
+                      onShareTap: () => _shareQuestion(context, q),
+                      onFontSizeTap: () => _showFontSizeSettings(context, ref),
                     ),
-                  ),
+                    QuizProgressBar(
+                      isTrial: !isSubscriber,
+                      trialQuestionIndex: quizState.currentQuestionIndex,
+                      current: quizState.currentQuestionIndex,
+                      total: questions.length,
+                      onInfoTap: () => _showQuestionInfo(context, q, l10n),
+                      onQuestionTap: () => _showQuestionNavigator(
+                        context,
+                        questions,
+                        quizState,
+                        quizNotifier,
+                      ),
+                    ),
                   const SizedBox(height: 12),
                   Expanded(
                     child: SingleChildScrollView(
@@ -345,7 +495,7 @@ class _QuizSessionScreenState extends ConsumerState<QuizSessionScreen> {
                           questions.length - 1) {
                         quizNotifier.next(questions);
                       } else {
-                        quizNotifier.finishQuiz(questions);
+                        quizNotifier.finishQuiz(session);
                       }
                     },
                     primaryLabel: !quizState.showFeedback
@@ -356,6 +506,155 @@ class _QuizSessionScreenState extends ConsumerState<QuizSessionScreen> {
                   ),
                 ],
               ),
+            ),
+          ),
+        );
+      }
+
+      return PopScope(
+        canPop: _isExiting || quizState.isFinished,
+        onPopInvokedWithResult: (didPop, result) async {
+          if (didPop) {
+            ref.read(quizSessionProvider.notifier).resetQuiz();
+            return;
+          }
+          handleExitConfirmation();
+        },
+        child: mainContent,
+      );
+    },
+  );
+}
+
+  Future<String?> _showExitConfirmationDialog(BuildContext context) {
+    final quizTheme = Theme.of(context).extension<QuizThemeExtension>()!;
+    final l10n = AppLocalizations.of(context)!;
+    
+    return showDialog<String>(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Container(
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: quizTheme.cardColor,
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(
+                color: quizTheme.secondaryTextColor.withOpacity(0.1),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 15,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.primary.withOpacity(0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Iconsax.info_circle,
+                    color: AppColors.primary,
+                    size: 32,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  l10n.quitQuizTitle,
+                  style: TextStyle(
+                    color: quizTheme.primaryTextColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  l10n.quitQuizBody,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: quizTheme.secondaryTextColor,
+                    fontSize: 15,
+                    height: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.pop(context, 'save'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primary,
+                          foregroundColor: Colors.white,
+                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Text(
+                          l10n.saveAndQuit,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: () => Navigator.pop(context, 'abandon'),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.redAccent,
+                          side: const BorderSide(color: Colors.redAccent, width: 1.5),
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        child: Text(
+                          l10n.quitWithoutSaving,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: double.infinity,
+                      child: TextButton(
+                        onPressed: () => Navigator.pop(context, null),
+                        style: TextButton.styleFrom(
+                          foregroundColor: quizTheme.secondaryTextColor,
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                        ),
+                        child: Text(
+                          l10n.cancel,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         );
@@ -378,8 +677,9 @@ class _QuizSessionScreenState extends ConsumerState<QuizSessionScreen> {
     final isCorrect = result?.isCorrect ?? false;
     final score = result?.score ?? 0.0;
 
-    String statusText = isCorrect ? 'CORRECT' : 'INCORRECT';
-    if (!isCorrect && score > 0) statusText = 'PARTIELLEMENT CORRECT';
+    final l10n = AppLocalizations.of(context)!;
+    String statusText = isCorrect ? l10n.correct : l10n.incorrect;
+    if (!isCorrect && score > 0) statusText = l10n.partiallyCorrect;
 
     final Color statusColor = isCorrect
         ? Colors.green
@@ -455,16 +755,20 @@ class _QuizSessionScreenState extends ConsumerState<QuizSessionScreen> {
   }
 
   void _showFontSizeSettings(BuildContext context, WidgetRef ref) {
-    final settings = ref.read(appSettingsProvider);
     final l10n = context.l10n;
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      builder: (_) => ReadingSettingsBottomSheet(
-        title: l10n.quizFontSizeTitle,
-        currentSize: settings.quizFontSize,
-        onSizeChanged: (newSize) {
-          ref.read(appSettingsProvider.notifier).setQuizFontSize(newSize);
+      builder: (_) => Consumer(
+        builder: (context, ref, _) {
+          final settings = ref.watch(appSettingsProvider);
+          return ReadingSettingsBottomSheet(
+            title: l10n.quizFontSizeTitle,
+            currentSize: settings.quizFontSize,
+            onSizeChanged: (newSize) {
+              ref.read(appSettingsProvider.notifier).setQuizFontSize(newSize);
+            },
+          );
         },
       ),
     );

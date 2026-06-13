@@ -25,6 +25,9 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
   bool _isClinical = false;
   bool _isScheduled = false;
 
+  // Navigation / Drill-down state
+  LearnModule? _selectedParentModule;
+
   //Configuration state
   LearnModule? _selectedModule;
   final List<String> _selectedLessonIds = [];
@@ -42,6 +45,8 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
       if (_secondsPerQuestion == 0) {
         _secondsPerQuestion = 15; //default for toggle back
       }
+    } else {
+      _isDiscussionMode = widget.group.type == StudyGroupType.silent;
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final user = ref.read(authControllerProvider).value;
@@ -89,14 +94,21 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
                 IconButton(
                   onPressed: () => setState(() => _selectedModule = null),
                   icon: const Icon(Iconsax.arrow_left_2),
+                )
+              else if (_selectedParentModule != null)
+                IconButton(
+                  onPressed: () => setState(() => _selectedParentModule = null),
+                  icon: const Icon(Iconsax.arrow_left_2),
                 ),
               Expanded(
                 child: Text(
                   widget.editingSession != null
                       ? "Modifier la session"
                       : (_selectedModule == null
-                            ? l10n.selectTopic
-                            : "Configuration"),
+                          ? (_selectedParentModule == null
+                              ? l10n.selectTopic
+                              : _selectedParentModule!.name)
+                          : "Configuration"),
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -114,8 +126,8 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
             widget.editingSession != null
                 ? "Modifiez les paramètres de la session active"
                 : (_selectedModule == null
-                      ? l10n.chooseModuleForBattle
-                      : "Personnalisez votre duel pour${_selectedModule!.name}"),
+                    ? l10n.chooseModuleForBattle
+                    : "Personnalisez votre duel pour ${_selectedModule!.name}"),
             style: TextStyle(
               color: isDark ? Colors.white60 : Colors.black54,
               fontSize: 14,
@@ -129,16 +141,16 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
               child: widget.editingSession != null
                   ? _buildConfiguration(isDark, primaryColor, l10n)
                   : (_selectedModule == null
-                        ? _buildModuleSelection(
-                            canChangeYear,
-                            yearsAsync,
-                            modulesAsync,
-                            isDark,
-                            primaryColor,
-                            l10n,
-                            user,
-                          )
-                        : _buildConfiguration(isDark, primaryColor, l10n)),
+                      ? _buildModuleSelection(
+                          canChangeYear,
+                          yearsAsync,
+                          modulesAsync,
+                          isDark,
+                          primaryColor,
+                          l10n,
+                          user,
+                        )
+                      : _buildConfiguration(isDark, primaryColor, l10n)),
             ),
           ),
 
@@ -163,122 +175,126 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
     return Column(
       key: const ValueKey("modules"),
       children: [
-        //FILTERS
-        Column(
-          children: [
-            if (canChangeYear) ...[
-              yearsAsync.when(
-                data: (years) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    decoration: BoxDecoration(
-                      color: isDark
-                          ? Colors.white.withOpacity(0.05)
-                          : Colors.black.withOpacity(0.03),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                        color: isDark ? Colors.white12 : Colors.black12,
-                      ),
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<int>(
-                        value: _selectedYear,
-                        hint: Text(
-                          l10n.selectStudyYear,
-                          style: const TextStyle(fontSize: 14),
+        // FILTERS (only show if we aren't viewing child modules)
+        if (_selectedParentModule == null) ...[
+          Column(
+            children: [
+              if (canChangeYear) ...[
+                yearsAsync.when(
+                  data: (years) {
+                    return Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? Colors.white.withOpacity(0.05)
+                            : Colors.black.withOpacity(0.03),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: isDark ? Colors.white12 : Colors.black12,
                         ),
-                        isExpanded: true,
-                        icon: const Icon(Icons.keyboard_arrow_down, size: 20),
-                        items: years.map((y) {
-                          String label;
-                          if (y == 7) {
-                            label = l10n.residencyExam;
-                          } else if (y == 1) {
-                            label = l10n.firstYearOrdinal;
-                          } else {
-                            label = l10n.otherYearOrdinal(y.toString());
-                          }
-                          return DropdownMenuItem<int>(
-                            value: y,
-                            child: Text(
-                              label,
-                              style: const TextStyle(fontSize: 14),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (val) {
-                          setState(() => _selectedYear = val);
-                        },
                       ),
-                    ),
-                  );
-                },
-                loading: () => const SizedBox(height: 48),
-                error: (_, __) => const SizedBox(),
-              ),
-              const SizedBox(height: 12),
-            ] else if (user != null) ...[
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<int>(
+                          value: _selectedYear,
+                          hint: Text(
+                            l10n.selectStudyYear,
+                            style: const TextStyle(fontSize: 14),
+                          ),
+                          isExpanded: true,
+                          icon: const Icon(Icons.keyboard_arrow_down, size: 20),
+                          items: years.map((y) {
+                            String label;
+                            if (y == 7) {
+                              label = l10n.residencyExam;
+                            } else if (y == 1) {
+                              label = l10n.firstYearOrdinal;
+                            } else {
+                              label = l10n.otherYearOrdinal(y.toString());
+                            }
+                            return DropdownMenuItem<int>(
+                              value: y,
+                              child: Text(
+                                label,
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (val) {
+                            setState(() => _selectedYear = val);
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                  loading: () => const SizedBox(height: 48),
+                  error: (_, __) => const SizedBox(),
                 ),
+                const SizedBox(height: 12),
+              ] else if (user != null) ...[
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? Colors.white.withOpacity(0.05)
+                        : Colors.black.withOpacity(0.02),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Text(
+                    "${l10n.studyYear}: ${user.year == 1 ? l10n.firstYearOrdinal : l10n.otherYearOrdinal(user.year.toString())}",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: isDark ? Colors.white70 : Colors.black54,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+              ],
+              // TYPE TOGGLE (Theo vs Clinical)
+              Container(
+                height: 48,
                 decoration: BoxDecoration(
                   color: isDark
                       ? Colors.white.withOpacity(0.05)
-                      : Colors.black.withOpacity(0.02),
+                      : Colors.black.withOpacity(0.03),
                   borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  "${l10n.studyYear}: ${user.year == 1 ? l10n.firstYearOrdinal : l10n.otherYearOrdinal(user.year.toString())}",
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: isDark ? Colors.white70 : Colors.black54,
-                    fontWeight: FontWeight.w500,
+                  border: Border.all(
+                    color: isDark ? Colors.white12 : Colors.black12,
                   ),
                 ),
+                child: Row(
+                  children: [
+                    _buildTypeButton(
+                      label: l10n.theoretical,
+                      isSelected: !_isClinical,
+                      onTap: () => setState(() => _isClinical = false),
+                    ),
+                    _buildTypeButton(
+                      label: l10n.clinical,
+                      isSelected: _isClinical,
+                      onTap: () => setState(() => _isClinical = true),
+                    ),
+                  ],
+                ),
               ),
-              const SizedBox(height: 12),
             ],
-            //TYPE TOGGLE(Theo vs Clinical)
-            Container(
-              height: 48,
-              decoration: BoxDecoration(
-                color: isDark
-                    ? Colors.white.withOpacity(0.05)
-                    : Colors.black.withOpacity(0.03),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: isDark ? Colors.white12 : Colors.black12,
-                ),
-              ),
-              child: Row(
-                children: [
-                  _buildTypeButton(
-                    label: l10n.theoretical,
-                    isSelected: !_isClinical,
-                    onTap: () => setState(() => _isClinical = false),
-                  ),
-                  _buildTypeButton(
-                    label: l10n.clinical,
-                    isSelected: _isClinical,
-                    onTap: () => setState(() => _isClinical = true),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
+          ),
+          const SizedBox(height: 16),
+        ],
         Expanded(
           child: modulesAsync.when(
             data: (modules) {
-              final filteredModules = _selectedYear != null
-                  ? modules.where((m) => m.year == _selectedYear).toList()
-                  : modules;
+              final modulesListToDisplay = _selectedParentModule != null
+                  ? (_selectedParentModule!.children ?? [])
+                  : (_selectedYear != null
+                      ? modules.where((m) => m.year == _selectedYear).toList()
+                      : modules);
 
-              if (filteredModules.isEmpty) {
+              if (modulesListToDisplay.isEmpty) {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -299,9 +315,9 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
               }
 
               return ListView.builder(
-                itemCount: filteredModules.length,
+                itemCount: modulesListToDisplay.length,
                 itemBuilder: (context, index) {
-                  final module = filteredModules[index];
+                  final module = modulesListToDisplay[index];
                   return Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     decoration: BoxDecoration(
@@ -350,10 +366,16 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
                       ),
                       trailing: const Icon(Iconsax.arrow_right_3, size: 18),
                       onTap: () {
-                        setState(() {
-                          _selectedModule = module;
-                          _selectedLessonIds.clear();
-                        });
+                        if (module.children != null && module.children!.isNotEmpty) {
+                          setState(() {
+                            _selectedParentModule = module;
+                          });
+                        } else {
+                          setState(() {
+                            _selectedModule = module;
+                            _selectedLessonIds.clear();
+                          });
+                        }
                       },
                     ),
                   );
@@ -381,24 +403,32 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
         ? ref.watch(moduleLessonsProvider(_selectedModule!.id))
         : null;
 
-    return Column(
+    return SingleChildScrollView(
       key: const ValueKey("config"),
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (_selectedModule != null && lessonsAsync != null) ...[
-          //LESSONS SELECTION
-          Text(
-            "Leçons(${_selectedLessonIds.length}sélectionnées)",
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
-          const SizedBox(height: 12),
-          Expanded(
-            child: lessonsAsync.when(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (_selectedModule != null && lessonsAsync != null) ...[
+            //LESSONS SELECTION
+            Text(
+              "Leçons (${_selectedLessonIds.length} sélectionnées)",
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            const SizedBox(height: 12),
+            lessonsAsync.when(
               data: (lessons) {
                 if (lessons.isEmpty) {
-                  return const Center(child: Text("Aucune leçon trouvée"));
+                  return const Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 24.0),
+                      child: Text("Aucune leçon trouvée dans ce module"),
+                    ),
+                  );
                 }
                 return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: lessons.length,
                   itemBuilder: (context, index) {
                     final lesson = lessons[index];
@@ -425,188 +455,196 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
                   },
                 );
               },
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (e, s) => Text("Erreur: $e"),
-            ),
-          ),
-          const SizedBox(height: 24),
-        ],
-
-        //QUESTION COUNT
-        Text(
-          "Nombre de questions",
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
-        const SizedBox(height: 12),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [10, 20, 30, 50].map((count) {
-            final isSelected = _questionCount == count;
-            return GestureDetector(
-              onTap: () => setState(() => _questionCount = count),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
-                ),
-                decoration: BoxDecoration(
-                  color: isSelected
-                      ? primaryColor
-                      : (isDark
-                            ? Colors.white10
-                            : Colors.black.withOpacity(0.04)),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  count.toString(),
-                  style: TextStyle(
-                    color: isSelected
-                        ? Colors.white
-                        : (isDark ? Colors.white70 : Colors.black54),
-                    fontWeight: isSelected
-                        ? FontWeight.bold
-                        : FontWeight.normal,
-                  ),
+              loading: () => const Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24.0),
+                  child: CircularProgressIndicator(),
                 ),
               ),
-            );
-          }).toList(),
-        ),
-
-        const SizedBox(height: 24),
-        //TIMER CONFIG
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Mode Discussion(sans timer)",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              error: (e, s) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: Text("Erreur: $e"),
+              ),
             ),
-            Switch.adaptive(
-              value: _isDiscussionMode,
-              activeColor: primaryColor,
-              onChanged: (val) => setState(() => _isDiscussionMode = val),
-            ),
+            const SizedBox(height: 24),
           ],
-        ),
-        if (!_isDiscussionMode) ...[
-          const SizedBox(height: 12),
+
+          //QUESTION COUNT
           Text(
-            "Temps par question(secondes)",
-            style: TextStyle(
-              fontSize: 14,
-              color: isDark ? Colors.white60 : Colors.black54,
-            ),
+            "Nombre de questions",
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [10, 15, 30, 60].map((seconds) {
-              final isSelected = _secondsPerQuestion == seconds;
+            children: [10, 20, 30, 50].map((count) {
+              final isSelected = _questionCount == count;
               return GestureDetector(
-                onTap: () => setState(() => _secondsPerQuestion = seconds),
+                onTap: () => setState(() => _questionCount = count),
                 child: Container(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
+                    horizontal: 20,
+                    vertical: 10,
                   ),
                   decoration: BoxDecoration(
                     color: isSelected
                         ? primaryColor
                         : (isDark
-                              ? Colors.white10
-                              : Colors.black.withOpacity(0.04)),
+                            ? Colors.white10
+                            : Colors.black.withOpacity(0.04)),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    "${seconds}s",
+                    count.toString(),
                     style: TextStyle(
                       color: isSelected
                           ? Colors.white
                           : (isDark ? Colors.white70 : Colors.black54),
-                      fontSize: 13,
+                      fontWeight: isSelected
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                     ),
                   ),
                 ),
               );
             }).toList(),
           ),
-        ],
 
-        const SizedBox(height: 24),
-        //SCHEDULE TOGGLE
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          decoration: BoxDecoration(
-            color: isDark
-                ? Colors.white.withOpacity(0.05)
-                : Colors.black.withOpacity(0.03),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
-          ),
-          child: Row(
+          const SizedBox(height: 24),
+          //TIMER CONFIG
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                Iconsax.calendar_1,
-                size: 20,
-                color: _isScheduled ? primaryColor : Colors.grey,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: const Text(
-                  "Programmer pour plus tard",
-                  style: TextStyle(fontSize: 13),
-                ),
+              const Text(
+                "Mode Discussion (sans timer)",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               Switch.adaptive(
-                value: _isScheduled,
+                value: _isDiscussionMode,
                 activeColor: primaryColor,
-                onChanged: (val) => setState(() => _isScheduled = val),
+                onChanged: (val) => setState(() => _isDiscussionMode = val),
               ),
             ],
           ),
-        ),
-
-        const SizedBox(height: 24),
-        //START BUTTON
-        SizedBox(
-          width: double.infinity,
-          height: 56,
-          child: ElevatedButton(
-            onPressed: _loadingModuleId != null
-                ? null
-                : () => _startOrSchedule(context, _selectedModule),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: primaryColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
+          if (!_isDiscussionMode) ...[
+            const SizedBox(height: 12),
+            Text(
+              "Temps par question (secondes)",
+              style: TextStyle(
+                fontSize: 14,
+                color: isDark ? Colors.white60 : Colors.black54,
               ),
-              elevation: 0,
             ),
-            child: _loadingModuleId != null
-                ? const SizedBox(
-                    width: 24,
-                    height: 24,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 2,
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [10, 15, 30, 60].map((seconds) {
+                final isSelected = _secondsPerQuestion == seconds;
+                return GestureDetector(
+                  onTap: () => setState(() => _secondsPerQuestion = seconds),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
                     ),
-                  )
-                : Text(
-                    widget.editingSession != null
-                        ? "Mettreàjour la session"
-                        : (_isScheduled
-                              ? "Valider le planning"
-                              : "Lancer le Duel"),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? primaryColor
+                          : (isDark
+                              ? Colors.white10
+                              : Colors.black.withOpacity(0.04)),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      "${seconds}s",
+                      style: TextStyle(
+                        color: isSelected
+                          ? Colors.white
+                          : (isDark ? Colors.white70 : Colors.black54),
+                        fontSize: 13,
+                      ),
                     ),
                   ),
+                );
+              }).toList(),
+            ),
+          ],
+
+          const SizedBox(height: 24),
+          //SCHEDULE TOGGLE
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            decoration: BoxDecoration(
+              color: isDark
+                  ? Colors.white.withOpacity(0.05)
+                  : Colors.black.withOpacity(0.03),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: isDark ? Colors.white12 : Colors.black12),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Iconsax.calendar_1,
+                  size: 20,
+                  color: _isScheduled ? primaryColor : Colors.grey,
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: const Text(
+                    "Programmer pour plus tard",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                ),
+                Switch.adaptive(
+                  value: _isScheduled,
+                  activeColor: primaryColor,
+                  onChanged: (val) => setState(() => _isScheduled = val),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+
+          const SizedBox(height: 32),
+          //START BUTTON
+          SizedBox(
+            width: double.infinity,
+            height: 56,
+            child: ElevatedButton(
+              onPressed: _loadingModuleId != null
+                  ? null
+                  : () => _startOrSchedule(context, _selectedModule),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                elevation: 0,
+              ),
+              child: _loadingModuleId != null
+                  ? const SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    )
+                  : Text(
+                      widget.editingSession != null
+                          ? "Mettre à jour la session"
+                          : (_isScheduled
+                              ? "Valider le planning"
+                              : "Lancer le Duel"),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -693,7 +731,7 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
             .updateQuizSession(
               widget.editingSession!.id,
               title: _isClinical
-                  ? "Duel Clinique(Modifié)"
+                  ? "Duel Clinique (Modifié)"
                   : widget.editingSession!.title,
               questionCount: _questionCount,
               isClinical: _isClinical,
@@ -763,7 +801,7 @@ class _QuizSelectionSheetState extends ConsumerState<QuizSelectionSheet> {
         Navigator.pop(sheetContext);
         ScaffoldMessenger.of(sheetContext).showSnackBar(
           SnackBar(
-            content: Text("Duel programmépour demainà18h"),
+            content: Text("Duel programmé pour demain à 18h"),
             behavior: SnackBarBehavior.floating,
           ),
         );

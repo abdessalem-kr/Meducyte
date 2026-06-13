@@ -5,15 +5,27 @@ import 'package:meducyte_app/features/observation/data/models/specialty_config.d
 
 class PathologyDetailSheet extends ConsumerWidget {
   final PathologyGuide pathology;
+  final VoidCallback? onStartExam;
 
-  const PathologyDetailSheet({super.key, required this.pathology});
+  const PathologyDetailSheet({
+    super.key,
+    required this.pathology,
+    this.onStartExam,
+  });
 
-  static Future<void> show(BuildContext context, PathologyGuide pathology) {
+  static Future<void> show(
+    BuildContext context,
+    PathologyGuide pathology, {
+    VoidCallback? onStartExam,
+  }) {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => PathologyDetailSheet(pathology: pathology),
+      builder: (context) => PathologyDetailSheet(
+        pathology: pathology,
+        onStartExam: onStartExam,
+      ),
     );
   }
 
@@ -117,11 +129,11 @@ class PathologyDetailSheet extends ConsumerWidget {
                 if (pathology.scores != null)
                   _buildSection(
                     context,
-                    "CRITÈRES DIAGNOSTIQUES&SCORES",
+                    "CRITÈRES DIAGNOSTIQUES & SCORES INTERACTIFS",
                     Iconsax.judge,
                     Colors.blue,
                     pathology.scores!
-                        .map((s) => _buildScoreCard(context, s))
+                        .map((s) => _ScoreCalculatorWidget(score: s))
                         .toList(),
                   ),
 
@@ -153,6 +165,39 @@ class PathologyDetailSheet extends ConsumerWidget {
               ],
             ),
           ),
+          if (onStartExam != null) ...[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              child: SizedBox(
+                width: double.infinity,
+                height: 52,
+                child: ElevatedButton(
+                  onPressed: onStartExam,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: theme.primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Iconsax.play, color: Colors.white),
+                      const SizedBox(width: 10),
+                      Text(
+                        "Démarrer l'examen clinique",
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ],
       ),
     );
@@ -216,48 +261,231 @@ class PathologyDetailSheet extends ConsumerWidget {
       ),
     );
   }
+}
 
-  Widget _buildScoreCard(BuildContext context, DiagnosticScore score) {
+class _ScoreCalculatorWidget extends StatefulWidget {
+  final DiagnosticScore score;
+
+  const _ScoreCalculatorWidget({required this.score});
+
+  @override
+  State<_ScoreCalculatorWidget> createState() => _ScoreCalculatorWidgetState();
+}
+
+class _ScoreCalculatorWidgetState extends State<_ScoreCalculatorWidget> {
+  final Set<int> _selectedIndices = {};
+
+  int _getPoints(String criterion) {
+    final regExp = RegExp(r'\(\+(\d+)\)');
+    final match = regExp.firstMatch(criterion);
+    if (match != null) {
+      return int.parse(match.group(1)!);
+    }
+    return 1; // default to 1 point
+  }
+
+  String _getCleanText(String criterion) {
+    return criterion.replaceAll(RegExp(r'\s*\(\+\d+\)'), '');
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    
+    // Calculate total points and max points
+    int totalScore = 0;
+    int maxScore = 0;
+    for (int i = 0; i < widget.score.criteria.length; i++) {
+      final pts = _getPoints(widget.score.criteria[i]);
+      maxScore += pts;
+      if (_selectedIndices.contains(i)) {
+        totalScore += pts;
+      }
+    }
+
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(12),
-      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: theme.primaryColor.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: theme.primaryColor.withOpacity(0.1)),
+        color: theme.cardColor,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: theme.dividerColor.withOpacity(0.1)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.02),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            score.name,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-          ),
-          const SizedBox(height: 4),
-          Text(score.description, style: theme.textTheme.bodySmall),
-          const Divider(height: 16),
-          ...score.criteria.map(
-            (c) => Padding(
-              padding: const EdgeInsets.only(bottom: 4),
-              child: Text("• $c", style: const TextStyle(fontSize: 12)),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              "🔍Interpretation: ${score.interpretation}",
-              style: const TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.bold,
-                color: Colors.green,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.score.name,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      widget.score.description,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.hintColor,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                decoration: BoxDecoration(
+                  color: theme.primaryColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "$totalScore",
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        color: theme.primaryColor,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    Text(
+                      " / $maxScore",
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: theme.hintColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const Divider(height: 24),
+          ...List.generate(widget.score.criteria.length, (index) {
+            final criterion = widget.score.criteria[index];
+            final cleanText = _getCleanText(criterion);
+            final points = _getPoints(criterion);
+            final isSelected = _selectedIndices.contains(index);
+
+            return InkWell(
+              onTap: () {
+                setState(() {
+                  if (isSelected) {
+                    _selectedIndices.remove(index);
+                  } else {
+                    _selectedIndices.add(index);
+                  }
+                });
+              },
+              borderRadius: BorderRadius.circular(8),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 4.0),
+                child: Row(
+                  children: [
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: isSelected ? theme.primaryColor : Colors.transparent,
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(
+                          color: isSelected ? theme.primaryColor : theme.hintColor.withOpacity(0.4),
+                          width: 2,
+                        ),
+                      ),
+                      child: isSelected
+                          ? const Icon(
+                              Icons.check,
+                              size: 14,
+                              color: Colors.white,
+                            )
+                          : null,
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        cleanText,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: isSelected ? null : theme.textTheme.bodyMedium?.color?.withOpacity(0.8),
+                          fontWeight: isSelected ? FontWeight.w600 : null,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: theme.dividerColor.withOpacity(0.05),
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      child: Text(
+                        "+$points pt${points > 1 ? 's' : ''}",
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: theme.hintColor,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
+          const SizedBox(height: 16),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.green.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.green.withOpacity(0.2)),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(
+                  Iconsax.info_circle,
+                  color: Colors.green,
+                  size: 18,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Interprétation Clinique",
+                        style: theme.textTheme.labelSmall?.copyWith(
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        widget.score.interpretation,
+                        style: theme.textTheme.bodySmall?.copyWith(
+                          color: Colors.green.shade800,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],

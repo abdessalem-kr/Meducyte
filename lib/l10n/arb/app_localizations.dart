@@ -377,19 +377,19 @@ abstract class AppLocalizations {
   /// No description provided for @correct.
   ///
   /// In en, this message translates to:
-  /// **'Correct'**
+  /// **'CORRECT'**
   String get correct;
 
   /// No description provided for @incorrect.
   ///
   /// In en, this message translates to:
-  /// **'Incorrect'**
+  /// **'INCORRECT'**
   String get incorrect;
 
   /// No description provided for @partiallyCorrect.
   ///
   /// In en, this message translates to:
-  /// **'Partially Correct'**
+  /// **'PARTIALLY CORRECT'**
   String get partiallyCorrect;
 
   /// No description provided for @explanation.
@@ -509,7 +509,7 @@ abstract class AppLocalizations {
   /// No description provided for @saveChanges.
   ///
   /// In en, this message translates to:
-  /// **'Save Changes'**
+  /// **'Save changes'**
   String get saveChanges;
 
   /// No description provided for @profileUpdatedSuccessfully.
@@ -523,6 +523,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to update profile'**
   String get profileUpdateFailed;
+
+  /// No description provided for @profileChooseIdentity.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your identity'**
+  String get profileChooseIdentity;
+
+  /// No description provided for @profileSelectAvatarDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the avatar that matches your style'**
+  String get profileSelectAvatarDesc;
+
+  /// No description provided for @profileMedicalInterests.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical Interests'**
+  String get profileMedicalInterests;
+
+  /// No description provided for @profileSaveInterests.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Interests'**
+  String get profileSaveInterests;
+
+  /// No description provided for @profileYearPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Year {year}'**
+  String profileYearPrefix(Object year);
+
+  /// No description provided for @profileNotSpecified.
+  ///
+  /// In en, this message translates to:
+  /// **'Not specified'**
+  String get profileNotSpecified;
+
+  /// No description provided for @profileNotDefined.
+  ///
+  /// In en, this message translates to:
+  /// **'Not defined'**
+  String get profileNotDefined;
+
+  /// No description provided for @profileNoInterestSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'No interest selected'**
+  String get profileNoInterestSelected;
+
+  /// No description provided for @profileStudyHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Habits'**
+  String get profileStudyHabits;
 
   /// No description provided for @notLoggedIn.
   ///
@@ -680,6 +734,12 @@ abstract class AppLocalizations {
   /// **'Meducyte is an advanced learning platform tailored for medical students. It offers clinical cases, flashcards, and a dedicated workspace to enhance your practical knowledge.'**
   String get fontPreviewText;
 
+  /// No description provided for @twoHoursAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'2 hours ago'**
+  String get twoHoursAgo;
+
   /// No description provided for @fontSmall.
   ///
   /// In en, this message translates to:
@@ -739,6 +799,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Study Plan'**
   String get studyPlan;
+
+  /// No description provided for @studyPlanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Plan Settings'**
+  String get studyPlanTitle;
+
+  /// No description provided for @studyPlanInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure your daily study targets to control how many new cards and review items you tackle each day.'**
+  String get studyPlanInfo;
 
   /// No description provided for @downloadMode.
   ///
@@ -2699,7 +2771,7 @@ abstract class AppLocalizations {
   /// No description provided for @deleteHighlight.
   ///
   /// In en, this message translates to:
-  /// **'Remove Highlight'**
+  /// **'Delete Highlight'**
   String get deleteHighlight;
 
   /// No description provided for @editNoteLabel.
@@ -3296,6 +3368,12 @@ abstract class AppLocalizations {
   /// **'Test Features'**
   String get testFeatures;
 
+  /// No description provided for @sendTestNotification.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a test notification'**
+  String get sendTestNotification;
+
   /// No description provided for @selectBestOption.
   ///
   /// In en, this message translates to:
@@ -3305,7 +3383,7 @@ abstract class AppLocalizations {
   /// No description provided for @correctionMode.
   ///
   /// In en, this message translates to:
-  /// **'Correction Mode'**
+  /// **'Correction mode'**
   String get correctionMode;
 
   /// No description provided for @instantCorrection.
@@ -8137,6 +8215,942 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search for a pathology or symptoms...'**
   String get simSearchPathology;
+
+  /// No description provided for @peakFocusMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent focus. Ready to tackle complex topics!'**
+  String get peakFocusMsg;
+
+  /// No description provided for @lightFatigueMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'Light fatigue detected. Consider switching subjects or taking a short break.'**
+  String get lightFatigueMsg;
+
+  /// No description provided for @burnoutRiskMsg.
+  ///
+  /// In en, this message translates to:
+  /// **'High fatigue. Take a real break to recharge your batteries.'**
+  String get burnoutRiskMsg;
+
+  /// No description provided for @elapsedTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Elapsed Time'**
+  String get elapsedTime;
+
+  /// No description provided for @averagePace.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Pace'**
+  String get averagePace;
+
+  /// No description provided for @recommendedReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended Review'**
+  String get recommendedReview;
+
+  /// No description provided for @perfectScore.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect Score!'**
+  String get perfectScore;
+
+  /// No description provided for @perfectScoreSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations, you have mastered all notions of this quiz!'**
+  String get perfectScoreSubtitle;
+
+  /// No description provided for @reviewMistakes.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Mistakes'**
+  String get reviewMistakes;
+
+  /// No description provided for @restartQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart'**
+  String get restartQuiz;
+
+  /// No description provided for @performanceExcellent.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent'**
+  String get performanceExcellent;
+
+  /// No description provided for @performanceVeryGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Very Good'**
+  String get performanceVeryGood;
+
+  /// No description provided for @performanceAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Average'**
+  String get performanceAverage;
+
+  /// No description provided for @performanceNeedsWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs Work'**
+  String get performanceNeedsWork;
+
+  /// No description provided for @feedbackNeedsWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Take your time to review the corrections to improve.'**
+  String get feedbackNeedsWork;
+
+  /// No description provided for @feedbackExcellent.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations! You have mastered this topic perfectly.'**
+  String get feedbackExcellent;
+
+  /// No description provided for @feedbackVeryGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Great job! You are almost there.'**
+  String get feedbackVeryGood;
+
+  /// No description provided for @feedbackAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Good foundation, keep reviewing!'**
+  String get feedbackAverage;
+
+  /// No description provided for @questionsDetailsList.
+  ///
+  /// In en, this message translates to:
+  /// **'Question Details'**
+  String get questionsDetailsList;
+
+  /// No description provided for @fatigueSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fatigue Settings'**
+  String get fatigueSettingsTitle;
+
+  /// No description provided for @fatigueAnalysis.
+  ///
+  /// In en, this message translates to:
+  /// **'Fatigue Analysis'**
+  String get fatigueAnalysis;
+
+  /// No description provided for @fatigueAnalysisDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable real-time tracking of mental load based on study sessions, quiz performance, and recovery breaks.'**
+  String get fatigueAnalysisDesc;
+
+  /// No description provided for @fatigueSensitivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Fatigue Sensitivity'**
+  String get fatigueSensitivity;
+
+  /// No description provided for @fatigueSensitivityDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust how fast cognitive load builds up during work and quizzes.'**
+  String get fatigueSensitivityDesc;
+
+  /// No description provided for @sensitivityLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get sensitivityLow;
+
+  /// No description provided for @sensitivityMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get sensitivityMedium;
+
+  /// No description provided for @sensitivityHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get sensitivityHigh;
+
+  /// No description provided for @fatigueAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Fatigue Alert Notifications'**
+  String get fatigueAlerts;
+
+  /// No description provided for @fatigueAlertsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive notifications when fatigue levels indicate a break is due.'**
+  String get fatigueAlertsDesc;
+
+  /// No description provided for @fatigueAnalysisSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable automatic cognitive fatigue tracking'**
+  String get fatigueAnalysisSubtitle;
+
+  /// No description provided for @sensitivityLowDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fatigue builds up 50% slower'**
+  String get sensitivityLowDesc;
+
+  /// No description provided for @sensitivityMediumDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard recommended settings'**
+  String get sensitivityMediumDesc;
+
+  /// No description provided for @sensitivityHighDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fatigue builds up 50% faster'**
+  String get sensitivityHighDesc;
+
+  /// No description provided for @helpCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Help Center'**
+  String get helpCenter;
+
+  /// No description provided for @faqHowCanWeHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'How can we help you?'**
+  String get faqHowCanWeHelp;
+
+  /// No description provided for @faqSearchDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Search our frequently asked questions'**
+  String get faqSearchDesc;
+
+  /// No description provided for @faqCategoryAccountPremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Account & Premium'**
+  String get faqCategoryAccountPremium;
+
+  /// No description provided for @faqCategoryStudyFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Features'**
+  String get faqCategoryStudyFeatures;
+
+  /// No description provided for @faqCategoryCommunityGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Community & Groups'**
+  String get faqCategoryCommunityGroups;
+
+  /// No description provided for @faqStillHaveQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Still have questions?'**
+  String get faqStillHaveQuestions;
+
+  /// No description provided for @faqContactSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'CONTACT HUMAN SUPPORT'**
+  String get faqContactSupport;
+
+  /// No description provided for @faqQ1.
+  ///
+  /// In en, this message translates to:
+  /// **'How do I upgrade to Premium?'**
+  String get faqQ1;
+
+  /// No description provided for @faqA1.
+  ///
+  /// In en, this message translates to:
+  /// **'You can upgrade by clicking on the Profile tab or selecting any premium feature (like unlimited AI Chat). We support various payment methods including Chargily for Algerian Dinars.'**
+  String get faqA1;
+
+  /// No description provided for @faqQ2.
+  ///
+  /// In en, this message translates to:
+  /// **'Can I use Meducyte on multiple devices?'**
+  String get faqQ2;
+
+  /// No description provided for @faqA2.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes! Your data is synced to your account. Simply log in on your new device to continue your study journey.'**
+  String get faqA2;
+
+  /// No description provided for @faqQ3.
+  ///
+  /// In en, this message translates to:
+  /// **'How does Spaced Repetition work?'**
+  String get faqQ3;
+
+  /// No description provided for @faqA3.
+  ///
+  /// In en, this message translates to:
+  /// **'Meducyte uses advanced algorithms to track your performance. We show you difficult questions more often and easy ones less frequently to optimize your memory retention.'**
+  String get faqA3;
+
+  /// No description provided for @faqQ4.
+  ///
+  /// In en, this message translates to:
+  /// **'What is the AI Medical Tutor?'**
+  String get faqQ4;
+
+  /// No description provided for @faqA4.
+  ///
+  /// In en, this message translates to:
+  /// **'Medu-AI is our custom chatbot trained on medical literature. It can explain complex concepts, help you interpret labs, or guide you through clinical cases.'**
+  String get faqA4;
+
+  /// No description provided for @faqQ5.
+  ///
+  /// In en, this message translates to:
+  /// **'Does Meducyte follow the Algerian curriculum?'**
+  String get faqQ5;
+
+  /// No description provided for @faqA5.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, our question bank and course structure are specifically designed to align with the curriculum modules of Algerian medical faculties.'**
+  String get faqA5;
+
+  /// No description provided for @faqQ6.
+  ///
+  /// In en, this message translates to:
+  /// **'How to start a Group Study?'**
+  String get faqQ6;
+
+  /// No description provided for @faqA6.
+  ///
+  /// In en, this message translates to:
+  /// **'Head to the \'Productive Bay\' and select \'Study Groups\'. You can create a private group and invite your comrades via a unique code or link.'**
+  String get faqA6;
+
+  /// No description provided for @faqQ7.
+  ///
+  /// In en, this message translates to:
+  /// **'Is there a Meducyte community?'**
+  String get faqQ7;
+
+  /// No description provided for @faqA7.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes! Join our official Telegram channel to stay updated and discuss with thousands of medical students across Algeria.'**
+  String get faqA7;
+
+  /// No description provided for @statsPerformanceTrend.
+  ///
+  /// In en, this message translates to:
+  /// **'Performance Trend'**
+  String get statsPerformanceTrend;
+
+  /// No description provided for @statsSpecialtyAccuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'Specialty Accuracy'**
+  String get statsSpecialtyAccuracy;
+
+  /// No description provided for @statsTotalAccuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Accuracy'**
+  String get statsTotalAccuracy;
+
+  /// No description provided for @statsQuizzesDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Quizzes Done'**
+  String get statsQuizzesDone;
+
+  /// No description provided for @statsQuestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions'**
+  String get statsQuestions;
+
+  /// No description provided for @statsStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Streak'**
+  String get statsStreak;
+
+  /// No description provided for @chatTrialLimitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Trial Limit'**
+  String get chatTrialLimitTitle;
+
+  /// No description provided for @chatTrialLimitDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve reached the limit of 5 trial messages. Upgrade to Premium for unlimited access to the AI Medical Tutor.'**
+  String get chatTrialLimitDesc;
+
+  /// No description provided for @chatUpgradeNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade Now'**
+  String get chatUpgradeNow;
+
+  /// No description provided for @chatTrialBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'TRIAL'**
+  String get chatTrialBadge;
+
+  /// No description provided for @chatMessagesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'• {count}/5 messages'**
+  String chatMessagesCount(Object count);
+
+  /// No description provided for @chatClearHistoryConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a new conversation and clear history?'**
+  String get chatClearHistoryConfirm;
+
+  /// No description provided for @unread.
+  ///
+  /// In en, this message translates to:
+  /// **'Unread'**
+  String get unread;
+
+  /// No description provided for @freeBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'FREE'**
+  String get freeBadge;
+
+  /// No description provided for @studyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Study Note'**
+  String get studyNote;
+
+  /// No description provided for @emptyNoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Empty note. Tap to edit.'**
+  String get emptyNoteHint;
+
+  /// No description provided for @premiumFeature.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium Feature'**
+  String get premiumFeature;
+
+  /// No description provided for @upgradeToUnlockAi.
+  ///
+  /// In en, this message translates to:
+  /// **'Upgrade to a higher tier to unlock high-level AI tools and full module access.'**
+  String get upgradeToUnlockAi;
+
+  /// No description provided for @viewPlans.
+  ///
+  /// In en, this message translates to:
+  /// **'View Plans'**
+  String get viewPlans;
+
+  /// No description provided for @zenModeEnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable Zen Mode'**
+  String get zenModeEnable;
+
+  /// No description provided for @zenModeDisable.
+  ///
+  /// In en, this message translates to:
+  /// **'Disable Zen Mode'**
+  String get zenModeDisable;
+
+  /// No description provided for @sepiaThemeEnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Sepia Paper Theme'**
+  String get sepiaThemeEnable;
+
+  /// No description provided for @sepiaThemeDisable.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard Theme'**
+  String get sepiaThemeDisable;
+
+  /// No description provided for @autoScrollStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Auto-Scroll'**
+  String get autoScrollStart;
+
+  /// No description provided for @autoScrollPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause Auto-Scroll'**
+  String get autoScrollPause;
+
+  /// No description provided for @scrollSpeedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Scroll Speed: {speed}x'**
+  String scrollSpeedLabel(Object speed);
+
+  /// No description provided for @adjustTextSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Adjust Text Size'**
+  String get adjustTextSize;
+
+  /// No description provided for @printPdfExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Print / PDF Export'**
+  String get printPdfExport;
+
+  /// No description provided for @reportContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Report Content'**
+  String get reportContent;
+
+  /// No description provided for @listen.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen'**
+  String get listen;
+
+  /// No description provided for @aiExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Explain'**
+  String get aiExplain;
+
+  /// No description provided for @aiSummarize.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Summarize'**
+  String get aiSummarize;
+
+  /// No description provided for @aiMnemonic.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Mnemonic'**
+  String get aiMnemonic;
+
+  /// No description provided for @deleteNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Note'**
+  String get deleteNote;
+
+  /// No description provided for @highlightColorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlight Color'**
+  String get highlightColorTitle;
+
+  /// No description provided for @highlightOptionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlight Options'**
+  String get highlightOptionsTitle;
+
+  /// No description provided for @sq3rReadingModeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'SQ3R Reading Mode'**
+  String get sq3rReadingModeTitle;
+
+  /// No description provided for @returnToSq3r.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to SQ3R'**
+  String get returnToSq3r;
+
+  /// No description provided for @tapToZoom.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to zoom'**
+  String get tapToZoom;
+
+  /// No description provided for @loadingImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading image…'**
+  String get loadingImage;
+
+  /// No description provided for @imageUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Image unavailable'**
+  String get imageUnavailable;
+
+  /// No description provided for @sectionsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} sections'**
+  String sectionsCount(Object count);
+
+  /// No description provided for @dummyLoadingLessonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading dummy lesson title...'**
+  String get dummyLoadingLessonTitle;
+
+  /// No description provided for @dummyLoadingParagraphTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dummy paragraph number {number}'**
+  String dummyLoadingParagraphTitle(Object number);
+
+  /// No description provided for @dummyLoadingParagraphContent.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading dummy paragraph content for the active lesson...'**
+  String get dummyLoadingParagraphContent;
+
+  /// No description provided for @sectionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Section {number}'**
+  String sectionLabel(Object number);
+
+  /// No description provided for @tableLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Table'**
+  String get tableLabel;
+
+  /// No description provided for @loadingModuleA.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Module A…'**
+  String get loadingModuleA;
+
+  /// No description provided for @loadingModuleB.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Module B…'**
+  String get loadingModuleB;
+
+  /// No description provided for @loadingModuleC.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Module C…'**
+  String get loadingModuleC;
+
+  /// No description provided for @loadingLessonA.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Lesson A…'**
+  String get loadingLessonA;
+
+  /// No description provided for @loadingLessonB.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Lesson B…'**
+  String get loadingLessonB;
+
+  /// No description provided for @loadingLessonC.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Lesson C…'**
+  String get loadingLessonC;
+
+  /// No description provided for @loadingSourceA.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Source A…'**
+  String get loadingSourceA;
+
+  /// No description provided for @loadingSourceB.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading Source B…'**
+  String get loadingSourceB;
+
+  /// No description provided for @modulesError.
+  ///
+  /// In en, this message translates to:
+  /// **'Modules Error: {error}'**
+  String modulesError(String error);
+
+  /// No description provided for @lessonsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons Error: {error}'**
+  String lessonsError(String error);
+
+  /// No description provided for @revisionMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Revision Mode'**
+  String get revisionMode;
+
+  /// No description provided for @showAnswersDirectly.
+  ///
+  /// In en, this message translates to:
+  /// **'Show answers directly'**
+  String get showAnswersDirectly;
+
+  /// No description provided for @allOrNothing.
+  ///
+  /// In en, this message translates to:
+  /// **'All or nothing'**
+  String get allOrNothing;
+
+  /// No description provided for @partialPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Partial points'**
+  String get partialPoints;
+
+  /// No description provided for @examDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam duration'**
+  String get examDuration;
+
+  /// No description provided for @durationNone.
+  ///
+  /// In en, this message translates to:
+  /// **'None'**
+  String get durationNone;
+
+  /// No description provided for @durationMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String durationMinutes(String minutes);
+
+  /// No description provided for @questionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of questions'**
+  String get questionCount;
+
+  /// No description provided for @questionCountAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get questionCountAll;
+
+  /// No description provided for @questionCountCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get questionCountCustom;
+
+  /// No description provided for @preciseNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Precise number:'**
+  String get preciseNumber;
+
+  /// No description provided for @enterNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number'**
+  String get enterNumber;
+
+  /// No description provided for @freeTrialLimitDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Free Trial: 10 questions per session'**
+  String get freeTrialLimitDesc;
+
+  /// No description provided for @modulesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} modules'**
+  String modulesCount(String count);
+
+  /// No description provided for @maximumItemsAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum {count} items allowed'**
+  String maximumItemsAllowed(String count);
+
+  /// No description provided for @loadingQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading question, please wait…'**
+  String get loadingQuestion;
+
+  /// No description provided for @dummyLoadingOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Dummy loading option {number}'**
+  String dummyLoadingOption(int number);
+
+  /// No description provided for @sessionSavedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Session saved successfully'**
+  String get sessionSavedSuccess;
+
+  /// No description provided for @quitQuizTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit the quiz?'**
+  String get quitQuizTitle;
+
+  /// No description provided for @quitQuizBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to save your progress to resume later or abandon this session?'**
+  String get quitQuizBody;
+
+  /// No description provided for @saveAndQuit.
+  ///
+  /// In en, this message translates to:
+  /// **'Save and quit'**
+  String get saveAndQuit;
+
+  /// No description provided for @quitWithoutSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Quit without saving'**
+  String get quitWithoutSaving;
+
+  /// No description provided for @editTask.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit task'**
+  String get editTask;
+
+  /// No description provided for @editSubTask.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit sub-task'**
+  String get editSubTask;
+
+  /// No description provided for @subTaskName.
+  ///
+  /// In en, this message translates to:
+  /// **'Sub-task name'**
+  String get subTaskName;
+
+  /// No description provided for @subTasksLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sub-tasks'**
+  String get subTasksLabel;
+
+  /// No description provided for @addSubTaskHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a sub-task…'**
+  String get addSubTaskHint;
+
+  /// No description provided for @editLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get editLabel;
+
+  /// No description provided for @deleteTaskTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete task'**
+  String get deleteTaskTitle;
+
+  /// No description provided for @deleteTaskConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \'{title}\'?'**
+  String deleteTaskConfirm(String title);
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @compileAndCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Compile & Copy'**
+  String get compileAndCopy;
+
+  /// No description provided for @examHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Help'**
+  String get examHelp;
+
+  /// No description provided for @newExamSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New Exam Section'**
+  String get newExamSectionTitle;
+
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
+  /// No description provided for @reportCleared.
+  ///
+  /// In en, this message translates to:
+  /// **'Report cleared'**
+  String get reportCleared;
+
+  /// No description provided for @clearReportQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Report?'**
+  String get clearReportQuestion;
+
+  /// No description provided for @clearReportConfirmDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to clear the entire observation report? This cannot be undone.'**
+  String get clearReportConfirmDesc;
+
+  /// No description provided for @reportCopiedClipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Report copied to clipboard'**
+  String get reportCopiedClipboard;
+
+  /// No description provided for @examNameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exam Name'**
+  String get examNameTitle;
+
+  /// No description provided for @pelvicUltrasoundExample.
+  ///
+  /// In en, this message translates to:
+  /// **'Ex: Pelvic ultrasound'**
+  String get pelvicUltrasoundExample;
+
+  /// No description provided for @otherOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Other...'**
+  String get otherOption;
+
+  /// No description provided for @newSectionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Section name (e.g. ENT Exam)'**
+  String get newSectionHint;
 }
 
 class _AppLocalizationsDelegate

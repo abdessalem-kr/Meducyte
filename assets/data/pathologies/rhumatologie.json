@@ -1,121 +1,233 @@
 [
   {
-    "name": "Rhume déformante",
-    "description": "Maladie chronique inflammatoire",
+    "name": "Arthrite réactive",
+    "description": "L'arthrite réactive est une arthrite séronegative survenant après une infection génitale ou intestinale, typiquement liée à des agents comme Chlamydia trachomatis, Salmonella, Shigella ou Yersinia. Elle se manifeste par une arthralgie ou arthrose aiguë, souvent asymétrique, touchant principalement les articulations du membre inférieur (genou, cheville, hanches). Elle est associée à une uvéite, une conjonctivite, une balanite ou une cervicite, et un syndrome de Reiter (triade: uvéite, balanite, arthrite). La physiopathologie repose sur une réponse immunitaire anormale à l'infection, avec activation des cellules T et production de cytokines pro-inflammatoires.",
     "redFlags": [
-      "Douleur intense",
-      "Déformation des articulations"
+      "Douleur articulaire aiguë survenant 1-4 semaines après une infection génitale ou intestinale",
+      "Arthrose asymétrique des articulations du membre inférieur avec douleur à la palpation",
+      "Présence d'œdème pédieux ou de nœuds dactyliens",
+      "Uvéite aiguë avec photophobie et vision trouble",
+      "Balanite ou conjonctivite concomitante"
     ],
     "scores": [
       {
-        "name": "DAS 28",
-        "description": "Mesure l'activité de la maladie",
+        "name": "Critères de diagnostic de l'arthrite réactive (EULAR 2009)",
+        "description": "Score basé sur la présence de critères cliniques et biologiques pour établir le diagnostic",
         "criteria": [
-          "Nombre de jointures tendres",
-          "Nombre de jointures gonflées",
-          "TAES",
-          "CRP"
+          "Infection génitale ou intestinale documentée (1 point)",
+          "Arthrite asymétrique des membres inférieurs (1 point)",
+          "Uvéite ou conjonctivite (1 point)",
+          "Balanite ou cervicite (1 point)",
+          "Nœuds dactyliens (1 point)",
+          "Réponse positive à l'antibiotique (1 point)"
         ],
-        "interpretation": "Score élevé indique une activité élevée de la maladie"
+        "interpretation": "Diagnostic probable avec ≥4 points, diagnostic certain avec ≥5 points et absence de cause alternative"
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen des jointures",
+        "title": "Examen rhumatologique et oculaire",
         "steps": [
           {
-            "action": "Palper les jointures",
-            "interpretation": "Douleur ou gonflement indique une inflammation"
+            "action": "Palpation des articulations du genou, cheville et hanches pour évaluer la douleur, la chaleur et l'œdème",
+            "interpretation": "Douleur à la palpation et chaleur articulaire indiquent une inflammation active. L'œdème asymétrique des membres inférieurs est typique de l'arthrite réactive."
+          },
+          {
+            "action": "Examen des nœuds dactyliens (œdème du doigt ressemblant à un gant de boxe)",
+            "interpretation": "Présence de nœuds dactyliens est un signe pathognomonique de l'arthrite réactive, particulièrement associé aux infections à Yersinia."
+          },
+          {
+            "action": "Examen oculaire avec lampe à fente pour rechercher uvéite antérieure",
+            "interpretation": "Uvéite aiguë avec cellules dans le chambre antérieure et précipités KPs (Koeppe ou Busacca) est un critère majeur du syndrome de Reiter."
+          },
+          {
+            "action": "Examen génital pour rechercher balanite, ulcères ou lésions érythémateuses",
+            "interpretation": "Balanite ou lésions génitales érythémateuses sont des signes associés à l'arthrite réactive, particulièrement dans les formes associées à Chlamydia."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Prescrire des AINS",
-      "Référence à un rhumatologue"
+      "Antibiothérapie ciblée selon l'agent infectieux identifié (ex: Doxycycline pour Chlamydia, Ciprofloxacine pour Salmonella)",
+      "Anti-inflammatoires non stéroïdiens (AINS) à dose élevée pour contrôler l'inflammation articulaire",
+      "Corticostéroïdes locaux pour les uvéites aiguës (ex: Prednisolone 1% gouttes oculaires toutes les 2 heures)",
+      "Immobilisation articulaire avec orthèses pour les articulations gravement touchées",
+      "Hospitalisation pour surveillance en cas d'uvéite sévère ou de compromission visuelle"
     ],
     "differentialDiagnosis": [
-      "Polyarthrite rhumatoïde",
-      "Spondylarthrite ankylosante"
+      "Arthrite psoriasique (présence de psoriasis ou onycholysie)",
+      "Arthrite spondyloarthritique (sacroiliite et entésite)",
+      "Arthrite secondaire à infection virale (ex: Hépatite B/C)"
     ]
   },
   {
-    "name": "Goutte",
-    "description": "Maladie métabolique",
+    "name": "Amylose AA secondaire",
+    "description": "L'amylose AA est une maladie systémique due à l'accumulation de protéine amyloïde A (SAA) dans les tissus, secondaire à une inflammation chronique (ex: arthrite rhumatoïde, tuberculose, ostéomyélite chronique). La protéine SAA, produite par le foie en réponse à l'inflammation, se dépose dans les reins, le foie, le cœur et les intestins, causant une insuffisance d'organe progressive. Les manifestations cliniques incluent une protéinurie, une insuffisance rénale, une cardiopathie restrictive et une diarrhée chronique.",
     "redFlags": [
-      "Douleur intense de l'articulation du gros orteil",
-      "Érythème et gonflement de l'articulation"
+      "Protéinurie persistante associée à une albuminurie sévère",
+      "Insuffisance rénale progressive sans cause évidente",
+      "Cardiopathie restrictive avec galop de 4ème ton et hypotension",
+      "Diarrhée chronique avec malabsorption",
+      "Hypoglycémie due à amylose hépatique"
     ],
     "scores": [
       {
-        "name": "Score de diagnostic de la goutte",
-        "description": "Mesure la probabilité de goutte",
+        "name": "Score de diagnostic de l'amylose AA",
+        "description": "Score basé sur la présence de critères cliniques et biologiques",
         "criteria": [
-          "Douleur intense de l'articulation du gros orteil",
-          "Érythème et gonflement de l'articulation",
-          "Présence de tophi"
+          "Protéinurie >3g/jour (1 point)",
+          "Insuffisance rénale chronique (1 point)",
+          "Cardiopathie restrictive (1 point)",
+          "Diarrhée chronique (1 point)",
+          "Hypoglycémie inexpliquée (1 point)"
         ],
-        "interpretation": "Score élevé indique une forte probabilité de goutte"
+        "interpretation": "Score ≥3 points avec biopsie confirmatoire (foie, rein ou moelle osseuse) pour confirmer le diagnostic"
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen de l'articulation du gros orteil",
+        "title": "Examen rénal, cardiaque et digestif",
         "steps": [
           {
-            "action": "Palper l'articulation",
-            "interpretation": "Douleur ou gonflement indique une inflammation"
+            "action": "Examen des signes de neuropathie périphérique (douleurs, paresthésies, atrophie musculaire)",
+            "interpretation": "Neuropathie sensorielle ou motrice est un signe de stade avancé de l'amylose AA, lié à l'accumulation amyloïde dans les nerfs périphériques."
+          },
+          {
+            "action": "Palpation du foie et du spleen pour évaluer l'augmentation de volume",
+            "interpretation": "Hépatomégalie est fréquente dans l'amylose AA, associée à une fibrose parenchymateuse secondaire à l'amylose."
+          },
+          {
+            "action": "Auscultation cardiaque pour rechercher un galop de 4ème ton et des souffles diastoliques",
+            "interpretation": "Galop de 4ème ton et souffles diastoliques indiquent une cardiopathie restrictive, typique de l'amylose cardiaque."
+          },
+          {
+            "action": "Examen des yeux pour rechercher des lésions cornéennes amyloïdes",
+            "interpretation": "Lésions cornéennes blanchâtres ou opacité cornéenne sont des signes oculaires spécifiques de l'amylose AA."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Prescrire des AINS",
-      "Prescrire des colchicine"
+      "Traitement de la maladie sous-jacente (ex: corticostéroïdes pour arthrite rhumatoïde, antibiothérapie pour infection chronique)",
+      "Support rénal (diurétiques, restriction de sodium) en cas d'insuffisance rénale",
+      "Digoxine et bêtabloquants pour la cardiopathie restrictive",
+      "Transfusion sanguine en cas d'anémie sévère",
+      "Hospitalisation pour surveillance en cas de décompensation multi-organique"
     ],
     "differentialDiagnosis": [
-      "Pseudogoutte",
-      "Septicité"
+      "Amylose AL (liée à une plasmocytose monoclonale)",
+      "Amylose secondaire à maladie de Crohn",
+      "Amylose secondaire à tuberculose"
+    ]
+  },
+  {
+    "name": "Lupus érythémateux systémique (LES)",
+    "description": "Auto-immunopathie chronique caractérisée par une production d'auto-anticorps dirigés contre des antigènes nucléaires, entraînant une inflammation multisystémique. Présentation clinique hétérogène avec manifestations cutanées (érythème malar, photosensibilité), articulaires (arthralgies polyarticulaires), rénales (néphrite lupique), hématologiques (anémie, leucopénie), neurologiques (démence, épilepsie) et cardiovasculaires (péritonite, pleurésie).",
+    "redFlags": [
+      "Érythème malar bilatéral persistant avec photosensibilité marquée",
+      "Ulcères buccaux récidivants associés à une arthralgie polyarticulaire asymétrique",
+      "Hématurie macroscopique avec protéinurie > 0,5 g/24h",
+      "Plaquetropénie aiguë (< 100 000/mm³) avec signes de coagulation intravasculaire disséminée",
+      "Démence subaiguë avec troubles de la mémoire et de l'orientation sans cause évidente"
+    ],
+    "scores": [
+      {
+        "name": "Critères de classification SLICC (Systemic Lupus International Collaborating Clinics)",
+        "description": "Score cumulatif basé sur des critères cliniques et immunologiques pour diagnostiquer le lupus systémique. Chaque critère attribue des points selon sa spécificité.",
+        "criteria": [
+          "Critère clinique 1: Érythème malar (+1 point)",
+          "Critère clinique 2: Photosensibilité (+1 point)",
+          "Critère immunologique 1: ANA positif > 1/80 (+1 point)",
+          "Critère immunologique 2: Anti-dsDNA positif ou complément C3/C4 diminué (+1 point)"
+        ],
+        "interpretation": "Diagnostic de lupus systémique confirmé si score total ≥ 10 points, avec au moins un critère immunologique."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen cutané, articulaire et neurologique",
+        "steps": [
+          {
+            "action": "Inspection du visage pour érythème malar, érythème discoïde ou cicatrices",
+            "interpretation": "Présence d'érythème malar bilatéral typique évoque le lupus cutané."
+          },
+          {
+            "action": "Palpation des articulations pour douleur, chaleur ou gonflement asymétrique",
+            "interpretation": "Arthralgies polyarticulaires sans déformations suggèrent une arthrite lupique."
+          },
+          {
+            "action": "Examen neurologique ciblé (tests de mémoire, coordination, réflexes)",
+            "interpretation": "Désorientation ou troubles cognitifs peuvent indiquer une névrite lupique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Corticothérapie intraveineuse (methylprednisolone 1 g/jour) pour les manifestations aiguës",
+      "Antimalariens (hydroxychloroquine) pour stabiliser la maladie chronique",
+      "Surveillance biologique hebdomadaire des plaquettes et de la fonction rénale",
+      "Protection solaire totale avec écran total (SPF 50+) pour prévenir les poussées",
+      "Hospitalisation en cas de néphrite lupique aiguë ou de crise neurologique"
+    ],
+    "differentialDiagnosis": [
+      "Sclérodermie systémique (absence d'anticorps anti-dsDNA, présence de phénomène de Raynaud)",
+      "Pemphigus vulgaris (lésions bulleuses cutanées, absence d'arthralgies)",
+      "Arthrite rhumatoïde (déformations articulaires, facteur rhumatoïde positif)"
     ]
   },
   {
     "name": "Spondylarthrite ankylosante",
-    "description": "Maladie chronique inflammatoire",
+    "description": "Arthrite axiale chronique de type spondyloarthrite, caractérisée par une inflammation répétée des vertèbres et des sacro-iliaques. Physiopathologie liée à une réponse immunitaire anormale avec implication de l'HLA-B27. Présentation clinique dominée par une douleur lombaire chronique, une raideur matinale > 30 minutes, et une limitation de la mobilité spinale progressive.",
     "redFlags": [
-      "Douleur lombaire",
-      "Raideur matinale"
+      "Douleur lombaire insidieuse évoluant sur plusieurs mois avec irradiation vers les fesses",
+      "Raideur matinale persistante > 30 minutes améliorée par l'activité physique",
+      "Antécédents familiaux d'ankylose ou de spondylarthrite",
+      "Signe de Schober < 5 cm (test de flexion lombaire)",
+      "Douleurs oculaires récidivantes évoquant une uveite aiguë"
     ],
     "scores": [
       {
-        "name": "Bath Ankylosing Spondylitis Disease Activity Index (BASDAI)",
-        "description": "Mesure l'activité de la maladie",
+        "name": "Critères modifiés de New York",
+        "description": "Classification diagnostique basée sur des critères cliniques et radiologiques.",
         "criteria": [
-          "Douleur lombaire",
-          "Raideur matinale",
-          "Fatigue",
-          "Douleur thoracique"
+          "Critère clinique 1: Douleur lombaire chronique avec raideur matinale > 30 minutes (+1 point)",
+          "Critère clinique 2: Limitation de la mobilité thoracique (test de flexion thoracique < 5 cm) (+1 point)",
+          "Critère radiologique 1: Sacro-iliaque bilatérale grade III-IV sur radiographie (+2 points)",
+          "Critère biologique 1: HLA-B27 positif (+1 point)"
         ],
-        "interpretation": "Score élevé indique une activité élevée de la maladie"
+        "interpretation": "Diagnostic confirmé si score total ≥ 4 points avec au moins un critère radiologique."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen de la colonne vertébrale",
+        "title": "Examen orthopédique et radiologique",
         "steps": [
           {
-            "action": "Évaluer la flexibilité de la colonne vertébrale",
-            "interpretation": "Raideur indique une inflammation"
+            "action": "Palpation des sacro-iliaques pour douleur à la pression ou au mouvement",
+            "interpretation": "Douleur accentuée à la manœuvre de Patrick (test de FABER) évoque une arthrose sacro-iliaque."
+          },
+          {
+            "action": "Mesure de la flexion lombaire (test de Schober) et de la mobilité thoracique",
+            "interpretation": "Réduction de la flexion lombaire > 5 cm indique une ankylose spinale."
+          },
+          {
+            "action": "Examen oculaire pour signes d'uvéite (rougeur, photophobie, vision trouble)",
+            "interpretation": "Uvéite aiguë est un complication fréquente chez les patients HLA-B27 positifs."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Prescrire des AINS",
-      "Référence à un rhumatologue"
+      "Anti-inflammatoires non stéroïdiens (AINS) à dose élevée (ex: indométacine 50 mg/8h)",
+      "Physiothérapie quotidienne pour maintenir la mobilité spinale",
+      "Éviter les anticholinestérasiques en cas de suspicion d'ankylose complète",
+      "Surveillance oculaire régulière par un ophtalmologiste",
+      "Considération de biologiques (anti-TNF) en cas de réponse insuffisante aux AINS"
     ],
     "differentialDiagnosis": [
-      "Spondylarthropathie",
-      "Maladie de Scheuermann"
+      "Douleur mécanique lombaire (absence de raideur matinale, amélioration par le repos)",
+      "Arthrite psoriasique (présence de psoriasis ou ongles en bouchon de bouteille)",
+      "Arthrose dégénérative (douleur irradiant vers les jambes, absence d'ankylose)"
     ]
   }
 ]

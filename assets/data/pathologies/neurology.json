@@ -1,217 +1,351 @@
 [
   {
-    "name": "Accident Vasculaire Cérébral (AVC)",
-    "description": "Lésion cérébrale due à une interruption de l'apport sanguin",
+    "name": "Maladie de Creutzfeldt-Jakob (CJD) sporadique",
+    "description": "Pathologie neurodégénérative prionique à évolution rapide, caractérisée par une dégénérescence spongiforme du cerveau, des dépôts de protéine prionne (PrPSc) et une réponse gliale astrogliotique. Présentation clinique typique : déclin cognitif aigu à subaigu (délai < 3 mois), myoclonus généralisés, ataxie, troubles visuels (diplopie, agnosie visuelle), et signes de désorganisation corticale. Évolution vers un état végétatif profond en quelques mois.",
     "redFlags": [
-      "douleur intense, déficit neurologique brut et évolutif"
+      "Détérioration cognitive rapide (perte de 20 points au MMSE en < 1 mois) avec myoclonus généralisés induits par le stimulus",
+      "Signes de désorganisation corticale (dyspraxie, agnosie, apraxie) associés à des troubles du sommeil paradoxal",
+      "Réflexes ostinato (réflexes myotatiques répétitifs) observés lors de l'auscultation neurologique",
+      "Imagerie cérébrale montrant des signes de « cire cérébrale » (diffusion anormale en T2/FLAIR au scanner) ou des signes de « cire cérébrale » en IRM",
+      "Électroencéphalogramme (EEG) montrant des complexes triphasiques à 1-2 Hz en phase de crise"
     ],
     "scores": [
       {
-        "name": "NIHSS",
-        "description": "Évaluation de la gravité de l'AVC",
+        "name": "Critères diagnostiques de CJD (WHO 2015)",
+        "description": "Score de probabilité diagnostique basé sur des critères cliniques, biologiques et radiologiques",
         "criteria": [
-          "Niveau de conscience",
-          "Déficits moteurs",
-          "Déficits sensoriels"
+          "Critère 1: Détérioration cognitive aiguë (perte de 20 points au MMSE en < 1 mois) (+2 points)",
+          "Critère 2: Myoclonus généralisés induits par le stimulus (+1 point)",
+          "Critère 3: Signes de désorganisation corticale (dyspraxie, agnosie) (+1 point)",
+          "Critère 4: IRM cérébrale montrant des signes de « cire cérébrale » (hyperintensité en T2/FLAIR au niveau des noyaux caudés et du thalamus) (+2 points)",
+          "Critère 5: Élévation des 14-3-3 dans le LCR (valeur > 1,1 ng/mL) (+2 points)"
         ],
-        "interpretation": "Score élevé indique une lésion plus grave"
+        "interpretation": "Score ≥ 4 points : Probabilité diagnostique élevée de CJD. Score 2-3 points : Probabilité intermédiaire. Score < 2 points : Probabilité faible. Les résultats doivent être interprétés en conjonction avec l'histologie cérébrale post-mortem pour confirmation définitive."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen Neurologique",
+        "title": "Examen neurologique ciblé et évaluation cognitive",
         "steps": [
           {
-            "action": "Évaluation de la force musculaire",
-            "interpretation": "Déficit de force musculaire indique une lésion neurologique"
+            "action": "Évaluation du myoclonus à l'aide d'un test de stimulation visuelle (clignotement de lumière) ou auditif",
+            "interpretation": "Présence de myoclonus induits par le stimulus (myoclonus réflexes) évoquant une pathologie prionique. Absence de myoclonus spontanés suggérant une étiologie épileptique."
           },
           {
-            "action": "Évaluation de la sensibilité",
-            "interpretation": "Perte de sensibilité indique une lésion neurologique"
+            "action": "Test de la marche en étoile (Romberg inversé) pour évaluer l'ataxie cérébelleuse",
+            "interpretation": "Incapacité à maintenir l'équilibre en position debout avec les pieds joints et les yeux fermés indiquant une atteinte cérébelleuse. Coordination normale suggérant une étiologie non prionique."
+          },
+          {
+            "action": "Évaluation des troubles visuels avec test de confrontation des champs visuels",
+            "interpretation": "Perte de champ visuel quadrantic ou hémianopsie associée à des troubles de la reconnaissance visuelle évoquant une atteinte corticale. Conservation des champs visuels suggérant une étiologie non prionique."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Appel d'urgence pour un scanner cérébral d'urgence",
-      "Administration de thrombolytiques si indiqué"
+      "Isolation du patient en chambre à pression négative pour prévenir la transmission iatrogène",
+      "Prélèvement de liquide cérébrospinal (LCR) pour dosage des 14-3-3 et PCR pour les prions",
+      "Imagerie cérébrale urgente (IRM cérébrale avec séquences T2/FLAIR) pour rechercher les signes de « cire cérébrale »",
+      "Électroencéphalogramme (EEG) en 24h pour rechercher les complexes triphasiques",
+      "Hospitalisation en unité de soins intensifs pour surveillance neurologique continue et préparation à l'intubation en cas de décompensation respiratoire"
     ],
     "differentialDiagnosis": [
-      "Hémorragie cérébrale",
-      "Tumeur cérébrale"
+      "Démence sénile à protéine tau (dégénérescence corticobasale) : Évolution plus lente et absence de myoclonus induits",
+      "Encéphalite auto-immune (anti-NMDA) : Présence de mouvements orofaciaux stéréotypés et absence de signes de spongiosis",
+      "Encéphalopathie métabolique aiguë : Anamnèse révélant des facteurs de risque (alcool, insuffisance rénale)"
     ]
   },
   {
-    "name": "Épilepsie",
-    "description": "Trouble neurologique caractérisé par des crises convulsives répétées",
+    "name": "Myasthénie grave associée à la toxine botulique",
+    "description": "Syndrome neuromusculaire à transmission synaptique altérée causé par l'ingestion de toxine botulique (type A, B, E). Mécanisme pathogénique : inhibition de la libération de l'acétylcholine à la synapse neuromusculaire. Présentation clinique : parésie oculomotrice (ptose, diplopie), paresie faciale, dysphagie, dysarthrie, et parésie ascendante progressive pouvant mener à une insuffisance respiratoire aiguë.",
     "redFlags": [
-      "crises convulsives répétées",
-      "perte de conscience"
+      "Ptose bilatérale associée à diplopie fixe sans mydriase",
+      "Dysphagie aiguë avec impossibilité de déglutir les liquides",
+      "Voix atone (dysarthrie flasque) avec articulation des mots en « pâte »",
+      "Paresie faciale bilatérale asymétrique avec absence de plissement des joues",
+      "Réflexes ostéo-tendineux diminués ou absents avec conservation des réflexes cutanés"
     ],
     "scores": [
       {
-        "name": "Échelle de Glasgow",
-        "description": "Évaluation du niveau de conscience",
+        "name": "Score de gravité de la myasthénie grave (MG-ADL)",
+        "description": "Échelle évaluant la gravité fonctionnelle des symptômes",
         "criteria": [
-          "Ouverture des yeux",
-          "Réponse verbale",
-          "Réponse motrice"
+          "Critère 1: Activités quotidiennes (marche, habillage) (0-3 points)",
+          "Critère 2: Alimentation (déglutition, mastication) (0-3 points)",
+          "Critère 3: Parole (clarté, volume) (0-3 points)",
+          "Critère 4: Vision (ptose, diplopie) (0-3 points)",
+          "Critère 5: Respiration (efforts, oxygénation) (0-3 points)"
         ],
-        "interpretation": "Score bas indique un niveau de conscience altéré"
+        "interpretation": "Score total ≥ 10 points : Indique une myasthénie grave nécessitant une surveillance en soins intensifs. Score < 10 points : Gestion ambulatoire possible sous surveillance stricte."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen Neurologique",
+        "title": "Examen neurologique ciblé des nerfs crâniens et des muscles striés",
         "steps": [
           {
-            "action": "Évaluation de la fonction cognitive",
-            "interpretation": "Déficit de la fonction cognitive indique une lésion neurologique"
+            "action": "Test de la ptose bilatérale en demandant au patient de suivre un objet mobile avec les yeux",
+            "interpretation": "Ptose bilatérale asymétrique avec diplopie fixe évoquant une atteinte des nerfs oculomoteurs. Conservation de la convergence suggérant une étiologie non botulique."
           },
           {
-            "action": "Évaluation de la coordination motrice",
-            "interpretation": "Déficit de la coordination motrice indique une lésion neurologique"
+            "action": "Test de la force musculaire faciale (plissement des joues, sourire bilatéral)",
+            "interpretation": "Paresie faciale flasque bilatérale asymétrique indiquant une atteinte des nerfs faciaux. Conservation de la force musculaire suggérant une étiologie épileptique."
+          },
+          {
+            "action": "Évaluation de la force musculaire des membres avec test de la marche en talons et sur la pointe des pieds",
+            "interpretation": "Paresie ascendante progressive avec conservation de la force proximale évoquant une myasthénie. Paresie symétrique suggérant une neuropathie inflammatoire."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration d'un traitement anti-épileptique",
-      "Surveillance en unité de soins intensifs"
+      "Administration d'antitoxine botulique spécifique (type A, B, E) dans les 24h suivant le diagnostic",
+      "Intubation précoce en cas de signes de défaillance respiratoire (saturation < 92% ou fréquence respiratoire > 30/min)",
+      "Prélèvement de sang et de selles pour dosage de la toxine botulique",
+      "Hospitalisation en unité de soins intensifs avec surveillance continue de la fonction respiratoire",
+      "Administration de pyridostigmine à faible dose (30-60 mg PO q4h) pour améliorer la transmission neuromusculaire"
     ],
     "differentialDiagnosis": [
-      "Trouble psychiatrique",
-      "Intoxication"
+      "Myasthénie gravis acquis : Présence de test de Tensilon positif et absence de paresie faciale",
+      "Guillain-Barré aigu : Paresie ascendante associée à des signes de myélopathie",
+      "Myopathie myasthénique congénitale : Histoire familiale et réponse partielle aux anticholinestérasiques"
     ]
   },
   {
-    "name": "Sclérose En Plaques (SEP)",
-    "description": "Maladie auto-immune affectant le système nerveux central",
+    "name": "Accident ischémique cérébral (AIC) aigu",
+    "description": "L'accident ischémique cérébral (AIC) résulte d'une occlusion artérielle cérébrale, le plus souvent thrombotique ou embolique, entraînant une ischémie et une nécrose tissulaire. La présentation clinique typique inclut une perte soudaine de fonctions neurologiques focales (hémiparésie, aphasie, dysarthrie, troubles visuels) ou globales (confusion, coma). Les symptômes évoluent de manière insidieuse ou brutale selon le mécanisme sous-jacent.",
     "redFlags": [
-      "douleur intense",
-      "faiblesse musculaire",
-      "troubles de la vision"
+      "Perte soudaine d'aptitude à marcher ou de coordination motrice unilatérale",
+      "Aphasie ou troubles du langage associés à une confusion",
+      "Troubles visuels soudains bilatéraux ou unilatéraux avec ou sans diplopie",
+      "Dysarthrie associée à une hémiparésie faciale",
+      "Perte de conscience progressive avec ou sans signes de méningite"
     ],
     "scores": [
       {
-        "name": "Échelle d'Évaluation de la Sclérose En Plaques (EDSS)",
-        "description": "Évaluation de la gravité de la SEP",
+        "name": "Échelle d'appréciation de l'infarctus cérébral (NIHSS)",
+        "description": "Score validé pour évaluer la gravité des déficits neurologiques dans l'AIC, permettant de guider les décisions thérapeutiques (thrombolyse, thrombectomie).",
         "criteria": [
-          "Déficits neurologiques",
-          "Capacité fonctionnelle"
+          "0-4: Déficits légers (ex: ataxie mineure, troubles visuels isolés)",
+          "5-15: Déficits modérés (ex: hémiparésie faciale + hémiparésie corporelle)",
+          "16-20: Déficits sévères (ex: hémiparésie + aphasie + troubles visuels)",
+          "21-42: Déficits extrêmement sévères (ex: coma, réflexes primitifs présents)"
         ],
-        "interpretation": "Score élevé indique une maladie plus grave"
+        "interpretation": "Un score ≥ 6 indique une indication possible de thrombectomie mécanique. Un score ≥ 15 suggère une ischémie étendue avec risque élevé de mortalité."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen Neurologique",
+        "title": "Examen neurologique ciblé et évaluation de la conscience",
         "steps": [
           {
-            "action": "Évaluation de la fonction cognitive",
-            "interpretation": "Déficit de la fonction cognitive indique une lésion neurologique"
+            "action": "Évaluation de la conscience (échelle de Glasgow) et de l'orientation temporo-spatiale",
+            "interpretation": "Une orientation altérée ou un score de Glasgow < 15 évoque une ischémie étendue ou une hémorragie concomitante."
           },
           {
-            "action": "Évaluation de la coordination motrice",
-            "interpretation": "Déficit de la coordination motrice indique une lésion neurologique"
+            "action": "Test de la face (sourire bilatéral) et de la force des membres (levage des bras et jambes)",
+            "interpretation": "Une asymétrie faciale ou une asymétrie de la force musculaire évoque un AIC ischémique."
+          },
+          {
+            "action": "Auscultation des artères carotides pour rechercher des souffles bruits",
+            "interpretation": "Présence d'un bruit de souffle suggérant une sténose carotidienne ou une embolie."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration de corticostéroïdes",
-      "Référence à un spécialiste en neurologie"
+      "Maintenir la voie aérienne, la ventilation et la perfusion (ABC) avec oxygénation ciblée à 94-98%",
+      "Établir une perfusion intraveineuse et stabiliser la glycémie (> 4,5 mmol/L)",
+      "Imagerie cérébrale urgente (scanner CT sans contraste + imagerie par résonance magnétique avec séquence DWI)",
+      "Administration de thrombolyse (rtPA) dans les 4,5 premières heures si critères éligibles",
+      "Préparation pour thrombectomie mécanique si score NIHSS ≥ 6 et imagerie compatible"
     ],
     "differentialDiagnosis": [
-      "Maladie de Lyme",
-      "Système nerveux central infectieux"
+      "Hémorragie cérébrale (présence de signes méningés ou de tension artérielle extrême)",
+      "Crise épileptique post-ictale (absence de progression insidieuse des symptômes)",
+      "Crise ischémique transitoire (TIA) avec rémission complète < 24 heures"
     ]
   },
   {
-    "name": "Maladie D'Alzheimer",
-    "description": "Trouble neurodégénératif caractérisé par une perte de mémoire progressive",
+    "name": "Crise épileptique non convulsive prolongée",
+    "description": "La crise épileptique non convulsive prolongée (CENCP) est définie comme une activité épileptique continue d'origine cérébrale, sans manifestations convulsives visibles, persistant pendant au moins 30 minutes. Elle se manifeste par une altération de l'état de conscience, une confusion, une automutilation répétée ou des automatismses. Elle peut survenir dans tout âge, mais est plus fréquente chez les patients avec épilepsie chronique ou lésions cérébrales sous-jacentes.",
     "redFlags": [
-      "perte de mémoire",
-      "troubles de la parole",
-      "troubles de la personnalité"
+      "Altération persistante de l'état de conscience sans cause métabolique évidente",
+      "Répétition de gestes automatisés (mouvements oraux, gestes manuels répétitifs)",
+      "Réponse inadéquate aux stimuli externes avec ou sans myosis",
+      "Absence de rémission spontanée après 5 minutes",
+      "Présence de crises convulsives antérieures dans le même contexte"
     ],
     "scores": [
       {
-        "name": "Mini-Mental State Examination (MMSE)",
-        "description": "Évaluation de la fonction cognitive",
+        "name": "Score de Termination of Seizures (TOS)",
+        "description": "Score clinique évaluant la probabilité de réponse à la thérapie anticonvulsivante en fonction de la durée et du type de crise.",
         "criteria": [
-          "Mémoire",
-          "Attention",
-          "Langage"
+          "0-2: Crise < 30 minutes (probabilité de réponse > 90%)",
+          "3-5: Crise 30-60 minutes (probabilité de réponse 70-80%)",
+          "6-8: Crise 60-120 minutes (probabilité de réponse 50-60%)",
+          "9-12: Crise > 120 minutes (probabilité de réponse < 40%)"
         ],
-        "interpretation": "Score bas indique une altération de la fonction cognitive"
+        "interpretation": "Un score ≥ 6 indique une urgence à initier une thérapie anticonvulsivante de haut débit (ex: benzodiazépines intraveineuses)."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen Neurologique",
+        "title": "Examen neurologique et évaluation de l'état de conscience",
         "steps": [
           {
-            "action": "Évaluation de la fonction cognitive",
-            "interpretation": "Déficit de la fonction cognitive indique une lésion neurologique"
+            "action": "Évaluation de l'alerte et de l'orientation (nom, lieu, date)",
+            "interpretation": "Une confusion persistante sans cause métabolique évoque une CENCP."
           },
           {
-            "action": "Évaluation de la coordination motrice",
-            "interpretation": "Déficit de la coordination motrice indique une lésion neurologique"
+            "action": "Observation des automatismes et des mouvements répétitifs",
+            "interpretation": "Présence d'automatismes stéréotypés (ex: léchage des lèvres, gestes manuels répétés) associés à une altération de la conscience."
+          },
+          {
+            "action": "Évaluation de la pupille et des réflexes oculaires",
+            "interpretation": "Myosis bilatéral asymétrique ou absence de réflexe pupillaire suggère une activité épileptique."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration de médicaments pour la maladie d'Alzheimer",
-      "Référence à un spécialiste en neurologie"
+      "Assurer la sécurité du patient (protéger des blessures, position latérale)",
+      "Administrer un benzodiazépode intraveineux (ex: diazépam 10 mg) en bolus",
+      "Initier une thérapie anticonvulsivante de maintien (ex: valproate 15-20 mg/kg IV)",
+      "Surveillance continue de l'état de conscience et des signes de décompensation métabolique",
+      "Préparation pour électroencéphalographie (EEG) en urgence pour confirmer le diagnostic"
     ],
     "differentialDiagnosis": [
-      "Trouble dépressif",
-      "Démence vasculaire"
+      "Coma métabolique (présence de troubles de l'équilibre hydrique ou électrolytique)",
+      "Syndrome de confusion post-ictale (absence de signes d'activité épileptique sur EEG)",
+      "Toxicomanie ou intoxication médicamenteuse (présence d'antécédents ou de signes toxiques)"
     ]
   },
   {
-    "name": "Migraine",
-    "description": "Céphalée récurrente et intense",
+    "name": "Maladie de Charcot (Sclérose en plaques)",
+    "description": "La sclérose en plaques est une maladie auto-immune chronique du système nerveux central (SNC) caractérisée par une démyélinisation focale. La physiopathologie implique une réponse immunitaire dirigée contre les oligodendrocytes et la myéline, entraînant des lésions inflammatoires et une perte de conduction neuronale. La présentation clinique typique inclut des poussées récidivantes de déficits neurologiques (vision, motricité, sensibilité) suivies de rémissions partielles ou complètes. Les formes récidivantes-rémittentes (RRMS) sont les plus fréquentes, avec des épisodes aigus de démyélinisation.",
     "redFlags": [
-      "céphalée intense",
-      "nausées",
-      "vomissements"
+      "Perte soudaine de vision unilatérale associée à une atrophie optique (névrite optique) avec absence de réponse à la corticothérapie",
+      "Dysarthrie et ataxie soudaine sans antécédents de traumatisme ou de tumeur",
+      "Perte de sensibilité segmentaire ou dissociée (ex: syndrome de Brown-Séquard) sans cause traumatique",
+      "Dysurésie ou incontinence urinaire associée à une perte de sensibilité pelvienne",
+      "Pertes de connaissance transitoires avec rétention urinaire aiguë (syndrome de l'herminette)"
     ],
     "scores": [
       {
-        "name": "Échelle de Douleur de la Migraine",
-        "description": "Évaluation de la gravité de la migraine",
+        "name": "Échelle d'incapacité étendue (EDSS)",
+        "description": "Score clinique évaluant le degré d'incapacité fonctionnelle dans la sclérose en plaques, basé sur 8 domaines neurologiques.",
         "criteria": [
-          "Intensité de la douleur",
-          "Fréquence des crises"
+          "Classe 0: Aucune incapacité fonctionnelle",
+          "Classe 1.5: Légers déficits neurologiques sans incapacité",
+          "Classe 3.0: Incapacité à marcher 500 mètres sans aide",
+          "Classe 6.0: Incapacité à marcher 100 mètres sans aide",
+          "Classe 8.0: Désorientation spatiale ou confusion persistante"
         ],
-        "interpretation": "Score élevé indique une migraine plus grave"
+        "interpretation": "Les scores > 4.0 indiquent une incapacité significative nécessitant une assistance permanente. Les scores > 6.5 sont associés à une dépendance totale pour les soins quotidiens."
       }
     ],
     "focusedExam": [
       {
-        "title": "Examen Neurologique",
+        "title": "Examen neurologique ciblé pour la sclérose en plaques",
         "steps": [
           {
-            "action": "Évaluation de la fonction cognitive",
-            "interpretation": "Déficit de la fonction cognitive indique une lésion neurologique"
+            "action": "Test de la vitesse de lecture et de la coordination oculaire (ex: test de saccades)",
+            "interpretation": "Des saccades lents ou des nystagmus indiquent une lésion du tronc cérébral ou du cervelet."
           },
           {
-            "action": "Évaluation de la coordination motrice",
-            "interpretation": "Déficit de la coordination motrice indique une lésion neurologique"
+            "action": "Évaluation de la force musculaire segmentaire (MMT) des membres supérieurs et inférieurs",
+            "interpretation": "Une faiblesse asymétrique ou une ataxie associée à des réflexes anormaux suggère une lésion de la moelle épinière ou du cervelet."
+          },
+          {
+            "action": "Test de Romberg modifié (fermeture des yeux et déviation latérale)",
+            "interpretation": "Une ataxie posturale en fermeture des yeux évoque une lésion de la voie spinocérébelleuse."
+          },
+          {
+            "action": "Évaluation de la sensibilité vibratoire et de la proprioception des orteils",
+            "interpretation": "Une perte vibratoire asymétrique ou une dysestésie évoque une lésion de la moelle épinière ou du cervelet."
+          },
+          {
+            "action": "Test de la marche en équilibre (tandem) et en ligne droite",
+            "interpretation": "Une ataxie marche en tandem associée à une hypotonie des membres inférieurs évoque une lésion cérébelleuse."
           }
         ]
       }
     ],
     "immediateManagement": [
-      "Administration de médicaments anti-migraineux",
-      "Référence à un spécialiste en neurologie"
+      "Corticostéroïdes à dose élevée (ex: méthylprednisolone 1g/jour IV pendant 3-5 jours) pour les poussées aiguës",
+      "Plérophérèse dans les cas de résistance aux corticoïdes ou de récidive rapide",
+      "Thérapie immunomodulatrice à long terme (ex: interféron bêta, glatiramer, ocrelizumab)",
+      "Rééducation fonctionnelle ciblée selon le déficit neurologique (ex: kinésithérapie, orthophonie)",
+      "Prévention des complications (déshydratation, escarres) par une surveillance étroite des fonctions végétatives"
     ],
     "differentialDiagnosis": [
-      "Céphalée de tension",
-      "Céphalée cluster"
+      "Myélite transverse aiguë (absence de rémission spontanée, lésions longitudinalement étendues sur IRM)",
+      "Sclérose latérale amyotrophique (dégénérescence motoneuronale sans lésions cérébrales)",
+      "Neuromyélite optique récurrente (lésions optiques bilatérales et myéline longitudinales sur IRM)"
+    ]
+  },
+  {
+    "name": "Maladie de Parkinson",
+    "description": "La maladie de Parkinson est une maladie neurodégénérative chronique caractérisée par la perte de neurones dopaminergiques dans la substantia nigra. La physiopathologie implique l'accumulation de corps de Lewy (agrégats d'alpha-synucléine) et une désinhibition du noyau sous-thalamique. La présentation clinique typique inclut un tremblement de repos, une bradykinésie, une rigidité et une instabilité posturale. Les formes atypiques (ex: parkinsonismes atypiques) présentent des signes non-moteurs dominants.",
+    "redFlags": [
+      "Tremblement de repos asymétrique associé à une hypokinesie faciale (masque parkinsonien)",
+      "Rigidité en engrenage (cogwheel rigidity) des membres supérieurs",
+      "Perte de la flexibilité articulaire (dystonie segmentaire) sans cause mécanique",
+      "Retard de la réponse motrice (bradykinésie) avec micrographie",
+      "Pertes de connaissance posturales avec absence de tremblement"
+    ],
+    "scores": [
+      {
+        "name": "Échelle UPDRS (Unified Parkinson's Disease Rating Scale)",
+        "description": "Score clinique évaluant les symptômes moteurs et non-moteurs de la maladie de Parkinson.",
+        "criteria": [
+          "Partie I: Évaluation des troubles non-moteurs (ex: dépression, troubles du sommeil)",
+          "Partie II: Évaluation de la qualité de vie (ex: difficultés à marcher, écrire)",
+          "Partie III: Évaluation des symptômes moteurs (ex: tremblement, rigidité, bradykinésie)",
+          "Partie IV: Évaluation des complications thérapeutiques (ex: dyskinésies, fluctuations)"
+        ],
+        "interpretation": "Les scores > 30/108 indiquent une maladie modérée nécessitant une thérapie dopaminergique optimisée. Les scores > 50/108 sont associés à une dépendance totale."
+      }
+    ],
+    "focusedExam": [
+      {
+        "title": "Examen neurologique ciblé pour la maladie de Parkinson",
+        "steps": [
+          {
+            "action": "Observation du repos et du mouvement spontané pour détecter le tremblement de repos",
+            "interpretation": "Un tremblement de 4-6 Hz, plus marqué au repos et atténué par l'activité motrice, est pathognomonique."
+          },
+          {
+            "action": "Test de la marche en ligne droite avec observation du pas",
+            "interpretation": "Un pas court, rapide (petit pas) avec absence de balancement des bras évoque une marche parkinsonienne."
+          },
+          {
+            "action": "Évaluation de la flexibilité articulaire des membres (test de la flexion du coude)",
+            "interpretation": "Une rigidité constante ou en engrenage indique une dystonie spastique."
+          },
+          {
+            "action": "Test de la marche en pivot (180°) sans appui",
+            "interpretation": "Une instabilité posturale avec risque de chute évoque une perte de l'équilibre."
+          },
+          {
+            "action": "Évaluation de la vitesse de répétition de mouvements (ex: ouverture-fermeture des mains)",
+            "interpretation": "Une bradykinésie avec mouvements lents et irréguliers est typique."
+          }
+        ]
+      }
+    ],
+    "immediateManagement": [
+      "Thérapie dopaminergique de première intention (ex: Lévodopa/Carbidopa 100/25 mg 2-3 fois/jour)",
+      "Éducation du patient sur la gestion des fluctuations (ex: dyskinésies, périodes OFF)",
+      "Kinésithérapie posturale pour prévenir les chutes",
+      "Orthèses de marche adaptées en cas de déséquilibre persistant",
+      "Évaluation psychiatrique pour les troubles du sommeil et la dépression"
+    ],
+    "differentialDiagnosis": [
+      "Parkinsonisme atypique (ex: maladie de Huntington avec chorées, maladie de Wilson avec kératolitèse)",
+      "Parkinsonisme médicamenteux (ex: antipsychiques bloquants les récepteurs D2)",
+      "Ataxie-fry syndrome (dystonie segmentaire sans tremblement)"
     ]
   }
 ]

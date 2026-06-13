@@ -10,14 +10,35 @@ class StatsRepository {
   StatsRepository(this._client);
 
   Future<UserStats> getUserStats() async {
+    const String query = r'''
+      query GetMyStats {
+        myStats {
+          overallAccuracy
+          quizzesCompleted
+          questionsAnswered
+          questionsAnsweredToday
+          studyStreak
+          specialtyAccuracy
+          performanceTrend
+        }
+      }
+    ''';
     try {
-      //In a real app,this would be:
-      //final response=await _client.get('/stats/me');
-      //return UserStats.fromJson(response.data);
+      final response = await _client.post('/graphql', data: {'query': query});
+      final mapData = response.data as Map<String, dynamic>?;
+      if (mapData == null) throw Exception('Response data is null');
 
-      //For now,returning empty stats to show the UI without mock data
-      await Future.delayed(const Duration(seconds: 1));
-      return UserStats.empty();
+      if (mapData['errors'] != null) {
+        final errorMsg = mapData['errors'][0]['message'];
+        throw Exception('GraphQL error: $errorMsg');
+      }
+
+      final data = mapData['data']?['myStats'];
+      if (data == null) {
+        return UserStats.empty();
+      }
+
+      return UserStats.fromJson(data as Map<String, dynamic>);
     } catch (e) {
       throw Exception('Failed to load statistics: $e');
     }

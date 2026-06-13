@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:meducyte_app/export.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:meducyte_app/shared/widgets/notification_badge.dart';
 import 'package:meducyte_app/features/learn/presentation/widgets/quiz_hub_section.dart';
 
@@ -13,9 +14,64 @@ class LearnPage extends ConsumerStatefulWidget {
 class _LearnPageState extends ConsumerState<LearnPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  late final ScrollController _yearScrollController;
   int _selectedYear = 1;
   final Set<String> _collapsedGroupIds = {};
   Map<int, List<String>> _customOrders = {};
+  int _quoteIndex = 0;
+
+  void _scrollToSelectedYear() {
+    if (!_yearScrollController.hasClients) return;
+    final targetIndex = _selectedYear - 1;
+    if (targetIndex <= 0) {
+      _yearScrollController.animateTo(
+        0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+      return;
+    }
+
+    final offset = targetIndex * 105.0 - 50.0;
+    final maxScroll = _yearScrollController.position.maxScrollExtent;
+    final safeOffset = offset.clamp(0.0, maxScroll);
+
+    _yearScrollController.animateTo(
+      safeOffset,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  static const _englishQuotes = [
+    "Clinical excellence is a journey of curiosity and compassion.",
+    "Every patient you see is a lesson; every challenge is a step forward.",
+    "Your dedication today shapes the lives you will save tomorrow.",
+    "Study hard, because one day you'll be the difference between life and death.",
+    "The stethoscope is a tool of empathy; listen with your heart.",
+    "Medicines cure diseases, but only doctors can heal patients.",
+    "Success in medicine is about caring the most, not just knowing the most.",
+    "Your clinical mastery begins with the courage to learn daily.",
+    "Behind every disease is a person with a story, a family, and hope.",
+    "Let the passion for healing be your guide through the long nights.",
+    "To cure sometimes, to relieve often, to comfort always.",
+    "A good doctor treats the disease; a great doctor treats the patient who has it.",
+  ];
+
+  static const _frenchQuotes = [
+    "L'excellence clinique est un voyage de curiosité et de compassion.",
+    "Chaque patient est une leçon ; chaque défi est un pas en avant.",
+    "Votre dévouement d'aujourd'hui façonne les vies que vous sauverez demain.",
+    "Étudiez dur, car un jour vous ferez la différence entre la vie et la mort.",
+    "Le stéthoscope est un outil d'empathie ; écoutez avec le cœur.",
+    "Les médicaments soignent, mais seuls les médecins guérissent.",
+    "Réussir en médecine, c'est d'abord faire preuve d'humanité et de soin.",
+    "Votre maîtrise clinique commence par le courage d'apprendre chaque jour.",
+    "Derrière chaque maladie se cache une personne avec son histoire et son espoir.",
+    "Que votre passion pour la guérison vous guide à travers les nuits de garde.",
+    "Guérir parfois, soulager souvent, consoler toujours.",
+    "Un bon médecin traite la maladie; un grand médecin traite le patient qui en souffre.",
+  ];
 
   void _toggleGroup(String id) {
     setState(() {
@@ -55,7 +111,9 @@ class _LearnPageState extends ConsumerState<LearnPage>
   @override
   void initState() {
     super.initState();
+    _quoteIndex = DateTime.now().millisecond % _englishQuotes.length;
     _tabController = TabController(length: 2, vsync: this);
+    _yearScrollController = ScrollController();
     _loadCustomOrders();
 
     //Initialize selected year from user profile
@@ -65,6 +123,7 @@ class _LearnPageState extends ConsumerState<LearnPage>
         setState(() {
           _selectedYear = user.year;
         });
+        Future.microtask(() => _scrollToSelectedYear());
       }
     });
   }
@@ -72,6 +131,7 @@ class _LearnPageState extends ConsumerState<LearnPage>
   @override
   void dispose() {
     _tabController.dispose();
+    _yearScrollController.dispose();
     super.dispose();
   }
 
@@ -251,8 +311,32 @@ class _LearnPageState extends ConsumerState<LearnPage>
               },
             );
           },
-          loading: () => const SliverFillRemaining(
-            child: Center(child: CircularProgressIndicator()),
+          loading: () => SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverGrid(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 1.0,
+              ),
+              delegate: SliverChildBuilderDelegate((context, index) {
+                return Skeletonizer(
+                  enabled: true,
+                  child: _buildModuleCard(
+                    context,
+                    const LearnModule(
+                      id: 'dummy',
+                      name: 'Module de cardiologie factice',
+                      year: 1,
+                      isFree: true,
+                    ),
+                    primaryColor,
+                    isDark,
+                  ),
+                );
+              }, childCount: 4),
+            ),
           ),
           error: (err, _) =>
               SliverFillRemaining(child: Center(child: Text('$err'))),
@@ -300,7 +384,7 @@ class _LearnPageState extends ConsumerState<LearnPage>
                     crossAxisCount: crossAxisCount,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,
-                    childAspectRatio: 0.85,
+                    childAspectRatio: 1.0,
                   ),
                   itemCount: standaloneModules.length,
                   itemBuilder: (context, index) {
@@ -356,7 +440,7 @@ class _LearnPageState extends ConsumerState<LearnPage>
                           crossAxisCount: crossAxisCount,
                           mainAxisSpacing: 16,
                           crossAxisSpacing: 16,
-                          childAspectRatio: 0.85,
+                          childAspectRatio: 1.0,
                         ),
                         itemCount: children.length,
                         itemBuilder: (context, index) {
@@ -489,9 +573,17 @@ class _LearnPageState extends ConsumerState<LearnPage>
 
   Widget _buildSliverHeader(BuildContext context, AppLocalizations l10n) {
     final topPadding = MediaQuery.of(context).padding.top;
+    final locale = Localizations.localeOf(context).languageCode;
+    final isFr = locale == 'fr';
+    final quote = isFr ? _frenchQuotes[_quoteIndex] : _englishQuotes[_quoteIndex];
+
     return SliverPersistentHeader(
       pinned: true,
-      delegate: _LearnHeaderDelegate(topPadding: topPadding, l10n: l10n),
+      delegate: _LearnHeaderDelegate(
+        topPadding: topPadding,
+        l10n: l10n,
+        motivationalSpeech: quote,
+      ),
     );
   }
 
@@ -533,6 +625,7 @@ class _LearnPageState extends ConsumerState<LearnPage>
         SizedBox(
           height: 50,
           child: ListView.builder(
+            controller: _yearScrollController,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             itemCount: 7,
@@ -571,7 +664,10 @@ class _LearnPageState extends ConsumerState<LearnPage>
                   selected: isSelected,
                   onSelected: (selected) {
                     if (isResidency) {
-                      if (selected) setState(() => _selectedYear = year);
+                      if (selected) {
+                        setState(() => _selectedYear = year);
+                        _scrollToSelectedYear();
+                      }
                     } else if (selected && !isSelected) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -647,102 +743,157 @@ class _LearnPageState extends ConsumerState<LearnPage>
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: primaryColor.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Icon(
-                        _getModuleIcon(module.name),
-                        color: primaryColor,
-                        size: 24,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: primaryColor.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Icon(
+                            _getModuleIcon(module.name),
+                            color: primaryColor,
+                            size: 20,
+                          ),
+                        ),
+                        if (module.isFree)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 6,
+                              vertical: 3,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.green.withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                color: Colors.green.withOpacity(0.3),
+                              ),
+                            ),
+                            child: const Text(
+                              "FREE PREVIEW",
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 8,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.5,
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
-                    if (module.isFree) ...[
-                      const SizedBox(height: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.green.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: Colors.green.withOpacity(0.3),
-                          ),
-                        ),
-                        child: const Text(
-                          "FREE PREVIEW",
-                          style: TextStyle(
-                            color: Colors.green,
-                            fontSize: 9,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 0.5,
-                          ),
-                        ),
-                      ),
-                    ],
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 8),
                     Text(
                       module.name,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                         height: 1.2,
                       ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '${module.lessons?.length ?? 0} ${module.lessons?.length == 1 ? l10n.lesson : l10n.lessons}',
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? AppColors.textSecondaryDark.withOpacity(0.7)
-                            : AppColors.textSecondaryLight.withOpacity(0.7),
-                      ),
+                    const SizedBox(height: 2),
+                    Consumer(
+                      builder: (context, ref, child) {
+                        final lessonsAsync = ref.watch(moduleLessonsProvider(module.id));
+                        return lessonsAsync.maybeWhen(
+                          data: (lessons) {
+                            final count = lessons.length;
+                            return Text(
+                              '$count ${count == 1 ? l10n.lesson : l10n.lessons}',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w500,
+                                color: isDark
+                                    ? AppColors.textSecondaryDark.withOpacity(0.7)
+                                    : AppColors.textSecondaryLight.withOpacity(0.7),
+                              ),
+                            );
+                          },
+                          orElse: () => Text(
+                            '${module.lessons?.length ?? 0} ${module.lessons?.length == 1 ? l10n.lesson : l10n.lessons}',
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w500,
+                              color: isDark
+                                  ? AppColors.textSecondaryDark.withOpacity(0.7)
+                                  : AppColors.textSecondaryLight.withOpacity(0.7),
+                            ),
+                          ),
+                        );
+                      },
                     ),
                     const Spacer(),
                     Consumer(
                       builder: (context, ref, child) {
-                        final progress = ref.watch(
+                        final progressAsync = ref.watch(
                           moduleProgressProvider(module.id),
                         );
-                        final percentage = (progress * 100).toInt();
 
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        return progressAsync.maybeWhen(
+                          data: (progress) {
+                            final percentage = (progress * 100).toInt();
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '$percentage%',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w700,
-                                    color: primaryColor,
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      '$percentage%',
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.w700,
+                                        color: primaryColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 3),
+                                LinearProgressIndicator(
+                                  value: progress,
+                                  backgroundColor: primaryColor.withOpacity(0.1),
+                                  color: primaryColor,
+                                  minHeight: 4,
+                                  borderRadius: BorderRadius.circular(2),
                                 ),
                               ],
-                            ),
-                            const SizedBox(height: 4),
-                            LinearProgressIndicator(
-                              value: progress,
-                              backgroundColor: primaryColor.withOpacity(0.1),
-                              color: primaryColor,
-                              minHeight: 4,
-                              borderRadius: BorderRadius.circular(2),
-                            ),
-                          ],
+                            );
+                          },
+                          orElse: () => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    '0%',
+                                    style: TextStyle(
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.w700,
+                                      color: primaryColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 3),
+                              LinearProgressIndicator(
+                                value: 0,
+                                backgroundColor: primaryColor.withOpacity(0.1),
+                                color: primaryColor,
+                                minHeight: 4,
+                                borderRadius: BorderRadius.circular(2),
+                                valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     ),
@@ -798,12 +949,17 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 }
 
 class _LearnHeaderDelegate extends SliverPersistentHeaderDelegate {
-  _LearnHeaderDelegate({required this.topPadding, required this.l10n});
+  _LearnHeaderDelegate({
+    required this.topPadding,
+    required this.l10n,
+    required this.motivationalSpeech,
+  });
 
   final double topPadding;
   final AppLocalizations l10n;
+  final String motivationalSpeech;
 
-  static const double _expandedHeight = 150;
+  static const double _expandedHeight = 130;
 
   @override
   double get minExtent => kToolbarHeight + topPadding;
@@ -889,20 +1045,15 @@ class _LearnHeaderDelegate extends SliverPersistentHeaderDelegate {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            l10n.yourJourney,
-                            style: const TextStyle(
-                              color: Colors.white70,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            l10n.navLearn,
+                            motivationalSpeech,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.inter(
-                              color: Colors.white,
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
+                              color: Colors.white70,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                              fontStyle: FontStyle.italic,
+                              height: 1.3,
                             ),
                           ),
                         ],
@@ -919,6 +1070,7 @@ class _LearnHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(_LearnHeaderDelegate oldDelegate) {
-    return oldDelegate.topPadding != topPadding;
+    return oldDelegate.topPadding != topPadding ||
+        oldDelegate.motivationalSpeech != motivationalSpeech;
   }
 }
